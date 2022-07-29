@@ -1,0 +1,758 @@
+// JavaScript Document
+function validar(tuformulario, val) {
+	/*var privilegio=$("#xxx").val();
+	//alert(privilegio);
+	if(privilegio=='1')
+	{
+		var gestion=$("#gestion").val();
+		if(gestion=='')
+		{
+			alert('Seleccione respuesta de crear gestion');
+			$('#gestion').focus();
+			return false;
+		}
+	}*/
+	/*
+		var validar_visita_inicial=$("#sel_visita_inicial").val();
+			if (validar_visita_inicial==''||validar_visita_inicial=='Selecionaraa') {
+				alert('La visita Inicial esta vacia');
+				$('#sel_visita_inicial').focus();
+				return false;
+			}
+			if (validar_visita_inicial=='NO') {
+				var span_causa_visita1=$("#span_causa_visita1").val();
+					if(span_causa_visita1=='')
+					{
+						alert('La Causa No Visita no puede ser nula');
+						$('#span_causa_visita1').focus();
+						return false;
+					}
+			}
+			if (validar_visita_inicial=='SI') {
+				var fecha_visita_ini=$("#fecha_visita_ini").val();
+				if (fecha_visita_ini=='') {
+						alert('La fecha de visita inicial esta vacia');
+						$('#fecha_visita_ini').focus();
+						return false;
+					}
+			}
+			*/
+
+	var LOGRO_COMUNICACION = $('input:radio[name=logro_comunicacion]:checked').val();
+	if (LOGRO_COMUNICACION == '') {
+		alert('El logro de la comunicacion esta vacio');
+		$('#logro_comunicacion').focus();
+		return false;
+	}
+
+	var RECLAMO = $("#reclamo").val();
+	if (RECLAMO == '' || RECLAMO == 'Seleccione...') {
+		alert('El reclamo esta vacio');
+		$('#reclamo').focus();
+		return false;
+	}
+	if (RECLAMO == 'SI') {
+		var MEDICAMENTO = $("#MEDICAMENTO").val();
+		if (MEDICAMENTO == 'BETAFERON CMBP X 15 VPFS (3750 MCG) MM') {
+			var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
+			if (FECHA_RECLAMACION == '') {
+				alert('La fecha de reclamacion esta vacia');
+				$('#fecha_reclamacion').focus();
+				return false;
+			}
+			var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
+			var FECHA_ACTUAL = $("#fecha_actual").val();
+			if (FECHA_RECLAMACION > FECHA_ACTUAL) {
+				alert('La fecha de reclamacion es mayor a la actual');
+				$('#fecha_reclamacion').focus();
+				return false;
+			}
+			var CONSECUTIVO_BETAFERON = $("#consecutivo_betaferon").val();
+			if (CONSECUTIVO_BETAFERON == '') {
+				alert('El consecutivo de betaferon esta vacio');
+				$('#consecutivo_betaferon').focus();
+				return false;
+			}
+			var NUMERO_CAJAS = $("#numero_cajas").val();
+			if (NUMERO_CAJAS == '') {
+				alert('El numero de cajas esta vacio');
+				$('#numero_cajas').focus();
+				return false;
+			}
+			var TIPO_NUMERO_CAJAS = $("#tipo_numero_cajas").val();
+			if (TIPO_NUMERO_CAJAS == '') {
+				alert('El tipo numero de cajas esta vacio');
+				$('#tipo_numero_cajas').focus();
+				return false;
+			}
+		}
+		else {
+			var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
+			if (FECHA_RECLAMACION == '') {
+				alert('La fecha de reclamacion esta vacia');
+				$('#fecha_reclamacion').focus();
+				return false;
+			}
+			var NUMERO_CAJAS = $("#numero_cajas").val();
+			if (NUMERO_CAJAS == '') {
+				alert('El numero de cajas esta vacio');
+				$('#numero_cajas').focus();
+				return false;
+			}
+			var TIPO_NUMERO_CAJAS = $("#tipo_numero_cajas").val();
+			if (TIPO_NUMERO_CAJAS == '') {
+				alert('El tipo numero de cajas esta vacio');
+				$('#tipo_numero_cajas').focus();
+				return false;
+			}
+		}
+	}
+	else {
+		var MEDICAMENTO = $("#MEDICAMENTO").val();
+		if (MEDICAMENTO == 'Eylia 2MG VL 1x2ML CO INST') {
+			var NUMERO_CAJAS = $("#numero_cajas").val();
+			if (NUMERO_CAJAS == '') {
+				alert('El numero de cajas esta vacio');
+				$('#numero_cajas').focus();
+				return false;
+			}
+			var TIPO_NUMERO_CAJAS = $("#tipo_numero_cajas").val();
+			if (TIPO_NUMERO_CAJAS == '') {
+				alert('El tipo numero de cajas esta vacio');
+				$('#tipo_numero_cajas').focus();
+				return false;
+			}
+		}
+		var CAUSA_NO_RECLAMACION = $("#causa_no_reclamacion").val();
+		if (CAUSA_NO_RECLAMACION == '' || CAUSA_NO_RECLAMACION == 'Seleccione...') {
+			alert('La causa de no reclamacion esta vacia');
+			$('#causa_no_reclamacion').focus();
+			return false;
+		}
+	}
+
+	if (LOGRO_COMUNICACION == 'SI') {
+		var ESTADO = $("#estado_paciente").val();
+		if (ESTADO == '' || ESTADO == 'Seleccione...') {
+			alert('El estado esta vacio');
+			$('#estado_paciente').focus();
+			return false;
+		}
+		var FECHA_ACTIVACION = $("#fecha_activacion").val();
+		if (FECHA_ACTIVACION == '') {
+			alert('La fecha de activacion esta vacia');
+			$('#fecha_activacion').focus();
+			return false;
+		}
+		//informacion seguimietno
+		if (val == 2) {
+			var ESTADO = $("#estado_paciente").val();
+			if (ESTADO == 'Abandono') {
+				var fecha_retiro = $("#fecha_retiro").val();
+				if (fecha_retiro == '') {
+					alert('La fecha de retiro esta vacio');
+					$('#fecha_retiro').focus();
+					return false;
+				}
+			}
+			var fecha_retiro = $("#fecha_retiro").val();
+			if (fecha_retiro != '') {
+				var motivo_retiro = $("#motivo_retiro").val();
+				if (motivo_retiro == '' || motivo_retiro == 'Seleccione...') {
+					alert('Seleccione motivo de retiro');
+					$('#motivo_retiro').focus();
+					return false;
+				}
+				var observacion_retiro = $("#observacion_retiro").val();
+				if (observacion_retiro == '') {
+					alert('La observacion de retiro esta vacia');
+					$('#observacion_retiro').focus();
+					return false;
+				}
+			}
+		}
+		var NOMBRE = $("#nombre").val();
+		if (NOMBRE == '') {
+			alert('El nombre esta vacio');
+			$('#nombre').focus();
+			return false;
+		}
+		var APELLIDO = $("#apellidos").val();
+		if (APELLIDO == '') {
+			alert('El apellido esta vacio');
+			$('#apellidos').focus();
+			return false;
+		}
+		var TIPO_IDENTIFICACION = $("#tipo_identificacion").val();
+		if (TIPO_IDENTIFICACION == '' || TIPO_IDENTIFICACION == 'Seleccione...') {
+			alert('El tipo de identificacion esta vacio');
+			$('#tipo_identificacion').focus();
+			return false;
+		}
+
+		var IDENTIFICACION = $("#identificacion").val();
+		if (IDENTIFICACION == '') {
+			alert('La identificacion esta vacia');
+			$('#identificacion').focus();
+			return false;
+		}
+		var TELEFONO1 = $("#telefono1").val();
+		if (TELEFONO1 == '') {
+			alert('El telefono 1 esta vacio');
+			$('#telefono1').focus();
+			return false;
+		}
+		var DEPARTAMENTO = $("#departamento").val();
+		if (DEPARTAMENTO == '' || DEPARTAMENTO == 'Seleccione...') {
+			alert('El departamento esta vacio');
+			$('#departamento').focus();
+			return false;
+		}
+		var CIUDAD = $("#ciudad").val();
+		if (CIUDAD == '' || CIUDAD == 'Seleccione...') {
+			alert('La ciudad esta vacia');
+			$('#ciudad').focus();
+			return false;
+		}
+		var BARRIO = $("#barrio").val();
+		if (BARRIO == '') {
+			alert('El barrio esta vacio');
+			$('#barrio').focus();
+			return false;
+		}
+		if (val == 2) {
+			var DIRECCION = $("#direccion_act").val();
+			if (DIRECCION == '') {
+				var DIRECCION2 = $("#DIRECCION").val();
+				if (DIRECCION2 == '') {
+					alert('La direccion esta vacia');
+					$('#DIRECCION').focus();
+					return false;
+				}
+			}
+		}
+		if (val == 1) {
+			var DIRECCION = $("#DIRECCION").val();
+			if (DIRECCION == '') {
+				alert('La direccion esta vacia');
+				$('#DIRECCION').focus();
+				return false;
+			}
+		}
+		var GENERO = $("#genero").val();
+		if (GENERO == '' || GENERO == 'Seleccione...') {
+			alert('El genero esta vacio');
+			$('#genero').focus();
+			return false;
+		}
+		var FECHA_NACIMIENTO = $("#fecha_nacimiento").val();
+		if (FECHA_NACIMIENTO == '') {
+			alert('La fecha de nacimiento esta vacia');
+			$('#fecha_nacimiento').focus();
+			return false;
+		}
+		var ACUDIENTE = $("#acudiente").val();
+		if (ACUDIENTE != '') {
+			var TELEFONO_ACUDIENTE = $("#telefono_acudiente").val();
+			if (TELEFONO_ACUDIENTE == '') {
+				alert('El telefono del acudiente esta vacio');
+				$('#telefono_acudiente').focus();
+				return false;
+			}
+		}
+		var CIUDAD_RECLAMACION = $("#ciudad_reclamacion").val();
+		if (CIUDAD_RECLAMACION == '' || CIUDAD_RECLAMACION == 'Seleccione...') {
+			alert('La Ciudad de Entrega esta vacia');
+			$('#ciudad_reclamacion').focus();
+			return false;
+		}
+		var PRODUCTO = $("#producto_tratamiento").val();
+		if (PRODUCTO == '' || PRODUCTO == 'Seleccione...') {
+			alert('El producto del tratamiento esta vacio');
+			$('#producto_tratamiento').focus();
+			return false;
+		}
+		if (PRODUCTO == 'KOGENATE FS 2000 PLAN' || PRODUCTO == 'Xofigo 1x6 ml CO' || PRODUCTO == 'Kovaltry' || PRODUCTO == 'Jivi') {
+			if (PRODUCTO == 'Xofigo 1x6 ml CO') {
+				var DOSIS2 = $("#Dosis2").val();
+				if (DOSIS2 == '') {
+					alert('La dosis esta vacia');
+					$('#Dosis2').focus();
+					return false;
+				}
+			}
+			if (PRODUCTO == 'KOGENATE FS 2000 PLAN') {
+				var DOSIS3 = $("#Dosis3").val();
+				if (DOSIS3 == '') {
+					alert('La dosis esta vacia');
+					$('#Dosis3').focus();
+					return false;
+				}
+			}
+			if (PRODUCTO == 'Kovaltry') {
+				var DOSIS4 = $("#Dosis2").val();
+				if (DOSIS4 == '') {
+					alert('La dosis esta vacia');
+					$('#Dosis2').focus();
+					return false;
+				}
+			}
+			if (PRODUCTO == 'Jivi') {
+				var DOSIS5 = $("#Dosis2").val();
+				if (DOSIS5 == '') {
+					alert('La dosis esta vacia');
+					$('#Dosis2').focus();
+					return false;
+				}
+			}
+		}
+		else {
+			var DOSIS = $("#Dosis").val();
+			if (DOSIS == '' || DOSIS == 'Seleccione...') {
+				alert('La dosis esta vacia');
+				$('#Dosis').focus();
+				return false;
+			}
+		}
+		if (PRODUCTO == 'BETAFERON CMBP X 15 VPFS (3750 MCG) MM' || PRODUCTO == 'ADEMPAS' || PRODUCTO == 'Eylia 2MG VL 1x2ML CO INST') {
+			var STATUS = $("#status_paciente").val();
+			if (STATUS == '' || STATUS == 'Seleccione...') {
+				alert('El status esta vacio');
+				$('#status_paciente').focus();
+				return false;
+			}
+		}
+		if (PRODUCTO == 'Xofigo 1x6 ml CO') {
+			var fecha_formulacionv = $("#fecha_formulacion").val();
+			if (fecha_formulacionv == '') {
+				alert('La fecha formulacion esta vacia');
+				$('#fecha_formulacion').focus();
+				return false;
+			}
+		}
+		var TRATAMIENTO_PREVIO = $("#tratamiento_previo").val();
+		if (TRATAMIENTO_PREVIO == '' || TRATAMIENTO_PREVIO == 'Seleccione...') {
+			alert('El tratamiento previo esta vacio');
+			$('#tratamiento_previo').focus();
+			return false;
+		}
+		if (TRATAMIENTO_PREVIO == 'Otro') {
+			var tratamiento_previo_otro = $("#tratamiento_previo_otro").val();
+			if (tratamiento_previo_otro == '') {
+				alert('El tratamiento previo esta vacio');
+				$('#tratamiento_previo_otro').focus();
+				return false;
+			}
+		}
+		var CLASIFICACION_PATOLOGICA = $("#clasificacion_patologica").val();
+		if (CLASIFICACION_PATOLOGICA == '') {
+			alert('La clasificacion patologica esta vacia');
+			$('#clasificacion_patologica').focus();
+			return false;
+		}
+		var FECHA_INICIO_TERAPIA = $("#fecha_inicio_trt").val();
+		if (FECHA_INICIO_TERAPIA == '') {
+			alert('La fecha inicio de terapia esta vacia');
+			$('#fecha_inicio_trt').focus();
+			return false;
+		}
+		var consentimiento = $("#consentimiento").val();
+		if (consentimiento == '' || consentimiento == 'Seleccione...') {
+			alert('Seleccione la respuesta del consentimiento');
+			$('#consentimiento').focus();
+			return false;
+		}
+		if (LOGRO_COMUNICACION == 'SI') {
+			var MOTIVO_COMUNICACION = $("#motivo_comunicacion").val();
+			if (MOTIVO_COMUNICACION == '' || MOTIVO_COMUNICACION == 'Seleccione...') {
+				alert('El motivo de comunicacion esta vacio');
+				$('#motivo_comunicacion').focus();
+				return false;
+			}
+			var MEDIO_CONTACTO = $("#medio_contacto").val();
+			if (MEDIO_CONTACTO == '' || MEDIO_CONTACTO == 'Seleccione...') {
+				alert('El medio de contacto esta vacio');
+				$('#medio_contacto').focus();
+				return false;
+			}
+			var TIPO_LLAMADA = $("#tipo_llamada").val();
+			if (TIPO_LLAMADA == '' || TIPO_LLAMADA == 'Seleccione...') {
+				alert('El tipo de llamada esta vacio');
+				$('#tipo_llamada').focus();
+				return false;
+			}
+		}
+		var ASEGURADOR = $("#asegurador").val();
+		if (ASEGURADOR == '' || ASEGURADOR == 'Seleccione...') {
+			alert('El asegurador esta vacio');
+			$('#asegurador').focus();
+			return false;
+		}
+		var REGIMEN = $("#regimen").val();
+		if (REGIMEN == '' || REGIMEN == 'Seleccione...') {
+			alert('El regimen esta vacio');
+			$('#regimen').focus();
+			return false;
+		}
+		var OPERADOR_LOGISTICO = $("#operador_logistico").val();
+		if (OPERADOR_LOGISTICO == '' || OPERADOR_LOGISTICO == 'Seleccione...') {
+			alert('El operador logistico esta vacio');
+			$('#operador_logistico').focus();
+			return false;
+		}
+		if (OPERADOR_LOGISTICO == 'Otro') {
+			var OPERADOR_LOGISTICO_NUEVO = $("#operador_logistico_nuevo").val();
+			if (OPERADOR_LOGISTICO_NUEVO == '') {
+				alert('El operador logistico nuevo esta vacio');
+				$('#operador_logistico_nuevo').focus();
+				return false;
+			}
+		}
+		var RECLAMO = $("#reclamo").val();
+		if (RECLAMO == '' || RECLAMO == 'Seleccione...') {
+			alert('El reclamo esta vacio');
+			$('#reclamo').focus();
+			return false;
+		}
+		if (RECLAMO == 'SI') {
+			var MEDICAMENTO = $("#MEDICAMENTO").val();
+			if (MEDICAMENTO == 'BETAFERON CMBP X 15 VPFS (3750 MCG) MM') {
+				var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
+				if (FECHA_RECLAMACION == '') {
+					alert('La fecha de reclamacion esta vacia');
+					$('#fecha_reclamacion').focus();
+					return false;
+				}
+				var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
+				var FECHA_ACTUAL = $("#fecha_actual").val();
+				if (FECHA_RECLAMACION > FECHA_ACTUAL) {
+					alert('La fecha de reclamacion es mayor a la actual');
+					$('#fecha_reclamacion').focus();
+					return false;
+				}
+				var CONSECUTIVO_BETAFERON = $("#consecutivo_betaferon").val();
+				if (CONSECUTIVO_BETAFERON == '') {
+					alert('El consecutivo de betaferon esta vacio');
+					$('#consecutivo_betaferon').focus();
+					return false;
+				}
+				var NUMERO_CAJAS = $("#numero_cajas").val();
+				if (NUMERO_CAJAS == '') {
+					alert('El numero de cajas esta vacio');
+					$('#numero_cajas').focus();
+					return false;
+				}
+				var TIPO_NUMERO_CAJAS = $("#tipo_numero_cajas").val();
+				if (TIPO_NUMERO_CAJAS == '') {
+					alert('El tipo numero de cajas esta vacio');
+					$('#tipo_numero_cajas').focus();
+					return false;
+				}
+			}
+			else {
+				var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
+				if (FECHA_RECLAMACION == '') {
+					alert('La fecha de reclamacion esta vacia');
+					$('#fecha_reclamacion').focus();
+					return false;
+				}
+				var NUMERO_CAJAS = $("#numero_cajas").val();
+				if (NUMERO_CAJAS == '') {
+					alert('El numero de cajas esta vacio');
+					$('#numero_cajas').focus();
+					return false;
+				}
+				var TIPO_NUMERO_CAJAS = $("#tipo_numero_cajas").val();
+				if (TIPO_NUMERO_CAJAS == '') {
+					alert('El tipo numero de cajas esta vacio');
+					$('#tipo_numero_cajas').focus();
+					return false;
+				}
+			}
+		}
+		else {
+			var MEDICAMENTO = $("#MEDICAMENTO").val();
+			if (MEDICAMENTO == 'Eylia 2MG VL 1x2ML CO INST') {
+				var NUMERO_CAJAS = $("#numero_cajas").val();
+				if (NUMERO_CAJAS == '') {
+					alert('El numero de cajas esta vacio');
+					$('#numero_cajas').focus();
+					return false;
+				}
+				var TIPO_NUMERO_CAJAS = $("#tipo_numero_cajas").val();
+				if (TIPO_NUMERO_CAJAS == '') {
+					alert('El tipo numero de cajas esta vacio');
+					$('#tipo_numero_cajas').focus();
+					return false;
+				}
+			}
+			var CAUSA_NO_RECLAMACION = $("#causa_no_reclamacion").val();
+			if (CAUSA_NO_RECLAMACION == '' || CAUSA_NO_RECLAMACION == 'Seleccione...') {
+				alert('La causa de no reclamacion esta vacia');
+				$('#causa_no_reclamacion').focus();
+				return false;
+			}
+		}
+		if (val == 1) {
+			var MEDICAMENTO = $("#producto_tratamiento").val();
+		}
+		if (val == 2) {
+			var MEDICAMENTO = $("#MEDICAMENTO").val();
+		}
+		if (MEDICAMENTO == 'Eylia 2MG VL 1x2ML CO INST' || MEDICAMENTO == 'VENTAVIS 10 1SOL/2ML X30AMP(Conse) MM' || MEDICAMENTO == 'ADEMPAS' || MEDICAMENTO == 'Xofigo 1x6 ml CO') {
+			if (MEDICAMENTO == 'ADEMPAS') {
+				var brindo_apoyo = $("#brindo_apoyo").val();
+				if (brindo_apoyo == '') {
+					alert('Brindo apoyo esta vacio');
+					$('#brindo_apoyo').focus();
+					return false;
+				}
+			}
+			var paap = $("#paap").val();
+			if (paap == '') {
+				alert('El PAAP esta vacio');
+				$('#paap').focus();
+				return false;
+			}
+			if (paap == 'SI') {
+				var sub_paap = $("#sub_paap").val();
+				if (sub_paap == '') {
+					alert('El Sub PAAP esta vacio');
+					$('#sub_paap').focus();
+					return false;
+				}
+				if (sub_paap == 'Con barrera') {
+					var sub_barrera = $("#sub_barrera").val();
+					if (sub_barrera == '') {
+						alert('La Barrera esta vacia');
+						$('#sub_barrera').focus();
+						return false;
+					}
+				}
+			}
+		}
+		var genera_solicitud = $('input:radio[name=genera_solicitud]:checked').val();
+		if (genera_solicitud == '') {
+			alert('Genera solicitud esta vacio');
+			$('#genera_solicitud').focus();
+			return false;
+		}
+		var EVENTO_ADVERSO = $('input:radio[name=evento_adverso]:checked').val();
+		if (EVENTO_ADVERSO == '') {
+			alert('El evento adverso esta vacio');
+			$('#evento_adverso').focus();
+			return false;
+		}
+		if (EVENTO_ADVERSO == 'SI') {
+			var TIPO_EVENTO_ADVERSO = $('input:radio[name=tipo_evento_adverso]:checked').val();
+			if (TIPO_EVENTO_ADVERSO == '') {
+				alert('El tipo de evento adverso esta vacio');
+				$('#tipo_evento_adverso').focus();
+				return false;
+			}
+		}
+		var IPS_ATIENDE = $("#ips_atiende").val();
+		if (IPS_ATIENDE == '') {
+			alert('La ips que atiende esta vacia');
+			$('#ips_atiende').focus();
+			return false;
+		}
+		var MEDICO = $("#medico").val();
+		if (MEDICO == '' || MEDICO == 'Seleccione...') {
+			alert('El medico esta vacio');
+			$('#medico').focus();
+			return false;
+		}
+		if (MEDICO == 'Otro') {
+			var MEDICO_NUEVO = $("#medico_nuevo").val();
+			if (MEDICO_NUEVO == '') {
+				alert('El medico nuevo esta vacio');
+				$('#medico_nuevo').focus();
+				return false;
+			}
+		}
+		var PRODUCTO_TRATAMIENTO = $("#producto_tratamiento").val();
+		if (PRODUCTO_TRATAMIENTO != '') {
+			if (PRODUCTO_TRATAMIENTO == 'VENTAVIS 10 1SOL/2ML X30AMP(Conse) MM') {
+				var NEBULIZACIONES = $("#nebulizaciones").val();
+				if (NEBULIZACIONES == '') {
+					alert('El numero de nebulizaciones esta vacio');
+					$('#nebulizaciones').focus();
+					return false;
+				}
+			}
+		}
+		var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
+		var FECHA_ACTUAL = $("#fecha_actual").val();
+		if (FECHA_RECLAMACION > FECHA_ACTUAL) {
+			alert('La fecha de reclamacion es mayor a la actual');
+			$('#fecha_reclamacion').focus();
+			return false
+		}
+		var FECHA_PROXIMA_LLAMADA = $("#fecha_proxima_llamada").val();
+		if (FECHA_PROXIMA_LLAMADA == '') {
+			alert('La fecha de proxima llamada esta vacia');
+			$('#fecha_proxima_llamada').focus();
+			return false;
+		}
+		var FECHA_PROXIMA_LLAMADA = $("#fecha_proxima_llamada").val();
+		var FECHA_ACTUAL = $("#fecha_actual").val();
+		if (FECHA_PROXIMA_LLAMADA < FECHA_ACTUAL) {
+			alert('La fecha de la proxima llamada es menor a la actual');
+			$('#fecha_proxima_llamada').focus();
+			return false;
+		}
+		var MOTIVO_PROXIMA_LLAMADA = $("#motivo_proxima_llamada").val();
+		if (MOTIVO_PROXIMA_LLAMADA == '') {
+			alert('El motivo de proxima llamada esta vacio');
+			$('#motivo_proxima_llamada').focus();
+			return false;
+		}
+		var MEDICAMENTO = $("#MEDICAMENTO").val();
+		if (MEDICAMENTO != '') {
+			if (MEDICAMENTO == 'KOGENATE FS 2000 PLAN' || MEDICAMENTO == 'Xofigo 1x6 ml CO') {
+				var DOSIS2 = $("#Dosis2").val();
+				if (DOSIS2 == '') {
+					alert('La dosis esta vacia');
+					$('#Dosis2').focus();
+					return false;
+				}
+			}
+			else {
+				var DOSIS = $("#Dosis").val();
+				if (DOSIS == '' || DOSIS == 'Seleccione...') {
+					alert('La dosis esta vacia');
+					$('#Dosis').focus();
+					return false;
+				}
+			}
+			if (MEDICAMENTO == 'VENTAVIS 10 1SOL/2ML X30AMP(Conse) MM') {
+				var NEBULIZACIONES = $("#nebulizaciones").val();
+				if (NEBULIZACIONES == '') {
+					alert('El numero de nebulizaciones esta vacio');
+					$('#nebulizaciones').focus();
+					return false;
+				}
+			}
+		}
+		var DESCRIPCION_COMUNICACION = $("#descripcion_comunicacion").val();
+		if (DESCRIPCION_COMUNICACION == '') {
+			alert('La descripcion de comunicacion esta vacia');
+			$('#descripcion_comunicacion').focus();
+			return false;
+		}
+	}
+	else {
+		var MEDIO_CONTACTO = $("#medio_contacto").val();
+		if (MEDIO_CONTACTO == '' || MEDIO_CONTACTO == 'Seleccione...') {
+			alert('El medio de contacto esta vacio');
+			$('#medio_contacto').focus();
+			return false;
+		}
+		var TIPO_LLAMADA = $("#tipo_llamada").val();
+		if (TIPO_LLAMADA == '' || TIPO_LLAMADA == 'Seleccione...') {
+			alert('El tipo de llamada esta vacio');
+			$('#tipo_llamada').focus();
+			return false;
+		}
+		var MOTIVO_NO_COMUNICACION = $("#motivo_no_comunicacion").val();
+		if (MOTIVO_NO_COMUNICACION == '' || MOTIVO_NO_COMUNICACION == 'Seleccione...') {
+			alert('El motivo de no comunicacion esta vacio');
+			$('#motivo_no_comunicacion').focus();
+			return false;
+		}
+		var NUMERO_INTENTOS = $("#via_recepcion").val();
+		if (NUMERO_INTENTOS == '') {
+			alert('El numero de intentos esta vacio');
+			$('#via_recepcion').focus();
+			return false;
+		}
+		/*var RECLAMO=$("#reclamo").val();
+		if(RECLAMO==''||RECLAMO=='Seleccione...')
+		{
+			alert('El reclamo esta vacio');
+			$('#reclamo').focus();
+			return false;
+		}
+		if(RECLAMO=='SI')
+		{
+			var MEDICAMENTO=$("#MEDICAMENTO").val();
+			if(MEDICAMENTO=='BETAFERON CMBP X 15 VPFS (3750 MCG) MM')
+			{	
+				var FECHA_RECLAMACION=$("#fecha_reclamacion").val();
+				if(FECHA_RECLAMACION=='')
+				{
+					alert('La fecha de reclamacion esta vacia');
+					$('#fecha_reclamacion').focus();
+					return false;
+				}
+				var CONSECUTIVO_BETAFERON=$("#consecutivo_betaferon").val();
+				if(CONSECUTIVO_BETAFERON=='')
+				{
+					alert('El consecutivo de betaferon esta vacio');
+					$('#consecutivo_betaferon').focus();
+					return false;
+				}
+				var NUMERO_CAJAS=$("#numero_cajas").val();
+				if(NUMERO_CAJAS=='')
+				{
+					alert('El numero de cajas esta vacio');
+					$('#numero_cajas').focus();
+					return false;
+				}
+				var TIPO_NUMERO_CAJAS=$("#tipo_numero_cajas").val();
+				if(TIPO_NUMERO_CAJAS=='')
+				{
+					alert('El tipo numero de cajas esta vacio');
+					$('#tipo_numero_cajas').focus();
+					return false;
+				}
+			}
+			else
+			{
+				var FECHA_RECLAMACION=$("#fecha_reclamacion").val();
+				if(FECHA_RECLAMACION=='')
+				{
+					alert('La fecha de reclamacion esta vacia');
+					$('#fecha_reclamacion').focus();
+					return false;
+				}
+				var NUMERO_CAJAS=$("#numero_cajas").val();
+				if(NUMERO_CAJAS=='')
+				{
+					alert('El numero de cajas esta vacio');
+					$('#numero_cajas').focus();
+					return false;
+				}
+			}
+		}
+		else
+		{
+			var CAUSA_NO_RECLAMACION=$("#causa_no_reclamacion").val();
+			if(CAUSA_NO_RECLAMACION==''||CAUSA_NO_RECLAMACION=='Seleccione...')
+			{
+				alert('La causa de no reclamacion esta vacia');
+				$('#causa_no_reclamacion').focus();
+				return false;
+			}
+		}*/
+		var FECHA_PROXIMA_LLAMADA = $("#fecha_proxima_llamada").val();
+		if (FECHA_PROXIMA_LLAMADA == '') {
+			alert('La fecha de proxima llamada esta vacia');
+			$('#fecha_proxima_llamada').focus();
+			return false;
+		}
+		var MOTIVO_PROXIMA_LLAMADA = $("#motivo_proxima_llamada").val();
+		if (MOTIVO_PROXIMA_LLAMADA == '') {
+			alert('El motivo de proxima llamada esta vacio');
+			$('#motivo_proxima_llamada').focus();
+			return false;
+		}
+		var DESCRIPCION_COMUNICACION = $("#descripcion_comunicacion").val();
+		if (DESCRIPCION_COMUNICACION == '') {
+			alert('La descripcion de comunicacion esta vacia');
+			$('#descripcion_comunicacion').focus();
+			return false;
+		}
+	}
+}
