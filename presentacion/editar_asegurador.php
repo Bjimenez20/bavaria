@@ -6,10 +6,10 @@ if (isset($_POST['actualizar'])) {
 
     if ($_POST['asegurador_habilitar'] == '') {
         $asegurador = 'NO DEFINIDO VOLVER A PREGUNTAR';
-        $update = mysqli_query($conex, "UPDATE bayer_asegurador SET ASEGURADOR='" . $asegurador . "' WHERE ID_ASEGURADOR = '" . $ID . "'");
+        $update = mysqli_query($conex, "UPDATE ipsen_asegurador SET ASEGURADOR='" . $asegurador . "' WHERE ID_ASEGURADOR = '" . $ID . "'");
     } else {
         $asegurador = $_POST['operador_habilitar'];
-        $update = mysqli_query($conex, "UPDATE bayer_asegurador SET ASEGURADOR='" . $asegurador . "', ESTADO = 'IN' WHERE ID_ASEGURADOR = '" . $ID . "'");
+        $update = mysqli_query($conex, "UPDATE ipsen_asegurador SET ASEGURADOR='" . $asegurador . "', ESTADO = 'IN' WHERE ID_ASEGURADOR = '" . $ID . "'");
     }
     if ($update) {
 ?>
@@ -48,7 +48,7 @@ if (isset($_POST['eliminar'])) {
     require('../datos/conex.php');
     require('../datos/parse_str.php');
     $ID = $erted;
-    $delete = mysqli_query($conex, "DELETE FROM bayer_asegurador WHERE ID_ASEGURADOR = '" . $ID . "'");
+    $delete = mysqli_query($conex, "DELETE FROM ipsen_asegurador WHERE ID_ASEGURADOR = '" . $ID . "'");
     if ($delete) {
     ?>
         <span style="margin-top:5%;">

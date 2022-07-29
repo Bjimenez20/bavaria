@@ -3,13 +3,13 @@ if (isset($_POST['actualizar'])) {
     require('../datos/conex.php');
     require('../datos/parse_str.php');
     $ID = $ertid;
-  
+
     if ($_POST['operador_habilitar'] == '') {
         $operador = 'NO DEFINIDO VOLVER A PREGUNTAR';
-        $update = mysqli_query($conex, "UPDATE bayer_operador_logistico SET OPERADOR_LOGISTICO='" . $operador . "' WHERE ID_OPERADOR_LOGISTICO = '" . $ID . "'");
+        $update = mysqli_query($conex, "UPDATE ipsen_operador_logistico SET OPERADOR_LOGISTICO='" . $operador . "' WHERE ID_OPERADOR_LOGISTICO = '" . $ID . "'");
     } else {
         $operador = $_POST['operador_habilitar'];
-        $update = mysqli_query($conex, "UPDATE bayer_operador_logistico SET OPERADOR_LOGISTICO='" . $operador . "', ESTADO = 'IN' WHERE ID_OPERADOR_LOGISTICO = '" . $ID . "'");
+        $update = mysqli_query($conex, "UPDATE ipsen_operador_logistico SET OPERADOR_LOGISTICO='" . $operador . "', ESTADO = 'IN' WHERE ID_OPERADOR_LOGISTICO = '" . $ID . "'");
     }
     if ($update) {
 ?>
@@ -49,7 +49,7 @@ if (isset($_POST['eliminar'])) {
     require('../datos/parse_str.php');
     $ID = $ertid;
 
-    $delete = mysqli_query($conex, "DELETE FROM bayer_operador_logistico WHERE ID_OPERADOR_LOGISTICO = '" . $ID . "'");
+    $delete = mysqli_query($conex, "DELETE FROM ipsen_operador_logistico WHERE ID_OPERADOR_LOGISTICO = '" . $ID . "'");
     if ($delete) {
     ?>
         <span style="margin-top:5%;">

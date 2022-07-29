@@ -81,7 +81,7 @@ include('../logica/session.php')
 			$ESTADO = $_POST['ESTADO'];
 			$OBSERVACION_RESPUESTA = $_POST['OBSERVACION_RESPUESTA'];
 			$FECHA_RESPUESTA = $_POST['FECHA_RESPUESTA'];
-			$UPDATE_NOVEDADES = mysqli_query($conex, "UPDATE bayer_novedades SET ESTADO = '" . $ESTADO . "', OBSERVACION_RESPUESTA = '" . $OBSERVACION_RESPUESTA . "', FECHA_RESPUESTA = '" . $FECHA_RESPUESTA . "' WHERE ID = '" . $ID_NOVEDAD . "'");
+			$UPDATE_NOVEDADES = mysqli_query($conex, "UPDATE ipsen_novedades SET ESTADO = '" . $ESTADO . "', OBSERVACION_RESPUESTA = '" . $OBSERVACION_RESPUESTA . "', FECHA_RESPUESTA = '" . $FECHA_RESPUESTA . "' WHERE ID = '" . $ID_NOVEDAD . "'");
 			echo mysqli_error($conex);
 		}
 	?>

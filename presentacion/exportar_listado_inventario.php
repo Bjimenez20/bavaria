@@ -48,9 +48,9 @@ require_once("../datos/conex.php");
             <td><?php echo $fila1['NO_REMICION'] ?></td>
             <?php
             $id_pro = $fila1['ID_INVENTARIO_FK'];
-            $NOM = mysqli_query($conex,"SELECT NOMBRE_REFERENCIA,MATERIAL FROM bayer_movimientos AS M
-            INNER JOIN bayer_inventario AS I ON M.ID_INVENTARIO_FK= I.ID_INVENTARIO
-            INNER JOIN bayer_referencia AS R ON I.ID_REFERENCIA_FK= R.ID_REFERENCIA
+            $NOM = mysqli_query($conex, "SELECT NOMBRE_REFERENCIA,MATERIAL FROM ipsen_movimientos AS M
+            INNER JOIN ipsen_inventario AS I ON M.ID_INVENTARIO_FK= I.ID_INVENTARIO
+            INNER JOIN ipsen_referencia AS R ON I.ID_REFERENCIA_FK= R.ID_REFERENCIA
             WHERE M.ID_INVENTARIO_FK='" . $id_pro . "'");
             echo (mysqli_error($conex));
             while ($con = mysqli_fetch_array($NOM)) {

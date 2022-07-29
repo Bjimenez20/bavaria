@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -36,101 +37,102 @@ if (isset($_POST['buscar'])) {
 	$ESTADO = "Seleccione...";
 }
 ?>
+
 <body>
 	<form name="solicitud" id="solicitud" method="post" action="../presentacion/novedades_correo.php?artid=<?php echo $fila1['ID']; ?>" target="info">
 		<?php
 		//$ID_PACIENTE=base64_decode($xxx);
 		if ($PAP == "" and $NOVEDAD == "Seleccione..." and $PRIORIDAD == "Seleccione..." and $ESTADO == "Seleccione...") {
-			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades  ORDER BY FECHA_RESPUESTA ASC");
+			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades  ORDER BY FECHA_RESPUESTA ASC");
 			echo mysqli_error($conex);
-			$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades ORDER BY FECHA_RESPUESTA ASC LIMIT";
+			$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades ORDER BY FECHA_RESPUESTA ASC LIMIT";
 		}
 		if ($PAP != "") {
-			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades WHERE PAP = '" . $PAP . "' ORDER BY FECHA_RESPUESTA ASC");
+			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE PAP = '" . $PAP . "' ORDER BY FECHA_RESPUESTA ASC");
 			echo mysqli_error($conex);
-			$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE PAP = '" . $PAP . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+			$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE PAP = '" . $PAP . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 		}
 		if ($PAP == "" and $NOVEDAD != "Seleccione..." and $PRIORIDAD == "Seleccione..." and $ESTADO == "Seleccione...") {
-			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades WHERE NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC");
+			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC");
 			echo mysqli_error($conex);
-			$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+			$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 		}
 		if ($PAP == "" and $NOVEDAD == "Seleccione..." and $PRIORIDAD != "Seleccione..." and $ESTADO == "Seleccione...") {
 			if ($PRIORIDAD == "ALTA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 			if ($PRIORIDAD == "MEDIA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 			if ($PRIORIDAD == "BAJA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 		}
 		if ($PAP == "" and $NOVEDAD == "Seleccione..." and $PRIORIDAD == "Seleccione..." and $ESTADO != "Seleccione...") {
-			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades WHERE ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
+			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
 			echo mysqli_error($conex);
-			$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+			$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 		}
 		if ($PAP == "" and $NOVEDAD != "Seleccione..." and $PRIORIDAD != "Seleccione..." and $ESTADO == "Seleccione...") {
 			if ($PRIORIDAD == "ALTA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 			if ($PRIORIDAD == "MEDIA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 			if ($PRIORIDAD == "BAJA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND NOVEDADES = '" . $NOVEDAD . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 		}
 		if ($PAP == "" and $NOVEDAD != "Seleccione..." and $PRIORIDAD == "Seleccione..." and $ESTADO != "Seleccione...") {
-			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades WHERE NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
+			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
 			echo mysqli_error($conex);
-			$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+			$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 		}
 		if ($PAP == "" and $NOVEDAD == "Seleccione..." and $PRIORIDAD != "Seleccione..." and $ESTADO != "Seleccione...") {
 			if ($PRIORIDAD == "ALTA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 			if ($PRIORIDAD == "MEDIA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 			if ($PRIORIDAD == "BAJA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND ESTADO != 'FINALIZADO' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 		}
 		if ($PAP == "" and $NOVEDAD != "Seleccione..." and $PRIORIDAD != "Seleccione..." and $ESTADO != "Seleccione...") {
 			if ($PRIORIDAD == "ALTA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA < '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 			if ($PRIORIDAD == "MEDIA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA = '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 			if ($PRIORIDAD == "BAJA") {
-				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
+				$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC");
 				echo mysqli_error($conex);
-				$SELECT_SOLICITUDES = "SELECT * FROM bayer_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
+				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 		}
 		//include('../logica/consultas_solicitudes.php');
@@ -263,4 +265,5 @@ if (isset($_POST['buscar'])) {
 			</table>
 	</form>
 </body>
+
 </html>

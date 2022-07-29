@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
@@ -16,6 +17,7 @@
         text-align: center;
         padding: 10px;
     }
+
     html {
         background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
         -webkit-background-size: cover;
@@ -23,10 +25,7 @@
         -o-background-size: cover;
         background-size: cover;
     }
-    /*form 
-{
-    background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
-}*/
+
     @media screen and (max-width:1000px) {
         html {
             background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
@@ -42,9 +41,10 @@ require('../datos/parse_str.php');
 require('../datos/conex.php');
 $ID_PACIENTE = base64_decode($xxx);
 $producto = base64_decode($xxxx);
-$select = mysqli_query($conex,"SELECT DOSIS FROM  bayer_dosis WHERE NOMBRE_REFERENCIA='$producto' ORDER BY DOSIS ASC");
+$select = mysqli_query($conex, "SELECT DOSIS FROM  ipsen_dosis WHERE NOMBRE_REFERENCIA='$producto' ORDER BY DOSIS ASC");
 echo mysqli_error($conex);
 ?>
+
 <body>
     <div>
         <img src="../presentacion/imagenes/esquina.png" height="80px" style="margin-left:1%; margin-top:1%;" />
@@ -115,4 +115,5 @@ echo mysqli_error($conex);
         </fieldset>
     </form>
 </body>
+
 </html>

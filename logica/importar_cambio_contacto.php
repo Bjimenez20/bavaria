@@ -8,33 +8,24 @@ $lineas = file($archivotmp);
 $i = 0;
 $contar = 0;
 $contar_error = 0;
-foreach ($lineas as $linea_num => $linea)
-{
-	if ($i != 0)
-	//abrimos condición, solo entrará en la condición a partir de la segunda pasada del bucle.
-	{
-		/* La funcion explode nos ayuda a delimitar los campos, por lo tanto irá 
-	leyendo hasta que encuentre un ; */
+foreach ($lineas as $linea_num => $linea) {
+	if ($i != 0) {
 		$datos = explode(";", $linea);
-		//Almacenamos los datos que vamos leyendo en una variable
 		$ID_PACIENTE_FK2 = trim($datos[0]);
 		$FECHA_COMUNICACION = trim($datos[1]);
 		$hoy = date('Y-m-d');
-		/*$AUTOR_MODIFICACION = trim($datos[5]);*/
-		//guardamos en base de datos la línea leida
-		/*mysql_query("INSERT INTO datos(nombre,edad,profesion) VALUES('$nombre,'$edad ','$profesion ')");*/
 		if ($ID_PACIENTE_FK2 != '' && $FECHA_COMUNICACION != '') {
 			$fecha = explode("/", $FECHA_COMUNICACION);
 			$mes = $fecha[0];
 			if ($mes == $FECHA_COMUNICACION) {
-				$select = mysqli_query($conex,"SELECT * FROM bayer_gestiones WHERE ID_PACIENTE_FK2='$ID_PACIENTE_FK2' ORDER BY FECHA_PROGRAMADA_GESTION DESC,ID_GESTION DESC LIMIT 1");
+				$select = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2='$ID_PACIENTE_FK2' ORDER BY FECHA_PROGRAMADA_GESTION DESC,ID_GESTION DESC LIMIT 1");
 				echo mysqli_error($conex);
 				while ($dato = mysqli_fetch_array($select)) {
 					$ID_GESTION = $dato['ID_GESTION'];
 					$FECHA_PROGRAMADA_GESTION = $dato['FECHA_PROGRAMADA_GESTION'];
 					if ($FECHA_COMUNICACION > $FECHA_PROGRAMADA_GESTION) {
 						if ($FECHA_COMUNICACION > $hoy) {
-							$UPDATE = mysqli_query($conex,"UPDATE bayer_gestiones
+							$UPDATE = mysqli_query($conex, "UPDATE ipsen_gestiones
 							SET
 							FECHA_PROXIMA_LLAMADA='$FECHA_COMUNICACION',
 							FECHA_PROGRAMADA_GESTION='$FECHA_COMUNICACION',

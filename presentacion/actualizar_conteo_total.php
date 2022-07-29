@@ -1,7 +1,7 @@
 <?php
 include('../datos/conex.php');
 date_default_timezone_set("America/Bogota");
-$select_conteo = mysqli_query($conex,"SELECT A.ID AS ID, A.CAUSAL_NO_VISITA AS CASUALIDAD, A.ID_PACIENTE_FK2, YEAR(A.FECHA_ULTIMO_REGISTRO) AS ANIO, MONTH(A.FECHA_ULTIMO_REGISTRO) AS MES,DAY(A.FECHA_ULTIMO_REGISTRO) AS DIA,  CONTEO,ESTADO FROM bayer_conteo AS A  WHERE  ESTADO = '1'");
+$select_conteo = mysqli_query($conex, "SELECT A.ID AS ID, A.CAUSAL_NO_VISITA AS CASUALIDAD, A.ID_PACIENTE_FK2, YEAR(A.FECHA_ULTIMO_REGISTRO) AS ANIO, MONTH(A.FECHA_ULTIMO_REGISTRO) AS MES,DAY(A.FECHA_ULTIMO_REGISTRO) AS DIA,  CONTEO,ESTADO FROM ipsen_conteo AS A  WHERE  ESTADO = '1'");
 $row_select_conteo = mysqli_num_rows($select_conteo);
 while ($sel_con = (mysqli_fetch_array($select_conteo))) {
 	$fecha_conteo_MES = $sel_con['MES'];
@@ -40,7 +40,7 @@ while ($sel_con = (mysqli_fetch_array($select_conteo))) {
 				$fecha_diav = $fecha_dia[$i];
 				$fecha2 = new DateTime("$fecha_aniov-$fecha_mesv-$fecha_diav");
 				$diff = $fecha1->diff($fecha2);
-				$actualiza_conteo = mysqli_query($conex,"UPDATE bayer_conteo SET CONTEO = '" . $diff->days . "' WHERE  ESTADO = '1' AND ID ='" . $id_contv . "' ");
+				$actualiza_conteo = mysqli_query($conex, "UPDATE ipsen_conteo SET CONTEO = '" . $diff->days . "' WHERE  ESTADO = '1' AND ID ='" . $id_contv . "' ");
 			}
 		}
 	}
@@ -61,7 +61,7 @@ $id_conteo = $datos_fechas['ID'];
 		  $fecha_dia = $fecha_conteo_DIA[$i];
          $fecha2= new DateTime("$fecha_anio-$fecha_mes-$fecha_dia");
 		  $diff = $fecha1->diff($fecha2);	
-$actualiza_conteo = mysql_query("UPDATE bayer_conteo SET CONTEO = '".$diff->days."' WHERE  ESTADO = '1' AND ID ='".$id_cont."' ", $conex);
+$actualiza_conteo = mysql_query("UPDATE ipsen_conteo SET CONTEO = '".$diff->days."' WHERE  ESTADO = '1' AND ID ='".$id_cont."' ", $conex);
 		  }
 		  }
 */

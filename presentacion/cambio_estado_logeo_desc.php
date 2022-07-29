@@ -5,12 +5,12 @@
 	?>
 	<input type="hidden" value="<?php echo $usuario ?>" id="usu" name="usu" />
 	<?php
-	$actualizar = mysqli_query($conex,"UPDATE bayer_usuario SET
+	$actualizar = mysqli_query($conex, "UPDATE ipsen_usuario SET
 	ESTADO_LOGIN='OUT'
 	WHERE USER='" . $usuario . "'
 	AND ESTADO_LOGIN='IN'");
 	echo mysqli_error($conex);
-	$select = mysqli_query($conex,"select USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM bayer_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2'");
+	$select = mysqli_query($conex, "SELECT USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM ipsen_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2'");
 	echo mysqli_error($conex);
 	$nreg = mysqli_num_rows($select);
 	echo "<tr>

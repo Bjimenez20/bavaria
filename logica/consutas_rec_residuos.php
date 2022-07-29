@@ -23,7 +23,7 @@
 
 <body>
 	<?PHP
-require('../datos/parse_str.php');
+	require('../datos/parse_str.php');
 	require('../datos/conex.php');
 	$NOMBRE = $_POST['nombre'];
 	$DOCUMENTO = $_POST['documento'];

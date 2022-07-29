@@ -7,6 +7,7 @@ header("content-disposition: attachment;filename=total_inventarios.xls");
 <?php require('../datos/conex.php'); ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>IPSEN</title>
     <!-- META-->
@@ -28,6 +29,7 @@ header("content-disposition: attachment;filename=total_inventarios.xls");
         });
     </script>
 </head>
+
 <body>
     <div class="container">
         <div class="row" id="tablas_css_jair">
@@ -53,7 +55,7 @@ header("content-disposition: attachment;filename=total_inventarios.xls");
                         </thead>
                         <tbody>
                             <?php
-                            $sqlpp = mysqli_query($conex,"SELECT * FROM bayer_apoyo_diagnostico ORDER BY ID_APOYO_DIAGNOSTICO DESC");
+                            $sqlpp = mysqli_query($conex, "SELECT * FROM ipsen_apoyo_diagnostico ORDER BY ID_APOYO_DIAGNOSTICO DESC");
                             while ($datos = (mysqli_fetch_array($sqlpp))) { ?>
                                 <tr>
                                     <td><?php echo $datos['ID_APOYO_DIAGNOSTICO']; ?></td>
@@ -79,4 +81,5 @@ header("content-disposition: attachment;filename=total_inventarios.xls");
         </div>
     </div>
 </body>
+
 </html>

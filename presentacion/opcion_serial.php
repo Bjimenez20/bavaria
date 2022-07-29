@@ -1,7 +1,7 @@
 <?php
 include('../datos/conex.php');
 $REFERENCIA = $_POST['producto'];
-$select = mysqli_query($conex, "SELECT OPCION_SERIAL FROM bayer_referencia
+$select = mysqli_query($conex, "SELECT OPCION_SERIAL FROM ipsen_referencia
 WHERE ID_REFERENCIA='" . $REFERENCIA . "'");
 echo mysqli_error($conex);
 $nreg = mysqli_num_rows($select);

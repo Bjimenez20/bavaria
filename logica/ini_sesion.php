@@ -7,8 +7,8 @@ mysqli_select_db($conex, $basepaciente) or die("No se Puede conectar a la base d
 $_SESSION['NAME'] = '';
 $USER = addslashes($_POST['usuario']);
 $CONTRASENA = addslashes($_POST['Contrasena']);
-$sql = mysqli_query($conex, "SELECT `USER`, `CONTRASENA`, `PRIVILEGIOS`, `CONTRASENA_FECHA`,`ID_USUARIO` FROM `bayer_usuario` WHERE `USER` = '" . $USER . "' and `CONTRASENA` = MD5('" . $CONTRASENA . "') and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
-$conusuario = mysqli_query($conex, "SELECT `USER`, `INTENTOS`, `ESTADO` FROM `bayer_usuario` WHERE `USER` = '" . $USER . "' and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
+$sql = mysqli_query($conex, "SELECT `USER`, `CONTRASENA`, `PRIVILEGIOS`, `CONTRASENA_FECHA`,`ID_USUARIO` FROM `ipsen_usuario` WHERE `USER` = '" . $USER . "' and `CONTRASENA` = MD5('" . $CONTRASENA . "') and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
+$conusuario = mysqli_query($conex, "SELECT `USER`, `INTENTOS`, `ESTADO` FROM `ipsen_usuario` WHERE `USER` = '" . $USER . "' and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
 echo mysqli_error($conex);
 mysqli_num_rows($sql);
 if (mysqli_num_rows($sql) > 0) {
@@ -21,7 +21,7 @@ if (mysqli_num_rows($sql) > 0) {
 	$_SESSION["usuarios"] = $usua;
 	$_SESSION["privilegios"] = $privilegios;
 	$_SESSION["id"] = $id_usuario;
-	$actu = mysqli_query($conex, "UPDATE bayer_usuario SET 
+	$actu = mysqli_query($conex, "UPDATE ipsen_usuario SET 
 		INTENTOS = '0'
 		WHERE USER='" . $usua . "';");
 	if ($CONTRASENA == '1234' or $hoy >= $contra_fecha) {
@@ -65,12 +65,12 @@ if (mysqli_num_rows($sql) > 0) {
 			</script>
 		<?php
 			//echo "Contraseña Bloqueada";
-			$actu = mysqli_query($conex, "UPDATE bayer_usuario SET 
+			$actu = mysqli_query($conex, "UPDATE ipsen_usuario SET 
 				ESTADO = '0'
 				WHERE USER='" . $usua2 . "';");
 		} else {
 			$NUM_INTENTOS = $intentos + 1;
-			$actu = mysqli_query($conex, "UPDATE bayer_usuario SET 
+			$actu = mysqli_query($conex, "UPDATE ipsen_usuario SET 
 				INTENTOS = '" . $NUM_INTENTOS . "'
 				WHERE USER='" . $usua2 . "';");
 		?>

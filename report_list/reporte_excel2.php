@@ -16,9 +16,9 @@ header("content-disposition: attachment;filename=seguimiento.xls");
 
 require_once("conex.php");
 
-$consulta_paciente = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
+$consulta_paciente = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 
-INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE ORDER BY ID_PACIENTE ASC");
+INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE ORDER BY ID_PACIENTE ASC");
 
 echo mysqli_error($conex);
 
@@ -98,7 +98,7 @@ echo mysqli_error($conex);
 
       $ID = $fila1['ID_PACIENTE'];
 
-      /*$consulta_ultima_reclamacion_gestion=mysql_query("SELECT FECHA_RECLAMACION_GESTION FROM bayer_gestiones
+      /*$consulta_ultima_reclamacion_gestion=mysql_query("SELECT FECHA_RECLAMACION_GESTION FROM ipsen_gestiones
 
 			  WHERE ID_PACIENTE_FK2='$ID'
 
@@ -138,7 +138,7 @@ echo mysqli_error($conex);
 
 			  }*/
 
-      $consulta_gestion = mysqli_query($conex, "SELECT * FROM bayer_gestiones
+      $consulta_gestion = mysqli_query($conex, "SELECT * FROM ipsen_gestiones
 
 WHERE ID_PACIENTE_FK2='$ID'
 
@@ -171,7 +171,6 @@ ORDER BY FECHA_COMUNICACION DESC LIMIT 1");
         <?php
 
         }
-
       } else {
 
         ?>

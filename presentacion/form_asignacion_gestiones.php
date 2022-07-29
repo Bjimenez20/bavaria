@@ -30,21 +30,21 @@ if ($privilegios != '' && $usua != '') {
 		$usuario = base64_decode($usu);
 		$ok = base64_decode($ok);
 		if ($ok == 'act') {
-			$actualizar = mysqli_query($conex, "UPDATE bayer_usuario SET
+			$actualizar = mysqli_query($conex, "UPDATE ipsen_usuario SET
 			ESTADO_LOGIN='IN'
 			WHERE USER='" . $usuario . "'
 			AND ESTADO_LOGIN='OUT'");
 			echo mysqli_error($conex);
 		}
 		if ($ok == 'des') {
-			$actualizar = mysqli_query($conex, "UPDATE bayer_usuario SET
+			$actualizar = mysqli_query($conex, "UPDATE ipsen_usuario SET
 			ESTADO_LOGIN='OUT'
 			WHERE USER='" . $usuario . "'
 			AND ESTADO_LOGIN='IN'");
 			echo mysqli_error($conex);
 		}
 		if ($ok == 'restablecer') {
-			$actualizar_gestiones = mysqli_query($conex, "UPDATE bayer_gestiones SET
+			$actualizar_gestiones = mysqli_query($conex, "UPDATE ipsen_gestiones SET
 			USUARIO_ASIGANDO='SIN ASIGNAR',
 			ESTADO_GESTION=''
 			WHERE
@@ -54,22 +54,22 @@ if ($privilegios != '' && $usua != '') {
 			echo mysqli_error($conex);
 		}
 		if ($ok == 'asignar') {
-			$actualizar = mysqli_query($conex, "UPDATE bayer_usuario SET
+			$actualizar = mysqli_query($conex, "UPDATE ipsen_usuario SET
 			ESTADO_LOGIN='OUT'
 			WHERE USER='" . $usuario . "'
 			AND ESTADO_LOGIN='IN'");
 			echo mysqli_error($conex);
-			$select_terapias_up = mysqli_query($conex, "SELECT * FROM(SELECT * FROM bayer_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)bayer_gestiones 
-			INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=bayer_gestiones.ID_PACIENTE_FK2
+			$select_terapias_up = mysqli_query($conex, "SELECT * FROM(SELECT * FROM ipsen_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)ipsen_gestiones 
+			INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=ipsen_gestiones.ID_PACIENTE_FK2
 			WHERE (PRODUCTO_TRATAMIENTO LIKE '%ADEMPAS %' OR PRODUCTO_TRATAMIENTO LIKE '%XOFIGO %')
-			GROUP BY bayer_gestiones.ID_PACIENTE_FK2");
+			GROUP BY ipsen_gestiones.ID_PACIENTE_FK2");
 			echo mysqli_error($conex);
 			while ($dato_gest = mysqli_fetch_array($select_terapias_up)) {
 				$FECHA_PROGRAMADA_GESTION = $dato_gest['FECHA_PROGRAMADA_GESTION'];
 				$USUARIO_ASIGANDO = $dato_gest['USUARIO_ASIGANDO'];
 				if ($FECHA_PROGRAMADA_GESTION == $hoy && $USUARIO_ASIGANDO == 'SIN ASIGNAR') {
 					$ID_GESTION = $dato_gest['ID_GESTION'];
-					$actualizar_gestiones = mysqli_query($conex, "UPDATE bayer_gestiones SET USUARIO_ASIGANDO='" . $usuario . "', ESTADO_GESTION='ASIGNADO' WHERE USUARIO_ASIGANDO='SIN ASIGNAR' AND FECHA_PROGRAMADA_GESTION='" . $hoy . "' AND ID_GESTION=$ID_GESTION");
+					$actualizar_gestiones = mysqli_query($conex, "UPDATE ipsen_gestiones SET USUARIO_ASIGANDO='" . $usuario . "', ESTADO_GESTION='ASIGNADO' WHERE USUARIO_ASIGANDO='SIN ASIGNAR' AND FECHA_PROGRAMADA_GESTION='" . $hoy . "' AND ID_GESTION=$ID_GESTION");
 					mysqli_affected_rows($conex);
 					echo mysqli_error($conex);
 				}
@@ -84,18 +84,18 @@ if ($privilegios != '' && $usua != '') {
 	$Antes_Ayer5 = date('Y-m-d', strtotime('-5 day'));
 	$Antes_Ayer6 = date('Y-m-d', strtotime('-6 day'));
 	$Antes_Ayer7 = date('Y-m-d', strtotime('-7 day'));
-	$select_gestiones_ayer = mysqli_query($conex, "SELECT ID_GESTION FROM bayer_gestiones WHERE (FECHA_PROGRAMADA_GESTION='" . $Ayer . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer3 . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer4 . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer5 . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer6 . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer7 . "') AND (ESTADO_GESTION='' OR ESTADO_GESTION='ASIGNADO')");
+	$select_gestiones_ayer = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones WHERE (FECHA_PROGRAMADA_GESTION='" . $Ayer . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer3 . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer4 . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer5 . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer6 . "' OR FECHA_PROGRAMADA_GESTION='" . $Antes_Ayer7 . "') AND (ESTADO_GESTION='' OR ESTADO_GESTION='ASIGNADO')");
 	echo mysqli_error($conex);
 	while ($fila = (mysqli_fetch_array($select_gestiones_ayer))) {
 		$id_gestion_ayer = $fila['ID_GESTION'];
-		$update = mysqli_query($conex, "UPDATE bayer_gestiones 
+		$update = mysqli_query($conex, "UPDATE ipsen_gestiones 
 		SET FECHA_PROGRAMADA_GESTION='" . $hoy . "',
 		USUARIO_ASIGANDO='SIN ASIGNAR',
 		ESTADO_GESTION=''
 		WHERE ID_GESTION='$id_gestion_ayer'");
 		echo mysqli_error($conex);
 	}
-	$select_gestiones = mysqli_query($conex, "SELECT * FROM(SELECT * FROM bayer_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)bayer_gestiones GROUP BY ID_PACIENTE_FK2");
+	$select_gestiones = mysqli_query($conex, "SELECT * FROM(SELECT * FROM ipsen_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)ipsen_gestiones GROUP BY ID_PACIENTE_FK2");
 	echo mysqli_error($conex);
 	$total_gestiones = 0;
 	$total_gestiones_trp = 0;
@@ -109,10 +109,10 @@ if ($privilegios != '' && $usua != '') {
 			$total_gestiones = $total_gestiones + 1;
 		}
 	}
-	$select_terapias2 = mysqli_query($conex, "SELECT * FROM(SELECT * FROM bayer_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)bayer_gestiones 
-	INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=bayer_gestiones.ID_PACIENTE_FK2
+	$select_terapias2 = mysqli_query($conex, "SELECT * FROM(SELECT * FROM ipsen_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)ipsen_gestiones 
+	INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=ipsen_gestiones.ID_PACIENTE_FK2
 	WHERE (PRODUCTO_TRATAMIENTO LIKE '%ADEMPAS %' OR PRODUCTO_TRATAMIENTO LIKE '%XOFIGO %')
-	GROUP BY bayer_gestiones.ID_PACIENTE_FK2");
+	GROUP BY ipsen_gestiones.ID_PACIENTE_FK2");
 	echo mysqli_error($conex);
 	while ($dato_gest = mysqli_fetch_array($select_terapias2)) {
 		$FECHA_PROGRAMADA_GESTION = $dato_gest['FECHA_PROGRAMADA_GESTION'];
@@ -125,7 +125,7 @@ if ($privilegios != '' && $usua != '') {
 	}
 	$nreg_terapias = $total_gestiones_trt;
 	$nreg_pac = $total_gestiones;
-	$select_usu = mysqli_query($conex, "SELECT ID_USUARIO,USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM bayer_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2' AND ID_USUARIO<>'69' AND ID_USUARIO<>'83'");
+	$select_usu = mysqli_query($conex, "SELECT ID_USUARIO,USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM ipsen_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2' AND ID_USUARIO<>'69' AND ID_USUARIO<>'83'");
 	echo mysqli_error($conex);
 	$nreg_usu = mysqli_num_rows($select_usu);
 ?>
@@ -133,7 +133,7 @@ if ($privilegios != '' && $usua != '') {
 	<body class="body" style="width:95%;">
 		<form id="asignacion" name="asignacion" action="../logica/insertar_datos.php" method="post" class="letra">
 			<?php
-			$borrar_temp = mysqli_query($conex, "TRUNCATE TABLE bayer_temporal_gestiones");
+			$borrar_temp = mysqli_query($conex, "TRUNCATE TABLE ipsen_temporal_gestiones");
 			?>
 			<center>
 				<span style="font-size:140%; margin-left:50px"> FECHA ACTUAL</span>
@@ -249,14 +249,14 @@ if ($privilegios != '' && $usua != '') {
 						?>
 							<td>
 								<?php
-									$select_gestiones = mysqli_query($conex, "SELECT * FROM bayer_gestiones WHERE FECHA_PROGRAMADA_GESTION='$hoy' AND USUARIO_ASIGANDO='" . $fila['USER'] . "'");
+									$select_gestiones = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE FECHA_PROGRAMADA_GESTION='$hoy' AND USUARIO_ASIGANDO='" . $fila['USER'] . "'");
 									echo mysqli_error($conex);
 									echo $nreg_gestiones = mysqli_num_rows($select_gestiones);
 								?>
 							</td>
 							<td>
 								<?php
-									$select_gestionados = mysqli_query($conex, "SELECT * FROM bayer_gestiones WHERE FECHA_PROGRAMADA_GESTION='$hoy' AND USUARIO_ASIGANDO='" . $fila['USER'] . "' AND ESTADO_GESTION='GESTIONADO'");
+									$select_gestionados = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE FECHA_PROGRAMADA_GESTION='$hoy' AND USUARIO_ASIGANDO='" . $fila['USER'] . "' AND ESTADO_GESTION='GESTIONADO'");
 									echo mysqli_error($conex);
 									echo $nreg_gestionado = mysqli_num_rows($select_gestionados);
 								?>

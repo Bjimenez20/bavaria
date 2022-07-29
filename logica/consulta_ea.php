@@ -3,13 +3,13 @@ require('../datos/parse_str.php');
 require_once("../datos/conex.php");
 $ID_PACIENTE;
 $hoy = date('Y-m-d');
-$consulta = mysqli_query($conex, "SELECT * FROM bayer_usuario WHERE USER = '" . $usua . "'");
+$consulta = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE USER = '" . $usua . "'");
 echo mysqli_error($conex);
 while ($dato = mysqli_fetch_array($consulta)) {
 	$PRIVILEGIOS = $dato['PRIVILEGIOS'];
 }
-$consulta = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+$consulta = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 WHERE P.ID_PACIENTE='" . $ID_PACIENTE . "'");
 echo mysqli_error($conex);
 while ($dato = mysqli_fetch_array($consulta)) {

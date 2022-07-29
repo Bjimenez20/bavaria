@@ -4,6 +4,7 @@ include('../logica/session.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="../presentacion/fonts.css" />
@@ -28,6 +29,7 @@ include('../logica/session.php');
 			text-align: center;
 			padding: 10px;
 		}
+
 		th {
 			padding: 5px;
 			font-weight: bold;
@@ -35,14 +37,17 @@ include('../logica/session.php');
 			border: 1px solid #16a085;
 			color: #feffff;
 		}
+
 		td {
 			padding: 2px;
 			border: 1px solid #d0d0d0;
 			background: #ffffff;
 		}
+
 		body {
 			background-color: #FFF;
 		}
+
 		/*form 
 {
     background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
@@ -53,19 +58,20 @@ include('../logica/session.php');
 <?php
 require('../datos/parse_str.php');
 require('../datos/conex.php');
-mysqli_query($conex,"SET NAMES utf8");
-$consulta = mysqli_query($conex,"SELECT p.ID_PACIENTE,t.FECHA_INICIO_TERAPIA_TRATAMIENTO,p.FECHA_ACTIVACION_PACIENTE,t.CLASIFICACION_PATOLOGICA_TRATAMIENTO FROM bayer_pacientes AS p
-INNER JOIN bayer_tratamiento AS t ON p.ID_PACIENTE=t.ID_PACIENTE_FK
-INNER JOIN bayer_aplicaciones_eylia AS e ON e.ID_PACIENTE_FK=p.ID_PACIENTE
+mysqli_query($conex, "SET NAMES utf8");
+$consulta = mysqli_query($conex, "SELECT p.ID_PACIENTE,t.FECHA_INICIO_TERAPIA_TRATAMIENTO,p.FECHA_ACTIVACION_PACIENTE,t.CLASIFICACION_PATOLOGICA_TRATAMIENTO FROM ipsen_pacientes AS p
+INNER JOIN ipsen_tratamiento AS t ON p.ID_PACIENTE=t.ID_PACIENTE_FK
+INNER JOIN ipsen_aplicaciones_eylia AS e ON e.ID_PACIENTE_FK=p.ID_PACIENTE
 GROUP BY p.ID_PACIENTE ORDER BY e.FECHA_REGISTRO ");
 echo mysqli_error($conex);
-$cantidad_aplicaicones = mysqli_query($conex,"SELECT COUNT(ID_PACIENTE_FK) as 'TOTAL' FROM bayer_aplicaciones_eylia WHERE CAUSAL='NO APLICA' GROUP BY ID_PACIENTE_FK HAVING COUNT(ID_PACIENTE_FK) ORDER BY COUNT(ID_PACIENTE_FK) DESC LIMIT 1");
+$cantidad_aplicaicones = mysqli_query($conex, "SELECT COUNT(ID_PACIENTE_FK) as 'TOTAL' FROM ipsen_aplicaciones_eylia WHERE CAUSAL='NO APLICA' GROUP BY ID_PACIENTE_FK HAVING COUNT(ID_PACIENTE_FK) ORDER BY COUNT(ID_PACIENTE_FK) DESC LIMIT 1");
 echo mysqli_error($conex);
 while ($fila = mysqli_fetch_array($cantidad_aplicaicones)) {
 	$TOTAL = $fila['TOTAL'];
 }
 $nreg = $TOTAL + 1;
 ?>
+
 <body>
 	<table style="width:100%;">
 		<tr>
@@ -114,7 +120,7 @@ $nreg = $TOTAL + 1;
 				$FECHA_INICIO = $con['FECHA_INICIO_TERAPIA_TRATAMIENTO'];
 				$FECHA_ACTIVACION = $con['FECHA_ACTIVACION_PACIENTE'];
 				$CLASIFICACION_PATOLOGICA = $con['CLASIFICACION_PATOLOGICA_TRATAMIENTO'];
-				$cant_ojos = mysqli_query($conex,"SELECT NUMERO_OJOS FROM bayer_aplicaciones_eylia WHERE ID_PACIENTE_FK=$ID ORDER BY FECHA_REGISTRO DESC LIMIT 1");
+				$cant_ojos = mysqli_query($conex, "SELECT NUMERO_OJOS FROM ipsen_aplicaciones_eylia WHERE ID_PACIENTE_FK=$ID ORDER BY FECHA_REGISTRO DESC LIMIT 1");
 				while ($fil_o = mysqli_fetch_array($cant_ojos)) {
 					$NUM_OJOS = $fil_o['NUMERO_OJOS'];
 				}
@@ -126,9 +132,9 @@ $nreg = $TOTAL + 1;
 					<td style="text-align:center"><?php echo $FECHA_ACTIVACION ?></td>
 					<td style="text-align:center"><?php echo $NUM_OJOS ?></td>
 					<?php
-					$consulta_apli = mysqli_query($conex,"SELECT NUMERO_OJOS,FECHA_APLICACION FROM  bayer_aplicaciones_eylia WHERE ID_PACIENTE_FK=$ID AND CAUSAL='NO APLICA' ORDER BY FECHA_APLICACION ASC");
+					$consulta_apli = mysqli_query($conex, "SELECT NUMERO_OJOS,FECHA_APLICACION FROM  ipsen_aplicaciones_eylia WHERE ID_PACIENTE_FK=$ID AND CAUSAL='NO APLICA' ORDER BY FECHA_APLICACION ASC");
 					echo mysqli_error($conex);
-					$consulta_causales = mysqli_query($conex,"SELECT CAUSAL FROM  bayer_aplicaciones_eylia WHERE ID_PACIENTE_FK=$ID AND CAUSAL!='NO APLICA' ORDER BY FECHA_REGISTRO DESC LIMIT 1");
+					$consulta_causales = mysqli_query($conex, "SELECT CAUSAL FROM  ipsen_aplicaciones_eylia WHERE ID_PACIENTE_FK=$ID AND CAUSAL!='NO APLICA' ORDER BY FECHA_REGISTRO DESC LIMIT 1");
 					echo mysqli_error($conex);
 					?>
 					<?php
@@ -152,4 +158,5 @@ $nreg = $TOTAL + 1;
 		</tbody>
 	</table>
 </body>
+
 </html>

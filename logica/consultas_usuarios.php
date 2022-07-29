@@ -5,13 +5,14 @@ include('../logica/session.php');
 require('../datos/parse_str.php');
 require_once("../datos/conex.php");
 ?>
+
 <body>
 	<?php
 	if (!isset($_POST['buscar']) && !isset($_POST['descargar'])) {
 		if ($privilegios == 1) {
-			$SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_usuario WHERE ESTADO_APP = '1' ORDER BY ID_USUARIO ASC");
+			$SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE ESTADO_APP = '1' ORDER BY ID_USUARIO ASC");
 			echo mysqli_error($conex);
-			$SELECT_USUARIO = "SELECT * FROM bayer_usuario WHERE ESTADO_APP = '1' ORDER BY ID_USUARIO ASC LIMIT";
+			$SELECT_USUARIO = "SELECT * FROM ipsen_usuario WHERE ESTADO_APP = '1' ORDER BY ID_USUARIO ASC LIMIT";
 		}
 	}
 	if (isset($_POST['buscar'])) {
@@ -19,30 +20,30 @@ require_once("../datos/conex.php");
 		$PERFIL = $_POST['perfil'];
 		if ($NOMBRE == '' && $PERFIL == '') {
 			if ($privilegios == 1) {
-				$SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_usuario WHERE ESTADO_APP = '1' ORDER BY ID_USUARIO ASC");
+				$SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE ESTADO_APP = '1' ORDER BY ID_USUARIO ASC");
 				echo mysqli_error($conex);
-				$SELECT_USUARIO = "SELECT * FROM bayer_usuario WHERE ESTADO_APP = '1' ORDER BY ID_USUARIO ASC LIMIT";
+				$SELECT_USUARIO = "SELECT * FROM ipsen_usuario WHERE ESTADO_APP = '1' ORDER BY ID_USUARIO ASC LIMIT";
 			}
 		}
 		if ($NOMBRE != '' && $PERFIL == '') {
 			if ($privilegios == 1) {
-				$SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_usuario WHERE USER LIKE '%" . $NOMBRE . "%' AND ESTADO_APP = '1' ORDER BY ID_USUARIO ASC");
+				$SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE USER LIKE '%" . $NOMBRE . "%' AND ESTADO_APP = '1' ORDER BY ID_USUARIO ASC");
 				echo mysqli_error($conex);
-				$SELECT_USUARIO = "SELECT * FROM bayer_usuario WHERE USER LIKE '%" . $NOMBRE . "%' AND ESTADO_APP = '1' ORDER BY ID_USUARIO ASC LIMIT";
+				$SELECT_USUARIO = "SELECT * FROM ipsen_usuario WHERE USER LIKE '%" . $NOMBRE . "%' AND ESTADO_APP = '1' ORDER BY ID_USUARIO ASC LIMIT";
 			}
 		}
 		if ($NOMBRE == '' && $PERFIL != '') {
 			if ($privilegios == 1) {
-				$SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_usuario WHERE PRIVILEGIOS='" . $PERFIL . "' AND ESTADO_APP = '1' ORDER BY ID_USUARIO ASC");
+				$SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE PRIVILEGIOS='" . $PERFIL . "' AND ESTADO_APP = '1' ORDER BY ID_USUARIO ASC");
 				echo mysqli_error($conex);
-				$SELECT_USUARIO = "SELECT * FROM bayer_usuario WHERE PRIVILEGIOS='" . $PERFIL . "' AND ESTADO_APP = '1' ORDER BY ID_USUARIO  ASC LIMIT";
+				$SELECT_USUARIO = "SELECT * FROM ipsen_usuario WHERE PRIVILEGIOS='" . $PERFIL . "' AND ESTADO_APP = '1' ORDER BY ID_USUARIO  ASC LIMIT";
 			}
 		}
 		if ($NOMBRE != '' && $PERFIL != '') {
 			if ($privilegios == 1) {
-				$SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_usuario WHERE USER LIKE '%" . $NOMBRE . "%' AND PRIVILEGIOS='" . $PERFIL . "' AND ESTADO_APP = '1'  ORDER BY ID_USUARIO ASC");
+				$SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE USER LIKE '%" . $NOMBRE . "%' AND PRIVILEGIOS='" . $PERFIL . "' AND ESTADO_APP = '1'  ORDER BY ID_USUARIO ASC");
 				echo mysqli_error($conex);
-				$SELECT_USUARIO = "SELECT * FROM bayer_usuario WHERE USER LIKE '%" . $NOMBRE . "%' AND PRIVILEGIOS='" . $PERFIL . "' AND ESTADO_APP = '1'  ORDER BY ID_USUARIO ASC LIMIT";
+				$SELECT_USUARIO = "SELECT * FROM ipsen_usuario WHERE USER LIKE '%" . $NOMBRE . "%' AND PRIVILEGIOS='" . $PERFIL . "' AND ESTADO_APP = '1'  ORDER BY ID_USUARIO ASC LIMIT";
 			}
 		}
 	}

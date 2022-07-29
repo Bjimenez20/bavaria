@@ -4,8 +4,9 @@ require('../datos/conex.php');
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head><meta charset="euc-jp">
-    
+<head>
+    <meta charset="euc-jp">
+
     <link rel="shortcut icon" href="img/logo.png" />
     <link rel="stylesheet" href="css/estilos_menu.css" />
     <title>IPSEN</title>
@@ -115,7 +116,7 @@ require('../datos/conex.php');
     <section>
         <blockquote>
             <?php
-            $medicos = mysqli_query($conex, "SELECT * FROM bayer_listas WHERE ID_LISTA = '" . $ID . "'");
+            $medicos = mysqli_query($conex, "SELECT * FROM ipsen_listas WHERE ID_LISTA = '" . $ID . "'");
             while ($fila = mysqli_fetch_array($medicos)) {
             ?>
                 <form action="editar_medico.php?erted=<?php echo $fila['ID_LISTA'] ?>" method="POST">

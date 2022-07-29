@@ -21,7 +21,7 @@ $servidor = $servidor;
 
 $user = $usuario;
 
-//en la sigte linea colocar entre comillas la contrase«Ða 
+//en la sigte linea colocar entre comillas la contraseï¿½ï¿½ï¿½a 
 
 $pass = $password;
 
@@ -38,7 +38,6 @@ mysqli_select_db($conex, $db);
 if (isset($_POST['enviar'])) {
 
 	$qry = mysqli_query($conex, "select * from $tabla");
-
 }
 
 if (isset($_POST['enviar2'])) {
@@ -48,7 +47,6 @@ if (isset($_POST['enviar2'])) {
 	$fecha_fin = $_POST['fecha_fin'];
 
 	$qry = mysqli_query($conex, "select * from $tabla WHERE `FECHA_COMUNICACION`>='$fecha 00:00:00' AND `FECHA_COMUNICACION`<='$fecha_fin 23:59:59'");
-
 }
 
 if (isset($_POST['enviar3'])) {
@@ -59,12 +57,11 @@ if (isset($_POST['enviar3'])) {
 
 T.MEDICO_TRATAMIENTO,T.ASEGURADOR_TRATAMIENTO,T.OPERADOR_LOGISTICO_TRATAMIENTO
 
-FROM bayer_pacientes AS P
+FROM ipsen_pacientes AS P
 
-INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 
 WHERE T.PRODUCTO_TRATAMIENTO LIKE '%" . $terapia . "%'");
-
 }
 
 $campos = mysqli_num_fields($qry);
@@ -76,7 +73,6 @@ while ($property = mysqli_fetch_field($qry)) {
 	echo "<td style='border:1px medium #000'>" . $property->name;
 
 	echo "</td>";
-
 }
 
 echo "</tr>";
@@ -88,12 +84,9 @@ while ($row = mysqli_fetch_array($qry)) {
 	for ($j = 0; $j < $campos; $j++) {
 
 		echo "<td style='border:1px medium #000'>" . $row[$j] . "</td>";
-
 	}
 
 	echo "</tr>";
-
 }
 
 echo "</table>";
-

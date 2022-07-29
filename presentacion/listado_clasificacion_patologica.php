@@ -1,7 +1,7 @@
 <?php
 include('../datos/conex.php');
 $REFERENCIA = $_POST['REFERENCIA'];
-$select = mysqli_query($conex,"SELECT NOMBRE_CLASIFICACION FROM bayer_clasificacion_patologica WHERE NOMBRE_REFERENCIA='" . $REFERENCIA . "' ORDER BY NOMBRE_CLASIFICACION ASC");
+$select = mysqli_query($conex, "SELECT NOMBRE_CLASIFICACION FROM ipsen_clasificacion_patologica WHERE NOMBRE_REFERENCIA='" . $REFERENCIA . "' ORDER BY NOMBRE_CLASIFICACION ASC");
 echo mysqli_error($conex);
 $nreg = mysqli_num_rows($select);
 echo "<option value=\"\"></option>";

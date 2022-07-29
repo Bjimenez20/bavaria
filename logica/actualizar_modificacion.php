@@ -83,7 +83,7 @@ include('../logica/session.php');
 		$fecha_proxima_llamada;
 		$fecha_proxima_llamada;
 		$id_gestion_ult;
-		$sql = mysqli_query($conex, "UPDATE bayer_gestiones SET FECHA_PROXIMA_LLAMADA='" . $fecha_proxima_llamada . "',FECHA_PROGRAMADA_GESTION='" . $fecha_proxima_llamada . "' WHERE ID_GESTION='" . $id_gestion_ult . "'");
+		$sql = mysqli_query($conex, "UPDATE ipsen_gestiones SET FECHA_PROXIMA_LLAMADA='" . $fecha_proxima_llamada . "',FECHA_PROGRAMADA_GESTION='" . $fecha_proxima_llamada . "' WHERE ID_GESTION='" . $id_gestion_ult . "'");
 		echo mysqli_error($conex);
 	}
 
@@ -94,7 +94,7 @@ include('../logica/session.php');
 	}
 	if ($_POST['ips_atiende'] == 'NO ENCONTRADO') {
 		$ips_atiende  = $_POST['ips_otro'];
-		$insert_ips = mysqli_query($conex, "INSERT INTO bayer_ips (`IPS`,`ESTADO`) VALUES ('" . $ips_atiende . "','OUT')");
+		$insert_ips = mysqli_query($conex, "INSERT INTO ipsen_ips (`IPS`,`ESTADO`) VALUES ('" . $ips_atiende . "','OUT')");
 		require('../presentacion/email/mail_habilitar_ips.php');
 	} else {
 		$ips_atiende  = $_POST['ips_atiende'];
@@ -102,7 +102,7 @@ include('../logica/session.php');
 
 	if ($_POST['operador_logistico'] == 'NO ENCONTRADO') {
 		$operador_logistico = $_POST['operador_otro'];
-		$insert_opl = mysqli_query($conex, "INSERT INTO bayer_operador_logistico (`OPERADOR_LOGISTICO`,`ESTADO`) VALUES ('" . $operador_logistico . "','OUT')");
+		$insert_opl = mysqli_query($conex, "INSERT INTO ipsen_operador_logistico (`OPERADOR_LOGISTICO`,`ESTADO`) VALUES ('" . $operador_logistico . "','OUT')");
 		require('../presentacion/email/mail_habilitar_operador.php');
 	} else {
 		$operador_logistico = $_POST['operador_logistico'];
@@ -110,7 +110,7 @@ include('../logica/session.php');
 
 	if ($_POST['asegurador'] == 'NO ENCONTRADO') {
 		$asegurador = $_POST['asegurador_otro'];
-		$insert_eps = mysqli_query($conex, "INSERT INTO bayer_asegurador (`ASEGURADOR`,`ESTADO`) VALUES ('" . $asegurador . "','OUT')");
+		$insert_eps = mysqli_query($conex, "INSERT INTO ipsen_asegurador (`ASEGURADOR`,`ESTADO`) VALUES ('" . $asegurador . "','OUT')");
 		require('../presentacion/email/mail_habilitar_eps.php');
 	} else {
 		$asegurador = $_POST['asegurador'];
@@ -118,7 +118,7 @@ include('../logica/session.php');
 
 	if ($_POST['medico_tratante'] == 'NO ENCONTRADO') {
 		$medico_t  = $_POST['medico_t_otro'];
-		$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO bayer_listas(MEDICO,ESTADO)VALUES('" . $medico_t . "','OUT')");
+		$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_t . "','OUT')");
 		require('../presentacion/email/mail_habilitar_medico.php');
 	} else {
 		$medico_t  = $_POST['medico_tratante'];
@@ -126,7 +126,7 @@ include('../logica/session.php');
 
 	if ($_POST['medico_prescriptor'] == 'NO ENCONTRADO') {
 		$medico_p  = $_POST['medico_p_otro'];
-		$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO bayer_listas(MEDICO,ESTADO)VALUES('" . $medico_p . "','OUT')");
+		$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_p . "','OUT')");
 		require('../presentacion/email/mail_habilitar_medico_p.php');
 	} else {
 		$medico_p  = $_POST['medico_prescriptor'];
@@ -134,7 +134,7 @@ include('../logica/session.php');
 
 	if ($_POST['punto_entrega'] == 'NO ENCONTRADO') {
 		$punto_entrega  = $_POST['punto_entrega_otro'];
-		$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO bayer_puntos_entrega(NOMBRE_PUNTO,ESTADO)VALUES('" . $punto_entrega . "','OUT')");
+		$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_puntos_entrega(NOMBRE_PUNTO,ESTADO)VALUES('" . $punto_entrega . "','OUT')");
 		require('../presentacion/email/mail_habilitar_punto.php');
 	} else {
 		$punto_entrega  = $_POST['punto_entrega'];
@@ -152,7 +152,7 @@ include('../logica/session.php');
 		$tipo_dificultad = $_POST['tipo_dificultad'];
 		if ($_POST['estado_farmacia'] == 'Otro') {
 			$estado_farmacia = $_POST['estado_farmacia_nuevo'];
-			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO bayer_listas(MEDICO)VALUES('" . $estado_farmacia . "')");
+			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO)VALUES('" . $estado_farmacia . "')");
 			echo mysqli_error($conex);
 		} else {
 			$estado_farmacia = $_POST['estado_farmacia'];
@@ -227,40 +227,40 @@ include('../logica/session.php');
 		$dosis = $_POST['Dosis'];
 	}
 	if (isset($_POST['registrar'])) {
-		$select_historial = mysqli_query($conex, "SELECT * FROM bayer_historial_reclamacion WHERE ID_PACIENTE_FK='$codigo_usuario2'");
+		$select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$codigo_usuario2'");
 		echo mysqli_error($conex);
 		$reg_hist = mysqli_num_rows($select_historial);
 		if ($reg_hist > 0) {
 			if ($reclamo == 'SI') {
-				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE bayer_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes . "'");
+				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes . "'");
 				echo mysqli_error($conex);
 			}
 			if ($reclamo == 'NO') {
-				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE bayer_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
+				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
 				echo mysqli_error($conex);
 			}
 		} else {
-			$INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO bayer_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $codigo_usuario2 . "')");
+			$INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO ipsen_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $codigo_usuario2 . "')");
 			echo mysqli_error($conex);
 			if ($reclamo == 'SI') {
-				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE bayer_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
+				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
 				echo mysqli_error($conex);
 			}
 			if ($reclamo == 'NO') {
-				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE bayer_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
+				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
 				echo mysqli_error($conex);
 			}
 		}
-		$sql = mysqli_query($conex, "UPDATE bayer_pacientes SET ESTADO_PACIENTE='" . $estado_paciente . "', STATUS_PACIENTE='" . $status_paciente . "', FECHA_ACTIVACION_PACIENTE='" . $fecha_activacion . "', FECHA_RETIRO_PACIENTE='" . $fecha_retiro . "', MOTIVO_RETIRO_PACIENTE='" . $motivo_retiro . "', OBSERVACION_MOTIVO_RETIRO_PACIENTE='" . $observacion_retiro . "',IDENTIFICACION_PACIENTE='" . $identificacion . "', NOMBRE_PACIENTE='" . $nombre . "', APELLIDO_PACIENTE='" . $apellidos . "', TELEFONO_PACIENTE='" . $telefono1 . "', TELEFONO2_PACIENTE='" . $telefono2 . "', TELEFONO3_PACIENTE='" . $telefono3 . "',TELEFONO4_PACIENTE='" . $telefono4 . "', TELEFONO5_PACIENTE='" . $telefono5 . "', CORREO_PACIENTE='" . $correo . "', DIRECCION_PACIENTE='" . $direccion . "', BARRIO_PACIENTE='" . $barrio . "', DEPARTAMENTO_PACIENTE='" . $departamento . "',CIUDAD_PACIENTE='" . $ciudad . "',FECHA_NACIMINETO_PACIENTE='" . $fecha_nacimiento . "',EDAD_PACIENTE='" . $edad . "', ACUDIENTE_PACIENTE='" . $acudiente . "', TELEFONO_ACUDIENTE_PACIENTE='" . $telefono_acudiente . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
+		$sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE='" . $estado_paciente . "', STATUS_PACIENTE='" . $status_paciente . "', FECHA_ACTIVACION_PACIENTE='" . $fecha_activacion . "', FECHA_RETIRO_PACIENTE='" . $fecha_retiro . "', MOTIVO_RETIRO_PACIENTE='" . $motivo_retiro . "', OBSERVACION_MOTIVO_RETIRO_PACIENTE='" . $observacion_retiro . "',IDENTIFICACION_PACIENTE='" . $identificacion . "', NOMBRE_PACIENTE='" . $nombre . "', APELLIDO_PACIENTE='" . $apellidos . "', TELEFONO_PACIENTE='" . $telefono1 . "', TELEFONO2_PACIENTE='" . $telefono2 . "', TELEFONO3_PACIENTE='" . $telefono3 . "',TELEFONO4_PACIENTE='" . $telefono4 . "', TELEFONO5_PACIENTE='" . $telefono5 . "', CORREO_PACIENTE='" . $correo . "', DIRECCION_PACIENTE='" . $direccion . "', BARRIO_PACIENTE='" . $barrio . "', DEPARTAMENTO_PACIENTE='" . $departamento . "',CIUDAD_PACIENTE='" . $ciudad . "',FECHA_NACIMINETO_PACIENTE='" . $fecha_nacimiento . "',EDAD_PACIENTE='" . $edad . "', ACUDIENTE_PACIENTE='" . $acudiente . "', TELEFONO_ACUDIENTE_PACIENTE='" . $telefono_acudiente . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
 		echo mysqli_error($conex);
-		$sql = mysqli_query($conex, "UPDATE bayer_tratamiento SET  TRATAMIENTO_PREVIO='" . $tratamiento_previo . "',CLASIFICACION_PATOLOGICA_TRATAMIENTO='" . $clasificacion_patologica . "', FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "' ,ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+		$sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET  TRATAMIENTO_PREVIO='" . $tratamiento_previo . "',CLASIFICACION_PATOLOGICA_TRATAMIENTO='" . $clasificacion_patologica . "', FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "' ,ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 		echo mysqli_error($conex);
 		if ($num1 > 0) {
-			$sql = mysqli_query($conex, "UPDATE bayer_gestiones SET ESTADO_CTC_GESTION='" . $estado_ctc . "',ESTADO_FARMACIA_GESTION='" . $estado_farmacia . "',RECLAMO_GESTION='" . $reclamo . "',CONSECUTIVO_BETAFERON='" . $consecutivo_betaferon . "',CAUSA_NO_RECLAMACION_GESTION='" . $causa_no_reclamacion . "',DIFICULTAD_ACCESO_GESTION='" . $dificultad_acceso . "',TIPO_DIFICULTAD_GESTION='" . $tipo_dificultad . "',MEDICAMENTOS_GESTION='" . $MEDICAMENTO . "',FECHA_PROXIMA_LLAMADA='" . $fecha_proxima_llamada . "',FECHA_RECLAMACION_GESTION='" . $fecha_reclamacion . "',DESCRIPCION_COMUNICACION_GESTION='" . $descripcion_comunicacion . "',FECHA_PROGRAMADA_GESTION='" . $fecha_proxima_llamada . "', ID_PACIENTE_FK2='" . $codigo_usuario2 . "', AUTOR_MODIFICACION='" . $usua . "' WHERE ID_GESTION='" . $codigo_ultima_gestion . "'");
+			$sql = mysqli_query($conex, "UPDATE ipsen_gestiones SET ESTADO_CTC_GESTION='" . $estado_ctc . "',ESTADO_FARMACIA_GESTION='" . $estado_farmacia . "',RECLAMO_GESTION='" . $reclamo . "',CONSECUTIVO_BETAFERON='" . $consecutivo_betaferon . "',CAUSA_NO_RECLAMACION_GESTION='" . $causa_no_reclamacion . "',DIFICULTAD_ACCESO_GESTION='" . $dificultad_acceso . "',TIPO_DIFICULTAD_GESTION='" . $tipo_dificultad . "',MEDICAMENTOS_GESTION='" . $MEDICAMENTO . "',FECHA_PROXIMA_LLAMADA='" . $fecha_proxima_llamada . "',FECHA_RECLAMACION_GESTION='" . $fecha_reclamacion . "',DESCRIPCION_COMUNICACION_GESTION='" . $descripcion_comunicacion . "',FECHA_PROGRAMADA_GESTION='" . $fecha_proxima_llamada . "', ID_PACIENTE_FK2='" . $codigo_usuario2 . "', AUTOR_MODIFICACION='" . $usua . "' WHERE ID_GESTION='" . $codigo_ultima_gestion . "'");
 			echo mysqli_error($conex);
 		}
 		$descripcion_nuevo_comunicacion = $_POST['descripcion_nuevo_comunicacion'];
-		$insert_gestion = mysqli_query($conex, "INSERT INTO bayer_gestiones (MOTIVO_COMUNICACION_GESTION,RECLAMO_GESTION,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION)VALUES('GESTION COORDINADOR', '" . $reclamo . "','" . $causa_no_reclamacion . "','" . $fecha_proxima_llamada . "','" . $fecha_reclamacion . "','" . $usua . "','GESTION COORDINADOR','" . $descripcion_nuevo_comunicacion . "','" . $fecha_proxima_llamada . "','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP)");
+		$insert_gestion = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,RECLAMO_GESTION,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION)VALUES('GESTION COORDINADOR', '" . $reclamo . "','" . $causa_no_reclamacion . "','" . $fecha_proxima_llamada . "','" . $fecha_reclamacion . "','" . $usua . "','GESTION COORDINADOR','" . $descripcion_nuevo_comunicacion . "','" . $fecha_proxima_llamada . "','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP)");
 		if ($sql) {
 	?>
 			<span style="margin-top:5%;">

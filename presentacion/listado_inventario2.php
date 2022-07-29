@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
@@ -10,6 +11,7 @@
 require('../datos/parse_str.php');
 if ($privilegios != '' && $usua != '') {
 ?>
+
     <body>
         <table width="100%;">
             <tr>
@@ -33,8 +35,8 @@ if ($privilegios != '' && $usua != '') {
                     </td>
                     <?php
                     /*$id_pro=$fila1['ID_REFERENCIA_FK'];
-                $NOM=mysql_query("SELECT NOMBRE_REFERENCIA,MATERIAL FROM bayer_inventario AS I
-                INNER JOIN bayer_referencia AS R ON I.ID_REFERENCIA_FK= R.ID_REFERENCIA
+                $NOM=mysql_query("SELECT NOMBRE_REFERENCIA,MATERIAL FROM ipsen_inventario AS I
+                INNER JOIN ipsen_referencia AS R ON I.ID_REFERENCIA_FK= R.ID_REFERENCIA
                 WHERE I.ID_REFERENCIA_FK=$id_pro",$conex);
                 while($con= mysql_fetch_array($NOM))
                 {
@@ -75,4 +77,5 @@ if ($privilegios != '' && $usua != '') {
 <?php
 }
 ?>
+
 </html>

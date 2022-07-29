@@ -19,7 +19,7 @@ if ($privilegios != '' && $usua != '') {
         <?php
         // include('../logica/consultas_usuarios.php');
         $url = "../presentacion/listado_usuario.php";
-        $SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM bayer_operador_logistico ORDER BY ID_OPERADOR_LOGISTICO ASC");
+        $SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_operador_logistico ORDER BY ID_OPERADOR_LOGISTICO ASC");
         $num_total = mysqli_num_rows($SELECT_USUARIO_TOTAL);
         if ($num_total > 0) {
         ?>

@@ -3,9 +3,9 @@ require('../datos/parse_str.php');
 require_once("../datos/conex.php");
 $ID_EVENTO_ADVERSOS = $ID_EVENTO_ADVERSO;
 $hoy = date('Y-m-d');
-$consulta = mysqli_query($conex, "SELECT * FROM bayer_evento_adverso AS EA
-INNER JOIN bayer_pacientes AS P ON P.ID_PACIENTE=EA.ID_PACIENTE_FK
-INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso AS EA
+INNER JOIN ipsen_pacientes AS P ON P.ID_PACIENTE=EA.ID_PACIENTE_FK
+INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 WHERE EA.ID_EVENTO_ADVERSO='" . $ID_EVENTO_ADVERSOS . "'");
 echo mysqli_error($conex);
 while ($fila1 = mysqli_fetch_array($consulta)) {

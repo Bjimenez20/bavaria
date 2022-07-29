@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -17,19 +18,19 @@ $hoy = date('Y-m-d');
 if ($privilegios != '' && $usua != '') {
 	if (!isset($_POST['buscar'])) {
 		if ($privilegios == 1 || $privilegios == 5) {
-			$consulta_ref = mysqli_query($conex,"SELECT * FROM bayer_pacientes AS P INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE INNER JOIN bayer_gestiones WHERE ID_GESTION = ID_ULTIMA_GESTION ORDER BY ID_PACIENTE");
+			$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE INNER JOIN ipsen_gestiones WHERE ID_GESTION = ID_ULTIMA_GESTION ORDER BY ID_PACIENTE");
 			echo mysqli_error($conex);
-			$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE INNER JOIN bayer_gestiones WHERE ID_GESTION = ID_ULTIMA_GESTION ORDER BY ID_PACIENTE LIMIT";
+			$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE INNER JOIN ipsen_gestiones WHERE ID_GESTION = ID_ULTIMA_GESTION ORDER BY ID_PACIENTE LIMIT";
 		}
 		if ($privilegios == 2 || $privilegios == 6) {
-			$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-			INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-			INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE
+			$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+			INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+			INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE
 			WHERE G.FECHA_PROGRAMADA_GESTION='" . $hoy . "' AND G.ESTADO_GESTION!='GESTIONADO' AND USUARIO_ASIGANDO='" . $usua . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 			echo mysqli_error($conex);
-			$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-			INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-			INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE
+			$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+			INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+			INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE
 			WHERE G.FECHA_PROGRAMADA_GESTION='" . $hoy . "' AND G.ESTADO_GESTION!='GESTIONADO' AND USUARIO_ASIGANDO='" . $usua . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 		}
 		if ($privilegios == 4) {
@@ -56,87 +57,87 @@ if ($privilegios != '' && $usua != '') {
 		}
 		if ($NOMBRE == '' and $DOCUMENTO == '' and $TELEFONO == '' and $PAP == '') {
 			if ($privilegios == 1 || $privilegios == 5) {
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 				echo mysqli_error($conex);
-				$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
+				$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 			}
 			if ($privilegios == 2 || $privilegios == 6) {
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE
 				WHERE G.FECHA_PROGRAMADA_GESTION='" . $hoy . "' AND G.ESTADO_GESTION!='GESTIONADO' AND USUARIO_ASIGANDO='" . $usua . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 				echo mysqli_error($conex);
-				$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE
+				$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE
 				WHERE G.FECHA_PROGRAMADA_GESTION='" . $hoy . "' AND G.ESTADO_GESTION!='GESTIONADO' AND USUARIO_ASIGANDO='" . $usua . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 			}
 			//include('../presentacion/listado_pacientes.php');
 		}
 		if ($NOMBRE != '' and $DOCUMENTO == '' and $TELEFONO == '' and $PAP == '') {
 			if ($privilegios == 1 || $privilegios == 5) {
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
-				$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%'GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
+				$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%'GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 			}
 			if ($privilegios == 2 || $privilegios == 6) {
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
-				$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%'GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
+				$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%'GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 			}
 			//require('../presentacion/listado_pacientes.php');
 		}
 		if ($DOCUMENTO != '' and $NOMBRE == '' and $TELEFONO == '' and $PAP == '') {
 			if ($privilegios == 1 || $privilegios == 5) {
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 				echo mysqli_error($conex);
 				if (mysqli_num_rows($consulta_ref) > 0) {
 					//echo 'ok';
-					$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-					INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
+					$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				} else {
 					//echo 'ok1';
-					$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 					WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 					echo mysqli_error($conex);
-					$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 					WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				}
 			}
 			if ($privilegios == 2 || $privilegios == 6) {
 				//echo 'ok2';
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 				echo mysqli_error($conex);
 				if (mysqli_num_rows($consulta_ref) > 0) {
 					//echo 'ok3';
-					$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-					INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
+					$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				} else {
 					//echo 'ok4';
-					$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 					WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 					echo mysqli_error($conex);
-					$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 					WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				}
 			}
@@ -144,88 +145,89 @@ if ($privilegios != '' && $usua != '') {
 		}
 		if ($TELEFONO != '' and $NOMBRE == '' and $DOCUMENTO == '' and $PAP == '') {
 			if ($privilegios == 1 || $privilegios == 5) {
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
-				$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
+				$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 			}
 			if ($privilegios == 2 || $privilegios == 6) {
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
-				$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
+				$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 			}
 			//require('../presentacion/listado_pacientes.php');
 		}
 		if ($TELEFONO == '' and $NOMBRE == '' and $DOCUMENTO == '' and $PAP != '') {
 			if ($privilegios == 1 || $privilegios == 5) {
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN(SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN(SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 				echo mysqli_error($conex);
 				if (mysqli_num_rows($consulta_ref) > 0) {
-					$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-					INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
+					$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				} else {
-					$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 					WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 					echo mysqli_error($conex);
-					$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 					WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				}
 			}
 			if ($privilegios == 2 || $privilegios == 6) {
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 				echo mysqli_error($conex);
 				if (mysqli_num_rows($consulta_ref) > 0) {
-					$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-					INNER JOIN (SELECT * FROM bayer_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
+					$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				} else {
-					$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 					WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 					echo mysqli_error($conex);
-					$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 					WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				}
 			}
 			if ($privilegios == 4) {
-				$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-				INNER JOIN (SELECT * FROM bayer_gestiones ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				INNER JOIN (SELECT * FROM ipsen_gestiones ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 				echo mysqli_error($conex);
 				if (mysqli_num_rows($consulta_ref) > 0) {
-					$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-					INNER JOIN (SELECT * FROM bayer_gestiones ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
+					$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					INNER JOIN (SELECT * FROM ipsen_gestiones ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				} else {
-					$consulta_ref = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 					WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
 					echo mysqli_error($conex);
-					$consulta_PACIENTES = "SELECT * FROM bayer_pacientes AS P
-					INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+					$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P
+					INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 					WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				}
 			}
 		}
 	}
 ?>
+
 	<body>
 		<?php
 		$url = "../presentacion/listado_pacientes.php";
-		/*$consulta_ref=mysql_query("select * from bayer_pacientes order by ID ASC",$conex);	*/
+		/*$consulta_ref=mysql_query("select * from ipsen_pacientes order by ID ASC",$conex);	*/
 		if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5 || $privilegios == 6) {
 			$num_total_registros = mysqli_num_rows($consulta_ref);
 		}
@@ -315,7 +317,7 @@ if ($privilegios != '' && $usua != '') {
 						if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5) {
 						?>
 							<?php
-							$gestion = mysqli_query($conex, "SELECT * FROM `bayer_gestiones` WHERE `ID_PACIENTE_FK2` = '" . $fila1['ID_PACIENTE'] . "' ORDER BY `FECHA_COMUNICACION` DESC LIMIT 1");
+							$gestion = mysqli_query($conex, "SELECT * FROM `ipsen_gestiones` WHERE `ID_PACIENTE_FK2` = '" . $fila1['ID_PACIENTE'] . "' ORDER BY `FECHA_COMUNICACION` DESC LIMIT 1");
 							while ($fila2 = mysqli_fetch_array($gestion)) {
 								echo "<td>" . $fila2['FECHA_PROGRAMADA_GESTION'] . "</td>";
 							}
@@ -323,7 +325,7 @@ if ($privilegios != '' && $usua != '') {
 							<td><?php echo $fila1['ESTADO_GESTION'] ?></td>
 							<td>
 								<?php
-								$sqlusu = mysqli_query($conex, "SELECT PROGRAMA FROM bayer_usuario WHERE USER = '$usua' ");
+								$sqlusu = mysqli_query($conex, "SELECT PROGRAMA FROM ipsen_usuario WHERE USER = '$usua' ");
 								echo mysqli_error($conex);
 								while ($row1 = mysqli_fetch_array($sqlusu)) {
 									$PROGRAMA = $row1['PROGRAMA'];
@@ -407,4 +409,5 @@ if ($privilegios != '' && $usua != '') {
 <?php
 }
 ?>
+
 </html>

@@ -752,7 +752,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td width="30%">
                                     <?php
-                                    $Seleccion = mysqli_query($conex, "SELECT ID_PACIENTE FROM `bayer_pacientes` WHERE ID_PACIENTE != '' ORDER BY ID_PACIENTE DESC LIMIT 1");
+                                    $Seleccion = mysqli_query($conex, "SELECT ID_PACIENTE FROM `ipsen_pacientes` WHERE ID_PACIENTE != '' ORDER BY ID_PACIENTE DESC LIMIT 1");
                                     while ($fila = mysqli_fetch_array($Seleccion)) {
                                         $ID_PA = $fila['ID_PACIENTE'] + 1;
                                         function Zeros($numero, $largo)
@@ -882,7 +882,7 @@ if ($privilegios != '' && $usua != '') {
                                     <select type="text" name="departamento" id="departamento" onchange="mostrar_ciudades()" style="text-transform:capitalize">
                                         <option value="">Seleccione...</option>
                                         <?php
-                                        $Seleccion = mysqli_query($conex, "SELECT nombre FROM `bayer_departamento` WHERE nombre != '' ORDER BY nombre ASC");
+                                        $Seleccion = mysqli_query($conex, "SELECT nombre FROM `ipsen_departamento` WHERE nombre != '' ORDER BY nombre ASC");
                                         while ($fila = mysqli_fetch_array($Seleccion)) {
                                             $DEPARTAMENTO = $fila['nombre'];
                                             echo "<option>" . $DEPARTAMENTO . "</option>";
@@ -1424,7 +1424,7 @@ if ($privilegios != '' && $usua != '') {
                                     <select type="text" name="tratamiento_previo" id="tratamiento_previo" onchange="trat_previo(this)">
                                         <option value="">Seleccione...</option>
                                         <?php
-                                        $Seleccion = mysqli_query($conex, "SELECT DISTINCT TRATAMIENTO_PREVIO FROM `bayer_listas` WHERE TRATAMIENTO_PREVIO != '' ORDER BY TRATAMIENTO_PREVIO ASC");
+                                        $Seleccion = mysqli_query($conex, "SELECT DISTINCT TRATAMIENTO_PREVIO FROM `ipsen_listas` WHERE TRATAMIENTO_PREVIO != '' ORDER BY TRATAMIENTO_PREVIO ASC");
                                         while ($fila = mysqli_fetch_array($Seleccion)) {
                                             $TRATAMIENTO_PREVIO = $fila['TRATAMIENTO_PREVIO'];
                                             echo "<option>" . $TRATAMIENTO_PREVIO . "</option>";
@@ -1477,7 +1477,7 @@ if ($privilegios != '' && $usua != '') {
                                     <span>Asegurador<span class="asterisco">*</span></span>
                                 </td>
                                 <td>
-                                    <?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM bayer_asegurador WHERE ESTADO = 'IN' ORDER BY ID_ASEGURADOR DESC")
+                                    <?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM ipsen_asegurador WHERE ESTADO = 'IN' ORDER BY ID_ASEGURADOR DESC")
                                     ?>
                                     <input list="asegura" name="asegurador" id="asegurador" autocomplete="off" onchange="trat_previo1(this)">
                                     <datalist id="asegura">
@@ -1495,7 +1495,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <?php
-                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM bayer_operador_logistico WHERE ESTADO = 'IN' ORDER BY ID_OPERADOR_LOGISTICO DESC");
+                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM ipsen_operador_logistico WHERE ESTADO = 'IN' ORDER BY ID_OPERADOR_LOGISTICO DESC");
                                     ?>
                                     <input list="operador" name="operador_logistico" id="operador_logistico" autocomplete="off" onchange="trat_previo2(this)">
                                     <datalist id="operador">
@@ -1541,7 +1541,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <?php
-                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM bayer_puntos_entrega WHERE ESTADO = 'IN' ORDER BY ID_PUNTO DESC");
+                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM ipsen_puntos_entrega WHERE ESTADO = 'IN' ORDER BY ID_PUNTO DESC");
                                     ?>
                                     <input list="punto" name="punto_entrega" id="punto_entrega" autocomplete="off" onchange="trat_previo6(this)">
                                     <datalist id="punto">
@@ -1559,7 +1559,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <?php
-                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT IPS FROM bayer_ips WHERE ESTADO = 'IN' ORDER BY ID_IPS DESC");
+                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT IPS FROM ipsen_ips WHERE ESTADO = 'IN' ORDER BY ID_IPS DESC");
                                     ?>
                                     <input list="ips" name="ips_atiende" id="ips_atiende" autocomplete="off" onchange="trat_previo3(this)">
                                     <datalist id="ips">
@@ -1599,7 +1599,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <?php
-                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM bayer_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
+                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
                                     ?>
                                     <input list="medico_t" name="medico_tratante" id="medico_tratante" value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>" autocomplete="off" onchange="trat_previo4(this)">
                                     <datalist id="medico_t">
@@ -1617,7 +1617,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <?php
-                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM bayer_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
+                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
                                     ?>
                                     <input list="medico_p" name="medico_prescriptor" id="medico_prescriptor" value="<?php echo $fila['MEDICO_PRESCRIPTOR'] ?>" autocomplete="off" onchange="trat_previo5(this)">
                                     <datalist id="medico_p">
@@ -1655,7 +1655,7 @@ if ($privilegios != '' && $usua != '') {
                                     <select type="text" name="especialidad" id="especialidad">
                                         <option value="">Seleccione...</option>
                                         <?php
-                                        $Seleccion = mysqli_query($conex, "SELECT DISTINCT ESPECIALIDADES FROM `bayer_listas` WHERE ESPECIALIDADES != '' ORDER BY ESPECIALIDADES ASC");
+                                        $Seleccion = mysqli_query($conex, "SELECT DISTINCT ESPECIALIDADES FROM `ipsen_listas` WHERE ESPECIALIDADES != '' ORDER BY ESPECIALIDADES ASC");
                                         while ($fila = mysqli_fetch_array($Seleccion)) {
                                             $ESPECIALIDADES = $fila['ESPECIALIDADES'];
                                             echo "<option>" . $ESPECIALIDADES . "</option>";

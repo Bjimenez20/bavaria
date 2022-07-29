@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -16,6 +17,7 @@
 			text-align: center;
 			padding: 10px;
 		}
+
 		html {
 			background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
 			-webkit-background-size: cover;
@@ -23,10 +25,7 @@
 			-o-background-size: cover;
 			background-size: cover;
 		}
-		/*form 
-{
-    background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
-}*/
+
 		@media screen and (max-width:1000px) {
 			html {
 				background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
@@ -42,6 +41,7 @@
 require('../datos/parse_str.php');
 require('../datos/conex.php');
 ?>
+
 <body>
 	<div>
 		<img src="../presentacion/imagenes/esquina.png" height="80px" style="margin-left:1%; margin-top:1%;" />
@@ -49,16 +49,16 @@ require('../datos/conex.php');
 	<form name="solicitud" id="solicitud" method="post" style="width:100%; margin-top:50px;">
 		<?php
 		$ID_PACIENTE = base64_decode($xxx);
-		$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_movimientos AS M
-INNER JOIN bayer_referencia AS R ON R.ID_REFERENCIA=M.ID_REFERENCIA_FK
-INNER JOIN bayer_paciente_movimientos AS PM ON PM.ID_MOVIMIENTOS_FK=M.ID_MOVIMIENTOS
-INNER JOIN bayer_pacientes AS P ON P.ID_PACIENTE=PM.ID_PACIENTE_FK
+		$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_movimientos AS M
+INNER JOIN ipsen_referencia AS R ON R.ID_REFERENCIA=M.ID_REFERENCIA_FK
+INNER JOIN ipsen_paciente_movimientos AS PM ON PM.ID_MOVIMIENTOS_FK=M.ID_MOVIMIENTOS
+INNER JOIN ipsen_pacientes AS P ON P.ID_PACIENTE=PM.ID_PACIENTE_FK
 WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECHA_MOVIMIENTO ASC");
 		echo mysqli_error($conex);
-		$SELECT_SOLICITUDES = "SELECT * FROM bayer_movimientos AS M
-INNER JOIN bayer_referencia AS R ON R.ID_REFERENCIA=M.ID_REFERENCIA_FK
-INNER JOIN bayer_paciente_movimientos AS PM ON PM.ID_MOVIMIENTOS_FK=M.ID_MOVIMIENTOS
-INNER JOIN bayer_pacientes AS P ON P.ID_PACIENTE=PM.ID_PACIENTE_FK
+		$SELECT_SOLICITUDES = "SELECT * FROM ipsen_movimientos AS M
+INNER JOIN ipsen_referencia AS R ON R.ID_REFERENCIA=M.ID_REFERENCIA_FK
+INNER JOIN ipsen_paciente_movimientos AS PM ON PM.ID_MOVIMIENTOS_FK=M.ID_MOVIMIENTOS
+INNER JOIN ipsen_pacientes AS P ON P.ID_PACIENTE=PM.ID_PACIENTE_FK
 WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECHA_MOVIMIENTO ASC LIMIT";
 		//include('../logica/consultas_solicitudes.php');
 		$url = "../presentacion/form_productos_paciente.php";
@@ -113,7 +113,7 @@ WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECH
 						<td>
 							<?php
 							$ver = $fila1['ID_INVENTARIO_FK'];
-							$selec = mysqli_query($conex,"SELECT * FROM bayer_inventario WHERE ID_INVENTARIO='$ver'");
+							$selec = mysqli_query($conex, "SELECT * FROM ipsen_inventario WHERE ID_INVENTARIO='$ver'");
 							while ($dat = mysqli_fetch_array($selec)) {
 								echo $serial = $dat['CODIGO_PRODUCTO'];
 							}
@@ -175,4 +175,5 @@ WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECH
 			</table>
 	</form>
 </body>
+
 </html>

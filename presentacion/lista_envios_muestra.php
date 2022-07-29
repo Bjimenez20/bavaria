@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -19,6 +20,7 @@
 			border-radius: 5px;
 			border: 1px solid transparent;
 		}
+
 		.error {
 			font-size: 130%;
 			font-weight: bold;
@@ -28,6 +30,7 @@
 			text-align: center;
 			padding: 10px;
 		}
+
 		html {
 			background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
 			-webkit-background-size: cover;
@@ -35,6 +38,7 @@
 			-o-background-size: cover;
 			background-size: cover;
 		}
+
 		/*form 
 {
     background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
@@ -90,7 +94,7 @@ if (isset($_POST['registrar'])) {
 	$ESTADO = $_POST['ESTADO'];
 	$FECHA_ENTREGA = $_POST['FECHA_ENTREGA'];
 	$OBSERVACION = $_POST['OBSERVACION'];
-	$update = mysqli_query($conex,"UPDATE bayer_envio_muestra
+	$update = mysqli_query($conex, "UPDATE ipsen_envio_muestra
 					   SET ESTADO = '" . $ESTADO . "',
 					   FECHA_ENTREGA = '" . $FECHA_ENTREGA . "', OBSERVACION = '" . $OBSERVACION . "'
 					   WHERE ID_ENVIO_MUESTRA='$ID_ENVIO'");
@@ -98,15 +102,16 @@ if (isset($_POST['registrar'])) {
 	echo mysqli_error($conex);
 }
 ?>
+
 <body>
 	<div>
 		<img src="../presentacion/imagenes/esquina.png" height="80px" style="margin-left:1%; margin-top:1%;" />
 	</div>
 	<?php
 	$ID_PACIENTE = base64_decode($xxx);
-	$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_envio_muestra WHERE PAP='$ID_PACIENTE' ORDER BY FECHA_CREACION ASC");
+	$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_envio_muestra WHERE PAP='$ID_PACIENTE' ORDER BY FECHA_CREACION ASC");
 	echo mysqli_error($conex);
-	$SELECT_SOLICITUDES = "SELECT * FROM bayer_envio_muestra WHERE PAP='$ID_PACIENTE' ORDER BY FECHA_CREACION ASC LIMIT";
+	$SELECT_SOLICITUDES = "SELECT * FROM ipsen_envio_muestra WHERE PAP='$ID_PACIENTE' ORDER BY FECHA_CREACION ASC LIMIT";
 	//include('../logica/consultas_solicitudes.php');
 	$url = "../presentacion/lista_envios_muestra.php";
 	$num_total = mysqli_num_rows($SELECT_SOLICITUDES_TOTAL);
@@ -225,4 +230,5 @@ if (isset($_POST['registrar'])) {
 		?>
 		</table>
 </body>
+
 </html>

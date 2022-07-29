@@ -10,13 +10,16 @@ mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la 
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-scale=1.0">
 </head>
+
 <body>
     <!DOCTYPE html>
     <html lang="es">
+
     <head>
         <title>IPSEN</title>
         <meta charset="utf-8">
@@ -73,8 +76,9 @@ mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la 
             color: green;
         }
     </style>
+
     <body>
-        <iframe src="./scriptcase_nuevo/Bayer_20210426105050/" frameborder="0" style="padding-top: 20px; width: 100%; border: 1px solid transparent; height: 714.1px;" name="info" id="info" scrolling="auto"> </iframe>
+        <iframe src="./scriptcase_nuevo/ipsen_20210426105050/" frameborder="0" style="padding-top: 20px; width: 100%; border: 1px solid transparent; height: 714.1px;" name="info" id="info" scrolling="auto"> </iframe>
         <footer class="footer fixed-bottom">
             <div class="container">
                 <span class="text-muted"></span>
@@ -96,6 +100,8 @@ mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la 
             fileName: "sc_csv_autorizaciones_radicadas", //Nombre del archivo 
         });
     </script>
+
     </html>
 </body>
+
 </html>

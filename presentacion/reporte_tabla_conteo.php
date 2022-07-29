@@ -4,6 +4,7 @@ mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la 
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <title>IPSEN</title>
     <meta charset="utf-8">
@@ -55,12 +56,13 @@ mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la 
         });
     </script>
 </head>
+
 <body>
     <div class="container col-md-10">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <h2>Reporte Causal Conteo</h2>
-                <iframe src="./reportes_conteo/Bayer_20210325143125/" frameborder="0" width="100%" height="500"></iframe>
+                <iframe src="./reportes_conteo/ipsen_20210325143125/" frameborder="0" width="100%" height="500"></iframe>
                 <!-- 
             <form method="post" action="#">
                    <button class="btn_buscar" name="enviar" type="submit" id="enviar">Buscar</button>
@@ -85,7 +87,7 @@ mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la 
                                 <?php
                                 /*
                                 if(isset($_POST['enviar'])){
-                                $sqlpp = mysqli_query($conexion, "SELECT P.ID_PACIENTE AS PAP, T.PRODUCTO_TRATAMIENTO AS PRODUCTO_TRATAMIENTO, C.CONTEO, C.CAUSAL_NO_VISITA, T.ASEGURADOR_TRATAMIENTO, T.OPERADOR_LOGISTICO_TRATAMIENTO, T.MEDICO_TRATAMIENTO, C.FECHA_ULTIMO_REGISTRO   FROM bayer_pacientes AS P INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE INNER JOIN bayer_conteo AS C ON C.ID_TRATAMIENTO = T.ID_TRATAMIENTO  WHERE  CAUSAL_NO_VISITA <> 'Finalizo Barrera'  AND CAUSAL_NO_VISITA <> '' ORDER BY P.ID_PACIENTE DESC");
+                                $sqlpp = mysqli_query($conexion, "SELECT P.ID_PACIENTE AS PAP, T.PRODUCTO_TRATAMIENTO AS PRODUCTO_TRATAMIENTO, C.CONTEO, C.CAUSAL_NO_VISITA, T.ASEGURADOR_TRATAMIENTO, T.OPERADOR_LOGISTICO_TRATAMIENTO, T.MEDICO_TRATAMIENTO, C.FECHA_ULTIMO_REGISTRO   FROM ipsen_pacientes AS P INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE INNER JOIN ipsen_conteo AS C ON C.ID_TRATAMIENTO = T.ID_TRATAMIENTO  WHERE  CAUSAL_NO_VISITA <> 'Finalizo Barrera'  AND CAUSAL_NO_VISITA <> '' ORDER BY P.ID_PACIENTE DESC");
                                 while ($datos =(mysqli_fetch_array($sqlpp))) {?>                          
                               <tr>    
                                     <td><?php echo $datos['PAP']; ?></td>                      
@@ -131,4 +133,5 @@ mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la 
         fileName: "sc_csv_informe_conteo", //Nombre del archivo 
     });
 </script>
+
 </html>

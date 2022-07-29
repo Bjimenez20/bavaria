@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
@@ -14,6 +15,7 @@ include('../logica/session.php')
 require('../datos/parse_str.php');
 if ($privilegios != '' && $usua != '') {
 ?>
+
     <body>
         <table style="border:0px solid transparent;" width="100%;">
             <tr>
@@ -47,9 +49,9 @@ if ($privilegios != '' && $usua != '') {
                     <td><?php echo $fila1['NO_REMICION'] ?></td>
                     <?php
                     $id_pro = $fila1['ID_INVENTARIO_FK'];
-                    $NOM = mysqli_query($conex,"SELECT NOMBRE_REFERENCIA,MATERIAL FROM bayer_movimientos AS M
-                INNER JOIN bayer_inventario AS I ON M.ID_INVENTARIO_FK= I.ID_INVENTARIO
-                INNER JOIN bayer_referencia AS R ON I.ID_REFERENCIA_FK= R.ID_REFERENCIA
+                    $NOM = mysqli_query($conex, "SELECT NOMBRE_REFERENCIA,MATERIAL FROM ipsen_movimientos AS M
+                INNER JOIN ipsen_inventario AS I ON M.ID_INVENTARIO_FK= I.ID_INVENTARIO
+                INNER JOIN ipsen_referencia AS R ON I.ID_REFERENCIA_FK= R.ID_REFERENCIA
                 WHERE M.ID_INVENTARIO_FK='" . $id_pro . "'");
                     echo (mysqli_error($conex));
                     while ($con = mysqli_fetch_array($NOM)) {
@@ -86,4 +88,5 @@ if ($privilegios != '' && $usua != '') {
 <?php
 }
 ?>
+
 </html>

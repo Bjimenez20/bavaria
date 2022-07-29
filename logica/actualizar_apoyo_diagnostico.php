@@ -156,7 +156,7 @@ if (isset($_GET['xnfgti'])) {
                         </thead>
                         <tbody>
                             <?php
-                            $sqlpp = mysqli_query($conex,"SELECT * FROM bayer_apoyo_diagnostico WHERE FK_PAP='" . $id_personaa . "' ORDER BY ID_APOYO_DIAGNOSTICO DESC");
+                            $sqlpp = mysqli_query($conex,"SELECT * FROM ipsen_apoyo_diagnostico WHERE FK_PAP='" . $id_personaa . "' ORDER BY ID_APOYO_DIAGNOSTICO DESC");
                             while ($datos = (mysqli_fetch_array($sqlpp))) { ?>
                                 <tr>
                                     <td><?php echo $datos['ID_APOYO_DIAGNOSTICO']; ?></td>
@@ -189,7 +189,7 @@ if (isset($_GET['xnfgti'])) {
 <?php
 if (isset($_GET['hthsddf'])) {
     $id_gestionar = base64_decode($_GET['hthsddf']);
-    $SELECT_GESTION = mysqli_query($conex,"SELECT * FROM bayer_apoyo_diagnostico WHERE ID_APOYO_DIAGNOSTICO = '" . $id_gestionar . "';");
+    $SELECT_GESTION = mysqli_query($conex,"SELECT * FROM ipsen_apoyo_diagnostico WHERE ID_APOYO_DIAGNOSTICO = '" . $id_gestionar . "';");
     while ($gestion = (mysqli_fetch_array($SELECT_GESTION))) {
         $ID_APOYO_DIAGNOSTICO = $gestion['ID_APOYO_DIAGNOSTICO'];
         $FK_PAP = $gestion['FK_PAP'];

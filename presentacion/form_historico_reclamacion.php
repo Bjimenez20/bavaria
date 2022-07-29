@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
@@ -16,6 +17,7 @@
             text-align: center;
             padding: 10px;
         }
+
         html {
             background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
             -webkit-background-size: cover;
@@ -23,10 +25,7 @@
             -o-background-size: cover;
             background-size: cover;
         }
-        /*form 
-{
-    background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
-}*/
+
         @media screen and (max-width:1000px) {
             html {
                 background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
@@ -42,6 +41,7 @@
 require('../datos/parse_str.php');
 require('../datos/conex.php');
 ?>
+
 <body>
     <div>
         <img src="../presentacion/imagenes/esquina.png" height="80px" style="margin-left:1%; margin-top:1%;" />
@@ -49,9 +49,9 @@ require('../datos/conex.php');
     <form name="solicitud" id="solicitud" method="post" style="width:100%; margin-top:50px;">
         <?php
         $ID_PACIENTE = base64_decode($xxx);
-        $SELECT_SOLICITUDES_TOTAL = mysqli_query($conex,"SELECT * FROM bayer_historial_reclamacion WHERE ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY ID_HISTORIAL_RECLAMACION ASC");
+        $SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY ID_HISTORIAL_RECLAMACION ASC");
         echo mysqli_error($conex);
-        $SELECT_SOLICITUDES = "SELECT * FROM bayer_historial_reclamacion WHERE ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY ID_HISTORIAL_RECLAMACION ASC LIMIT";
+        $SELECT_SOLICITUDES = "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY ID_HISTORIAL_RECLAMACION ASC LIMIT";
         $url = "../presentacion/form_historico_reclamacion.php";
         $num_total = mysqli_num_rows($SELECT_SOLICITUDES_TOTAL);
         if ($num_total > 0) {
@@ -228,4 +228,5 @@ require('../datos/conex.php');
             </table>
     </form>
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 <?php require('../datos/conex.php'); ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>IPSEN</title>
     <!-- META-->
@@ -26,6 +27,7 @@
     a {
         color: green;
     }
+
     #tablas_css_jair {
         border: 3px solid;
         border-style: double;
@@ -35,6 +37,7 @@
         padding-bottom: 20px;
     }
 </style>
+
 <body>
     <div class="container">
         <button class="btn_buscar" name="enviar" id="enviar" onClick="window.location.href = 'exportar_apoyodiagnostico.php';">Exportable</button>
@@ -62,7 +65,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            $sqlpp = mysqli_query($conex, "SELECT * FROM bayer_apoyo_diagnostico ORDER BY ID_APOYO_DIAGNOSTICO DESC");
+                            $sqlpp = mysqli_query($conex, "SELECT * FROM ipsen_apoyo_diagnostico ORDER BY ID_APOYO_DIAGNOSTICO DESC");
                             while ($datos = (mysqli_fetch_array($sqlpp))) { ?>
                                 <tr>
                                     <td><?php echo $datos['ID_APOYO_DIAGNOSTICO']; ?></td>
@@ -89,4 +92,5 @@
         </div>
     </div>
 </body>
+
 </html>

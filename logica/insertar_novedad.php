@@ -3,6 +3,7 @@ require_once('session.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -16,6 +17,7 @@ require_once('session.php');
 			text-align: center;
 			padding: 10px;
 		}
+
 		.error {
 			font-size: 130%;
 			font-weight: bold;
@@ -25,6 +27,7 @@ require_once('session.php');
 			text-align: center;
 			padding: 10px;
 		}
+
 		.btn_continuar {
 			padding-top: 7px;
 			width: 152px;
@@ -34,11 +37,13 @@ require_once('session.php');
 			border-radius: 5px;
 			border: 1px solid transparent;
 		}
+
 		.btn_continuar:active {
 			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 			box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
 				inset 0px 0px 20px #EEECEC;
 		}
+
 		.btn_continuar:hover {
 			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 			box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
@@ -46,9 +51,10 @@ require_once('session.php');
 		}
 	</style>
 </head>
+
 <body>
 	<?PHP
-require('../datos/parse_str.php');
+	require('../datos/parse_str.php');
 	require_once("../datos/conex.php");
 	if (isset($_POST['registrar'])) {
 		$PAP = $_POST['PAP'];
@@ -61,7 +67,7 @@ require('../datos/parse_str.php');
 		//$OBSERVACION_RESPUESTA = $_POST['OBSERVACION_RESPUESTA'];
 		//$telefono3=$_POST['telefono3'];
 		//mysql_query("SET NAMES utf8");
-		$insertar = mysqli_query($conex,"INSERT INTO bayer_novedades (PAP, ASUNTO, PRODUCTO, NOVEDADES, OBSERVACIONES, FECHA_REPORTE, FECHA_RESPUESTA, OBSERVACION_RESPUESTA, ESTADO)
+		$insertar = mysqli_query($conex, "INSERT INTO ipsen_novedades (PAP, ASUNTO, PRODUCTO, NOVEDADES, OBSERVACIONES, FECHA_REPORTE, FECHA_RESPUESTA, OBSERVACION_RESPUESTA, ESTADO)
 		VALUES ('" . $PAP . "', '" . $ASUNTO . "', '" . $PRODUCTO . "', '" . $NOVEDAD . "', '" . $OBSERVACION . "', '" . $FECHA_REPORTE . "', '" . $FECHA_RESPUESTA . "', '', 'NUEVO')");
 		echo mysqli_error($conex);
 		if ($insertar) {
@@ -98,4 +104,5 @@ require('../datos/parse_str.php');
 	}
 	?>
 </body>
+
 </html>

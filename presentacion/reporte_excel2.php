@@ -7,8 +7,8 @@ header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 header("content-disposition: attachment;filename=seguimiento.xls");
 require_once("../datos/conex.php");
-$consulta_paciente = mysqli_query($conex, "SELECT * FROM bayer_pacientes AS P
-INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE ORDER BY ID_PACIENTE ASC");
+$consulta_paciente = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
+INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE ORDER BY ID_PACIENTE ASC");
 echo mysqli_error($conex);
 ?>
 <table border="1px" bordercolor="#15a9e3">
@@ -48,7 +48,7 @@ echo mysqli_error($conex);
       <td><?php echo $fila1['ESTADO_PACIENTE'] ?></td>
       <?php
       $ID = $fila1['ID_PACIENTE'];
-      /*$consulta_ultima_reclamacion_gestion=mysql_query("SELECT FECHA_RECLAMACION_GESTION FROM bayer_gestiones
+      /*$consulta_ultima_reclamacion_gestion=mysql_query("SELECT FECHA_RECLAMACION_GESTION FROM ipsen_gestiones
 			  WHERE ID_PACIENTE_FK2='$ID'
 			  ORDER BY FECHA_RECLAMACION_GESTION DESC LIMIT 1",$conex);
 			  $nreg_ult=mysql_num_rows($consulta_ultima_reclamacion_gestion);
@@ -68,7 +68,7 @@ echo mysqli_error($conex);
                   	<td></td>
                   <?php 
 			  }*/
-      $consulta_gestion = mysqli_query($conex, "SELECT * FROM bayer_gestiones
+      $consulta_gestion = mysqli_query($conex, "SELECT * FROM ipsen_gestiones
 WHERE ID_PACIENTE_FK2='$ID'
 ORDER BY FECHA_COMUNICACION DESC LIMIT 1");
       echo mysqli_error($conex);

@@ -4,6 +4,7 @@ include('../logica/session.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -18,6 +19,7 @@ include('../logica/session.php');
 		text-align: center;
 		padding: 10px;
 	}
+
 	.error {
 		font-size: 130%;
 		font-weight: bold;
@@ -27,6 +29,7 @@ include('../logica/session.php');
 		text-align: center;
 		padding: 10px;
 	}
+
 	html {
 		background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
 		-webkit-background-size: cover;
@@ -34,6 +37,7 @@ include('../logica/session.php');
 		-o-background-size: cover;
 		background-size: cover;
 	}
+
 	@media screen and (max-width:1000px) {
 		html {
 			background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
@@ -44,18 +48,19 @@ include('../logica/session.php');
 		}
 	}
 </style>
+
 <body>
 	<?php
-require('../datos/parse_str.php');
+	require('../datos/parse_str.php');
 	require('../datos/conex.php');
-	mysqli_query($conex,"SET NAMES utf8");
+	mysqli_query($conex, "SET NAMES utf8");
 	if (isset($_POST['registrar'])) {
 		$razon_apoyo = $_POST['razon_apoyo'];
 		$fecha_apoyo = $_POST['fecha_apoyo'];
 		$dosis = $_POST['dosis'];
 		$motivo = $_POST['motivo'];
 		$paciente = $_POST['id_paciente'];
-		$insert = mysqli_query($conex,"INSERT INTO bayer_brindar_apoyo(FECHA_APOYO,DOSIS,RAZON_APOYO,MOTIVO,ID_PACIENTE_FK,ID_USER_FK) 
+		$insert = mysqli_query($conex, "INSERT INTO ipsen_brindar_apoyo(FECHA_APOYO,DOSIS,RAZON_APOYO,MOTIVO,ID_PACIENTE_FK,ID_USER_FK) 
 		VALUES('$fecha_apoyo','$dosis','$razon_apoyo','$motivo','$paciente','$id_usu')");
 		echo mysqli_error($conex);
 		if ($insert) {
@@ -90,4 +95,5 @@ require('../datos/parse_str.php');
 	}
 	?>
 </body>
+
 </html>

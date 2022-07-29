@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    <link rel="stylesheet" href="../presentacion/css/estilos_menu.css" />
@@ -17,20 +18,25 @@ include('../logica/session.php')
 </head>
 <style type="text/css">
    @import url("GothamRnd_book/stylesheet.css");
+
    .centro {
       text-align: center;
    }
+
    form {
       background: url('../presentacion/imagenes/fondo_nueva_cl.png') top left no-repeat;
       /*background:url(imagenes/fondo_nueva_cl.png) top left no-repeat;*/
    }
+
    .fuente {
       font-family: Tahoma, Geneva, sans-serif;
    }
+
    .error {
       font-family: GothamRnd-book;
       color: #C30;
    }
+
    html {
       background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
       -webkit-background-size: cover;
@@ -38,6 +44,7 @@ include('../logica/session.php')
       -o-background-size: cover;
       background-size: cover;
    }
+
    .aviso3 {
       font-size: 130%;
       font-weight: bold;
@@ -48,6 +55,7 @@ include('../logica/session.php')
       text-align: center;
       padding: 10px;
    }
+
    .error {
       font-size: 130%;
       font-weight: bold;
@@ -58,6 +66,7 @@ include('../logica/session.php')
       padding: 10px;
    }
 </style>
+
 <body>
    <?php
    $USUARIO = $_SESSION["usuarios"];
@@ -117,7 +126,7 @@ include('../logica/session.php')
                if (validar_clave($_POST["Contrasena_nu"], $error_encontrado)) {
                   if ($CONTRASENA_NU == $CONTRASENA_VA) {
                      echo "<span class=fuente>CONTRASE&Ntilde;A V&Aacute;LIDA</span>";
-                     $sql = mysqli_query($conex, "UPDATE bayer_usuario SET 
+                     $sql = mysqli_query($conex, "UPDATE ipsen_usuario SET 
 	  CONTRASENA = '" . MD5($CONTRASENA_NU) . "',
 	  CONTRASENA_FECHA = '" . $CONTRASENA_VENCE . "'
 	  WHERE USER='" . $USUARIO . "';");
@@ -155,4 +164,5 @@ include('../logica/session.php')
       </form>
    </center>
 </body>
+
 </html>

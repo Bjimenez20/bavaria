@@ -5,9 +5,9 @@ require('../datos/parse_str.php');
 header("Content-Type: application/vnd.ms-excel");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-header("content-disposition: attachment;filename=bayer_contador.xls");
+header("content-disposition: attachment;filename=ipsen_contador.xls");
 require_once("../datos/conex.php");
-$consulta_paciente = mysqli_query($conex, "SELECT P.ID_PACIENTE AS PAP, T.PRODUCTO_TRATAMIENTO AS PRODUCTO_TRATAMIENTO, C.CONTEO, C.CAUSAL_NO_VISITA, T.ASEGURADOR_TRATAMIENTO, T.OPERADOR_LOGISTICO_TRATAMIENTO, T.MEDICO_TRATAMIENTO, C.FECHA_ULTIMO_REGISTRO   FROM bayer_pacientes AS P INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE INNER JOIN bayer_conteo AS C ON C.ID_TRATAMIENTO = T.ID_TRATAMIENTO  WHERE  CAUSAL_NO_VISITA <> 'Finalizo Barrera'  AND CAUSAL_NO_VISITA <> '' ORDER BY P.ID_PACIENTE DESC");
+$consulta_paciente = mysqli_query($conex, "SELECT P.ID_PACIENTE AS PAP, T.PRODUCTO_TRATAMIENTO AS PRODUCTO_TRATAMIENTO, C.CONTEO, C.CAUSAL_NO_VISITA, T.ASEGURADOR_TRATAMIENTO, T.OPERADOR_LOGISTICO_TRATAMIENTO, T.MEDICO_TRATAMIENTO, C.FECHA_ULTIMO_REGISTRO   FROM ipsen_pacientes AS P INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE INNER JOIN ipsen_conteo AS C ON C.ID_TRATAMIENTO = T.ID_TRATAMIENTO  WHERE  CAUSAL_NO_VISITA <> 'Finalizo Barrera'  AND CAUSAL_NO_VISITA <> '' ORDER BY P.ID_PACIENTE DESC");
 echo mysqli_error($conex);
 ?>
 <table border="1px" bordercolor="#15a9e3">

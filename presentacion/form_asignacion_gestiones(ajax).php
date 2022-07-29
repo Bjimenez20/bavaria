@@ -3,6 +3,7 @@ require_once('../logica/session.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -19,6 +20,7 @@ require_once('../logica/session.php');
 				alert('ok');
 			});
 		});
+
 		function cambio_activo() {
 			var usuario = $('#usu').val();
 			//alert(CODIGO_PRODUCTO);
@@ -38,6 +40,7 @@ require_once('../logica/session.php');
 				}
 			})
 		}
+
 		function cambio_inactivo() {
 			var usuario = $('#usu').val();
 			$.ajax({
@@ -61,6 +64,7 @@ require_once('../logica/session.php');
 			text-transform: uppercase;
 			text-align: center;
 		}
+
 		th {
 			padding: 5px;
 		}
@@ -81,13 +85,14 @@ require_once('../logica/session.php');
 require('../datos/parse_str.php');
 require_once("../datos/conex.php");
 $hoy = date('Y-m-d');
-$select_usu = mysqli_query($conex,"select USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM bayer_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2'");
+$select_usu = mysqli_query($conex, "select USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM ipsen_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2'");
 echo mysqli_error($conex);
 $nreg_usu = mysqli_num_rows($select_usu);
-$select_gestiones = mysqli_query($conex,"SELECT ID_GESTION FROM GESTION WHERE FECHA_PROGRAMADA_GESTION='" . $hoy . "'");
+$select_gestiones = mysqli_query($conex, "SELECT ID_GESTION FROM GESTION WHERE FECHA_PROGRAMADA_GESTION='" . $hoy . "'");
 echo mysqli_error($conex);
 $nreg_pac = mysqli_num_rows($select_gestiones);
 ?>
+
 <body class="body" style="width:75.9%;margin-left:16%;">
 	<form id="asignacion" name="asignacion" action="../logica/insertar_datos.php" method="post">
 		<center>
@@ -177,4 +182,5 @@ $nreg_pac = mysqli_num_rows($select_gestiones);
 		</center>
 	</form>
 </body>
+
 </html>

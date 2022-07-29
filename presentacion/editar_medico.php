@@ -6,10 +6,10 @@ if (isset($_POST['actualizar'])) {
 
     if ($_POST['medico_habilitar'] == '') {
         $medico = 'NO DEFINIDO VOLVER A PREGUNTAR';
-        $update = mysqli_query($conex, "UPDATE bayer_listas SET MEDICO='" . $medico . "' WHERE ID_LISTA = '" . $ID . "'");
+        $update = mysqli_query($conex, "UPDATE ipsen_listas SET MEDICO='" . $medico . "' WHERE ID_LISTA = '" . $ID . "'");
     } else {
         $medico = $_POST['operador_habilitar'];
-        $update = mysqli_query($conex, "UPDATE bayer_listas SET MEDICO='" . $medico . "', ESTADO = 'IN' WHERE ID_LISTA = '" . $ID . "'");
+        $update = mysqli_query($conex, "UPDATE ipsen_listas SET MEDICO='" . $medico . "', ESTADO = 'IN' WHERE ID_LISTA = '" . $ID . "'");
     }
     if ($update) {
 ?>
@@ -48,7 +48,7 @@ if (isset($_POST['eliminar'])) {
     require('../datos/conex.php');
     require('../datos/parse_str.php');
     $ID = $erted;
-    $delete = mysqli_query($conex, "DELETE FROM bayer_listas WHERE ID_LISTA = '" . $ID . "'");
+    $delete = mysqli_query($conex, "DELETE FROM ipsen_listas WHERE ID_LISTA = '" . $ID . "'");
     if ($delete) {
     ?>
         <span style="margin-top:5%;">

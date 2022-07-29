@@ -58,7 +58,7 @@ require('../datos/parse_str.php');
 	$tipo_evento_adverso = $_POST['tipo_evento_adverso'];
 	//if($crear=='SI')
 	//{
-	$insert_gestion = mysqli_query($conex,"INSERT INTO bayer_gestiones (MOTIVO_COMUNICACION_GESTION,RECLAMO_GESTION,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION, AUTOR_GESTION, NOTA, DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION, ID_PACIENTE_FK2, FECHA_COMUNICACION, FECHA_ULT_RECOLECCION, FECHA_PRO_RECOLECCION) VALUES ('GESTION ASEI', '" . $reclamo_gestion . "', '" . $causo_no_reclamacion . "','" . $prox_llamada . "','" . $fecha_reclamacion . "', '" . $usua . "', 'GESTION ASEI', '" . $descripcion_nuevo_comunicacion . "', '" . $fecha_prog_gestion . "', '" . $codigo_usuario2 . "', CURRENT_TIMESTAMP, '" . $fecha_ultima_recoleccion . "', '" . $fecha_proxima_recoleccion . "')");
+	$insert_gestion = mysqli_query($conex,"INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,RECLAMO_GESTION,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION, AUTOR_GESTION, NOTA, DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION, ID_PACIENTE_FK2, FECHA_COMUNICACION, FECHA_ULT_RECOLECCION, FECHA_PRO_RECOLECCION) VALUES ('GESTION ASEI', '" . $reclamo_gestion . "', '" . $causo_no_reclamacion . "','" . $prox_llamada . "','" . $fecha_reclamacion . "', '" . $usua . "', 'GESTION ASEI', '" . $descripcion_nuevo_comunicacion . "', '" . $fecha_prog_gestion . "', '" . $codigo_usuario2 . "', CURRENT_TIMESTAMP, '" . $fecha_ultima_recoleccion . "', '" . $fecha_proxima_recoleccion . "')");
 	//}
 	if ($insert_gestion) {
 		if ($evento_adverso == 'SI') {

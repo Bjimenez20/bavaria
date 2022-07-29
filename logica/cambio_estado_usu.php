@@ -3,6 +3,7 @@ require_once('session.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -16,6 +17,7 @@ require_once('session.php');
 			text-align: center;
 			padding: 10px;
 		}
+
 		.error {
 			font-size: 130%;
 			font-weight: bold;
@@ -27,20 +29,21 @@ require_once('session.php');
 		}
 	</style>
 </head>
+
 <body>
 	<?php
-require('../datos/parse_str.php');
+	require('../datos/parse_str.php');
 	require_once("../datos/conex.php");
 	$OK;
 	$ID = base64_decode($ID); //ID_USUARIO
-	$select_usu = mysqli_query($conex, "select CONCAT(NOMBRES,' ',APELLIDOS) AS 'NOMBRE_COMPLETO',ID_USUARIO from bayer_usuario WHERE ID_USUARIO='" . $ID . "'");
+	$select_usu = mysqli_query($conex, "SELECT CONCAT(NOMBRES,' ',APELLIDOS) AS 'NOMBRE_COMPLETO',ID_USUARIO from ipsen_usuario WHERE ID_USUARIO='" . $ID . "'");
 	echo mysqli_error($conex);
 	while ($datos_pa = mysqli_fetch_array($select_usu)) {
 		$NOM = $datos_pa['NOMBRE_COMPLETO'];
 		$ID = $datos_pa['ID_USUARIO'];
 	}
 	if ($OK == '1') {
-		$sql = mysqli_query($conex,"UPDATE bayer_usuario SET ESTADO=0 WHERE ID_USUARIO='" . $ID . "' AND  (ESTADO='1' or ESTADO='');");
+		$sql = mysqli_query($conex, "UPDATE ipsen_usuario SET ESTADO=0 WHERE ID_USUARIO='" . $ID . "' AND  (ESTADO='1' or ESTADO='');");
 		echo mysqli_error($conex);
 		if ($sql) {
 	?>
@@ -59,7 +62,7 @@ require('../datos/parse_str.php');
 		}
 	}
 	if ($OK == '2') {
-		$sql = mysqli_query($conex,"UPDATE bayer_usuario SET ESTADO=1 WHERE ID_USUARIO='" . $ID . "' AND  (ESTADO='0' or ESTADO='');");
+		$sql = mysqli_query($conex, "UPDATE ipsen_usuario SET ESTADO=1 WHERE ID_USUARIO='" . $ID . "' AND  (ESTADO='0' or ESTADO='');");
 		echo mysqli_error($conex);
 		if ($sql) {
 		?>
@@ -77,7 +80,7 @@ require('../datos/parse_str.php');
 	}
 	if ($OK == '3') {
 		$CONTRASENA = md5(1234);
-		$sql = mysqli_query($conex,"UPDATE bayer_usuario SET CONTRASENA='" . $CONTRASENA . "' WHERE ID_USUARIO='" . $ID . "'");
+		$sql = mysqli_query($conex, "UPDATE ipsen_usuario SET CONTRASENA='" . $CONTRASENA . "' WHERE ID_USUARIO='" . $ID . "'");
 		echo mysqli_error($conex);
 		if ($sql) {
 		?>
@@ -95,4 +98,5 @@ require('../datos/parse_str.php');
 	}
 	?>
 </body>
+
 </html>

@@ -39,7 +39,7 @@ if (isset($_GET['xnfgti'])) {
 	$centro_medic = $_POST['centro_medic']; //echo $centro_medic;
 	$n_gestion = $_POST['n_gestion']; //echo $n_gestion;
 	$img_archivo = $_POST['img_archivo']; //echo $img_archivo;
-	$insert_apoyo_diagnostico = mysqli_query($conex,"UPDATE bayer_apoyo_diagnostico SET EXAMEN_1 = '" . $examne1 . "', EXAMEN_2 = '" . $examne2 . "', EXAMEN_3 = '" . $examne3 . "', EXAMEN_4 = '" . $examne4 . "', EXAMEN_5 = '" . $examne5 . "', EXAMEN_6 = '" . $examne6 . "', EXAMEN_7 = '" . $examne7 . "', CANTIDAD_EXAMENES = '" . $cant_examenes . "', NUMERO_VOUCHER = '" . $numero_voucher . "', CENTRO_MEDICO = '" . $centro_medic . "', ARCHIVO_IMG = '" . $img_archivo . "' WHERE ID_APOYO_DIAGNOSTICO = '" . $n_gestion . "'; ");
+	$insert_apoyo_diagnostico = mysqli_query($conex,"UPDATE ipsen_apoyo_diagnostico SET EXAMEN_1 = '" . $examne1 . "', EXAMEN_2 = '" . $examne2 . "', EXAMEN_3 = '" . $examne3 . "', EXAMEN_4 = '" . $examne4 . "', EXAMEN_5 = '" . $examne5 . "', EXAMEN_6 = '" . $examne6 . "', EXAMEN_7 = '" . $examne7 . "', CANTIDAD_EXAMENES = '" . $cant_examenes . "', NUMERO_VOUCHER = '" . $numero_voucher . "', CENTRO_MEDICO = '" . $centro_medic . "', ARCHIVO_IMG = '" . $img_archivo . "' WHERE ID_APOYO_DIAGNOSTICO = '" . $n_gestion . "'; ");
 ?>
 	<span style="margin-top:5%;">
 		<center>

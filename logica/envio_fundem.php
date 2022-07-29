@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -87,12 +88,13 @@ if ($privilegios != '' && $usua != '') {
 	$ID_PACIENTE = base64_decode($artid);
 	include('../logica/consulta_paciente.php');
 ?>
+
 	<body class="body" style="width:80.9%;margin-left:12%;">
 		<form id="seguimiento" name="seguimiento" method="post" action="../logica/insertar_envio_fundem.php" onkeydown="return filtro(2)" enctype="multipart/form-data">
 			<table width="100%" border="0">
 				<?php
-				$Seleccion = mysqli_query($conex,"SELECT * FROM `bayer_pacientes` AS P
-				INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+				$Seleccion = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` AS P
+				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				WHERE ID_PACIENTE = '" . $ID_PACIENTE . "'");
 				while ($fila = mysqli_fetch_array($Seleccion)) {
 					$ID_PACIENTE2 = $fila['ID_PACIENTE'];
@@ -232,4 +234,5 @@ if ($privilegios != '' && $usua != '') {
 <?php
 }
 ?>
+
 </html>

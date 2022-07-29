@@ -208,7 +208,7 @@ if ($privilegios != '' && $usua != '') {
 				<?PHP
 				if (isset($_POST['REFERENCIA'])) {
 					$REFERENCIA = $_POST['REFERENCIA'];
-					$SELECT_refere2 = mysqli_query($conex, "SELECT * from bayer_referencia where ID_REFERENCIA = '" . $REFERENCIA . "'");
+					$SELECT_refere2 = mysqli_query($conex, "SELECT * from ipsen_referencia where ID_REFERENCIA = '" . $REFERENCIA . "'");
 					while ($fila = mysqli_fetch_array($SELECT_refere2)) {
 						$ref = $fila['NOMBRE_REFERENCIA'];
 					}
@@ -222,7 +222,7 @@ if ($privilegios != '' && $usua != '') {
 					<SELECT name="REFERENCIA" id="REFERENCIA">
 						<option style="color:#999" value="">REFERENCIA</option>
 						<?php
-						$SELECT_refere = mysqli_query($conex, "SELECT DISTINCT(NOMBRE_REFERENCIA) from bayer_referencia where NOMBRE_REFERENCIA != '' ORDER BY NOMBRE_REFERENCIA ASC");
+						$SELECT_refere = mysqli_query($conex, "SELECT DISTINCT(NOMBRE_REFERENCIA) from ipsen_referencia where NOMBRE_REFERENCIA != '' ORDER BY NOMBRE_REFERENCIA ASC");
 						while ($fila = mysqli_fetch_array($SELECT_refere)) {
 							echo "<option>" . $fila['NOMBRE_REFERENCIA'] . "</option>";
 						}
@@ -297,7 +297,7 @@ if ($privilegios != '' && $usua != '') {
 				<?PHP
 				if (isset($_POST['producto'])) {
 					$producto = $_POST['producto'];
-					$SELECT_prod = mysqli_query($conex, "SELECT MATERIAL,ID_REFERENCIA FROM bayer_referencia WHERE ID_REFERENCIA='" . $producto . "'");
+					$SELECT_prod = mysqli_query($conex, "SELECT MATERIAL,ID_REFERENCIA FROM ipsen_referencia WHERE ID_REFERENCIA='" . $producto . "'");
 				?>
 					<SELECT id="producto" name="producto">
 						<?php

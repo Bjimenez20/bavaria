@@ -7,11 +7,9 @@
         -o-background-size: cover;
         background-size: cover;
     }
-    /*form 
-{
-    background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
-}*/
+
     @media screen and (max-width:1000px) {
+
         html,
         body {
             background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
@@ -26,14 +24,12 @@
 $url = "http://172.16.20.182/bayer/presentacion/";
 if (isset($_POST['insertar'])) {
     if ($_POST['insertar']) {
-        // obtenemos los datos del archivo
         $tamano = $_FILES["ZmMyZTQ5NWMyN2Q2ODE1NDRhNmIxYjc5NWI5ZWM4MzQ="]['size'];
         $tipo = $_FILES["ZmMyZTQ5NWMyN2Q2ODE1NDRhNmIxYjc5NWI5ZWM4MzQ="]['type'];
         $archivo1 = $_FILES["ZmMyZTQ5NWMyN2Q2ODE1NDRhNmIxYjc5NWI5ZWM4MzQ="]['name'];
         $archivo1 = str_replace(" ", "_", $archivo1);
         $prefijo1 = substr(md5(uniqid(rand())), 0, 3);
         if ($archivo1 != "") {
-            // guardamos el archivo a la carpeta files
             $destino =  "" . $prefijo1 . "_" . $archivo1;
             if (copy($_FILES['ZmMyZTQ5NWMyN2Q2ODE1NDRhNmIxYjc5NWI5ZWM4MzQ=']['tmp_name'], $destino)) {
                 $status = "Archivo subido: <b>" . $archivo1 . "</b>";
@@ -77,7 +73,7 @@ if (isset($_GET['xnfgti'])) {
     $numero_voucher = $_POST['numero_voucher']; //echo $numero_voucher;
     $centro_medic = $_POST['centro_medic']; //echo $centro_medic;
     $n_gestion = $_POST['n_gestion']; //echo $n_gestion;s
-    $insert_apoyo_diagnostico = mysqli_query($conex,"INSERT INTO bayer_apoyo_diagnostico (FK_PAP, TERAPIA, EXAMEN_1, EXAMEN_2, EXAMEN_3, EXAMEN_4, EXAMEN_5, EXAMEN_6, EXAMEN_7, CANTIDAD_EXAMENES, NUMERO_VOUCHER, CENTRO_MEDICO, ARCHIVO_IMG) VALUE ('" . $id_personaa . "','" . $terapia . "','" . $examne1 . "','" . $examne2 . "','" . $examne3 . "','" . $examne4 . "','" . $examne5 . "','" . $examne6 . "','" . $examne7 . "','" . $cant_examenes . "','" . $numero_voucher . "','" . $centro_medic . "','" . $enlace1 . "'); ");  ?>
+    $insert_apoyo_diagnostico = mysqli_query($conex, "INSERT INTO ipsen_apoyo_diagnostico (FK_PAP, TERAPIA, EXAMEN_1, EXAMEN_2, EXAMEN_3, EXAMEN_4, EXAMEN_5, EXAMEN_6, EXAMEN_7, CANTIDAD_EXAMENES, NUMERO_VOUCHER, CENTRO_MEDICO, ARCHIVO_IMG) VALUE ('" . $id_personaa . "','" . $terapia . "','" . $examne1 . "','" . $examne2 . "','" . $examne3 . "','" . $examne4 . "','" . $examne5 . "','" . $examne6 . "','" . $examne7 . "','" . $cant_examenes . "','" . $numero_voucher . "','" . $centro_medic . "','" . $enlace1 . "'); ");  ?>
     <span style="margin-top:5%;">
         <center>
             <img src="../presentacion/imagenes/chulo.png" width="151" height="150" style="width:100px; margin-top:100px;margin-top:5%;" />

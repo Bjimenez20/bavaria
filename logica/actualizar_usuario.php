@@ -40,7 +40,7 @@ require('../datos/parse_str.php');
 	$PERFIL = $_POST['PERFIL'];
 	if (isset($_POST['restablecer'])) {
 		$CONTRASENA = md5(1234);
-		$sql = mysqli_query($conex,"UPDATE bayer_usuario SET CONTRASENA='" . $CONTRASENA . "' WHERE ID_USUARIO='" . $ID . "'");
+		$sql = mysqli_query($conex,"UPDATE ipsen_usuario SET CONTRASENA='" . $CONTRASENA . "' WHERE ID_USUARIO='" . $ID . "'");
 		echo mysqli_error($conex);
 		if ($sql) {
 	?>
@@ -61,7 +61,7 @@ require('../datos/parse_str.php');
 	}
 	if (isset($_POST['MODIFICAR_USU'])) {
 		$CONTRASENA = md5($CONTRASENA);
-		$sql = mysqli_query($conex,"UPDATE bayer_usuario SET NOMBRES='" . $NOMBRES . "',APELLIDOS='" . $APELLIDO . "', CELULAR='" . $NUM_TEL . "' WHERE ID_USUARIO='" . $ID . "';");
+		$sql = mysqli_query($conex,"UPDATE ipsen_usuario SET NOMBRES='" . $NOMBRES . "',APELLIDOS='" . $APELLIDO . "', CELULAR='" . $NUM_TEL . "' WHERE ID_USUARIO='" . $ID . "';");
 		echo mysqli_error($conex);
 		if ($sql) {
 		?>

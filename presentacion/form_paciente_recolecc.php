@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
@@ -59,6 +60,7 @@ include('../logica/session.php')
                 }
             })
         }
+
         function mostrar_ciudades() {
             var departamento = $('#departamento').val();
             $("#ciudad").html('<img src="imgagenes/cargando.gif" />');
@@ -254,6 +256,7 @@ $ID_GESTION = base64_decode($artge);
 //include('../logica/consulta_paciente.php');
 if ($privilegios != '' && $usua != '') {
 ?>
+
     <body class="body" style="width:80.9%;margin-left:12%;">
         <form id="seguimiento" name="seguimiento" method="post" action="../logica/actualizar_recoleccion.php" onkeydown="return filtro(2)" enctype="multipart/form-data" class="letra">
             <div id="Accordion1" class="Accordion" tabindex="0" style="height:100%;">
@@ -262,7 +265,7 @@ if ($privilegios != '' && $usua != '') {
                     <div class="AccordionPanelContent">
                         <table width="100%" border="0">
                             <?php
-                            $Seleccion2 = mysqli_query($conex,"SELECT * FROM bayer_gestiones WHERE ID_PACIENTE_FK2 = '" . $ID_PACIENTE . "' LIMIT 1");
+                            $Seleccion2 = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2 = '" . $ID_PACIENTE . "' LIMIT 1");
                             while ($fila2 = mysqli_fetch_array($Seleccion2)) {
                                 $reclamo_gestion = $fila2['RECLAMO_GESTION'];
                                 $causo_no_reclamacion = $fila2['CAUSA_NO_RECLAMACION_GESTION'];
@@ -275,8 +278,8 @@ if ($privilegios != '' && $usua != '') {
                             <input type="hidden" id="fecha_reclamacion" name="fecha_reclamacion" value="<?php echo $fecha_reclamacion; ?>">
                             <input type="hidden" id="prox_llamada" name="prox_llamada" value="<?php echo $prox_llamada; ?>">
                             <?php
-                            $Seleccion = mysqli_query($conex,"SELECT * FROM `bayer_pacientes` AS P
-		INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+                            $Seleccion = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` AS P
+		INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 		WHERE ID_PACIENTE = '" . $ID_PACIENTE . "'");
                             while ($fila = mysqli_fetch_array($Seleccion)) {
                                 $ID_PACIENTE2 = $fila['ID_PACIENTE'];
@@ -762,4 +765,5 @@ id="cambio" name="cambio" title="Editar" style="width:4%; height:20px; margin-le
 <?php
 }
 ?>
+
 </html>

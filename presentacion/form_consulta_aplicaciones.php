@@ -4,6 +4,7 @@ include('../logica/session.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -17,6 +18,7 @@ include('../logica/session.php');
 			text-align: center;
 			padding: 10px;
 		}
+
 		html {
 			background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
 			-webkit-background-size: cover;
@@ -24,6 +26,7 @@ include('../logica/session.php');
 			-o-background-size: cover;
 			background-size: cover;
 		}
+
 		th {
 			padding: 5px;
 			font-weight: bold;
@@ -31,15 +34,13 @@ include('../logica/session.php');
 			border: 1px solid #16a085;
 			color: #feffff;
 		}
+
 		td {
 			padding: 2px;
 			border: 1px solid #d0d0d0;
 			background: #ffffff;
 		}
-		/*form 
-{
-    background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
-}*/
+
 		@media screen and (max-width:1000px) {
 			html {
 				background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
@@ -54,12 +55,12 @@ include('../logica/session.php');
 <?php
 require('../datos/parse_str.php');
 require('../datos/conex.php');
-mysqli_query($conex,"SET NAMES utf8");
+mysqli_query($conex, "SET NAMES utf8");
 if (isset($xxx))
 	$ID_PACIENTE = base64_decode($xxx);
-$consulta = mysqli_query($conex,"SELECT p.ID_PACIENTE,t.FECHA_INICIO_TERAPIA_TRATAMIENTO,p.FECHA_ACTIVACION_PACIENTE,e.NUMERO_OJOS FROM bayer_pacientes AS p
-INNER JOIN bayer_tratamiento AS t ON p.ID_PACIENTE=t.ID_PACIENTE_FK
-INNER JOIN bayer_aplicaciones_eylia AS e ON e.ID_PACIENTE_FK=p.ID_PACIENTE
+$consulta = mysqli_query($conex, "SELECT p.ID_PACIENTE,t.FECHA_INICIO_TERAPIA_TRATAMIENTO,p.FECHA_ACTIVACION_PACIENTE,e.NUMERO_OJOS FROM ipsen_pacientes AS p
+INNER JOIN ipsen_tratamiento AS t ON p.ID_PACIENTE=t.ID_PACIENTE_FK
+INNER JOIN ipsen_aplicaciones_eylia AS e ON e.ID_PACIENTE_FK=p.ID_PACIENTE
 WHERE p.ID_PACIENTE=$ID_PACIENTE ORDER BY e.FECHA_REGISTRO DESC LIMIT 1");
 echo mysqli_error($conex);
 while ($con = mysqli_fetch_array($consulta)) {
@@ -68,12 +69,13 @@ while ($con = mysqli_fetch_array($consulta)) {
 	$FECHA_ACTIVACION = $con['FECHA_ACTIVACION_PACIENTE'];
 	$NUM_OJOS = $con['NUMERO_OJOS'];
 }
-$consulta_apli = mysqli_query($conex,"SELECT NUMERO_OJOS, FECHA_APLICACION FROM  bayer_aplicaciones_eylia WHERE ID_PACIENTE_FK=$ID_PACIENTE AND CAUSAL='NO APLICA' ORDER BY FECHA_APLICACION ASC");
+$consulta_apli = mysqli_query($conex, "SELECT NUMERO_OJOS, FECHA_APLICACION FROM  ipsen_aplicaciones_eylia WHERE ID_PACIENTE_FK=$ID_PACIENTE AND CAUSAL='NO APLICA' ORDER BY FECHA_APLICACION ASC");
 echo mysqli_error($conex);
-$consulta_causales = mysqli_query($conex,"SELECT CAUSAL FROM  bayer_aplicaciones_eylia WHERE ID_PACIENTE_FK=$ID_PACIENTE AND CAUSAL!='NO APLICA' ORDER BY FECHA_REGISTRO DESC LIMIT 1");
+$consulta_causales = mysqli_query($conex, "SELECT CAUSAL FROM  ipsen_aplicaciones_eylia WHERE ID_PACIENTE_FK=$ID_PACIENTE AND CAUSAL!='NO APLICA' ORDER BY FECHA_REGISTRO DESC LIMIT 1");
 echo mysqli_error($conex);
 $nreg = mysqli_num_rows($consulta_apli) + 1;
 ?>
+
 <body>
 	<table rules="all" style="border:1px solid #000;">
 		<tr>
@@ -109,4 +111,5 @@ $nreg = mysqli_num_rows($consulta_apli) + 1;
 		</tr>
 	</table>
 </body>
+
 </html>

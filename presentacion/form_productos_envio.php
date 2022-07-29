@@ -12,7 +12,7 @@ if (isset($_POST['agregar'])) {
 	$ID_PRODUCTO = $_POST['tipo_envio'];
 	$NOMBRE_PRODUCTO = $_POST['nombre_producto'];
 	$ID_PACIENTE = $_POST['codigo_usuario2'];
-	$insert = mysqli_query($conex, "INSERT INTO bayer_temporal_producto(ID_REFERENCIA_FK,
+	$insert = mysqli_query($conex, "INSERT INTO ipsen_temporal_producto(ID_REFERENCIA_FK,
 		NOMBRE_MATERIAL,ID_PACIENTE_FK) VALUES ('" . $ID_PRODUCTO . "','" . $NOMBRE_PRODUCTO . "','" . $ID_PACIENTE . "')");
 	echo mysqli_error($conex);
 }
@@ -20,7 +20,7 @@ if (isset($_POST['agregar_seg'])) {
 	$ID_PRODUCTO = $_POST['tipo_envio'];
 	$NOMBRE_PRODUCTO = $_POST['nombre_producto'];
 	$ID_PACIENTE = $_POST['codigo_usuario2'];
-	$insert = mysqli_query($conex, "INSERT INTO bayer_temporal_producto(ID_REFERENCIA_FK,
+	$insert = mysqli_query($conex, "INSERT INTO ipsen_temporal_producto(ID_REFERENCIA_FK,
 	NOMBRE_MATERIAL,ID_PACIENTE_FK) VALUES ('" . $ID_PRODUCTO . "','" . $NOMBRE_PRODUCTO . "','" . $ID_PACIENTE . "')");
 	echo mysqli_error($conex);
 }
@@ -28,14 +28,14 @@ if (isset($_POST['agregar_nuevo'])) {
 	$ID_PRODUCTO = $_POST['tipo_envio'];
 	$NOMBRE_PRODUCTO = $_POST['nombre_producto'];
 	$ID_PACIENTE = $_POST['codigo_usuario2'];
-	$insert = mysqli_query($conex, "INSERT INTO bayer_temporal_producto(ID_REFERENCIA_FK,
+	$insert = mysqli_query($conex, "INSERT INTO ipsen_temporal_producto(ID_REFERENCIA_FK,
 	NOMBRE_MATERIAL,ID_PACIENTE_FK) VALUES ('" . $ID_PRODUCTO . "','" . $NOMBRE_PRODUCTO . "','" . $ID_PACIENTE . "')");
 	echo mysqli_error($conex);
 }
 if (isset($xx)) {
 	$id = base64_decode($id_tempora);
 	$ID_PACIENTE = base64_decode($ID_P);
-	$eliminar = mysqli_query($conex, "DELETE  FROM bayer_temporal_producto WHERE ID_BAYER_TEMPORAL_PRODUCTO='$id'");
+	$eliminar = mysqli_query($conex, "DELETE  FROM ipsen_temporal_producto WHERE ID_ipsen_TEMPORAL_PRODUCTO='$id'");
 	echo mysqli_error($conex);
 }
 ?>
@@ -52,7 +52,7 @@ if (isset($xx)) {
 			<th>ELIMINAR</th>
 		</tr>
 		<?php
-		$select = mysqli_query($conex, "SELECT * FROM bayer_temporal_producto WHERE ID_PACIENTE_FK='" . $ID_PACIENTE . "'");
+		$select = mysqli_query($conex, "SELECT * FROM ipsen_temporal_producto WHERE ID_PACIENTE_FK='" . $ID_PACIENTE . "'");
 		echo mysqli_error($conex);
 		$nreg = mysqli_num_rows($select);
 		while ($fila = (mysqli_fetch_array($select))) {
@@ -65,7 +65,7 @@ if (isset($xx)) {
 				</td>
 				<td>
 					<center>
-						<a href="form_productos_envio.php?id_tempora=<?php echo base64_encode($fila['ID_BAYER_TEMPORAL_PRODUCTO']) ?>&&xx=<?php echo base64_encode('ok') ?>&&ID_P=<?php echo base64_encode($ID_PACIENTE) ?>">
+						<a href="form_productos_envio.php?id_tempora=<?php echo base64_encode($fila['ID_ipsen_TEMPORAL_PRODUCTO']) ?>&&xx=<?php echo base64_encode('ok') ?>&&ID_P=<?php echo base64_encode($ID_PACIENTE) ?>">
 							<img src="imagenes/no.png" title="Eliminar" />
 						</a>
 					</center>

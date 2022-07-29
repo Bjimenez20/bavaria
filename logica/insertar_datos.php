@@ -55,13 +55,13 @@ require_once('session.php');
 
 <body>
 	<?PHP
-    require('../datos/parse_str.php');
+	require('../datos/parse_str.php');
 	require_once("../datos/conex.php");
 	mysqli_query($conex, "SET NAMES utf8");
 	if (isset($_POST['registrar'])) {
 		$identificacion = $_POST['identificacion'];
 		$tipo_identificacion = $_POST['tipo_identificacion'];
-		$numero_registros = mysqli_query($conex, "SELECT * FROM bayer_pacientes WHERE IDENTIFICACION_PACIENTE='$identificacion'");
+		$numero_registros = mysqli_query($conex, "SELECT * FROM ipsen_pacientes WHERE IDENTIFICACION_PACIENTE='$identificacion'");
 		echo mysqli_error($conex);
 		$coincidencias = mysqli_num_rows($numero_registros);
 		$reclamo = $_POST['reclamo'];
@@ -105,27 +105,27 @@ require_once('session.php');
 			}
 			$numero_cajas = '0 Aplicacion';
 		}
-		$select_historial = mysqli_query($conex, "SELECT * FROM bayer_historial_reclamacion WHERE ID_PACIENTE_FK='$codigo_usuario2'");
+		$select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$codigo_usuario2'");
 		echo mysqli_error($conex);
 		$reg_hist = mysqli_num_rows($select_historial);
 		if ($reg_hist > 0) {
 			if ($reclamo == 'SI') {
-				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE bayer_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes . "'");
+				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes . "'");
 				echo mysqli_error($conex);
 			}
 			if ($reclamo == 'NO') {
-				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE bayer_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes . "'");
+				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes . "'");
 				echo mysqli_error($conex);
 			}
 		} else {
-			$INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO bayer_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $codigo_usuario2 . "')");
+			$INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO ipsen_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $codigo_usuario2 . "')");
 			echo mysqli_error($conex);
 			if ($reclamo == 'SI') {
-				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE bayer_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes . "'");
+				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes . "'");
 				echo mysqli_error($conex);
 			}
 			if ($reclamo == 'NO') {
-				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE bayer_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
+				$UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
 				echo mysqli_error($conex);
 			}
 		}
@@ -172,42 +172,42 @@ require_once('session.php');
 		}
 		if ($_POST['ips_atiende'] == 'NO ENCONTRADO') {
 			$ips_atiende  = $_POST['ips_otro'];
-			$insert_ips = mysqli_query($conex, "INSERT INTO bayer_ips (`IPS`,`ESTADO`) VALUES ('" . $ips_atiende . "','OUT')");
+			$insert_ips = mysqli_query($conex, "INSERT INTO ipsen_ips (`IPS`,`ESTADO`) VALUES ('" . $ips_atiende . "','OUT')");
 			require('../presentacion/email/mail_habilitar_ips.php');
 		} else {
 			$ips_atiende  = $_POST['ips_atiende'];
 		}
 		if ($_POST['operador_logistico'] == 'NO ENCONTRADO') {
 			$operador_logistico = $_POST['operador_otro'];
-			$insert_opl = mysqli_query($conex, "INSERT INTO bayer_operador_logistico (`OPERADOR_LOGISTICO`,`ESTADO`) VALUES ('" . $operador_logistico . "','OUT')");
+			$insert_opl = mysqli_query($conex, "INSERT INTO ipsen_operador_logistico (`OPERADOR_LOGISTICO`,`ESTADO`) VALUES ('" . $operador_logistico . "','OUT')");
 			require('../presentacion/email/mail_habilitar_operador.php');
 		} else {
 			$operador_logistico = $_POST['operador_logistico'];
 		}
 		if ($_POST['asegurador'] == 'NO ENCONTRADO') {
 			$asegurador = $_POST['asegurador_otro'];
-			$insert_eps = mysqli_query($conex, "INSERT INTO bayer_asegurador (`ASEGURADOR`,`ESTADO`) VALUES ('" . $asegurador . "','OUT')");
+			$insert_eps = mysqli_query($conex, "INSERT INTO ipsen_asegurador (`ASEGURADOR`,`ESTADO`) VALUES ('" . $asegurador . "','OUT')");
 			require('../presentacion/email/mail_habilitar_eps.php');
 		} else {
 			$asegurador = $_POST['asegurador'];
 		}
 		if ($_POST['medico_tratante'] == 'NO ENCONTRADO') {
 			$medico_t  = $_POST['medico_t_otro'];
-			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO bayer_listas(MEDICO,ESTADO)VALUES('" . $medico_t . "','OUT')");
+			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_t . "','OUT')");
 			require('../presentacion/email/mail_habilitar_medico.php');
 		} else {
 			$medico_t  = $_POST['medico_tratante'];
 		}
 		if ($_POST['medico_prescriptor'] == 'NO ENCONTRADO') {
 			$medico_p  = $_POST['medico_p_otro'];
-			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO bayer_listas(MEDICO,ESTADO)VALUES('" . $medico_p . "','OUT')");
+			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_p . "','OUT')");
 			require('../presentacion/email/mail_habilitar_medico_p.php');
 		} else {
 			$medico_p  = $_POST['medico_prescriptor'];
 		}
 		if ($_POST['punto_entrega'] == 'NO ENCONTRADO') {
 			$punto_entrega  = $_POST['punto_entrega_otro'];
-			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO bayer_puntos_entrega(NOMBRE_PUNTO,ESTADO)VALUES('" . $punto_entrega . "','OUT')");
+			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_puntos_entrega(NOMBRE_PUNTO,ESTADO)VALUES('" . $punto_entrega . "','OUT')");
 			require('../presentacion/email/mail_habilitar_punto.php');
 		} else {
 			$punto_entrega  = $_POST['punto_entrega'];
@@ -278,12 +278,12 @@ require_once('session.php');
 		// 	$estado_paciente = $_POST['estado_activo'];
 		// }
 		$estado_paciente = $_POST['estado_paciente'];
-		$insertar = mysqli_query($conex, "INSERT INTO bayer_pacientes(CODIGO_XOFIGO,ESTADO_PACIENTE,STATUS_PACIENTE,FECHA_ACTIVACION_PACIENTE,TIPO_IDENTIFICACION_PACIENTE,IDENTIFICACION_PACIENTE,NOMBRE_PACIENTE,
+		$insertar = mysqli_query($conex, "INSERT INTO ipsen_pacientes(CODIGO_XOFIGO,ESTADO_PACIENTE,STATUS_PACIENTE,FECHA_ACTIVACION_PACIENTE,TIPO_IDENTIFICACION_PACIENTE,IDENTIFICACION_PACIENTE,NOMBRE_PACIENTE,
 		APELLIDO_PACIENTE,TELEFONO_PACIENTE,TELEFONO2_PACIENTE,TELEFONO3_PACIENTE,TELEFONO4_PACIENTE,TELEFONO5_PACIENTE,CORREO_PACIENTE,DIRECCION_PACIENTE,BARRIO_PACIENTE,DEPARTAMENTO_PACIENTE,CIUDAD_PACIENTE,GENERO_PACIENTE,FECHA_NACIMINETO_PACIENTE,EDAD_PACIENTE,ACUDIENTE_PACIENTE,TELEFONO_ACUDIENTE_PACIENTE,USUARIO_CREACION,PROVEEDOR)
 		VALUES ('" . $CODIGO_XOFIGO . "','" . $estado_paciente . "','" . $status_paciente . "','" . $fecha_activacion . "','" . $tipo_identificacion . "','" . $identificacion . "','" . $nombre . "','" . $apellidos . "','" . $telefono1 . "','" . $telefono2 . "','" . $telefono3 . "','" . $telefono4 . "','" . $telefono5 . "','" . $correo . "','" . $direccion . "','" . $barrio . "','" . $departamento . "','" . $ciudad . "','" . $genero . "','" . $fecha_nacimiento . "','" . $edad . "','" . $acudiente . "','" . $telefono_acudiente . "','" . $usua . "','PSP Solutions')");
 		echo mysqli_error($conex);
 		if ($insertar) {
-			$select_paciente = mysqli_query($conex, "SELECT ID_PACIENTE FROM bayer_pacientes ORDER BY ID_PACIENTE DESC LIMIT 1");
+			$select_paciente = mysqli_query($conex, "SELECT ID_PACIENTE FROM ipsen_pacientes ORDER BY ID_PACIENTE DESC LIMIT 1");
 			while ($dato = mysqli_fetch_array($select_paciente)) {
 				$ID_PACIENTE = $dato['ID_PACIENTE'];
 			}
@@ -292,16 +292,16 @@ require_once('session.php');
 			$FechaEduca = $_POST['FechaEduca'];
 			$MotivoNoEdu = $_POST['MotivoNoEdu'];
 			if ($brindo_educacion == 'SI') {
-				$insert_edu = mysqli_query($conex, "INSERT INTO `bayer_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '$usua', '$ID_PACIENTE', '$brindo_educacion', '$TemaBrindoEdu', '$FechaEduca', NOW())");
+				$insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '$usua', '$ID_PACIENTE', '$brindo_educacion', '$TemaBrindoEdu', '$FechaEduca', NOW())");
 			} elseif ($brindo_educacion == 'NO') {
-				$insert_edu = mysqli_query($conex, "INSERT INTO `bayer_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`,  `MOTIVO_NO_EDU`, `FECHA_REGISTRO`) VALUES ( '$usua', '$ID_PACIENTE', '$brindo_educacion', '$MotivoNoEdu', NOW())");
+				$insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`,  `MOTIVO_NO_EDU`, `FECHA_REGISTRO`) VALUES ( '$usua', '$ID_PACIENTE', '$brindo_educacion', '$MotivoNoEdu', NOW())");
 			}
-			$select_historial = mysqli_query($conex, "SELECT * FROM bayer_historial_reclamacion WHERE ID_PACIENTE_FK='$ID_PACIENTE'");
+			$select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$ID_PACIENTE'");
 			echo mysqli_error($conex);
 			$reg_hist = mysqli_num_rows($select_historial);
 			if ($reg_hist == 0) {
 				if ($fecha_ultima_reclamacion == '') {
-					$INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO bayer_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $ID_PACIENTE . "')");
+					$INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO ipsen_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $ID_PACIENTE . "')");
 					echo mysqli_error($conex);
 				}
 				if ($fecha_ultima_reclamacion != '') {
@@ -311,32 +311,32 @@ require_once('session.php');
 					$mes_act = $fecha_rec_act[1];
 					$dia_act = $fecha_rec_act[2];
 					$dato = ((int)$mes_act);
-					$INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO bayer_historial_reclamacion(ID_PACIENTE_FK,RECLAMO$dato,FECHA_RECLAMACION$dato) VALUES('" . $ID_PACIENTE . "','SI','" . $fecha_ultima_reclamacion . "')");
+					$INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO ipsen_historial_reclamacion(ID_PACIENTE_FK,RECLAMO$dato,FECHA_RECLAMACION$dato) VALUES('" . $ID_PACIENTE . "','SI','" . $fecha_ultima_reclamacion . "')");
 					echo mysqli_error($conex);
 				}
 			}
-			$insert_trt = mysqli_query($conex, "INSERT INTO bayer_tratamiento(PRODUCTO_TRATAMIENTO,NOMBRE_REFERENCIA,DOSIS_TRATAMIENTO,CLASIFICACION_PATOLOGICA_TRATAMIENTO,TRATAMIENTO_PREVIO,CONSENTIMIENTO_TRATAMIENTO,FECHA_INICIO_TERAPIA_TRATAMIENTO,FECHA_PRESCRIPCION,REGIMEN_TRATAMIENTO,ASEGURADOR_TRATAMIENTO,OPERADOR_LOGISTICO_TRATAMIENTO, PUNTO_ENTREGA, FECHA_ULTIMA_RECLAMACION_TRATAMIENTO,OTROS_OPERADORES_TRATAMIENTO,MEDIOS_ADQUISICION_TRATAMIENTO,IPS_ATIENDE_TRATAMIENTO,MEDICO_TRATAMIENTO,MEDICO_PRESCRIPTOR,ESPECIALIDAD_TRATAMIENTO,PARAMEDICO_TRATAMIENTO,ZONA_ATENCION_PARAMEDICO_TRATAMIENTO,CIUDAD_BASE_PARAMEDICO_TRATAMIENTO,NOTAS_ADJUNTOS_TRATAMIENTO,ID_PACIENTE_FK,NUM_LOTES_DISPOSITIVOS)
+			$insert_trt = mysqli_query($conex, "INSERT INTO ipsen_tratamiento(PRODUCTO_TRATAMIENTO,NOMBRE_REFERENCIA,DOSIS_TRATAMIENTO,CLASIFICACION_PATOLOGICA_TRATAMIENTO,TRATAMIENTO_PREVIO,CONSENTIMIENTO_TRATAMIENTO,FECHA_INICIO_TERAPIA_TRATAMIENTO,FECHA_PRESCRIPCION,REGIMEN_TRATAMIENTO,ASEGURADOR_TRATAMIENTO,OPERADOR_LOGISTICO_TRATAMIENTO, PUNTO_ENTREGA, FECHA_ULTIMA_RECLAMACION_TRATAMIENTO,OTROS_OPERADORES_TRATAMIENTO,MEDIOS_ADQUISICION_TRATAMIENTO,IPS_ATIENDE_TRATAMIENTO,MEDICO_TRATAMIENTO,MEDICO_PRESCRIPTOR,ESPECIALIDAD_TRATAMIENTO,PARAMEDICO_TRATAMIENTO,ZONA_ATENCION_PARAMEDICO_TRATAMIENTO,CIUDAD_BASE_PARAMEDICO_TRATAMIENTO,NOTAS_ADJUNTOS_TRATAMIENTO,ID_PACIENTE_FK,NUM_LOTES_DISPOSITIVOS)
 			VALUES ('" . $producto_tratamiento . "','" . $producto_tratamiento . "','" . $dosis . "','" . $clasificacion_patologica . "','" . $tratamiento_previo . "','" . $consentimiento . "','" . $fecha_inicio_trt . "','" . $fecha_prescripcion . "','" . $regimen . "','" . $asegurador . "','" . $operador_logistico . "', '" . $punto_entrega . "','" . $fecha_ultima_reclamacion . "','" . $otro_operadores . "','" . $medio_adquision . "','" . $ips_atiende . "','" . $medico_t . "','" . $medico_p . "','" . $especialidad . "','" . $paramedico_representante . "','" . $zona_atencion . "','" . $ciudad_base . "','" . $nota . "','" . $ID_PACIENTE . "', '" . $num_lotes_dis . "')");
 			echo mysqli_error($conex);
 
 			if ($insert_trt) {
 				if ($reclamo == 'SI') {
-					$insert_gestion = mysqli_query($conex, "INSERT INTO bayer_gestiones (MOTIVO_COMUNICACION_GESTION,LOGRO_COMUNICACION_GESTION,RECLAMO_GESTION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_CITA_PROGRAMADA,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,NUMERO_CAJAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES)VALUES('Ingreso','SI','" . $reclamo . "','" . $consecutivo_betaferon . "','','" . $fecha_proxima_llamada . "','" . $fecha_reclamacion . "','" . $fecha_no_reclamacion . "','" . $usua . "','" . $nota . "','" . $nota . "','" . $fecha_proxima_llamada . "','" . $ID_PACIENTE . "',CURRENT_TIMESTAMP,'" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $numero_cajas . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "')");
+					$insert_gestion = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,LOGRO_COMUNICACION_GESTION,RECLAMO_GESTION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_CITA_PROGRAMADA,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,NUMERO_CAJAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES)VALUES('Ingreso','SI','" . $reclamo . "','" . $consecutivo_betaferon . "','','" . $fecha_proxima_llamada . "','" . $fecha_reclamacion . "','" . $fecha_no_reclamacion . "','" . $usua . "','" . $nota . "','" . $nota . "','" . $fecha_proxima_llamada . "','" . $ID_PACIENTE . "',CURRENT_TIMESTAMP,'" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $numero_cajas . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "')");
 					echo mysqli_error($conex);
 				} else if ($reclamo == 'NO') {
-					$insert_gestion = mysqli_query($conex, "INSERT INTO bayer_gestiones (MOTIVO_COMUNICACION_GESTION,LOGRO_COMUNICACION_GESTION,RECLAMO_GESTION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_CITA_PROGRAMADA,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,NUMERO_CAJAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES)VALUES('Ingreso','SI','" . $reclamo . "','" . $consecutivo_betaferon . "','" . $causa_no_reclamacion . "','" . $fecha_proxima_llamada . "','','" . $fecha_no_reclamacion . "','" . $usua . "','" . $nota . "','" . $nota . "','" . $fecha_proxima_llamada . "','" . $ID_PACIENTE . "',CURRENT_TIMESTAMP,'" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $numero_cajas . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "')");
+					$insert_gestion = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,LOGRO_COMUNICACION_GESTION,RECLAMO_GESTION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_CITA_PROGRAMADA,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,NUMERO_CAJAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES)VALUES('Ingreso','SI','" . $reclamo . "','" . $consecutivo_betaferon . "','" . $causa_no_reclamacion . "','" . $fecha_proxima_llamada . "','','" . $fecha_no_reclamacion . "','" . $usua . "','" . $nota . "','" . $nota . "','" . $fecha_proxima_llamada . "','" . $ID_PACIENTE . "',CURRENT_TIMESTAMP,'" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $numero_cajas . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "')");
 					echo mysqli_error($conex);
 				}
 				$ID_PACIENTE;
-				$select_gestion = mysqli_query($conex, "SELECT * FROM bayer_gestiones WHERE ID_PACIENTE_FK2='" . $ID_PACIENTE . "' ORDER BY ID_GESTION DESC LIMIT 1");
+				$select_gestion = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2='" . $ID_PACIENTE . "' ORDER BY ID_GESTION DESC LIMIT 1");
 				while ($datos_gestion = mysqli_fetch_array($select_gestion)) {
 					$ID_ULTIMA_GESTION = $datos_gestion['ID_GESTION'];
 				}
-				$update_codigo_gestion = mysqli_query($conex, "UPDATE bayer_pacientes SET ID_ULTIMA_GESTION='" . $ID_ULTIMA_GESTION . "'WHERE ID_PACIENTE='" . $ID_PACIENTE . "'");
+				$update_codigo_gestion = mysqli_query($conex, "UPDATE ipsen_pacientes SET ID_ULTIMA_GESTION='" . $ID_ULTIMA_GESTION . "'WHERE ID_PACIENTE='" . $ID_PACIENTE . "'");
 				echo mysqli_error($conex);
 				if ($_FILES['archivo']["error"] > 0) {
 				} else {
-					$SELECT_GES = mysqli_query($conex, "SELECT ID_GESTION FROM bayer_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
+					$SELECT_GES = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
 					while ($fila2 = mysqli_fetch_array($SELECT_GES)) {
 						$ID_GES = $fila2['ID_GESTION'];
 					}
@@ -410,40 +410,40 @@ require_once('session.php');
 			<?php
 		}
 		$codigo_usuario2 = $ID_PACIENTE;
-		$select_temporal = mysqli_query($conex, "SELECT * FROM bayer_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+		$select_temporal = mysqli_query($conex, "SELECT * FROM ipsen_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 		$nreg = mysqli_num_rows($select_temporal);
 		if ($nreg > 0) {
 			while ($datos_temporales = (mysqli_fetch_array($select_temporal))) {
 				$tipo_envio = $datos_temporales['ID_REFERENCIA_FK'];
-				$verificar_cantidad = mysqli_query($conex, "SELECT * FROM bayer_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+				$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
 				echo mysqli_error($conex);
 				$cantidad = mysqli_num_rows($verificar_cantidad);
 				if ($cantidad > 0) {
-					$SELECT_ID_INV = mysqli_query($conex, "select ID_INVENTARIO from bayer_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
+					$SELECT_ID_INV = mysqli_query($conex, "select ID_INVENTARIO from ipsen_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
 					echo mysqli_error($conex);
 					while ($fila1 = mysqli_fetch_array($SELECT_ID_INV)) {
 						$ID_ULT_INV = $fila1['ID_INVENTARIO'];
 					}
-					$INSERT_MOVIMIENTO = mysqli_query($conex, "INSERT INTO bayer_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO,ID_REFERENCIA_FK) VALUES('2', '', '1', '" . $usua . "', '" . $nombre . ' ' . $apellidos . "', '" . $direccion . "', '" . $ciudad . "', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO','" . $tipo_envio . "')");
+					$INSERT_MOVIMIENTO = mysqli_query($conex, "INSERT INTO ipsen_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO,ID_REFERENCIA_FK) VALUES('2', '', '1', '" . $usua . "', '" . $nombre . ' ' . $apellidos . "', '" . $direccion . "', '" . $ciudad . "', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO','" . $tipo_envio . "')");
 					echo mysqli_error($conex);
-					$SELECT_CANTIDAD = mysqli_query($conex, "SELECT * FROM bayer_referencia WHERE ID_REFERENCIA = '" . $tipo_envio . "'");
+					$SELECT_CANTIDAD = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA = '" . $tipo_envio . "'");
 					echo mysqli_error($conex);
 					while ($fila1 = mysqli_fetch_array($SELECT_CANTIDAD)) {
 						$CANTIDAD_I = $fila1['CANTIDAD'];
 					}
 					$TOTAL = $CANTIDAD_I - 1;
-					$UPDATE_REFERENCIA = mysqli_query($conex, "UPDATE bayer_referencia SET CANTIDAD='" . $TOTAL . "' WHERE ID_REFERENCIA='" . $tipo_envio . "'");
+					$UPDATE_REFERENCIA = mysqli_query($conex, "UPDATE ipsen_referencia SET CANTIDAD='" . $TOTAL . "' WHERE ID_REFERENCIA='" . $tipo_envio . "'");
 					echo mysqli_error($conex);
-					$SELECT_ID_MOVIMIENTO = mysqli_query($conex, "SELECT ID_MOVIMIENTOS FROM bayer_movimientos WHERE DESTINATARIO='" . $nombre . ' ' . $apellidos . "' AND TIPO_MOVIMIENTO='2' ORDER BY ID_MOVIMIENTOS DESC LIMIT 1");
+					$SELECT_ID_MOVIMIENTO = mysqli_query($conex, "SELECT ID_MOVIMIENTOS FROM ipsen_movimientos WHERE DESTINATARIO='" . $nombre . ' ' . $apellidos . "' AND TIPO_MOVIMIENTO='2' ORDER BY ID_MOVIMIENTOS DESC LIMIT 1");
 					echo mysqli_error($conex);
 					while ($fila_mov = mysqli_fetch_array($SELECT_ID_MOVIMIENTO)) {
 						$ID_ULT_MOVIMIENTO = $fila_mov['ID_MOVIMIENTOS'];
 					}
-					$INSERT_MOVIMIENTO_PACIENTE = mysqli_query($conex, "INSERT INTO bayer_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,ESTADO_PACIENTE_MOVIMIENTO)VALUES('" . $codigo_usuario2 . "','" . $ID_ULT_MOVIMIENTO . "','EN PROCESO')");
+					$INSERT_MOVIMIENTO_PACIENTE = mysqli_query($conex, "INSERT INTO ipsen_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,ESTADO_PACIENTE_MOVIMIENTO)VALUES('" . $codigo_usuario2 . "','" . $ID_ULT_MOVIMIENTO . "','EN PROCESO')");
 					echo mysqli_error($conex);
-					$INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO bayer_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
+					$INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO ipsen_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
 					echo mysqli_error($conex);
-					$verificar_cantidad = mysqli_query($conex, "SELECT * FROM bayer_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "' AND CANTIDAD<STOCK_MINIMO");
+					$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "' AND CANTIDAD<STOCK_MINIMO");
 					echo mysqli_error($conex);
 					$nreg_vrf = mysqli_num_rows($verificar_cantidad);
 			?>
@@ -462,7 +462,7 @@ require_once('session.php');
 							<?php }
 						}
 					} else {
-						$verificar_cantidad = mysqli_query($conex, "SELECT * FROM bayer_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
+						$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
 						echo mysqli_error($conex);
 						while ($cantidad = mysqli_fetch_array($verificar_cantidad)) {
 							$nombre_producto = $cantidad['MATERIAL'];
@@ -499,53 +499,53 @@ require_once('session.php');
 				?>
 					</table>
 					<?php
-					$BORRAR_PRODUCTOS_TEMPORAL = mysqli_query($conex, "DELETE  FROM bayer_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+					$BORRAR_PRODUCTOS_TEMPORAL = mysqli_query($conex, "DELETE  FROM ipsen_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 					echo mysqli_error($conex);
 				} else {
 					$tipo_envio = $_POST['tipo_envio'];
 					if ($tipo_envio == 'Kit de bienvenida') {
-						$listado_envio = mysqli_query($conex, "SELECT MATERIAL,ID_REFERENCIA FROM bayer_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
+						$listado_envio = mysqli_query($conex, "SELECT MATERIAL,ID_REFERENCIA FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
 						while ($opcion = mysqli_fetch_array($listado_envio)) {
 							$nombre_producto = $opcion['MATERIAL'];
 						}
 						/*SI EL ENVIO ES KIT DE BIENVENIDA*/
 						if ($nombre_producto == 'Kit de bienvenida') {
 							$tipo_envio = $_POST['tipo_envio'];
-							$verificar_cantidad = mysqli_query($conex, "SELECT * FROM bayer_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+							$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
 							echo mysqli_error($conex);
 							$cantidad_ref = mysqli_num_rows($verificar_cantidad);
 							if ($cantidad_ref > 0) {
-								$verificar_cantidad = mysqli_query($conex, "SELECT * FROM bayer_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+								$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
 								echo mysqli_error($conex);
 								$cantidad = mysqli_num_rows($verificar_cantidad);
 								if ($cantidad > 0) {
-									$SELECT_ID_INV = mysqli_query($conex, "SELECT ID_INVENTARIO from bayer_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
+									$SELECT_ID_INV = mysqli_query($conex, "SELECT ID_INVENTARIO from ipsen_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
 									echo mysqli_error($conex);
 									while ($fila1 = mysqli_fetch_array($SELECT_ID_INV)) {
 										$ID_ULT_INV = $fila1['ID_INVENTARIO'];
 									}
-									$INSERT_MOVIMIENTO = mysqli_query($conex, "INSERT INTO bayer_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO,ID_REFERENCIA_FK) VALUES('2', '', '1', '" . $usua . "', '" . $nombre . ' ' . $apellidos . "', '" . $direccion . "', '" . $ciudad . "', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO','" . $tipo_envio . "')");
+									$INSERT_MOVIMIENTO = mysqli_query($conex, "INSERT INTO ipsen_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO,ID_REFERENCIA_FK) VALUES('2', '', '1', '" . $usua . "', '" . $nombre . ' ' . $apellidos . "', '" . $direccion . "', '" . $ciudad . "', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO','" . $tipo_envio . "')");
 									echo mysqli_error($conex);
-									$SELECT_CANTIDAD = mysqli_query($conex, "SELECT * FROM bayer_referencia WHERE ID_REFERENCIA = '" . $tipo_envio . "'");
+									$SELECT_CANTIDAD = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA = '" . $tipo_envio . "'");
 									echo mysqli_error($conex);
 									while ($fila1 = mysqli_fetch_array($SELECT_CANTIDAD)) {
 										$CANTIDAD_I = $fila1['CANTIDAD'];
 									}
 									$TOTAL = $CANTIDAD_I - 1;
-									$UPDATE_REFERENCIA = mysqli_query($conex, "UPDATE bayer_referencia SET CANTIDAD='" . $TOTAL . "' WHERE ID_REFERENCIA='" . $tipo_envio . "'");
+									$UPDATE_REFERENCIA = mysqli_query($conex, "UPDATE ipsen_referencia SET CANTIDAD='" . $TOTAL . "' WHERE ID_REFERENCIA='" . $tipo_envio . "'");
 									echo mysqli_error($conex);
-									$SELECT_ID_MOVIMIENTO = mysqli_query($conex, "SELECT ID_MOVIMIENTOS FROM bayer_movimientos WHERE DESTINATARIO='" . $nombre . ' ' . $apellidos . "' AND TIPO_MOVIMIENTO='2' ORDER BY ID_MOVIMIENTOS DESC LIMIT 1");
+									$SELECT_ID_MOVIMIENTO = mysqli_query($conex, "SELECT ID_MOVIMIENTOS FROM ipsen_movimientos WHERE DESTINATARIO='" . $nombre . ' ' . $apellidos . "' AND TIPO_MOVIMIENTO='2' ORDER BY ID_MOVIMIENTOS DESC LIMIT 1");
 									echo mysqli_error($conex);
 									while ($fila_mov = mysqli_fetch_array($SELECT_ID_MOVIMIENTO)) {
 										$ID_ULT_MOVIMIENTO = $fila_mov['ID_MOVIMIENTOS'];
 									}
-									$INSERT_MOVIMIENTO_PACIENTE = mysqli_query($conex, "INSERT INTO bayer_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,ESTADO_PACIENTE_MOVIMIENTO)VALUES('" . $codigo_usuario2 . "','" . $ID_ULT_MOVIMIENTO . "','EN PROCESO')");
+									$INSERT_MOVIMIENTO_PACIENTE = mysqli_query($conex, "INSERT INTO ipsen_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,ESTADO_PACIENTE_MOVIMIENTO)VALUES('" . $codigo_usuario2 . "','" . $ID_ULT_MOVIMIENTO . "','EN PROCESO')");
 									echo mysqli_error($conex);
-									$INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO bayer_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
+									$INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO ipsen_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
 									echo mysqli_error($conex);
-									$BORRAR_PRODUCTOS_TEMPORAL = mysqli_query($conex, "DELETE  FROM bayer_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+									$BORRAR_PRODUCTOS_TEMPORAL = mysqli_query($conex, "DELETE  FROM ipsen_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 									echo mysqli_error($conex);
-									$verificar_cantidad = mysqli_query($conex, "SELECT ID_REFERENCIA FROM bayer_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "' AND CANTIDAD<STOCK_MINIMO");
+									$verificar_cantidad = mysqli_query($conex, "SELECT ID_REFERENCIA FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "' AND CANTIDAD<STOCK_MINIMO");
 									echo mysqli_error($conex);
 									$nreg_vrf = mysqli_num_rows($verificar_cantidad);
 									if ($nreg_vrf > 0) {
@@ -575,7 +575,7 @@ require_once('session.php');
 								<?php
 								}
 							} else {
-								$verificar_cantidad = mysqli_query($conex, "SELECT * FROM bayer_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
+								$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
 								echo mysqli_error($conex);
 								while ($cantidad = mysqli_fetch_array($verificar_cantidad)) {
 									$nombre_producto = $cantidad['MATERIAL'];

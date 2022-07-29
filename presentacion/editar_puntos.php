@@ -6,10 +6,10 @@ if (isset($_POST['actualizar'])) {
 
     if ($_POST['punto_habilitar'] == '') {
         $punto = 'NO DEFINIDO VOLVER A PREGUNTAR';
-        $update = mysqli_query($conex, "UPDATE bayer_puntos_entrega SET NOMBRE_PUNTO='" . $punto . "' WHERE ID_PUNTO = '" . $ID . "'");
+        $update = mysqli_query($conex, "UPDATE ipsen_puntos_entrega SET NOMBRE_PUNTO='" . $punto . "' WHERE ID_PUNTO = '" . $ID . "'");
     } else {
         $punto = $_POST['operador_habilitar'];
-        $update = mysqli_query($conex, "UPDATE bayer_puntos_entrega SET NOMBRE_PUNTO='" . $punto . "', ESTADO = 'IN' WHERE ID_PUNTO = '" . $ID . "'");
+        $update = mysqli_query($conex, "UPDATE ipsen_puntos_entrega SET NOMBRE_PUNTO='" . $punto . "', ESTADO = 'IN' WHERE ID_PUNTO = '" . $ID . "'");
     }
     if ($update) {
 ?>
@@ -48,7 +48,7 @@ if (isset($_POST['eliminar'])) {
     require('../datos/conex.php');
     require('../datos/parse_str.php');
     $ID = $erted;
-    $delete = mysqli_query($conex, "DELETE FROM bayer_puntos_entrega WHERE ID_PUNTO = '" . $ID . "'");
+    $delete = mysqli_query($conex, "DELETE FROM ipsen_puntos_entrega WHERE ID_PUNTO = '" . $ID . "'");
     if ($delete) {
     ?>
         <span style="margin-top:5%;">

@@ -11,7 +11,7 @@ header("Content-Type: application/vnd.ms-excel");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 header("content-disposition: attachment;filename=Autorizaciones_radicadas.xls");
-$consulta_pacientes = mysqli_query($conexion, "SELECT ID_PACIENTE,  ESTADO_CTC_GESTION, PRODUCTO_TRATAMIENTO, ASEGURADOR_TRATAMIENTO, OPERADOR_LOGISTICO_TRATAMIENTO, MEDICO_TRATAMIENTO, NUM_LOTES_DISPOSITIVOS,CIUDAD_RECLAMACION  FROM (SELECT bayer_pacientes.ID_PACIENTE,    bayer_tratamiento.PRODUCTO_TRATAMIENTO, bayer_tratamiento.ASEGURADOR_TRATAMIENTO,     bayer_tratamiento.OPERADOR_LOGISTICO_TRATAMIENTO, bayer_tratamiento.MEDICO_TRATAMIENTO,     bayer_tratamiento.NUM_LOTES_DISPOSITIVOS,bayer_tratamiento.CIUDAD_RECLAMACION, bayer_gestiones.ESTADO_CTC_GESTION   FROM bayer_pacientes     INNER JOIN bayer_gestiones ON  bayer_pacientes.ID_PACIENTE = bayer_gestiones.ID_PACIENTE_FK2    INNER JOIN bayer_tratamiento ON bayer_pacientes.ID_PACIENTE = bayer_tratamiento.ID_PACIENTE_FK  WHERE bayer_gestiones.FECHA_COMUNICACION = (SELECT  FECHA_COMUNICACION FROM bayer_gestiones WHERE ID_PACIENTE_FK2=ID_PACIENTE ORDER BY FECHA_COMUNICACION DESC LIMIT 1)   ) people_marketing_SAS; ");
+$consulta_pacientes = mysqli_query($conexion, "SELECT ID_PACIENTE,  ESTADO_CTC_GESTION, PRODUCTO_TRATAMIENTO, ASEGURADOR_TRATAMIENTO, OPERADOR_LOGISTICO_TRATAMIENTO, MEDICO_TRATAMIENTO, NUM_LOTES_DISPOSITIVOS,CIUDAD_RECLAMACION  FROM (SELECT ipsen_pacientes.ID_PACIENTE,    ipsen_tratamiento.PRODUCTO_TRATAMIENTO, ipsen_tratamiento.ASEGURADOR_TRATAMIENTO,     ipsen_tratamiento.OPERADOR_LOGISTICO_TRATAMIENTO, ipsen_tratamiento.MEDICO_TRATAMIENTO,     ipsen_tratamiento.NUM_LOTES_DISPOSITIVOS,ipsen_tratamiento.CIUDAD_RECLAMACION, ipsen_gestiones.ESTADO_CTC_GESTION   FROM ipsen_pacientes     INNER JOIN ipsen_gestiones ON  ipsen_pacientes.ID_PACIENTE = ipsen_gestiones.ID_PACIENTE_FK2    INNER JOIN ipsen_tratamiento ON ipsen_pacientes.ID_PACIENTE = ipsen_tratamiento.ID_PACIENTE_FK  WHERE ipsen_gestiones.FECHA_COMUNICACION = (SELECT  FECHA_COMUNICACION FROM ipsen_gestiones WHERE ID_PACIENTE_FK2=ID_PACIENTE ORDER BY FECHA_COMUNICACION DESC LIMIT 1)   ) people_marketing_SAS; ");
 echo mysqli_error($conexion);
 ?>
 <style type="text/css">
@@ -19,19 +19,24 @@ echo mysqli_error($conexion);
     background: rgb(153, 198, 85);
     border: 1px solid rgb(21, 169, 227);
   }
+
   .n112 {
     background: #dc3545;
     color: white;
   }
+
   .nn1 {
     border: 1px solid rgb(21, 169, 227);
   }
+
   td {
     border: 1px solid;
   }
+
   tbody>td:nth-child(odd) {
     background-color: #f2f2f2;
   }
+
   tbody>td:nth-child(even) {
     background-color: #fbfbfb;
   }

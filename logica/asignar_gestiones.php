@@ -42,22 +42,22 @@ require('../datos/parse_str.php');
 			$aaa = 0;
 			$cantidad = $_POST['cant' . $k];
 			$nom_usu = $_POST['usu' . $k];
-			$select_ID_GESTIONES = mysqli_query($conex,"SELECT ID_GESTION_FK FROM bayer_temporal_gestiones LIMIT $cantidad");
+			$select_ID_GESTIONES = mysqli_query($conex,"SELECT ID_GESTION_FK FROM ipsen_temporal_gestiones LIMIT $cantidad");
 			echo mysqli_error($conex);
 			$nreg_usu = mysqli_num_rows($select_ID_GESTIONES);
 			while ($dato = mysqli_fetch_array($select_ID_GESTIONES)) {
 				$ID_GESTION = $dato['ID_GESTION_FK'];
-				$actualizar = mysqli_query($conex,"UPDATE bayer_gestiones SET
+				$actualizar = mysqli_query($conex,"UPDATE ipsen_gestiones SET
 				USUARIO_ASIGANDO='" . $nom_usu . "',
 				ESTADO_GESTION='ASIGNADO'
 				WHERE ID_GESTION='$ID_GESTION'");
 				echo mysqli_error($conex);
-				$borra = mysqli_query($conex,"DELETE FROM bayer_temporal_gestiones WHERE ID_GESTION_FK=$ID_GESTION");
+				$borra = mysqli_query($conex,"DELETE FROM ipsen_temporal_gestiones WHERE ID_GESTION_FK=$ID_GESTION");
 				echo mysqli_error($conex);
 			}
 			$aaa . "<br />";
 		}
-		$borrar_temp = mysqli_query($conex,"TRUNCATE TABLE bayer_temporal_gestiones");
+		$borrar_temp = mysqli_query($conex,"TRUNCATE TABLE ipsen_temporal_gestiones");
 		if ($actualizar) {
 	?>
 			<span style="margin-top:5%;">

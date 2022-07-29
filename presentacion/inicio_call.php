@@ -68,19 +68,19 @@ if ($usua == 'YRAMIREZ') {
 <?php
 if ($privilegios != '' && $usua != '') {
 
-    $select_opl = mysqli_query($conex, "SELECT * FROM bayer_operador_logistico WHERE ESTADO = 'OUT'");
+    $select_opl = mysqli_query($conex, "SELECT * FROM ipsen_operador_logistico WHERE ESTADO = 'OUT'");
     $num_total_opl = mysqli_num_rows($select_opl);
 
-    $select_asegurador = mysqli_query($conex, "SELECT * FROM bayer_asegurador WHERE ESTADO = 'OUT'");
+    $select_asegurador = mysqli_query($conex, "SELECT * FROM ipsen_asegurador WHERE ESTADO = 'OUT'");
     $num_total_asegurador = mysqli_num_rows($select_asegurador);
 
-    $select_ips = mysqli_query($conex, "SELECT * FROM bayer_ips WHERE ESTADO = 'OUT'");
+    $select_ips = mysqli_query($conex, "SELECT * FROM ipsen_ips WHERE ESTADO = 'OUT'");
     $num_total_ips = mysqli_num_rows($select_ips);
 
-    $select_medicos = mysqli_query($conex, "SELECT * FROM bayer_listas WHERE ESTADO = 'OUT'");
+    $select_medicos = mysqli_query($conex, "SELECT * FROM ipsen_listas WHERE ESTADO = 'OUT'");
     $num_total_medicos = mysqli_num_rows($select_medicos);
 
-    $select_puntos = mysqli_query($conex, "SELECT * FROM bayer_puntos_entrega WHERE ESTADO = 'OUT'");
+    $select_puntos = mysqli_query($conex, "SELECT * FROM ipsen_puntos_entrega WHERE ESTADO = 'OUT'");
     $num_total_puntos = mysqli_num_rows($select_puntos);
 
     $num_total_registros = $num_total_opl + $num_total_asegurador + $num_total_ips + $num_total_medicos + $num_total_puntos;
@@ -166,7 +166,7 @@ if ($privilegios != '' && $usua != '') {
                                             <span class="mask bg-gradient-dark opacity-6"></span>
                                             <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
                                                 <p class="text-white font-weight-bold h3">REPORTES CONTEO</p>
-                                                <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../new_scriptcase/conteo/Bayer_20220706110144" target="info">
+                                                <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../new_scriptcase/conteo/ipsen_20220706110144" target="info">
                                                     Ver más
                                                     <i class="material-icons text-sm ms-1 position-relative" aria-hidden="true">arrow_forward</i>
                                                 </a>

@@ -6,10 +6,10 @@ if (isset($_POST['actualizar'])) {
 
     if ($_POST['ips_habilitar'] == '') {
         $ips = 'NO DEFINIDO VOLVER A PREGUNTAR';
-        $update = mysqli_query($conex, "UPDATE bayer_ips SET IPS='" . $ips . "' WHERE ID_IPS = '" . $ID . "'");
+        $update = mysqli_query($conex, "UPDATE ipsen_ips SET IPS='" . $ips . "' WHERE ID_IPS = '" . $ID . "'");
     } else {
         $ips = $_POST['operador_habilitar'];
-        $update = mysqli_query($conex, "UPDATE bayer_ips SET IPS='" . $ips . "', ESTADO = 'IN' WHERE ID_IPS = '" . $ID . "'");
+        $update = mysqli_query($conex, "UPDATE ipsen_ips SET IPS='" . $ips . "', ESTADO = 'IN' WHERE ID_IPS = '" . $ID . "'");
     }
     if ($update) {
 ?>
@@ -48,7 +48,7 @@ if (isset($_POST['eliminar'])) {
     require('../datos/conex.php');
     require('../datos/parse_str.php');
     $ID = $erted;
-    $delete = mysqli_query($conex, "DELETE FROM bayer_ips WHERE ID_IPS = '" . $ID . "'");
+    $delete = mysqli_query($conex, "DELETE FROM ipsen_ips WHERE ID_IPS = '" . $ID . "'");
     if ($delete) {
     ?>
         <span style="margin-top:5%;">

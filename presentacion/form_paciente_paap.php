@@ -5,8 +5,9 @@ include('../logica/session.php')
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head><meta charset="windows-1252">
-	
+<head>
+	<meta charset="windows-1252">
+
 
 	<title>IPSEN</title>
 	<link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
@@ -678,8 +679,8 @@ if ($privilegios != '' && $usua != '') {
 					<div class="AccordionPanelContent">
 						<table width="100%" border="0">
 							<?php
-							$Seleccion = mysqli_query($conex, "SELECT * FROM `bayer_pacientes` AS P
-							INNER JOIN bayer_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+							$Seleccion = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` AS P
+							INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 							WHERE ID_PACIENTE = '" . $ID_PACIENTE . "'");
 							while ($fila = mysqli_fetch_array($Seleccion)) {
 								$ID_PACIENTE2 = $fila['ID_PACIENTE'];
@@ -895,7 +896,7 @@ if ($privilegios != '' && $usua != '') {
 											<option>Seleccione...</option>
 											<?php
 											$DEPT = $fila['DEPARTAMENTO_PACIENTE'];
-											$Seleccionar = mysqli_query($conex, "SELECT nombre FROM `bayer_departamento` WHERE nombre != '' AND nombre != '$DEPT' ORDER BY nombre ASC");
+											$Seleccionar = mysqli_query($conex, "SELECT nombre FROM `ipsen_departamento` WHERE nombre != '' AND nombre != '$DEPT' ORDER BY nombre ASC");
 											while ($fila3 = mysqli_fetch_array($Seleccionar)) {
 												$DEPARTAMENTO = $fila3['nombre'];
 												echo "<option>" . $DEPARTAMENTO . "</option>";
@@ -911,8 +912,8 @@ if ($privilegios != '' && $usua != '') {
 											<option><?php echo $fila['CIUDAD_PACIENTE']; ?></option>
 											<option>Seleccione...</option>
 											<?php
-											$Selecciones = mysqli_query($conex, "SELECT c.nombre FROM bayer_ciudad AS c
-                                            INNER JOIN bayer_departamento AS d ON d.id=c.departamento_id
+											$Selecciones = mysqli_query($conex, "SELECT c.nombre FROM ipsen_ciudad AS c
+                                            INNER JOIN ipsen_departamento AS d ON d.id=c.departamento_id
                                             WHERE d.nombre='$DEPT' ORDER BY c.nombre ASC");
 											while ($fila2 = mysqli_fetch_array($Selecciones)) {
 												$CIUDAD = $fila2['nombre'];
@@ -1207,11 +1208,11 @@ if ($privilegios != '' && $usua != '') {
 								$dia_act = $fecha_rec_act[2];
 								$dato = ((int)$mes_act);
 								$ID = $fila['ID_PACIENTE'];
-								$select_historial_pri = mysqli_query($conex, "SELECT * FROM bayer_historial_reclamacion WHERE ID_PACIENTE_FK='$ID'");
+								$select_historial_pri = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$ID'");
 								echo mysqli_error($conex);
 								$reg_hist = mysqli_num_rows($select_historial_pri);
 								if ($reg_hist > 0) {
-									$select_historial = mysqli_query($conex, "SELECT MES$dato as 'MES',RECLAMO$dato as 'RECLAMO',FECHA_RECLAMACION$dato as 'FECHA_RECLAMACION',MOTIVO_NO_RECLAMACION$dato as 'MOTIVO_NO_RECLAMACION' FROM bayer_historial_reclamacion WHERE ID_PACIENTE_FK='" . $ID . "' AND MES$dato='" . $mes_act . "'");
+									$select_historial = mysqli_query($conex, "SELECT MES$dato as 'MES',RECLAMO$dato as 'RECLAMO',FECHA_RECLAMACION$dato as 'FECHA_RECLAMACION',MOTIVO_NO_RECLAMACION$dato as 'MOTIVO_NO_RECLAMACION' FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='" . $ID . "' AND MES$dato='" . $mes_act . "'");
 									echo mysqli_error($conex);
 									while ($inf = mysqli_fetch_array($select_historial)) {
 										$reclamo = $inf['RECLAMO'];
@@ -1220,10 +1221,10 @@ if ($privilegios != '' && $usua != '') {
 										$FECHA_RECLAMACION = $con['FECHA_RECLAMACION'];
 									}
 								} else {
-									$INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO bayer_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $fila['ID_PACIENTE'] . "')");
+									$INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO ipsen_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $fila['ID_PACIENTE'] . "')");
 									echo mysqli_error($conex);
 								}
-								$Sel = mysqli_query($conex, "SELECT * FROM bayer_gestiones WHERE ID_PACIENTE_FK2 = '" . $ID_PACIENTE . "' ORDER BY ID_GESTION DESC LIMIT 1");
+								$Sel = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2 = '" . $ID_PACIENTE . "' ORDER BY ID_GESTION DESC LIMIT 1");
 								while ($con = mysqli_fetch_array($Sel)) {
 									$ID_GESTION_ULT = $con['ID_GESTION'];
 									$FECHA_NO_RECLAMACION = $con['FECHA_CITA_PROGRAMADA'];
@@ -1351,7 +1352,7 @@ if ($privilegios != '' && $usua != '') {
 										<span>Se brindo Educacion</span>
 										<select name="brindo_educacion" id="brindo_educacion" disabled>
 											<option>Seleccione...</option>
-											<?php $select_edu = mysqli_query($conex, "SELECT * FROM `bayer_educacion` WHERE `ID_PACI_FK` = '$ID_PACIENTE2' ORDER BY `FECHA_REGISTRO` DESC LIMIT 1");
+											<?php $select_edu = mysqli_query($conex, "SELECT * FROM `ipsen_educacion` WHERE `ID_PACI_FK` = '$ID_PACIENTE2' ORDER BY `FECHA_REGISTRO` DESC LIMIT 1");
 											while ($dato = mysqli_fetch_array($select_edu)) {
 												$brindo_edu = $dato['SE_BRINDO_EDU'];
 												$temaBrindo = $dato['TEMA_SI_EDU'];
@@ -1624,7 +1625,7 @@ if ($privilegios != '' && $usua != '') {
 									<span>Asegurador<span class="asterisco">*</span></span>
 								</td>
 								<td>
-									<?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM bayer_asegurador WHERE ESTADO = 'IN' ORDER BY ID_ASEGURADOR DESC")
+									<?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM ipsen_asegurador WHERE ESTADO = 'IN' ORDER BY ID_ASEGURADOR DESC")
 									?>
 									<input list="asegura" name="asegurador" id="asegurador" value="<?php echo $fila['ASEGURADOR_TRATAMIENTO'] ?>" autocomplete="off" onchange="trat_previo1(this)">
 									<datalist id="asegura">
@@ -1642,7 +1643,7 @@ if ($privilegios != '' && $usua != '') {
 								</td>
 								<td>
 									<?php
-									$Seleccion = mysqli_query($conex, "SELECT DISTINCT IPS FROM bayer_ips WHERE ESTADO = 'IN' ORDER BY ID_IPS DESC");
+									$Seleccion = mysqli_query($conex, "SELECT DISTINCT IPS FROM ipsen_ips WHERE ESTADO = 'IN' ORDER BY ID_IPS DESC");
 									?>
 									<input list="ips" name="ips_atiende" id="ips_atiende" value="<?php echo $fila['IPS_ATIENDE_TRATAMIENTO'] ?>" autocomplete="off" onchange="trat_previo3(this)">
 									<datalist id="ips">
@@ -1674,7 +1675,7 @@ if ($privilegios != '' && $usua != '') {
 								</td>
 								<td>
 									<?php
-									$Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM bayer_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
+									$Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
 									?>
 									<input list="medico_t" name="medico_tratante" id="medico_tratante" value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>" autocomplete="off" onchange="trat_previo4(this)">
 									<datalist id="medico_t">
@@ -1692,7 +1693,7 @@ if ($privilegios != '' && $usua != '') {
 								</td>
 								<td>
 									<?php
-									$Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM bayer_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
+									$Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
 									?>
 									<input list="medico_p" name="medico_prescriptor" id="medico_prescriptor" value="<?php echo $fila['MEDICO_PRESCRIPTOR'] ?>" autocomplete="off" onchange="trat_previo5(this)">
 									<datalist id="medico_p">
@@ -1730,7 +1731,7 @@ if ($privilegios != '' && $usua != '') {
 								</td>
 								<td>
 									<?php
-									$Seleccion = mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM bayer_operador_logistico WHERE ESTADO = 'IN' ORDER BY ID_OPERADOR_LOGISTICO DESC ");
+									$Seleccion = mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM ipsen_operador_logistico WHERE ESTADO = 'IN' ORDER BY ID_OPERADOR_LOGISTICO DESC ");
 									?>
 									<input list="operador" name="operador_logistico" id="operador_logistico" value="<?php echo $fila['OPERADOR_LOGISTICO_TRATAMIENTO'] ?>" autocomplete="off" onchange="trat_previo2(this)">
 									<datalist id="operador">
@@ -1762,7 +1763,7 @@ if ($privilegios != '' && $usua != '') {
 									<select type="text" name="ciudad_reclamacion" id="ciudad_reclamacion">
 										<option><?php echo $fila['CIUDAD_RECLAMACION']; ?></option>
 										<?php
-										$Seleccion = mysqli_query($conex, "SELECT DISTINCT nombre FROM `bayer_ciudad` WHERE nombre != '' ORDER BY nombre ASC");
+										$Seleccion = mysqli_query($conex, "SELECT DISTINCT nombre FROM `ipsen_ciudad` WHERE nombre != '' ORDER BY nombre ASC");
 										while ($filare = mysqli_fetch_array($Seleccion)) {
 											$CIUDAD_RECLAMACION = $filare['nombre'];
 											echo "<option>" . $CIUDAD_RECLAMACION . "</option>";
@@ -1776,7 +1777,7 @@ if ($privilegios != '' && $usua != '') {
 								</td>
 								<td>
 									<?php
-									$Seleccion = mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM bayer_puntos_entrega WHERE ESTADO = 'IN' ORDER BY ID_PUNTO DESC");
+									$Seleccion = mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM ipsen_puntos_entrega WHERE ESTADO = 'IN' ORDER BY ID_PUNTO DESC");
 									?>
 									<input list="punto" name="punto_entrega" id="punto_entrega" value="<?php echo $fila['PUNTO_ENTREGA'] ?>" autocomplete=" off" onchange="trat_previo6(this)">
 									<datalist id="punto">
@@ -2150,7 +2151,7 @@ if ($privilegios != '' && $usua != '') {
 										<option><?php echo $TRATAMIENTO_PREVIOS ?></option>
 										<option>Seleccione...</option>
 										<?php
-										$Seleccion = mysqli_query($conex, "SELECT DISTINCT TRATAMIENTO_PREVIO FROM `bayer_listas` WHERE TRATAMIENTO_PREVIO != '' AND TRATAMIENTO_PREVIO!='$tratamiento_previo' ORDER BY TRATAMIENTO_PREVIO ASC");
+										$Seleccion = mysqli_query($conex, "SELECT DISTINCT TRATAMIENTO_PREVIO FROM `ipsen_listas` WHERE TRATAMIENTO_PREVIO != '' AND TRATAMIENTO_PREVIO!='$tratamiento_previo' ORDER BY TRATAMIENTO_PREVIO ASC");
 										while ($fila_trt = mysqli_fetch_array($Seleccion)) {
 											$TRATAMIENTO_PREVIO = $fila_trt['TRATAMIENTO_PREVIO'];
 											echo "<option>" . $TRATAMIENTO_PREVIO . "</option>";
@@ -2217,7 +2218,7 @@ if ($privilegios != '' && $usua != '') {
 											<option>Seleccione...</option>
 											<?php
 											$producto = $fila['PRODUCTO_TRATAMIENTO'];
-											$select = mysqli_query($conex, "SELECT DOSIS FROM  bayer_dosis WHERE NOMBRE_REFERENCIA LIKE '" . $producto_tratamiento . "%' AND DOSIS!='$dosis_bd'");
+											$select = mysqli_query($conex, "SELECT DOSIS FROM  ipsen_dosis WHERE NOMBRE_REFERENCIA LIKE '" . $producto_tratamiento . "%' AND DOSIS!='$dosis_bd'");
 											echo mysqli_error($conex);
 											while ($filass = (mysqli_fetch_array($select))) {
 											?>
@@ -2315,7 +2316,7 @@ if ($privilegios != '' && $usua != '') {
 					<div class="AccordionPanelTab" style="padding:5px">COMUNICACIONES</div>
 					<div class="AccordionPanelContent">
 						<?PHP
-						$gestion = mysqli_query($conex, "SELECT * FROM `bayer_gestiones` WHERE `ID_PACIENTE_FK2` = '" . $ID_PACIENTE2 . "' ORDER BY `FECHA_COMUNICACION` DESC");
+						$gestion = mysqli_query($conex, "SELECT * FROM `ipsen_gestiones` WHERE `ID_PACIENTE_FK2` = '" . $ID_PACIENTE2 . "' ORDER BY `FECHA_COMUNICACION` DESC");
 						echo mysqli_error($conex);
 						echo "<table width=100% border=1 rules=all  align=left class=Estilo2 >";
 						echo "<tr style='border:1px solid #fff'>";

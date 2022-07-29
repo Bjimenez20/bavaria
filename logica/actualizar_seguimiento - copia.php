@@ -80,7 +80,7 @@ if($_POST['operador_logistico']=='Otro')
 {
 	$operador_logistico=$_POST['operador_logistico_nuevo'];
 	
-	$INSERT_OPERADOR_LOGISTICO=mysqli_query($conex, "INSERT INTO bayer_listas(OPERADOR_LOGISTICO)VALUES('".$operador_logistico."')");
+	$INSERT_OPERADOR_LOGISTICO=mysqli_query($conex, "INSERT INTO ipsen_listas(OPERADOR_LOGISTICO)VALUES('".$operador_logistico."')");
 		echo mysqli_error($conex);	
 }
 else
@@ -194,19 +194,19 @@ if(isset($_POST['registrar']))
 	$tipo_envio=$_POST['tipo_envio'];
 	if($tipo_envio!='')
 	{
-		$SELECT_ID_INV=mysqli_query($conex, "select ID_INVENTARIO from bayer_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='".$tipo_envio."' ORDER BY ID_INVENTARIO ASC LIMIT 1");
+		$SELECT_ID_INV=mysqli_query($conex, "select ID_INVENTARIO from ipsen_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='".$tipo_envio."' ORDER BY ID_INVENTARIO ASC LIMIT 1");
 		echo mysqli_error($conex);
 		while ($fila1 = mysqli_fetch_array($SELECT_ID_INV))
 		{
 			$ID_ULT_INV=$fila1['ID_INVENTARIO'];
 		}
-		$UPDATE_INVENTARIO=mysqli_query($conex, "UPDATE bayer_inventario SET LUGAR_MATERIAL='".$codigo_usuario2."' WHERE ID_INVENTARIO='".$ID_ULT_INV."'");
+		$UPDATE_INVENTARIO=mysqli_query($conex, "UPDATE ipsen_inventario SET LUGAR_MATERIAL='".$codigo_usuario2."' WHERE ID_INVENTARIO='".$ID_ULT_INV."'");
 		echo mysqli_error($conex);
 		
 		
-		$INSERT_MOVIMIENTO=mysqli_query($conex, "INSERT INTO bayer_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO, ID_INVENTARIO_FK) VALUES('2', '', '1', '".$usua."', '".$nombre.' '.$apellidos."', '".$direccion."', '".$ciudad."', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO', '".$ID_ULT_INV."')");
+		$INSERT_MOVIMIENTO=mysqli_query($conex, "INSERT INTO ipsen_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO, ID_INVENTARIO_FK) VALUES('2', '', '1', '".$usua."', '".$nombre.' '.$apellidos."', '".$direccion."', '".$ciudad."', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO', '".$ID_ULT_INV."')");
 		echo mysqli_error($conex);
-		$SELECT_CANTIDAD = mysqli_query($conex, "SELECT * FROM bayer_referencia WHERE ID_REFERENCIA = '".$tipo_envio."'");
+		$SELECT_CANTIDAD = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA = '".$tipo_envio."'");
 		echo mysqli_error($conex); 
 	  
 		while ($fila1 = mysqli_fetch_array($SELECT_CANTIDAD))
@@ -215,26 +215,26 @@ if(isset($_POST['registrar']))
 		}
 		$TOTAL=$CANTIDAD_I-1;
 		
-		$UPDATE_REFERENCIA=mysqli_query($conex, "UPDATE bayer_referencia SET CANTIDAD='".$TOTAL."' WHERE ID_REFERENCIA='".$tipo_envio."'");
+		$UPDATE_REFERENCIA=mysqli_query($conex, "UPDATE ipsen_referencia SET CANTIDAD='".$TOTAL."' WHERE ID_REFERENCIA='".$tipo_envio."'");
 		echo mysqli_error($conex);
 		
 		
-		$SELECT_ID_MOVIMIENTO=mysqli_query($conex, "SELECT ID_MOVIMIENTOS FROM bayer_movimientos WHERE DESTINATARIO='".$nombre.' '.$apellidos."' AND TIPO_MOVIMIENTO='2' ORDER BY ID_MOVIMIENTOS DESC LIMIT 1");
+		$SELECT_ID_MOVIMIENTO=mysqli_query($conex, "SELECT ID_MOVIMIENTOS FROM ipsen_movimientos WHERE DESTINATARIO='".$nombre.' '.$apellidos."' AND TIPO_MOVIMIENTO='2' ORDER BY ID_MOVIMIENTOS DESC LIMIT 1");
 		echo mysqli_error($conex);
 		while ($fila_mov = mysqli_fetch_array($SELECT_ID_MOVIMIENTO))
 		{
 			$ID_ULT_MOVIMIENTO=$fila_mov['ID_MOVIMIENTOS'];
 		}
 		
-		$INSERT_MOVIMIENTO_PACIENTE=mysqli_query($conex, "INSERT INTO bayer_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,
+		$INSERT_MOVIMIENTO_PACIENTE=mysqli_query($conex, "INSERT INTO ipsen_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,
 ESTADO_PACIENTE_MOVIMIENTO)VALUES('".$codigo_usuario2."','".$ID_ULT_MOVIMIENTO."','EN PROCESO')");
 		echo mysqli_error($conex);
 		
-		$INSERT_MOVIMIENTO_USUARIO=mysqli_query($conex, "INSERT INTO bayer_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('".$id_usu."','".$ID_ULT_MOVIMIENTO."')");
+		$INSERT_MOVIMIENTO_USUARIO=mysqli_query($conex, "INSERT INTO ipsen_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('".$id_usu."','".$ID_ULT_MOVIMIENTO."')");
 		echo mysqli_error($conex);
 	}
 	
-	$sql=mysqli_query($conex, "UPDATE bayer_gestiones 
+	$sql=mysqli_query($conex, "UPDATE ipsen_gestiones 
 	SET ESTADO_GESTION='GESTIONADO'
 	WHERE ID_GESTION='".$codigo_gestion."'");
 	echo mysqli_error($conex);
@@ -242,20 +242,20 @@ ESTADO_PACIENTE_MOVIMIENTO)VALUES('".$codigo_usuario2."','".$ID_ULT_MOVIMIENTO."
 	//	FECHA_COMUNICACION=CURRENT_TIMESTAMP
 if($logro_comunicacion='SI')
 {
-	$sql=mysqli_query($conex, "UPDATE bayer_pacientes SET ESTADO_PACIENTE='".$estado_paciente."', STATUS_PACIENTE='".$status_paciente."', FECHA_ACTIVACION_PACIENTE='".$fecha_activacion."', FECHA_RETIRO_PACIENTE='".$fecha_retiro."', MOTIVO_RETIRO_PACIENTE='".$motivo_retiro."', OBSERVACION_MOTIVO_RETIRO_PACIENTE='".$observacion_retiro."', TELEFONO_PACIENTE='".$telefono1."', TELEFONO2_PACIENTE='".$telefono2."', TELEFONO3_PACIENTE='".$telefono3."', CORREO_PACIENTE='".$correo."', DIRECCION_PACIENTE='".$direccion."', BARRIO_PACIENTE='".$barrio."', DEPARTAMENTO_PACIENTE='".$departamento."',CIUDAD_PACIENTE='".$ciudad."',FECHA_NACIMINETO_PACIENTE='".$fecha_nacimiento."',EDAD_PACIENTE='".$edad."' WHERE ID_PACIENTE='".$codigo_usuario2."'");
+	$sql=mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE='".$estado_paciente."', STATUS_PACIENTE='".$status_paciente."', FECHA_ACTIVACION_PACIENTE='".$fecha_activacion."', FECHA_RETIRO_PACIENTE='".$fecha_retiro."', MOTIVO_RETIRO_PACIENTE='".$motivo_retiro."', OBSERVACION_MOTIVO_RETIRO_PACIENTE='".$observacion_retiro."', TELEFONO_PACIENTE='".$telefono1."', TELEFONO2_PACIENTE='".$telefono2."', TELEFONO3_PACIENTE='".$telefono3."', CORREO_PACIENTE='".$correo."', DIRECCION_PACIENTE='".$direccion."', BARRIO_PACIENTE='".$barrio."', DEPARTAMENTO_PACIENTE='".$departamento."',CIUDAD_PACIENTE='".$ciudad."',FECHA_NACIMINETO_PACIENTE='".$fecha_nacimiento."',EDAD_PACIENTE='".$edad."' WHERE ID_PACIENTE='".$codigo_usuario2."'");
 	echo mysqli_error($conex);
 	
-	$sql=mysqli_query($conex, "UPDATE bayer_tratamiento SET ASEGURADOR_TRATAMIENTO='".$asegurador."', OPERADOR_LOGISTICO_TRATAMIENTO='".$operador_logistico."',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='".$fecha_reclamacion."',PUNTO_ENTREGA='".$punto_entrega."',MEDICO_TRATAMIENTO='".$medico."',IPS_ATIENDE_TRATAMIENTO='".$ips_atiende."',DOSIS_TRATAMIENTO='".$dosis."' WHERE ID_PACIENTE_FK='".$codigo_usuario2."'");
+	$sql=mysqli_query($conex, "UPDATE ipsen_tratamiento SET ASEGURADOR_TRATAMIENTO='".$asegurador."', OPERADOR_LOGISTICO_TRATAMIENTO='".$operador_logistico."',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='".$fecha_reclamacion."',PUNTO_ENTREGA='".$punto_entrega."',MEDICO_TRATAMIENTO='".$medico."',IPS_ATIENDE_TRATAMIENTO='".$ips_atiende."',DOSIS_TRATAMIENTO='".$dosis."' WHERE ID_PACIENTE_FK='".$codigo_usuario2."'");
 	echo mysqli_error($conex);
 }
-	$sql=mysqli_query($conex, "INSERT INTO bayer_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION)VALUES('".$motivo_comunicacion."','".$medio_contacto."','".$tipo_llamada."','".$logro_comunicacion."','".$motivo_no_comunicacion."','".$via_recepcion."','".$estado_ctc."','".$estado_farmacia."','".$reclamo."','".$consecutivo_betaferon."','".$causa_no_reclamacion."','".$dificultad_acceso."','".$tipo_dificultad."','".$envios."','".$MEDICAMENTO."','".$tipo_envio."','".$evento_adverso."','".$tipo_evento_adverso."','".$genera_solicitud."','".$fecha_proxima_llamada."','".$motivo_proxima_llamada."','".$observacion_proxima_llamada."','".$fecha_reclamacion."','".$numero_cajas."','".$consecutivo."','".$autor."','".$nota."','".$descripcion_comunicacion."','".$fecha_proxima_llamada."','SIN ASIGNAR','".$codigo_usuario2."',CURRENT_TIMESTAMP)");
+	$sql=mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION)VALUES('".$motivo_comunicacion."','".$medio_contacto."','".$tipo_llamada."','".$logro_comunicacion."','".$motivo_no_comunicacion."','".$via_recepcion."','".$estado_ctc."','".$estado_farmacia."','".$reclamo."','".$consecutivo_betaferon."','".$causa_no_reclamacion."','".$dificultad_acceso."','".$tipo_dificultad."','".$envios."','".$MEDICAMENTO."','".$tipo_envio."','".$evento_adverso."','".$tipo_evento_adverso."','".$genera_solicitud."','".$fecha_proxima_llamada."','".$motivo_proxima_llamada."','".$observacion_proxima_llamada."','".$fecha_reclamacion."','".$numero_cajas."','".$consecutivo."','".$autor."','".$nota."','".$descripcion_comunicacion."','".$fecha_proxima_llamada."','SIN ASIGNAR','".$codigo_usuario2."',CURRENT_TIMESTAMP)");
 echo mysqli_error($conex);
-$select_gestion=mysqli_query($conex, "SELECT * FROM bayer_gestiones WHERE ID_PACIENTE_FK2='".$codigo_usuario2."' ORDER BY ID_GESTION DESC LIMIT 1");
+$select_gestion=mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2='".$codigo_usuario2."' ORDER BY ID_GESTION DESC LIMIT 1");
 while($datos_gestion=mysqli_fetch_array($select_gestion))
 {
 	$ID_ULTIMA_GESTION=$datos_gestion['ID_GESTION'];
 }
-$update_codigo_gestion=mysqli_query($conex, "UPDATE bayer_pacientes SET ID_ULTIMA_GESTION='".$ID_ULTIMA_GESTION."' 
+$update_codigo_gestion=mysqli_query($conex, "UPDATE ipsen_pacientes SET ID_ULTIMA_GESTION='".$ID_ULTIMA_GESTION."' 
 WHERE ID_PACIENTE='".$codigo_usuario2."'");
 echo mysqli_error($conex);
 
@@ -265,7 +265,7 @@ if ($_FILES['archivo']["error"] > 0)
 }
 else
 {
-	$SELECT_GES=mysqli_query($conex, "SELECT ID_GESTION FROM bayer_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
+	$SELECT_GES=mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
 	
 	while ($fila2 = mysqli_fetch_array($SELECT_GES))
 	{

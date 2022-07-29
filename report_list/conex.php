@@ -9,7 +9,7 @@
 $servidor = "localhost";
 $usuario = "root";
 $password = "";
-$basepaciente = "apppeopl_bayer";
+$basepaciente = "ipsen";
 
 //$servidor = "app-peoplemarketing.ckkjycussdkq.us-east-1.rds.amazonaws.com";
 //$usuario = "apppeopl";

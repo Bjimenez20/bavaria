@@ -35,8 +35,8 @@ require_once("../datos/conex.php");
             <td><?php echo $fila1['CODIGO_PRODUCTO'] ?></td>
             <?php
             $id_pro = $fila1['ID_REFERENCIA_FK'];
-            $NOM = mysqli_query($conex,"SELECT NOMBRE_REFERENCIA FROM bayer_inventario AS I
-			INNER JOIN bayer_referencia AS R ON I.ID_REFERENCIA_FK= R.ID_REFERENCIA
+            $NOM = mysqli_query($conex, "SELECT NOMBRE_REFERENCIA FROM ipsen_inventario AS I
+			INNER JOIN ipsen_referencia AS R ON I.ID_REFERENCIA_FK= R.ID_REFERENCIA
 			WHERE I.ID_REFERENCIA_FK='$id_pro'");
             while ($con = mysqli_fetch_array($NOM)) {
                 $nombre_producto = $con['NOMBRE_REFERENCIA'];

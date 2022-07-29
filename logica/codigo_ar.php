@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -15,9 +16,11 @@
 			text-align: center;
 			padding: 10px;
 		}
+
 		.letra {
 			font-family: Tahoma, Geneva, sans-serif;
 		}
+
 		html {
 			background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
 			-webkit-background-size: cover;
@@ -25,6 +28,7 @@
 			-o-background-size: cover;
 			background-size: cover;
 		}
+
 		@media screen and (max-width:1000px) {
 			html {
 				background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
@@ -36,46 +40,38 @@
 		}
 	</style>
 	<SCRIPT>
-		function cerrar()
-		{
+		function cerrar() {
 			window.close(); //cierra el popup
 		}
 	</SCRIPT>
 	<script type="text/javascript">
-		function crear_codigo()
-		{
+		function crear_codigo() {
 			var codigo = $('#CODIGO_ARGUS').val();
 			var ID = $('#ID').val();
 			var id_paciente = $('#id_paciente').val();
 			$("#respuesta").html('<img src="imagenes/cargando.gif" />');
-			$.ajax(
-				{
-					url: 'guardar_codigo.php',
-					data:
-					{
-						cod: codigo,
-						id: ID,
-						id_paciente: id_paciente
-					},
-					type: 'post',
-					beforeSend: function() {
-						$("#respuesta").html("Procesando, espere por favor" + '<img src="imagenes/cargando.gif" />');
-					},
-					success: function(data)
-					{
-						$('#respuesta').html('Se a registrado el codigo correctamente ' + data);
-					}
+			$.ajax({
+				url: 'guardar_codigo.php',
+				data: {
+					cod: codigo,
+					id: ID,
+					id_paciente: id_paciente
+				},
+				type: 'post',
+				beforeSend: function() {
+					$("#respuesta").html("Procesando, espere por favor" + '<img src="imagenes/cargando.gif" />');
+				},
+				success: function(data) {
+					$('#respuesta').html('Se a registrado el codigo correctamente ' + data);
 				}
-			)
+			})
 		}
-		$(document).ready(function()
-			{
-				$('#ok').click(function()
-					{
-						alert('ok');
-						crear_codigo();
-					});
+		$(document).ready(function() {
+			$('#ok').click(function() {
+				alert('ok');
+				crear_codigo();
 			});
+		});
 	</script>
 </head>
 <?php
@@ -85,6 +81,7 @@ $ID_GESTION = base64_decode($xx);
 $paciente = base64_decode($xxp);
 $dt_1DiasDespues = date('Y-m-d', strtotime('-1 day')); // Suma 1 d�as
 ?>
+
 <body>
 	<div>
 		<img src="../presentacion/imagenes/esquina.png" height="80px" style="margin-left:1%; margin-top:1%;" />
@@ -105,4 +102,5 @@ $dt_1DiasDespues = date('Y-m-d', strtotime('-1 day')); // Suma 1 d�as
 		</div>
 	</center>
 </body>
+
 </html>

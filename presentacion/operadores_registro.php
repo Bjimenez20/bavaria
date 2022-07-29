@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="shortcut icon" href="img/logo.png" />
@@ -20,6 +21,7 @@ include('../logica/session.php')
   </script>
   <style>
     @import url("../../bayer/webfonts/avenir/stylesheet.css");
+
     .btn_registrar {
       padding-top: 2%;
       background-image: url(imagenes/BOTONES_REGISTRAR.png);
@@ -31,12 +33,15 @@ include('../logica/session.php')
       border-radius: 5px;
       border: 1px solid transparent;
     }
+
     .izq {
       text-align: left;
     }
+
     .der {
       text-align: right;
     }
+
     th {
       padding: 7px;
       color: #FFF;
@@ -50,6 +55,7 @@ include('../logica/session.php')
       text-align: center;
       font-family: Tahoma, Geneva, sans-serif;
     }
+
     td {
       padding: 2px;
       color: #000;
@@ -79,11 +85,12 @@ include('../logica/session.php')
     });
   </script>
   <?php
-require('../datos/parse_str.php');
+  require('../datos/parse_str.php');
   require_once("../datos/conex.php");
   $usua = strtoupper($usua);
   ?>
 </head>
+
 <body>
   <section>
     <blockquote>
@@ -105,7 +112,7 @@ require('../datos/parse_str.php');
                 <select type="text" name="DEPTO" id="DEPTO" style="width:90%; height:25px;" required="required">
                   <option value="">Seleccione...</option>
                   <?php
-                  $Selecciones = mysqli_query($conex, "SELECT nombre FROM bayer_departamento ORDER BY nombre ASC");
+                  $Selecciones = mysqli_query($conex, "SELECT nombre FROM ipsen_departamento ORDER BY nombre ASC");
                   while ($fila2 = mysqli_fetch_array($Selecciones)) {
                     $DEPARTAMENTO = $fila2['nombre'];
                     echo "<option>" . $DEPARTAMENTO . "</option>";
@@ -115,7 +122,7 @@ require('../datos/parse_str.php');
                 <!--    <select type="text" name="DEPTO" id="DEPTO" style="width:90%; height:25px;" required="required">
         <option value="">Seleccione...</option>      
         <?php
-        /*     $Selecciones = mysql_query("SELECT DEPARTAMENTO FROM bayer_asegurador_operador_logistico GROUP BY DEPARTAMENTO ORDER BY DEPARTAMENTO ASC",$conex);			
+        /*     $Selecciones = mysql_query("SELECT DEPARTAMENTO FROM ipsen_asegurador_operador_logistico GROUP BY DEPARTAMENTO ORDER BY DEPARTAMENTO ASC",$conex);			
             while($fila2=mysql_fetch_array($Selecciones))
                 {
                     $DEPARTAMENTO = $fila2['DEPARTAMENTO'];
@@ -144,4 +151,5 @@ require('../datos/parse_str.php');
     </blockquote>
   </section>
 </body>
+
 </html>

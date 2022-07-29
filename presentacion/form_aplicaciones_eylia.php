@@ -3,6 +3,7 @@ header("Content-Type: text/html;charset=utf-8");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -61,6 +62,7 @@ header("Content-Type: text/html;charset=utf-8");
 		text-align: center;
 		padding: 10px;
 	}
+
 	html {
 		background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
 		-webkit-background-size: cover;
@@ -68,6 +70,7 @@ header("Content-Type: text/html;charset=utf-8");
 		-o-background-size: cover;
 		background-size: cover;
 	}
+
 	/*form 
 {
     background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
@@ -90,7 +93,7 @@ if (isset($xxx))
 if (isset($xxxx))
 	$producto = base64_decode($xxxx);
 echo mysqli_error($conex);
-$consulta = mysqli_query($conex,"SELECT * FROM bayer_aplicaciones_eylia
+$consulta = mysqli_query($conex, "SELECT * FROM ipsen_aplicaciones_eylia
 WHERE ID_PACIENTE_FK=$ID_PACIENTE ORDER BY FECHA_REGISTRO DESC LIMIT 1");
 echo mysqli_error($conex);
 $nreg = mysqli_num_rows($consulta);
@@ -98,6 +101,7 @@ while ($con = mysqli_fetch_array($consulta)) {
 	$NUM_OJOS = $con['NUMERO_OJOS'];
 }
 ?>
+
 <body>
 	<div>
 		<img src="../presentacion/imagenes/esquina.png" height="80px" style="margin-left:1%; margin-top:1%;" />
@@ -174,18 +178,18 @@ while ($con = mysqli_fetch_array($consulta)) {
 				</tr>
 				<tr>
 					<td>
-						<div  id="span_aplicacion">
+						<div id="span_aplicacion">
 							<span>Fecha Aplicaci&oacute;n<span class="asterisco">*</span></span>
 						</div>
-						<div  id="span_no_aplicacion">
+						<div id="span_no_aplicacion">
 							<span>Causal no Aplicaci&oacute;n<span class="asterisco">*</span></span>
 						</div>
 					</td>
 					<td>
-						<div  id="div_aplicacion">
+						<div id="div_aplicacion">
 							<input type="date" name="fecha_aplicacion" id="fecha_aplicacion" max="<?php echo date('Y-m-d'); ?>" />
 						</div>
-						<div  id="div_no_aplicacion">
+						<div id="div_no_aplicacion">
 							<select type="text" name="causal" id="causal" style="width:95%">
 								<option value="">Seleccione...</option>
 								<option> Autorizacion radicada para Cita </option>
@@ -256,4 +260,5 @@ while ($con = mysqli_fetch_array($consulta)) {
 		</fieldset>
 	</form>
 </body>
+
 </html>

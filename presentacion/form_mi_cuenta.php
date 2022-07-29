@@ -19,7 +19,7 @@ require('../datos/parse_str.php');
 $NAME = base64_decode($DATO);
 require_once('../datos/conex.php');
 if ($privilegios != '' && $usua != '') {
-	$CONSULTA_USU = mysqli_query($conex, "select * from bayer_usuario where USER='" . $NAME . "'");
+	$CONSULTA_USU = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE USER='" . $NAME . "'");
 	while ($DATOS = mysqli_fetch_array($CONSULTA_USU)) {
 		$ID_USUARIO = $DATOS['ID_USUARIO'];
 		$USER = $DATOS['USER'];

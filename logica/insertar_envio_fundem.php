@@ -3,6 +3,7 @@ include('../logica/session.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -16,6 +17,7 @@ include('../logica/session.php');
 			text-align: center;
 			padding: 10px;
 		}
+
 		.error {
 			font-size: 130%;
 			font-weight: bold;
@@ -27,9 +29,10 @@ include('../logica/session.php');
 		}
 	</style>
 </head>
+
 <body>
 	<?php
-require('../datos/parse_str.php');
+	require('../datos/parse_str.php');
 	require('../datos/conex.php');
 	if (isset($_POST['gestion'])) {
 		$gestion = $_POST['gestion'];
@@ -47,41 +50,41 @@ require('../datos/parse_str.php');
 	$dosis = $_POST['Dosis'];
 	$tipo_envio = $_POST['tipo_envio'];
 	if (isset($_POST['registrar'])) {
-		$select_temporal = mysqli_query($conex,"SELECT * FROM bayer_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+		$select_temporal = mysqli_query($conex, "SELECT * FROM ipsen_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 		$nreg = mysqli_num_rows($select_temporal);
 		if ($nreg > 0) {
 			while ($datos_temporales = (mysqli_fetch_array($select_temporal))) {
 				$tipo_envio = $datos_temporales['ID_REFERENCIA_FK'];
-				$verificar_cantidad = mysqli_query($conex,"SELECT * FROM bayer_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+				$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
 				echo mysqli_error($conex);
 				$cantidad = mysqli_num_rows($verificar_cantidad);
 				if ($cantidad > 0) {
-					$SELECT_ID_INV = mysqli_query($conex,"select ID_INVENTARIO from bayer_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
+					$SELECT_ID_INV = mysqli_query($conex, "select ID_INVENTARIO from ipsen_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
 					echo mysqli_error($conex);
 					while ($fila1 = mysqli_fetch_array($SELECT_ID_INV)) {
 						$ID_ULT_INV = $fila1['ID_INVENTARIO'];
 					}
-					$INSERT_MOVIMIENTO = mysqli_query($conex,"INSERT INTO bayer_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO,ID_REFERENCIA_FK) VALUES('2', '', '1', '" . $usua . "', '" . $nombre . ' ' . $apellidos . "', '" . $direccion . "', '" . $ciudad . "', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO','" . $tipo_envio . "')");
+					$INSERT_MOVIMIENTO = mysqli_query($conex, "INSERT INTO ipsen_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO,ID_REFERENCIA_FK) VALUES('2', '', '1', '" . $usua . "', '" . $nombre . ' ' . $apellidos . "', '" . $direccion . "', '" . $ciudad . "', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO','" . $tipo_envio . "')");
 					echo mysqli_error($conex);
-					$SELECT_CANTIDAD = mysqli_query($conex,"SELECT * FROM bayer_referencia WHERE ID_REFERENCIA = '" . $tipo_envio . "'");
+					$SELECT_CANTIDAD = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA = '" . $tipo_envio . "'");
 					echo mysqli_error($conex);
 					while ($fila1 = mysqli_fetch_array($SELECT_CANTIDAD)) {
 						$CANTIDAD_I = $fila1['CANTIDAD'];
 					}
 					$TOTAL = $CANTIDAD_I - 1;
-					$UPDATE_REFERENCIA = mysqli_query($conex,"UPDATE bayer_referencia SET CANTIDAD='" . $TOTAL . "' WHERE ID_REFERENCIA='" . $tipo_envio . "'");
+					$UPDATE_REFERENCIA = mysqli_query($conex, "UPDATE ipsen_referencia SET CANTIDAD='" . $TOTAL . "' WHERE ID_REFERENCIA='" . $tipo_envio . "'");
 					echo mysqli_error($conex);
-					$SELECT_ID_MOVIMIENTO = mysqli_query($conex,"SELECT ID_MOVIMIENTOS FROM bayer_movimientos WHERE DESTINATARIO='" . $nombre . ' ' . $apellidos . "' AND TIPO_MOVIMIENTO='2' ORDER BY ID_MOVIMIENTOS DESC LIMIT 1");
+					$SELECT_ID_MOVIMIENTO = mysqli_query($conex, "SELECT ID_MOVIMIENTOS FROM ipsen_movimientos WHERE DESTINATARIO='" . $nombre . ' ' . $apellidos . "' AND TIPO_MOVIMIENTO='2' ORDER BY ID_MOVIMIENTOS DESC LIMIT 1");
 					echo mysqli_error($conex);
 					while ($fila_mov = mysqli_fetch_array($SELECT_ID_MOVIMIENTO)) {
 						$ID_ULT_MOVIMIENTO = $fila_mov['ID_MOVIMIENTOS'];
 					}
-					$INSERT_MOVIMIENTO_PACIENTE = mysqli_query($conex,"INSERT INTO bayer_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,
+					$INSERT_MOVIMIENTO_PACIENTE = mysqli_query($conex, "INSERT INTO ipsen_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,
 					ESTADO_PACIENTE_MOVIMIENTO)VALUES('" . $codigo_usuario2 . "','" . $ID_ULT_MOVIMIENTO . "','EN PROCESO')");
 					echo mysqli_error($conex);
-					$INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex,"INSERT INTO bayer_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
+					$INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO ipsen_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
 					echo mysqli_error($conex);
-					$verificar_cantidad = mysqli_query($conex,"SELECT * FROM bayer_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "' AND CANTIDAD<STOCK_MINIMO");
+					$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "' AND CANTIDAD<STOCK_MINIMO");
 					echo mysqli_error($conex);
 					$nreg_vrf = mysqli_num_rows($verificar_cantidad);
 	?>
@@ -101,7 +104,7 @@ require('../datos/parse_str.php');
 							}
 						}
 					} else {
-						$verificar_cantidad = mysqli_query($conex,"SELECT * FROM bayer_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
+						$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
 						echo mysqli_error($conex);
 						while ($cantidad = mysqli_fetch_array($verificar_cantidad)) {
 							$nombre_producto = $cantidad['MATERIAL'];
@@ -113,7 +116,7 @@ require('../datos/parse_str.php');
 											<img src="../presentacion/imagenes/advertencia2.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
 										</center>
 									</span>
-									<p class="error" style=" width:68.9%; margin:auto auto; font-size:80%;color:#F00; font-weight:bold">EL PRODUCTO  <span style=""><?php echo $nombre_producto ?></span>  ESTA AGOTADO POR FAVOR COMUNICARSE CON EL COORDINADOR.</p>
+									<p class="error" style=" width:68.9%; margin:auto auto; font-size:80%;color:#F00; font-weight:bold">EL PRODUCTO <span style=""><?php echo $nombre_producto ?></span> ESTA AGOTADO POR FAVOR COMUNICARSE CON EL COORDINADOR.</p>
 									<br />
 									<br />
 									<br />
@@ -140,55 +143,55 @@ require('../datos/parse_str.php');
 				?>
 					</table>
 					<?php
-					$BORRAR_PRODUCTOS_TEMPORAL = mysqli_query($conex,"DELETE  FROM bayer_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+					$BORRAR_PRODUCTOS_TEMPORAL = mysqli_query($conex, "DELETE  FROM ipsen_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 					echo mysqli_error($conex);
 				} else {
 					$tipo_envio = $_POST['tipo_envio'];
-					$listado_envio = mysqli_query($conex,"SELECT MATERIAL,ID_REFERENCIA FROM bayer_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
+					$listado_envio = mysqli_query($conex, "SELECT MATERIAL,ID_REFERENCIA FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
 					while ($opcion = mysqli_fetch_array($listado_envio)) {
 						$nombre_producto = $opcion['MATERIAL'];
 					}
 					/*SI EL ENVIO ES KIT DE BIENVENIDA*/
 					if ($nombre_producto == 'Kit de bienvenida') {
 						$tipo_envio = $_POST['tipo_envio'];
-						$verificar_cantidad = mysqli_query($conex,"SELECT * FROM bayer_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+						$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
 						echo mysqli_error($conex);
 						$cantidad_ref = mysqli_num_rows($verificar_cantidad);
 						if ($cantidad_ref > 0) {
-							$verificar_cantidad = mysqli_query($conex,"SELECT * FROM bayer_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'", $conex);
+							$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'", $conex);
 							echo mysqli_error($conex);
 							$cantidad = mysqli_num_rows($verificar_cantidad);
 							if ($cantidad > 0) {
-								$SELECT_ID_INV = mysqli_query($conex,"select ID_INVENTARIO from bayer_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
+								$SELECT_ID_INV = mysqli_query($conex, "select ID_INVENTARIO from ipsen_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
 								echo mysqli_error($conex);
 								while ($fila1 = mysqli_fetch_array($SELECT_ID_INV)) {
 									$ID_ULT_INV = $fila1['ID_INVENTARIO'];
 								}
-								/*$UPDATE_INVENTARIO=mysql_query("UPDATE bayer_inventario SET LUGAR_MATERIAL='".$codigo_usuario2."' WHERE ID_INVENTARIO='".$ID_ULT_INV."'",$conex);
+								/*$UPDATE_INVENTARIO=mysql_query("UPDATE ipsen_inventario SET LUGAR_MATERIAL='".$codigo_usuario2."' WHERE ID_INVENTARIO='".$ID_ULT_INV."'",$conex);
 						echo mysql_error($conex);*/
-								$INSERT_MOVIMIENTO = mysqli_query($conex,"INSERT INTO bayer_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO,ID_REFERENCIA_FK) VALUES('2', '', '1', '" . $usua . "', '" . $nombre . ' ' . $apellidos . "', '" . $direccion . "', '" . $ciudad . "', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO','" . $tipo_envio . "')");
+								$INSERT_MOVIMIENTO = mysqli_query($conex, "INSERT INTO ipsen_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO,ID_REFERENCIA_FK) VALUES('2', '', '1', '" . $usua . "', '" . $nombre . ' ' . $apellidos . "', '" . $direccion . "', '" . $ciudad . "', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO','" . $tipo_envio . "')");
 								echo mysqli_error($conex);
-								$SELECT_CANTIDAD = mysqli_query($conex,"SELECT * FROM bayer_referencia WHERE ID_REFERENCIA = '" . $tipo_envio . "'");
+								$SELECT_CANTIDAD = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA = '" . $tipo_envio . "'");
 								echo mysqli_error($conex);
 								while ($fila1 = mysqli_fetch_array($SELECT_CANTIDAD)) {
 									$CANTIDAD_I = $fila1['CANTIDAD'];
 								}
 								$TOTAL = $CANTIDAD_I - 1;
-								$UPDATE_REFERENCIA = mysqli_query($conex,"UPDATE bayer_referencia SET CANTIDAD='" . $TOTAL . "' WHERE ID_REFERENCIA='" . $tipo_envio . "'");
+								$UPDATE_REFERENCIA = mysqli_query($conex, "UPDATE ipsen_referencia SET CANTIDAD='" . $TOTAL . "' WHERE ID_REFERENCIA='" . $tipo_envio . "'");
 								echo mysqli_error($conex);
-								$SELECT_ID_MOVIMIENTO = mysqli_query($conex,"SELECT ID_MOVIMIENTOS FROM bayer_movimientos WHERE DESTINATARIO='" . $nombre . ' ' . $apellidos . "' AND TIPO_MOVIMIENTO='2' ORDER BY ID_MOVIMIENTOS DESC LIMIT 1");
+								$SELECT_ID_MOVIMIENTO = mysqli_query($conex, "SELECT ID_MOVIMIENTOS FROM ipsen_movimientos WHERE DESTINATARIO='" . $nombre . ' ' . $apellidos . "' AND TIPO_MOVIMIENTO='2' ORDER BY ID_MOVIMIENTOS DESC LIMIT 1");
 								echo mysqli_error($conex);
 								while ($fila_mov = mysqli_fetch_array($SELECT_ID_MOVIMIENTO)) {
 									$ID_ULT_MOVIMIENTO = $fila_mov['ID_MOVIMIENTOS'];
 								}
-								$INSERT_MOVIMIENTO_PACIENTE = mysqli_query($conex,"INSERT INTO bayer_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,
+								$INSERT_MOVIMIENTO_PACIENTE = mysqli_query($conex, "INSERT INTO ipsen_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,
 								ESTADO_PACIENTE_MOVIMIENTO)VALUES('" . $codigo_usuario2 . "','" . $ID_ULT_MOVIMIENTO . "','EN PROCESO')");
 								echo mysqli_error($conex);
-								$INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex,"INSERT INTO bayer_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
+								$INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO ipsen_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
 								echo mysqli_error($conex);
-								$BORRAR_PRODUCTOS_TEMPORAL = mysqli_query($conex,"DELETE  FROM bayer_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+								$BORRAR_PRODUCTOS_TEMPORAL = mysqli_query($conex, "DELETE  FROM ipsen_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 								echo mysqli_error($conex);
-								$verificar_cantidad = mysqli_query($conex,"SELECT ID_REFERENCIA FROM bayer_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "' AND CANTIDAD<STOCK_MINIMO");
+								$verificar_cantidad = mysqli_query($conex, "SELECT ID_REFERENCIA FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "' AND CANTIDAD<STOCK_MINIMO");
 								echo mysqli_error($conex);
 								$nreg_vrf = mysqli_num_rows($verificar_cantidad);
 								if ($nreg_vrf > 0) {
@@ -198,7 +201,7 @@ require('../datos/parse_str.php');
 											<img src="../presentacion/imagenes/advertencia.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
 										</center>
 									</span>
-									<p class="error" style=" width:68.9%; margin:auto auto; font-size:80%;">ADVERTENIA SE ESTA AGOTANDO EL PRODUCTO  <span style="color:#F00; font-weight:bold"><?php echo $nombre_producto ?></span>  POR FAVOR COMUNICARSE CON EL COORDINADOR.</p>
+									<p class="error" style=" width:68.9%; margin:auto auto; font-size:80%;">ADVERTENIA SE ESTA AGOTANDO EL PRODUCTO <span style="color:#F00; font-weight:bold"><?php echo $nombre_producto ?></span> POR FAVOR COMUNICARSE CON EL COORDINADOR.</p>
 									<br />
 									<br />
 									<br />
@@ -211,14 +214,14 @@ require('../datos/parse_str.php');
 										<img src="../presentacion/imagenes/advertencia2.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
 									</center>
 								</span>
-								<p class="error" style=" width:68.9%; margin:auto auto; font-size:80%;color:#F00; font-weight:bold">EL PRODUCTO  <span style=""><?php echo $nombre_producto ?></span>  ESTA AGOTADO POR FAVOR COMUNICARSE CON EL COORDINADOR.</p>
+								<p class="error" style=" width:68.9%; margin:auto auto; font-size:80%;color:#F00; font-weight:bold">EL PRODUCTO <span style=""><?php echo $nombre_producto ?></span> ESTA AGOTADO POR FAVOR COMUNICARSE CON EL COORDINADOR.</p>
 								<br />
 								<br />
 								<br />
 							<?php
 							}
 						} else {
-							$verificar_cantidad = mysqli_query($conex,"SELECT * FROM bayer_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
+							$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "'");
 							echo mysqli_error($conex);
 							while ($cantidad = mysqli_fetch_array($verificar_cantidad)) {
 								$nombre_producto = $cantidad['MATERIAL'];
@@ -230,7 +233,7 @@ require('../datos/parse_str.php');
 												<img src="../presentacion/imagenes/advertencia2.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
 											</center>
 										</span>
-										<p class="error" style=" width:68.9%; margin:auto auto; font-size:80%;color:#F00; font-weight:bold">EL PRODUCTO  <span style=""><?php echo $nombre_producto ?></span>  ESTA AGOTADO POR FAVOR COMUNICARSE CON EL COORDINADOR.</p>
+										<p class="error" style=" width:68.9%; margin:auto auto; font-size:80%;color:#F00; font-weight:bold">EL PRODUCTO <span style=""><?php echo $nombre_producto ?></span> ESTA AGOTADO POR FAVOR COMUNICARSE CON EL COORDINADOR.</p>
 										<br />
 										<br />
 										<br />
