@@ -17,7 +17,6 @@ if ($privilegios != '' && $usua != '') {
 
     <body>
         <?php
-        // include('../logica/consultas_usuarios.php');
         $url = "../presentacion/listado_usuario.php";
         $SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_operador_logistico ORDER BY ID_OPERADOR_LOGISTICO ASC");
         $num_total = mysqli_num_rows($SELECT_USUARIO_TOTAL);
@@ -72,12 +71,8 @@ if ($privilegios != '' && $usua != '') {
                                 echo '<a href="' . $url . '?pagina=' . ($pagina - 1) . '"><img src="../presentacion/imagenes/izq.gif" border="0"></a>';
                             for ($i = 1; $i <= $total_paginas; $i++) {
                                 if ($pagina == $i)
-                                    //si muestro el indice de la pagina actual, no coloco enlace
                                     echo "<label style='font-size:120%; color:#000;'> $pagina </label>";
-                                else
-                                    //si el indice no corresponde con la pagina mostrada actualmente,co
-                                    //coloco el enlace para ir a esa pagina
-                                    echo '  <a href="' . $url . '?pagina=' . $i . '" style="font-size:110%;">' . $i . '</a>  ';
+                                echo '  <a href="' . $url . '?pagina=' . $i . '" style="font-size:110%;">' . $i . '</a>  ';
                             }
                             if ($pagina != $total_paginas)
                                 echo '<a href="' . $url . '?pagina=' . ($pagina + 1) . '"><img src="../presentacion/imagenes/der.gif" border="0"></a>';
@@ -92,7 +87,7 @@ if ($privilegios != '' && $usua != '') {
         ?>
             <span style="margin-top:1%;">
                 <center>
-                    <img src="../presentacion/imagenes/advertencia.png" style="width:70px; margin-top:1%;" />
+                    <img src="../presentacion/imagenes/advertencia2.png" style="width:70px; margin-top:1%;" />
                 </center>
             </span>
             <p class="error" style=" width:68.9%; margin:auto auto;">

@@ -36,76 +36,90 @@ if ($privilegios != '' && $usua != '') {
 		<form id="form1" name="tuformulario" method="post" action="../logica/actualizar_usuario.php" onkeydown="return filtro(2)">
 			<br />
 			<br />
-			<center>
-				<span style="font-weight:bold">DATOS DE USUAIO</span>
-			</center>
+			<table width="100%">
+				<tr>
+					<td style="background-color:#0C68B0;text-align:center">
+						<span style="color:#FFF;">DATOS DE USUAIO</span>
+					</td>
+				</tr>
+			</table>
 			<br />
 			<br />
-			<div class="div2">
-				<span>USUARIO</span>
-			</div>
-			<div class="div">
-				<input type="text" name="OCUL" id="OCUL" placeholder="OCUL" maxlength="0" style=" display:none" value="<?php echo $ID_USUARIO ?>" />
-				<input type="text" name="USURARIO" id="USURARIO" placeholder="USUARIO" readonly value="<?php echo $USER ?>" />
-			</div>
-			<div class="div2">
-				<span>CONTRASE&Ntilde;A</span>
-			</div>
-			<div class="div" style="display:inline-block">
-				<input type="password" name="CONTRASENA" id="CONTRASENA" placeholder="CONTRASE&Ntilde;A" value="<?php echo $CONTRASENA ?>" style="width:58%;" maxlength="16" readonly="readonly" />
-				<input type="submit" class="btn_restablecer" name="restablecer" value="restablecer" title="RESTABLECER CONTRASE&Ntilde;A" style="width:36%;" />
-			</div>
+			<table width="100%">
+				<tr>
+					<td>
+						<span>USUARIO</span>
+					</td>
+					<td>
+						<input type="text" name="OCUL" id="OCUL" placeholder="OCUL" maxlength="0" style=" display:none" value="<?php echo $ID_USUARIO ?>" />
+						<input type="text" name="USURARIO" id="USURARIO" placeholder="USUARIO" readonly value="<?php echo $USER ?>" />
+					</td>
+					<td>
+						<span>CONTRASE&Ntilde;A</span>
+					</td>
+					<td>
+						<input type="password" name="CONTRASENA" id="CONTRASENA" placeholder="CONTRASE&Ntilde;A" value="<?php echo $CONTRASENA ?>" style="width:58%;" maxlength="16" readonly="readonly" />
+						<input type="submit" class="btn_restablecer" name="restablecer" value="restablecer" title="RESTABLECER CONTRASE&Ntilde;A" style="width:36%;" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>NOMBRE(S)</span>
+					</td>
+					<td>
+						<input type="text" name="NOMBRES" id="NOMBRES" placeholder="NOMBRES" value="<?php echo $NOMBRES ?>" maxlength="50" />
+					</td>
+					<td>
+						<span>APELLIDO(S)</span>
+					</td>
+					<td>
+						<input type="text" name="APELLIDO" id="APELLIDO" placeholder="APELLIDO" value="<?php echo $APELLIDOS ?>" maxlength="50" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>NUMERO DE CONTACTO</span>
+					</td>
+					<td>
+						<input type="text" name="NUM_TEL" id="NUM_TEL" placeholder="NUMERO DE CONTACTO" value="<?php echo $CELULAR ?>" maxlength="10" />
+					</td>
+					<td>
+						<span>PERFIL</span>
+					</td>
+					<?php
+					if ($privilegios == 1) {
+						$PERFIL = 'ADMINISTRADOR(A)';
+					}
+					if ($privilegios == 2) {
+						$PERFIL = 'ASESOR';
+					}
+					if ($privilegios == 3) {
+						$PERFIL = 'BODEGA';
+					}
+					if ($privilegios == 4) {
+						$PERFIL = 'FUNDEM';
+					}
+					if ($privilegios == 5) {
+						$PERFIL = 'CLIENTE';
+					}
+					?>
+					<td>
+						<input type="text" name="PERFIL" id="PERFIL" placeholder="PERFIL" readonly value="<?php echo $PERFIL ?>" />
+					</td>
+				</tr>
+			</table>
 			<br />
 			<br />
-			<div class="div2">
-				<span>NOMBRE(S)</span>
-			</div>
-			<div class="div">
-				<input type="text" name="NOMBRES" id="NOMBRES" placeholder="NOMBRES" value="<?php echo $NOMBRES ?>" maxlength="50" />
-			</div>
-			<div class="div2">
-				<span>APELLIDO(S)</span>
-			</div>
-			<div class="div">
-				<input type="text" name="APELLIDO" id="APELLIDO" placeholder="APELLIDO" value="<?php echo $APELLIDOS ?>" maxlength="50" />
-			</div>
 			<br />
-			<br />
-			<div class="div2">
-				<span>NUMERO DE CONTACTO</span>
-			</div>
-			<div class="div">
-				<input type="text" name="NUM_TEL" id="NUM_TEL" placeholder="NUMERO DE CONTACTO" value="<?php echo $CELULAR ?>" maxlength="10" />
-			</div>
-			<div class="div2">
-				<span>PERFIL</span>
-			</div>
-			<?php
-			if ($privilegios == 1) {
-				$PERFIL = 'ADMINISTRADOR(A)';
-			}
-			if ($privilegios == 2) {
-				$PERFIL = 'ASESOR';
-			}
-			if ($privilegios == 3) {
-				$PERFIL = 'BODEGA';
-			}
-			if ($privilegios == 4) {
-				$PERFIL = 'FUNDEM';
-			}
-			if ($privilegios == 5) {
-				$PERFIL = 'CLIENTE';
-			}
-			?>
-			<div class="div">
-				<input type="text" name="PERFIL" id="PERFIL" placeholder="PERFIL" readonly value="<?php echo $PERFIL ?>" />
-			</div>
-			<br />
-			<br />
-			<br />
-			<center>
-				<input id="MODIFICAR_USU" name="MODIFICAR_USU" type="submit" value="MODIFICAR" class="btn_actualizar" onclick="return validar(tuformulario,1)" />
-			</center>
+			<table width="100%">
+				<tr>
+					<td style="background-color:#0C68B0;text-align:center">
+						<center>
+							<input id="MODIFICAR_USU" name="MODIFICAR_USU" type="submit" value="MODIFICAR" class="btn_actualizar" onclick="return validar(tuformulario,1)" />
+						</center>
+					</td>
+				</tr>
+			</table>
 		</form>
 	</body>
 <?php

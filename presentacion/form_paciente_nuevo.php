@@ -771,7 +771,7 @@ if ($privilegios != '' && $usua != '') {
                                     <input name="codigo_usuario2" type="hidden" id="codigo_usuario2" max="10" readonly="readonly" value="<?php echo $ID_PACIENTE; ?>" />
                                 </td>
                                 <td>
-                                    <span>Estado del Paciente</span>
+                                    <span>Estado del Paciente<span class="asterisco">*</span></span>
                                 </td>
                                 <td>
                                     <select name="estado_paciente" id="estado_paciente">

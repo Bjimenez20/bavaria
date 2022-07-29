@@ -3,6 +3,7 @@ include('../logica/session.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
@@ -13,6 +14,7 @@ require('../datos/parse_str.php');
 require('../datos/conex.php');
 if ($privilegios != '' && $usua != '') {
 ?>
+
     <body>
         <?php
         include('../logica/consultas_usuarios.php');
@@ -35,10 +37,8 @@ if ($privilegios != '' && $usua != '') {
                     ?>
                 </tr>
                 <?PHP
-                //Limito la busqueda
                 $TAMANO_PAGINA = 10;
                 $pagina = false;
-                //examino la pagina a mostrar y el inicio del registro a mostrar
                 if (isset($_GET["pagina"]))
                     $pagina = $_GET["pagina"];
                 if (!$pagina) {
@@ -47,12 +47,7 @@ if ($privilegios != '' && $usua != '') {
                 } else {
                     $inicio = ($pagina - 1) * $TAMANO_PAGINA;
                 }
-                //calculo el total de paginas
                 $total_paginas = ceil($num_total / $TAMANO_PAGINA);
-                //pongo el numero de registros total, el tamaño de pagina y la pagina que se muestra
-                /*echo '<h3>Numero de articulos: '.$num_total .'</h3>';
-            echo '<h3>En cada pagina se muestra '.$TAMANO_PAGINA.' articulos ordenados por fecha de forma descendente.</h3>';
-            echo '<h3>Mostrando la pagina '.$pagina.' de ' .$total_paginas.' paginas.</h3>';*/
                 $consulta = "$SELECT_USUARIO " . $inicio . "," . $TAMANO_PAGINA;
                 $consulta_ref = mysqli_query($conex, $consulta);
                 while ($fila1 = mysqli_fetch_array($consulta_ref)) {
@@ -105,11 +100,8 @@ if ($privilegios != '' && $usua != '') {
                                 echo '<a href="' . $url . '?pagina=' . ($pagina - 1) . '"><img src="../presentacion/imagenes/izq.gif" border="0"></a>';
                             for ($i = 1; $i <= $total_paginas; $i++) {
                                 if ($pagina == $i)
-                                    //si muestro el indice de la pagina actual, no coloco enlace
                                     echo "<label style='font-size:120%; color:#000;'> $pagina </label>";
                                 else
-                                    //si el indice no corresponde con la pagina mostrada actualmente,co
-                                    //coloco el enlace para ir a esa pagina
                                     echo '  <a href="' . $url . '?pagina=' . $i . '" style="font-size:110%;">' . $i . '</a>  ';
                             }
                             if ($pagina != $total_paginas)
@@ -124,8 +116,9 @@ if ($privilegios != '' && $usua != '') {
         } else {
         ?>
             <span style="margin-top:1%;">
+                <br><br><br><br><br>
                 <center>
-                    <img src="../presentacion/imagenes/advertencia.png" style="width:70px; margin-top:1%;" />
+                    <img src="../presentacion/imagenes/advertencia2.png" style="width:70px; margin-top:1%;" />
                 </center>
             </span>
             <p class="error" style=" width:68.9%; margin:auto auto;">
@@ -144,4 +137,5 @@ if ($privilegios != '' && $usua != '') {
 <?php
 }
 ?>
+
 </html>

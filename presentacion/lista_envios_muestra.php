@@ -24,7 +24,7 @@
 		.error {
 			font-size: 130%;
 			font-weight: bold;
-			color: #fb8305;
+			color: red;
 			text-transform: uppercase;
 			background-color: transparent;
 			text-align: center;
@@ -39,10 +39,6 @@
 			background-size: cover;
 		}
 
-		/*form 
-{
-    background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
-}*/
 		@media screen and (max-width:1000px) {
 			html {
 				background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
@@ -76,14 +72,6 @@
 				}
 			})
 		}
-		/*$(document).ready(function()
-		{
-			$('#ok').click(function()
-			{
-				alert('ok');
-				crear_codigo();
-			});
-		});*/
 	</script>
 </head>
 <?php
@@ -112,14 +100,12 @@ if (isset($_POST['registrar'])) {
 	$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_envio_muestra WHERE PAP='$ID_PACIENTE' ORDER BY FECHA_CREACION ASC");
 	echo mysqli_error($conex);
 	$SELECT_SOLICITUDES = "SELECT * FROM ipsen_envio_muestra WHERE PAP='$ID_PACIENTE' ORDER BY FECHA_CREACION ASC LIMIT";
-	//include('../logica/consultas_solicitudes.php');
 	$url = "../presentacion/lista_envios_muestra.php";
 	$num_total = mysqli_num_rows($SELECT_SOLICITUDES_TOTAL);
 	if ($num_total > 0) {
 	?>
 		<table border="0" bordercolor="#A1A1A1" width="100%" rules="cols">
 			<tr>
-				<!--<th class="botones">ID MOVIMIENTOS</th>-->
 				<th class="botones">PAP</th>
 				<th class="botones">ESTATUS PACIENTE</th>
 				<th class="botones">DOSIS</th>
@@ -133,10 +119,8 @@ if (isset($_POST['registrar'])) {
 				<th class="botones">ACTUALIZAR</th>
 			</tr>
 			<?PHP
-			//Limito la busqueda
 			$TAMANO_PAGINA = 10;
 			$pagina = false;
-			//examino la pagina a mostrar y el inicio del registro a mostrar
 			if (isset($_GET["pagina"]))
 				$pagina = $_GET["pagina"];
 			if (!$pagina) {
@@ -145,12 +129,7 @@ if (isset($_POST['registrar'])) {
 			} else {
 				$inicio = ($pagina - 1) * $TAMANO_PAGINA;
 			}
-			//calculo el total de paginas
 			$total_paginas = ceil($num_total / $TAMANO_PAGINA);
-			//pongo el numero de registros total, el tamaño de pagina y la pagina que se muestra
-			/*echo '<h3>Numero de articulos: '.$num_total .'</h3>';
-		echo '<h3>En cada pagina se muestra '.$TAMANO_PAGINA.' articulos ordenados por fecha de forma descendente.</h3>';
-		echo '<h3>Mostrando la pagina '.$pagina.' de ' .$total_paginas.' paginas.</h3>';*/
 			$consulta = "$SELECT_SOLICITUDES " . $inicio . "," . $TAMANO_PAGINA;
 			$consulta_sol = mysqli_query($conex, $consulta);
 			$x = 0;
@@ -160,7 +139,6 @@ if (isset($_POST['registrar'])) {
 				<form name="solicitud" id="solicitud" method="post" action="../presentacion/lista_envios_muestra.php?xxx=<?php echo base64_encode($ID_PACIENTE) ?>" style="width:100%; margin-top:50px;">
 					<tr align="center" style="background:#faf6f3;">
 						<td><?php
-							//      echo "\n<input type=hidden name='id$x' value='".$fila1["ID_MOVIMIENTOS"]."'>";
 							?>
 							<input type="text" name="ID_ENVIO" id="ID_ENVIO" value="<?php echo $fila1["ID_ENVIO_MUESTRA"] ?>" style="display:none;" />
 							<?php echo 'PAP' . $fila1['PAP']; ?>
@@ -183,7 +161,6 @@ if (isset($_POST['registrar'])) {
 						<td><?php echo $fila1['USUARIO'] ?></td>
 						<td><textarea name="OBSERVACION" cols="20%" rows="2" required="required" id="OBSERVACION"><?php echo $fila1['OBSERVACION'] ?></textarea></td>
 						<td>
-							<!--       <img src="imagenes/CHULO.png" id="ok" width="25" height="28" title="Guardar Codigo" onclick="crear_codigo()"/>-->
 							<input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_actualizar2" />
 						</td>
 					</tr>
@@ -200,11 +177,8 @@ if (isset($_POST['registrar'])) {
 							echo '<a href="' . $url . '?pagina=' . ($pagina - 1) . '&xxx=' . base64_encode($ID_PACIENTE) . '"><img src="../presentacion/imagenes/izq.gif" border="0"></a>';
 						for ($i = 1; $i <= $total_paginas; $i++) {
 							if ($pagina == $i)
-								//si muestro el indice de la pagina actual, no coloco enlace
 								echo "<label style='font-size:120%; color:#000;'> $pagina </label>";
 							else
-								//si el indice no corresponde con la pagina mostrada actualmente,co
-								//coloco el enlace para ir a esa pagina
 								echo '  <a href="' . $url . '?pagina=' . $i . '&xxx=' . base64_encode($ID_PACIENTE) . '" style="font-size:110%;">' . $i . '</a>  ';
 						}
 						if ($pagina != $total_paginas)
@@ -219,7 +193,7 @@ if (isset($_POST['registrar'])) {
 		?>
 			<span style="margin-top:1%;">
 				<center>
-					<img src="../presentacion/imagenes/advertencia.png" style="width:70px; margin-top:1%;" />
+					<img src="../presentacion/imagenes/advertencia2.png" style="width:70px; margin-top:1%;" />
 				</center>
 			</span>
 			<p class="error" style=" width:68.9%; margin:auto auto;">

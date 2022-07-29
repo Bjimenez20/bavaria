@@ -19,7 +19,6 @@ if ($privilegios != '' && $usua != '') {
     <body>
         <table style="border:0px solid transparent;" width="100%;">
             <tr>
-                <!--<th class="botones">ID MOVIMIENTOS</th>-->
                 <th class="botones">TIPO MOVIMIENTO</th>
                 <th class="botones"># REMISION</th>
                 <th class="botones">REFERENCIA</th>
@@ -37,7 +36,6 @@ if ($privilegios != '' && $usua != '') {
             while ($fila1 = mysqli_fetch_array($consulta_inv)) {
             ?>
                 <tr align="center">
-                    <!--<td><?php echo $fila1['ID_MOVIMIENTOS'] ?></td>-->
                     <?PHP
                     $TIPO_MO = $fila1['TIPO_MOVIMIENTO'];
                     if ($TIPO_MO == '1')

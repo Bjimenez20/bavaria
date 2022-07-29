@@ -13,7 +13,7 @@ include('../logica/session.php')
 		.error {
 			font-size: 130%;
 			font-weight: bold;
-			color: #fb8305;
+			color: red;
 			text-transform: uppercase;
 			background-color: transparent;
 			text-align: center;
@@ -135,14 +135,12 @@ if (isset($_POST['buscar'])) {
 				$SELECT_SOLICITUDES = "SELECT * FROM ipsen_novedades WHERE FECHA_RESPUESTA > '" . $hoy . "' AND NOVEDADES = '" . $NOVEDAD . "' AND ESTADO = '" . $ESTADO . "' ORDER BY FECHA_RESPUESTA ASC LIMIT";
 			}
 		}
-		//include('../logica/consultas_solicitudes.php');
 		$url = "../presentacion/listado_novedades.php";
 		$num_total = mysqli_num_rows($SELECT_SOLICITUDES_TOTAL);
 		if ($num_total > 0) {
 		?>
 			<table border="0" bordercolor="#A1A1A1" width="100%" rules="cols">
 				<tr>
-					<!--<th class="botones">ID</th> -->
 					<th class="botones">PAP</th>
 					<th class="botones">ASUNTO</th>
 					<th class="botones">PRODUCTO</th>
@@ -155,10 +153,8 @@ if (isset($_POST['buscar'])) {
 					<th class="botones">ACTUALIZAR</th>
 				</tr>
 				<?PHP
-				//Limito la busqueda
 				$TAMANO_PAGINA = 10;
 				$pagina = false;
-				//examino la pagina a mostrar y el inicio del registro a mostrar
 				if (isset($_GET["pagina"]))
 					$pagina = $_GET["pagina"];
 				if (!$pagina) {
@@ -167,12 +163,7 @@ if (isset($_POST['buscar'])) {
 				} else {
 					$inicio = ($pagina - 1) * $TAMANO_PAGINA;
 				}
-				//calculo el total de paginas
 				$total_paginas = ceil($num_total / $TAMANO_PAGINA);
-				//pongo el numero de registros total, el tamaño de pagina y la pagina que se muestra
-				/*echo '<h3>Numero de articulos: '.$num_total .'</h3>';
-		echo '<h3>En cada pagina se muestra '.$TAMANO_PAGINA.' articulos ordenados por fecha de forma descendente.</h3>';
-		echo '<h3>Mostrando la pagina '.$pagina.' de ' .$total_paginas.' paginas.</h3>';*/
 				$consulta = "$SELECT_SOLICITUDES " . $inicio . "," . $TAMANO_PAGINA;
 				$consulta_sol = mysqli_query($conex, $consulta);
 				$x = 0;
@@ -180,31 +171,47 @@ if (isset($_POST['buscar'])) {
 					$x = $x + 1;
 				?>
 					<tr align="center">
-						<!--<td>               -->
 						<input type="hidden" name="ID_NOVEDAD" value="<?php echo $fila1["ID"] ?>" />
-						<!--</td>
-                <td><?php //echo $fila1['ID']
-					?></td>-->
-						<td><?php echo 'PAP' . $fila1['PAP'] ?></td>
-						<td><?php echo $fila1['ASUNTO'] ?></td>
-						<td><?php echo $fila1['PRODUCTO'] ?></td>
-						<td><?php echo $fila1['NOVEDADES'] ?></td>
-						<td><?php echo $fila1['OBSERVACIONES'] ?></td>
-						<td><?php echo $fila1['FECHA_REPORTE']; ?></td>
+						<td>
+							<?php echo 'PAP' . $fila1['PAP'] ?>
+						</td>
+						<td>
+							<?php echo $fila1['ASUNTO'] ?>
+						</td>
+						<td>
+							<?php echo $fila1['PRODUCTO'] ?>
+						</td>
+						<td>
+							<?php echo $fila1['NOVEDADES'] ?>
+						</td>
+						<td>
+							<?php echo $fila1['OBSERVACIONES'] ?>
+						</td>
+						<td>
+							<?php echo $fila1['FECHA_REPORTE']; ?>
+						</td>
 						<?php if ($fila1['FECHA_RESPUESTA'] < $hoy and $fila1['ESTADO'] != "FINALIZADO") { ?>
-							<td style="background:#F30"><?php echo $fila1['FECHA_RESPUESTA'] ?></td>
+							<td style="background:#F30">
+								<?php echo $fila1['FECHA_RESPUESTA'] ?>
+							</td>
 						<?php } ?>
 						<?php if ($fila1['FECHA_RESPUESTA'] == $hoy and $fila1['ESTADO'] != "FINALIZADO") { ?>
-							<td style="background:#FC0"><?php echo $fila1['FECHA_RESPUESTA'] ?></td>
+							<td style="background:#FC0">
+								<?php echo $fila1['FECHA_RESPUESTA'] ?>
+							</td>
 						<?php } ?>
 						<?php if ($fila1['FECHA_RESPUESTA'] <= $hoy and $fila1['ESTADO'] == "FINALIZADO") { ?>
-							<td><?php echo $fila1['FECHA_RESPUESTA'] ?></td>
+							<td>
+								<?php echo $fila1['FECHA_RESPUESTA'] ?>
+							</td>
 						<?php } ?>
 						<?php if ($fila1['FECHA_RESPUESTA'] > $hoy) { ?>
-							<td><?php echo $fila1['FECHA_RESPUESTA'] ?></td>
+							<td>
+								<?php echo $fila1['FECHA_RESPUESTA'] ?>
+							</td>
 						<?php } ?>
-						<td><?php echo $fila1['OBSERVACION_RESPUESTA'] ?>
-							<!--    <textarea name="OBSERVACION_RESPUESTA" cols="20" class="tipo1" id="OBSERVACION_RESPUESTA" style="width:auto"></textarea> -->
+						<td>
+							<?php echo $fila1['OBSERVACION_RESPUESTA'] ?>
 						</td>
 						<?php if ($fila1['ESTADO'] == "NUEVO") { ?>
 							<td style="background:#090">
@@ -218,7 +225,6 @@ if (isset($_POST['buscar'])) {
 						echo $fila1['ESTADO'] ?>
 							</td>
 							<td>
-								<!-- <input type="submit" name="actualizar" id="actualizar" value="Actualizar" class="btn_buscar" title="Actualizar"/> -->
 								<a href="../presentacion/novedades_actualizar.php?artid=<?php echo base64_encode($fila1['ID']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="15" height="15" /></a>
 							</td>
 					</tr>
@@ -234,11 +240,8 @@ if (isset($_POST['buscar'])) {
 								echo '<a href="' . $url . '?pagina=' . ($pagina - 1) . '&xxx=' . base64_encode($ID_PACIENTE) . '"><img src="../presentacion/imagenes/izq.gif" border="0"></a>';
 							for ($i = 1; $i <= $total_paginas; $i++) {
 								if ($pagina == $i)
-									//si muestro el indice de la pagina actual, no coloco enlace
 									echo "<label style='font-size:120%; color:#000;'> $pagina </label>";
 								else
-									//si el indice no corresponde con la pagina mostrada actualmente,co
-									//coloco el enlace para ir a esa pagina
 									echo '  <a href="' . $url . '?pagina=' . $i . '&xxx=' . base64_encode($ID_PACIENTE) . '" style="font-size:110%;">' . $i . '</a>  ';
 							}
 							if ($pagina != $total_paginas)
@@ -252,11 +255,13 @@ if (isset($_POST['buscar'])) {
 		} else {
 			?>
 				<span style="margin-top:1%;">
+					<br><br><br><br><br><br>
 					<center>
-						<img src="../presentacion/imagenes/advertencia.png" style="width:70px; margin-top:1%;" />
+						<img src="../presentacion/imagenes/advertencia2.png" style="width:70px; margin-top:1%;" />
+						<br>
 					</center>
 				</span>
-				<p class="error" style=" width:68.9%; margin:auto auto;">
+				<p class="error" style=" width:90%; margin:auto auto;">
 					<span style="border-left-color:#fff">NO SE ENCUENTRAR REGISTROR CON ESTA INFORMACI&Oacute;N.</span>
 				</p>
 			<?php

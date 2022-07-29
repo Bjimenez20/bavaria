@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -14,7 +15,7 @@ include('../logica/session.php')
 		.error {
 			font-size: 130%;
 			font-weight: bold;
-			color: #fb8305;
+			color: red;
 			text-transform: uppercase;
 			background-color: transparent;
 			text-align: center;
@@ -39,6 +40,7 @@ require('../datos/parse_str.php');
 require('../datos/conex.php');
 if ($privilegios != '' && $usua != '') {
 ?>
+
 	<body>
 		<form name="solicitud" id="solicitud" method="post" class="letra">
 			<?php
@@ -66,15 +68,12 @@ if ($privilegios != '' && $usua != '') {
 						<th class="botones">CANTIDAD</th>
 						<th class="botones">PAP PACIENTE</th>
 						<th class="botones">DIRECCION</th>
-						<!--<th class="botones">DESTINATARIO</th>-->
 						<th class="botones">ESTADO</th>
 						<th class="botones"># GUIA</th>
 					</tr>
 					<?PHP
-					//Limito la busqueda
 					$TAMANO_PAGINA = 10;
 					$pagina = false;
-					//examino la pagina a mostrar y el inicio del registro a mostrar
 					if (isset($_GET["pagina"]))
 						$pagina = $_GET["pagina"];
 					if (!$pagina) {
@@ -83,12 +82,7 @@ if ($privilegios != '' && $usua != '') {
 					} else {
 						$inicio = ($pagina - 1) * $TAMANO_PAGINA;
 					}
-					//calculo el total de paginas
 					$total_paginas = ceil($num_total / $TAMANO_PAGINA);
-					//pongo el numero de registros total, el tamaño de pagina y la pagina que se muestra
-					/*echo '<h3>Numero de articulos: '.$num_total .'</h3>';
-			echo '<h3>En cada pagina se muestra '.$TAMANO_PAGINA.' articulos ordenados por fecha de forma descendente.</h3>';
-			echo '<h3>Mostrando la pagina '.$pagina.' de ' .$total_paginas.' paginas.</h3>';*/
 					$consulta = "$SELECT_SOLICITUDES " . $inicio . "," . $TAMANO_PAGINA;
 					$consulta_sol = mysqli_query($conex, $consulta);
 					$x = 0;
@@ -108,7 +102,6 @@ if ($privilegios != '' && $usua != '') {
 								<input type="hidden" name="<?php echo "ID_PACIENTE" . $x; ?>" value="<?php echo $fila1["LUGAR_MATERIAL"] ?>" />
 							</td>
 							<td><?php echo $fila1['DIRECCION_DESTINATARIO'] ?></td>
-							<!--<td><?php echo $fila1['DESTINATARIO'] ?></td>-->
 							<td><?php echo $fila1['ESTADO_MOVIMIENTO'] ?></td>
 							<td><?php echo $fila1['NO_REMICION'] ?></td>
 						</tr>
@@ -124,11 +117,8 @@ if ($privilegios != '' && $usua != '') {
 									echo '<a href="' . $url . '?pagina=' . ($pagina - 1) . '&z=' . base64_encode(1) . '&xx=' . base64_encode($fecha_ini) . '&xxx=' . base64_encode($fecha_fin) . '&xxxx=' . base64_encode($TIPO_SOLICITUD) . '"><img src="../presentacion/imagenes/izq.gif" border="0"></a>';
 								for ($i = 1; $i <= $total_paginas; $i++) {
 									if ($pagina == $i)
-										//si muestro el indice de la pagina actual, no coloco enlace
 										echo "<label style='font-size:120%; color:#000;'> $pagina </label>";
 									else
-										//si el indice no corresponde con la pagina mostrada actualmente,co
-										//coloco el enlace para ir a esa pagina
 										echo '  <a href="' . $url . '?pagina=' . $i . '&z=' . base64_encode(1) . '&xx=' . base64_encode($fecha_ini) . '&xxx=' . base64_encode($fecha_fin) . '&xxxx=' . base64_encode($TIPO_SOLICITUD) . '" style="font-size:110%;">' . $i . '</a>  ';
 								}
 								if ($pagina != $total_paginas)
@@ -143,7 +133,7 @@ if ($privilegios != '' && $usua != '') {
 				?>
 					<span style="margin-top:1%;">
 						<center>
-							<img src="../presentacion/imagenes/advertencia.png" style="width:70px; margin-top:1%;" />
+							<img src="../presentacion/imagenes/advertencia2.png" style="width:70px; margin-top:1%;" />
 						</center>
 					</span>
 					<p class="error" style=" width:68.9%; margin:auto auto;">
@@ -164,4 +154,5 @@ if ($privilegios != '' && $usua != '') {
 <?php
 }
 ?>
+
 </html>
