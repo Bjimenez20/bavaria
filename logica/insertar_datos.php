@@ -400,7 +400,7 @@ require_once('session.php');
 				</center>
 			</span>
 			<p class="error" style=" width:68.9%; margin:auto auto;">
-				<span style="border-left-color:#fff">ERROR. VERIFIQUE LOS DATOS REGISTRADOS.</span>
+				<span style="border-left-color:#fff">ERROR VERIFIQUE LOS DATOS REGISTRADOS.</span>
 			</p>
 			<br />
 			<br />

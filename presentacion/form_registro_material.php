@@ -146,15 +146,15 @@ if ($privilegios != '' && $usua != '') {
 	<body class="body" style="width:100%;">
 		<form name="miformulario" id="miformulario" method="post" action="form_registro_material.php" onKeyDown="return filtro(2)" class="letra">
 			<br><br><br><br>
-			<div style="width:100%; background-color:#0C68B0; height:80%"></div>
+			<div style="width:100%; background-color:#AEDC5A; height:80%"></div>
 			<table width="100%">
 				<tr>
-					<td style="background-color:#0C68B0;text-align:center">
+					<td style="background-color:#AEDC5A;text-align:center">
 						<span style="color:#FFF;">REGISTRO MATERIAL</span>
 					</td>
 				</tr>
 			</table>
-			<br><br>
+			<br>
 			<table width="100%">
 				<tr>
 					<td>
@@ -364,15 +364,10 @@ if ($privilegios != '' && $usua != '') {
 			<center>
 				<input id="Agregar" name="Agregar" type="submit" value="INICIAR SESION" class="btn_agregar" Onclick="return validar(miformulario)" style="display:none" />
 			</center>
-			<table width="100%">
-				<tr>
-					<td style="background-color:#0C68B0;text-align:center">
-						<center>
-							<input id="Continuar" name="Continuar" type="submit" value="continuar" class="btn_continuar" formaction="../logica/ingresar_material.php?INSER_SERIAL=<?php echo 'NO'; ?>" style="display:none" Onclick="return validar(miformulario)" />
-						</center>
-					</td>
-				</tr>
-			</table>
+
+			<center>
+				<input id="Continuar" name="Continuar" type="submit" value="continuar" class="btn_continuar" formaction="../logica/ingresar_material.php?INSER_SERIAL=<?php echo 'NO'; ?>" style="display:none" Onclick="return validar(miformulario)" />
+			</center>
 			<?php
 			if (isset($_POST['Agregar'])) {
 				$OPCION_SERIAL = $_POST['OPCION'];

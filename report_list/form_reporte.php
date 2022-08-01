@@ -117,7 +117,7 @@ error_reporting(0);
 </head>
 
 <body>
-	<form method="post" action="reporte_excel.php" style="width:50%; margin:auto auto;" class="letra">
+	<form method="post" action="reporte_excel.php" style="width:100%; margin:auto auto;" class="letra">
 		<p class="aviso3" style=" width:68.9%; margin:auto auto;">EXPORTAR A EXCEL.</p>
 		<br />
 		<br />
