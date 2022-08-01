@@ -19,7 +19,6 @@ include('../logica/session.php')
 
    form {
       background: url('../presentacion/imagenes/fondo_nueva_cl.png') top left no-repeat;
-      /*background:url(imagenes/fondo_nueva_cl.png) top left no-repeat;*/
    }
 
    .fuente {
@@ -80,7 +79,6 @@ include('../logica/session.php')
          <tr>
             <th height="268" scope="row">&nbsp;</th>
             <td>
-               <!--    <form id="inicio" action="logica/ini_sesion.php" method="POST" style="width:100%;" target="info">-->
                <form id="inicio" action="../presentacion/form_restablecer_clave.php" method="POST" style="width:100%;" target="info" class="letra">
                   <section style="width:100%; height:100%; padding:0;  text-align:center">
                      <br />
@@ -104,18 +102,17 @@ include('../logica/session.php')
                         $CONTRASENA_AC = $_POST['Contrasena_ac'];
                         $CONTRASENA_NU = $_POST['Contrasena_nu'];
                         $CONTRASENA_VA = $_POST['Contrasena_va'];
-                        $CONTRASENA_VENCE = date('Y-m-d  H:i:s', strtotime('+1 month')); // Suma 1 meses	
+                        $CONTRASENA_VENCE = date('Y-m-d  H:i:s', strtotime('+1 month'));
                         $error_encontrado = "";
                         if (validar_clave($_POST["Contrasena_nu"], $error_encontrado)) {
                            if ($CONTRASENA_NU == $CONTRASENA_VA) {
                               echo "<span class=fuente>CONTRASE&Ntilde;A V&Aacute;LIDA</span>";
                               $sql = mysqli_query($conex, "UPDATE ipsen_usuario SET 
-		  CONTRASENA = '" . MD5($CONTRASENA_NU) . "',
-		  CONTRASENA_FECHA = '" . $CONTRASENA_VENCE . "'
-		  WHERE USER='" . $USUARIO . "';");
+                              CONTRASENA = '" . MD5($CONTRASENA_NU) . "',
+                              CONTRASENA_FECHA = '" . $CONTRASENA_VENCE . "'
+                              WHERE USER='" . $USUARIO . "';");
                               echo mysqli_error($conex);
                               header("Location: ../");
-                              /*require("../logica/cerrar_sesion.php");*/
                               session_unset();
                               session_destroy();
                               exit();

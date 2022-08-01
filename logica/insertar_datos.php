@@ -340,11 +340,11 @@ require_once('session.php');
 					while ($fila2 = mysqli_fetch_array($SELECT_GES)) {
 						$ID_GES = $fila2['ID_GESTION'];
 					}
-					$CARPETA = "../ADJUNTOS_BAYER/$ID_GES";
+					$CARPETA = "../ADJUNTOS_IPSEN/$ID_GES";
 					if (!is_dir($CARPETA)) {
-						mkdir("../ADJUNTOS_BAYER/$ID_GES", 0777);
+						mkdir("../ADJUNTOS_IPSEN/$ID_GES", 0777);
 					}
-					move_uploaded_file($_FILES['archivo']['tmp_name'], "../ADJUNTOS_BAYER/$ID_GES/" . $_FILES['archivo']['name']);
+					move_uploaded_file($_FILES['archivo']['tmp_name'], "../ADJUNTOS_IPSEN/$ID_GES/" . $_FILES['archivo']['name']);
 				}
 				if ($insert_gestion || $insert_trt || $insertar) {
 					include("../presentacion/email/mail_paciente_nuevo.php");

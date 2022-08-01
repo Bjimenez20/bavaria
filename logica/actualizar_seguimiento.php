@@ -630,11 +630,11 @@ include('../logica/session.php');
                         while ($fila2 = mysqli_fetch_array($SELECT_GES)) {
                             $ID_GES = $fila2['ID_GESTION'];
                         }
-                        $CARPETA = "../ADJUNTOS_BAYER/$ID_GES";
+                        $CARPETA = "../ADJUNTOS_IPSEN/$ID_GES";
                         if (!is_dir($CARPETA)) {
-                            mkdir("../ADJUNTOS_BAYER/$ID_GES", 0777);
+                            mkdir("../ADJUNTOS_IPSEN/$ID_GES", 0777);
                         }
-                        move_uploaded_file($_FILES['archivo']['tmp_name'], "../ADJUNTOS_BAYER/$ID_GES/" . $_FILES['archivo']['name']);
+                        move_uploaded_file($_FILES['archivo']['tmp_name'], "../ADJUNTOS_IPSEN/$ID_GES/" . $_FILES['archivo']['name']);
                     }
                     if ($sql) {
                         if ($evento_adverso == 'SI') {
@@ -645,7 +645,7 @@ include('../logica/session.php');
                                         <img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
                                     </center>
                                 </span>
-                                <p class="aviso3" style=" width:68.9%; margin:auto auto;">EL SEGUMIENTO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>
+                                <p class="aviso3" style=" width:68.9%; margin:auto auto;">EL SEGUIMIENTO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>
                                 <br />
                                 <br />
                                 <center>
@@ -661,7 +661,7 @@ include('../logica/session.php');
                                             <img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
                                         </center>
                                     </span>
-                                    <p class="aviso3" style=" width:68.9%; margin:auto auto;">EL SEGUMIENTO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>
+                                    <p class="aviso3" style=" width:68.9%; margin:auto auto;">EL SEGUIMIENTO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>
                                     <br />
                                     <br />
                                     <center>
@@ -679,7 +679,7 @@ include('../logica/session.php');
                                     <img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
                                 </center>
                             </span>
-                            <p class="aviso3" style=" width:68.9%; margin:auto auto;">EL SEGUMIENTO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>
+                            <p class="aviso3" style=" width:68.9%; margin:auto auto;">EL SEGUIMIENTO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>
                             <br />
                             <center>
                                 <a href="../presentacion/form_paciente_seguimiento.php" target="info" class="btn_continuar"><img src="../presentacion/imagenes/BTN_CONTINUAR2.png" style="width:152px; height:37px" /></a>
@@ -694,7 +694,7 @@ include('../logica/session.php');
                                 <img src="../presentacion/imagenes/advertencia.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
                             </center>
                         </span>
-                        <p class="error" style=" width:68.9%; margin:auto auto;">EL SEGUMIENTO NO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>
+                        <p class="error" style=" width:68.9%; margin:auto auto;">EL SEGUIMIENTO NO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>
                         <br />
                         <br />
                         <center>

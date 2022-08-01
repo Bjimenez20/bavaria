@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 <li class=" dropdown">
-                    <?php if ($usua == 'ADMIN' || $usua == 'YRAMIREZ' || $usua == 'GPARRA') { ?>
+                    <?php if ($privilegios == '1') { ?>
                         <a class="nav-link" href="javascript:;" id="navbarDropdownBell" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="row-reverse">
                                 <div class="col p-0">
@@ -30,15 +30,20 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBell">
-                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_operador.php" target="info">Habilitar operador logistico</a>
+                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_operador.php" target="info">Habilitar operador logistico
+                                <span class="badge badge-primary"><?php echo $num_total_opl ?></span></a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_asegurador.php" target="info">Habilitar asegurador</a>
+                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_asegurador.php" target="info">Habilitar asegurador
+                                <span class="badge badge-primary"><?php echo $num_total_asegurador ?></span></a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_ips.php" target="info">Habilitar IPS</a>
+                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_ips.php" target="info">Habilitar IPS
+                                <span class="badge badge-primary"><?php echo $num_total_ips ?></span></a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_medicos.php" target="info" >Habilitar medicos</a>
+                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_medicos.php" target="info">Habilitar medicos
+                                <span class="badge badge-primary"><?php echo $num_total_medicos ?></span></a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_puntos.php" target="info" >Habilitar puntos de entrega</a>
+                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_puntos.php" target="info">Habilitar puntos de entrega
+                                <span class="badge badge-primary"><?php echo $num_total_puntos ?></span></a>
                             <div class="dropdown-divider"></div>
                         </div>
                     <?php } ?>

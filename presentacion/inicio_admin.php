@@ -1,13 +1,10 @@
 <?php
 include('../logica/session.php');
-
 include 'layouts/head.php'; ?>
-
 <link rel="stylesheet" href="css/menu.css" />
 <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
 <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
 <!-- <link rel="stylesheet" href="../presentacion/css/menu.css" />  -->
-
 <script src="js/jquery.js"></script>
 <script src="../presentacion/js/jquery.js"></script>
 <script>
@@ -17,7 +14,6 @@ include 'layouts/head.php'; ?>
         $('#info').css('height', porh);
     });
 </script>
-
 <?php
 if ($usua == 'YRAMIREZ') {
 ?>
@@ -63,8 +59,6 @@ if ($usua == 'YRAMIREZ') {
 <?php
 }
 ?>
-
-
 <?php
 if ($privilegios != '' && $usua != '') {
 
@@ -88,15 +82,10 @@ if ($privilegios != '' && $usua != '') {
     <!-- Sidebar -->
     <?php include('layouts/sidebar.php'); ?>
     <!-- /.Sidebar -->
-
     <div class="main-panel">
-
         <!-- Navbar -->
         <?php include('layouts/navbar.php'); ?>
         <!-- /.navbar -->
-
-
-
         <div class="content">
             <div class="content">
                 <div class="container-fluid">
@@ -155,23 +144,16 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                         </div>
                     </div>
-
-
                     <iframe name="info" id="info" frameborder="0" width="100%" height="100%" style="display: none"></iframe>
-
-
                 </div>
             </div>
-
         </div>
-
         <script>
             $('.select_menu').click(function() {
                 $('#info').show('slow');
                 $('#content_welcome').hide('slow')
             })
         </script>
-
         <style>
             .cardhome {
                 transition: transform .2s;
@@ -182,12 +164,8 @@ if ($privilegios != '' && $usua != '') {
                 transform: scale(1.1);
             }
         </style>
-
-
         <?php include 'layouts/footer.php'; ?>
-
         <?php include 'layouts/end.php'; ?>
-
     <?php
 } else {
     ?>

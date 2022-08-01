@@ -8,7 +8,7 @@
 <link rel="shortcut icon" href="https://i.ibb.co/HTpg5Jw/5.png" type="image/x-icon">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Bayer Colombia
+    IPSEN
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->

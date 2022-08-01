@@ -13,7 +13,7 @@
                             <img src="./../presentacion/imagenes/1.png" alt="" id="logo_max">
                         </div>
                         <div class="col d-flex justify-content-center">
-                            <label for="" class="text-white ">Bayer Contigo Colombia</label>
+                            <label for="" class="text-white ">IPSEN</label>
                         </div>
                     </div>
                 </a>
