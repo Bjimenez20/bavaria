@@ -81,9 +81,9 @@ include('../logica/session.php');
     $boton_activo = $_POST['switch-button'];
     if ($boton_activo == 'on') {
         if ($brindo_educacion == 'SI') {
-            $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '$usua', '$codigo_usuario2', '$brindo_educacion', '$TemaBrindoEdu', '$FechaEduca', NOW())");
+            $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $codigo_usuario2 . "', '" . $brindo_educacion . "', '" . $TemaBrindoEdu . "', '" . $FechaEduca . "', NOW())");
         } elseif ($brindo_educacion == 'NO') {
-            $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`,  `MOTIVO_NO_EDU`, `FECHA_REGISTRO`) VALUES ( '$usua', '$codigo_usuario2', '$brindo_educacion', '$MotivoNoEdu', NOW())");
+            $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`,  `MOTIVO_NO_EDU`, `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $codigo_usuario2 . "', '" . $brindo_educacion . "', '" . $MotivoNoEdu . "', NOW())");
         }
     } else {
         $var = '';
@@ -286,12 +286,12 @@ include('../logica/session.php');
             $fecha_actual = date('Y-m-d');
             $fecha_reclamacion = $_POST['fecha_reclamacion'];
             $fecha_rec = explode("-", $fecha_reclamacion);
-            $anio = $fecha_rec[0]; // a�o
-            $mes = $fecha_rec[1]; // mes
-            $dia = $fecha_rec[2]; // dia
+            $anio = $fecha_rec[0];
+            $mes = $fecha_rec[1];
+            $dia = $fecha_rec[2];
             $fecha_actual = date('Y-m-d');
             $fecha_rec_act = explode("-", $fecha_actual);
-            $mes_act = $fecha_rec_act[1]; // mes
+            $mes_act = $fecha_rec_act[1];
             $dato = ((int)$mes);
             $numero_cajas = $_POST['numero_cajas'] . ' ' . $_POST['tipo_numero_cajas'];
         }
@@ -304,9 +304,9 @@ include('../logica/session.php');
             $fecha_cita_programada = $_POST['fecha_cita_programada'];
             $fecha_actual = date('Y-m-d');
             $fecha_rec_act = explode("-", $fecha_actual);
-            $anio_act = $fecha_rec_act[0]; // a�o
-            $mes_act = $fecha_rec_act[1]; // mes
-            $dia_act = $fecha_rec_act[2]; // dia
+            $anio_act = $fecha_rec_act[0];
+            $mes_act = $fecha_rec_act[1];
+            $dia_act = $fecha_rec_act[2];
             $dato = ((int)$mes_act);
             $fecha_ultima_reclamacion = $_POST['fecha_ultima_reclamacion'];
             if (isset($_POST['causa_no_reclamacion'])) {
@@ -342,7 +342,7 @@ include('../logica/session.php');
             $INFORMACION_APLICACIONES = 'NO';
         }
         if (isset($_POST['registrar'])) {
-            $select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$codigo_usuario2'");
+            $select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
             echo mysqli_error($conex);
             $reg_hist = mysqli_num_rows($select_historial);
             if ($reg_hist > 0) {
@@ -371,7 +371,7 @@ include('../logica/session.php');
             if ($nreg > 0) {
                 while ($datos_temporales = (mysqli_fetch_array($select_temporal))) {
                     $tipo_envio = $datos_temporales['ID_REFERENCIA_FK'];
-                    $verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+                    $verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='" . $tipo_envio . "'");
                     echo mysqli_error($conex);
                     $cantidad = mysqli_num_rows($verificar_cantidad);
                     if ($cantidad > 0) {
@@ -469,15 +469,15 @@ include('../logica/session.php');
                         }
                         if ($nombre_producto == 'Kit de bienvenida') {
                             $tipo_envio = $_POST['tipo_envio'];
-                            $verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+                            $verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='" . $tipo_envio . "'");
                             echo mysqli_error($conex);
                             $cantidad_ref = mysqli_num_rows($verificar_cantidad);
                             if ($cantidad_ref > 0) {
-                                $verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+                                $verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='" . $tipo_envio . "'");
                                 echo mysqli_error($conex);
                                 $cantidad = mysqli_num_rows($verificar_cantidad);
                                 if ($cantidad > 0) {
-                                    $SELECT_ID_INV = mysqli_query($conex, "select ID_INVENTARIO from ipsen_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
+                                    $SELECT_ID_INV = mysqli_query($conex, "SELECT ID_INVENTARIO FROM ipsen_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
                                     echo mysqli_error($conex);
                                     while ($fila1 = mysqli_fetch_array($SELECT_ID_INV)) {
                                         $ID_ULT_INV = $fila1['ID_INVENTARIO'];
@@ -608,7 +608,7 @@ include('../logica/session.php');
                     }
                     if ($sqlrow >= 1) {
                         $fecha1 = date_format(new DateTime("$d-$mes_nu-$ano"), 'd-m-Y');
-                        $fecha2 = date_format(new DateTime("$fecha_conteo_A�O-$fecha_conteo_MES-$fecha_conteo_DIA"), 'd-m-Y');
+                        $fecha2 = date_format(new DateTime("$fecha_conteo_ANO-$fecha_conteo_MES-$fecha_conteo_DIA"), 'd-m-Y');
                         $diff = abs((strtotime($fecha2) - strtotime($fecha1))) / 86400;
                     } elseif ($sqlrow <= 0) {
                         $fecha1 = date_format(new DateTime("$d-$mes_nu-$ano"), 'd-m-Y');

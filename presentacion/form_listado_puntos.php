@@ -79,7 +79,7 @@ if ($privilegios != '' && $usua != '') {
         } else {
         ?>
             <span style="margin-top:1%;">
-            <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
                 <center>
                     <img src="../presentacion/imagenes/advertencia2.png" style="width:70px; margin-top:1%;" />
                 </center>

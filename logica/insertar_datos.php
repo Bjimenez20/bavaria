@@ -61,7 +61,7 @@ require_once('session.php');
 	if (isset($_POST['registrar'])) {
 		$identificacion = $_POST['identificacion'];
 		$tipo_identificacion = $_POST['tipo_identificacion'];
-		$numero_registros = mysqli_query($conex, "SELECT * FROM ipsen_pacientes WHERE IDENTIFICACION_PACIENTE='$identificacion'");
+		$numero_registros = mysqli_query($conex, "SELECT * FROM ipsen_pacientes WHERE IDENTIFICACION_PACIENTE='" . $identificacion . "'");
 		echo mysqli_error($conex);
 		$coincidencias = mysqli_num_rows($numero_registros);
 		$reclamo = $_POST['reclamo'];
@@ -105,7 +105,7 @@ require_once('session.php');
 			}
 			$numero_cajas = '0 Aplicacion';
 		}
-		$select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$codigo_usuario2'");
+		$select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 		echo mysqli_error($conex);
 		$reg_hist = mysqli_num_rows($select_historial);
 		if ($reg_hist > 0) {
@@ -292,11 +292,11 @@ require_once('session.php');
 			$FechaEduca = $_POST['FechaEduca'];
 			$MotivoNoEdu = $_POST['MotivoNoEdu'];
 			if ($brindo_educacion == 'SI') {
-				$insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '$usua', '$ID_PACIENTE', '$brindo_educacion', '$TemaBrindoEdu', '$FechaEduca', NOW())");
+				$insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $ID_PACIENTE . "', '" . $brindo_educacion . "', '" . $TemaBrindoEdu . "', '" . $FechaEduca . "', NOW())");
 			} elseif ($brindo_educacion == 'NO') {
-				$insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`,  `MOTIVO_NO_EDU`, `FECHA_REGISTRO`) VALUES ( '$usua', '$ID_PACIENTE', '$brindo_educacion', '$MotivoNoEdu', NOW())");
+				$insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`,  `MOTIVO_NO_EDU`, `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $ID_PACIENTE . "', '" . $brindo_educacion . "', '" . $MotivoNoEdu . "', NOW())");
 			}
-			$select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$ID_PACIENTE'");
+			$select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='" . $ID_PACIENTE . "'");
 			echo mysqli_error($conex);
 			$reg_hist = mysqli_num_rows($select_historial);
 			if ($reg_hist == 0) {
@@ -415,11 +415,11 @@ require_once('session.php');
 		if ($nreg > 0) {
 			while ($datos_temporales = (mysqli_fetch_array($select_temporal))) {
 				$tipo_envio = $datos_temporales['ID_REFERENCIA_FK'];
-				$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+				$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='" . $tipo_envio . "'");
 				echo mysqli_error($conex);
 				$cantidad = mysqli_num_rows($verificar_cantidad);
 				if ($cantidad > 0) {
-					$SELECT_ID_INV = mysqli_query($conex, "select ID_INVENTARIO from ipsen_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
+					$SELECT_ID_INV = mysqli_query($conex, "SELECT ID_INVENTARIO FROM ipsen_inventario WHERE LUGAR_MATERIAL='BODEGA' AND ID_REFERENCIA_FK='" . $tipo_envio . "' ORDER BY ID_INVENTARIO ASC LIMIT 1");
 					echo mysqli_error($conex);
 					while ($fila1 = mysqli_fetch_array($SELECT_ID_INV)) {
 						$ID_ULT_INV = $fila1['ID_INVENTARIO'];
@@ -511,11 +511,11 @@ require_once('session.php');
 						/*SI EL ENVIO ES KIT DE BIENVENIDA*/
 						if ($nombre_producto == 'Kit de bienvenida') {
 							$tipo_envio = $_POST['tipo_envio'];
-							$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+							$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='" . $tipo_envio . "'");
 							echo mysqli_error($conex);
 							$cantidad_ref = mysqli_num_rows($verificar_cantidad);
 							if ($cantidad_ref > 0) {
-								$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
+								$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='" . $tipo_envio . "'");
 								echo mysqli_error($conex);
 								$cantidad = mysqli_num_rows($verificar_cantidad);
 								if ($cantidad > 0) {

@@ -166,9 +166,9 @@ include('../logica/session.php');
 			$fecha_reclamacion = '';
 			$fecha_actual = date('Y-m-d');
 			$fecha_rec_act = explode("-", $fecha_actual);
-			$anio_act =  $fecha_rec_act[0]; // a�o
-			$mes_act  =  $fecha_rec_act[1]; // mes
-			$dia_act  =  $fecha_rec_act[2]; // dia
+			$anio_act =  $fecha_rec_act[0];
+			$mes_act  =  $fecha_rec_act[1];
+			$dia_act  =  $fecha_rec_act[2];
 			$dato = ((int)$mes_act);
 			$fecha_ultima_reclamacion = $_POST['fecha_reclamaciones'];
 			if (isset($_POST['causa_no_reclamacion'])) {
@@ -183,21 +183,21 @@ include('../logica/session.php');
 			$fecha_actual = date('Y-m-d');
 			$fecha_reclamacion = $_POST['fecha_reclamacion'];
 			$fecha_rec = explode("-", $fecha_reclamacion);
-			$anio = $fecha_rec[0]; // a�o
-			$mes  = $fecha_rec[1]; // mes
-			$dia  = $fecha_rec[2]; // dia
+			$anio = $fecha_rec[0];
+			$mes  = $fecha_rec[1];
+			$dia  = $fecha_rec[2];
 			$fecha_actual = date('Y-m-d');
 			$fecha_rec_act = explode("-", $fecha_actual);
-			$mes_act = $fecha_rec_act[1]; // mes
+			$mes_act = $fecha_rec_act[1];
 			$dato = ((int)$mes);
 		} else {
 			$consecutivo_betaferon = '';
 			$fecha_reclamacion = '';
 			$fecha_actual = date('Y-m-d');
 			$fecha_rec_act = explode("-", $fecha_actual);
-			$anio_act = $fecha_rec_act[0]; // a�o
-			$mes_act  = $fecha_rec_act[1]; // mes
-			$dia_act  = $fecha_rec_act[2]; // dia
+			$anio_act = $fecha_rec_act[0];
+			$mes_act  = $fecha_rec_act[1];
+			$dia_act  = $fecha_rec_act[2];
 			$dato = ((int)$mes_act);
 			$fecha_ultima_reclamacion = $_POST['fecha_reclamaciones'];
 			if (isset($_POST['causa_no_reclamacion'])) {
@@ -227,7 +227,7 @@ include('../logica/session.php');
 		$dosis = $_POST['Dosis'];
 	}
 	if (isset($_POST['registrar'])) {
-		$select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$codigo_usuario2'");
+		$select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 		echo mysqli_error($conex);
 		$reg_hist = mysqli_num_rows($select_historial);
 		if ($reg_hist > 0) {
