@@ -167,24 +167,24 @@ if ($privilegios != '' && $usua != '') {
 			<center>
 				<table style="width:100%;; border:#fff" rules="rows" id="tabla">
 					<tr>
-						<th colspan="5" style="color:#FFF" bgcolor="#AEDC5A">
+						<th colspan="5" style="color:#FFF" bgcolor="#848484">
 							USUARIOS DISPONIBLES
 						</th>
 					</tr>
 					<tr>
-						<th bgcolor="#AEDC5A">
+						<th bgcolor="#848484">
 							USUARIO(S)
 						</th>
-						<th bgcolor="#AEDC5A">
+						<th bgcolor="#848484">
 							NOMBRE(S) Y APELLIDO(S)
 						</th>
-						<th bgcolor="#AEDC5A">
+						<th bgcolor="#848484">
 							ESTADO LOGIN
 						</th>
 						<?php
 						if ($nreg_terapias > 0) {
 						?>
-							<th bgcolor="#AEDC5A">
+							<th bgcolor="#848484">
 								ASIGNAR PACIENTES ADEMPAS Y XOFIJO
 							</th>
 						<?php
@@ -193,10 +193,10 @@ if ($privilegios != '' && $usua != '') {
 						<?php
 						if ($nreg_pac <= 0) {
 						?>
-							<th bgcolor="#AEDC5A">
+							<th bgcolor="#848484">
 								# ASIGNADAS
 							</th>
-							<th bgcolor="#AEDC5A">
+							<th bgcolor="#848484">
 								# GESTIONADAS
 							</th>
 						<?php

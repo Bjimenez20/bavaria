@@ -192,13 +192,13 @@
 
   /* COLOR PRINCIPAL SCROLL */
   ::-webkit-scrollbar-thumb {
-    background: #AEDC5A;
+    background: #848484;
     border-radius: 4px;
   }
 
 
   ::-webkit-scrollbar-track {
-    background: #0C68B0;
+    background: #224a81;
     border-radius: 4px;
   }
 </style>

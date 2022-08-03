@@ -103,7 +103,7 @@ require('../datos/parse_str.php');
 			<form name="miformulario" method="post" action="../logica/consutas_inventario.php" onkeydown="return filtro(2)" target="consulta_inv" class="letra">
 				<table width="100%" align="center" cellpadding="2" cellspacing="1" style="border:1px transparent solid;margin:auto auto;">
 					<tr style="border:2px #0C7890 solid;">
-						<th class="titulosth" colspan="2" bgcolor="#0C68B0">
+						<th class="titulosth" colspan="2" bgcolor="#224a81">
 							TIPO DE INFORME
 							<select name="TIPO_CON" id="TIPO_CON" class="tipo1" style="width:80%;">
 								<option value="" style="color:#999">SELECCIONE</option>
@@ -112,7 +112,7 @@ require('../datos/parse_str.php');
 								<option>INVENTARIO</option>
 							</select>
 						</th>
-						<th bgcolor="#0C68B0">
+						<th bgcolor="#224a81">
 							<div id="consulta" style="display:none">
 								<input type="submit" name="buscar" id="buscar" value="Consultar" class="btn_buscar" title="BUSCAR" />
 								<input type="submit" name="descargar" id="descargar" value="Exportar" class="btn_exp" title="DESCARGAR" />
@@ -120,7 +120,7 @@ require('../datos/parse_str.php');
 						</th>
 					</tr>
 					<tr align="left" style="border:2px #0C7890 solid">
-						<th class="titulosth" bgcolor="#0C68B0">
+						<th class="titulosth" bgcolor="#224a81">
 							<div style="display:none" id="movimiento">
 								TIPO DE ENTRADA
 								<select name="TIPO" id="TIPO" class="tipo1" style="height:20px">
@@ -138,7 +138,7 @@ require('../datos/parse_str.php');
 								</select>
 							</div>
 						</th>
-						<th bgcolor="#0C68B0">
+						<th bgcolor="#224a81">
 							<div style="display:none" id="movimiento1">
 								FECHA INICIO
 								<input name="fecha_ini" type="date" id="fecha_ini" title="INGRESE LA FECHA INICIO" class="tipo1" style="width:55%;height:20px" />
@@ -148,7 +148,7 @@ require('../datos/parse_str.php');
 								<input name="serial_producto" type="text" id="serial_producto" title="INGRESE NUMERO DE SERIAL" class="tipo1" maxlength="16" style="width:55%;height:20px" />
 							</div>
 						</th>
-						<th bgcolor="#0C68B0">
+						<th bgcolor="#224a81">
 							<div style="display:none" id="movimiento2">
 								FECHA FIN
 								<input name="fecha_fin" type="date" id="fecha_fin" title="INGRESE LA FECHA FIN" class="tipo1" style="width:55%;height:20px" />

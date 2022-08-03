@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
-  <link rel='icon' type='image/png' href='https://i.ibb.co/HTpg5Jw/5.png'> <!-- Opera Speed Dial, at least 144×114 px -->
-<link rel="shortcut icon" href="https://i.ibb.co/HTpg5Jw/5.png" type="image/x-icon">
+  <link rel='icon' type='image/png' href='https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico'> <!-- Opera Speed Dial, at least 144×114 px -->
+  <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" type="image/x-icon">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     IPSEN

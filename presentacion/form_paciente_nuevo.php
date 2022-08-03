@@ -1601,7 +1601,7 @@ if ($privilegios != '' && $usua != '') {
                                     <?php
                                     $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
                                     ?>
-                                    <input list="medico_t" name="medico_tratante" id="medico_tratante" value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>" autocomplete="off" onchange="trat_previo4(this)">
+                                    <input list="medico_t" name="medico_tratante" id="medico_tratante" value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>" style="text-transform:ucwords" autocomplete="off" onchange="trat_previo4(this)">
                                     <datalist id="medico_t">
                                         <?php
                                         while ($fila_operador = mysqli_fetch_array($Seleccion)) {
@@ -1635,7 +1635,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td></td>
                                 <td id="otro_medico_t" style="display:none">
                                     <span>Medico Tratante por habilitar<span class="asterisco">*</span></span>
-                                    <input name="medico_t_otro" id="medico_t_otro" type="text" style="width:78%;" />
+                                    <input name="medico_t_otro" id="medico_t_otro" style="text-transform:ucwords" type="text" style="width:78%;" />
                                 </td>
                                 <td></td>
                                 <td id="otro_medico_p" style="display:none">

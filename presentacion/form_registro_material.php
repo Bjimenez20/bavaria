@@ -146,10 +146,10 @@ if ($privilegios != '' && $usua != '') {
 	<body class="body" style="width:100%;">
 		<form name="miformulario" id="miformulario" method="post" action="form_registro_material.php" onKeyDown="return filtro(2)" class="letra">
 			<br><br><br><br>
-			<div style="width:100%; background-color:#AEDC5A; height:80%"></div>
+			<div style="width:100%; background-color:#848484; height:80%"></div>
 			<table width="100%">
 				<tr>
-					<td style="background-color:#AEDC5A;text-align:center">
+					<td style="background-color:#848484;text-align:center">
 						<span style="color:#FFF;">REGISTRO MATERIAL</span>
 					</td>
 				</tr>

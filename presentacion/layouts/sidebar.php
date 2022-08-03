@@ -1,16 +1,16 @@
-<div class="sidebar" style="background: #0C68B0">
+<div class="sidebar" style="background: #224a81">
     <div class="logo">
         <div class="row">
             <div class="col " style="display: none" id="logo_mini">
                 <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                    <img src="./../presentacion/imagenes/1.png" alt="" class="w-100">
+                    <img src="./../presentacion/imagenes/9.png" alt="" class="w-100">
                 </a>
             </div>
             <div class="col d-flex justify-content-center">
                 <a href="http://www.creative-tim.com" class="simple-text logo-normal">
                     <div class="row-reverse">
                         <div class="col">
-                            <img src="./../presentacion/imagenes/6.png" alt="" id="logo_max">
+                            <img src="./../presentacion/imagenes/9.png" alt="" id="logo_max" style="width:75%;">
                         </div>
                         <div class="col d-flex justify-content-center">
                             <label for="" class="text-white ">IPSEN</label>

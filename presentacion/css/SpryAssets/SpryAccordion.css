@@ -53,7 +53,7 @@
  * you can safely remove those properties without affecting the functionality of the widget.
  */
 .AccordionPanelTab {
-	background-color: #AEDC5A;
+	background-color: #848484;
 	/* verde */
 	border-top: solid 1px #C7C8C9;
 	margin: 0px;
@@ -88,7 +88,7 @@
  * from panels as the user clicks on the tabs within the Accordion.
  */
 .AccordionPanelOpen .AccordionPanelTab {
-	background-color: #0C68B0;
+	background-color: #224a81;
 	/* azul */
 	border: inherit;
 }
@@ -112,7 +112,7 @@
  * whenever the Accordion gains or loses keyboard focus.
  */
 .AccordionFocused .AccordionPanelTab {
-	background-color: #AEDC5A;
+	background-color: #848484;
 	/* verde */
 }
 
@@ -120,7 +120,7 @@
  * currently open when the Accordion has focus.
  */
 .AccordionFocused .AccordionPanelOpen .AccordionPanelTab {
-	background-color: #0C68B0;
+	background-color: #224a81;
 	/*azul*/
 	border: inherit;
 }

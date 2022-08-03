@@ -45,7 +45,7 @@ include('../logica/session.php')
 		th {
 			padding: 7px;
 			color: #FFF;
-			background: #A0C054;
+			background: #848484;
 			font-family: avenir;
 			font-size: 100%;
 			font-style: normal;
@@ -116,7 +116,7 @@ if($privilegios != 2)
 	<section>
 		<blockquote>
 			<form name="miformulario" method="post" action="../presentacion/novedades_correo.php?ID_NOVEDAD=<?php echo $ID_NOVEDAD; ?>">
-				<table width="95%" border="0" align="center" cellpadding="2" cellspacing="1" class="tabla2" style="margin:auto auto;">
+				<table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" class="tabla2" style="margin:auto auto;">
 					<tr>
 						<th colspan="4">
 							<strong>ACTUALIZAR NOVEDADES</strong>

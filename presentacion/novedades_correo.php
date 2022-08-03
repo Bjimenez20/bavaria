@@ -96,13 +96,13 @@ include('../logica/session.php')
 						<?php
 						if ($privilegios == 1 || $privilegios == 2) {
 						?>
-							<th width="15%" align="left" class="titulosth" bgcolor="#0C68B0">
+							<th width="15%" align="left" class="titulosth" bgcolor="#224a81">
 								<div id="movimiento1">
 									PAP
 									<input name="PAP" type="text" id="PAP" class="tipo1" style="height:20px">
 								</div>
 							</th>
-							<th width="25%" height="44" align="left" bgcolor="#0C68B0" class="titulosth">NOVEDAD
+							<th width="25%" height="44" align="left" bgcolor="#224a81" class="titulosth">NOVEDAD
 								<select type="text" name="NOVEDAD" id="NOVEDAD" required="required" style="width:200px; height:25px">
 									<option>Seleccione...</option>
 									<option>Falta de medicamento en el punto</option>
@@ -118,7 +118,7 @@ include('../logica/session.php')
 									<option>Novedades Varios</option>
 								</select>
 							</th>
-							<th width="25%" align="left" class="titulosth" bgcolor="#0C68B0">
+							<th width="25%" align="left" class="titulosth" bgcolor="#224a81">
 								<div id="movimiento2">
 									PRIORIDAD
 									<select type="text" name="PRIORIDAD" id="PRIORIDAD" required="required" style="width:200px; height:25px">
@@ -129,7 +129,7 @@ include('../logica/session.php')
 									</select>
 								</div>
 							</th>
-							<th width="26%" align="left" class="titulosth" bgcolor="#0C68B0">
+							<th width="26%" align="left" class="titulosth" bgcolor="#224a81">
 								<div id="movimiento1">
 									ESTADO
 									<select name="ESTADO" id="ESTADO" required="required" style="height:25px">
@@ -143,7 +143,7 @@ include('../logica/session.php')
 						<?php
 						}
 						?>
-						<th width="18%" bgcolor="#0C68B0">
+						<th width="18%" bgcolor="#224a81">
 							<div id="consulta">
 								<input type="submit" name="buscar" id="buscar" value="Consultar" class="btn_buscar" title="BUSCAR" />
 							</div>

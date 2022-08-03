@@ -19,7 +19,7 @@
         }
 
         html {
-            background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+            background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
