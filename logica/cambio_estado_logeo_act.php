@@ -4,12 +4,12 @@ $usuario = $_POST['usuario'];
 ?>
 <input type="hidden" value="<?php echo $usuario ?>" id="usu" name="usu" />
 <?php
-$actualizar = mysqli_query($conex,"UPDATE ipsen_usuario SET
+$actualizar = mysqli_query($conex, "UPDATE ipsen_usuario SET
 ESTADO_LOGIN='IN'
 WHERE USER='" . $usuario . "'
 AND ESTADO_LOGIN='OUT'");
 echo mysqli_error($conex);
-$select = mysqli_query($conex,"SELECT USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM ipsen_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2'");
+$select = mysqli_query($conex, "SELECT USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM ipsen_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2'");
 echo mysqli_error($conex);
 $nreg = mysqli_num_rows($select);
 echo "<tr>
@@ -29,7 +29,6 @@ echo "<tr>
 			</th>
         </tr>";
 while ($fila = (mysqli_fetch_array($select))) {
-	//echo "<option value=\"".$fila['LOTE']."\">".utf8_encode($fila['LOTE'])."</option>";
 	$estado = $fila['ESTADO_LOGIN'];
 	echo "<tr><td>" . $fila['USER'] . "</td>";
 	echo "<td>" . $fila['NOMBRES'] . ' ' . $fila['APELLIDOS'] . "</td>";
@@ -46,7 +45,6 @@ while ($fila = (mysqli_fetch_array($select))) {
 	}
 	"</td>";
 	echo "</tr>";
-	//echo "<img src='img/lupa.png'></img>";
 }
 function estado($estado)
 {

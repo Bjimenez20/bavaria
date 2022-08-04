@@ -7,12 +7,6 @@ if ($REFERENCIA == 'ADEMPAS' || $REFERENCIA == 'ADEMPAS 1MG 42TABL' || $REFERENC
 	echo "<option value=\"Mantenimiento\">" . utf8_encode('Mantenimiento') . "</option>";
 	echo "<option value=\"Titulacion\">" . utf8_encode('Titulacion') . "</option>";
 }
-// if($REFERENCIA=='Eylia 2MG VL 1x2ML CO INST')
-// {
-// 	echo "<option value=\"\"></option>";
-// 	echo "<option value=\"Aplicacion Programada\">".utf8_encode('Aplicacion Programada')."</option>";
-// 	echo "<option value=\"Aplicacion No Programada\">".utf8_encode('Aplicacion No Programada')."</option>";
-// }
 if ($REFERENCIA == 'Eylia 2MG VL 1x2ML CO INST') {
 	echo "<option value=\"" . $STATUS . "\">" . $STATUS . "</option>";
 	echo "<option value=\"Aplicacion Programada\">" . utf8_encode('Aplicacion Programada') . "</option>";

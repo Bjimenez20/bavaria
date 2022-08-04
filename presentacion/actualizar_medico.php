@@ -7,7 +7,7 @@ require('../datos/conex.php');
 <head>
     <meta charset="euc-jp">
 
-    <link rel="shortcut icon" href="img/logo.png" />
+    <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
     <link rel="stylesheet" href="css/estilos_menu.css" />
     <title>IPSEN</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -46,7 +46,7 @@ require('../datos/conex.php');
         th {
             padding: 7px;
             color: #FFF;
-            background: #A0C054;
+            background: #848484;
             font-family: avenir;
             font-size: 100%;
             font-style: normal;
@@ -71,7 +71,7 @@ require('../datos/conex.php');
         }
 
         .actualizar {
-            background: #2facbc;
+            background: #224a81;
             width: 80px;
             height: 30px;
             color: #ffffff;
@@ -120,7 +120,7 @@ require('../datos/conex.php');
             while ($fila = mysqli_fetch_array($medicos)) {
             ?>
                 <form action="editar_medico.php?erted=<?php echo $fila['ID_LISTA'] ?>" method="POST">
-                    <table width="95%" border="0" align="center" cellpadding="2" cellspacing="1" style="margin:auto auto;">
+                    <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" style="margin:auto auto;">
                         <tr>
                             <th colspan="4">
                                 <strong>HABILITAR MEDICO</strong>

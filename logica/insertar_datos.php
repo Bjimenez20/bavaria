@@ -22,7 +22,7 @@ require_once('session.php');
 		.error {
 			font-size: 130%;
 			font-weight: bold;
-			color: #fb8305;
+			color: red;
 			text-transform: uppercase;
 			background-color: transparent;
 			text-align: center;
@@ -364,7 +364,7 @@ require_once('session.php');
 				} else {  ?>
 					<span style="margin-top:5%;">
 						<center>
-							<img src="../presentacion/imagenes/advertencia.png" style="width:50px; margin-top:100px;margin-top:5%;" />
+							<img src="../presentacion/imagenes/advertencia2.png" style="width:50px; margin-top:100px;margin-top:5%;" />
 						</center>
 					</span>
 					<p class="error" style=" width:68.9%; margin:auto auto;">
@@ -380,7 +380,7 @@ require_once('session.php');
 			} else { ?>
 				<span style="margin-top:5%;">
 					<center>
-						<img src="../presentacion/imagenes/advertencia.png" style="width:50px; margin-top:100px;margin-top:5%;" />
+						<img src="../presentacion/imagenes/advertencia2.png" style="width:50px; margin-top:100px;margin-top:5%;" />
 					</center>
 				</span>
 				<p class="error" style=" width:68.9%; margin:auto auto;">
@@ -396,7 +396,7 @@ require_once('session.php');
 		} else { ?>
 			<span style="margin-top:5%;">
 				<center>
-					<img src="../presentacion/imagenes/advertencia.png" style="width:50px; margin-top:100px;margin-top:5%;" />
+					<img src="../presentacion/imagenes/advertencia2.png" style="width:50px; margin-top:100px;margin-top:5%;" />
 				</center>
 			</span>
 			<p class="error" style=" width:68.9%; margin:auto auto;">
@@ -490,7 +490,7 @@ require_once('session.php');
 							<span class="error" style="font-size:100%; ">POR FAVOR COMUNICARSE CON EL COORDINADOR.</span>
 							<span>
 								<center>
-									<img src="../presentacion/imagenes/advertencia.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
+									<img src="../presentacion/imagenes/advertencia2.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
 								</center>
 							</span>
 						</td>
@@ -552,7 +552,7 @@ require_once('session.php');
 					?>
 										<span style="margin-top:3%;">
 											<center>
-												<img src="../presentacion/imagenes/advertencia.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
+												<img src="../presentacion/imagenes/advertencia2.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
 											</center>
 										</span>
 										<p class="error" style=" width:68.9%; margin:auto auto; font-size:80%;">ADVERTENCIA SE ESTA AGOTANDO EL PRODUCTO <span style="color:#F00; font-weight:bold"><?php echo $nombre_producto ?></span> POR FAVOR COMUNICARSE CON EL COORDINADOR.</p>
@@ -603,7 +603,7 @@ require_once('session.php');
 					if (!$INSERT_MOVIMIENTO || !$UPDATE_REFERENCIA || !$INSERT_MOVIMIENTO_PACIENTE || !$INSERT_MOVIMIENTO_USUARIO) { ?>
 						<span style="margin-top:5%;">
 							<center>
-								<img src="../presentacion/imagenes/advertencia.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+								<img src="../presentacion/imagenes/advertencia2.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 							</center>
 						</span>
 						<p class="error" style=" width:68.9%; margin:auto auto;">

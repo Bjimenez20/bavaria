@@ -21,7 +21,7 @@ include('../logica/session.php');
 		.error {
 			font-size: 130%;
 			font-weight: bold;
-			color: #fb8305;
+			color: red;
 			text-transform: uppercase;
 			background-color: transparent;
 			text-align: center;
@@ -280,7 +280,7 @@ include('../logica/session.php');
 		?>
 			<span style="margin-top:5%;">
 				<center>
-					<img src="../presentacion/imagenes/advertencia.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+					<img src="../presentacion/imagenes/advertencia2.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 				</center>
 			</span>
 			<p class="error" style=" width:68.9%; margin:auto auto;">NO SE HAN ACTUALIZADO LOS DATOS.</p>

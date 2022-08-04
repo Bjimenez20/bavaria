@@ -8,7 +8,7 @@ header("Content-Type: text/html;charset=utf-8");
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
 	<link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
-	<link rel="shortcut icon" href="../presentacion/imagenes/logo.png" />
+	<link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
 	<script src="../presentacion/js/jquery.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -64,20 +64,16 @@ header("Content-Type: text/html;charset=utf-8");
 	}
 
 	html {
-		background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+		background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover;
 	}
 
-	/*form 
-{
-    background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
-}*/
 	@media screen and (max-width:1000px) {
 		html {
-			background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+			background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;

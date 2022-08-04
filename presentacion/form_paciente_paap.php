@@ -2382,7 +2382,7 @@ if ($privilegios != '' && $usua != '') {
 								}
 							}
 							$ID_GES = $fila2['ID_GESTION'];
-							$dir = "../ADJUNTOS_BAYER/$ID_GES";
+							$dir = "../ADJUNTOS_IPSEN/$ID_GES";
 							if (file_exists($dir)) {
 								$directorio = opendir($dir);
 								while ($archivo = readdir($directorio)) {

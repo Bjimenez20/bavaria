@@ -30,7 +30,7 @@ if (isset($_POST['actualizar'])) {
     ?>
         <span style="margin-top:5%;">
             <center>
-                <img src="../presentacion/imagenes/advertencia.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+                <img src="../presentacion/imagenes/advertencia2.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
             </center>
         </span>
         <p class="error" style=" width:68.9%; margin:auto auto;">No se actualizo la ips <?php echo $ID ?></p>
@@ -68,7 +68,7 @@ if (isset($_POST['eliminar'])) {
     ?>
         <span style="margin-top:5%;">
             <center>
-                <img src="../presentacion/imagenes/advertencia.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+                <img src="../presentacion/imagenes/advertencia2.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
             </center>
         </span>
         <p class="error" style=" width:68.9%; margin:auto auto;">No se elimino la ips <?php echo $ID ?></p>
@@ -96,7 +96,7 @@ if (isset($_POST['eliminar'])) {
     .error {
         font-size: 130%;
         font-weight: bold;
-        color: #fb8305;
+        color: red;
         text-transform: uppercase;
         background-color: transparent;
         text-align: center;

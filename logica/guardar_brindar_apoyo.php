@@ -23,7 +23,7 @@ include('../logica/session.php');
 	.error {
 		font-size: 130%;
 		font-weight: bold;
-		color: #fb8305;
+		color: red;
 		text-transform: uppercase;
 		background-color: transparent;
 		text-align: center;
@@ -31,7 +31,7 @@ include('../logica/session.php');
 	}
 
 	html {
-		background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+		background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
@@ -40,7 +40,7 @@ include('../logica/session.php');
 
 	@media screen and (max-width:1000px) {
 		html {
-			background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+			background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
@@ -79,7 +79,7 @@ include('../logica/session.php');
 		?>
 			<span style="margin-top:5%;">
 				<center>
-					<img src="../presentacion/imagenes/advertencia.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+					<img src="../presentacion/imagenes/advertencia2.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 					<p class="error" style=" width:68.9%; margin:auto auto;">
 						No se ha registrado correctamente la informacion
 					</p>

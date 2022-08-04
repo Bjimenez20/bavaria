@@ -1268,18 +1268,6 @@ if ($privilegios != '' && $usua != '') {
                                         </select>
                                     </label>
                                 </td>
-                                <!-- <td>
-                                    <span id="cambio_estado_activo_solicitar" style="display:none;">Estado Del Paciente</span>
-                                    <span id="cambio_estado_abandono_solicitar" style="display:none;">Estado Del Paciente</span>
-                                    <span id="cambio_estado_suspendido_solicitar" style="display:none;">Estado Del Paciente</span>
-                                    <span id="cambio_estado_interrumpido_solicitar" style="display:none;">Estado Del Paciente</span>
-                                </td>
-                                <td>
-                                    <input type="text" name="estado_activo" id="estado_activo" style="display:none;" value="Activo" readonly>
-                                    <input type="text" name="estado_abandono" id="estado_abandono" style="display:none;" value="Abandono" readonly>
-                                    <input type="text" name="estado_suspendido" id="estado_suspendido" style="display:none;" value="Suspendido" readonly>
-                                    <input type="text" name="estado_interrumpido" id="estado_interrumpido" style="display:none;" value="Interrumpido" readonly>
-                                </td> -->
                             </tr>
                             <tr>
                                 <td>
@@ -1369,19 +1357,8 @@ if ($privilegios != '' && $usua != '') {
                                     <input type="text" name="MEDICAMENTO" id="MEDICAMENTO" style="display:none" />
                                     <select type="text" name="producto_tratamiento" id="producto_tratamiento">
                                         <option value="">Seleccione...</option>
-                                        <option>ADEMPAS</option>
-                                        <option>BETAFERON CMBP X 15 VPFS (3750 MCG) MM</option>
-                                        <option>Eylia 2MG VL 1x2ML CO INST</option>
-                                        <option>KOGENATE FS 2000 PLAN</option>
-                                        <option>NEXAVAR 200MGX60C(12000MG)INST</option>
-                                        <option>NUBEQA</option>
-                                        <option>VENTAVIS 10 1SOL/2ML X30AMP(Conse) MM</option>
-                                        <option>XARELTO 15 MG X 7 TABL MU</option>
-                                        <option>Xofigo 1x6 ml CO</option>
-                                        <option>Kovaltry</option>
-                                        <option>Jivi</option>
-                                        <option>STIVARGA - regorafenib</option>
-                                        <option>Vitrakvi</option>
+                                        <option>CABOMETIX</option>
+                                        <option>Somatuline</option>
                                     </select>
                                 </td>
                                 <td width="20%">

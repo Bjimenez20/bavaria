@@ -6,7 +6,7 @@
 	<title>IPSEN</title>
 	<link rel="stylesheet" type="text/css" href="../presentacion/css/estilo_tablas.css" />
 	<link rel="stylesheet" type="text/css" href="css/estilo_tablas.css" />
-	<link rel="shortcut icon" href="../presentacion/imagenes/logo.png" />
+	<link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
 	<script src="js/jquery.js" type="text/javascript"></script>
 	<style>
 		.btn_actualizar2 {

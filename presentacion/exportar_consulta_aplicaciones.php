@@ -25,13 +25,13 @@ header("content-disposition: attachment;filename=aplicaciones.xls");
 			padding: 10px;
 		}
 
-		html {
+		/* html {
 			background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
 			background-size: cover;
-		}
+		} */
 
 		th {
 			padding: 5px;
@@ -47,7 +47,7 @@ header("content-disposition: attachment;filename=aplicaciones.xls");
 			background: #ffffff;
 		}
 
-		@media screen and (max-width:1000px) {
+		/* @media screen and (max-width:1000px) {
 			html {
 				background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
 				-webkit-background-size: cover;
@@ -55,7 +55,7 @@ header("content-disposition: attachment;filename=aplicaciones.xls");
 				-o-background-size: cover;
 				background-size: cover;
 			}
-		}
+		} */
 	</style>
 </head>
 <?php

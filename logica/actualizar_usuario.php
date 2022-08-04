@@ -3,6 +3,7 @@ include('../logica/session.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>IPSEN</title>
@@ -16,10 +17,11 @@ include('../logica/session.php');
 			text-align: center;
 			padding: 10px;
 		}
+
 		.error {
 			font-size: 130%;
 			font-weight: bold;
-			color: #fb8305;
+			color: red;
 			text-transform: uppercase;
 			background-color: transparent;
 			text-align: center;
@@ -27,9 +29,10 @@ include('../logica/session.php');
 		}
 	</style>
 </head>
+
 <body>
 	<?php
-require('../datos/parse_str.php');
+	require('../datos/parse_str.php');
 	require('../datos/conex.php');
 	$ID = $_POST['OCUL'];
 	$USURARIO = $_POST['USURARIO'];
@@ -40,7 +43,7 @@ require('../datos/parse_str.php');
 	$PERFIL = $_POST['PERFIL'];
 	if (isset($_POST['restablecer'])) {
 		$CONTRASENA = md5(1234);
-		$sql = mysqli_query($conex,"UPDATE ipsen_usuario SET CONTRASENA='" . $CONTRASENA . "' WHERE ID_USUARIO='" . $ID . "'");
+		$sql = mysqli_query($conex, "UPDATE ipsen_usuario SET CONTRASENA='" . $CONTRASENA . "' WHERE ID_USUARIO='" . $ID . "'");
 		echo mysqli_error($conex);
 		if ($sql) {
 	?>
@@ -61,7 +64,7 @@ require('../datos/parse_str.php');
 	}
 	if (isset($_POST['MODIFICAR_USU'])) {
 		$CONTRASENA = md5($CONTRASENA);
-		$sql = mysqli_query($conex,"UPDATE ipsen_usuario SET NOMBRES='" . $NOMBRES . "',APELLIDOS='" . $APELLIDO . "', CELULAR='" . $NUM_TEL . "' WHERE ID_USUARIO='" . $ID . "';");
+		$sql = mysqli_query($conex, "UPDATE ipsen_usuario SET NOMBRES='" . $NOMBRES . "',APELLIDOS='" . $APELLIDO . "', CELULAR='" . $NUM_TEL . "' WHERE ID_USUARIO='" . $ID . "';");
 		echo mysqli_error($conex);
 		if ($sql) {
 		?>
@@ -94,11 +97,11 @@ require('../datos/parse_str.php');
 	?>
 		<span style="margin-top:5%;">
 			<center>
-				<img src="../presentacion/imagenes/advertencia.png" style="width:50px; margin-top:100px;margin-top:5%;" />
+				<img src="../presentacion/imagenes/advertencia2.png" style="width:50px; margin-top:100px;margin-top:5%;" />
 			</center>
 		</span>
 		<p class="error" style=" width:68.9%; margin:auto auto;">
-			<span style="border-left-color:#fff">ERROR. VERIFIQUE LOS DATOS A ACTUALIZAR.</span>
+			<span style="border-left-color:#fff">ERROR VERIFIQUE LOS DATOS A ACTUALIZAR.</span>
 		</p>
 		<br />
 		<br />
@@ -110,4 +113,5 @@ require('../datos/parse_str.php');
 	}
 ?>
 </body>
+
 </html>

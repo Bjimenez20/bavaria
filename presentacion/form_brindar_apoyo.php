@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
     <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
-    <link rel="shortcut icon" href="../presentacion/imagenes/logo.png" />
+    <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
 </head>
 <style>
     .error {
@@ -19,7 +19,7 @@
     }
 
     html {
-        background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+        background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -28,7 +28,7 @@
 
     @media screen and (max-width:1000px) {
         html {
-            background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+            background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -49,6 +49,7 @@ echo mysqli_error($conex);
     <div>
         <img src="../presentacion/imagenes/esquina.png" height="80px" style="margin-left:1%; margin-top:1%;" />
     </div>
+    <br><br><br><br><b><br></b>
     <form action="../logica/guardar_brindar_apoyo.php" method="post">
         <input type="hidden" value="<?php echo $ID_PACIENTE ?>" name="id_paciente" id="id_paciente" />
         <fieldset style="border:1px solid #000; border-radius:5px; margin:auto auto; width:80%;">

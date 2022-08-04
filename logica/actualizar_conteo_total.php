@@ -1,7 +1,7 @@
 <?php
 include('../datos/conex.php');
 date_default_timezone_set("America/Bogota");
-$select_conteo = mysqli_query($conex,"SELECT A.ID AS ID, A.CAUSAL_NO_VISITA AS CASUALIDAD, A.ID_PACIENTE_FK2, YEAR(A.FECHA_ULTIMO_REGISTRO) AS ANIO, MONTH(A.FECHA_ULTIMO_REGISTRO) AS MES,DAY(A.FECHA_ULTIMO_REGISTRO) AS DIA,  CONTEO,ESTADO FROM ipsen_conteo AS A  WHERE  ESTADO = '1'");
+$select_conteo = mysqli_query($conex, "SELECT A.ID AS ID, A.CAUSAL_NO_VISITA AS CASUALIDAD, A.ID_PACIENTE_FK2, YEAR(A.FECHA_ULTIMO_REGISTRO) AS ANIO, MONTH(A.FECHA_ULTIMO_REGISTRO) AS MES,DAY(A.FECHA_ULTIMO_REGISTRO) AS DIA,  CONTEO,ESTADO FROM ipsen_conteo AS A  WHERE  ESTADO = '1'");
 $row_select_conteo = mysqli_num_rows($select_conteo);
 while ($sel_con = (mysqli_fetch_array($select_conteo))) {
 	$fecha_conteo_MES = $sel_con['MES'];
@@ -33,36 +33,14 @@ while ($sel_con = (mysqli_fetch_array($select_conteo))) {
 		$fecha_anio = $_POST['anio'];
 		if ($row_select_conteo > 0) {
 			for ($i = 0; $i < count($id_cont); $i++) {
-				///arrray a�o mes dia
 				$id_contv = $id_cont[$i];
 				$fecha_aniov = $fecha_anio[$i];
 				$fecha_mesv  = $fecha_mes[$i];
 				$fecha_diav = $fecha_dia[$i];
 				$fecha2 = new DateTime("$fecha_aniov-$fecha_mesv-$fecha_diav");
 				$diff = $fecha1->diff($fecha2);
-				$actualiza_conteo = mysqli_query($conex,"UPDATE ipsen_conteo SET CONTEO = '" . $diff->days . "' WHERE  ESTADO = '1' AND ID ='" . $id_contv . "' ");
+				$actualiza_conteo = mysqli_query($conex, "UPDATE ipsen_conteo SET CONTEO = '" . $diff->days . "' WHERE  ESTADO = '1' AND ID ='" . $id_contv . "' ");
 			}
 		}
 	}
-	/*
-$row_select_conteo = mysql_num_rows($select_conteo);
-while($sel_con=(mysql_fetch_array($select_conteo))){
-$fecha_conteo_MES = $datos_fechas['MES'];
-$fecha_conteo_DIA = $datos_fechas['DIA'];
-$fecha_conteo_A�O = $datos_fechas['ANO'];
-$id_conteo = $datos_fechas['ID'];
-}
- if ($row_select_conteo > 0){ 
-		  for($i=0;$i < count($row_select_conteo);$i++){
-		  ///arrray a�o mes dia
-		  $id_cont = $id_conteo[$i];	  
-		  $fecha_anio = $fecha_conteo_A�O[$i];
-		  $fecha_mes  = $fecha_conteo_MES[$i];
-		  $fecha_dia = $fecha_conteo_DIA[$i];
-         $fecha2= new DateTime("$fecha_anio-$fecha_mes-$fecha_dia");
-		  $diff = $fecha1->diff($fecha2);	
-$actualiza_conteo = mysql_query("UPDATE ipsen_conteo SET CONTEO = '".$diff->days."' WHERE  ESTADO = '1' AND ID ='".$id_cont."' ", $conex);
-		  }
-		  }
-*/
 	?>

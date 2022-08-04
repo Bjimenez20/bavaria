@@ -22,7 +22,7 @@ include('../logica/session.php');
         .error {
             font-size: 130%;
             font-weight: bold;
-            color: #fb8305;
+            color: red;
             text-transform: uppercase;
             background-color: transparent;
             text-align: center;
@@ -449,7 +449,7 @@ include('../logica/session.php');
                                 <span class="error" style="font-size:100%; ">POR FAVOR COMUNICARSE CON EL COORDINADOR.</span>
                                 <span>
                                     <center>
-                                        <img src="../presentacion/imagenes/advertencia.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
+                                        <img src="../presentacion/imagenes/advertencia2.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
                                     </center>
                                 </span>
                             </td>
@@ -511,7 +511,7 @@ include('../logica/session.php');
                         ?>
                                         <span style="margin-top:3%;">
                                             <center>
-                                                <img src="../presentacion/imagenes/advertencia.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
+                                                <img src="../presentacion/imagenes/advertencia2.png" width="52" height="50" style=" margin-top:100px;margin-top:5%;" />
                                             </center>
                                         </span>
                                         <p class="error" style=" width:68.9%; margin:auto auto; font-size:80%;">ADVERTENIA SE ESTA AGOTANDO EL PRODUCTO <span style="color:#F00; font-weight:bold"><?php echo $nombre_producto ?></span> POR FAVOR COMUNICARSE CON EL COORDINADOR.</p>
@@ -691,7 +691,7 @@ include('../logica/session.php');
                         ?>
                         <span style="margin-top:5%;">
                             <center>
-                                <img src="../presentacion/imagenes/advertencia.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+                                <img src="../presentacion/imagenes/advertencia2.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
                             </center>
                         </span>
                         <p class="error" style=" width:68.9%; margin:auto auto;">EL SEGUIMIENTO NO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>

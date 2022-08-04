@@ -30,21 +30,50 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBell">
-                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_operador.php" target="info">Habilitar operador logistico
-                                <span class="badge badge-primary"><?php echo $num_total_opl ?></span></a>
+                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_operador.php" target="info">
+                                <div class="row-reverse">
+                                    <div class="col p-0">
+                                        <span class="mr-1">Habilitar operador logistico</span>
+                                        <span class="badge badge-primary"><?php echo $num_total_opl ?></span>
+                                    </div>
+                                </div>
+                            </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_asegurador.php" target="info">Habilitar asegurador
-                                <span class="badge badge-primary"><?php echo $num_total_asegurador ?></span></a>
+                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_asegurador.php" target="info">
+                                <div class="row-reverse">
+                                    <div class="col p-0">
+                                        <span class="mr-1">Habilitar asegurador</span>
+                                        <span class="badge badge-primary"><?php echo $num_total_asegurador ?></span>
+                                    </div>
+                                </div>
+                            </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_ips.php" target="info">Habilitar IPS
-                                <span class="badge badge-primary"><?php echo $num_total_ips ?></span></a>
+                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_ips.php" target="info">
+                                <div class="row-reverse">
+                                    <div class="col p-0">
+                                        <span class="mr-1">Habilitar IPS</span>
+                                        <span class="badge badge-primary"><?php echo $num_total_ips ?></span>
+                                    </div>
+                                </div>
+                            </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_medicos.php" target="info">Habilitar medicos
-                                <span class="badge badge-primary"><?php echo $num_total_medicos ?></span></a>
+                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_medicos.php" target="info">
+                                <div class="row-reverse">
+                                    <div class="col p-0">
+                                        <span class="mr-1">Habilitar medicos</span>
+                                        <span class="badge badge-primary"><?php echo $num_total_medicos ?></span>
+                                    </div>
+                                </div>
+                            </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_puntos.php" target="info">Habilitar puntos de entrega
-                                <span class="badge badge-primary"><?php echo $num_total_puntos ?></span></a>
-                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item select_menu" href="../presentacion/form_listado_puntos.php" target="info">
+                                <div class="row-reverse">
+                                    <div class="col p-0">
+                                        <span class="mr-1">Habilitar puntos de entrega</span>
+                                        <span class="badge badge-primary"><?php echo $num_total_puntos ?></span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     <?php } ?>
                 </li>

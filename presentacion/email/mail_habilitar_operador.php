@@ -17,5 +17,5 @@ Cualquier inquietud con gusto sera atendida.
 Correo enviado de manera automatica.
 <br>
 <br>";
-$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com, datamarshall@peoplecontact.cc", "Habilitar Operador Logistico", $body);
+$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Habilitar Operador Logistico", $body);
 $mailer->send() ? "Enviado" : "Problema al enviar";

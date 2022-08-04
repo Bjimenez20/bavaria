@@ -9,7 +9,7 @@ include('../logica/session.php')
    <link rel="stylesheet" href="../presentacion/css/estilos_menu.css" />
    <link type="text/css" rel="stylesheet" href="../presentacion/css/estilo_form_paciente.css" />
    <title>IPSEN</title>
-   <link rel="shortcut icon" href="../presentacion/imagenes/logo.png" />
+   <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
    <SCRIPT>
       function cerrar() {
          window.close(); //cierra el popup

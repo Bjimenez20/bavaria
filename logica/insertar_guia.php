@@ -19,7 +19,7 @@
 	.error {
 		font-size: 130%;
 		font-weight: bold;
-		color: #fb8305;
+		color: red;
 		text-transform: uppercase;
 		background-color: transparent;
 		text-align: center;
@@ -95,7 +95,7 @@
 						?>
 						<span style="margin-top:3%;">
 							<center>
-								<img src="../presentacion/imagenes/advertencia.png" width="52" height="52" style=" margin-top:100px;margin-top:5%;" />
+								<img src="../presentacion/imagenes/advertencia2.png" width="52" height="52" style=" margin-top:100px;margin-top:5%;" />
 							</center>
 						</span>
 						<p class="error" style=" width:68.9%; margin:auto auto; font-size:95%;">EL NUMERO DE SERIAL <span style="color:#F00; font-weight:bold"><?php echo $SERIAL ?> </span> NO ESTA DISPONIBLER.</p>

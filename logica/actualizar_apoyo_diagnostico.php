@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
-    <link rel="shortcut icon" href="../presentacion/imagenes/logo.png" />
+    <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
     <script src="../presentacion/js/jquery.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -88,7 +88,7 @@
         .error {
             font-size: 130%;
             font-weight: bold;
-            color: #fb8305;
+            color: red;
             text-transform: uppercase;
             background-color: transparent;
             text-align: center;
@@ -96,20 +96,16 @@
         }
         html,
         body {
-            background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+            background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
         }
-        /*form 
-{
-    background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
-}*/
         @media screen and (max-width:1000px) {
             html,
             body {
-                background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+                background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;

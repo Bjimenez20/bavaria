@@ -12,7 +12,7 @@ include('../logica/session.php');
 		.error {
 			font-size: 130%;
 			font-weight: bold;
-			color: #fb8305;
+			color: red;
 			text-transform: uppercase;
 			background-color: transparent;
 			text-align: center;
@@ -20,7 +20,7 @@ include('../logica/session.php');
 		}
 
 		html {
-			background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+			background-color: transparent;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
@@ -43,7 +43,7 @@ include('../logica/session.php');
 
 		@media screen and (max-width:1000px) {
 			html {
-				background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
+				background-color: transparent;
 				-webkit-background-size: cover;
 				-moz-background-size: cover;
 				-o-background-size: cover;

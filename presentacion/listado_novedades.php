@@ -225,7 +225,7 @@ if (isset($_POST['buscar'])) {
 						echo $fila1['ESTADO'] ?>
 							</td>
 							<td>
-								<a href="../presentacion/novedades_actualizar.php?artid=<?php echo base64_encode($fila1['ID']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="15" height="15" /></a>
+								<a href="../presentacion/novedades_actualizar.php?artid=<?php echo base64_encode($fila1['ID']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a>
 							</td>
 					</tr>
 				<?php

@@ -30,7 +30,6 @@
 			</th>
         </tr>";
 	while ($fila = (mysqli_fetch_array($select))) {
-		//echo "<option value=\"".$fila['LOTE']."\">".utf8_encode($fila['LOTE'])."</option>";
 		$estado = $fila['ESTADO_LOGIN'];
 		echo "<tr><td>" . $fila['USER'] . "</td>";
 		echo "<td>" . $fila['NOMBRES'] . ' ' . $fila['APELLIDOS'] . "</td>";
@@ -47,7 +46,6 @@
 		}
 		"</td>";
 		echo "</tr>";
-		//echo "<img src='img/lupa.png'></img>";
 	}
 	function estado($estado)
 	{

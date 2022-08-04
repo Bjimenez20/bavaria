@@ -6,7 +6,7 @@ include('../logica/session.php');
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
-    <link rel="shortcut icon" href="img/logo.png" />
+    <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
     <link rel="stylesheet" href="css/estilos_form_usuario.css" />
     <script src="js/jquery.js"></script>
     <script src="../presentacion/js/jquery.js"></script>

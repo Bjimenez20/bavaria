@@ -172,19 +172,19 @@ if ($privilegios != '' && $usua != '') {
 						</th>
 					</tr>
 					<tr>
-						<th bgcolor="#848484">
+						<th bgcolor="#848484" style="color: #fff;" style="color: #fff;">
 							USUARIO(S)
 						</th>
-						<th bgcolor="#848484">
+						<th bgcolor="#848484" style="color: #fff;">
 							NOMBRE(S) Y APELLIDO(S)
 						</th>
-						<th bgcolor="#848484">
+						<th bgcolor="#848484" style="color: #fff;">
 							ESTADO LOGIN
 						</th>
 						<?php
 						if ($nreg_terapias > 0) {
 						?>
-							<th bgcolor="#848484">
+							<th bgcolor="#848484" style="color: #fff;">
 								ASIGNAR PACIENTES ADEMPAS Y XOFIJO
 							</th>
 						<?php
@@ -193,10 +193,10 @@ if ($privilegios != '' && $usua != '') {
 						<?php
 						if ($nreg_pac <= 0) {
 						?>
-							<th bgcolor="#848484">
+							<th bgcolor="#848484" style="color: #fff;">
 								# ASIGNADAS
 							</th>
-							<th bgcolor="#848484">
+							<th bgcolor="#848484" style="color: #fff;">
 								# GESTIONADAS
 							</th>
 						<?php

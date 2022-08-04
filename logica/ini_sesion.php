@@ -64,7 +64,6 @@ if (mysqli_num_rows($sql) > 0) {
 				}
 			</script>
 		<?php
-			//echo "Contraseña Bloqueada";
 			$actu = mysqli_query($conex, "UPDATE ipsen_usuario SET 
 				ESTADO = '0'
 				WHERE USER='" . $usua2 . "';");
@@ -98,5 +97,4 @@ if (mysqli_num_rows($sql) > 0) {
 	}
 }
 mysqli_close($conex);
-/*    */
 ?>

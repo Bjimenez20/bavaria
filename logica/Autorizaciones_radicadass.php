@@ -1,12 +1,6 @@
 <?php
-/*
-$conexion=mysqli_connect('192.168.0.7','webuser','P4t4d4 4l n3n3!!!','peoplema_bayer')or die ("no se pudo");
-mysqli_select_db($conexion,'peoplema_bayer') or die ("no se puede conectar a la database");   
-*/
 $conexion = mysqli_connect('app-peoplemarketing.com', 'apppeopl', 'ser1_pE0p1E*2018', 'apppeopl_bayer') or die("no se pudo");
 mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la database");
-//session_start();
-//Exportar datos de php a Excel
 header("Content-Type: application/vnd.ms-excel");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
@@ -19,19 +13,24 @@ echo mysqli_error($conexion);
     background: rgb(153, 198, 85);
     border: 1px solid rgb(21, 169, 227);
   }
+
   .n112 {
     background: #dc3545;
     color: white;
   }
+
   .nn1 {
     border: 1px solid rgb(21, 169, 227);
   }
+
   td {
     border: 1px solid;
   }
+
   tbody>td:nth-child(odd) {
     background-color: #f2f2f2;
   }
+
   tbody>td:nth-child(even) {
     background-color: #fbfbfb;
   }

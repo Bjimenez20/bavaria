@@ -14106,12 +14106,12 @@ fieldset[disabled] .form-group .form-control {
 .navbar.bg-primary {
   color: #ffffff;
   background-color: #848484 !important;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(156, 39, 176, 0.46);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(0, 0, 0, 0.46);
 }
 
 .navbar.bg-primary .dropdown-item:hover,
 .navbar.bg-primary .dropdown-item:focus {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
   background-color: #848484;
   color: #ffffff;
 }
@@ -14435,7 +14435,7 @@ fieldset[disabled] .form-group .form-control {
 .nav-pills .nav-item .nav-link.active {
   color: #ffffff;
   background-color: #848484;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .nav-pills .nav-item i {
@@ -15546,7 +15546,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 }
 
 .alert.alert-primary {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .alert.alert-primary i {
@@ -15833,7 +15833,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 .dropdown-menu a:hover,
 .dropdown-menu a:focus,
 .dropdown-menu a:active {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
   background-color: #848484;
   color: #FFFFFF;
 }
@@ -16566,7 +16566,7 @@ thead.thead-inverse th,
 .card .card-header-primary .card-icon,
 .card .card-header-primary:not(.card-header-icon):not(.card-header-text),
 .card .card-header-primary .card-text {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .card .card-header-danger .card-icon,
@@ -19046,7 +19046,7 @@ a .material-icons {
 
 .sidebar[data-color="purple"] li.active>a {
   background-color: #848484;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .sidebar[data-color="azure"] li.active>a {
@@ -20878,7 +20878,7 @@ a .material-icons {
 
 .timeline>li>.timeline-badge.primary {
   background-color: #848484;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .timeline>li>.timeline-badge.success {
@@ -25644,7 +25644,7 @@ svg {
 .bootstrap-datetimepicker-widget table td.active:hover>div {
   background-color: #848484;
   color: #ffffff;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .bootstrap-datetimepicker-widget table td.active.today:before>div {
@@ -27505,7 +27505,7 @@ be a descendant of the grid when it is being dragged.
 
 .card-wizard[data-color="purple"] .moving-tab {
   background-color: #848484;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .card-wizard[data-color="purple"] .picture:hover {
@@ -28082,7 +28082,7 @@ select.selectpicker {
 
 .bootstrap-select.btn-group .dropdown-menu li a:focus,
 .bootstrap-select.btn-group .dropdown-menu li a:hover {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .bootstrap-select .dropdown-item.active {

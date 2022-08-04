@@ -104,7 +104,7 @@ if ($privilegios != '' && $usua != '') {
                     <div id="content_welcome">
                         <div class="row-reverse">
                             <div class="col d-flex justify-content-center">
-                                <img src="./../presentacion/imagenes/5.png" alt="">
+                                <img src="./../presentacion/imagenes/10.png" alt="">
                             </div>
                             <div class="col d-flex justify-content-center">
                                 <label for="" class="h2 font-weight-bold">BIENVENIDO A IPSEN</label>

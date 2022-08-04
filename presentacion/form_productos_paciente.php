@@ -6,12 +6,12 @@
 	<title>IPSEN</title>
 	<link rel="stylesheet" type="text/css" href="../presentacion/css/estilo_tablas.css" />
 	<link rel="stylesheet" type="text/css" href="css/estilo_tablas.css" />
-	<link rel="shortcut icon" href="../presentacion/imagenes/logo.png" />
+	<link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
 	<style>
 		.error {
 			font-size: 130%;
 			font-weight: bold;
-			color: #fb8305;
+			color: red;
 			text-transform: uppercase;
 			background-color: transparent;
 			text-align: center;
@@ -50,24 +50,22 @@ require('../datos/conex.php');
 		<?php
 		$ID_PACIENTE = base64_decode($xxx);
 		$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_movimientos AS M
-INNER JOIN ipsen_referencia AS R ON R.ID_REFERENCIA=M.ID_REFERENCIA_FK
-INNER JOIN ipsen_paciente_movimientos AS PM ON PM.ID_MOVIMIENTOS_FK=M.ID_MOVIMIENTOS
-INNER JOIN ipsen_pacientes AS P ON P.ID_PACIENTE=PM.ID_PACIENTE_FK
-WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECHA_MOVIMIENTO ASC");
+		INNER JOIN ipsen_referencia AS R ON R.ID_REFERENCIA=M.ID_REFERENCIA_FK
+		INNER JOIN ipsen_paciente_movimientos AS PM ON PM.ID_MOVIMIENTOS_FK=M.ID_MOVIMIENTOS
+		INNER JOIN ipsen_pacientes AS P ON P.ID_PACIENTE=PM.ID_PACIENTE_FK
+		WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECHA_MOVIMIENTO ASC");
 		echo mysqli_error($conex);
 		$SELECT_SOLICITUDES = "SELECT * FROM ipsen_movimientos AS M
-INNER JOIN ipsen_referencia AS R ON R.ID_REFERENCIA=M.ID_REFERENCIA_FK
-INNER JOIN ipsen_paciente_movimientos AS PM ON PM.ID_MOVIMIENTOS_FK=M.ID_MOVIMIENTOS
-INNER JOIN ipsen_pacientes AS P ON P.ID_PACIENTE=PM.ID_PACIENTE_FK
-WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECHA_MOVIMIENTO ASC LIMIT";
-		//include('../logica/consultas_solicitudes.php');
+		INNER JOIN ipsen_referencia AS R ON R.ID_REFERENCIA=M.ID_REFERENCIA_FK
+		INNER JOIN ipsen_paciente_movimientos AS PM ON PM.ID_MOVIMIENTOS_FK=M.ID_MOVIMIENTOS
+		INNER JOIN ipsen_pacientes AS P ON P.ID_PACIENTE=PM.ID_PACIENTE_FK
+		WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECHA_MOVIMIENTO ASC LIMIT";
 		$url = "../presentacion/form_productos_paciente.php";
 		$num_total = mysqli_num_rows($SELECT_SOLICITUDES_TOTAL);
 		if ($num_total > 0) {
 		?>
 			<table border="0" bordercolor="#A1A1A1" width="100%" rules="cols">
 				<tr>
-					<!--<th class="botones">ID MOVIMIENTOS</th>-->
 					<th class="botones"># De Guia</th>
 					<th class="botones">SERIAL PRODUCTO</th>
 					<th class="botones">NOMBRE PRODUCTO</th>
@@ -80,10 +78,8 @@ WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECH
 					<th class="botones">ESTADO</th>
 				</tr>
 				<?PHP
-				//Limito la busqueda
 				$TAMANO_PAGINA = 10;
 				$pagina = false;
-				//examino la pagina a mostrar y el inicio del registro a mostrar
 				if (isset($_GET["pagina"]))
 					$pagina = $_GET["pagina"];
 				if (!$pagina) {
@@ -92,12 +88,7 @@ WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECH
 				} else {
 					$inicio = ($pagina - 1) * $TAMANO_PAGINA;
 				}
-				//calculo el total de paginas
 				$total_paginas = ceil($num_total / $TAMANO_PAGINA);
-				//pongo el numero de registros total, el tamaño de pagina y la pagina que se muestra
-				/*echo '<h3>Numero de articulos: '.$num_total .'</h3>';
-		echo '<h3>En cada pagina se muestra '.$TAMANO_PAGINA.' articulos ordenados por fecha de forma descendente.</h3>';
-		echo '<h3>Mostrando la pagina '.$pagina.' de ' .$total_paginas.' paginas.</h3>';*/
 				$consulta = "$SELECT_SOLICITUDES " . $inicio . "," . $TAMANO_PAGINA;
 				$consulta_sol = mysqli_query($conex, $consulta);
 				$x = 0;
@@ -144,11 +135,8 @@ WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECH
 								echo '<a href="' . $url . '?pagina=' . ($pagina - 1) . '&xxx=' . base64_encode($ID_PACIENTE) . '"><img src="../presentacion/imagenes/izq.gif" border="0"></a>';
 							for ($i = 1; $i <= $total_paginas; $i++) {
 								if ($pagina == $i)
-									//si muestro el indice de la pagina actual, no coloco enlace
 									echo "<label style='font-size:120%; color:#000;'> $pagina </label>";
 								else
-									//si el indice no corresponde con la pagina mostrada actualmente,co
-									//coloco el enlace para ir a esa pagina
 									echo '  <a href="' . $url . '?pagina=' . $i . '&xxx=' . base64_encode($ID_PACIENTE) . '" style="font-size:110%;">' . $i . '</a>  ';
 							}
 							if ($pagina != $total_paginas)
@@ -163,7 +151,7 @@ WHERE M.TIPO_MOVIMIENTO='2' AND PM.ID_PACIENTE_FK='$ID_PACIENTE' ORDER BY M.FECH
 			?>
 				<span style="margin-top:1%;">
 					<center>
-						<img src="../presentacion/imagenes/advertencia.png" style="width:70px; margin-top:1%;" />
+						<img src="../presentacion/imagenes/advertencia2.png" style="width:70px; margin-top:1%;" />
 					</center>
 				</span>
 				<p class="error" style=" width:68.9%; margin:auto auto;">

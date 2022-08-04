@@ -331,9 +331,9 @@ if ($privilegios != '' && $usua != '') {
 									$PROGRAMA = $row1['PROGRAMA'];
 								}
 								if ($PROGRAMA == "PAAP") { ?>
-									<a href="../presentacion/form_paciente_paap.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="15" height="15" /></a>
+									<a href="../presentacion/form_paciente_paap.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a>
 								<?php } else { ?>
-									<a href="../presentacion/form_paciente.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="15" height="15" /></a>
+									<a href="../presentacion/form_paciente.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a>
 								<?php } ?>
 							</td>
 						<?php
@@ -342,19 +342,18 @@ if ($privilegios != '' && $usua != '') {
 						?>
 							<td><?php echo $fila1['FECHA_PROGRAMADA_GESTION'] ?></td>
 							<td><?php echo $fila1['ESTADO_GESTION'] ?></td>
-							<td><a href="../presentacion/form_paciente_recolecc.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="15" height="15" /></a></td>
+							<td><a href="../presentacion/form_paciente_recolecc.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a></td>
 						<?php
 						}
 						if ($privilegios == 1) {
 						?>
-							<td><a href="../presentacion/form_paciente_modificacion.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="15" height="15" /></a></td>
+							<td><a href="../presentacion/form_paciente_modificacion.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a></td>
 						<?php
 						}
 						if ($privilegios == 4) {
 						?>
-							<!--				<td><a href="../presentacion/envio_fundem.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="15" height="15" /></a></td>-->
-							<td><a href="../presentacion/form_paciente.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="15" height="15" /></a></td>
-							<td><a href="../presentacion/envio_fundem.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="15" height="15" /></a></td>
+							<td><a href="../presentacion/form_paciente.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a></td>
+							<td><a href="../presentacion/envio_fundem.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a></td>
 						<?php
 						}
 						?>
