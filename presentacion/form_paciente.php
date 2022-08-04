@@ -28,6 +28,44 @@ include('../logica/session.php')
             padding: 3px;
             background-color: transparent;
         }
+
+        .input__row {
+            margin-top: 10px;
+        }
+
+        /* Radio button */
+        /* Upload button */
+        .upload {
+            display: none;
+        }
+
+        .uploader {
+            border: 2px solid #224a81;
+            width: 300px;
+            position: relative;
+            height: 30px;
+            display: flex;
+        }
+
+        .uploader .input-value {
+            width: 250px;
+            padding: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 25px;
+            font-family: sans-serif;
+            font-size: 16px;
+        }
+
+        .uploader label {
+            cursor: pointer;
+            margin: 0;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            right: 0;
+            background: #224a81 url('https://www.interactius.com/wp-content/uploads/2017/09/folder.png') no-repeat center;
+        }
     </style>
     <script type="text/javascript">
         function trat_previo(sel) {
@@ -2585,9 +2623,17 @@ if ($privilegios != '' && $usua != '') {
                         </div>
                         <br />
                         <br />
-                        <div style="width:91.4%;">
-                            <input type="file" name="archivo" id="archivo" class="aceptar"></input>
+                        <span>Seleccione archivo...</span>
+                        <div class="input__row uploader">
+                            <div id="inputval" class="input-value"></div>
+                            <label for="archivo"></label>
+                            <input type="file" class="upload" name="archivo" id="archivo" class="aceptar">
                         </div>
+                        <script>
+                            $('#archivo').on('change', function() {
+                                $('#inputval').text($(this).val());
+                            });
+                        </script>
                         <center>
                             <?PHP
                             if ($privilegios != 5) {

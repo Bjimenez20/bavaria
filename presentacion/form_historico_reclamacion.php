@@ -56,6 +56,7 @@ require('../datos/conex.php');
         $num_total = mysqli_num_rows($SELECT_SOLICITUDES_TOTAL);
         if ($num_total > 0) {
         ?>
+        <br><br><br><br><br><br><b></b><br>
             <table border="0" bordercolor="#A1A1A1" width="100%" rules="cols">
                 <tr>
                     <th class="botones">A&Ntilde;O</th>

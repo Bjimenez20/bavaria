@@ -146,9 +146,9 @@ error_reporting(0);
 			</select>
 			<br />
 			<br />
-			<input type="submit" value="Descargar" id="btn" name="enviar" />
-			<input type="submit" value="Descargar" id="btn_otro" name="enviar" formaction="reporte_excel2.php" style="display:none;" />
-			<input type="submit" value="Descargar" id="btn_conteo" name="enviar" formaction="reporte_conteo.php" style="display:none;" />
+			<input class="descargar" type="submit" value="Descargar" id="btn" name="enviar" />
+			<input class="descargar" type="submit" value="Descargar" id="btn_otro" name="enviar" formaction="reporte_excel2.php" style="display:none;" />
+			<input class="descargar" type="submit" value="Descargar" id="btn_conteo" name="enviar" formaction="reporte_conteo.php" style="display:none;" />
 			<br />
 			<br />
 		</center>
@@ -165,7 +165,7 @@ error_reporting(0);
 				<input type="date" name="fecha_fin" id="fecha_fin" readonly="readonly" />
 				<br /><br />
 				<center>
-					<input type="submit" value="Descargar" id="btn2" name="enviar2" style="display:none" />
+					<input class="descargar" type="submit" value="Descargar" id="btn2" name="enviar2" style="display:none" />
 				</center>
 			</fieldset>
 		</div>
@@ -186,11 +186,38 @@ error_reporting(0);
 					</select>
 					<br />
 					<br />
-					<input type="submit" value="Descargar" id="btn3" name="enviar3" style="display:none" />
+					<input class="descargar" type="submit" value="Descargar" id="btn3" name="enviar3" style="display:none" />
 				</center>
 			</fieldset>
 		</div>
 	</form>
+	<style>
+		.descargar {
+			color: #fff;
+			background-color: #4caf50;
+			border-color: #4caf50;
+			box-shadow: 0 2px 2px 0 rgb(76 175 80 / 14%), 0 3px 1px -2px rgb(76 175 80 / 20%), 0 1px 5px 0 rgb(76 175 80 / 12%);
+			cursor: pointer;
+		}
+
+		.descargar {
+			position: relative;
+			padding: 12px 30px;
+			margin: 0.3125rem 1px;
+			font-size: .75rem;
+			font-weight: 400;
+			line-height: 1.42857;
+			text-decoration: none;
+			text-transform: uppercase;
+			letter-spacing: 0;
+			cursor: pointer;
+			border: 0;
+			border-radius: 0.2rem;
+			outline: 0;
+			transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+			will-change: box-shadow, transform;
+		}
+	</style>
 </body>
 
 </html>

@@ -14,7 +14,7 @@
 			background-image: url(../presentacion/imagenes/BOTON_ACTUALIZAR.png);
 			background-repeat: no-repeat;
 			width: 145px;
-			height: 35px;
+			height: 50px;
 			color: transparent;
 			background-color: transparent;
 			border-radius: 5px;
@@ -104,6 +104,7 @@ if (isset($_POST['registrar'])) {
 	$num_total = mysqli_num_rows($SELECT_SOLICITUDES_TOTAL);
 	if ($num_total > 0) {
 	?>
+	<br><br><br><br><br><br><b></b><br>
 		<table border="0" bordercolor="#A1A1A1" width="100%" rules="cols">
 			<tr>
 				<th class="botones">PAP</th>
