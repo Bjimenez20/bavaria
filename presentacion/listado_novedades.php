@@ -41,7 +41,6 @@ if (isset($_POST['buscar'])) {
 <body>
 	<form name="solicitud" id="solicitud" method="post" action="../presentacion/novedades_correo.php?artid=<?php echo $fila1['ID']; ?>" target="info">
 		<?php
-		//$ID_PACIENTE=base64_decode($xxx);
 		if ($PAP == "" and $NOVEDAD == "Seleccione..." and $PRIORIDAD == "Seleccione..." and $ESTADO == "Seleccione...") {
 			$SELECT_SOLICITUDES_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_novedades  ORDER BY FECHA_RESPUESTA ASC");
 			echo mysqli_error($conex);

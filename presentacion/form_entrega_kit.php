@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
@@ -13,6 +14,7 @@ include('../logica/session.php')
     .izq {
       text-align: left;
     }
+
     .der {
       text-align: right;
     }
@@ -33,46 +35,23 @@ include('../logica/session.php')
     });
   </script>
   <?php
-  /*
-if($privilegios != 2)
-{
-  header("location: ../index.php");	
-  session_unset();
-  session_destroy();
-  exit();
-}*/
-require('../datos/parse_str.php');
-  /*URL */
-  //$usua = $_SESSION["usuarios"];
+  require('../datos/parse_str.php');
   $usua = strtoupper($usua);
   ?>
 </head>
+
 <body>
   <section>
+    <br><br><br><br>
+    <div style="width:100%; background-color:#848484; height:80%"></div>
+    <table width="100%">
+      <tr>
+        <td style="background-color:#848484;text-align:center">
+          <span style="color:#FFF;  font-size: 25px;">ENTREGA KIT</span>
+        </td>
+      </tr>
+    </table>
     <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1">
-      <tr>
-        <th height="77" colspan="4"><img src="../img/BOTON COORDINACION DE KITS.png" width="270" height="74" border="0" /></th>
-      </tr>
-      <tr>
-        <th height="75" colspan="4">
-          <?php
-          /*if($privilegios == 1)
-  {
-	 require('menu_admin.php'); 
-  }
-if($privilegios == 2)
-  {
-	 require('menu_call.php'); 
-  } 	*/
-          ?>
-        </th>
-      </tr>
-      <tr>
-        <th width="22%" height="37" class="izq">&nbsp;</th>
-        <th width="28%">&nbsp;</th>
-        <th width="25%" class="izq">&nbsp;</th>
-        <th width="25%" class="izq">&nbsp;</th>
-      </tr>
       <tr>
         <th height="50" class="izq">NOMBRE DE USUARIO</th>
         <th colspan="2" class="izq"><input name="Nombre2" type="text" required="required" id="Nombre15" size="50" /></th>
@@ -113,16 +92,21 @@ if($privilegios == 2)
         <th height="63" colspan="2" class="izq"><textarea name="Nombre2" cols="70" rows="3" required="required" id="Nombre10"></textarea></th>
         <th height="63" class="izq"></th>
       </tr>
-      <tr>
-        <th height="47" colspan="4"><img src="../img/BOTON GUARDAR.png" width="106" height="26" /></th>
-      </tr>
-      <tr>
-        <th height="57" colspan="4" class="izq">&nbsp;</th>
-      </tr>
     </table>
   </section>
+  <table width="100%">
+    <tr>
+      <td style="background-color:#848484;text-align:center">
+        <img src="../presentacion/imagenes/BOTONES_REGISTRAR.PNG" width="120" />
+      </td>
+    </tr>
+  </table>
+  <tr>
+    <th height="57" colspan="4" class="izq">&nbsp;</th>
+  </tr>
   <map name="Map7" id="Map7">
     <area shape="rect" coords="-3,-1,275,78" href="#" />
   </map>
 </body>
+
 </html>

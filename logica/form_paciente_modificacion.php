@@ -80,7 +80,6 @@ include('../logica/session.php')
         }
     </script>
     <script>
-        /*DIRECCION*/
         $(document).ready(function() {
             status();
             $('#cambio').click(function() {
@@ -131,7 +130,7 @@ include('../logica/session.php')
                 dir();
             });
         });
-        /**/
+
         function reclamacion() {
             var reclamo = $('#reclamo').val();
             var MEDICAMENTO = $('#MEDICAMENTO').val();
@@ -196,7 +195,6 @@ include('../logica/session.php')
                 var edad = nacio(fecha);
                 $("#edad").val(edad);
             });
-            /*funcion reclamacion*/
             reclamacion();
             $("#reclamo").change(function() {
                 $("#causa_no_reclamacion").val($('#causa_no_reclamacion').prop('defaultValue'));
@@ -887,9 +885,9 @@ if ($privilegios != '' && $usua != '') {
                                 <?PHP
                                         $fecha_actual = date('Y-m-d');
                                         $fecha_rec_act = explode("-", $fecha_actual);
-                                        $anio_act = $fecha_rec_act[0]; // año
-                                        $mes_act = $fecha_rec_act[1]; // mes
-                                        $dia_act = $fecha_rec_act[2]; // dia
+                                        $anio_act = $fecha_rec_act[0];
+                                        $mes_act = $fecha_rec_act[1];
+                                        $dia_act = $fecha_rec_act[2];
                                         $dato = ((int)$mes_act);
                                         $ID = $ID_PACIENTE;
                                         $select_historial_pri = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='$ID'");
@@ -988,12 +986,10 @@ if ($privilegios != '' && $usua != '') {
                             <script>
                                 $('#causa_no_reclamacion').on('change', function() {
                                     var selectValor = $(this).val();
-                                    //alert (selectValor);
                                     if (selectValor == 'opc1') {
                                         $('#fecha_no_reclamacion').show();
                                     } else {
                                         $('#fecha_no_reclamacion').hide();
-                                        //alert('esta es la opcion 2')
                                     }
                                 });
                             </script>
@@ -1097,7 +1093,6 @@ if ($privilegios != '' && $usua != '') {
                             <br />
                         </td>
                         <td>
-                            <!-- <input style="text-transform:capitalize;" type="text" readonly="readonly" name="PREVIO" id="PREVIO" value="<?php echo $tratamiento_previo = $fila['TRATAMIENTO_PREVIO'] ?>" />-->
                             <select type="text" name="tratamiento_previo" id="tratamiento_previo" onchange="trat_previo(this)">
                                 <option><?php echo $tratamiento_previo = $fila['TRATAMIENTO_PREVIO'] ?></option>
                                 <?php

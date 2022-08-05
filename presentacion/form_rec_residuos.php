@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="css/estilos_residuos.css" />
@@ -33,9 +34,10 @@ include('../logica/session.php')
 		});
 	</script>
 	<?php
-require('../datos/parse_str.php');
+	require('../datos/parse_str.php');
 	?>
 </head>
+
 <body>
 	<section>
 		<form name="miformulario" method="post" action="../logica/consutas_pacientes.php" onkeydown="return filtro(2)" target="consulta_inv" class="letra">
@@ -67,4 +69,5 @@ require('../datos/parse_str.php');
 		</form>
 	</section>
 </body>
+
 </html>

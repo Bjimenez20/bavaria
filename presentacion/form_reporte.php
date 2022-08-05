@@ -13,7 +13,6 @@
 			text-transform: uppercase;
 			font-family: Tahoma, Geneva, sans-serif;
 			border-radius: 10px;
-			/*background: #11a9e3;*/
 			background-color: transparent;
 			text-align: center;
 			padding: 10px;
@@ -63,7 +62,6 @@
 					$('#fecha_fin').val('');
 					$("#terapias option:eq(0)").attr("selected", "selected");
 				}
-				/////////////conteo////
 				if (valor == 'ipsen_conteo') {
 					$('#btn_conteo').css('display', 'block');
 					$('#btn_otro').css('display', 'none');
@@ -75,7 +73,6 @@
 					$('#fecha_fin').val('');
 					$("#terapias option:eq(0)").attr("selected", "selected");
 				}
-				////////////conteo/////
 				if (valor == 'ipsen_terapia') {
 					$('#div_fecha').css('display', 'none');
 					$('#btn').css('display', 'none');

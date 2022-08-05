@@ -65,8 +65,6 @@ require_once('session.php');
 		$ESTADO = $_POST['ESTADO'];
 		$FECHA_VENC = $_POST['FECHA_VENC'];
 		$OBSERVACION = $_POST['OBSERVACION'];
-		//$telefono3=$_POST['telefono3'];
-		//mysql_query("SET NAMES utf8");
 		$insertar = mysqli_query($conex, "INSERT INTO ipsen_envio_muestra (PAP, ESTATUS_PACIENTE, DOSIS, FECHA_SALIDA, FECHA_ENTREGA, NO_LOTE, ESTADO, USUARIO, FECHA_VENCIMIENTO, OBSERVACION)
 		VALUES ('" . $PAP . "', '" . $ESTATUS_PACIENTE . "', '" . $DOSIS . "', '" . $FECHA_SALIDA . "', '', '" . $NO_LOTE . "', '" . $ESTADO . "', '" . $usua . "', '" . $FECHA_VENC . "', '" . $OBSERVACION . "')");
 		include("../presentacion/email/mail_envio_muestras.php");

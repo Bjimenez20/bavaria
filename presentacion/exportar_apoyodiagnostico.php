@@ -10,19 +10,13 @@ header("content-disposition: attachment;filename=total_inventarios.xls");
 
 <head>
     <title>IPSEN</title>
-    <!-- META-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-scale=1.0">
-    <!-- AJAX-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- BOOOTSTRAP -->
     <link href="css/bootstrap.css" rel="stylesheet" />
-    <!-- JQUERY PAGINIADO-->
     <script type="text/javascript" src="js/jquery.dataTables.js"></script>
-    <!--ESTILO DEL PAGINIADO-->
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css" />
     <link href="css/Estilo_Menu_C.css" rel="stylesheet" type="text/css">
-    <!-- FUNCION DEL PAGINIADO -->
     <script type="text/javascript">
         $(document).ready(function() {
             $('#usertable').DataTable();

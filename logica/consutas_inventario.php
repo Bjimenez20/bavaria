@@ -18,7 +18,6 @@ $TIPO_C = $_POST['TIPO_CON'];
 $LUGAR = $_POST['LUGAR'];
 $serial_producto = $_POST['serial_producto'];
 if (isset($_POST['buscar'])) {
-	//INICIO MOVIMIENTO 
 	if ($TIPO_C == 'MOVIMIENTO') {
 		if ($TIPO == 'TODAS') {
 			$consulta_inv = mysqli_query($conex, "SELECT * FROM ipsen_movimientos WHERE (FECHA_MOVIMIENTO>='" . $FECHAINI . "' and FECHA_MOVIMIENTO<='" . $FECHAFIN . "') order by ID_MOVIMIENTOS ASC");
@@ -33,7 +32,6 @@ if (isset($_POST['buscar'])) {
 			require('../presentacion/listado_inventario.php');
 		}
 	}
-	//INICIO DETALLE INVENTARIO
 	if ($TIPO_C == 'DETALLE INVENTARIO') {
 		if ($LUGAR == 'TODOS') {
 			if ($serial_producto == '') {
@@ -97,14 +95,12 @@ if (isset($_POST['buscar'])) {
 			require('../presentacion/listado_inventario2.php');
 		}
 	}
-	//INICIO INVENTARIO
 	if ($TIPO_C == 'INVENTARIO') {
 		$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_referencia order by ID_REFERENCIA ASC");
 		require('../presentacion/listado_referencia.php');
 	}
 }
 if (isset($_POST['descargar'])) {
-	//INICIO MOVIMIENTO
 	if ($TIPO_C == 'MOVIMIENTO') {
 		if ($TIPO == 'TODAS') {
 			$consulta_inv = mysqli_query($conex, "SELECT * FROM ipsen_movimientos where (FECHA_MOVIMIENTO>='" . $FECHAINI . "' and FECHA_MOVIMIENTO<='" . $FECHAFIN . "') order by ID_MOVIMIENTOS ASC");
@@ -119,12 +115,10 @@ if (isset($_POST['descargar'])) {
 			require('../presentacion/exportar_listado_inventario.php');
 		}
 	}
-	//INVENTARIO
 	if ($TIPO_C == 'INVENTARIO') {
 		$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_referencia order by ID_REFERENCIA ASC");
 		require('../presentacion/exportar_listado_inventario3.php');
 	}
-	//DETALLE INVENTARIO
 	if ($TIPO_C == 'DETALLE INVENTARIO') {
 		if ($LUGAR == 'TODOS') {
 			if ($serial_producto == '') {

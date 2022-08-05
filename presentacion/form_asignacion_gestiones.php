@@ -77,8 +77,8 @@ if ($privilegios != '' && $usua != '') {
 		}
 	}
 	$hoy = date('Y-m-d');
-	$Ayer = date('Y-m-d', strtotime('-1 day')); // resta 1 día
-	$Antes_Ayer =  date('Y-m-d', strtotime('-2 day')); // resta 1 día
+	$Ayer = date('Y-m-d', strtotime('-1 day'));
+	$Antes_Ayer =  date('Y-m-d', strtotime('-2 day'));
 	$Antes_Ayer3 = date('Y-m-d', strtotime('-3 day'));
 	$Antes_Ayer4 = date('Y-m-d', strtotime('-4 day'));
 	$Antes_Ayer5 = date('Y-m-d', strtotime('-5 day'));
@@ -172,33 +172,33 @@ if ($privilegios != '' && $usua != '') {
 						</th>
 					</tr>
 					<tr>
-						<th bgcolor="#848484" style="color: #fff;" style="color: #fff;">
+						<td bgcolor="#848484" style="color: #fff;" style="color: #fff;">
 							USUARIO(S)
-						</th>
-						<th bgcolor="#848484" style="color: #fff;">
+						</td>
+						<td bgcolor="#848484" style="color: #fff;">
 							NOMBRE(S) Y APELLIDO(S)
-						</th>
-						<th bgcolor="#848484" style="color: #fff;">
+						</td>
+						<td bgcolor="#848484" style="color: #fff;">
 							ESTADO LOGIN
-						</th>
+						</td>
 						<?php
 						if ($nreg_terapias > 0) {
 						?>
-							<th bgcolor="#848484" style="color: #fff;">
+							<td bgcolor="#848484" style="color: #fff;">
 								ASIGNAR PACIENTES ADEMPAS Y XOFIJO
-							</th>
+							</td>
 						<?php
 						}
 						?>
 						<?php
 						if ($nreg_pac <= 0) {
 						?>
-							<th bgcolor="#848484" style="color: #fff;">
+							<td bgcolor="#848484" style="color: #fff;">
 								# ASIGNADAS
-							</th>
-							<th bgcolor="#848484" style="color: #fff;">
+							</td>
+							<td bgcolor="#848484" style="color: #fff;">
 								# GESTIONADAS
-							</th>
+							</td>
 						<?php
 						}
 						?>
@@ -220,14 +220,14 @@ if ($privilegios != '' && $usua != '') {
 								if ($estado == 'OUT') {
 							?>
 								<a href="form_asignacion_gestiones.php?usu=<?php echo base64_encode($fila['USER']) ?>&ok=<?php echo base64_encode('act') ?>" target="info" id="btn" name="btn">
-									<img src="imagenes/OFF.png" style="width:100PX" />
+									<img src="imagenes/OFF.png" style="width:55PX" />
 								</a>
 							<?php
 								}
 								if ($estado == 'IN') {
 							?>
 								<a href="form_asignacion_gestiones.php?usu=<?php echo base64_encode($fila['USER']) ?>&ok=<?php echo base64_encode('des') ?>" target="info" id="btn" name="btn">
-									<img id="btn2" src="imagenes/ON.png" style="width:100PX" />
+									<img id="btn2" src="imagenes/ON.png" style="width:55PX" />
 								</a>
 							<?php
 								}
@@ -305,33 +305,40 @@ if ($privilegios != '' && $usua != '') {
 						}
 			?>
 				</table>
-				<td>
-					<?php
-					if ($nreg_pac > 0) {
-					?>
-						<center>
-							<br />
-							<br />
-							<a href="form_cantidad_gestion.php" target="info" class="btn_continuar">
-								<img src="imagenes/BTN_CONTINUAR2.png" style="width:152px; height:37px" />
-							</a>
-						</center>
-					<?php
-					}
-					if ($nreg_pac <= 0) {
-					?>
-						<center>
-							<br />
-							<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="form_asignacion_gestiones.php?usu=<?php echo base64_encode($fila['USER']) ?>&ok=<?php echo base64_encode('restablecer') ?>" target="info" class="btn_continuar">
-								<img src="imagenes/BTN_RESTABLECER.png" style="width:152px; height:37px" />
-							</a>
-						</center>
-					<?php
-					}
-					?>
-				</td>
+
+				<?php
+				if ($nreg_pac > 0) {
+				?>
+					<center>
+						<table width="100%">
+							<tr>
+								<td style="background-color:#848484;text-align:center">
+									<a href="form_cantidad_gestion.php" target="info" class="btn_continuar">
+										<img src="imagenes/BTN_CONTINUAR2.png" style="width:152px; height:37px" />
+									</a>
+								</td>
+							</tr>
+						</table>
+					</center>
+				<?php
+				}
+				if ($nreg_pac <= 0) {
+				?>
+					<center>
+						<table width="100%">
+							<tr>
+								<td style="background-color:#848484;text-align:center">
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<a href="form_asignacion_gestiones.php?usu=<?php echo base64_encode($fila['USER']) ?>&ok=<?php echo base64_encode('restablecer') ?>" target="info" class="btn_continuar">
+										<img src="imagenes/BTN_RESTABLECER.png" style="width:152px; height:37px" />
+									</a>
+								</td>
+							</tr>
+						</table>
+					</center>
+				<?php
+				}
+				?>
 			</center>
 		</form>
 	</body>

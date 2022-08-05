@@ -1,5 +1,4 @@
 <?PHP
-//session_start();
 require('../datos/parse_str.php');
 header("Content-Type: application/vnd.ms-excel");
 header("Expires: 0");

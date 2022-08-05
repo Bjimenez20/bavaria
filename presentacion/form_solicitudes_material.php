@@ -3,6 +3,7 @@ include('../logica/session.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
@@ -14,7 +15,6 @@ include('../logica/session.php');
 	<script>
 		var height = window.innerHeight - 2;
 		var porh = (height * 80 / 100);
-		//alert(porh);
 		$(document).ready(function() {
 			$('#consulta_sol').css('height', porh);
 			$('#TIPO_SOLICITUD').change(function() {
@@ -44,12 +44,15 @@ include('../logica/session.php');
 	</script>
 	<style>
 		@import url("../../bayer/webfonts/avenir/stylesheet.css");
+
 		.izq {
 			text-align: left;
 		}
+
 		.der {
 			text-align: right;
 		}
+
 		th {
 			padding: 5px;
 			color: #FFF;
@@ -61,6 +64,7 @@ include('../logica/session.php');
 			font-variant: normal;
 			text-align: center;
 		}
+
 		select {
 			font-size: 100%;
 			border-radius: 5px;
@@ -74,6 +78,7 @@ include('../logica/session.php');
 require('../datos/parse_str.php');
 if ($privilegios != '' && $usua != '') {
 ?>
+
 	<body>
 		<section>
 			<blockquote>
@@ -118,7 +123,6 @@ if ($privilegios != '' && $usua != '') {
 						</tr>
 						<tr>
 							<th colspan="4">
-								<!--<iframe name="consulta_sol" id="consulta_sol" src="lista_solicitudes_material.php"  class="ifra2"></iframe>-->
 								<iframe name="consulta_sol" id="consulta_sol" src="" class="ifra2"></iframe>
 							</th>
 						</tr>
@@ -136,4 +140,5 @@ if ($privilegios != '' && $usua != '') {
 <?php
 }
 ?>
+
 </html>

@@ -44,7 +44,6 @@
 		$('#numero_cajas option:eq(0)').attr('selected', 'selected');
 		$('#tipo_numero_cajas option:eq(0)').attr('selected', 'selected');
 		var reclamo = $('#reclamo').val();
-		//alert(reclamo);
 		var MEDICAMENTO = $('#MEDICAMENTO').val();
 		if (reclamo == '') {
 			$("#causa").css('display', 'none');
@@ -57,8 +56,6 @@
 			$('#tipo_numero_cajas option:eq(0)').attr('selected', 'selected');
 			$('#numero_cajas').attr('disabled', 'disabled');
 			$('#tipo_numero_cajas').attr('disabled', 'disabled');
-			//$('#span_tabletas_diarias').css('display','none');
-			//$('#div_tabletas_diarias').css('display','none');
 		}
 		if (reclamo == 'NO') {
 			$("#causa").css('display', 'block');
@@ -238,12 +235,10 @@ while ($row = mysqli_fetch_array($selectgestion)) {
 				<script>
 					$('#causa_no_reclamacion').on('change', function() {
 						var selectValor = $(this).val();
-						//alert (selectValor);
 						if (selectValor == 'En proceso de Reformulacion') {
 							$('#fecha_no_reclamacion').show();
 						} else {
 							$('#fecha_no_reclamacion').hide();
-							//alert('esta es la opcion 2')
 						}
 					});
 				</script>

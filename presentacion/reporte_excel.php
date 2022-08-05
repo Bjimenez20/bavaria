@@ -4,15 +4,10 @@ $tabla = $_POST['tabla'];
 require('../datos/conex.php');
 header("Content-type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=$tabla.xls");
-//en la sigte linea colocar entre comillas el nombre del servidor mysql (generalmente, localhost) 
 $servidor = $servidor;
-//en la sigte linea colocar entre comillas el nombre de usuario 
 $user = $usuario;
-//en la sigte linea colocar entre comillas la contraseña 
 $pass = $password;
-//en la sigte linea colocar entre comillas e nombre de la base de datos 
 $db = $basepaciente;
-//en la sigte linea colocar entre comillas e nombre de la tabla
 mysqli_connect($servidor, $user, $pass);
 mysqli_select_db($conex, $db);
 if (isset($_POST['enviar'])) {

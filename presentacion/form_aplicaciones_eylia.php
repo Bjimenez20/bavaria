@@ -218,26 +218,6 @@ while ($con = mysqli_fetch_array($consulta)) {
 								<option> A demanda </option>
 								<option> Traslado de Asegurador </option>
 								<option> Pendiente Radicar Formula en Farmacia </option>
-								<!--<option>Abandono</option>
-                        <option>Compra de medicamento</option>
-                        <option>Demora en la autorizacion</option>
-                        <option>Demora en la entrega</option>
-                        <option>Demora en la respuesta de ctc</option>
-                        <option>Desafiliacion eps</option>
-                        <option>En proceso de autorizacion</option>
-                        <option>En proceso de cita</option>
-                        <option>En proceso de entrega</option>
-                        <option>Error en papeleria</option>
-                        <option>Falta de cita medica</option>
-                        <option>Falta de contacto</option>
-                        <option>Falta de medicamento en el punto</option>
-                        <option>Hospitalizado</option>
-                        <option>Ilocalizable</option>
-                        <option>Interrumpido por examenes</option>
-                        <option>Stock</option>
-                        <option>Suspendido temporalmente</option>
-                        <option>Titulacion</option>
-                        <option>Voluntario</option>-->
 							</select>
 						</div>
 					</td>

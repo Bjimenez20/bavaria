@@ -114,7 +114,7 @@ require('../datos/conex.php');
 						<td><?php echo $fila1['MATERIAL'] ?></td>
 						<td><?php echo $fila1['NOMBRE_REFERENCIA'] ?></td>
 						<td>
-							<!--<?php echo $fila1['STOCK'] ?>-->1
+							1
 						</td>
 						<td><?php echo 'PAP' . $fila1['ID_PACIENTE'];               ?>
 							<input type="hidden" name="<?php echo "ID_PACIENTE" . $x; ?>" value="<?php echo $fila1["ID_PACIENTE"] ?>" />

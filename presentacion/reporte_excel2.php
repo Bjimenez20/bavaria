@@ -1,7 +1,5 @@
 <?PHP
-//session_start();
 require('../datos/parse_str.php');
-//Exportar datos de php a Excel
 header("Content-Type: application/vnd.ms-excel");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
@@ -48,29 +46,7 @@ echo mysqli_error($conex);
       <td><?php echo $fila1['ESTADO_PACIENTE'] ?></td>
       <?php
       $ID = $fila1['ID_PACIENTE'];
-      /*$consulta_ultima_reclamacion_gestion=mysql_query("SELECT FECHA_RECLAMACION_GESTION FROM ipsen_gestiones
-			  WHERE ID_PACIENTE_FK2='$ID'
-			  ORDER BY FECHA_RECLAMACION_GESTION DESC LIMIT 1",$conex);
-			  $nreg_ult=mysql_num_rows($consulta_ultima_reclamacion_gestion);
-			  echo mysql_error($conex);
-			  if($nreg_ult>0)
-	  		  {
-				  while ($datos = mysql_fetch_array($consulta_ultima_reclamacion_gestion))
-				  {
-					  ?>
-					  <td><?php echo $datos['FECHA_RECLAMACION_GESTION']?></td>
-					  <?php
-				  }
-			  }
-			  else
-			  {
-				  ?>
-                  	<td></td>
-                  <?php 
-			  }*/
-      $consulta_gestion = mysqli_query($conex, "SELECT * FROM ipsen_gestiones
-WHERE ID_PACIENTE_FK2='$ID'
-ORDER BY FECHA_COMUNICACION DESC LIMIT 1");
+      $consulta_gestion = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2='" . $ID . "' ORDER BY FECHA_COMUNICACION DESC LIMIT 1");
       echo mysqli_error($conex);
       $nreg = mysqli_num_rows($consulta_gestion);
       if ($nreg > 0) {

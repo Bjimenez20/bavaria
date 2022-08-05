@@ -35,7 +35,6 @@ include('../logica/session.php')
 				success: function(data) {
 					$('#nombre_producto').html(data);
 					var nom = $('#nombre_producto').val();
-					//alert(nom);
 					if (nom == 'Kit de bienvenida' || nom == '') {
 						$('#div_agregar').css('visibility', 'hidden');
 					} else {
@@ -44,7 +43,7 @@ include('../logica/session.php')
 				}
 			})
 		}
-		//AGREGAR PRODUCTO
+
 		function agregar_producto() {
 			var ID_PRODUCTO = $('#tipo_envio').val();
 			var ID_PACIENTE = $('#codigo_usuario2').val();
@@ -62,7 +61,6 @@ include('../logica/session.php')
 					$("#tabla_material_agregar").html("Procesando, espere por favor" + '<img src="imagenes/cargando.gif" />');
 				},
 				success: function(data) {
-					//$('#div_tabla_productos').html('');
 					$('#tabla_material_agregar').html(data);
 				}
 			})
@@ -75,7 +73,6 @@ include('../logica/session.php')
 			});
 			$("#agregar").click(function() {
 				$('#div_material_agregar').css('display', 'block');
-				//$("#tipo_envio option:eq(0)").attr("selected", "selected");
 				$('#div_agregar').css('visibility', 'hidden');
 			});
 		});

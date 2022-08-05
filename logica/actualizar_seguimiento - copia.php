@@ -13,10 +13,6 @@ include('../logica/session.php');
 			font-weight: bold;
 			color: #11a9e3;
 			text-transform: uppercase;
-			/*font-family: "Trebuchet MS";
-	font-family:"Gill Sans MT";
-	border-radius:10px;
-	background: #11a9e3;*/
 			background-color: transparent;
 			text-align: center;
 			padding: 10px;
@@ -155,8 +151,6 @@ include('../logica/session.php');
 	} else {
 		$causa_no_reclamacion = 'NO APLICA';
 	}
-
-	/*OPERADOR_LOGISTICO_TRATAMIENTO='".$operador_logistico."'*/
 	$autor = $_POST['autor'];
 	$descripcion_comunicacion = $_POST['descripcion_comunicacion'];
 	$nota = $_POST['nota'];
@@ -205,8 +199,6 @@ ESTADO_PACIENTE_MOVIMIENTO)VALUES('" . $codigo_usuario2 . "','" . $ID_ULT_MOVIMI
 	SET ESTADO_GESTION='GESTIONADO'
 	WHERE ID_GESTION='" . $codigo_gestion . "'");
 		echo mysqli_error($conex);
-
-		//	FECHA_COMUNICACION=CURRENT_TIMESTAMP
 		if ($logro_comunicacion = 'SI') {
 			$sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE='" . $estado_paciente . "', STATUS_PACIENTE='" . $status_paciente . "', FECHA_ACTIVACION_PACIENTE='" . $fecha_activacion . "', FECHA_RETIRO_PACIENTE='" . $fecha_retiro . "', MOTIVO_RETIRO_PACIENTE='" . $motivo_retiro . "', OBSERVACION_MOTIVO_RETIRO_PACIENTE='" . $observacion_retiro . "', TELEFONO_PACIENTE='" . $telefono1 . "', TELEFONO2_PACIENTE='" . $telefono2 . "', TELEFONO3_PACIENTE='" . $telefono3 . "', CORREO_PACIENTE='" . $correo . "', DIRECCION_PACIENTE='" . $direccion . "', BARRIO_PACIENTE='" . $barrio . "', DEPARTAMENTO_PACIENTE='" . $departamento . "',CIUDAD_PACIENTE='" . $ciudad . "',FECHA_NACIMINETO_PACIENTE='" . $fecha_nacimiento . "',EDAD_PACIENTE='" . $edad . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
 			echo mysqli_error($conex);
@@ -268,7 +260,7 @@ WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
 					<img src="../presentacion/imagenes/advertencia.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 				</center>
 			</span>
-			<p class="error" style=" width:68.9%; margin:auto auto;">EL SEGUMIENTO NO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>
+			<p class="error" style=" width:68.9%; margin:auto auto;">EL SEGUIMIENTO NO HA SIDO INGRESADO SATISFACTORIAMENTE.</p>
 			<br />
 			<br />
 			<center>

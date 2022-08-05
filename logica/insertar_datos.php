@@ -264,19 +264,6 @@ require_once('session.php');
 		} else {
 			$CODIGO_XOFIGO = 0;
 		}
-		// if ($causa_no_reclamacion == 'En proceso de Examenes' || $causa_no_reclamacion == 'Falta cita para examenes' || $causa_no_reclamacion == 'Hospitalizado' || $causa_no_reclamacion == 'Suspendido por esquema de aplicacion' || $causa_no_reclamacion == 'Suspendido temporalmente') {
-		// 	$estado_paciente = $_POST['estado_suspendido'];
-		// }
-		// if ($causa_no_reclamacion == 'Autorizacion radicada para Cita' || $causa_no_reclamacion == 'Autorizacion radicada para Medicamento' || $causa_no_reclamacion == 'Cita inoportuna' || $causa_no_reclamacion == 'Demora en la Autorizacion Cita Medica' || $causa_no_reclamacion == 'Demora en la autorizacion de medicamento' || $causa_no_reclamacion == 'Desafiliacion Asegurador' || $causa_no_reclamacion == 'En proceso de cita Aplicacion' || $causa_no_reclamacion == 'En proceso de cita medica' || $causa_no_reclamacion == 'En proceso de entrega' || $causa_no_reclamacion == 'Error en papeleria' || $causa_no_reclamacion == 'Falta de cita aplicacion' || $causa_no_reclamacion == 'Falta de cita medica' || $causa_no_reclamacion == 'Falta de cita valoracion (Xofigo)' || $causa_no_reclamacion == 'Falta de contacto' || $causa_no_reclamacion == 'Falta de medicamento en el punto' || $causa_no_reclamacion == 'No remision a entidad licenciada' || $causa_no_reclamacion == 'Pago anticipado' || $causa_no_reclamacion == 'Pendiente formulacion NO sistema' || $causa_no_reclamacion == 'Pendiente Radicar Formula en Farmacia' || $causa_no_reclamacion == 'PSVC en Titulacion' || $causa_no_reclamacion == 'Sin red Prestadora' || $causa_no_reclamacion == 'Voluntario') {
-		// 	$estado_paciente = $_POST['estado_interrumpido'];
-		// }
-		// if ($causa_no_reclamacion == 'Abandono') {
-		// 	$estado_paciente = $_POST['estado_abandono'];
-		// }
-		// $reclamo = $_POST['reclamo'];
-		// if ($reclamo == 'SI') {
-		// 	$estado_paciente = $_POST['estado_activo'];
-		// }
 		$estado_paciente = $_POST['estado_paciente'];
 		$insertar = mysqli_query($conex, "INSERT INTO ipsen_pacientes(CODIGO_XOFIGO,ESTADO_PACIENTE,STATUS_PACIENTE,FECHA_ACTIVACION_PACIENTE,TIPO_IDENTIFICACION_PACIENTE,IDENTIFICACION_PACIENTE,NOMBRE_PACIENTE,
 		APELLIDO_PACIENTE,TELEFONO_PACIENTE,TELEFONO2_PACIENTE,TELEFONO3_PACIENTE,TELEFONO4_PACIENTE,TELEFONO5_PACIENTE,CORREO_PACIENTE,DIRECCION_PACIENTE,BARRIO_PACIENTE,DEPARTAMENTO_PACIENTE,CIUDAD_PACIENTE,GENERO_PACIENTE,FECHA_NACIMINETO_PACIENTE,EDAD_PACIENTE,ACUDIENTE_PACIENTE,TELEFONO_ACUDIENTE_PACIENTE,USUARIO_CREACION,PROVEEDOR)
@@ -508,7 +495,6 @@ require_once('session.php');
 						while ($opcion = mysqli_fetch_array($listado_envio)) {
 							$nombre_producto = $opcion['MATERIAL'];
 						}
-						/*SI EL ENVIO ES KIT DE BIENVENIDA*/
 						if ($nombre_producto == 'Kit de bienvenida') {
 							$tipo_envio = $_POST['tipo_envio'];
 							$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='" . $tipo_envio . "'");

@@ -33,7 +33,6 @@ while ($sel_con = (mysqli_fetch_array($select_conteo))) {
 		$fecha_anio = $_POST['anio'];
 		if ($row_select_conteo > 0) {
 			for ($i = 0; $i < count($id_cont); $i++) {
-				///arrray a�o mes dia
 				$id_contv = $id_cont[$i];
 				$fecha_aniov = $fecha_anio[$i];
 				$fecha_mesv  = $fecha_mes[$i];
@@ -44,25 +43,4 @@ while ($sel_con = (mysqli_fetch_array($select_conteo))) {
 			}
 		}
 	}
-	/*
-$row_select_conteo = mysql_num_rows($select_conteo);
-while($sel_con=(mysql_fetch_array($select_conteo))){
-$fecha_conteo_MES = $datos_fechas['MES'];
-$fecha_conteo_DIA = $datos_fechas['DIA'];
-$fecha_conteo_A�O = $datos_fechas['ANO'];
-$id_conteo = $datos_fechas['ID'];
-}
- if ($row_select_conteo > 0){ 
-		  for($i=0;$i < count($row_select_conteo);$i++){
-		  ///arrray a�o mes dia
-		  $id_cont = $id_conteo[$i];	  
-		  $fecha_anio = $fecha_conteo_A�O[$i];
-		  $fecha_mes  = $fecha_conteo_MES[$i];
-		  $fecha_dia = $fecha_conteo_DIA[$i];
-         $fecha2= new DateTime("$fecha_anio-$fecha_mes-$fecha_dia");
-		  $diff = $fecha1->diff($fecha2);	
-$actualiza_conteo = mysql_query("UPDATE ipsen_conteo SET CONTEO = '".$diff->days."' WHERE  ESTADO = '1' AND ID ='".$id_cont."' ", $conex);
-		  }
-		  }
-*/
 	?>

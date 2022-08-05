@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
@@ -94,6 +95,7 @@
             text-align: center;
             padding: 10px;
         }
+
         html,
         body {
             background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
@@ -102,7 +104,9 @@
             -o-background-size: cover;
             background-size: cover;
         }
+
         @media screen and (max-width:1000px) {
+
             html,
             body {
                 background: url(../presentacion/imagenes/background.png) no-repeat fixed center;
@@ -112,6 +116,7 @@
                 background-size: cover;
             }
         }
+
         select {
             height: none !important;
             width: none !important;
@@ -125,6 +130,7 @@ if (isset($_GET['xnfgti'])) {
     $terapia = base64_decode($_GET['vvgg']);
 }
 ?>
+
 <body>
     <div class="container">
         <div class="row" id="tablas_css_jair">
@@ -152,7 +158,7 @@ if (isset($_GET['xnfgti'])) {
                         </thead>
                         <tbody>
                             <?php
-                            $sqlpp = mysqli_query($conex,"SELECT * FROM ipsen_apoyo_diagnostico WHERE FK_PAP='" . $id_personaa . "' ORDER BY ID_APOYO_DIAGNOSTICO DESC");
+                            $sqlpp = mysqli_query($conex, "SELECT * FROM ipsen_apoyo_diagnostico WHERE FK_PAP='" . $id_personaa . "' ORDER BY ID_APOYO_DIAGNOSTICO DESC");
                             while ($datos = (mysqli_fetch_array($sqlpp))) { ?>
                                 <tr>
                                     <td><?php echo $datos['ID_APOYO_DIAGNOSTICO']; ?></td>
@@ -185,7 +191,7 @@ if (isset($_GET['xnfgti'])) {
 <?php
 if (isset($_GET['hthsddf'])) {
     $id_gestionar = base64_decode($_GET['hthsddf']);
-    $SELECT_GESTION = mysqli_query($conex,"SELECT * FROM ipsen_apoyo_diagnostico WHERE ID_APOYO_DIAGNOSTICO = '" . $id_gestionar . "';");
+    $SELECT_GESTION = mysqli_query($conex, "SELECT * FROM ipsen_apoyo_diagnostico WHERE ID_APOYO_DIAGNOSTICO = '" . $id_gestionar . "';");
     while ($gestion = (mysqli_fetch_array($SELECT_GESTION))) {
         $ID_APOYO_DIAGNOSTICO = $gestion['ID_APOYO_DIAGNOSTICO'];
         $FK_PAP = $gestion['FK_PAP'];
@@ -371,6 +377,7 @@ if (isset($_GET['hthsddf'])) {
         <div class="col-md-1"></div>
     </div>
 <?php } ?>
+
 </html>
 <script type="text/javascript">
     $(document).ready(function() {

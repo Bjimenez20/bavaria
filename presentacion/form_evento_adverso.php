@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
@@ -11,26 +12,32 @@ include('../logica/session.php')
             background-color: #ececec;
             font-family: Tahoma, Geneva, sans-serif;
         }
+
         .obli {
             color: #ff0000;
         }
+
         .texto {
             font-weight: lighter;
             text-align: justify;
         }
+
         th {
             width: 25%;
             padding-top: 10px;
             padding-bottom: 10px;
             padding-left: 10px;
         }
+
         input[type=text] {
             width: 50%;
             height: 17px;
         }
+
         input[type=date] {
             width: 50%;
         }
+
         .btn_registrar {
             padding-top: 2%;
             background-image: url(imagenes/BTN_CONTINUAR2.png);
@@ -43,16 +50,19 @@ include('../logica/session.php')
             border-radius: 5px;
             border: 1px solid transparent;
         }
+
         .btn_registrar:active {
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
             box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
                 inset 0px 0px 20px #EEECEC;
         }
+
         .btn_registrar:hover {
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
             box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
                 inset 0px 0px 20px #EEECEC;
         }
+
         .letra {
             font-family: Tahoma, Geneva, sans-serif;
         }
@@ -79,6 +89,7 @@ if ($privilegios != '' && $usua != '') {
         $TELEFONO_COMPANIA = "2360042";
     }
 ?>
+
     <body>
         <form id="paciente_nuevo" name="paciente_nuevo" action="../logica/insertar_datos_ea.php" method="post" class="letra">
             <table style="width:100%; border:1px solid #000;" rules="all">
@@ -123,12 +134,10 @@ if ($privilegios != '' && $usua != '') {
                 <tr>
                     <th>
                         Identificaci&oacute;n paciente <span class="obli">*</span>
-                        <!--	<input type="text" name="identificacion_paciente" id="identificacion_paciente" value="<?php echo $IDENTIFICACION_PACIENTE; ?>" readonly="readonly"/> -->
                         <?php echo $IDENTIFICACION_PACIENTE; ?><br /><br />
                         <span class="texto">N&uacute;mero paciente</span> <?php echo 'PA' . $ID_PACIENTE; ?><br />
                         <input type="text" name="ID_PACIENTE" id="ID_PACIENTE" value="<?php echo $ID_PACIENTE; ?>" readonly="readonly" style="display:none;" />
                         <span class="texto">Nombre Completo</span> <?php echo $nombre; ?><br />
-                        <!--<input type="text" name="nombre" id="nombre" value="<?php echo $nombre; ?>" readonly="readonly"/>-->
                         <span class="texto"><input type="radio" name="NO_REPORTE" id="NO_REPORTE" value="no_reporte" /> no reportado</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <br />
                         <br />
@@ -745,48 +754,6 @@ if ($privilegios != '' && $usua != '') {
                         <textarea name="INFORMACION_ADICIONAL" id="INFORMACION_ADICIONAL" style="width:99%;" rows="18"></textarea>
                     </th>
                 </tr>
-                <!--    <tr>
-    	<th class="titulos" colspan="4">
-        	Reportante Primario
-        </th>
-    </tr>
-    <tr>
-    	<th colspan="4">
-        <center>
-        <table style="width:50%; border:1px solid #000;" rules="all">
-        	<tr>
-            <th align="left" colspan="2">
-            Nombre         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="NOMBRE_PACIENTE" id="NOMBRE_PACIENTE" value="<?php echo $nombre ?>" style="width:80%;" maxlength="99"/>
-            <input type="text" name="ID_PACIENTE" id="ID_PACIENTE" value="<?php echo $ID_PACIENTE ?>" style="width:80%; display:none;"/ readonly="readonly">
-            </th>
-            </tr>
-            <tr>
-            	<th align="left" style="width:40%;">
-                Direcci&oacute;n
-               <input type="text" name="DIRECCION_PACIENTE" id="DIRECCION_PACIENTE" value="<?php echo $DIRECCION_PACIENTE ?>" style="width:75%;" readonly="readonly"/>
-                </th>
-                <th align="left" style="width:30%;">
-                Ciudad
-                <input type="text" name="CIUDAD_PACIENTE" id="CIUDAD_PACIENTE" value="<?php echo $CIUDAD_PACIENTE ?>" style="width:75%;" readonly="readonly"/>
-                </th>
-            </tr>
-            <tr>
-            <th align="left" colspan="2">
-            Tel&eacute;fono / Fax        &nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="TELEFONO_PACIENTE" id="TELEFONO_PACIENTE" value="<?php echo $TELEFONO_PACIENTE ?>" style="width:80%;" maxlength="19"/>
-            </th>
-            </tr>
-            <tr>
-            <th align="left" colspan="2">
-            E-Mail         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="CORREO_PACIENTE" id="CORREO_PACIENTE" value="<?php echo $CORREO_PACIENTE ?>" style="width:80%;"/ readonly="readonly">
-            </th>
-            </tr>
-        </table>
-        </center>
-        </th>
-    </tr> -->
                 <tr>
                     <th class="titulos" colspan="4">
                         Informaci&oacute;n del Reportante (Staff PSP)<span class="obli">*</span>
@@ -905,4 +872,5 @@ if ($privilegios != '' && $usua != '') {
 <?php
 }
 ?>
+
 </html>

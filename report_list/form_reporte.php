@@ -1,10 +1,6 @@
 <?php
-
-
 error_reporting(0);
-
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -20,7 +16,6 @@ error_reporting(0);
 			text-transform: uppercase;
 			font-family: Tahoma, Geneva, sans-serif;
 			border-radius: 10px;
-			/*background: #11a9e3;*/
 			background-color: transparent;
 			text-align: center;
 			padding: 10px;
@@ -70,7 +65,6 @@ error_reporting(0);
 					$('#fecha_fin').val('');
 					$("#terapias option:eq(0)").attr("selected", "selected");
 				}
-				/////////////conteo////
 				if (valor == 'ipsen_conteo') {
 					$('#btn_conteo').css('display', 'block');
 					$('#btn_otro').css('display', 'none');
@@ -82,7 +76,6 @@ error_reporting(0);
 					$('#fecha_fin').val('');
 					$("#terapias option:eq(0)").attr("selected", "selected");
 				}
-				////////////conteo/////
 				if (valor == 'ipsen_terapia') {
 					$('#div_fecha').css('display', 'none');
 					$('#btn').css('display', 'none');
@@ -123,8 +116,8 @@ error_reporting(0);
 		<br />
 		<center>
 			<span>Seleccione la tabla que desea descargar</span>
-			<select name="tabla" id="tabla" required="required">
-				<option></option>
+			<select class="form-select" name="tabla" id="tabla" required="required">
+				<option>Seleccione...</option>
 				<option>ipsen_ciudad</option>
 				<option>ipsen_departamento</option>
 				<option>ipsen_evento_adverso</option>
@@ -216,6 +209,37 @@ error_reporting(0);
 			outline: 0;
 			transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 			will-change: box-shadow, transform;
+		}
+
+		.form-select {
+			width: 15%;
+			font-size: 1rem;
+			font-weight: 400;
+			line-height: 1.5;
+			color: rgb(33, 37, 41);
+			background-color: transparent;
+			background-size: 16px 12px;
+			padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+			background-repeat: no-repeat;
+			background-position: right 0.75rem center;
+			border-width: 1px;
+			border-style: solid;
+			border-color: #224a81;
+			border-image: initial;
+			border-radius: 0.25rem;
+			transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+		}
+
+		body {
+			margin: 0;
+			font-family: var(--bs-font-sans-serif);
+			font-size: 1rem;
+			font-weight: 400;
+			line-height: 1.5;
+			color: #212529;
+			background-color: transparent;
+			-webkit-text-size-adjust: 100%;
+			-webkit-tap-highlight-color: transparent;
 		}
 	</style>
 </body>

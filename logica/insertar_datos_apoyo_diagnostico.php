@@ -62,17 +62,17 @@ require('../datos/conex.php');
 if (isset($_GET['xnfgti'])) {
     $id_personaa = base64_decode($_GET['xnfgti']);
     $terapia = base64_decode($_GET['vvgg']);
-    $examne1 = $_POST['examne1']; //echo $examne1;
-    $examne2 = $_POST['examne2']; //echo $examne2;
-    $examne3 = $_POST['examne3']; //echo $examne3;
-    $examne4 = $_POST['examne4']; //echo $examne4;
-    $examne5 = $_POST['examne5']; //echo $examne5;
+    $examne1 = $_POST['examne1'];
+    $examne2 = $_POST['examne2'];
+    $examne3 = $_POST['examne3'];
+    $examne4 = $_POST['examne4'];
+    $examne5 = $_POST['examne5'];
     $examne6 = $_POST['examne6'];
-    $examne7 = $_POST['examne7']; //echo $examne6;
-    $cant_examenes = $_POST['cant_examenes']; //echo $cant_examenes;
-    $numero_voucher = $_POST['numero_voucher']; //echo $numero_voucher;
-    $centro_medic = $_POST['centro_medic']; //echo $centro_medic;
-    $n_gestion = $_POST['n_gestion']; //echo $n_gestion;s
+    $examne7 = $_POST['examne7'];
+    $cant_examenes = $_POST['cant_examenes'];
+    $numero_voucher = $_POST['numero_voucher'];
+    $centro_medic = $_POST['centro_medic'];
+    $n_gestion = $_POST['n_gestion'];
     $insert_apoyo_diagnostico = mysqli_query($conex, "INSERT INTO ipsen_apoyo_diagnostico (FK_PAP, TERAPIA, EXAMEN_1, EXAMEN_2, EXAMEN_3, EXAMEN_4, EXAMEN_5, EXAMEN_6, EXAMEN_7, CANTIDAD_EXAMENES, NUMERO_VOUCHER, CENTRO_MEDICO, ARCHIVO_IMG) VALUE ('" . $id_personaa . "','" . $terapia . "','" . $examne1 . "','" . $examne2 . "','" . $examne3 . "','" . $examne4 . "','" . $examne5 . "','" . $examne6 . "','" . $examne7 . "','" . $cant_examenes . "','" . $numero_voucher . "','" . $centro_medic . "','" . $enlace1 . "'); ");  ?>
     <span style="margin-top:5%;">
         <center>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>IPSEN</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/menu_conteo.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap_menuc.css">
 </head>
+
 <body>
   <div class="body">
     <header class="complemento_menu">
@@ -23,4 +25,5 @@
   </div>
   </div>
 </body>
+
 </html>

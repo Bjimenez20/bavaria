@@ -85,17 +85,7 @@ include('../logica/session.php')
     });
   </script>
   <?php
-  /*
-if($privilegios != 2)
-{
-  header("location: ../index.php");	
-  session_unset();
-  session_destroy();
-  exit();
-}*/
   require('../datos/parse_str.php');
-  /*URL */
-  //$usua = $_SESSION["usuarios"];
   require('../datos/conex.php');
   $usua = strtoupper($usua);
   $select = mysqli_query($conex, "SELECT DOSIS FROM  ipsen_dosis WHERE NOMBRE_REFERENCIA='ADEMPAS' ORDER BY DOSIS ASC");

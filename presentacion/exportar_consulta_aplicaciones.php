@@ -1,8 +1,6 @@
 <?PHP
-//session_start();
 header("Content-Type: text/html;charset=utf-8");
 require('../datos/parse_str.php');
-//Exportar datos de php a Excel
 header("Content-Type: application/vnd.ms-excel");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
@@ -25,14 +23,6 @@ header("content-disposition: attachment;filename=aplicaciones.xls");
 			padding: 10px;
 		}
 
-		/* html {
-			background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
-			-webkit-background-size: cover;
-			-moz-background-size: cover;
-			-o-background-size: cover;
-			background-size: cover;
-		} */
-
 		th {
 			padding: 5px;
 			font-weight: bold;
@@ -46,16 +36,6 @@ header("content-disposition: attachment;filename=aplicaciones.xls");
 			border: 1px solid #d0d0d0;
 			background: #ffffff;
 		}
-
-		/* @media screen and (max-width:1000px) {
-			html {
-				background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
-				-webkit-background-size: cover;
-				-moz-background-size: cover;
-				-o-background-size: cover;
-				background-size: cover;
-			}
-		} */
 	</style>
 </head>
 <?php

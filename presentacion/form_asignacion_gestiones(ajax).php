@@ -23,9 +23,6 @@ require_once('../logica/session.php');
 
 		function cambio_activo() {
 			var usuario = $('#usu').val();
-			//alert(CODIGO_PRODUCTO);
-			//$("#LOTE").html('<img src="img/cargando.gif" />');
-			//.html("Procesando, espere por favor...")
 			$.ajax({
 				url: 'cambio_estado_logeo_desc.php',
 				data: {
@@ -174,11 +171,11 @@ $nreg_pac = mysqli_num_rows($select_gestiones);
 		?>
 		</tr>
 			</table>
-			<TD>
+			<td>
 				<center>
 					<input type="text" maxlength="2" readonly="readonly" id="total" name="total" style="border:1px solid transparent; background-color:transparent; color:#000; text-align:center" value="0" />
 				</center>
-			</TD>
+			</td>
 		</center>
 	</form>
 </body>

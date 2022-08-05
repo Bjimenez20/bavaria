@@ -80,7 +80,6 @@ include('../logica/session.php')
         }
     </script>
     <script>
-        /*DIRECCION*/
         $(document).ready(function() {
             $("input[name=evento_adverso]").change(function() {
                 $("input[name=tipo_evento_adverso]").prop("checked", false);
@@ -144,7 +143,7 @@ include('../logica/session.php')
                 dir();
             });
         });
-        /**/
+
         function reclamacion() {
             var reclamo = $('#reclamo').val();
             var MEDICAMENTO = $('#MEDICAMENTO').val();
@@ -172,7 +171,6 @@ include('../logica/session.php')
                 }
             }
         }
-        /*FIN DIRECCIOn*/
         $(document).ready(function() {
             $("#operador_logistico").change(function() {
                 $("#operador_logistico_nuevo").val('');
@@ -208,7 +206,6 @@ include('../logica/session.php')
                 var edad = nacio(fecha);
                 $("#edad").val(edad);
             });
-            /*funcion reclamacion*/
             reclamacion();
             $("#reclamo").change(function() {
                 $("#causa_no_reclamacion").val($('#causa_no_reclamacion').prop('defaultValue'));
@@ -253,7 +250,6 @@ require('../datos/parse_str.php');
 require('../datos/conex.php');
 $ID_PACIENTE = base64_decode($artid);
 $ID_GESTION = base64_decode($artge);
-//include('../logica/consulta_paciente.php');
 if ($privilegios != '' && $usua != '') {
 ?>
 
@@ -279,8 +275,8 @@ if ($privilegios != '' && $usua != '') {
                             <input type="hidden" id="prox_llamada" name="prox_llamada" value="<?php echo $prox_llamada; ?>">
                             <?php
                             $Seleccion = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` AS P
-		INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-		WHERE ID_PACIENTE = '" . $ID_PACIENTE . "'");
+                            INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+                            WHERE ID_PACIENTE = '" . $ID_PACIENTE . "'");
                             while ($fila = mysqli_fetch_array($Seleccion)) {
                                 $ID_PACIENTE2 = $fila['ID_PACIENTE'];
                                 $ID_PA = $fila['ID_PACIENTE'];
@@ -461,8 +457,6 @@ if ($privilegios != '' && $usua != '') {
                                     </td>
                                     <td colspan="3">
                                         <input name="direccion_act" id="direccion_act" style="width:93%" value="<?php echo $fila['DIRECCION_PACIENTE']; ?>" readonly="readonly" />
-                                        <!-- <img src="imagenes/lapiz 100.png"
-id="cambio" name="cambio" title="Editar" style="width:4%; height:20px; margin-left:-10%;" align="right"/>-->
                                     </td>
                                 </tr>
                                 <tr style="padding:3%;">

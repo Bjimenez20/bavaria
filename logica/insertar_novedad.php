@@ -64,9 +64,6 @@ require_once('session.php');
 		$FECHA_REPORTE = $_POST['FECHA_REPORTE'];
 		$OBSERVACION = $_POST['OBSERVACION'];
 		$FECHA_RESPUESTA = $_POST['FECHA_RESPUESTA'];
-		//$OBSERVACION_RESPUESTA = $_POST['OBSERVACION_RESPUESTA'];
-		//$telefono3=$_POST['telefono3'];
-		//mysql_query("SET NAMES utf8");
 		$insertar = mysqli_query($conex, "INSERT INTO ipsen_novedades (PAP, ASUNTO, PRODUCTO, NOVEDADES, OBSERVACIONES, FECHA_REPORTE, FECHA_RESPUESTA, OBSERVACION_RESPUESTA, ESTADO)
 		VALUES ('" . $PAP . "', '" . $ASUNTO . "', '" . $PRODUCTO . "', '" . $NOVEDAD . "', '" . $OBSERVACION . "', '" . $FECHA_REPORTE . "', '" . $FECHA_RESPUESTA . "', '', 'NUEVO')");
 		echo mysqli_error($conex);

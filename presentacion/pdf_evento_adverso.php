@@ -614,11 +614,8 @@ ini_set("memory_limit", "128M");
 $dompdf->render();
 $output = $dompdf->output();
 file_put_contents('../presentacion/PDF/Evento_Adverso_' . $ID_EVENTO_ADVERSO . '.pdf', $output);
-//echo $COMPANIA;
 if ($COMPANIA == "GRUPO ASEI") {
 	include("../presentacion/email/mail_asei.php");
-	//echo "Envio ASEI";
 } else {
 	include("../presentacion/email/mail.php");
-	//echo "Envio PEOPLE";
 }

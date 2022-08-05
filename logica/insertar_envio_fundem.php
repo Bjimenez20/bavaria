@@ -151,7 +151,6 @@ include('../logica/session.php');
 					while ($opcion = mysqli_fetch_array($listado_envio)) {
 						$nombre_producto = $opcion['MATERIAL'];
 					}
-					/*SI EL ENVIO ES KIT DE BIENVENIDA*/
 					if ($nombre_producto == 'Kit de bienvenida') {
 						$tipo_envio = $_POST['tipo_envio'];
 						$verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE CANTIDAD>0 AND ID_REFERENCIA='$tipo_envio'");
@@ -167,8 +166,6 @@ include('../logica/session.php');
 								while ($fila1 = mysqli_fetch_array($SELECT_ID_INV)) {
 									$ID_ULT_INV = $fila1['ID_INVENTARIO'];
 								}
-								/*$UPDATE_INVENTARIO=mysql_query("UPDATE ipsen_inventario SET LUGAR_MATERIAL='".$codigo_usuario2."' WHERE ID_INVENTARIO='".$ID_ULT_INV."'",$conex);
-						echo mysql_error($conex);*/
 								$INSERT_MOVIMIENTO = mysqli_query($conex, "INSERT INTO ipsen_movimientos(TIPO_MOVIMIENTO, NO_REMICION, CANTIDAD, RESPONSABLE, DESTINATARIO, DIRECCION_DESTINATARIO, CIUDAD_ENVIO, FECHA_MOVIMIENTO, OBSERVACIONES, ESTADO_MOVIMIENTO,ID_REFERENCIA_FK) VALUES('2', '', '1', '" . $usua . "', '" . $nombre . ' ' . $apellidos . "', '" . $direccion . "', '" . $ciudad . "', CURRENT_TIMESTAMP, 'ENVIO PRODUCTO(S)', 'EN PROCESO','" . $tipo_envio . "')");
 								echo mysqli_error($conex);
 								$SELECT_CANTIDAD = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA = '" . $tipo_envio . "'");

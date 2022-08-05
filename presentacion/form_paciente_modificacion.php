@@ -146,7 +146,6 @@ include('../logica/session.php')
         }
     </script>
     <script>
-        /*DIRECCION*/
         $(document).ready(function() {
             status();
             $('#cambio').click(function() {
@@ -451,13 +450,13 @@ if ($privilegios != '' && $usua != '') {
                                         <span>Nombre<span class="asterisco">*</span></span>
                                     </td>
                                     <td>
-                                        <input type="text" name="nombre" id="nombre" value="<?php echo $fila['NOMBRE_PACIENTE']; ?>" />
+                                        <input type="text" name="nombre" id="nombre" value="<?php echo $fila['NOMBRE_PACIENTE']; ?>" onkeypress="return check(event)" />
                                     </td>
                                     <td>
                                         <span>Apellidos<span class="asterisco">*</span></span>
                                     </td>
                                     <td>
-                                        <input type="text" name="apellidos" id="apellidos" value="<?php echo $fila['APELLIDO_PACIENTE']; ?>" />
+                                        <input type="text" name="apellidos" id="apellidos" value="<?php echo $fila['APELLIDO_PACIENTE']; ?>" onkeypress="return check(event)" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -479,7 +478,7 @@ if ($privilegios != '' && $usua != '') {
                                         <span>Identificacion<span class="asterisco">*</span></span>
                                     </td>
                                     <td>
-                                        <input type="text" name="identificacion" id="identificacion" value="<?php echo $fila['IDENTIFICACION_PACIENTE']; ?>" />
+                                        <input type="number" name="identificacion" id="identificacion" value="<?php echo $fila['IDENTIFICACION_PACIENTE']; ?>" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -487,13 +486,13 @@ if ($privilegios != '' && $usua != '') {
                                         <span>Telefono 1<span class="asterisco">*</span></span>
                                     </td>
                                     <td>
-                                        <input type="text" name="telefono1" id="telefono1" value="<?php echo $fila['TELEFONO_PACIENTE']; ?>" />
+                                        <input type="number" name="telefono1" id="telefono1" value="<?php echo $fila['TELEFONO_PACIENTE']; ?>" />
                                     </td>
                                     <td>
                                         <span>Telefono 2</span>
                                     </td>
                                     <td>
-                                        <input type="text" name="telefono2" id="telefono2" value="<?php echo $fila['TELEFONO2_PACIENTE']; ?>" />
+                                        <input type="number" name="telefono2" id="telefono2" value="<?php echo $fila['TELEFONO2_PACIENTE']; ?>" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -501,13 +500,13 @@ if ($privilegios != '' && $usua != '') {
                                         <span>Telefono 3</span>
                                     </td>
                                     <td>
-                                        <input type="text" name="telefono3" id="telefono3" value="<?php echo $fila['TELEFONO3_PACIENTE']; ?>" />
+                                        <input type="number" name="telefono3" id="telefono3" value="<?php echo $fila['TELEFONO3_PACIENTE']; ?>" />
                                     </td>
                                     <td>
                                         <span>Telefono 4</span>
                                     </td>
                                     <td>
-                                        <input type="text" name="telefono4" id="telefono4" value="<?php echo $fila['TELEFONO4_PACIENTE']; ?>" />
+                                        <input type="number" name="telefono4" id="telefono4" value="<?php echo $fila['TELEFONO4_PACIENTE']; ?>" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -515,7 +514,7 @@ if ($privilegios != '' && $usua != '') {
                                         <span>Telefono 5</span>
                                     </td>
                                     <td>
-                                        <input type="text" name="telefono5" id="telefono5" value="<?php echo $fila['TELEFONO5_PACIENTE']; ?>" />
+                                        <input type="number" name="telefono5" id="telefono5" value="<?php echo $fila['TELEFONO5_PACIENTE']; ?>" />
                                     </td>
                                     <td>
                                         <span>Correo Electronico</span>
@@ -564,7 +563,7 @@ if ($privilegios != '' && $usua != '') {
                                         <span>Barrio<span class="asterisco">*</span></span>
                                     </td>
                                     <td>
-                                        <input type="text" name="barrio" id="barrio" value="<?php echo $fila['BARRIO_PACIENTE']; ?>" />
+                                        <input type="text" name="barrio" id="barrio" value="<?php echo $fila['BARRIO_PACIENTE']; ?>" onkeypress="return check(event)" />
                                     </td>
                                     <td>
                                         <span>Direccion<span class="asterisco">*</span></span>
@@ -787,13 +786,13 @@ if ($privilegios != '' && $usua != '') {
                                         <span>Acudiente</span>
                                     </td>
                                     <td>
-                                        <input type="text" name="acudiente" id="acudiente" value="<?php echo $fila['ACUDIENTE_PACIENTE'] ?>" />
+                                        <input type="text" name="acudiente" id="acudiente" value="<?php echo $fila['ACUDIENTE_PACIENTE'] ?>" onkeypress="return check(event)" />
                                     </td>
                                     <td>
                                         <span>Telefono del Acudiente</span>
                                     </td>
                                     <td>
-                                        <input type="text" name="telefono_acudiente" id="telefono_acudiente" value="<?php echo $fila['TELEFONO_ACUDIENTE_PACIENTE'] ?>" />
+                                        <input type="number" name="telefono_acudiente" id="telefono_acudiente" value="<?php echo $fila['TELEFONO_ACUDIENTE_PACIENTE'] ?>" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -802,7 +801,7 @@ if ($privilegios != '' && $usua != '') {
                                     </td>
                                     <td>
                                         <span style="width:30%;">
-                                            <input type="text" name="clasificacion_patologica" id="clasificacion_patologica" value="<?php echo $fila['CLASIFICACION_PATOLOGICA_TRATAMIENTO'] ?>" />
+                                            <input type="text" name="clasificacion_patologica" id="clasificacion_patologica" value="<?php echo $fila['CLASIFICACION_PATOLOGICA_TRATAMIENTO'] ?>" onkeypress="return check(event)" />
                                         </span>
                                     </td>
                                     <td>
@@ -856,7 +855,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM ipsen_asegurador WHERE ESTADO = 'IN' ORDER BY ID_ASEGURADOR DESC")
                                     ?>
-                                    <input list="asegura" name="asegurador" id="asegurador" value="<?php echo $fila['ASEGURADOR_TRATAMIENTO'] ?>" autocomplete="off" onchange="trat_previo1(this)">
+                                    <input list="asegura" name="asegurador" id="asegurador" value="<?php echo $fila['ASEGURADOR_TRATAMIENTO'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo1(this)">
                                     <datalist id="asegura">
                                         <?php
                                         while ($valores = mysqli_fetch_array($query)) {
@@ -874,7 +873,7 @@ if ($privilegios != '' && $usua != '') {
                                     <?php
                                     $Seleccion = mysqli_query($conex, "SELECT DISTINCT IPS FROM ipsen_ips WHERE ESTADO = 'IN' ORDER BY ID_IPS DESC");
                                     ?>
-                                    <input list="ips" name="ips_atiende" id="ips_atiende" value="<?php echo $fila['IPS_ATIENDE_TRATAMIENTO'] ?>" autocomplete="off" onchange="trat_previo3(this)">
+                                    <input list="ips" name="ips_atiende" id="ips_atiende" value="<?php echo $fila['IPS_ATIENDE_TRATAMIENTO'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo3(this)">
                                     <datalist id="ips">
                                         <?php
                                         while ($fila_ips = mysqli_fetch_array($Seleccion)) {
@@ -890,12 +889,12 @@ if ($privilegios != '' && $usua != '') {
                                 <td></td>
                                 <td id="otro_asegurador" style="display:none">
                                     <span>Asegurador por habilitar<span class="asterisco">*</span></span>
-                                    <input name="asegurador_otro" id="asegurador_otro" type="text" style="width:78%;" />
+                                    <input name="asegurador_otro" id="asegurador_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                                 </td>
                                 <td></td>
                                 <td id="otro_ips" style="display:none">
                                     <span>Ips por habilitar<span class="asterisco">*</span></span>
-                                    <input name="ips_otro" id="ips_otro" type="text" style="width:78%;" />
+                                    <input name="ips_otro" id="ips_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                                 </td>
                             </tr>
                             <tr>
@@ -906,7 +905,7 @@ if ($privilegios != '' && $usua != '') {
                                     <?php
                                     $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
                                     ?>
-                                    <input list="medico_t" name="medico_tratante" id="medico_tratante" value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>" autocomplete="off" onchange="trat_previo4(this)">
+                                    <input list="medico_t" name="medico_tratante" id="medico_tratante" value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo4(this)">
                                     <datalist id="medico_t">
                                         <?php
                                         while ($fila_operador = mysqli_fetch_array($Seleccion)) {
@@ -924,7 +923,7 @@ if ($privilegios != '' && $usua != '') {
                                     <?php
                                     $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
                                     ?>
-                                    <input list="medico_p" name="medico_prescriptor" id="medico_prescriptor" value="<?php echo $fila['MEDICO_PRESCRIPTOR'] ?>" autocomplete="off" onchange="trat_previo5(this)">
+                                    <input list="medico_p" name="medico_prescriptor" id="medico_prescriptor" value="<?php echo $fila['MEDICO_PRESCRIPTOR'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo5(this)">
                                     <datalist id="medico_p">
                                         <?php
                                         while ($fila_operador = mysqli_fetch_array($Seleccion)) {
@@ -940,12 +939,12 @@ if ($privilegios != '' && $usua != '') {
                                 <td></td>
                                 <td id="otro_medico_t" style="display:none">
                                     <span>Medico Tratante por habilitar<span class="asterisco">*</span></span>
-                                    <input name="medico_t_otro" id="medico_t_otro" type="text" style="width:78%;" />
+                                    <input name="medico_t_otro" id="medico_t_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                                 </td>
                                 <td></td>
                                 <td id="otro_medico_p" style="display:none">
                                     <span>Medico Prescriptor por habilitar<span class="asterisco">*</span></span>
-                                    <input name="medico_p_otro" id="medico_p_otro" type="text" style="width:78%;" />
+                                    <input name="medico_p_otro" id="medico_p_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                                 </td>
                             </tr>
                             <tr>
@@ -962,7 +961,7 @@ if ($privilegios != '' && $usua != '') {
                                     <?php
                                     $Seleccion = mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM ipsen_operador_logistico WHERE ESTADO = 'IN' ORDER BY ID_OPERADOR_LOGISTICO DESC ");
                                     ?>
-                                    <input list="operador" name="operador_logistico" id="operador_logistico" value="<?php echo $fila['OPERADOR_LOGISTICO_TRATAMIENTO'] ?>" autocomplete="off" onchange="trat_previo2(this)">
+                                    <input list="operador" name="operador_logistico" id="operador_logistico" value="<?php echo $fila['OPERADOR_LOGISTICO_TRATAMIENTO'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo2(this)">
                                     <datalist id="operador">
                                         <?php
                                         while ($fila_operador = mysqli_fetch_array($Seleccion)) {
@@ -980,7 +979,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td></td>
                                 <td id="otro_operador" style="display:none">
                                     <span>Operador logistico por habilitar<span class="asterisco">*</span></span>
-                                    <input name="operador_otro" id="operador_otro" type="text" style="width:78%;" />
+                                    <input name="operador_otro" id="operador_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                                 </td>
                             </tr>
                             <tr>
@@ -990,7 +989,7 @@ if ($privilegios != '' && $usua != '') {
                                     <?php
                                     $Seleccion = mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM ipsen_puntos_entrega WHERE ESTADO = 'IN' ORDER BY ID_PUNTO DESC");
                                     ?>
-                                    <input list="punto" name="punto_entrega" id="punto_entrega" value="<?php echo $fila['PUNTO_ENTREGA'] ?>" autocomplete=" off" onchange="trat_previo6(this)">
+                                    <input list="punto" name="punto_entrega" id="punto_entrega" value="<?php echo $fila['PUNTO_ENTREGA'] ?>" autocomplete=" off" onkeypress="return check(event)" onchange="trat_previo6(this)">
                                     <datalist id="punto">
                                         <?php
                                         while ($fila = mysqli_fetch_array($Seleccion)) {
@@ -1038,7 +1037,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td></td>
                                 <td id="otro_punto" style="display:none">
                                     <span>Punto de entrega por habilitar<span class="asterisco">*</span></span>
-                                    <input name="punto_entrega_otro" id="punto_entrega_otro" type="text" style="width:78%;" />
+                                    <input name="punto_entrega_otro" id="punto_entrega_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                                 </td>
                                 <td></td>
                                 <td></td>
@@ -1064,7 +1063,7 @@ if ($privilegios != '' && $usua != '') {
                                             <option value="Otro">Otro</option>
                                     </select>
                                     <span id="cual_medico_ultimo" style="display:none;">Cual</span>
-                                    <input type="text" name="estado_farmacia_nuevo" id="estado_farmacia_nuevo" style="display:none; width:84%" />
+                                    <input type="text" name="estado_farmacia_nuevo" id="estado_farmacia_nuevo" style="display:none; width:84%" onkeypress="return check(event)" />
                                 <?php
                                         }
                                 ?>
@@ -1278,7 +1277,7 @@ if ($privilegios != '' && $usua != '') {
                             </select>
                             <div id="otro_tratamiento" style="display:none">
                                 <span>Cual?</span>
-                                <input name="tratamiento_previo_otro" id="tratamiento_previo_otro" type="text" style="width:78%;" />
+                                <input name="tratamiento_previo_otro" id="tratamiento_previo_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                             </div>
                         </td>
                     </tr>

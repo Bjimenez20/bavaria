@@ -12,7 +12,7 @@ include('../logica/session.php')
    <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
    <SCRIPT>
       function cerrar() {
-         window.close(); //cierra el popup
+         window.close();
       }
    </SCRIPT>
 </head>
@@ -25,7 +25,6 @@ include('../logica/session.php')
 
    form {
       background: url('../presentacion/imagenes/fondo_nueva_cl.png') top left no-repeat;
-      /*background:url(imagenes/fondo_nueva_cl.png) top left no-repeat;*/
    }
 
    .fuente {
@@ -121,15 +120,15 @@ include('../logica/session.php')
                $CONTRASENA_AC = $_POST['Contrasena_ac'];
                $CONTRASENA_NU = $_POST['Contrasena_nu'];
                $CONTRASENA_VA = $_POST['Contrasena_va'];
-               $CONTRASENA_VENCE = date('Y-m-d  H:i:s', strtotime('+1 month')); // Suma 1 meses	
+               $CONTRASENA_VENCE = date('Y-m-d  H:i:s', strtotime('+1 month'));
                $error_encontrado = "";
                if (validar_clave($_POST["Contrasena_nu"], $error_encontrado)) {
                   if ($CONTRASENA_NU == $CONTRASENA_VA) {
                      echo "<span class=fuente>CONTRASE&Ntilde;A V&Aacute;LIDA</span>";
                      $sql = mysqli_query($conex, "UPDATE ipsen_usuario SET 
-	  CONTRASENA = '" . MD5($CONTRASENA_NU) . "',
-	  CONTRASENA_FECHA = '" . $CONTRASENA_VENCE . "'
-	  WHERE USER='" . $USUARIO . "';");
+                     CONTRASENA = '" . MD5($CONTRASENA_NU) . "',
+                     CONTRASENA_FECHA = '" . $CONTRASENA_VENCE . "'
+                     WHERE USER='" . $USUARIO . "';");
                      echo mysqli_error($conex);
                      if ($sql) {
             ?>

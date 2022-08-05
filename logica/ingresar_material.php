@@ -36,7 +36,6 @@ include('../logica/session.php');
 	require('../datos/parse_str.php');
 	require('../datos/conex.php');
 	$INSER_SERIAL;
-	//$NOMBRE_PRODUCTO=$_POST['NOMBRE_PRODUCTO'];
 	$NO_REMISION = $_POST['NO_REMISION'];
 	$REFERENCIA = $_POST['REFERENCIA'];
 	$PRODUCTO = $_POST['producto'];

@@ -4,7 +4,6 @@ include 'layouts/head.php'; ?>
 <link rel="stylesheet" href="css/menu.css" />
 <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
 <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
-<!-- <link rel="stylesheet" href="../presentacion/css/menu.css" />  -->
 <script src="js/jquery.js"></script>
 <script src="../presentacion/js/jquery.js"></script>
 <script>
@@ -79,13 +78,9 @@ if ($privilegios != '' && $usua != '') {
 
     $num_total_registros = $num_total_opl + $num_total_asegurador + $num_total_ips + $num_total_medicos + $num_total_puntos;
 ?>
-    <!-- Sidebar -->
     <?php include('layouts/sidebar.php'); ?>
-    <!-- /.Sidebar -->
     <div class="main-panel">
-        <!-- Navbar -->
         <?php include('layouts/navbar.php'); ?>
-        <!-- /.navbar -->
         <div class="content">
             <div class="content">
                 <div class="container-fluid">

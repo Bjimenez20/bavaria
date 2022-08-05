@@ -41,7 +41,7 @@
 	</style>
 	<SCRIPT>
 		function cerrar() {
-			window.close(); //cierra el popup
+			window.close();
 		}
 	</SCRIPT>
 	<script type="text/javascript">
@@ -79,7 +79,7 @@ require('../datos/parse_str.php');
 require('../datos/conex.php');
 $ID_GESTION = base64_decode($xx);
 $paciente = base64_decode($xxp);
-$dt_1DiasDespues = date('Y-m-d', strtotime('-1 day')); // Suma 1 d�as
+$dt_1DiasDespues = date('Y-m-d', strtotime('-1 day'));
 ?>
 
 <body>

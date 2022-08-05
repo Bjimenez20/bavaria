@@ -1,7 +1,5 @@
 <?PHP
-//session_start();
 require('../datos/parse_str.php');
-//Exportar datos de php a Excel
 header("Content-Type: application/vnd.ms-excel");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
@@ -18,7 +16,6 @@ require_once("../datos/conex.php");
 ?>
 <table border="1px" bordercolor="#179066" width="100%;">
     <tr>
-        <!--<th class="botones">ID MOVIMIENTOS</th>-->
         <th class="botones">TIPO MOVIMIENTO</th>
         <th class="botones"># REMISION</th>
         <th class="botones">REFERENCIA</th>
@@ -36,7 +33,6 @@ require_once("../datos/conex.php");
     while ($fila1 = mysqli_fetch_array($consulta_inv)) {
     ?>
         <tr align="center">
-            <!--<td><?php echo $fila1['ID_MOVIMIENTOS'] ?></td>-->
             <?PHP
             $TIPO_MO = $fila1['TIPO_MOVIMIENTO'];
             if ($TIPO_MO == '1')

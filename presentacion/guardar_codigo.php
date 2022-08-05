@@ -3,9 +3,7 @@ include('../datos/conex.php');
 $CODIGO = $_POST['cod'];
 $ID = $_POST['id'];
 $id_paciente = $_POST['id_paciente'];
-$update = mysqli_query($conex, "UPDATE ipsen_gestiones
-					   SET CODIGO_ARGUS='" . $CODIGO . "'
-					   WHERE ID_GESTION='$ID'");
+$update = mysqli_query($conex, "UPDATE ipsen_gestiones SET CODIGO_ARGUS='" . $CODIGO . "' WHERE ID_GESTION='" . $ID . "'");
 echo mysqli_error($conex);
 if ($update) {
 ?>

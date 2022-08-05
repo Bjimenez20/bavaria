@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
@@ -23,6 +24,7 @@
             text-align: center;
             padding: 10px;
         }
+
         html,
         body {
             background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
@@ -31,11 +33,9 @@
             -o-background-size: cover;
             background-size: cover;
         }
-        /*form 
-{
-    background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
-}*/
+
         @media screen and (max-width:1000px) {
+
             html,
             body {
                 background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
@@ -45,10 +45,12 @@
                 background-size: cover;
             }
         }
+
         select {
             height: none !important;
             width: none !important;
         }
+
         #file-input {
             height: 30px !important;
         }
@@ -59,6 +61,7 @@
                 $('#file-input').change(function(e) {
                     addImage(e);
                 });
+
                 function addImage(e) {
                     var file = e.target.files[0],
                         imageType = /image.*/;
@@ -68,6 +71,7 @@
                     reader.onload = fileOnload;
                     reader.readAsDataURL(file);
                 }
+
                 function fileOnload(e) {
                     var result = e.target.result;
                     $('#imgSalida').attr("src", result);
@@ -146,9 +150,10 @@
         });
     </script>
 </head>
+
 <body>
     <?php
-require('../datos/parse_str.php');
+    require('../datos/parse_str.php');
     ?>
     <?php
     if (isset($_GET['xnfgti'])) {
@@ -325,6 +330,7 @@ require('../datos/parse_str.php');
             <br><br><br>
         </form>
 </body>
+
 </html>
 <script type="text/javascript">
     var Accordion1 = new Spry.Widget.Accordion("Accordion1");

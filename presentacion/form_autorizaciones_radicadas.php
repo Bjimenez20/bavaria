@@ -1,10 +1,4 @@
 <?php
-/*
-$conexion=mysqli_connect('192.168.0.7','webuser','P4t4d4 4l n3n3!!!','peoplema_bayer')or die ("no se pudo");
-mysqli_select_db($conexion,'peoplema_bayer') or die ("no se puede conectar a la database");   
-*/
-?>
-<?php
 $conexion = mysqli_connect('app-peoplemarketing.com', 'apppeopl', 'ser1_pE0p1E*2018', 'apppeopl_bayer') or die("no se pudo");
 mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la database");
 ?>
@@ -24,21 +18,14 @@ mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la 
         <title>IPSEN</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- META-->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- AJAX-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!-- BOOOTSTRAP -->
         <link href="css/bootstrap.css" rel="stylesheet" />
-        <!-- JQUERY PAGINIADO-->
         <script type="text/javascript" src="js/jquery.dataTables.js"></script>
-        <!-- EXPORTABLE-->
         <link href="css/style_table.css" rel="stylesheet" type="text/css">
-        <!--ESTILO DEL PAGINIADO-->
         <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css" />
         <link href="css/Estilo_Menu_C.css" rel="stylesheet" type="text/css">
-        <!-- FUNCION DEL PAGINIADO -->
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#usertable').DataTable();
@@ -85,19 +72,14 @@ mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la 
             </div>
         </footer>
     </body>
-    <!-- Llamar a los complementos javascript-->
-    <!-- JQUERY EXPORTABLE--->
     <script src="js/jquery-1.12.4.min.js"></script>
-    <!-- Llamar a los complementos javascript EXPORTABLE-->
-    <!-- JS DE PAGINIADO-->
     <script type="text/javascript" src="js/jquery.dataTablesc.js"></script>
-    <!-- FUNCION DE LA EXPORTACION-->
     <script>
         $("table").tableExport({
-            formats: ["xlsx", "txt", "csv"], //Tipo de archivos a exportar ("xlsx","txt", "csv", "xls")
-            position: 'button', // Posicion que se muestran los botones puedes ser: (top, bottom)
-            bootstrap: false, //Usar lo estilos de css de bootstrap para los botones (true, false)
-            fileName: "sc_csv_autorizaciones_radicadas", //Nombre del archivo 
+            formats: ["xlsx", "txt", "csv"],
+            position: 'button',
+            bootstrap: false,
+            fileName: "sc_csv_autorizaciones_radicadas",
         });
     </script>
 

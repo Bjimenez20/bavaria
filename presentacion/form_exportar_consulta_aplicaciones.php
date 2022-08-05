@@ -48,10 +48,6 @@ include('../logica/session.php');
 			background-color: #FFF;
 		}
 
-		/*form 
-{
-    background:url(../presentacion/imagenes/LOGIN.png) top center no-repeat;
-}*/
 		@media screen and (max-width:1000px) {}
 	</style>
 </head>

@@ -185,7 +185,7 @@
                                 <li class="nav-item select_menu">
                                     <a class="nav-link" href="../presentacion/form_cargar_observacion_fundem.php" target="info">
                                         <span class="sidebar-mini"> RS </span>
-                                        <span class="sidebar-normal"> Gestiones FUNDEM </span>
+                                        <span class="sidebar-normal"> Gestiones Fundem </span>
                                     </a>
                                 </li>
                                 <li class="nav-item select_menu">

@@ -108,7 +108,6 @@ include('../logica/session.php')
               </strong></td>
             <td width="15%"><strong>DEPTO </strong></td>
             <td width="35%"><strong>
-                <!--<input name="DEPTO" type="text" id="DEPTO"  class="tipo1" style="height:20px" />-->
                 <select type="text" name="DEPTO" id="DEPTO" style="width:90%; height:25px;" required="required">
                   <option value="">Seleccione...</option>
                   <?php
@@ -119,17 +118,6 @@ include('../logica/session.php')
                   }
                   ?>
                 </select>
-                <!--    <select type="text" name="DEPTO" id="DEPTO" style="width:90%; height:25px;" required="required">
-        <option value="">Seleccione...</option>      
-        <?php
-        /*     $Selecciones = mysql_query("SELECT DEPARTAMENTO FROM ipsen_asegurador_operador_logistico GROUP BY DEPARTAMENTO ORDER BY DEPARTAMENTO ASC",$conex);			
-            while($fila2=mysql_fetch_array($Selecciones))
-                {
-                    $DEPARTAMENTO = $fila2['DEPARTAMENTO'];
-                    echo "<option>".$DEPARTAMENTO."</option>";
-                }  */
-        ?>
-        </select>-->
               </strong></td>
           </tr>
           <tr>

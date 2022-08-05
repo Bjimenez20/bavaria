@@ -83,14 +83,6 @@ include('../logica/session.php')
 		});
 	</script>
 	<?php
-	/*
-if($privilegios != 2)
-{
-  header("location: ../index.php");	
-  session_unset();
-  session_destroy();
-  exit();
-}*/
 	require('../datos/parse_str.php');
 	require_once("../datos/conex.php");
 	if ($privilegios != '' && $usua != '') {
@@ -140,20 +132,6 @@ if($privilegios != 2)
 						<td><strong>NOVEDAD</strong></td>
 						<td><strong>
 								<input name="NOVEDAD" type="text" class="tipo1" id="NOVEDAD" style="height:20px" value="<?php echo $NOVEDAD; ?>" readonly="readonly" />
-								<!--  <select type="text" name="NOVEDAD" id="NOVEDAD" required="required" style="width:200px; height:25px">
-					<option><?php echo $NOVEDAD; ?></option>
-					<option>Falta de medicamento en el punto</option>
-					<option>Solicitud Muestra Medica</option>
-					<option>Consultas medicas</option>
-					<option>Apoyo en Sicologia</option>
-					<option>Recoleccion de residuos</option>
-					<option>Falta de cita medica</option>
-					<option>demora en la autorizacion</option>
-					<option>demora en la autorizacion de CTC</option>
-					<option>Reentrenamiento</option>
-					<option>Visita Paciente</option>
-					<option>Novedades Varios</option>
-				  </select> -->
 							</strong></td>
 					</tr>
 					<tr>
