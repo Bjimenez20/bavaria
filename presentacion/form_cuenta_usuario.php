@@ -41,7 +41,7 @@ if ($privilegios != '' && $usua != '') {
 			<br />
 			<table width="100%">
 				<tr>
-					<td style="background-color:#848484;text-align:center">
+					<td style="background-color:#2797d3;text-align:center">
 						<span style="color:#FFF;">MI CUENTA</span>
 					</td>
 				</tr>
@@ -119,7 +119,7 @@ if ($privilegios != '' && $usua != '') {
 			<br />
 			<table width="100%">
 				<tr>
-					<td style="background-color:#848484;text-align:center">
+					<td style="background-color:#2797d3;text-align:center">
 						<center>
 							<input id="MODIFICAR_USU" name="MODIFICAR_USU" type="submit" value="MODIFICAR" class="btn_actualizar" onclick="return validar(tuformulario,1)" />
 						</center>

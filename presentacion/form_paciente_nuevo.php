@@ -739,7 +739,7 @@ include('../logica/session.php');
         }
 
         .uploader {
-            border: 2px solid #224a81;
+            border: 2px solid #2797d3;
             width: 300px;
             position: relative;
             height: 30px;
@@ -763,7 +763,7 @@ include('../logica/session.php');
             height: 30px;
             position: absolute;
             right: 0;
-            background: #224a81 url('https://www.interactius.com/wp-content/uploads/2017/09/folder.png') no-repeat center;
+            background: #2797d3 url('https://www.interactius.com/wp-content/uploads/2017/09/folder.png') no-repeat center;
         }
     </style>
 </head>

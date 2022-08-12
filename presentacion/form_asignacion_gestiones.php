@@ -167,24 +167,24 @@ if ($privilegios != '' && $usua != '') {
 			<center>
 				<table style="width:100%;; border:#fff" rules="rows" id="tabla">
 					<tr>
-						<th colspan="5" style="color:#FFF" bgcolor="#848484">
+						<th colspan="5" style="color:#FFF" bgcolor="#224a81">
 							USUARIOS DISPONIBLES
 						</th>
 					</tr>
 					<tr>
-						<td bgcolor="#848484" style="color: #fff;" style="color: #fff;">
+						<td bgcolor="#224a81" style="color: #fff;" style="color: #fff;">
 							USUARIO(S)
 						</td>
-						<td bgcolor="#848484" style="color: #fff;">
+						<td bgcolor="#224a81" style="color: #fff;">
 							NOMBRE(S) Y APELLIDO(S)
 						</td>
-						<td bgcolor="#848484" style="color: #fff;">
+						<td bgcolor="#224a81" style="color: #fff;">
 							ESTADO LOGIN
 						</td>
 						<?php
 						if ($nreg_terapias > 0) {
 						?>
-							<td bgcolor="#848484" style="color: #fff;">
+							<td bgcolor="#224a81" style="color: #fff;">
 								ASIGNAR PACIENTES ADEMPAS Y XOFIJO
 							</td>
 						<?php
@@ -193,10 +193,10 @@ if ($privilegios != '' && $usua != '') {
 						<?php
 						if ($nreg_pac <= 0) {
 						?>
-							<td bgcolor="#848484" style="color: #fff;">
+							<td bgcolor="#224a81" style="color: #fff;">
 								# ASIGNADAS
 							</td>
-							<td bgcolor="#848484" style="color: #fff;">
+							<td bgcolor="#224a81" style="color: #fff;">
 								# GESTIONADAS
 							</td>
 						<?php
@@ -312,7 +312,7 @@ if ($privilegios != '' && $usua != '') {
 					<center>
 						<table width="100%">
 							<tr>
-								<td style="background-color:#848484;text-align:center">
+								<td style="background-color:#224a81;text-align:center">
 									<a href="form_cantidad_gestion.php" target="info" class="btn_continuar">
 										<img src="imagenes/BTN_CONTINUAR2.png" style="width:152px; height:37px" />
 									</a>
@@ -327,7 +327,7 @@ if ($privilegios != '' && $usua != '') {
 					<center>
 						<table width="100%">
 							<tr>
-								<td style="background-color:#848484;text-align:center">
+								<td style="background-color:#224a81;text-align:center">
 									&nbsp;&nbsp;&nbsp;&nbsp;
 									<a href="form_asignacion_gestiones.php?usu=<?php echo base64_encode($fila['USER']) ?>&ok=<?php echo base64_encode('restablecer') ?>" target="info" class="btn_continuar">
 										<img src="imagenes/BTN_RESTABLECER.png" style="width:152px; height:37px" />

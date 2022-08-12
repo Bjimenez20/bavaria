@@ -1,11 +1,3 @@
-<?php
-//include("../logica/session.php");
-require('../datos/parse_str.php');
-require_once("../dompdf/dompdf_config.inc.php");
-require("../datos/conex.php");
-$ID_EVENTO_ADVERSO = $ID_EA;
-include("../logica/consulta_pdf_ea.php");
-$codigoHTML = '
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -356,16 +348,4 @@ $codigoHTML = '
     </form>
 </body>
 
-</html>';
-$codigoHTML = utf8_encode($codigoHTML);
-$dompdf = new DOMPDF();
-$dompdf->load_html($codigoHTML);
-ini_set("memory_limit", "128M");
-$dompdf->render();
-$output = $dompdf->output();
-file_put_contents('../presentacion/PDF/Evento_Adverso_' . $ID_EVENTO_ADVERSO . '.pdf', $output);
-if ($COMPANIA == "GRUPO ASEI") {
-	include("../presentacion/email/mail_asei.php");
-} else {
-	include("../presentacion/email/mail.php");
-}
+</html>

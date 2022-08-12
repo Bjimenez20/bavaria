@@ -370,7 +370,7 @@ if ($privilegios != '' && $usua != '') {
 				</center>
 			</span>
 			<p class="error" style=" width:68.9%; margin:auto auto;">
-				<span style="border-left-color:#fff">NO SE ENCUENTRAN REGISTROS CON ESTA INFORMACI&Oacute;N.</span>
+				<span style="border-left-color:#fff">NO SE ENCONTRARON REGISTROS CON ESTA INFORMACI&Oacute;N.</span>
 			</p>
 		<?php
 		}

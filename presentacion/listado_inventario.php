@@ -72,7 +72,8 @@ if ($privilegios != '' && $usua != '') {
             }
             ?>
             <tr bgcolor="#FFFFFF" class="titulo" align="center">
-                <td colspan="12" class="botones">Se encontraron <?php echo $nreg = mysqli_num_rows($consulta_inv); ?> Registros
+                <td colspan="12" class="botones">
+                    Se encontraron <?php echo $nreg = mysqli_num_rows($consulta_inv); ?> Registros
                 </td>
             </tr>
         </table>

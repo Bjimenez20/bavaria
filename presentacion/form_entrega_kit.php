@@ -43,10 +43,10 @@ include('../logica/session.php')
 <body>
   <section>
     <br><br><br><br>
-    <div style="width:100%; background-color:#848484; height:80%"></div>
+    <div style="width:100%; background-color:#2797d3; height:80%"></div>
     <table width="100%">
       <tr>
-        <td style="background-color:#848484;text-align:center">
+        <td style="background-color:#2797d3;text-align:center">
           <span style="color:#FFF;  font-size: 25px;">ENTREGA KIT</span>
         </td>
       </tr>
@@ -96,7 +96,7 @@ include('../logica/session.php')
   </section>
   <table width="100%">
     <tr>
-      <td style="background-color:#848484;text-align:center">
+      <td style="background-color:#2797d3;text-align:center">
         <img src="../presentacion/imagenes/BOTONES_REGISTRAR.PNG" width="120" />
       </td>
     </tr>

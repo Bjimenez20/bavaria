@@ -25,7 +25,7 @@ include('../logica/session.php')
 
     .btn_registrar {
       padding-top: 2%;
-      background-image: url(imagenes/BOTONES_REGISTRAR.png);
+      background-image: url(imagenes/BOTON_AGREGAR.png);
       background-repeat: no-repeat;
       width: 152px;
       height: 50px;
@@ -46,7 +46,7 @@ include('../logica/session.php')
     th {
       padding: 7px;
       color: #FFF;
-      background: #848484;
+      background: #224a81;
       font-family: avenir;
       font-size: 100%;
       font-style: normal;

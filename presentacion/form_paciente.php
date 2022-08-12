@@ -20,7 +20,7 @@ include('../logica/session.php')
     <script src="../presentacion/js/jquery.js"></script>
     <script language=javascript>
         function ventanaSecundaria(URL) {
-            window.open(URL, "ventana1", "width=1300,height=500,Top=150,Left=50%")
+            window.open(URL, "ventana1", "width=1500,height=500,Top=150,Left=50%")
         }
     </script>
     <style>
@@ -38,7 +38,7 @@ include('../logica/session.php')
         }
 
         .uploader {
-            border: 2px solid #224a81;
+            border: 2px solid #2797d3;
             width: 300px;
             position: relative;
             height: 30px;
@@ -62,7 +62,7 @@ include('../logica/session.php')
             height: 30px;
             position: absolute;
             right: 0;
-            background: #224a81 url('https://www.interactius.com/wp-content/uploads/2017/09/folder.png') no-repeat center;
+            background: #2797d3 url('https://www.interactius.com/wp-content/uploads/2017/09/folder.png') no-repeat center;
         }
     </style>
     <script type="text/javascript">
@@ -301,6 +301,8 @@ include('../logica/session.php')
                     $('#envio_evento_adverso_div').css('display', 'none');
                 }
             });
+
+
             $("#medico").change(function() {
                 $("#medico_nuevo").val('');
                 var medico = $('#medico').val();
@@ -1872,12 +1874,12 @@ if ($privilegios != '' && $usua != '') {
                             <td></td>
                             <td id="otro_asegurador" style="display:none">
                                 <span>Asegurador por habilitar<span class="asterisco">*</span></span>
-                                <input name="asegurador_otro" id="asegurador_otro" type="text" style="width:78%;" onkeypress="return check(event)"/>
+                                <input name="asegurador_otro" id="asegurador_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                             </td>
                             <td></td>
                             <td id="otro_ips" style="display:none">
                                 <span>Ips por habilitar<span class="asterisco">*</span></span>
-                                <input name="ips_otro" id="ips_otro" type="text" style="width:78%;" onkeypress="return check(event)"/>
+                                <input name="ips_otro" id="ips_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                             </td>
                         </tr>
                         <tr>
@@ -1888,7 +1890,7 @@ if ($privilegios != '' && $usua != '') {
                                 <?php
                                 $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
                                 ?>
-                                <input list="medico_t" name="medico_tratante" id="medico_tratante" value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>" autocomplete="off" onkeypress="return check(event)"onchange="trat_previo4(this)">
+                                <input list="medico_t" name="medico_tratante" id="medico_tratante" value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo4(this)">
                                 <datalist id="medico_t">
                                     <?php
                                     while ($fila_operador = mysqli_fetch_array($Seleccion)) {
@@ -1922,12 +1924,12 @@ if ($privilegios != '' && $usua != '') {
                             <td></td>
                             <td id="otro_medico_t" style="display:none">
                                 <span>Medico Tratante por habilitar<span class="asterisco">*</span></span>
-                                <input name="medico_t_otro" id="medico_t_otro" type="text" style="width:78%;" onkeypress="return check(event)"/>
+                                <input name="medico_t_otro" id="medico_t_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                             </td>
                             <td></td>
                             <td id="otro_medico_p" style="display:none">
                                 <span>Medico Prescriptor por habilitar<span class="asterisco">*</span></span>
-                                <input name="medico_p_otro" id="medico_p_otro" type="text" style="width:78%;" onkeypress="return check(event)"/>
+                                <input name="medico_p_otro" id="medico_p_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                             </td>
                         </tr>
                         <tr>
@@ -1962,7 +1964,7 @@ if ($privilegios != '' && $usua != '') {
                             <td></td>
                             <td id="otro_operador" style="display:none">
                                 <span>Operador logistico por habilitar<span class="asterisco">*</span></span>
-                                <input name="operador_otro" id="operador_otro" type="text" style="width:78%;" onkeypress="return check(event)"/>
+                                <input name="operador_otro" id="operador_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                             </td>
                         </tr>
                         <tr>
@@ -2004,7 +2006,7 @@ if ($privilegios != '' && $usua != '') {
                             <td></td>
                             <td id="otro_punto" style="display:none">
                                 <span>Punto de entrega por habilitar<span class="asterisco">*</span></span>
-                                <input name="punto_entrega_otro" id="punto_entrega_otro" type="text" style="width:78%;" onkeypress="return check(event)"/>
+                                <input name="punto_entrega_otro" id="punto_entrega_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                             </td>
                         </tr>
                         <tr>
@@ -2144,12 +2146,11 @@ if ($privilegios != '' && $usua != '') {
                             </td>
                             <td>
                                 <div id="envio_evento_adverso_div" style="display:none">
-                                    <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%; display:none" value="" checked="checked" />
-                                    <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Farmacovigilancia" />Farmacovigilancia
+                                    <input type="checkbox" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%; display:none" value="" checked="checked" />
+                                    <input type="checkbox" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Farmacovigilancia" />Farmacovigilancia
                                     <br />
-                                    <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia Betaconnet/ Omrron" />Tecnovigilancia Betaconnet/ Omrron
-                                    <br />
-                                    <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia I-neb" />Tecnovigilancia I-neb
+                                    <input type="checkbox" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia I-neb" />Tecnovigilancia I-neb
+                                    <input type="button" name="tipo_evento_adverso2" id="tipo_evento_adverso2" style="background-image:url(imagenes/agregar.png); background-repeat:no-repeat;  width:41px; height:38px; border:1px solid transparent; background-color:transparent" onclick="javascript:ventanaSecundaria('form_evento_adverso.php?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>')" />
                                 </div>
                                 <br />
                                 <br />
@@ -2197,7 +2198,7 @@ if ($privilegios != '' && $usua != '') {
                                 <br />
                             </td>
                             <td>
-                                <input type="text" name="observacion_proxima_llamada" id="observacion_proxima_llamada" onkeypress="return check(event)"/>
+                                <input type="text" name="observacion_proxima_llamada" id="observacion_proxima_llamada" onkeypress="return check(event)" />
                                 <br />
                                 <br />
                             </td>
@@ -2370,7 +2371,7 @@ if ($privilegios != '' && $usua != '') {
                                 </select>
                                 <div id="otro_tratamiento" style="display:none">
                                     <span>Cual?</span>
-                                    <input name="tratamiento_previo_otro" id="tratamiento_previo_otro" type="text" style="width:78%;" onkeypress="return check(event)"/>
+                                    <input name="tratamiento_previo_otro" id="tratamiento_previo_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
                                 </div>
                                 <br />
                                 <br />

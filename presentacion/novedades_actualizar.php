@@ -45,7 +45,7 @@ include('../logica/session.php')
 		th {
 			padding: 7px;
 			color: #FFF;
-			background: #848484;
+			background: #2797d3;
 			font-family: avenir;
 			font-size: 100%;
 			font-style: normal;

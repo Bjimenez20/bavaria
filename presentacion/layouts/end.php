@@ -192,7 +192,7 @@
 
   /* COLOR PRINCIPAL SCROLL */
   ::-webkit-scrollbar-thumb {
-    background: #848484;
+    background: #2797d3;
     border-radius: 4px;
   }
 

@@ -56,7 +56,7 @@ $usua;
         <br><br><br>
         <table width="100%">
             <tr>
-                <td style="background-color:#848484;text-align:center">
+                <td style="background-color:#224a81;text-align:center">
                     <span style="color:#FFF;">Gestion Fundem</span>
                 </td>
             </tr>
@@ -93,7 +93,7 @@ $usua;
         </table>
         <table width="100%">
             <tr>
-                <td style="background-color:#848484;text-align:center">
+                <td style="background-color:#224a81;text-align:center">
                     <input type="submit" value="ENVIAR ARCHIVO" class="btn_upload" />
                 </td>
             </tr>

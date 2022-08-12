@@ -10,7 +10,7 @@
                 <a href="http://www.creative-tim.com" class="simple-text logo-normal">
                     <div class="row-reverse">
                         <div class="col d-flex justify-content-center">
-                            <img class="img" src="./../presentacion/imagenes/9.png" alt="" id="logo_max" style="width:60%;">
+                            <img class="img" src="./../presentacion/imagenes/12.png" alt="" id="logo_max" style="width:60%;">
                         </div>
                         <div class="col d-flex justify-content-center">
                             <label for="" class="text-white ">IPSEN</label>
