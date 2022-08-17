@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col " style="display: none" id="logo_mini">
                 <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                    <img src="./../presentacion/imagenes/9.png" alt="" class="w-100">
+                    <img src="./../presentacion/imagenes/12.png" alt="" class="w-100">
                 </a>
             </div>
             <div class="col d-flex justify-content-center">

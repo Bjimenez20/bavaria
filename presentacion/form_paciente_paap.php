@@ -1355,7 +1355,7 @@ if ($privilegios != '' && $usua != '') {
 										<input type="text" name="proveedor_people" id="proveedor_people" value='People Marketing' readonly>
 									</div>
 									<div id="solicitud_cambio_proveedor_psp" style="display:none">
-										<input type="text" name="proveedor_psp" id="proveedor_psp" value='PSP Solutions' readonly>
+										<input type="text" name="proveedor_psp" id="proveedor_psp" value='People Marketing' readonly>
 									</div>
 								</td>
 								<td>
@@ -1973,8 +1973,6 @@ if ($privilegios != '' && $usua != '') {
 										<input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%; display:none" value="" checked="checked" />
 										<input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Farmacovigilancia" />Farmacovigilancia
 										<br />
-										<input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia Betaconnet/ Omrron" />Tecnovigilancia Betaconnet/ Omrron
-										<br />
 										<input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia I-neb" />Tecnovigilancia I-neb
 									</div>
 									<br />
@@ -2073,7 +2071,7 @@ if ($privilegios != '' && $usua != '') {
 										<br />
 										<br />
 									</div>
-									<div id="div_barrera">
+									<!-- <div id="div_barrera">
 										<label>Tipo Transferencia<span class="asterisco">*</span></label>
 										<select type="text" name="sub_barrera" id="sub_barrera" style="width:95%">
 											<?php if ($BARRERAPAAP == "") { ?>
@@ -2084,7 +2082,7 @@ if ($privilegios != '' && $usua != '') {
 												<option value="Correo">Correo</option>
 											<?php } ?>
 										</select>
-									</div>
+									</div> -->
 								</td>
 								<?php
 								?>
@@ -2269,7 +2267,7 @@ if ($privilegios != '' && $usua != '') {
 								</td>
 							</tr>
 							<tr>
-								<td width="20%">
+								<!-- <td width="20%">
 									<span>Status del Paciente</span>
 								</td>
 								<td width="30%">
@@ -2277,7 +2275,7 @@ if ($privilegios != '' && $usua != '') {
 										<option><?php echo $STATUS_PACIENTE ?></option>
 										<option>Seleccione...</option>
 									</select>
-								</td>
+								</td> -->
 								<td>
 									<span>Envios</span>
 									<br />

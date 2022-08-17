@@ -60,18 +60,28 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 	$PREGUNTA3 = $_POST['pregunta3'];
 	$PREGUNTA4 = $_POST['pregunta4'];
 	$PREGUNTA5 = $_POST['pregunta5'];
+	$PREGUNTA6 = $_POST['pregunta6'];
+	$PREGUNTA7 = $_POST['pregunta7'];
+	$PREGUNTA8 = $_POST['pregunta8'];
+	$PREGUNTA9 = $_POST['pregunta9'];
+	$PREGUNTA10 = $_POST['pregunta10'];
+	$PREGUNTA11 = $_POST['pregunta11'];
+	$PREGUNTA12 = $_POST['pregunta12'];
+	$PREGUNTA13 = $_POST['pregunta13'];
+	$PREGUNTA14 = $_POST['pregunta14'];
+	$PREGUNTA15 = $_POST['pregunta15'];
 	$ID_PACIENTE = $_POST['ID_PACIENTE'];
 }
 
-$nombre = $NOMBRE_REPORTANTE;
-function iniciales($nombre)
-{
-	$notocar = array('del', 'de');
-	$trozos = explode(' ', $nombre);
-	$iniciales = '';
-	for ($i = 0; $i < count($trozos); $i++) {
-		if (in_array($trozos[$i], $notocar)) $iniciales .= $trozos[$i] . " ";
-		else $iniciales .= substr($trozos[$i], 0, 1) . ". ";
-	}
-	return $iniciales;
-}
+// $nombre = $NOMBRE_REPORTANTE;
+// function iniciales($nombre)
+// {
+// 	$notocar = array('del', 'de');
+// 	$trozos = explode(' ', $nombre);
+// 	$iniciales = '';
+// 	for ($i = 0; $i < count($trozos); $i++) {
+// 		if (in_array($trozos[$i], $notocar)) $iniciales .= $trozos[$i] . " ";
+// 		else $iniciales .= substr($trozos[$i], 0, 1) . ". ";
+// 	}
+// 	return $iniciales;
+// }

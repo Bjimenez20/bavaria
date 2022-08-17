@@ -179,7 +179,7 @@ if ($privilegios != '' && $usua != '') {
                     <tr>
                         <th class="titulos" colspan="4">
                             3. INFORMACIÓN DE LOS MEDICAMENTOS
-                            <P>Registre todos los medicamentos utilizados y marque con una “S” el (los) sospechoso(s), con una “C” el (los) concomitantes y con una “I” las interacciones. </P>
+                            <P>Registre todos los medicamentos utilizados y marque con una <span style="color:#000">(S)</span> el (los) sospechoso(s), con una <span style="color:#000">(C)</span> el (los) concomitantes y con una <span style="color:#000">(I)</span> las interacciones. </P>
                         </th>
                     </tr>
                     <tr>
@@ -278,36 +278,36 @@ if ($privilegios != '' && $usua != '') {
                             Desenlace del evento (Marcar con una X)<br><br>
                             <div style="text-align: left;">
                                 <input type="checkbox" name="desenlace_evento" id="desenlace_evento" style=" width:20%; display:none" value="" checked="checked" />
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento"> Recuperado / Resuelto sin secuelas <br>
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento"> Recuperado / Resuelto con secuelas <br>
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento"> Recuperando / Resolviendo <br>
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento"> No recuperado / No resuelto <br>
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento"> Fatal <br>
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento"> Desconocido
+                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto sin secuelas"> Recuperado / Resuelto sin secuelas <br>
+                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto con secuelas"> Recuperado / Resuelto con secuelas <br>
+                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="Recuperando / Resolviendo"> Recuperando / Resolviendo <br>
+                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="No recuperado / No resuelto"> No recuperado / No resuelto <br>
+                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="Fatal"> Fatal <br>
+                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="Desconocido"> Desconocido
                             </div>
                         </th>
                         <th>
                             Seriedad (Marcar con X) <br><br>
                             <div style="text-align: left;">
                                 <input type="checkbox" name="seriedad" id="seriedad" style=" width:20%; display:none" value="" checked="checked" />
-                                <input type="checkbox" name="seriedad" id="seriedad"> Produjo o prolongó hospitalización <br>
-                                <input type="checkbox" name="seriedad" id="seriedad"> Anomalía congénita <br>
-                                <input type="checkbox" name="seriedad" id="seriedad"> Amenaza de vida <br>
-                                <input type="checkbox" name="seriedad" id="seriedad"> Muerte <input type="date" name="fecha_muerte" id="fecha_muerte"> <br>
-                                <input type="checkbox" name="seriedad" id="seriedad"> Produjo discapacidad o incapacidad permanente / condición médica importante <br>
+                                <input type="checkbox" name="seriedad" id="seriedad" value="Produjo o prolongo hospitalizacion"> Produjo o prolongó hospitalización <br>
+                                <input type="checkbox" name="seriedad" id="seriedad" value="Anomalia congenita"> Anomalía congénita <br>
+                                <input type="checkbox" name="seriedad" id="seriedad" value="Amenaza de vida"> Amenaza de vida <br>
+                                <input type="checkbox" name="seriedad" id="seriedad" value="Muerte"> Muerte <input type="date" name="fecha_muerte" id="fecha_muerte"> <br>
+                                <input type="checkbox" name="seriedad" id="seriedad" value="Produjo discapacidad o incapacidad permanente / condicion medica importante"> Produjo discapacidad o incapacidad permanente / condición médica importante <br>
                             </div>
                         </th>
                     </tr>
                     <tr colspan="4">
                         <th colspan="1">
                         </th>
-                        <th colspan="1">
+                        <th colspan="1" class="titulos">
                             SI
                         </th>
-                        <th colspan="1">
+                        <th colspan="1" class="titulos">
                             NO
                         </th>
-                        <th colspan="1">
+                        <th colspan="1" class="titulos">
                             NO SABE
                         </th>
                     </tr>
@@ -316,14 +316,13 @@ if ($privilegios != '' && $usua != '') {
                             ¿El evento se presentó después de administrar el medicamento? <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta1" id="pregunta1" style=" width:20%; display:none" value="" checked="checked" />
-                            <input type="checkbox" name="pregunta1" id="pregunta1" value="SI"> <br>
+                            <input type="radio" name="pregunta1" id="pregunta1" value="X"> <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta1" id="pregunta1" value="NO"> <br>
+                            <input type="radio" name="pregunta2" id="pregunta2" value="X"> <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta1" id="pregunta1" value="NO SABE"> <br>
+                            <input type="radio" name="pregunta3" id="pregunta3" value="X"> <br>
                         </th>
                     </tr>
                     <tr>
@@ -331,14 +330,13 @@ if ($privilegios != '' && $usua != '') {
                             ¿Existen otros factores que puedan explicar el evento (medicamento, patologías, etc.)? <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta2" id="pregunta2" style=" width:20%; display:none" value="" checked="checked" />
-                            <input type="checkbox" name="pregunta2" id="pregunta2" value="SI"> <br>
+                            <input type="radio" name="pregunta4" id="pregunta4" value="X"> <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta2" id="pregunta2" value="NO"> <br>
+                            <input type="radio" name="pregunta5" id="pregunta5" value="X"> <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta2" id="pregunta2" value="NO SABE"> <br>
+                            <input type="radio" name="pregunta6" id="pregunta6" value="X"> <br>
                         </th>
                     </tr>
                     <tr>
@@ -346,14 +344,13 @@ if ($privilegios != '' && $usua != '') {
                             ¿El evento desapareció al disminuir o suspender el medicamento sospechoso? <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta3" id="pregunta3" style=" width:20%; display:none" value="" checked="checked" />
-                            <input type="checkbox" name="pregunta3" id="pregunta3" value="SI"> <br>
+                            <input type="radio" name="pregunta7" id="pregunta7" value="X"> <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta3" id="pregunta3" value="NO"> <br>
+                            <input type="radio" name="pregunta8" id="pregunta8" value="X"> <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta3" id="pregunta3" value="NO SABE"> <br>
+                            <input type="radio" name="pregunta9" id="pregunta9" value="X"> <br>
                         </th>
                     </tr>
                     <tr>
@@ -361,14 +358,13 @@ if ($privilegios != '' && $usua != '') {
                             ¿El paciente ya había presentado la misma reacción al medicamento sospechoso? <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta4" id="pregunta4" style=" width:20%; display:none" value="" checked="checked" />
-                            <input type="checkbox" name="pregunta4" id="pregunta4" value="SI"> <br>
+                            <input type="radio" name="pregunta10" id="pregunta10" value="X"> <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta4" id="pregunta4" value="NO"> <br>
+                            <input type="radio" name="pregunta11" id="pregunta11" value="X"> <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta4" id="pregunta4" value="NO SABE"> <br>
+                            <input type="radio" name="pregunta12" id="pregunta12" value="X"> <br>
                         </th>
                     </tr>
                     <tr>
@@ -376,14 +372,13 @@ if ($privilegios != '' && $usua != '') {
                             ¿Se puede ampliar la información del paciente relacionando con el evento? <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta5" id="pregunta5" style=" width:20%; display:none" value="" checked="checked" />
-                            <input type="checkbox" name="pregunta5" id="pregunta5" value="SI"> <br>
+                            <input type="radio" name="pregunta13" id="pregunta13" value="X"> <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta5" id="pregunta5" value="NO"> <br>
+                            <input type="radio" name="pregunta14" id="pregunta14" value="X"> <br>
                         </th>
                         <th>
-                            <input type="checkbox" name="pregunta5" id="pregunta5" value="NO SABE"> <br>
+                            <input type="radio" name="pregunta15" id="pregunta15" value="X"> <br>
                         </th>
                     </tr>
                     <tr>
@@ -398,7 +393,6 @@ if ($privilegios != '' && $usua != '') {
         </form>
     </body>
 <?php
-    //}
 } else {
 ?>
     <script type="text/javascript">

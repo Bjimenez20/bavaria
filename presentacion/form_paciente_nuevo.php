@@ -823,7 +823,7 @@ if ($privilegios != '' && $usua != '') {
                                     <span>Asignado para</span>
                                 </td>
                                 <td>
-                                    <input type="text" name="proveedor_psp" id="proveedor_psp" value='PSP Solutions' readonly>
+                                    <input type="text" name="proveedor_psp" id="proveedor_psp" value='People Marketing' readonly>
                                 </td>
                             </tr>
                             <tr>
@@ -1409,14 +1409,14 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <!-- <td>
                                     <span>Status del Paciente<span class="asterisco">*</span></span>
                                 </td>
                                 <td>
                                     <select type="text" name="status_paciente" id="status_paciente" disabled="disabled">
                                         <option>Seleccione...</option>
                                     </select>
-                                </td>
+                                </td> -->
                                 <td width="20%">
                                     <span>Clasificacion Patologica<span class="asterisco">*</span></span>
                                 </td>
@@ -1676,7 +1676,7 @@ if ($privilegios != '' && $usua != '') {
                                     </select>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>
                                     <span>Paramedico o Representante</span>
                                 </td>
@@ -1698,14 +1698,14 @@ if ($privilegios != '' && $usua != '') {
                                         <option>Valle</option>
                                     </select>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
-                                <td>
+                                <!-- <td>
                                     <span>Codigo Tratamiento</span>
                                 </td>
                                 <td>
                                     <input type="number" name="codigo_xofigo" id="codigo_xofigo" />
-                                </td>
+                                </td> -->
                                 <td>
                                     <div style="display:none" id="num_lotes_dis2" name="num_lotes_dis2"><span>Numero lotes de los dispositivos<span class="asterisco">*</span></span></div>
                                 </td>
@@ -1767,14 +1767,14 @@ if ($privilegios != '' && $usua != '') {
                                         <br />
                                         <br />
                                     </div>
-                                    <div id="div_barrera">
+                                    <!-- <div id="div_barrera">
                                         <label>Tipo Transferencia<span class="asterisco">*</span></label>
                                         <select type="text" name="sub_barrera" id="sub_barrera" style="width:95%">
                                             <option value="">Seleccione...</option>
                                             <option>Buzon</option>
                                             <option>En linea</option>
                                         </select>
-                                    </div>
+                                    </div> -->
                                 </td>
                             </tr>
                             <tr>
