@@ -20,7 +20,7 @@ include('../logica/session.php')
 	<script src="../presentacion/js/jquery.js"></script>
 	<script language=javascript>
 		function ventanaSecundaria(URL) {
-			window.open(URL, "ventana1", "width=1300,height=500,Top=150,Left=50%")
+			window.open(URL, "ventana1", "width=1500,height=500,Top=150,Left=50%")
 		}
 	</script>
 	<style>
@@ -1974,6 +1974,7 @@ if ($privilegios != '' && $usua != '') {
 										<input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Farmacovigilancia" />Farmacovigilancia
 										<br />
 										<input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia I-neb" />Tecnovigilancia I-neb
+										<input type="button" name="tipo_evento_adverso2" id="tipo_evento_adverso2" style="background-image:url(imagenes/agregar.png); background-repeat:no-repeat;  width:41px; height:38px; border:1px solid transparent; background-color:transparent" onclick="javascript:ventanaSecundaria('form_evento_adverso.php?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>')" />
 									</div>
 									<br />
 									<br />

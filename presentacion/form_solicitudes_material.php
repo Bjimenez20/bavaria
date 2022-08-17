@@ -85,7 +85,7 @@ if ($privilegios != '' && $usua != '') {
 				<form name="miformulario" id="miformulario" method="post" action="lista_solicitudes_material.php" onkeydown="return filtro(2)" target="consulta_sol">
 					<table width="85%" align="center" cellpadding="2" cellspacing="1" style="border:1px transparent solid;margin:auto auto;">
 						<tr style="border:2px #0C7890 solid;">
-							<th class="titulosth" colspan="2" bgcolor="#2facbc" style="padding:10px;">
+							<th class="titulosth" colspan="2" bgcolor="#224a81" style="padding:10px;">
 								TIPO DE SOLICITUD
 								<select name="TIPO_SOLICITUD" id="TIPO_SOLICITUD" class="tipo1" style="width:74%;" required="required">
 									<option value="" style="color:#999">SELECCIONE</option>
@@ -94,7 +94,7 @@ if ($privilegios != '' && $usua != '') {
 									<option>PENDIENTES</option>
 								</select>
 							</th>
-							<th bgcolor="#2facbc" rowspan="2">
+							<th bgcolor="#224a81" rowspan="2">
 								<center>
 									<input type="submit" name="buscar" id="buscar" value="Consultar" class="btn_buscar" title="BUSCAR" />
 									<?php
@@ -108,13 +108,13 @@ if ($privilegios != '' && $usua != '') {
 							</th>
 						</tr>
 						<tr style="border:2px #0C7890 solid;">
-							<th bgcolor="#2facbc">
+							<th bgcolor="#224a81">
 								<div style="display:none" id="fecha">
 									FECHA INICIO
 									<input name="fecha_ini" type="date" id="fecha_ini" / title="INGRESE LA FECHA INICIO" class="tipo1" style="width:57%;height:20px" required="required" />
 								</div>
 							</th>
-							<th bgcolor="#2facbc">
+							<th bgcolor="#224a81">
 								<div style="display:none" id="fecha2">
 									FECHA FIN
 									<input name="fecha_fin" type="date" id="fecha_fin" title="INGRESE LA FECHA FIN" class="tipo1" style="width:57%;height:20px" required="required" />

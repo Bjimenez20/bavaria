@@ -2,12 +2,12 @@
     <div class="logo">
         <div class="row">
             <div class="col " style="display: none" id="logo_mini">
-                <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+                <a href="https://www.peoplemarketing.com/" class="simple-text logo-mini">
                     <img src="./../presentacion/imagenes/12.png" alt="" class="w-100">
                 </a>
             </div>
             <div class="col d-flex justify-content-center">
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                <a href="https://www.peoplemarketing.com/" class="simple-text logo-normal">
                     <div class="row-reverse">
                         <div class="col d-flex justify-content-center">
                             <img class="img" src="./../presentacion/imagenes/12.png" alt="" id="logo_max" style="width:60%;">
@@ -118,8 +118,27 @@
                     </div>
                 </li>
             <?php
-            }
+            } elseif ($privilegios == '5') {
             ?>
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples2">
+                        <i class="material-icons">image</i>
+                        <p> Productos
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="pagesExamples2">
+                        <ul class="nav">
+                            <li class="nav-item select_menu">
+                                <a class="nav-link" href="../presentacion/form_inventario.php" target="info">
+                                    <span class="sidebar-mini"> RS </span>
+                                    <span class="sidebar-normal"> Inventario </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            <?php } ?>
             <?php
             if ($privilegios == '1') {
             ?>
@@ -168,9 +187,28 @@
                         </ul>
                     </div>
                 </li>
+            <?php } elseif ($privilegios == '5') { ?>
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples3">
+                        <i class="material-icons">pie_chart</i>
+                        <p> Reportes
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="pagesExamples3">
+                        <ul class="nav">
+                            <li class="nav-item select_menu">
+                                <a class="nav-link" href="../new_scriptcase/Bayer_20220614174528" target="info">
+                                    <span class="sidebar-mini"> RS </span>
+                                    <span class="sidebar-normal"> Otros reportes </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             <?php } ?>
             <?php
-            if ($privilegios == '1') {
+            if ($privilegios == '1' || $privilegios == '5') {
                 if ($usua == 'ADMIN' || $usua == 'YRAMIREZ') {
             ?>
                     <li class="nav-item ">

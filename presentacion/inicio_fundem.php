@@ -1,17 +1,9 @@
 <?php
-include('../logica/session.php')
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>IPSEN</title>
-    <link rel="stylesheet" href="css/menu_fundem.css" />
-    <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
-    <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
-    <link rel="stylesheet" href="../presentacion/css/menu_fundem.css" />
-</head>
+include('../logica/session.php');
+include 'layouts/head.php'; ?>
+<link rel="stylesheet" href="css/menu.css" />
+<link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
+<link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
 <script src="js/jquery.js"></script>
 <script src="../presentacion/js/jquery.js"></script>
 <script>
@@ -21,47 +13,160 @@ include('../logica/session.php')
         $('#info').css('height', porh);
     });
 </script>
-<style>
-    html {
-        background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
-</style>
 <?php
-if ($privilegios != '' && $usua != '') {
+if ($usua == 'YRAMIREZ') {
 ?>
-
-    <body>
-        <div class="body">
-            <div class="div_menu" style="margin-top:-20px;">
-                <ul>
-                    <li><a href="#"><span class="icon-home3"></span>INICIO</a></li>
-                    <li><a href="../presentacion/envio_muestra_medica.php" target="info"><span class="icon-user-check"></span> ENVIO MUESTRA MEDICA </a>
-                    </li>
-                    </li>
-                    <li><a href="../presentacion/form_paciente_seguimiento.php" target="info"><span class="icon-user-check"></span> SEGUIMIENTO </a>
-                    </li>
-                    <li><a href="../presentacion/form_cuenta_usuario.php" target="info"><span class="icon-unlocked"></span> USUARIO</a>
-                    </li>
-                    <li class="a1" id="salir"><a href="../logica/cerrar_sesion.php" style="border-right:2px solid transparent;"><span class="icon-exit"></span> SALIR</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="body">
-            <iframe style=" padding-top:20px; width:100%;border:1px solid transparent" name="info" id="info" scrolling="auto"></iframe>
-        </div>
-    </body>
+    <style>
+        .div_menu {
+            margin: 0px auto;
+            width: 855px;
+            font-family: Tahoma, Geneva, sans-serif;
+            background-color: #92c14a;
+            margin: auto auto;
+            margin-top: 15%;
+            padding: 5px;
+        }
+    </style>
+<?php
+} elseif ($usua == 'ADMIN') {
+?>
+    <style>
+        .div_menu {
+            margin: 0px auto;
+            width: 736px;
+            font-family: Tahoma, Geneva, sans-serif;
+            background-color: #92c14a;
+            margin: auto auto;
+            margin-top: 15%;
+            padding: 5px;
+        }
+    </style>
 <?php
 } else {
 ?>
-    <script type="text/javascript">
-        window.onload = window.top.location.href = "../logica/cerrar_sesion2.php";
-    </script>
+    <style>
+        .div_menu {
+            margin: 0px auto;
+            width: 855px;
+            font-family: Tahoma, Geneva, sans-serif;
+            background-color: #92c14a;
+            margin: auto auto;
+            margin-top: 15%;
+            padding: 5px;
+        }
+    </style>
 <?php
 }
 ?>
+<?php
+if ($privilegios != '' && $usua != '') {
 
-</html>
+    $select_opl = mysqli_query($conex, "SELECT * FROM ipsen_operador_logistico WHERE ESTADO = 'OUT'");
+    $num_total_opl = mysqli_num_rows($select_opl);
+
+    $select_asegurador = mysqli_query($conex, "SELECT * FROM ipsen_asegurador WHERE ESTADO = 'OUT'");
+    $num_total_asegurador = mysqli_num_rows($select_asegurador);
+
+    $select_ips = mysqli_query($conex, "SELECT * FROM ipsen_ips WHERE ESTADO = 'OUT'");
+    $num_total_ips = mysqli_num_rows($select_ips);
+
+    $select_medicos = mysqli_query($conex, "SELECT * FROM ipsen_listas WHERE ESTADO = 'OUT'");
+    $num_total_medicos = mysqli_num_rows($select_medicos);
+
+    $select_puntos = mysqli_query($conex, "SELECT * FROM ipsen_puntos_entrega WHERE ESTADO = 'OUT'");
+    $num_total_puntos = mysqli_num_rows($select_puntos);
+
+    $num_total_registros = $num_total_opl + $num_total_asegurador + $num_total_ips + $num_total_medicos + $num_total_puntos;
+?>
+    <?php include('layouts/sidebar3.php'); ?>
+    <div class="main-panel">
+        <?php include('layouts/navbar.php'); ?>
+        <div class="content">
+            <div class="content">
+                <div class="container-fluid">
+
+                    <div id="content_welcome">
+                        <div class="row-reverse">
+                            <div class="col d-flex justify-content-center">
+                                <img src="./../presentacion/imagenes/11.png" style="width: 13%;" alt="">
+                            </div>
+                            <div class="col d-flex justify-content-center">
+                                <label for="" class="h2 font-weight-blue" style="color: #2797d3;">BIENVENIDO A IPSEN </label>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-4 mx-auto">
+                                <div class="card text-center cardhome">
+                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-image: url('./../presentacion/imagenes/cardhome1.png')">
+                                        <span class="mask bg-gradient-dark opacity-6"></span>
+                                        <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
+                                            <p class="text-white font-weight-bold h3">CREAR PACIENTES</p>
+                                            <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../presentacion/form_paciente_nuevo.php" target="info">
+                                                Ver más
+                                                <i class="material-icons text-sm ms-1 position-relative" aria-hidden="true">arrow_forward</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mx-auto">
+                                <div class="card text-center cardhome">
+                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-image: url('./../presentacion/imagenes/cardhome2.png')">
+                                        <span class="mask bg-gradient-dark opacity-6"></span>
+                                        <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
+                                            <p class="text-white font-weight-bold h3">SEGUIMIENTO</p>
+                                            <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../presentacion/form_paciente_seguimiento.php" target="info">
+                                                Ver más
+                                                <i class="material-icons text-sm ms-1 position-relative" aria-hidden="true">arrow_forward</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mx-auto">
+                                <div class="card text-center cardhome">
+                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-image: url('./../presentacion/imagenes/cardhome3.png')">
+                                        <span class="mask bg-gradient-dark opacity-6"></span>
+                                        <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
+                                            <p class="text-white font-weight-bold h3">REPORTES</p>
+                                            <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../new_scriptcase/ipsen_20220614174528" target="info">
+                                                Ver más
+                                                <i class="material-icons text-sm ms-1 position-relative" aria-hidden="true">arrow_forward</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <iframe name="info" id="info" frameborder="0" width="100%" height="100%" style="display: none"></iframe>
+                </div>
+            </div>
+        </div>
+        <script>
+            $('.select_menu').click(function() {
+                $('#info').show('slow');
+                $('#content_welcome').hide('slow')
+            })
+        </script>
+        <style>
+            .cardhome {
+                transition: transform .2s;
+                cursor: pointer;
+            }
+
+            .cardhome:hover {
+                transform: scale(1.1);
+            }
+        </style>
+        <?php include 'layouts/footer.php'; ?>
+        <?php include 'layouts/end.php'; ?>
+    <?php
+} else {
+    ?>
+        <script type="text/javascript">
+            window.onload = window.top.location.href = "../logica/cerrar_sesion2.php";
+        </script>
+    <?php
+}
+    ?>

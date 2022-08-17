@@ -55,6 +55,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 	$DESCRIPCION_ANALISIS_EVENTO = $_POST['descripcion_evento'];
 	$DESENLACE_EVENTO = $_POST['desenlace_evento'];
 	$SERIEDAD = $_POST['seriedad'];
+	$FECHA_MUERTE = $_POST['fecha_muerte'];
 	$PREGUNTA1 = $_POST['pregunta1'];
 	$PREGUNTA2 = $_POST['pregunta2'];
 	$PREGUNTA3 = $_POST['pregunta3'];

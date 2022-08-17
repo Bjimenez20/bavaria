@@ -68,6 +68,18 @@ include('../logica/session.php')
             font-family: Tahoma, Geneva, sans-serif;
         }
     </style>
+    <script>
+        function trat_previo(sel) {
+            if (sel.value == "Muerte") {
+                divC = document.getElementById("fecha_muerte_id");
+                divC.style.display = "";
+            }
+            if (sel.value != "Muerte") {
+                divC = document.getElementById("fecha_muerte_id");
+                divC.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <?php
 require('../datos/parse_str.php');
@@ -106,34 +118,34 @@ if ($privilegios != '' && $usua != '') {
                     <input type="text" name="ID_PACIENTE" id="ID_PACIENTE" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly" style="display:none;">
                     <tr colspan="4">
                         <th>
-                            Fecha de Notificacion<span class="obli">*</span><br>
-                            <input type="date" name="fecha_notificacion" id="fecha_notificacion" style="width:90%; height:100%;">
+                            Fecha de Notificacion<span class="obli">*</span><br><br>
+                            <input type="date" name="fecha_notificacion" id="fecha_notificacion" style="width:90%; height:100%;" required>
                         </th>
                         <th>Origen del reporte
                             <hr>
-                            Departamento - Municipio<span class="obli">*</span><br />
-                            <input type="text" name="departamento" id="departamento"> - <input type="text" name="municipio" id="municipio">
+                            Departamento - Municipio<span class="obli">*</span><br /><br>
+                            <input type="text" name="departamento" id="departamento" required> - <input type="text" name="municipio" id="municipio" required>
                         </th>
                         <th>
-                            Nombre de la Institución donde ocurri&oacute; el evento<span class="obli">*</span><br />
-                            <input type="text" name="institucion_evento" id="institucion_evento" style="width:90%; height:100%;">
+                            Nombre de la Institución donde ocurri&oacute; el evento<span class="obli">*</span><br /><br>
+                            <input type="text" name="institucion_evento" id="institucion_evento" style="width:90%; height:100%;" required>
                         </th>
                         <th>
-                            C&oacute;digo PNF<span class="obli">*</span><br />
-                            <input type="text" name="codigo_pnf" id="codigo_pnf" style="width:90%; height:100%;">
+                            C&oacute;digo PNF<span class="obli">*</span><br /><br>
+                            <input type="text" name="codigo_pnf" id="codigo_pnf" style="width:90%; height:100%;" required>
                         </th>
                     </tr>
                     <tr colspan="4">
                         <th colspan="2">
-                            Nombre del Reportante primario<span class="obli">*</span><br />
+                            Nombre del Reportante primario<span class="obli">*</span><br /><br>
                             <input type="text" name="nombre_usuario" id="nombre_usuario" value="<?php echo $NOMBRES . ' ' . $APELLIDOS ?>" readonly="readonly" style="width:90%; height:100%;"><br>
                         </th>
                         <th>
-                            Profesi&oacute;n del reportante primario <span class="obli">*</span>
-                            <input type="text" name="profecion_usuario" id="profecion_usuario" style="width:90%; height:100%;">
+                            Profesi&oacute;n del reportante primario <span class="obli">*</span><br><br>
+                            <input type="text" name="profecion_usuario" id="profecion_usuario" style="width:90%; height:100%;" required>
                         </th>
                         <th>
-                            Correo electr&oacute;nico institucional del reportante primario <span class="obli">*</span><br />
+                            Correo electr&oacute;nico institucional del reportante primario <span class="obli">*</span><br /><br>
                             <input type="email" name="correo_usuario" id="correo_usuario" value="<?php echo $EMAIL ?>" readonly="readonly" style="width:90%; height:100%;">
                         </th>
                     </tr>
@@ -144,36 +156,36 @@ if ($privilegios != '' && $usua != '') {
                     </tr>
                     <tr>
                         <th>
-                            Fecha de nacimiento del paciente <span class="obli">*</span><br>
+                            Fecha de nacimiento del paciente <span class="obli">*</span><br><br>
                             <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo $FECHA_NACIMIENTO ?>" readonly="readonly" style="width:90%; height:100%;">
                         </th>
                         <th>
                             Edad del paciente en el momento del EA
                             <hr>
-                            Edad<span class="obli">*</span><br />
+                            Edad<span class="obli">*</span><br /><br>
                             <input type="number" name="edad_paciente" id="edad_paciente" value="<?php echo $EDAD ?>" readonly="readonly" style="width:90%; height:100%;">
                         </th>
                         <th>
-                            Tipo de identificación - Número de identificación del paciente<span class="obli">*</span><br>
+                            Tipo de identificación - Número de identificación del paciente<span class="obli">*</span><br><br>
                             <input type="text" name="tipo_documento_paciente" id="tipo_documento_paciente" value="<?php echo $TIPO_IDENTIFICACION_PACIENTE ?>" readonly="readonly"> - <input type="text" name="documento_paciente" id="documento_paciente" value="<?php echo $IDENTIFICACION_PACIENTE ?>" readonly="readonly">
                         </th>
                         <th>
-                            Iniciales del paciente<span class="obli">*</span><br>
-                            <input type="text" name="iniciales_pa" id="iniciales_pa" style="width:90%; height:100%;">
+                            Iniciales del paciente<span class="obli">*</span><br><br>
+                            <input type="text" name="iniciales_pa" id="iniciales_pa" style="width:90%; height:100%;" required>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            Sexo<span class="obli">*</span><br>
+                            Sexo<span class="obli">*</span><br><br>
                             <input type="text" name="genero" id="genero" value="<?php echo $GENERO_PACIENTE ?>" readonly="readonly" style="width:90%; height:100%;">
                         </th>
                         <th>
-                            Peso - Talla<span class="obli">*</span><br>
-                            <input type="text" name="peso" id="peso"> - <input type="text" name="talla" id="talla">
+                            Peso - Talla<span class="obli">*</span><br><br>
+                            <input type="text" name="peso" id="peso" required> - <input type="text" name="talla" id="talla" required>
                         </th>
                         <th colspan="2">
-                            Diagnóstico principal y otros diagnósticos:<span class="obli">*</span><br>
-                            <textarea name="diagnostico" id="diagnostico" cols="95" rows="5"></textarea>
+                            Diagnóstico principal y otros diagnósticos:<span class="obli">*</span><br><br>
+                            <textarea name="diagnostico" id="diagnostico" cols="95" rows="5" required></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -183,55 +195,109 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th>S/C/I</th>
-                        <th><input type="text" name="S_C_I1" id="s_c_i1" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="S_C_I2" id="s_c_i2" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="S_C_I3" id="s_c_i3" style="width:90%; height:100%;"></th>
-                    </tr>
-                    <tr>
-                        <th>Medicamento
-                            <p>(Denominación Común Internacional o Nombre genérico)</p>
-                        </th>
-                        <th><input type="text" name="medicamento1" id="medicamento1" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="medicamento2" id="medicamento2" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="medicamento3" id="medicamento3" style="width:90%; height:100%;"></th>
-                    </tr>
-                    <tr>
-                        <th>Indicación</th>
-                        <th><input type="text" name="indicacion1" id="indicacion1" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="indicacion2" id="indicacion2" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="indicacion3" id="indicacion3" style="width:90%; height:100%;"></th>
-                    </tr>
-                    <tr>
-                        <th>Dosis</th>
-                        <th><input type="text" name="dosis1" id="dosis1" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="dosis2" id="dosis2" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="dosis3" id="dosis3" style="width:90%; height:100%;"></th>
-                    </tr>
-                    <tr>
-                        <th>Unidad de medida</th>
-                        <th><input type="text" name="unidad_medida1" id="unidad_medida1" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="unidad_medida2" id="unidad_medida2" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="unidad_medida3" id="unidad_medida3" style="width:90%; height:100%;"></th>
-                    </tr>
-                    <tr>
-                        <th>Vía de administración</th>
-                        <th><input type="text" name="via_administracion1" id="via_administracion1" style="width:90%; height:100%;" /></th>
-                        <th><input type="text" name="via_administracion2" id="via_administracion2" style="width:90%; height:100%;" /></th>
-                        <th><input type="text" name="via_administracion3" id="via_administracion3" style="width:90%; height:100%;" /></th>
-                    </tr>
-                    <tr>
-                        <th>Frecuencia de administración</th>
-                        <th><input type="text" name="frecuencia_administracion1" id="frecuencia_administracion1" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="frecuencia_administracion2" id="frecuencia_administracion2" style="width:90%; height:100%;"></th>
-                        <th><input type="text" name="frecuencia_administracion3" id="frecuencia_administracion3" style="width:90%; height:100%;"></th>
-                    </tr>
-                    <tr>
-                        <th>
-                            Fecha inicio<br />
+                        <th style="text-align: left;">
+                            S/C/I<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="date" name="fecha_inicio1" id="fecha_inicio1" style="width:90%; height:100%;">
+                            <input type="text" name="S_C_I1" id="s_c_i1" style="width:90%; height:100%;" required>
+                        </th>
+                        <th>
+                            <input type="text" name="S_C_I2" id="s_c_i2" style="width:90%; height:100%;">
+                        </th>
+                        <th>
+                            <input type="text" name="S_C_I3" id="s_c_i3" style="width:90%; height:100%;">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">
+                            Medicamento (Denominación Común Internacional o Nombre genérico) <span class="obli">*</span><br />
+                        </th>
+                        <th>
+                            <input type="text" name="medicamento1" id="medicamento1" style="width:90%; height:100%;" required>
+                        </th>
+                        <th>
+                            <input type="text" name="medicamento2" id="medicamento2" style="width:90%; height:100%;">
+                        </th>
+                        <th>
+                            <input type="text" name="medicamento3" id="medicamento3" style="width:90%; height:100%;">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">
+                            Indicación<span class="obli">*</span><br />
+                        </th>
+                        <th>
+                            <input type="text" name="indicacion1" id="indicacion1" style="width:90%; height:100%;" required>
+                        </th>
+                        <th>
+                            <input type="text" name="indicacion2" id="indicacion2" style="width:90%; height:100%;">
+                        </th>
+                        <th>
+                            <input type="text" name="indicacion3" id="indicacion3" style="width:90%; height:100%;">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">
+                            Dosis<span class="obli">*</span><br />
+                        </th>
+                        <th>
+                            <input type="text" name="dosis1" id="dosis1" style="width:90%; height:100%;" required>
+                        </th>
+                        <th>
+                            <input type="text" name="dosis2" id="dosis2" style="width:90%; height:100%;">
+                        </th>
+                        <th>
+                            <input type="text" name="dosis3" id="dosis3" style="width:90%; height:100%;">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">
+                            Unidad de medida<span class="obli">*</span><br />
+                        </th>
+                        <th>
+                            <input type="text" name="unidad_medida1" id="unidad_medida1" style="width:90%; height:100%;" required>
+                        </th>
+                        <th>
+                            <input type="text" name="unidad_medida2" id="unidad_medida2" style="width:90%; height:100%;">
+                        </th>
+                        <th>
+                            <input type="text" name="unidad_medida3" id="unidad_medida3" style="width:90%; height:100%;">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">
+                            Vía de administración<span class="obli">*</span><br />
+                        </th>
+                        <th>
+                            <input type="text" name="via_administracion1" id="via_administracion1" style="width:90%; height:100%;" required>
+                        </th>
+                        <th>
+                            <input type="text" name="via_administracion2" id="via_administracion2" style="width:90%; height:100%;">
+                        </th>
+                        <th>
+                            <input type="text" name="via_administracion3" id="via_administracion3" style="width:90%; height:100%;">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">
+                            Frecuencia de administración<span class="obli">*</span><br />
+                        </th>
+                        <th>
+                            <input type="text" name="frecuencia_administracion1" id="frecuencia_administracion1" style="width:90%; height:100%;" required>
+                        </th>
+                        <th>
+                            <input type="text" name="frecuencia_administracion2" id="frecuencia_administracion2" style="width:90%; height:100%;">
+                        </th>
+                        <th>
+                            <input type="text" name="frecuencia_administracion3" id="frecuencia_administracion3" style="width:90%; height:100%;">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">
+                            Fecha inicio<span class="obli">*</span><br />
+                        </th>
+                        <th>
+                            <input type="date" name="fecha_inicio1" id="fecha_inicio1" style="width:90%; height:100%;" required>
                         </th>
                         <th>
                             <input type="date" name="fecha_inicio2" id="fecha_inicio2" style="width:90%; height:100%;">
@@ -241,11 +307,11 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th>
-                            Fecha de finalización<br />
+                        <th style="text-align: left;">
+                            Fecha de finalización<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="date" name="fecha_fin1" id="fecha_fin1" style="width:90%; height:100%;">
+                            <input type="date" name="fecha_fin1" id="fecha_fin1" style="width:90%; height:100%;" required>
                         </th>
                         <th>
                             <input type="date" name="fecha_fin2" id="fecha_fin2" style="width:90%; height:100%;">
@@ -261,40 +327,43 @@ if ($privilegios != '' && $usua != '') {
                     </tr>
                     <tr>
                         <th colspan="2">
-                            Fecha de Inicio del Evento Adverso
-                            <input type="date" name="fecha_ini_evento" id="fecha_ini_evento">
+                            Fecha de Inicio del Evento Adverso:<span class="obli">*</span><br /><br>
+                            <input type="date" name="fecha_ini_evento" id="fecha_ini_evento" required>
                         </th>
                         <th colspan="2">
-                            Evento adverso:<br>
-                            <textarea name="evento_adverso" id="evento_adverso" cols="95" rows="5"></textarea>
+                            Evento adverso:<span class="obli">*</span><br /><br>
+                            <textarea name="evento_adverso" id="evento_adverso" cols="95" rows="5" required></textarea>
                         </th>
                     </tr>
                     <tr>
                         <th colspan="2">
-                            Descripción y análisis del Evento Adverso:<br>
-                            <textarea name="descripcion_evento" id="descripcion_evento" cols="95" rows="5"></textarea>
+                            Descripción y análisis del Evento Adverso:<span class="obli">*</span><br /><br>
+                            <textarea name="descripcion_evento" id="descripcion_evento" cols="95" rows="5" required></textarea>
                         </th>
                         <th>
-                            Desenlace del evento (Marcar con una X)<br><br>
+                            Desenlace del evento (Marcar con una X)<span class="obli">*</span><br />
+                            <hr>
                             <div style="text-align: left;">
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" style=" width:20%; display:none" value="" checked="checked" />
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto sin secuelas"> Recuperado / Resuelto sin secuelas <br>
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto con secuelas"> Recuperado / Resuelto con secuelas <br>
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="Recuperando / Resolviendo"> Recuperando / Resolviendo <br>
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="No recuperado / No resuelto"> No recuperado / No resuelto <br>
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="Fatal"> Fatal <br>
-                                <input type="checkbox" name="desenlace_evento" id="desenlace_evento" value="Desconocido"> Desconocido
+                                <input type="radio" name="desenlace_evento" id="desenlace_evento" style=" width:20%; display:none" value="" checked="checked" required>
+                                <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto sin secuelas"> Recuperado / Resuelto sin secuelas <br>
+                                <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto con secuelas"> Recuperado / Resuelto con secuelas <br>
+                                <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperando / Resolviendo"> Recuperando / Resolviendo <br>
+                                <input type="radio" name="desenlace_evento" id="desenlace_evento" value="No recuperado / No resuelto"> No recuperado / No resuelto <br>
+                                <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Fatal"> Fatal <br>
+                                <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Desconocido"> Desconocido
                             </div>
                         </th>
                         <th>
-                            Seriedad (Marcar con X) <br><br>
+                            Seriedad (Marcar con X)<span class="obli">*</span><br />
+                            <hr>
                             <div style="text-align: left;">
-                                <input type="checkbox" name="seriedad" id="seriedad" style=" width:20%; display:none" value="" checked="checked" />
-                                <input type="checkbox" name="seriedad" id="seriedad" value="Produjo o prolongo hospitalizacion"> Produjo o prolongó hospitalización <br>
-                                <input type="checkbox" name="seriedad" id="seriedad" value="Anomalia congenita"> Anomalía congénita <br>
-                                <input type="checkbox" name="seriedad" id="seriedad" value="Amenaza de vida"> Amenaza de vida <br>
-                                <input type="checkbox" name="seriedad" id="seriedad" value="Muerte"> Muerte <input type="date" name="fecha_muerte" id="fecha_muerte"> <br>
-                                <input type="checkbox" name="seriedad" id="seriedad" value="Produjo discapacidad o incapacidad permanente / condicion medica importante"> Produjo discapacidad o incapacidad permanente / condición médica importante <br>
+                                <input type="radio" name="seriedad" id="seriedad" style=" width:20%; display:none" value="" checked="checked" required>
+                                <input type="radio" name="seriedad" id="seriedad" value="Produjo o prolongo hospitalizacion" onchange="trat_previo(this)"> Produjo o prolongó hospitalización <br>
+                                <input type="radio" name="seriedad" id="seriedad" value="Anomalia congenita" onchange="trat_previo(this)"> Anomalía congénita <br>
+                                <input type="radio" name="seriedad" id="seriedad" value="Amenaza de vida" onchange="trat_previo(this)"> Amenaza de vida <br>
+                                <input type="radio" name="seriedad" id="seriedad" value="Muerte" onchange="trat_previo(this)"> Muerte
+                                <div id="fecha_muerte_id" style="display: none;"> Fecha Muerte:<span class="obli">*</span><input type="date" name="fecha_muerte" id="fecha_muerte"></div><br>
+                                <input type="radio" name="seriedad" id="seriedad" value="Produjo discapacidad o incapacidad permanente / condicion medica importante" onchange="trat_previo(this)"> Produjo discapacidad o incapacidad permanente / condición médica importante <br>
                             </div>
                         </th>
                     </tr>
@@ -313,7 +382,7 @@ if ($privilegios != '' && $usua != '') {
                     </tr>
                     <tr>
                         <th style="text-align: left;">
-                            ¿El evento se presentó después de administrar el medicamento? <br>
+                            ¿El evento se presentó después de administrar el medicamento?<span class="obli">*</span><br />
                         </th>
                         <th>
                             <input type="radio" name="pregunta1" id="pregunta1" value="X"> <br>
@@ -327,7 +396,7 @@ if ($privilegios != '' && $usua != '') {
                     </tr>
                     <tr>
                         <th style="text-align: left;">
-                            ¿Existen otros factores que puedan explicar el evento (medicamento, patologías, etc.)? <br>
+                            ¿Existen otros factores que puedan explicar el evento (medicamento, patologías, etc.)?<span class="obli">*</span><br />
                         </th>
                         <th>
                             <input type="radio" name="pregunta4" id="pregunta4" value="X"> <br>
@@ -341,7 +410,7 @@ if ($privilegios != '' && $usua != '') {
                     </tr>
                     <tr>
                         <th style="text-align: left;">
-                            ¿El evento desapareció al disminuir o suspender el medicamento sospechoso? <br>
+                            ¿El evento desapareció al disminuir o suspender el medicamento sospechoso?<span class="obli">*</span><br />
                         </th>
                         <th>
                             <input type="radio" name="pregunta7" id="pregunta7" value="X"> <br>
@@ -355,7 +424,7 @@ if ($privilegios != '' && $usua != '') {
                     </tr>
                     <tr>
                         <th style="text-align: left;">
-                            ¿El paciente ya había presentado la misma reacción al medicamento sospechoso? <br>
+                            ¿El paciente ya había presentado la misma reacción al medicamento sospechoso?<span class="obli">*</span><br />
                         </th>
                         <th>
                             <input type="radio" name="pregunta10" id="pregunta10" value="X"> <br>
@@ -369,7 +438,7 @@ if ($privilegios != '' && $usua != '') {
                     </tr>
                     <tr>
                         <th style="text-align: left;">
-                            ¿Se puede ampliar la información del paciente relacionando con el evento? <br>
+                            ¿Se puede ampliar la información del paciente relacionando con el evento?<span class="obli">*</span><br />
                         </th>
                         <th>
                             <input type="radio" name="pregunta13" id="pregunta13" value="X"> <br>

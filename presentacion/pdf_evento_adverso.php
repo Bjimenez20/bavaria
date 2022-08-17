@@ -252,7 +252,7 @@ $codigoHTML = '
 		<th>
 			Seriedad (Marcar con X):<br><br>
 			<div style="text-align: left;">
-				<span style=" font-weight:none">' . $SERIEDAD . '</span> <br>
+				<span style=" font-weight:none">' . $SERIEDAD . '</span> <span style=" font-weight:none">' . $FECHA_MUERTE . '</span><br>
 			</div>
 		</th>
 	</tr>
@@ -348,7 +348,7 @@ $dompdf->render();
 $output = $dompdf->output();
 file_put_contents('../presentacion/PDF/Evento_Adverso_' . $ID_EVENTO_ADVERSO . '.pdf', $output);
 if ($COMPANIA == "GRUPO ASEI") {
-include("../presentacion/email/mail_asei.php");
+	include("../presentacion/email/mail_asei.php");
 } else {
-include("../presentacion/email/mail.php");
+	include("../presentacion/email/mail.php");
 }
