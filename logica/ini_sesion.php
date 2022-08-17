@@ -5,10 +5,10 @@ require('../datos/conex.php');
 $conex = mysqli_connect($servidor, $usuario, $password) or die("No se Puede conectar al Servidor");
 mysqli_select_db($conex, $basepaciente) or die("No se Puede conectar a la base de Datos");
 $_SESSION['NAME'] = '';
-$USER = addslashes($_POST['usuario']);
+$USER = addslashes($_POST['email']);
 $CONTRASENA = addslashes($_POST['Contrasena']);
-$sql = mysqli_query($conex, "SELECT `USER`, `CONTRASENA`, `PRIVILEGIOS`, `CONTRASENA_FECHA`,`ID_USUARIO` FROM `ipsen_usuario` WHERE `USER` = '" . $USER . "' and `CONTRASENA` = MD5('" . $CONTRASENA . "') and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
-$conusuario = mysqli_query($conex, "SELECT `USER`, `INTENTOS`, `ESTADO` FROM `ipsen_usuario` WHERE `USER` = '" . $USER . "' and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
+$sql = mysqli_query($conex, "SELECT `USER`, `CONTRASENA`, `PRIVILEGIOS`, `CONTRASENA_FECHA`,`ID_USUARIO`, `EMAIL` FROM `ipsen_usuario` WHERE `EMAIL` = '" . $USER . "' and `CONTRASENA` = MD5('" . $CONTRASENA . "') and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
+$conusuario = mysqli_query($conex, "SELECT `USER`,`INTENTOS`, `ESTADO`, `EMAIL` FROM `ipsen_usuario` WHERE `EMAIL` = '" . $USER . "' and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
 echo mysqli_error($conex);
 mysqli_num_rows($sql);
 if (mysqli_num_rows($sql) > 0) {
@@ -65,7 +65,7 @@ if (mysqli_num_rows($sql) > 0) {
 			</script>
 		<?php
 			$actu = mysqli_query($conex, "UPDATE ipsen_usuario SET 
-				ESTADO = '0'
+				ESTADO = '1'
 				WHERE USER='" . $usua2 . "';");
 		} else {
 			$NUM_INTENTOS = $intentos + 1;
@@ -74,7 +74,7 @@ if (mysqli_num_rows($sql) > 0) {
 				WHERE USER='" . $usua2 . "';");
 		?>
 			<script>
-				if (confirm('Contrase&ntilde;a incorrecta')) {
+				if (confirm('Contraseña incorrecta')) {
 					window.onload = window.top.location.href = "../index.php";
 				} else {
 					window.onload = window.top.location.href = "../index.php";

@@ -36,7 +36,7 @@ include('../logica/session.php')
         }
 
         input[type=date] {
-            width: 50%;
+            width: 40%;
         }
 
         .btn_registrar {
@@ -344,7 +344,7 @@ if ($privilegios != '' && $usua != '') {
                             Desenlace del evento (Marcar con una X)<span class="obli">*</span><br />
                             <hr>
                             <div style="text-align: left;">
-                                <input type="radio" name="desenlace_evento" id="desenlace_evento" style=" width:20%; display:none" value="" checked="checked" required>
+                                <input type="radio" name="desenlace_evento" id="desenlace_evento" style=" width:20%; display:none" value="" required>
                                 <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto sin secuelas"> Recuperado / Resuelto sin secuelas <br>
                                 <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto con secuelas"> Recuperado / Resuelto con secuelas <br>
                                 <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperando / Resolviendo"> Recuperando / Resolviendo <br>
@@ -357,7 +357,7 @@ if ($privilegios != '' && $usua != '') {
                             Seriedad (Marcar con X)<span class="obli">*</span><br />
                             <hr>
                             <div style="text-align: left;">
-                                <input type="radio" name="seriedad" id="seriedad" style=" width:20%; display:none" value="" checked="checked" required>
+                                <input type="radio" name="seriedad" id="seriedad" style=" width:20%; display:none" value="" required>
                                 <input type="radio" name="seriedad" id="seriedad" value="Produjo o prolongo hospitalizacion" onchange="trat_previo(this)"> Produjo o prolongó hospitalización <br>
                                 <input type="radio" name="seriedad" id="seriedad" value="Anomalia congenita" onchange="trat_previo(this)"> Anomalía congénita <br>
                                 <input type="radio" name="seriedad" id="seriedad" value="Amenaza de vida" onchange="trat_previo(this)"> Amenaza de vida <br>

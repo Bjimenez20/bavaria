@@ -11,7 +11,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><span class="iconify" data-icon="carbon:email"></span></span>
                         </div>
-                        <input id="usuario" name="usuario" type="text" required="required" class="form-control" placeholder="Nombre de usuario">
+                        <input id="email" name="email" type="email" required="required" class="form-control" placeholder="Correo Electronico">
                     </div>
                 </div>
                 <div class="col-10 mx-auto mb-4">

@@ -24,6 +24,7 @@ require_once('../logica/session.php');
 <?php
 require('../datos/parse_str.php');
 require_once("../datos/conex.php");
+date_default_timezone_set('America/Bogota');
 $hoy = date('Y-m-d');
 if ($privilegios != '' && $usua != '') {
 	if (isset($ok)) {
@@ -111,7 +112,7 @@ if ($privilegios != '' && $usua != '') {
 	}
 	$select_terapias2 = mysqli_query($conex, "SELECT * FROM(SELECT * FROM ipsen_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)ipsen_gestiones 
 	INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=ipsen_gestiones.ID_PACIENTE_FK2
-	WHERE (PRODUCTO_TRATAMIENTO LIKE '%ADEMPAS %' OR PRODUCTO_TRATAMIENTO LIKE '%XOFIGO %')
+	WHERE (PRODUCTO_TRATAMIENTO LIKE '%Somatuline %' OR PRODUCTO_TRATAMIENTO LIKE '%CABOMETIX%')
 	GROUP BY ipsen_gestiones.ID_PACIENTE_FK2");
 	echo mysqli_error($conex);
 	while ($dato_gest = mysqli_fetch_array($select_terapias2)) {
