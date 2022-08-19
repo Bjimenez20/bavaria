@@ -619,6 +619,9 @@ include('../logica/session.php')
                 var RECLAMO = $('#reclamo').val();
                 $('#cambio_estado_activo_solicitar').val('');
                 if (RECLAMO == 'SI') {
+                    $('#causa_no_reclamacion').css('display', 'none');
+                    $("#fecha_reclamacion_span").css('display', 'block');
+                    $('#fecha_reclamacion').css('display', 'block');
                     $('#cambio_estado_activo_solicitar').css('display', 'block');
                     $('#estado_activo').css('display', 'block');
                     $('#asignado').css('display', 'block');
@@ -633,6 +636,9 @@ include('../logica/session.php')
                     $('#estado_interrumpido').css('display', 'none');
 
                 } else {
+                    $('#causa_no_reclamacion').css('display', 'block');
+                    $("#fecha_reclamacion_span").css('display', 'none');
+                    $('#fecha_reclamacion').css('display', 'none');
                     $('#cambio_estado_activo_solicitar').css('display', 'none');
                     $('#estado_activo').css('display', 'none');
                     $('#asignado').css('display', 'none');
@@ -762,7 +768,7 @@ if ($privilegios != '' && $usua != '') {
                                     </td>
                                     <td width="30%">
                                         <?php
-                                        if ($usua == 'ADMIN') {
+                                        if ($usua == 'ADMIN' || $usua == 'Bjimenez') {
                                         ?>
                                             <input name="codigo_gestion" type="text" id="codigo_gestion" max="10" readonly="readonly" value="<?php echo $ID_GESTION_ULT; ?>" />
                                         <?php
@@ -1457,6 +1463,8 @@ if ($privilegios != '' && $usua != '') {
                                 while ($con = mysqli_fetch_array($Sel)) {
                                     $RECLAMOS = $con['RECLAMO_GESTION'];
                                     $CAUSA_NO_RECLAMACION_GESTIONES = $con['CAUSA_NO_RECLAMACION_GESTION'];
+                                    $FECHA_RECLAMACION_GESTION = $con['FECHA_RECLAMACION_GESTION'];
+                                    $FECHA_NO_RECLAMACION = $con['FECHA_CITA_PROGRAMADA'];
                         ?>
                             <tr>
                                 <td>
@@ -1465,15 +1473,8 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select type="text" name="reclamo" id="reclamo">
                                         <option><?php echo $RECLAMO_GESTION ?></option>
-                                        <?php
-                                        if ($RECLAMO_GESTION == 'NO' || $RECLAMO_GESTION == 'SI') {    ?>
-                                            <option>SI</option>
-                                            <option>NO</option>
-                                        <?php    } else {     ?>
-                                            <option>SI</option>
-                                            <option>NO</option>
-                                        <?php     }
-                                        ?>
+                                        <option>SI</option>
+                                        <option>NO</option>
                                     </select>
                                 </td>
                                 <td>
@@ -2249,9 +2250,9 @@ if ($privilegios != '' && $usua != '') {
                                     <br />
                                     <br />
                                 </div>
-                                <!-- <div id="div_barrera">
-                                    <label>Tipo Transferencia<span class="asterisco">*</span></label>
-                                    <select type="text" name="sub_barrera" id="sub_barrera" style="width:95%">
+                                <div id="div_barrera" style="display: none;">
+                                    <label style="display: none;">Tipo Transferencia<span class="asterisco">*</span></label>
+                                    <select type="text" name="sub_barrera" id="sub_barrera" style="width:95%; display: none;">
                                         <?php if ($BARRERAPAAP == "") { ?>
                                             <option value="">Seleccione...</option>
                                             <option value="Correo">Correo</option>
@@ -2260,7 +2261,7 @@ if ($privilegios != '' && $usua != '') {
                                             <option value="Correo">Correo</option>
                                         <?php } ?>
                                     </select>
-                                </div> -->
+                                </div>
                             </td>
                             <?php
                             ?>

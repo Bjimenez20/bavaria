@@ -750,7 +750,7 @@ if ($privilegios != '' && $usua != '') {
 										?>
 									</td>
 									<td width="30%">
-										<input name="codigo_gestion" type="text" id="codigo_gestion" max="10" readonly="readonly" value="<?php echo $ID_GESTION; ?>" style="display:none" />
+										<input name="codigo_gestion" type="text" id="codigo_gestion" max="10" readonly="readonly" value="<?php echo $ID_GESTION; ?>">
 										<input name="codigo_usuario" type="text" id="codigo_usuario" max="10" readonly="readonly" value="<?php echo 'PAP' . $ID_PACIENTE; ?>" />
 										<?php
 										if ($fila['PRODUCTO_TRATAMIENTO'] == 'Xofigo 1x6 ml CO') {
@@ -2072,9 +2072,9 @@ if ($privilegios != '' && $usua != '') {
 										<br />
 										<br />
 									</div>
-									<!-- <div id="div_barrera">
-										<label>Tipo Transferencia<span class="asterisco">*</span></label>
-										<select type="text" name="sub_barrera" id="sub_barrera" style="width:95%">
+									<div id="div_barrera" style="display: none;">
+										<label style="display: none;">Tipo Transferencia<span class="asterisco">*</span></label>
+										<select type="text" name="sub_barrera" id="sub_barrera" style="width:95%; display: none;">
 											<?php if ($BARRERAPAAP == "") { ?>
 												<option value="">Seleccione...</option>
 												<option value="Correo">Correo</option>
@@ -2083,7 +2083,7 @@ if ($privilegios != '' && $usua != '') {
 												<option value="Correo">Correo</option>
 											<?php } ?>
 										</select>
-									</div> -->
+									</div>
 								</td>
 								<?php
 								?>

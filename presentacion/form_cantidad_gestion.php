@@ -12,11 +12,12 @@ include('../logica/session.php');
 <?PHP
 require('../datos/parse_str.php');
 require_once("../datos/conex.php");
+date_default_timezone_set('America/Bogota');
 $hoy = date('Y-m-d');
-$select_usu = mysqli_query($conex, "select USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM ipsen_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2' AND ESTADO_LOGIN='IN'");
+$select_usu = mysqli_query($conex, "SELECT USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM ipsen_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2' AND ESTADO_LOGIN='IN'");
 echo mysqli_error($conex);
 $nreg_usu = mysqli_num_rows($select_usu);
-$select_gestiones = mysqli_query($conex, "SELECT * FROM(SELECT * FROM ipsen_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)ipsen_gestiones GROUP BY ID_PACIENTE_FK2");
+$select_gestiones = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE FECHA_PROGRAMADA_GESTION = '" . $hoy . "'");
 echo mysqli_error($conex);
 $total_gestiones = 0;
 $total_gestiones_trp = 0;

@@ -22,7 +22,7 @@ require_once('../logica/session.php');
 	</script>
 </head>
 <?php
-require('../datos/parse_str.php');
+//require('../datos/parse_str.php');
 require_once("../datos/conex.php");
 date_default_timezone_set('America/Bogota');
 $hoy = date('Y-m-d');
@@ -62,7 +62,7 @@ if ($privilegios != '' && $usua != '') {
 			echo mysqli_error($conex);
 			$select_terapias_up = mysqli_query($conex, "SELECT * FROM(SELECT * FROM ipsen_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)ipsen_gestiones 
 			INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=ipsen_gestiones.ID_PACIENTE_FK2
-			WHERE (PRODUCTO_TRATAMIENTO LIKE '%ADEMPAS %' OR PRODUCTO_TRATAMIENTO LIKE '%XOFIGO %')
+			WHERE (PRODUCTO_TRATAMIENTO LIKE '%Somatuline %' OR PRODUCTO_TRATAMIENTO LIKE '%CABOMETIX %')
 			GROUP BY ipsen_gestiones.ID_PACIENTE_FK2");
 			echo mysqli_error($conex);
 			while ($dato_gest = mysqli_fetch_array($select_terapias_up)) {
@@ -70,7 +70,7 @@ if ($privilegios != '' && $usua != '') {
 				$USUARIO_ASIGANDO = $dato_gest['USUARIO_ASIGANDO'];
 				if ($FECHA_PROGRAMADA_GESTION == $hoy && $USUARIO_ASIGANDO == 'SIN ASIGNAR') {
 					$ID_GESTION = $dato_gest['ID_GESTION'];
-					$actualizar_gestiones = mysqli_query($conex, "UPDATE ipsen_gestiones SET USUARIO_ASIGANDO='" . $usuario . "', ESTADO_GESTION='ASIGNADO' WHERE USUARIO_ASIGANDO='SIN ASIGNAR' AND FECHA_PROGRAMADA_GESTION='" . $hoy . "' AND ID_GESTION=$ID_GESTION");
+					$actualizar_gestiones = mysqli_query($conex, "UPDATE ipsen_gestiones SET USUARIO_ASIGANDO='" . $usuario . "', ESTADO_GESTION='ASIGNADO' WHERE USUARIO_ASIGANDO='SIN ASIGNAR' AND FECHA_PROGRAMADA_GESTION='" . $hoy . "' AND ID_GESTION='" . $ID_GESTION . "'");
 					mysqli_affected_rows($conex);
 					echo mysqli_error($conex);
 				}
@@ -96,7 +96,7 @@ if ($privilegios != '' && $usua != '') {
 		WHERE ID_GESTION='$id_gestion_ayer'");
 		echo mysqli_error($conex);
 	}
-	$select_gestiones = mysqli_query($conex, "SELECT * FROM(SELECT * FROM ipsen_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)ipsen_gestiones GROUP BY ID_PACIENTE_FK2");
+	$select_gestiones = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE FECHA_PROGRAMADA_GESTION = '" . $hoy . "'");
 	echo mysqli_error($conex);
 	$total_gestiones = 0;
 	$total_gestiones_trp = 0;
@@ -110,9 +110,9 @@ if ($privilegios != '' && $usua != '') {
 			$total_gestiones = $total_gestiones + 1;
 		}
 	}
-	$select_terapias2 = mysqli_query($conex, "SELECT * FROM(SELECT * FROM ipsen_gestiones ORDER BY FECHA_PROGRAMADA_GESTION DESC)ipsen_gestiones 
+	$select_terapias2 = mysqli_query($conex, "SELECT * FROM(SELECT * FROM ipsen_gestiones WHERE FECHA_PROGRAMADA_GESTION = '" . $hoy . "')ipsen_gestiones 
 	INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=ipsen_gestiones.ID_PACIENTE_FK2
-	WHERE (PRODUCTO_TRATAMIENTO LIKE '%Somatuline %' OR PRODUCTO_TRATAMIENTO LIKE '%CABOMETIX%')
+	WHERE (PRODUCTO_TRATAMIENTO LIKE '%CABOMETIX %' OR PRODUCTO_TRATAMIENTO LIKE '%CABOMETIX%')
 	GROUP BY ipsen_gestiones.ID_PACIENTE_FK2");
 	echo mysqli_error($conex);
 	while ($dato_gest = mysqli_fetch_array($select_terapias2)) {
