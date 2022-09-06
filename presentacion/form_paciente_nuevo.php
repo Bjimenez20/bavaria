@@ -190,23 +190,23 @@ include('../logica/session.php');
             })
         }
 
-        function status() {
-            var REFERENCIA = $('#producto_tratamiento').val();
-            $.ajax({
-                url: '../presentacion/listado_producto_status.php',
-                data: {
-                    REFERENCIA: REFERENCIA
-                },
-                type: 'post',
-                beforeSend: function() {
-                    $("#status_paciente").attr('disabled', 'disabled');
-                },
-                success: function(data) {
-                    $("#status_paciente").removeAttr('disabled');
-                    $('#status_paciente').html(data);
-                }
-            })
-        }
+        // function status() {
+        //     var REFERENCIA = $('#producto_tratamiento').val();
+        //     $.ajax({
+        //         url: '../presentacion/listado_producto_status.php',
+        //         data: {
+        //             REFERENCIA: REFERENCIA
+        //         },
+        //         type: 'post',
+        //         beforeSend: function() {
+        //             $("#status_paciente").attr('disabled', 'disabled');
+        //         },
+        //         success: function(data) {
+        //             $("#status_paciente").removeAttr('disabled');
+        //             $('#status_paciente').html(data);
+        //         }
+        //     })
+        // }
 
         function clasificacion() {
             var REFERENCIA = $('#producto_tratamiento').val();
@@ -690,12 +690,11 @@ include('../logica/session.php');
                 $('#paap')[0].selectedIndex = 0;
                 $('#sub_paap option:first-child').attr("selected", "selected");
                 $('#sub_paap')[0].selectedIndex = 0;
-                $('#sub_barrera option:first-child').attr("selected", "selected");
-                $('#sub_barrera')[0].selectedIndex = 0;
+                // $('#sub_barrera option:first-child').attr("selected", "selected");
+                // $('#sub_barrera')[0].selectedIndex = 0;
                 producto = $('#producto_tratamiento').val();
                 materiales();
                 clasificacion();
-                status();
                 if (producto == 'Eylia 2MG VL 1x2ML CO INST' || producto == 'VENTAVIS 10 1SOL/2ML X30AMP(Conse) MM' || producto == 'ADEMPAS' || producto == 'Xofigo 1x6 ml CO' || producto == 'NUBEQA' || producto == 'STIVARGA - regorafenib') {
                     if (producto == 'Eylia 2MG VL 1x2ML CO INST') {
                         $('#div_aplicaciones').css('display', 'block');
@@ -1409,14 +1408,6 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                             </tr>
                             <tr>
-                                <!-- <td>
-                                    <span>Status del Paciente<span class="asterisco">*</span></span>
-                                </td>
-                                <td>
-                                    <select type="text" name="status_paciente" id="status_paciente" disabled="disabled">
-                                        <option>Seleccione...</option>
-                                    </select>
-                                </td> -->
                                 <td width="20%">
                                     <span>Clasificacion Patologica<span class="asterisco">*</span></span>
                                 </td>

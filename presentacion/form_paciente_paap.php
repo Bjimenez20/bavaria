@@ -1278,7 +1278,7 @@ if ($privilegios != '' && $usua != '') {
 										<option><?php echo $RECLAMO_GESTION ?></option>
 										<option>Seleccione...</option>
 										<?php
-										if ($RECLAMO_GESTION == 'NO' || $RECLAMO_GESTION == 'SI' || $RECLAMO_GESTION == '') {
+										if ($RECLAMO_GESTION == 'NO' || $RECLAMO_GESTION == 'SI' || $RECLAMO_GESTION == 'N/A' || $RECLAMO_GESTION == '') {
 										?>
 											<option>SI</option>
 											<option>NO</option>

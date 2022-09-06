@@ -1977,6 +1977,14 @@ if ($privilegios != '' && $usua != '') {
                                 <select type="text" name="ciudad_reclamacion" id="ciudad_reclamacion">
                                     <option><?php echo $fila['CIUDAD_RECLAMACION']; ?></option>
                                     <option>Seleccione...</option>
+                                    <?php
+                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT nombre FROM ipsen_ciudad ");
+                                    while ($fila_ciudad = mysqli_fetch_array($Seleccion)) {
+                                    ?>
+                                        <option><?php echo $fila_ciudad['nombre'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
                                 </select>
                                 <br /><br />
                             </td>
