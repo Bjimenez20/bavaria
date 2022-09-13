@@ -2244,6 +2244,7 @@ if ($privilegios != '' && $usua != '') {
                                     <option>Ampolla(s)</option>
                                     <option>Aplicacion</option>
                                     <option>Caja(s)</option>
+                                    <option>Inyeccion pre llenada</option>
                                 </select>
                                 <br />
                                 <br />
@@ -2358,15 +2359,6 @@ if ($privilegios != '' && $usua != '') {
                             </td>
                         </tr>
                         <tr>
-                            <!-- <td width="20%">
-                                <span>Status del Paciente</span>
-                            </td>
-                            <td width="30%">
-                                <select type="text" name="status_paciente" id="status_paciente">
-                                    <option><?php echo $STATUS_PACIENTE ?></option>
-                                    <option>Seleccione...</option>
-                                </select>
-                            </td> -->
                             <td>
                                 <span>Envios</span>
                                 <br />

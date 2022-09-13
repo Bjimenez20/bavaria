@@ -2058,6 +2058,7 @@ if ($privilegios != '' && $usua != '') {
 										<option>Ampolla(s)</option>
 										<option>Aplicacion</option>
 										<option>Caja(s)</option>
+										<option>Inyeccion pre llenada</option>
 									</select>
 									<br />
 									<br />
