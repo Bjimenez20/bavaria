@@ -404,51 +404,7 @@ include('../logica/session.php')
                 dir();
             });
         });
-
-        function paap() {
-            $('#paap option:first-child').attr("selected", "selected");
-            $('#paap')[0].selectedIndex = 0;
-            $('#sub_paap option:first-child').attr("selected", "selected");
-            $('#sub_paap')[0].selectedIndex = 0;
-            $('#sub_barrera option:first-child').attr("selected", "selected");
-            $('#sub_barrera')[0].selectedIndex = 0;
-            producto = $('#MEDICAMENTO').val();
-            $("#span_sub_paap").css('display', 'none');
-            $("#div_sub_paap").css('display', 'none');
-            $("#div_barrera").css('display', 'none');
-            $("#paap").removeProp('required');
-        }
         $(document).ready(function() {
-            $("#span_sub_paap").css('display', 'none');
-            $("#div_sub_paap").css('display', 'none');
-            $("#div_barrera").css('display', 'none');
-            status();
-            paap();
-            $("#sub_paap").change(function() {
-                $('#sub_barrera option:first-child').attr("selected", "selected");
-                $('#sub_barrera')[0].selectedIndex = 0;
-                var sub_paap = $('#sub_paap').val();
-                if (sub_paap == "Con barrera") {
-                    $("#div_barrera").css('display', 'block');
-                } else {
-                    $("#div_barrera").css('display', 'none');
-                }
-            });
-            $("#paap").change(function() {
-                $('#sub_paap option:first-child').attr("selected", "selected");
-                $('#sub_paap')[0].selectedIndex = 0;
-                $('#sub_barrera option:first-child').attr("selected", "selected");
-                $('#sub_barrera')[0].selectedIndex = 0;
-                $("#div_barrera").css('display', 'none');
-                var paap = $('#paap').val();
-                if (paap == "SI") {
-                    $("#div_sub_paap").css('display', 'block');
-                    $("#span_sub_paap").css('display', 'block');
-                } else {
-                    $("#div_sub_paap").css('display', 'none');
-                    $("#span_sub_paap").css('display', 'none');
-                }
-            });
             var fecha = $('input[name=fecha_nacimiento]').val();
             if (fecha != '') {
                 var edad = nacio(fecha);
@@ -2224,58 +2180,6 @@ if ($privilegios != '' && $usua != '') {
                         </tr>
                         <tr>
                             <td>
-                                <div id="span_paap">
-                                    <span>Paciente hace parte del PAAP<span class="asterisco">*</span></span>
-                                </div>
-                            </td>
-                            <td>
-                                <div id="div_paap">
-                                    <select type="text" name="paap" id="paap" style="width:95%">
-                                        <option><?php echo $PAAP ?></option>
-                                        <option>SI</option>
-                                        <option>NO</option>
-                                    </select>
-                                </div>
-                            </td>
-                            <td>
-                                <div id="span_sub_paap">
-                                    <span>Requiere Apoyo del PAAP<span class="asterisco">*</span></span>
-                                </div>
-                            </td>
-                            <td>
-                                <div id="div_sub_paap">
-                                    <select type="text" name="sub_paap" id="sub_paap" style="width:95%">
-                                        <?php if ($SUB_PAAP == "") { ?>
-                                            <option value="">Seleccione...</option>
-                                            <option>Con barrera</option>
-                                            <option>Sin barrera</option>
-                                        <?php } else { ?>
-                                            <option><?php echo $SUB_PAAP; ?></option>
-                                            <option>Con barrera</option>
-                                            <option>Sin barrera</option>
-                                        <?php } ?>
-                                    </select>
-                                    <br />
-                                    <br />
-                                </div>
-                                <div id="div_barrera" style="display: none;">
-                                    <label style="display: none;">Tipo Transferencia<span class="asterisco">*</span></label>
-                                    <select type="text" name="sub_barrera" id="sub_barrera" style="width:95%; display: none;">
-                                        <?php if ($BARRERAPAAP == "") { ?>
-                                            <option value="">Seleccione...</option>
-                                            <option value="Correo">Correo</option>
-                                        <?php } else { ?>
-                                            <option><?php echo $BARRERAPAAP; ?></option>
-                                            <option value="Correo">Correo</option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </td>
-                            <?php
-                            ?>
-                        </tr>
-                        <tr>
-                            <td>
                                 <span>Numero cajas/ Unidades</span>
                                 <br />
                                 <br />
@@ -2545,8 +2449,6 @@ if ($privilegios != '' && $usua != '') {
                         echo "<th class=AccordionPanelTab><strong>MOTIVO COMUNICACION GESTION</strong></th>";
                         echo "<td class=AccordionPanelTab><strong>FECHA ULTI RECOLECCION</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>FECHA PROX RECOLECCION</strong></td>";
-                        echo "<td class=AccordionPanelTab><strong>FECHA_INI PAAP</strong></td>";
-                        echo "<td class=AccordionPanelTab><strong>FECHA_FIN PAAP</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>CODIGO ARGUS</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>ARCHIVO ADJUNTO</strong></td>";
                         echo "</tr>";
@@ -2564,8 +2466,6 @@ if ($privilegios != '' && $usua != '') {
                             echo "<td>" . $fila2['MOTIVO_COMUNICACION_GESTION'] . "</td>";
                             echo "<td>" . $fila2['FECHA_ULT_RECOLECCION'] . "</td>";
                             echo "<td>" . $fila2['FECHA_PRO_RECOLECCION'] . "</td>";
-                            echo "<td>" . $fila2['FECHA_INI_PAAP'] . "</td>";
-                            echo "<td>" . $fila2['FECHA_FIN_PAAP'] . "</td>";
                             if ($privilegios == '1') {
                                 $evento = $fila2['EVENTO_ADVERSO_GESTION'];
                                 if ($evento == 'SI' || $evento == 'Si') {
