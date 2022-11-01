@@ -811,9 +811,9 @@ if ($privilegios != '' && $usua != '') {
                                     <select name="estado_paciente" id="estado_paciente">
                                         <option>Seleccione...</option>
                                         <option>Activo</option>
-                                        <option>Abandono</option>
+                                        <option>Inactivo</option>
+                                        <option>Nuevo</option>
                                         <option>Suspendido</option>
-                                        <option>Interrumpido</option>
                                     </select>
                                 </td>
                             </tr>

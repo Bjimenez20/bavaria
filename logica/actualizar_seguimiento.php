@@ -111,26 +111,27 @@ include('../logica/session.php');
     } else {
         $fecha_formulacion = $_POST['fecha_formulacion'];
     }
-    if ($causa_no_reclamacion == 'En proceso de Examenes' || $causa_no_reclamacion == 'Falta cita para examenes' || $causa_no_reclamacion == 'Hospitalizado' || $causa_no_reclamacion == 'Suspendido por esquema de aplicacion' || $causa_no_reclamacion == 'Suspendido temporalmente') {
-        $cambio_estado_paciente = $_POST['estado_suspendido'];
-    }
-    if ($causa_no_reclamacion == 'Autorizacion radicada para Cita' || $causa_no_reclamacion == 'Autorizacion radicada para Medicamento' || $causa_no_reclamacion == 'Cita inoportuna' || $causa_no_reclamacion == 'Demora en la Autorizacion Cita Medica' || $causa_no_reclamacion == 'Demora en la autorizacion de medicamento' || $causa_no_reclamacion == 'Desafiliacion Asegurador' || $causa_no_reclamacion == 'En proceso de cita Aplicacion' || $causa_no_reclamacion == 'En proceso de cita medica' || $causa_no_reclamacion == 'En proceso de entrega' || $causa_no_reclamacion == 'Error en papeleria' || $causa_no_reclamacion == 'Falta de cita aplicacion' || $causa_no_reclamacion == 'Falta de cita medica' || $causa_no_reclamacion == 'Falta de cita valoracion (Xofigo)' || $causa_no_reclamacion == 'Falta de contacto' || $causa_no_reclamacion == 'Falta de medicamento en el punto' || $causa_no_reclamacion == 'No remision a entidad licenciada' || $causa_no_reclamacion == 'Pago anticipado' || $causa_no_reclamacion == 'Pendiente formulacion NO sistema' || $causa_no_reclamacion == 'Pendiente Radicar Formula en Farmacia' || $causa_no_reclamacion == 'PSVC en Titulacion' || $causa_no_reclamacion == 'Sin red Prestadora' || $causa_no_reclamacion == 'Voluntario') {
-        $cambio_estado_paciente = $_POST['estado_interrumpido'];
-    }
-    if ($causa_no_reclamacion == 'Abandono') {
-        $cambio_estado_paciente = $_POST['estado_abandono'];
-    }
+    // if ($causa_no_reclamacion == 'En proceso de Examenes' || $causa_no_reclamacion == 'Falta cita para examenes' || $causa_no_reclamacion == 'Hospitalizado' || $causa_no_reclamacion == 'Suspendido por esquema de aplicacion' || $causa_no_reclamacion == 'Suspendido temporalmente') {
+    //     $cambio_estado_paciente = $_POST['estado_suspendido'];
+    // }
+    // if ($causa_no_reclamacion == 'Autorizacion radicada para Cita' || $causa_no_reclamacion == 'Autorizacion radicada para Medicamento' || $causa_no_reclamacion == 'Cita inoportuna' || $causa_no_reclamacion == 'Demora en la Autorizacion Cita Medica' || $causa_no_reclamacion == 'Demora en la autorizacion de medicamento' || $causa_no_reclamacion == 'Desafiliacion Asegurador' || $causa_no_reclamacion == 'En proceso de cita Aplicacion' || $causa_no_reclamacion == 'En proceso de cita medica' || $causa_no_reclamacion == 'En proceso de entrega' || $causa_no_reclamacion == 'Error en papeleria' || $causa_no_reclamacion == 'Falta de cita aplicacion' || $causa_no_reclamacion == 'Falta de cita medica' || $causa_no_reclamacion == 'Falta de cita valoracion (Xofigo)' || $causa_no_reclamacion == 'Falta de contacto' || $causa_no_reclamacion == 'Falta de medicamento en el punto' || $causa_no_reclamacion == 'No remision a entidad licenciada' || $causa_no_reclamacion == 'Pago anticipado' || $causa_no_reclamacion == 'Pendiente formulacion NO sistema' || $causa_no_reclamacion == 'Pendiente Radicar Formula en Farmacia' || $causa_no_reclamacion == 'PSVC en Titulacion' || $causa_no_reclamacion == 'Sin red Prestadora' || $causa_no_reclamacion == 'Voluntario') {
+    //     $cambio_estado_paciente = $_POST['estado_interrumpido'];
+    // }
+    // if ($causa_no_reclamacion == 'Abandono') {
+    //     $cambio_estado_paciente = $_POST['estado_abandono'];
+    // }
     $reclamo = $_POST['reclamo'];
-    if ($reclamo == 'SI') {
-        $cambio_estado_paciente = $_POST['estado_activo'];
-    }
+    // if ($reclamo == 'SI') {
+    //     $cambio_estado_paciente = $_POST['estado_activo'];
+    // }
     $ciudad_reclamacion = $_POST['ciudad_reclamacion'];
     $tratamiento_email = $_POST['MEDICAMENTO'];
     $fecha_formulacion_sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET FECHA_FORMULACION = '" . $fecha_formulacion . "', CIUDAD_RECLAMACION ='" . $ciudad_reclamacion . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
     echo mysqli_error($conex);
+    $cambio_estado_paciente = $_POST['estado_paciente_ac'];
     if ($cambio_estado_paciente != 'No') {
         include("../presentacion/email/mail_estado.php");
-        $INSERT_CAMBIO_ESTADO = mysqli_query($conex, "INSERT INTO ipsen_cambio_estado (FECHA_SOLICITUD, PAP, NOMBRE, ESTADO_ACTUAL, NUEVO_ESTADO, ASESOR) VALUES(CURRENT_TIMESTAMP, '" . $codigo_usuario . "', '" . $nombre . ' ' . $apellidos . "', '" . $estado_paciente . "', '" . $cambio_estado_paciente . "', '" . $usua . "')");
+        $INSERT_CAMBIO_ESTADO = mysqli_query($conex, "INSERT INTO ipsen_cambio_estado (FECHA_SOLICITUD, PAP, NOMBRE, ESTADO_ACTUAL, NUEVO_ESTADO, ASESOR) VALUES(CURRENT_TIMESTAMP, '" . $codigo_usuario . "', '" . $nombre . ' ' . $apellidos . "', '" . $cambio_estado_paciente . "', '" . $estado_paciente . "', '" . $usua . "')");
         echo mysqli_error($conex);
     }
     $direccion_nueva = $_POST['DIRECCION'];
@@ -562,13 +563,13 @@ include('../logica/session.php');
 					WHERE ID_GESTION='" . $codigo_gestion . "'");
                     echo mysqli_error($conex);
                     if ($logro_comunicacion == 'SI') {
-                        $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $cambio_estado_paciente . "',  STATUS_PACIENTE='" . $status_paciente . "', FECHA_ACTIVACION_PACIENTE='" . $fecha_activacion . "', FECHA_RETIRO_PACIENTE='" . $fecha_retiro . "', MOTIVO_RETIRO_PACIENTE='" . $motivo_retiro . "', OBSERVACION_MOTIVO_RETIRO_PACIENTE='" . $observacion_retiro . "',TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "' ,TELEFONO_PACIENTE='" . $telefono1 . "', TELEFONO2_PACIENTE='" . $telefono2 . "', TELEFONO3_PACIENTE='" . $telefono3 . "', TELEFONO4_PACIENTE='" . $telefono4 . "', TELEFONO5_PACIENTE='" . $telefono5 . "', CORREO_PACIENTE='" . $correo . "', DIRECCION_PACIENTE='" . $direccion . "', BARRIO_PACIENTE='" . $barrio . "', DEPARTAMENTO_PACIENTE='" . $departamento . "',CIUDAD_PACIENTE='" . $ciudad . "',FECHA_NACIMINETO_PACIENTE='" . $fecha_nacimiento . "',EDAD_PACIENTE='" . $edad . "', PROVEEDOR ='" . $proveedor . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
+                        $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $estado_paciente . "',  STATUS_PACIENTE='" . $status_paciente . "', FECHA_ACTIVACION_PACIENTE='" . $fecha_activacion . "', FECHA_RETIRO_PACIENTE='" . $fecha_retiro . "', MOTIVO_RETIRO_PACIENTE='" . $motivo_retiro . "', OBSERVACION_MOTIVO_RETIRO_PACIENTE='" . $observacion_retiro . "',TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "' ,TELEFONO_PACIENTE='" . $telefono1 . "', TELEFONO2_PACIENTE='" . $telefono2 . "', TELEFONO3_PACIENTE='" . $telefono3 . "', TELEFONO4_PACIENTE='" . $telefono4 . "', TELEFONO5_PACIENTE='" . $telefono5 . "', CORREO_PACIENTE='" . $correo . "', DIRECCION_PACIENTE='" . $direccion . "', BARRIO_PACIENTE='" . $barrio . "', DEPARTAMENTO_PACIENTE='" . $departamento . "',CIUDAD_PACIENTE='" . $ciudad . "',FECHA_NACIMINETO_PACIENTE='" . $fecha_nacimiento . "',EDAD_PACIENTE='" . $edad . "', PROVEEDOR ='" . $proveedor . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
                         $sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET TRATAMIENTO_PREVIO='" . $tratamiento_previo . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "',ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_ultima_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "',FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "',PAAP = '" . $paap . "', SUB_PAAP = '" . $sub_paap . "',BARRERA = '" . $sub_barrera . "' ,NUM_LOTES_DISPOSITIVOS = '" . $num_lotes_dis . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
                     }
                     if ($logro_comunicacion == 'NO') {
-                        $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $cambio_estado_paciente . "', TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "', PROVEEDOR ='" . $proveedor . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
+                        $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $estado_paciente . "', TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "', PROVEEDOR ='" . $proveedor . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
                     }
                     if ($reclamo == 'SI') {

@@ -745,27 +745,14 @@ if ($privilegios != '' && $usua != '') {
                                         <span>Estado del Paciente<span class="asterisco">*</span></span>
                                     </td>
                                     <td width="30%">
-                                        <?php
-                                        if ($privilegios == 1) {
-                                        ?>
-                                            <select type="text" name="estado_paciente" id="estado_paciente">
-                                                <option><?php echo $fila['ESTADO_PACIENTE']; ?></option>
-                                                <option>Seleccione...</option>
-                                                <option>Abandono</option>
-                                                <option>Activo</option>
-                                                <option>En servicio</option>
-                                                <option>Fase 2</option>
-                                                <option>Interrumpido</option>
-                                                <option>Proceso</option>
-                                                <option>Suspendido</option>
-                                            </select>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <input name="estado_paciente" type="text" id="estado_paciente" readonly="readonly" value="<?php echo $fila['ESTADO_PACIENTE']; ?>" />
-                                        <?php
-                                        }
-                                        ?>
+                                        <select type="text" name="estado_paciente" id="estado_paciente">
+                                            <option><?php echo $fila['ESTADO_PACIENTE']; ?></option>
+                                            <option>Seleccione...</option>
+                                            <option>Activo</option>
+                                            <option>Inactivo</option>
+                                            <option>Nuevo</option>
+                                            <option>Suspendido</option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1496,7 +1483,7 @@ if ($privilegios != '' && $usua != '') {
                                     <input type="text" name="proveedor_psp" id="proveedor_psp" value='People Marketing' readonly>
                                 </div>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <span id="cambio_estado_activo_solicitar" style="display:none;">Solicitar cambio de estado Paciente</span>
                                 <span id="cambio_estado_abandono_solicitar" style="display:none;">Solicitar cambio de estado Paciente</span>
                                 <span id="cambio_estado_suspendido_solicitar" style="display:none;">Solicitar cambio de estado Paciente</span>
@@ -1507,7 +1494,7 @@ if ($privilegios != '' && $usua != '') {
                                 <input type="text" name="estado_abandono" id="estado_abandono" style="display:none;" value="Abandono" readonly>
                                 <input type="text" name="estado_suspendido" id="estado_suspendido" style="display:none;" value="Suspendido" readonly>
                                 <input type="text" name="estado_interrumpido" id="estado_interrumpido" style="display:none;" value="Interrumpido" readonly>
-                            </td>
+                            </td> -->
                         </tr>
                         <tr>
                             <td>
