@@ -417,7 +417,7 @@ include('../logica/session.php')
             });
 
             function reclamo() {
-                $("#causa_no_reclamacion option:eq(21)").attr("selected", "selected");
+                $("#causa_no_reclamacion").attr("selected", "selected");
                 $("#fecha_reclamacion").val('');
                 $('#numero_cajas option:eq(0)').attr('selected', 'selected');
                 $('#tipo_numero_cajas option:eq(0)').attr('selected', 'selected');
@@ -444,7 +444,7 @@ include('../logica/session.php')
                     $('#consecutivo_betaferon').css('display', 'none');
                     $('#numero_cajas option:eq(0)').attr('selected', 'selected');
                     $('#tipo_numero_cajas option:eq(0)').attr('selected', 'selected');
-                    $('#causa_no_reclamacion option:eq(20)').attr('selected', 'selected');
+                    $('#causa_no_reclamacion').attr('selected', 'selected');
                     $('#numero_cajas').attr('disabled', 'disabled');
                     $('#tipo_numero_cajas').attr('disabled', 'disabled');
                     $('#span_tabletas_diarias').css('display', 'none');
