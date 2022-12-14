@@ -1138,34 +1138,33 @@ if ($privilegios != '' && $usua != '') {
                                     <select type="text" name="causa_no_reclamacion" id="causa_no_reclamacion" style="display:none">
                                         <option><?php echo $CAUSA_NO_RECLAMACION_GESTION ?></option>
                                         <option value="">Seleccione...</option>
-                                        <option>Abandono</option>
-                                        <option>Autorizacion radicada para Cita</option>
-                                        <option>Autorizacion radicada para Medicamento</option>
                                         <option>Cita inoportuna</option>
                                         <option>Demora en la Autorizacion Cita Medica</option>
                                         <option>Demora en la autorizacion de medicamento</option>
-                                        <option>Desafiliacion Asegurador</option>
-                                        <option>En proceso de cita Aplicacion</option>
+                                        <option>Sin red Prestadora</option>
+                                        <option>Inactivo</option>
+                                        <option>Autorizacion radicada para Cita</option>
+                                        <option>Autorizacion radicada para Medicamento</option>
                                         <option>En proceso de cita medica</option>
                                         <option>En proceso de entrega</option>
+                                        <option>Falta cita para examenes</option>
+                                        <option>Falta de cita medica</option>
+                                        <option>Falta de contacto</option>
+                                        <option>Pendiente Radicar Formula en Farmacia</option>
+                                        <option>Desafiliacion Asegurador</option>
                                         <option>En proceso de Examenes</option>
                                         <option>Error en papeleria</option>
-                                        <option>Falta cita para examenes</option>
-                                        <option>Falta de cita aplicacion</option>
-                                        <option>Falta de cita medica</option>
-                                        <option>Falta de cita valoracion (Xofigo)</option>
-                                        <option>Falta de contacto</option>
                                         <option>Falta de medicamento en el punto</option>
                                         <option>Hospitalizado</option>
-                                        <option>No remision a entidad licenciada</option>
-                                        <option>Pago anticipado</option>
                                         <option>Pendiente formulacion NO sistema</option>
-                                        <option>Pendiente Radicar Formula en Farmacia</option>
-                                        <option>PSVC en Titulacion</option>
-                                        <option>Sin red Prestadora</option>
-                                        <option>Suspendido por esquema de aplicacion</option>
                                         <option>Suspendido temporalmente</option>
                                         <option>Voluntario</option>
+                                        <option>No Codificacion</option>
+                                        <option>Cita inoportuna de Aplicacion</option>
+                                        <option>Demora en la entrega del medicamento</option>
+                                        <option>No acepta Servicios PSP</option>
+                                        <option>Problemas de Translado del Paciente</option>
+                                        <option>Suspendido por Cambio de tratamiento</option>
                                     </select>
                                     <input type="date" name="fecha_reclamacion" id="fecha_reclamacion" value="<?php echo $FECHA_RECLAMACION_GESTION ?>" style="display:none" />
                                 </td>

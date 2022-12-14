@@ -1257,7 +1257,7 @@ if ($privilegios != '' && $usua != '') {
 										<option>Error en papeleria</option>
 										<option>Falta de medicamento en el punto</option>
 										<option>Hospitalizado</option>
-										<option>Pendiente formulación NO sistema</option>
+										<option>Pendiente formulacion NO sistema</option>
 										<option>Suspendido temporalmente</option>
 										<option>Voluntario</option>
 										<option>No Codificacion</option>
