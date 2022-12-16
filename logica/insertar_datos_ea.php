@@ -112,45 +112,34 @@ require_once('session.php');
 		$PREGUNTA3 = $_POST['pregunta3'];
 		$PREGUNTA4 = $_POST['pregunta4'];
 		$PREGUNTA5 = $_POST['pregunta5'];
-		$PREGUNTA6 = $_POST['pregunta6'];
-		$PREGUNTA7 = $_POST['pregunta7'];
-		$PREGUNTA8 = $_POST['pregunta8'];
-		$PREGUNTA9 = $_POST['pregunta9'];
-		$PREGUNTA10 = $_POST['pregunta10'];
-		$PREGUNTA11 = $_POST['pregunta11'];
-		$PREGUNTA12 = $_POST['pregunta12'];
-		$PREGUNTA13 = $_POST['pregunta13'];
-		$PREGUNTA14 = $_POST['pregunta14'];
-		$PREGUNTA15 = $_POST['pregunta15'];
 		$ID_PACIENTE = $_POST['ID_PACIENTE'];
 
-		$insertar = mysqli_query($conex, "INSERT INTO ipsen_evento_adverso(FECHA_NOTIFICA,DEPARTAMENTO,MUNICIPIO,NOMBRE_INSTITUCION,CODIGO_PNF,NOMBRE_REPORTANTE,PROFESION_REPORTANTE,CORREO_REPORTANTE,FECHA_NACIMIENTO_PACIENTE,EDAD_PACIENTE,TIPO_DOCUMENTO_PACIENTE,NUMERO_DOCUMENTO_PACIENTE,INICIALES_PACIENTE,SEXO,PESO,TALLA,DIAGNOSTICO_PRINCIPAL,SCI1,MEDICAMENTO1,INDICACION1,DOSIS1,UNIDAD_MEDIDA1,VIA_ADMINISTRACION1,FRECUENCIA_ADMINISTRACION1,FECHA_INICIO1,FECHA_FIN1,SCI2,MEDICAMENTO2,INDICACION2,DOSIS2,UNIDAD_MEDIDA2,VIA_ADMINISTRACION2,FRECUENCIA_ADMINISTRACION2,FECHA_INICIO2,FECHA_FIN2,SCI3,MEDICAMENTO3,INDICACION3,DOSIS3,UNIDAD_MEDIDA3,VIA_ADMINISTRACION3,FRECUENCIA_ADMINISTRACION3,FECHA_INICIO3,FECHA_FIN3,FECHA_INICIO_EVENTO,EVENTO_ADVERSO,DESCRIPCION_ANALISIS_EVENTO,DESENLACE_EVENTO,SERIEDAD,FECHA_MUERTE,PREGUNTA1,PREGUNTA2,PREGUNTA3,PREGUNTA4,PREGUNTA5,PREGUNTA6,PREGUNTA7,PREGUNTA8,PREGUNTA9,PREGUNTA10,PREGUNTA11,PREGUNTA12,PREGUNTA13,PREGUNTA14,PREGUNTA15,ID_PACIENTE_FK)
+		$insertar = mysqli_query($conex, "INSERT INTO ipsen_evento_adverso(FECHA_NOTIFICA,DEPARTAMENTO,MUNICIPIO,NOMBRE_INSTITUCION,CODIGO_PNF,NOMBRE_REPORTANTE,PROFESION_REPORTANTE,CORREO_REPORTANTE,FECHA_NACIMIENTO_PACIENTE,EDAD_PACIENTE,TIPO_DOCUMENTO_PACIENTE,NUMERO_DOCUMENTO_PACIENTE,INICIALES_PACIENTE,SEXO,PESO,TALLA,DIAGNOSTICO_PRINCIPAL,SCI1,MEDICAMENTO1,INDICACION1,DOSIS1,UNIDAD_MEDIDA1,VIA_ADMINISTRACION1,FRECUENCIA_ADMINISTRACION1,FECHA_INICIO1,FECHA_FIN1,SCI2,MEDICAMENTO2,INDICACION2,DOSIS2,UNIDAD_MEDIDA2,VIA_ADMINISTRACION2,FRECUENCIA_ADMINISTRACION2,FECHA_INICIO2,FECHA_FIN2,SCI3,MEDICAMENTO3,INDICACION3,DOSIS3,UNIDAD_MEDIDA3,VIA_ADMINISTRACION3,FRECUENCIA_ADMINISTRACION3,FECHA_INICIO3,FECHA_FIN3,FECHA_INICIO_EVENTO,EVENTO_ADVERSO,DESCRIPCION_ANALISIS_EVENTO,DESENLACE_EVENTO,SERIEDAD,FECHA_MUERTE,PREGUNTA1,PREGUNTA2,PREGUNTA3,PREGUNTA4,PREGUNTA5,ID_PACIENTE_FK)
 		VALUES
-		('" . $FECHA_NOTIFICA . "','" . $DEPARTAMENTO . "','" . $MUNICIPIO . "','" . $NOMBRE_INSTITUCION . "','" . $CODIGO_PNF . "','" . $NOMBRE_REPORTANTE . "','" . $PROFESION_REPORTANTE . "','" . $CORREO_REPORTANTE . "','" . $FECHA_NACIMIENTO_PACIENTE . "','" . $EDAD_PACIENTE . "','" . $TIPO_DOCUMENTO_PACIENTE . "','" . $NUMERO_DOCUMENTO_PACIENTE . "','" . $INICIALES_PACIENTE . "','" . $SEXO . "','" . $PESO . "','" . $TALLA . "','" . $DIAGNOSTICO_PRINCIPAL . "','" . $SCI1 . "','" . $MEDICAMENTO1 . "','" . $INDICACION1 . "','" . $DOSIS1 . "','" . $UNIDAD_MEDIDA1 . "','" . $VIA_ADMINISTRACION1 . "','" . $FRECUENCIA_ADMINISTRACION1 . "','" . $FECHA_INICIO1 . "','" . $FECHA_FIN1 . "','" . $SCI2 . "','" . $MEDICAMENTO2 . "','" . $INDICACION2 . "','" . $DOSIS2 . "','" . $UNIDAD_MEDIDA2 . "','" . $VIA_ADMINISTRACION2 . "','" . $FRECUENCIA_ADMINISTRACION2 . "','" . $FECHA_INICIO2 . "','" . $FECHA_FIN2 . "','" . $SCI3 . "','" . $MEDICAMENTO3 . "','" . $INDICACION3 . "','" . $DOSIS3 . "','" . $UNIDAD_MEDIDA3 . "','" . $VIA_ADMINISTRACION3 . "','" . $FRECUENCIA_ADMINISTRACION3 . "','" . $FECHA_INICIO3 . "','" . $FECHA_FIN3 . "','" . $FECHA_INICIO_EVENTO . "','" . $EVENTO_ADVERSO . "','" . $DESCRIPCION_ANALISIS_EVENTO . "','" . $DESENLACE_EVENTO . "','" . $SERIEDAD . "','" . $FECHA_MUERTE . "','" . $PREGUNTA1 . "','" . $PREGUNTA2 . "','" . $PREGUNTA3 . "','" . $PREGUNTA4 . "','" . $PREGUNTA5 . "','" . $PREGUNTA6 . "','" . $PREGUNTA7 . "','" . $PREGUNTA8 . "','" . $PREGUNTA9 . "','" . $PREGUNTA10 . "','" . $PREGUNTA11 . "','" . $PREGUNTA12 . "','" . $PREGUNTA13 . "','" . $PREGUNTA14 . "','" . $PREGUNTA15 . "','" . $ID_PACIENTE . "')");
+		('" . $FECHA_NOTIFICA . "','" . $DEPARTAMENTO . "','" . $MUNICIPIO . "','" . $NOMBRE_INSTITUCION . "','" . $CODIGO_PNF . "','" . $NOMBRE_REPORTANTE . "','" . $PROFESION_REPORTANTE . "','" . $CORREO_REPORTANTE . "','" . $FECHA_NACIMIENTO_PACIENTE . "','" . $EDAD_PACIENTE . "','" . $TIPO_DOCUMENTO_PACIENTE . "','" . $NUMERO_DOCUMENTO_PACIENTE . "','" . $INICIALES_PACIENTE . "','" . $SEXO . "','" . $PESO . "','" . $TALLA . "','" . $DIAGNOSTICO_PRINCIPAL . "','" . $SCI1 . "','" . $MEDICAMENTO1 . "','" . $INDICACION1 . "','" . $DOSIS1 . "','" . $UNIDAD_MEDIDA1 . "','" . $VIA_ADMINISTRACION1 . "','" . $FRECUENCIA_ADMINISTRACION1 . "','" . $FECHA_INICIO1 . "','" . $FECHA_FIN1 . "','" . $SCI2 . "','" . $MEDICAMENTO2 . "','" . $INDICACION2 . "','" . $DOSIS2 . "','" . $UNIDAD_MEDIDA2 . "','" . $VIA_ADMINISTRACION2 . "','" . $FRECUENCIA_ADMINISTRACION2 . "','" . $FECHA_INICIO2 . "','" . $FECHA_FIN2 . "','" . $SCI3 . "','" . $MEDICAMENTO3 . "','" . $INDICACION3 . "','" . $DOSIS3 . "','" . $UNIDAD_MEDIDA3 . "','" . $VIA_ADMINISTRACION3 . "','" . $FRECUENCIA_ADMINISTRACION3 . "','" . $FECHA_INICIO3 . "','" . $FECHA_FIN3 . "','" . $FECHA_INICIO_EVENTO . "','" . $EVENTO_ADVERSO . "','" . $DESCRIPCION_ANALISIS_EVENTO . "','" . $DESENLACE_EVENTO . "','" . $SERIEDAD . "','" . $FECHA_MUERTE . "','" . $PREGUNTA1 . "','" . $PREGUNTA2 . "','" . $PREGUNTA3 . "','" . $PREGUNTA4 . "','" . $PREGUNTA5 . "','" . $ID_PACIENTE . "')");
 		echo mysqli_error($conex);
-		$SELECT_EA = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso WHERE ID_PACIENTE_FK='" . $ID_PACIENTE . "' ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
-		while ($fila1 = mysqli_fetch_array($SELECT_EA)) {
-			$ID_EA = $fila1['ID_EVENTO_ADVERSO'];
-		}
 		if ($insertar) {
-			require_once('../presentacion/pdf_evento_adverso.php');
+			$select_ea = mysqli_query($conex, "SELECT ID_EVENTO_ADVERSO FROM ipsen_evento_adverso");
+			while ($fila = mysqli_fetch_array($select_ea)) {
+				$ID_EVENTO_ADVERSO = $fila['ID_EVENTO_ADVERSO'];
 	?>
-			<span style="margin-top:5%;">
+				<span style="margin-top:5%;">
+					<center>
+						<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+					</center>
+				</span>
+				<p class="aviso3" style=" width:68.9%; margin:auto auto;">HA CREADO EXISITOSAMENTE EL EVENTO ADVERSO.</p>
+				<br />
+				<br />
 				<center>
-					<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+					<a href="../presentacion/pdf.php?ID=<?php echo $ID_EVENTO_ADVERSO ?>" target="info" class="btn_continuar"><img src="../presentacion/imagenes/BTN_CONTINUAR.png" style="width:152px; height:37px" /></a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<!-- <a href="../presentacion/pdf.php?ID=<?php echo $ID_EVENTO_ADVERSO ?>" target="info" class="btn_continuar"><img src="../presentacion/imagenes/BOTON_AGREGAR2.png" style="width:152px; height:37px" /></a> -->
 				</center>
-			</span>
-			<p class="aviso3" style=" width:68.9%; margin:auto auto;">HA CREADO EXISITOSAMENTE EL EVENTO ADVERSO.</p>
-			<br />
-			<br />
-			<center>
-				<a href="../presentacion/form_paciente_seguimiento.php" target="info" class="btn_continuar"><img src="../presentacion/imagenes/BTN_CONTINUAR.png" style="width:152px; height:37px" /></a>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="../presentacion/form_evento_adverso.php?ID_PACIENTE=<?php echo $ID_PACIENTE ?>" target="info" class="btn_continuar"><img src="../presentacion/imagenes/BOTON_AGREGAR2.png" style="width:152px; height:37px" /></a>
-			</center>
-		<?php
+			<?php
+			}
 		} else {
-		?>
+			?>
 			<span style="margin-top:5%;">
 				<center>
 					<img src="../presentacion/imagenes/advertencia2.png" width="68" height="78" style="width:70px; margin-top:100px;margin-top:5%;" />
@@ -162,7 +151,7 @@ require_once('session.php');
 			<br />
 			<br />
 			<center>
-				<a href="javascript:history.go(-1)" target="info" class="btn_continuar"><img src="../presentacion/imagenes/BOTON_REGISTRAR_NARANJA.png" style="width:152px; height:37px" /></a>
+				<a href="../presentacion/form_evento_adverso.php?ID_PACIENTE=<?php echo $ID_PACIENTE ?>" target="info" class="btn_continuar"><img src="../presentacion/imagenes/BOTON_REGISTRAR_ROJO.png" style="width:152px; height:37px" /></a>
 			</center>
 	<?php
 		}

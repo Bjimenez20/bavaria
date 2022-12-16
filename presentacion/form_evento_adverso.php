@@ -7,6 +7,8 @@ include('../logica/session.php')
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/validar_campos_evento_adverso.js"></script>
     <style>
         .titulos {
             background-color: #848484;
@@ -107,7 +109,7 @@ if ($privilegios != '' && $usua != '') {
 ?>
 
     <body>
-        <form id="paciente_nuevo" name="paciente_nuevo" action="../logica/insertar_datos_ea.php" method="post" class="letra">
+        <form id="evento_adverso" name="evento_adverso" action="../logica/insertar_datos_ea.php" enctype="multipart/form-data" method="post" class="letra">
             <center>
                 <table style="width:80%; border:1px solid #000;" rules="all">
                     <tr>
@@ -119,20 +121,20 @@ if ($privilegios != '' && $usua != '') {
                     <tr colspan="4">
                         <th>
                             Fecha de Notificacion<span class="obli">*</span><br><br>
-                            <input type="date" name="fecha_notificacion" id="fecha_notificacion" style="width:90%; height:100%;" required>
+                            <input type="date" name="fecha_notificacion" id="fecha_notificacion" style="width:90%; height:100%;">
                         </th>
                         <th>Origen del reporte
                             <hr>
                             Departamento - Municipio<span class="obli">*</span><br /><br>
-                            <input type="text" name="departamento" id="departamento" required> - <input type="text" name="municipio" id="municipio" required>
+                            <input type="text" name="departamento" id="departamento"> - <input type="text" name="municipio" id="municipio">
                         </th>
                         <th>
                             Nombre de la Institución donde ocurri&oacute; el evento<span class="obli">*</span><br /><br>
-                            <input type="text" name="institucion_evento" id="institucion_evento" style="width:90%; height:100%;" required>
+                            <input type="text" name="institucion_evento" id="institucion_evento" style="width:90%; height:100%;">
                         </th>
                         <th>
                             C&oacute;digo PNF<span class="obli">*</span><br /><br>
-                            <input type="text" name="codigo_pnf" id="codigo_pnf" style="width:90%; height:100%;" required>
+                            <input type="text" name="codigo_pnf" id="codigo_pnf" style="width:90%; height:100%;">
                         </th>
                     </tr>
                     <tr colspan="4">
@@ -142,7 +144,7 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                         <th>
                             Profesi&oacute;n del reportante primario <span class="obli">*</span><br><br>
-                            <input type="text" name="profecion_usuario" id="profecion_usuario" style="width:90%; height:100%;" required>
+                            <input type="text" name="profecion_usuario" id="profecion_usuario" style="width:90%; height:100%;">
                         </th>
                         <th>
                             Correo electr&oacute;nico institucional del reportante primario <span class="obli">*</span><br /><br>
@@ -171,7 +173,7 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                         <th>
                             Iniciales del paciente<span class="obli">*</span><br><br>
-                            <input type="text" name="iniciales_pa" id="iniciales_pa" style="width:90%; height:100%;" required>
+                            <input type="text" name="iniciales_pa" id="iniciales_pa" style="width:90%; height:100%;">
                         </th>
                     </tr>
                     <tr>
@@ -181,11 +183,11 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                         <th>
                             Peso - Talla<span class="obli">*</span><br><br>
-                            <input type="text" name="peso" id="peso" required> - <input type="text" name="talla" id="talla" required>
+                            <input type="text" name="peso" id="peso"> - <input type="text" name="talla" id="talla">
                         </th>
                         <th colspan="2">
                             Diagnóstico principal y otros diagnósticos:<span class="obli">*</span><br><br>
-                            <textarea name="diagnostico" id="diagnostico" cols="95" rows="5" required></textarea>
+                            <textarea name="diagnostico" id="diagnostico" cols="95" rows="5"></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -199,13 +201,13 @@ if ($privilegios != '' && $usua != '') {
                             S/C/I<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="text" name="S_C_I1" id="s_c_i1" style="width:90%; height:100%;" required>
+                            <input type="text" name="S_C_I1" id="S_C_I1" style="width:90%; height:100%;">
                         </th>
                         <th>
-                            <input type="text" name="S_C_I2" id="s_c_i2" style="width:90%; height:100%;">
+                            <input type="text" name="S_C_I2" id="S_C_I2" style="width:90%; height:100%;">
                         </th>
                         <th>
-                            <input type="text" name="S_C_I3" id="s_c_i3" style="width:90%; height:100%;">
+                            <input type="text" name="S_C_I3" id="S_C_I3" style="width:90%; height:100%;">
                         </th>
                     </tr>
                     <tr>
@@ -213,7 +215,7 @@ if ($privilegios != '' && $usua != '') {
                             Medicamento (Denominación Común Internacional o Nombre genérico) <span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="text" name="medicamento1" id="medicamento1" style="width:90%; height:100%;" required>
+                            <input type="text" name="medicamento1" id="medicamento1" style="width:90%; height:100%;">
                         </th>
                         <th>
                             <input type="text" name="medicamento2" id="medicamento2" style="width:90%; height:100%;">
@@ -227,7 +229,7 @@ if ($privilegios != '' && $usua != '') {
                             Indicación<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="text" name="indicacion1" id="indicacion1" style="width:90%; height:100%;" required>
+                            <input type="text" name="indicacion1" id="indicacion1" style="width:90%; height:100%;">
                         </th>
                         <th>
                             <input type="text" name="indicacion2" id="indicacion2" style="width:90%; height:100%;">
@@ -241,7 +243,7 @@ if ($privilegios != '' && $usua != '') {
                             Dosis<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="text" name="dosis1" id="dosis1" style="width:90%; height:100%;" required>
+                            <input type="text" name="dosis1" id="dosis1" style="width:90%; height:100%;">
                         </th>
                         <th>
                             <input type="text" name="dosis2" id="dosis2" style="width:90%; height:100%;">
@@ -255,7 +257,7 @@ if ($privilegios != '' && $usua != '') {
                             Unidad de medida<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="text" name="unidad_medida1" id="unidad_medida1" style="width:90%; height:100%;" required>
+                            <input type="text" name="unidad_medida1" id="unidad_medida1" style="width:90%; height:100%;">
                         </th>
                         <th>
                             <input type="text" name="unidad_medida2" id="unidad_medida2" style="width:90%; height:100%;">
@@ -269,7 +271,7 @@ if ($privilegios != '' && $usua != '') {
                             Vía de administración<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="text" name="via_administracion1" id="via_administracion1" style="width:90%; height:100%;" required>
+                            <input type="text" name="via_administracion1" id="via_administracion1" style="width:90%; height:100%;">
                         </th>
                         <th>
                             <input type="text" name="via_administracion2" id="via_administracion2" style="width:90%; height:100%;">
@@ -283,7 +285,7 @@ if ($privilegios != '' && $usua != '') {
                             Frecuencia de administración<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="text" name="frecuencia_administracion1" id="frecuencia_administracion1" style="width:90%; height:100%;" required>
+                            <input type="text" name="frecuencia_administracion1" id="frecuencia_administracion1" style="width:90%; height:100%;">
                         </th>
                         <th>
                             <input type="text" name="frecuencia_administracion2" id="frecuencia_administracion2" style="width:90%; height:100%;">
@@ -297,7 +299,7 @@ if ($privilegios != '' && $usua != '') {
                             Fecha inicio<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="date" name="fecha_inicio1" id="fecha_inicio1" style="width:90%; height:100%;" required>
+                            <input type="date" name="fecha_inicio1" id="fecha_inicio1" style="width:90%; height:100%;">
                         </th>
                         <th>
                             <input type="date" name="fecha_inicio2" id="fecha_inicio2" style="width:90%; height:100%;">
@@ -311,7 +313,7 @@ if ($privilegios != '' && $usua != '') {
                             Fecha de finalización<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="date" name="fecha_fin1" id="fecha_fin1" style="width:90%; height:100%;" required>
+                            <input type="date" name="fecha_fin1" id="fecha_fin1" style="width:90%; height:100%;">
                         </th>
                         <th>
                             <input type="date" name="fecha_fin2" id="fecha_fin2" style="width:90%; height:100%;">
@@ -328,23 +330,23 @@ if ($privilegios != '' && $usua != '') {
                     <tr>
                         <th colspan="2">
                             Fecha de Inicio del Evento Adverso:<span class="obli">*</span><br /><br>
-                            <input type="date" name="fecha_ini_evento" id="fecha_ini_evento" required>
+                            <input type="date" name="fecha_ini_evento" id="fecha_ini_evento">
                         </th>
                         <th colspan="2">
-                            Evento adverso:<span class="obli">*</span><br /><br>
-                            <textarea name="evento_adverso" id="evento_adverso" cols="95" rows="5" required></textarea>
+                            Evento adverso:<span class="obli">*</span><br><br>
+                            <textarea name="evento_adverso" id="evento_adverso" cols="95" rows="5"></textarea>
                         </th>
                     </tr>
                     <tr>
                         <th colspan="2">
                             Descripción y análisis del Evento Adverso:<span class="obli">*</span><br /><br>
-                            <textarea name="descripcion_evento" id="descripcion_evento" cols="95" rows="5" required></textarea>
+                            <textarea name="descripcion_evento" id="descripcion_evento" cols="95" rows="5"></textarea>
                         </th>
                         <th>
                             Desenlace del evento (Marcar con una X)<span class="obli">*</span><br />
                             <hr>
                             <div style="text-align: left;">
-                                <input type="radio" name="desenlace_evento" id="desenlace_evento" style=" width:20%; display:none" value="" required>
+                                <input type="radio" name="desenlace_evento" id="desenlace_evento" style=" width:20%; display:none" value="">
                                 <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto sin secuelas"> Recuperado / Resuelto sin secuelas <br>
                                 <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto con secuelas"> Recuperado / Resuelto con secuelas <br>
                                 <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperando / Resolviendo"> Recuperando / Resolviendo <br>
@@ -357,7 +359,7 @@ if ($privilegios != '' && $usua != '') {
                             Seriedad (Marcar con X)<span class="obli">*</span><br />
                             <hr>
                             <div style="text-align: left;">
-                                <input type="radio" name="seriedad" id="seriedad" style=" width:20%; display:none" value="" required>
+                                <input type="radio" name="seriedad" id="seriedad" style=" width:20%; display:none">
                                 <input type="radio" name="seriedad" id="seriedad" value="Produjo o prolongo hospitalizacion" onchange="trat_previo(this)"> Produjo o prolongó hospitalización <br>
                                 <input type="radio" name="seriedad" id="seriedad" value="Anomalia congenita" onchange="trat_previo(this)"> Anomalía congénita <br>
                                 <input type="radio" name="seriedad" id="seriedad" value="Amenaza de vida" onchange="trat_previo(this)"> Amenaza de vida <br>
@@ -385,13 +387,13 @@ if ($privilegios != '' && $usua != '') {
                             ¿El evento se presentó después de administrar el medicamento?<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="radio" name="pregunta1" id="pregunta1" value="X"> <br>
+                            <input type="radio" name="pregunta1" id="pregunta1" value="SI"> <br>
                         </th>
                         <th>
-                            <input type="radio" name="pregunta2" id="pregunta2" value="X"> <br>
+                            <input type="radio" name="pregunta1" id="pregunta1" value="NO"> <br>
                         </th>
                         <th>
-                            <input type="radio" name="pregunta3" id="pregunta3" value="X"> <br>
+                            <input type="radio" name="pregunta1" id="pregunta1" value="NO SEBE"> <br>
                         </th>
                     </tr>
                     <tr>
@@ -399,13 +401,13 @@ if ($privilegios != '' && $usua != '') {
                             ¿Existen otros factores que puedan explicar el evento (medicamento, patologías, etc.)?<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="radio" name="pregunta4" id="pregunta4" value="X"> <br>
+                            <input type="radio" name="pregunta2" id="pregunta2" value="SI"> <br>
                         </th>
                         <th>
-                            <input type="radio" name="pregunta5" id="pregunta5" value="X"> <br>
+                            <input type="radio" name="pregunta2" id="pregunta2" value="NO"> <br>
                         </th>
                         <th>
-                            <input type="radio" name="pregunta6" id="pregunta6" value="X"> <br>
+                            <input type="radio" name="pregunta2" id="pregunta2" value="NO SABE"> <br>
                         </th>
                     </tr>
                     <tr>
@@ -413,13 +415,13 @@ if ($privilegios != '' && $usua != '') {
                             ¿El evento desapareció al disminuir o suspender el medicamento sospechoso?<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="radio" name="pregunta7" id="pregunta7" value="X"> <br>
+                            <input type="radio" name="pregunta3" id="pregunta3" value="SI"> <br>
                         </th>
                         <th>
-                            <input type="radio" name="pregunta8" id="pregunta8" value="X"> <br>
+                            <input type="radio" name="pregunta3" id="pregunta3" value="NO"> <br>
                         </th>
                         <th>
-                            <input type="radio" name="pregunta9" id="pregunta9" value="X"> <br>
+                            <input type="radio" name="pregunta3" id="pregunta3" value="NO SABE"> <br>
                         </th>
                     </tr>
                     <tr>
@@ -427,13 +429,13 @@ if ($privilegios != '' && $usua != '') {
                             ¿El paciente ya había presentado la misma reacción al medicamento sospechoso?<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="radio" name="pregunta10" id="pregunta10" value="X"> <br>
+                            <input type="radio" name="pregunta4" id="pregunta4" value="SI"> <br>
                         </th>
                         <th>
-                            <input type="radio" name="pregunta11" id="pregunta11" value="X"> <br>
+                            <input type="radio" name="pregunta4" id="pregunta4" value="NO"> <br>
                         </th>
                         <th>
-                            <input type="radio" name="pregunta12" id="pregunta12" value="X"> <br>
+                            <input type="radio" name="pregunta4" id="pregunta4" value="NO SABE"> <br>
                         </th>
                     </tr>
                     <tr>
@@ -441,19 +443,19 @@ if ($privilegios != '' && $usua != '') {
                             ¿Se puede ampliar la información del paciente relacionando con el evento?<span class="obli">*</span><br />
                         </th>
                         <th>
-                            <input type="radio" name="pregunta13" id="pregunta13" value="X"> <br>
+                            <input type="radio" name="pregunta5" id="pregunta5" value="SI"> <br>
                         </th>
                         <th>
-                            <input type="radio" name="pregunta14" id="pregunta14" value="X"> <br>
+                            <input type="radio" name="pregunta5" id="pregunta5" value="NO"> <br>
                         </th>
                         <th>
-                            <input type="radio" name="pregunta15" id="pregunta15" value="X"> <br>
+                            <input type="radio" name="pregunta5" id="pregunta5" value="NO SABE"> <br>
                         </th>
                     </tr>
                     <tr>
                         <th colspan="4">
                             <br />
-                            <input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_registrar" />
+                            <input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_registrar" onClick="return validar(evento_adverso,1);this.disabled=true" />
                             <br />
                         </th>
                     </tr>

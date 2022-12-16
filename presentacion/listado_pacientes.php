@@ -259,7 +259,7 @@ if ($privilegios != '' && $usua != '') {
 					?>
 				</tr>
 				<?PHP
-				$TAMANO_PAGINA = 20;
+				$TAMANO_PAGINA = 10;
 				$pagina = false;
 				if (isset($_GET["pagina"]))
 					$pagina = $_GET["pagina"];

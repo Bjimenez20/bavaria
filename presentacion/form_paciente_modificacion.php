@@ -983,7 +983,8 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                             </tr>
                             <tr>
-                                <td><span>Punto De Entrega</span>
+                                <td>
+                                    <span>Punto De Entrega</span>
                                 </td>
                                 <td>
                                     <?php
@@ -1005,7 +1006,8 @@ if ($privilegios != '' && $usua != '') {
                                 $num1 = mysqli_num_rows($Seleccion1);
                                 if ($num1 <= 0) {
                                 ?>
-                                    <td><span>Fecha Ultima Reclamacion</span>
+                                    <td>
+                                        <span>Fecha Ultima Reclamacion</span>
                                     </td>
                                     <td>
                                         <input type="date" name="fecha_reclamaciones" id="fecha_reclamaciones" value="<?php echo $fila['FECHA_ULTIMA_RECLAMACION_TRATAMIENTO'] ?>" />

@@ -2402,7 +2402,7 @@ if ($privilegios != '' && $usua != '') {
                                 <br />
                             </td>
                             <td colspan="3">
-                                <textarea style="width:98%; height:72.5px;" id="descripcion_comunicacion" name="descripcion_comunicacion" onKeyDown="return filtro(1)"></textarea>
+                                <textarea style="width:98%; height:72.5px;" id="descripcion_comunicacion" name="descripcion_comunicacion"></textarea>
                                 <br />
                                 <br />
                             </td>
