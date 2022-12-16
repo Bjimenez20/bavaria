@@ -18,6 +18,116 @@ include('../logica/session.php')
     <script type="text/javascript" src="js/validaciones.js"></script>
     <script type="text/javascript" src="js/validar_caracteres.js"></script>
     <script src="../presentacion/js/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(function() {
+            $("#asegurador").select2();
+        });
+        $(function() {
+            $("#operador_logistico").select2();
+        });
+        $(function() {
+            $("#punto_entrega").select2();
+        });
+        $(function() {
+            $("#ips_atiende").select2();
+        });
+        $(function() {
+            $("#medico_prescriptor").select2();
+        });
+        $(function() {
+            $("#medico_tratante").select2();
+        });
+    </script>
+    <style>
+        body {
+            background: #eee;
+            font-family: Tahoma, Geneva, sans-serif;
+            font-size: 15px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #444;
+            line-height: 28px;
+            font-size: 14px;
+        }
+
+        .select2-search--dropdown {
+            display: block;
+            padding: 4px;
+        }
+
+        .select2-container--default .select2-results>.select2-results__options {
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        .select2-search--dropdown .select2-search__field {
+            padding: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        select,
+        textarea {
+            margin: 0;
+            font-family: inherit;
+            font-size: 13px;
+            line-height: inherit;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            margin: 0;
+            font-family: inherit;
+            font-size: 13px;
+            line-height: inherit;
+        }
+
+        .signupdiv {
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 1px 2px 3px #ccc;
+            padding: 10px;
+            margin-top: 100px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        td {
+            padding: 6px;
+            background-color: transparent;
+        }
+
+        .custom-input-file {
+            background-color: #0C68B0;
+            color: #fff;
+            width: 313px;
+            border: 1px solid rgb(206, 212, 218);
+        }
+
+        .custom-input-file .input-file {
+            cursor: pointer;
+            margin: 0;
+            outline: 0 none;
+            padding: 0;
+        }
+
+        input[type=file] {
+            width: 95%;
+            height: 20%
+        }
+    </style>
     <script language=javascript>
         function ventanaSecundaria(URL) {
             window.open(URL, "ventana1", "width=1500,height=500,Top=150,Left=50%")
@@ -1194,7 +1304,6 @@ if ($privilegios != '' && $usua != '') {
                 <div class="AccordionPanel">
                     <div class="AccordionPanelTab">GENERAL</div>
                     <div class="AccordionPanelContent">
-                        <br />
                         <table width="100%">
                             <?php
                                 $fecha_actual = date('Y-m-d');
@@ -1781,36 +1890,31 @@ if ($privilegios != '' && $usua != '') {
                                 <span>Asegurador<span class="asterisco">*</span></span>
                             </td>
                             <td>
-                                <?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM ipsen_asegurador WHERE ESTADO = 'IN' ORDER BY ID_ASEGURADOR DESC")
-                                ?>
-                                <input list="asegura" name="asegurador" id="asegurador" value="<?php echo $fila['ASEGURADOR_TRATAMIENTO'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo1(this)">
-                                <datalist id="asegura">
-                                    <?php
+                                <select id="asegurador" name="asegurador" style="width:95%;" onchange="trat_previo1(this)">
+                                    <option value="<?php echo $fila['ASEGURADOR_TRATAMIENTO'] ?>"><?php echo $fila['ASEGURADOR_TRATAMIENTO'] ?></option>
+                                    <?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM ipsen_asegurador WHERE ESTADO = 'IN' ORDER BY ID_ASEGURADOR DESC");
                                     while ($valores = mysqli_fetch_array($query)) {
                                     ?>
                                         <option><?php echo $valores['ASEGURADOR'] ?></option>
                                     <?php
                                     }
                                     ?>
-                                </datalist>
+                                </select>
                             </td>
                             <td>
                                 <span>Ips que Atiende<span class="asterisco">*</span></span>
                             </td>
                             <td>
-                                <?php
-                                $Seleccion = mysqli_query($conex, "SELECT DISTINCT IPS FROM ipsen_ips WHERE ESTADO = 'IN' ORDER BY ID_IPS DESC");
-                                ?>
-                                <input list="ips" name="ips_atiende" id="ips_atiende" value="<?php echo $fila['IPS_ATIENDE_TRATAMIENTO'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo3(this)">
-                                <datalist id="ips">
-                                    <?php
-                                    while ($fila_ips = mysqli_fetch_array($Seleccion)) {
+                                <select name="ips_atiende" id="ips_atiende" style="width:95%;" onchange="trat_previo3(this)">
+                                    <option value="<?php echo $fila['IPS_ATIENDE_TRATAMIENTO'] ?>"><?php echo $fila['IPS_ATIENDE_TRATAMIENTO'] ?></option>
+                                    <?php $query =  mysqli_query($conex, "SELECT DISTINCT IPS FROM ipsen_ips WHERE ESTADO = 'IN' ORDER BY ID_IPS DESC");
+                                    while ($valores = mysqli_fetch_array($query)) {
                                     ?>
-                                        <option><?php echo $fila_ips['IPS'] ?></option>
+                                        <option><?php echo $valores['IPS'] ?></option>
                                     <?php
                                     }
                                     ?>
-                                </datalist>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -1830,37 +1934,32 @@ if ($privilegios != '' && $usua != '') {
                                 <span>Medico Tratante<span class="asterisco">*</span></span>
                             </td>
                             <td>
-                                <?php
-                                $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
-                                ?>
-                                <input list="medico_t" name="medico_tratante" id="medico_tratante" value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo4(this)">
-                                <datalist id="medico_t">
-                                    <?php
-                                    while ($fila_operador = mysqli_fetch_array($Seleccion)) {
+                                <select name="medico_tratante" id="medico_tratante" style="width:95%;" onchange="trat_previo4(this)">
+                                    <option value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>"><?php echo $fila['MEDICO_TRATAMIENTO'] ?></option>
+                                    <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC");
+                                    while ($valores = mysqli_fetch_array($query)) {
                                     ?>
-                                        <option><?php echo $fila_operador['MEDICO'] ?></option>
+                                        <option><?php echo $valores['MEDICO'] ?></option>
                                     <?php
                                     }
                                     ?>
-                                </datalist>
+                                </select>
                             </td>
                             <td>
                                 <span>Medico Prescriptor<span class="asterisco">*</span></span>
                             </td>
                             <td>
-                                <?php
-                                $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
-                                ?>
-                                <input list="medico_p" name="medico_prescriptor" id="medico_prescriptor" value="<?php echo $fila['MEDICO_PRESCRIPTOR'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo5(this)">
-                                <datalist id="medico_p">
-                                    <?php
-                                    while ($fila_operador = mysqli_fetch_array($Seleccion)) {
+                                <select name="medico_prescriptor" id="medico_prescriptor" style="width:95%;" onchange="trat_previo5(this)">
+                                    <option value="<?php echo $fila['MEDICO_PRESCRIPTOR'] ?>"><?php echo $fila['MEDICO_PRESCRIPTOR'] ?></option>
+                                    <option>Seleccione...</option>
+                                    <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC");
+                                    while ($valores = mysqli_fetch_array($query)) {
                                     ?>
-                                        <option><?php echo $fila_operador['MEDICO'] ?></option>
+                                        <option><?php echo $valores['MEDICO'] ?></option>
                                     <?php
                                     }
                                     ?>
-                                </datalist>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -1886,19 +1985,16 @@ if ($privilegios != '' && $usua != '') {
                                 <span>Operador Logistico<span class="asterisco">*</span></span>
                             </td>
                             <td>
-                                <?php
-                                $Seleccion = mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM ipsen_operador_logistico WHERE ESTADO = 'IN' ORDER BY ID_OPERADOR_LOGISTICO DESC ");
-                                ?>
-                                <input list="operador" name="operador_logistico" id="operador_logistico" value="<?php echo $fila['OPERADOR_LOGISTICO_TRATAMIENTO'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo2(this)">
-                                <datalist id="operador">
-                                    <?php
-                                    while ($fila_operador = mysqli_fetch_array($Seleccion)) {
+                                <select id="operador_logistico" name="operador_logistico" style="width:95%;" onchange="trat_previo2(this)">
+                                    <option value="<?php echo $fila['OPERADOR_LOGISTICO_TRATAMIENTO'] ?>"><?php echo $fila['OPERADOR_LOGISTICO_TRATAMIENTO'] ?></option>
+                                    <?php $query =  mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM ipsen_operador_logistico WHERE ESTADO = 'IN' ORDER BY ID_OPERADOR_LOGISTICO DESC");
+                                    while ($valores = mysqli_fetch_array($query)) {
                                     ?>
-                                        <option><?php echo $fila_operador['OPERADOR_LOGISTICO'] ?></option>
+                                        <option><?php echo $valores['OPERADOR_LOGISTICO'] ?></option>
                                     <?php
                                     }
                                     ?>
-                                </datalist>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -1913,7 +2009,6 @@ if ($privilegios != '' && $usua != '') {
                         <tr>
                             <td>
                                 <span>Ciudad de Entrega</span><span class="asterisco">*</span><br />
-                                <br />
                             </td>
                             <td>
                                 <select type="text" name="ciudad_reclamacion" id="ciudad_reclamacion">
@@ -1928,27 +2023,21 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                     ?>
                                 </select>
-                                <br /><br />
                             </td>
                             <td>
                                 <span>Punto De Entrega</span>
-                                <br />
-                                <br />
                             </td>
                             <td>
-                                <?php
-                                $Seleccion = mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM ipsen_puntos_entrega WHERE ESTADO = 'IN' ORDER BY ID_PUNTO DESC");
-                                ?>
-                                <input list="punto" name="punto_entrega" id="punto_entrega" value="<?php echo $fila['PUNTO_ENTREGA'] ?>" autocomplete=" off" onkeypress="return check(event)" onchange="trat_previo6(this)">
-                                <datalist id="punto">
-                                    <?php
-                                    while ($fila = mysqli_fetch_array($Seleccion)) {
+                                <select name="punto_entrega" id="punto_entrega" style="width:95%;" onchange="trat_previo6(this)">
+                                    <option value="<?php echo $fila['PUNTO_ENTREGA'] ?>"><?php echo $fila['PUNTO_ENTREGA'] ?></option>
+                                    <?php $query =  mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM ipsen_puntos_entrega WHERE ESTADO = 'IN' ORDER BY ID_PUNTO DESC");
+                                    while ($valores = mysqli_fetch_array($query)) {
                                     ?>
-                                        <option><?php echo $fila['NOMBRE_PUNTO'] ?></option>
+                                        <option><?php echo $valores['NOMBRE_PUNTO'] ?></option>
                                     <?php
                                     }
                                     ?>
-                                </datalist>
+                                </select>
                             </td>
                         </tr>
                         <tr>

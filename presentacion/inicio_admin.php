@@ -143,30 +143,31 @@ if ($privilegios != '' && $usua != '') {
                 </div>
             </div>
         </div>
-        <script>
-            $('.select_menu').click(function() {
-                $('#info').show('slow');
-                $('#content_welcome').hide('slow')
-            })
-        </script>
-        <style>
-            .cardhome {
-                transition: transform .2s;
-                cursor: pointer;
-            }
+    </div>
+    <script>
+        $('.select_menu').click(function() {
+            $('#info').show('slow');
+            $('#content_welcome').hide('slow')
+        })
+    </script>
+    <style>
+        .cardhome {
+            transition: transform .2s;
+            cursor: pointer;
+        }
 
-            .cardhome:hover {
-                transform: scale(1.1);
-            }
-        </style>
-        <?php include 'layouts/footer.php'; ?>
-        <?php include 'layouts/end.php'; ?>
-    <?php
+        .cardhome:hover {
+            transform: scale(1.1);
+        }
+    </style>
+    <?php include 'layouts/footer.php'; ?>
+    <?php include 'layouts/end.php'; ?>
+<?php
 } else {
-    ?>
-        <script type="text/javascript">
-            window.onload = window.top.location.href = "../logica/cerrar_sesion2.php";
-        </script>
-    <?php
+?>
+    <script type="text/javascript">
+        window.onload = window.top.location.href = "../logica/cerrar_sesion2.php";
+    </script>
+<?php
 }
-    ?>
+?>
