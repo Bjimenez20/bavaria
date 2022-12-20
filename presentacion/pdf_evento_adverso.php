@@ -52,6 +52,10 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 	$FECHA_FIN1 = $fila1['FECHA_FIN1'];
 	$FECHA_FIN2 = $fila1['FECHA_FIN2'];
 	$FECHA_FIN3 = $fila1['FECHA_FIN3'];
+	$TITULAR_REGISTRO = $fila1['TITULAR_REGISTRO'];
+	$NOMBRE_COMERCIAL = $fila1['NOMBRE_COMERCIAL'];
+	$REGISTRO_SANITARIO = $fila1['REGISTRO_SANITARIO'];
+	$LOTE = $fila1['LOTE'];
 	$FECHA_INICIO_EVENTO = $fila1['FECHA_INICIO_EVENTO'];
 	$EVENTO_ADVERSO = $fila1['EVENTO_ADVERSO'];
 	$DESCRIPCION_ANALISIS_EVENTO = $fila1['DESCRIPCION_ANALISIS_EVENTO'];
@@ -68,9 +72,21 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 <table style="width:100%; border:1px solid #000;" rules="all">
 	<style>
 		.titulos {
-			background-color: #848484;
+			background-color: #CCECFF;
 			font-family: Tahoma, Geneva, sans-serif;
-			color: #FFF;
+			color: #000;
+		}
+
+		.titulos2 {
+			background-color: #B6DDE8;
+			font-family: Tahoma, Geneva, sans-serif;
+			color: #000;
+		}
+
+		.titulos3 {
+			background-color: #99CCFF;
+			font-family: Tahoma, Geneva, sans-serif;
+			color: #000;
 		}
 
 		.obli {
@@ -209,19 +225,19 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 		</td>
 	</tr>
 	<tr>
-		<th class="titulos" colspan="4">
+		<th class="titulos2" colspan="4">
 			3. INFORMACION DE LOS MEDICAMENTOS
 			<P>Registre todos los medicamentos utilizados y marque con una <span style="color:#000">(S)</span> el (los) sospechoso(s), con una <span style="color:#000">(C)</span> el (los) concomitantes y con una <span style="color:#000">(I)</span> las interacciones. </P>
 		</th>
 	</tr>
 	<tr>
-		<th style="text-align: left;">S/C/I</th>
+		<th style="text-align: left; background-color: #DBDBDB">S/C/I</th>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $SCI1 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $SCI2 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $SCI3 ?></span> <br></td>
 	</tr>
 	<tr>
-		<th style="text-align: left;"> Medicamento
+		<th style="text-align: left; background-color: #DBDBDB"> Medicamento
 			<p>(Denominacion Comun Internacional o Nombre generico)</p>
 		</th>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $MEDICAMENTO1 ?></span> <br></td>
@@ -229,37 +245,37 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $MEDICAMENTO3 ?></span> <br></td>
 	</tr>
 	<tr>
-		<th style="text-align: left;"> Indicacion</th>
+		<th style="text-align: left; background-color: #DBDBDB"> Indicacion</th>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $INDICACION1 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $INDICACION2 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $INDICACION3 ?></span> <br></td>
 	</tr>
 	<tr>
-		<th style="text-align: left;"> Dosis</th>
+		<th style="text-align: left; background-color: #DBDBDB"> Dosis</th>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $DOSIS1 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $DOSIS2 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $DOSIS3 ?></span> <br></td>
 	</tr>
 	<tr>
-		<th style="text-align: left;"> Unidad de medida</th>
+		<th style="text-align: left; background-color: #DBDBDB"> Unidad de medida</th>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $UNIDAD_MEDIDA1 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $UNIDAD_MEDIDA2 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $UNIDAD_MEDIDA3 ?></span> <br></td>
 	</tr>
 	<tr>
-		<th style="text-align: left;"> VIa de administracion</th>
+		<th style="text-align: left; background-color: #DBDBDB"> Via de administracion</th>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $VIA_ADMINISTRACION1 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $VIA_ADMINISTRACION2 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $VIA_ADMINISTRACION3 ?></span> <br></td>
 	</tr>
 	<tr>
-		<th style="text-align: left;"> Frecuencia de administracion</th>
+		<th style="text-align: left; background-color: #DBDBDB"> Frecuencia de administracion</th>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $FRECUENCIA_ADMINISTRACION1 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $FRECUENCIA_ADMINISTRACION2 ?></span> <br></td>
 		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $FRECUENCIA_ADMINISTRACION3 ?></span> <br></td>
 	</tr>
 	<tr>
-		<th style="text-align: left;">
+		<th style="text-align: left; background-color: #DBDBDB">
 			Fecha inicio<br />
 		</th>
 		<td style="text-align: center;">
@@ -273,7 +289,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 		</td>
 	</tr>
 	<tr>
-		<th style="text-align: left;">
+		<th style="text-align: left; background-color: #DBDBDB">
 			Fecha de finalizacion<br />
 		</th>
 		<td style="text-align: center;">
@@ -287,7 +303,40 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 		</td>
 	</tr>
 	<tr>
-		<th class="titulos" colspan="4">
+		<th colspan="4" style="background-color: #DBDBDB"">
+			Informacion comercial del medicamento sospechoso
+		</th>
+	</tr>
+	<tr>
+		<th>
+			Titular del Registro sanitario
+		</th>
+		<th>
+			Nombre Comercial
+		</th>
+		<th>
+			Registro sanitario
+		</th>
+		<th>
+			Lote
+		</th>
+	</tr>
+	<tr>
+		<td style=" text-align: center;">
+			<span style=" font-weight:none"><?php echo $TITULAR_REGISTRO ?></span> <br>
+			</td>
+		<td style="text-align: center;">
+			<span style=" font-weight:none"><?php echo $NOMBRE_COMERCIAL ?></span> <br>
+		</td>
+		<td style="text-align: center;">
+			<span style=" font-weight:none"><?php echo $REGISTRO_SANITARIO ?></span> <br>
+		</td>
+		<td style="text-align: center;">
+			<span style=" font-weight:none"><?php echo $LOTE ?></span> <br>
+		</td>
+	</tr>
+	<tr>
+		<th class="titulos3" colspan="4">
 			4. INFORMACION DEL EVENTO ADVERSO
 		</th>
 	</tr>
@@ -332,13 +381,13 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 	<tr colspan="4">
 		<th colspan="1">
 		</th>
-		<th colspan="1" class="titulos">
+		<th colspan="1">
 			SI
 		</th>
-		<th colspan="1" class="titulos">
+		<th colspan="1">
 			NO
 		</th>
-		<th colspan="1" class="titulos">
+		<th colspan="1">
 			NO SABE
 		</th>
 	</tr>

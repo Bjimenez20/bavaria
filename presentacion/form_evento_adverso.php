@@ -11,9 +11,21 @@ include('../logica/session.php')
     <script type="text/javascript" src="js/validar_campos_evento_adverso.js"></script>
     <style>
         .titulos {
-            background-color: #848484;
+            background-color: #CCECFF;
             font-family: Tahoma, Geneva, sans-serif;
-            color: #FFF;
+            color: #000;
+        }
+
+        .titulos2 {
+            background-color: #B6DDE8;
+            font-family: Tahoma, Geneva, sans-serif;
+            color: #000;
+        }
+
+        .titulos3 {
+            background-color: #99CCFF;
+            font-family: Tahoma, Geneva, sans-serif;
+            color: #000;
         }
 
         .obli {
@@ -38,7 +50,7 @@ include('../logica/session.php')
         }
 
         input[type=date] {
-            width: 40%;
+            width: 50%;
         }
 
         .btn_registrar {
@@ -191,13 +203,13 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th class="titulos" colspan="4">
+                        <th class="titulos2" colspan="4">
                             3. INFORMACIÓN DE LOS MEDICAMENTOS
                             <P>Registre todos los medicamentos utilizados y marque con una <span style="color:#000">(S)</span> el (los) sospechoso(s), con una <span style="color:#000">(C)</span> el (los) concomitantes y con una <span style="color:#000">(I)</span> las interacciones. </P>
                         </th>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">
+                        <th style="text-align: left; background-color: #DBDBDB">
                             S/C/I<span class="obli">*</span><br />
                         </th>
                         <th>
@@ -211,7 +223,7 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">
+                        <th style="text-align: left; background-color: #DBDBDB">
                             Medicamento (Denominación Común Internacional o Nombre genérico) <span class="obli">*</span><br />
                         </th>
                         <th>
@@ -225,7 +237,7 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">
+                        <th style="text-align: left; background-color: #DBDBDB">
                             Indicación<span class="obli">*</span><br />
                         </th>
                         <th>
@@ -239,7 +251,7 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">
+                        <th style="text-align: left; background-color: #DBDBDB">
                             Dosis<span class="obli">*</span><br />
                         </th>
                         <th>
@@ -253,7 +265,7 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">
+                        <th style="text-align: left; background-color: #DBDBDB">
                             Unidad de medida<span class="obli">*</span><br />
                         </th>
                         <th>
@@ -267,7 +279,7 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">
+                        <th style="text-align: left; background-color: #DBDBDB">
                             Vía de administración<span class="obli">*</span><br />
                         </th>
                         <th>
@@ -281,7 +293,7 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">
+                        <th style="text-align: left; background-color: #DBDBDB">
                             Frecuencia de administración<span class="obli">*</span><br />
                         </th>
                         <th>
@@ -295,7 +307,7 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">
+                        <th style="text-align: left; background-color: #DBDBDB">
                             Fecha inicio<span class="obli">*</span><br />
                         </th>
                         <th>
@@ -309,7 +321,7 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">
+                        <th style="text-align: left; background-color: #DBDBDB">
                             Fecha de finalización<span class="obli">*</span><br />
                         </th>
                         <th>
@@ -323,7 +335,40 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th class="titulos" colspan="4">
+                        <th colspan="4" style="background-color: #DBDBDB"">
+			                Informacion comercial del medicamento sospechoso
+		                </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Titular del Registro sanitario
+                        </th>
+                        <th>
+                            Nombre Comercial
+                        </th>
+                        <th>
+                            Registro sanitario
+                        </th>
+                        <th>
+                            Lote
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <textarea name="titular_registro" id="titular_registro" cols="50" rows="5"></textarea>
+                        </th>
+                        <th>
+                            <textarea name="nombre_comercial" id="nombre_comercial" cols="50" rows="5"></textarea>
+                        </th>
+                        <th>
+                            <textarea name="registro_sanitario" id="registro_sanitario" cols="50" rows="5"></textarea>
+                        </th>
+                        <th>
+                            <textarea name="lote" id="lote" cols="50" rows="5"></textarea>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="titulos3" colspan="4">
                             4. INFORMACIÓN DEL EVENTO ADVERSO
                         </th>
                     </tr>
@@ -372,13 +417,13 @@ if ($privilegios != '' && $usua != '') {
                     <tr colspan="4">
                         <th colspan="1">
                         </th>
-                        <th colspan="1" class="titulos">
+                        <th colspan="1">
                             SI
                         </th>
-                        <th colspan="1" class="titulos">
+                        <th colspan="1">
                             NO
                         </th>
-                        <th colspan="1" class="titulos">
+                        <th colspan="1">
                             NO SABE
                         </th>
                     </tr>
