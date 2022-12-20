@@ -130,7 +130,7 @@ include('../logica/session.php')
     </style>
     <script language=javascript>
         function ventanaSecundaria(URL) {
-            window.open(URL, "ventana1", "width=1500,height=500,Top=150,Left=50%")
+            window.open(URL, "ventana1", "width=1650,height=500,Top=150,Left=50%")
         }
     </script>
     <style>
@@ -1064,34 +1064,33 @@ if ($privilegios != '' && $usua != '') {
                                                     <td>
                                                         <span>Via:</span>
                                                     </td>
-                                                    <td style="width:35%"><span>
-                                                            <select id="VIA" name="VIA" style="width:96%">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>ANILLO VIAL</option>
-                                                                <option>AUTOPISTA</option>
-                                                                <option>AVENIDA</option>
-                                                                <option>BOULEVAR</option>
-                                                                <option>CALLE</option>
-                                                                <option>CALLEJON</option>
-                                                                <option>CARRERA</option>
-                                                                <option>CIRCUNVALAR</option>
-                                                                <option>CONDOMINIO</option>
-                                                                <option>DIAGONAL</option>
-                                                                <option>KILOMETRO</option>
-                                                                <option>LOTE</option>
-                                                                <option>SALIDA</option>
-                                                                <option>SECTOR</option>
-                                                                <option>TRANSVERSAL</option>
-                                                                <option>VEREDA</option>
-                                                                <option>VIA</option>
-                                                            </select>
-                                                        </span></td>
+                                                    <td style="width:35%">
+                                                        <select id="VIA" name="VIA" style="width:96%">
+                                                            <option value="">Seleccione...</option>
+                                                            <option>ANILLO VIAL</option>
+                                                            <option>AUTOPISTA</option>
+                                                            <option>AVENIDA</option>
+                                                            <option>BOULEVAR</option>
+                                                            <option>CALLE</option>
+                                                            <option>CALLEJON</option>
+                                                            <option>CARRERA</option>
+                                                            <option>CIRCUNVALAR</option>
+                                                            <option>CONDOMINIO</option>
+                                                            <option>DIAGONAL</option>
+                                                            <option>KILOMETRO</option>
+                                                            <option>LOTE</option>
+                                                            <option>SALIDA</option>
+                                                            <option>SECTOR</option>
+                                                            <option>TRANSVERSAL</option>
+                                                            <option>VEREDA</option>
+                                                            <option>VIA</option>
+                                                        </select>
+                                                    </td>
                                                     <td style="width:10%;">
                                                         <span>Detalle via:</span>
                                                     </td>
-                                                    <td width="177" bgcolor="#FFFFFF"><span>
-                                                            <input name="detalle_via" id="detalle_via" type="text" maxlength="30" style="width:99%" />
-                                                        </span>
+                                                    <td width="177" bgcolor="#FFFFFF">
+                                                        <input name="detalle_via" id="detalle_via" type="text" maxlength="30" style="width:99%" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -1099,11 +1098,9 @@ if ($privilegios != '' && $usua != '') {
                                                         <span>Numero:</span>
                                                     </td>
                                                     <td bgcolor="#FFFFFF">
-                                                        <span>
-                                                            <input name="numero" id="numero" type="text" maxlength="5" style=" width:45%" />
-                                                            -
-                                                            <input name="numero2" id="numero2" type="text" maxlength="5" style=" width:45%" />
-                                                        </span>
+                                                        <input name="numero" id="numero" type="text" maxlength="5" style=" width:45%" />
+                                                        -
+                                                        <input name="numero2" id="numero2" type="text" maxlength="5" style=" width:45%" />
                                                     </td>
                                                     <td></td>
                                                     <td bgcolor="#FFFFFF"></td>
@@ -1113,41 +1110,37 @@ if ($privilegios != '' && $usua != '') {
                                                         <span>Interior:</span>
                                                     </td>
                                                     <td bgcolor="#FFFFFF">
-                                                        <span>
-                                                            <select id="interior" name="interior" style="width:96%">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>APARTAMENTO</option>
-                                                                <option>BARRIO</option>
-                                                                <option>BLOQUE</option>
-                                                                <option>CASA</option>
-                                                                <option>CIUDADELA</option>
-                                                                <option>CONJUNTO</option>
-                                                                <option>CONJUNTO RESIDENCIAL</option>
-                                                                <option>EDIFICIO</option>
-                                                                <option>ENTRADA</option>
-                                                                <option>ETAPA</option>
-                                                                <option>INTERIOR</option>
-                                                                <option>MANZANA</option>
-                                                                <option>NORTE</option>
-                                                                <option>OFICINA</option>
-                                                                <option>OCCIDENTE</option>
-                                                                <option>ORIENTE</option>
-                                                                <option>PENTHOUSE</option>
-                                                                <option>PISO</option>
-                                                                <option>PORTERIA</option>
-                                                                <option>SOTANO</option>
-                                                                <option>SUR</option>
-                                                                <option>TORRE</option>
-                                                            </select>
-                                                        </span>
+                                                        <select id="interior" name="interior" style="width:96%">
+                                                            <option value="">Seleccione...</option>
+                                                            <option>APARTAMENTO</option>
+                                                            <option>BARRIO</option>
+                                                            <option>BLOQUE</option>
+                                                            <option>CASA</option>
+                                                            <option>CIUDADELA</option>
+                                                            <option>CONJUNTO</option>
+                                                            <option>CONJUNTO RESIDENCIAL</option>
+                                                            <option>EDIFICIO</option>
+                                                            <option>ENTRADA</option>
+                                                            <option>ETAPA</option>
+                                                            <option>INTERIOR</option>
+                                                            <option>MANZANA</option>
+                                                            <option>NORTE</option>
+                                                            <option>OFICINA</option>
+                                                            <option>OCCIDENTE</option>
+                                                            <option>ORIENTE</option>
+                                                            <option>PENTHOUSE</option>
+                                                            <option>PISO</option>
+                                                            <option>PORTERIA</option>
+                                                            <option>SOTANO</option>
+                                                            <option>SUR</option>
+                                                            <option>TORRE</option>
+                                                        </select>
                                                     </td>
                                                     <td>
                                                         <span>Detalle Interior:</span>
                                                     </td>
                                                     <td bgcolor="#FFFFFF">
-                                                        <span>
-                                                            <input name="detalle_int" id="detalle_int" type="text" maxlength="30" readonly style="width:99%" />
-                                                        </span>
+                                                        <input name="detalle_int" id="detalle_int" type="text" maxlength="30" readonly style="width:99%" />
                                                     </td>
                                                 </tr>
                                                 <tr style="padding:3%;">
@@ -1155,82 +1148,75 @@ if ($privilegios != '' && $usua != '') {
                                                         <span>Interior:</span>
                                                     </td>
                                                     <td bgcolor="#FFFFFF">
-                                                        <span>
-                                                            <select id="interior2" name="interior2" style="width:96%">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>APARTAMENTO</option>
-                                                                <option>BARRIO</option>
-                                                                <option>BLOQUE</option>
-                                                                <option>CASA</option>
-                                                                <option>CIUDADELA</option>
-                                                                <option>CONJUNTO</option>
-                                                                <option>CONJUNTO RESIDENCIAL</option>
-                                                                <option>EDIFICIO</option>
-                                                                <option>ENTRADA</option>
-                                                                <option>ETAPA</option>
-                                                                <option>INTERIOR</option>
-                                                                <option>MANZANA</option>
-                                                                <option>NORTE</option>
-                                                                <option>OFICINA</option>
-                                                                <option>OCCIDENTE</option>
-                                                                <option>ORIENTE</option>
-                                                                <option>PENTHOUSE</option>
-                                                                <option>PISO</option>
-                                                                <option>PORTERIA</option>
-                                                                <option>SOTANO</option>
-                                                                <option>SUR</option>
-                                                                <option>TORRE</option>
-                                                            </select>
-                                                        </span>
+                                                        <select id="interior2" name="interior2" style="width:96%">
+                                                            <option value="">Seleccione...</option>
+                                                            <option>APARTAMENTO</option>
+                                                            <option>BARRIO</option>
+                                                            <option>BLOQUE</option>
+                                                            <option>CASA</option>
+                                                            <option>CIUDADELA</option>
+                                                            <option>CONJUNTO</option>
+                                                            <option>CONJUNTO RESIDENCIAL</option>
+                                                            <option>EDIFICIO</option>
+                                                            <option>ENTRADA</option>
+                                                            <option>ETAPA</option>
+                                                            <option>INTERIOR</option>
+                                                            <option>MANZANA</option>
+                                                            <option>NORTE</option>
+                                                            <option>OFICINA</option>
+                                                            <option>OCCIDENTE</option>
+                                                            <option>ORIENTE</option>
+                                                            <option>PENTHOUSE</option>
+                                                            <option>PISO</option>
+                                                            <option>PORTERIA</option>
+                                                            <option>SOTANO</option>
+                                                            <option>SUR</option>
+                                                            <option>TORRE</option>
+                                                        </select>
                                                     </td>
                                                     <td>
                                                         <span>Detalle Interior:</span>
                                                     </td>
                                                     <td bgcolor="#FFFFFF">
-                                                        <span>
-                                                            <input name="detalle_int2" id="detalle_int2" type="text" maxlength="30" readonly style="width:99%" />
-                                                        </span>
+                                                        <input name="detalle_int2" id="detalle_int2" type="text" maxlength="30" readonly style="width:99%" />
                                                     </td>
                                                 </tr>
                                                 <tr style="padding:3%;">
                                                     <td>
                                                         <span>Interior:</span>
                                                     </td>
-                                                    <td bgcolor="#FFFFFF"><span>
-                                                            <select id="interior3" name="interior3" style="width:96%">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>APARTAMENTO</option>
-                                                                <option>BARRIO</option>
-                                                                <option>BLOQUE</option>
-                                                                <option>CASA</option>
-                                                                <option>CIUDADELA</option>
-                                                                <option>CONJUNTO</option>
-                                                                <option>CONJUNTO RESIDENCIAL</option>
-                                                                <option>EDIFICIO</option>
-                                                                <option>ENTRADA</option>
-                                                                <option>ETAPA</option>
-                                                                <option>INTERIOR</option>
-                                                                <option>MANZANA</option>
-                                                                <option>NORTE</option>
-                                                                <option>OFICINA</option>
-                                                                <option>OCCIDENTE</option>
-                                                                <option>ORIENTE</option>
-                                                                <option>PENTHOUSE</option>
-                                                                <option>PISO</option>
-                                                                <option>PORTERIA</option>
-                                                                <option>SOTANO</option>
-                                                                <option>SUR</option>
-                                                                <option>TORRE</option>
-                                                            </select>
-                                                        </span>
+                                                    <td bgcolor="#FFFFFF">
+                                                        <select id="interior3" name="interior3" style="width:96%">
+                                                            <option value="">Seleccione...</option>
+                                                            <option>APARTAMENTO</option>
+                                                            <option>BARRIO</option>
+                                                            <option>BLOQUE</option>
+                                                            <option>CASA</option>
+                                                            <option>CIUDADELA</option>
+                                                            <option>CONJUNTO</option>
+                                                            <option>CONJUNTO RESIDENCIAL</option>
+                                                            <option>EDIFICIO</option>
+                                                            <option>ENTRADA</option>
+                                                            <option>ETAPA</option>
+                                                            <option>INTERIOR</option>
+                                                            <option>MANZANA</option>
+                                                            <option>NORTE</option>
+                                                            <option>OFICINA</option>
+                                                            <option>OCCIDENTE</option>
+                                                            <option>ORIENTE</option>
+                                                            <option>PENTHOUSE</option>
+                                                            <option>PISO</option>
+                                                            <option>PORTERIA</option>
+                                                            <option>SOTANO</option>
+                                                            <option>SUR</option>
+                                                            <option>TORRE</option>
+                                                        </select>
                                                     </td>
                                                     <td>
                                                         <span>Detalle Interior:</span>
                                                     </td>
                                                     <td bgcolor="#FFFFFF">
-                                                        <span>
-                                                            <input name="detalle_int3" id="detalle_int3" type="text" maxlength="30" style="width:99%" readonly />
-                                                        </span>
+                                                        <input name="detalle_int3" id="detalle_int3" type="text" maxlength="30" style="width:99%" readonly />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -1555,7 +1541,7 @@ if ($privilegios != '' && $usua != '') {
                                         <option>Error en papeleria</option>
                                         <option>Falta de medicamento en el punto</option>
                                         <option>Hospitalizado</option>
-                                        <option>Pendiente formulación NO sistema</option>
+                                        <option>Pendiente formulacion NO sistema</option>
                                         <option>Suspendido temporalmente</option>
                                         <option>Voluntario</option>
                                         <option>No Codificacion</option>

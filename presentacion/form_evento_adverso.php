@@ -335,9 +335,9 @@ if ($privilegios != '' && $usua != '') {
                         </th>
                     </tr>
                     <tr>
-                        <th colspan="4" style="background-color: #DBDBDB"">
-			                Informacion comercial del medicamento sospechoso
-		                </th>
+                        <th colspan="4" style="background-color: #DBDBDB">
+                            Información comercial del medicamento sospechoso
+                        </th>
                     </tr>
                     <tr>
                         <th>
