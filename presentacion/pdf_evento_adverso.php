@@ -1,10 +1,7 @@
 <?php
 require('../datos/parse_str.php');
 require("../datos/conex.php");
-$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso AS EA
-INNER JOIN ipsen_pacientes AS P ON P.ID_PACIENTE=EA.ID_PACIENTE_FK
-INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-WHERE EA.ID_EVENTO_ADVERSO='8'");
+$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
 echo mysqli_error($conex);
 while ($fila1 = mysqli_fetch_array($consulta)) {
 	$ID_EVENTO_ADVERSO = $fila1['ID_EVENTO_ADVERSO'];
@@ -69,561 +66,895 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 	$PREGUNTA5 = $fila1['PREGUNTA5'];
 }
 ?>
-<table style="width:100%; border:1px solid #000;" rules="all">
-	<style>
-		.titulos {
-			background-color: #CCECFF;
-			font-family: Tahoma, Geneva, sans-serif;
-			color: #000;
-		}
 
-		.titulos2 {
-			background-color: #B6DDE8;
-			font-family: Tahoma, Geneva, sans-serif;
-			color: #000;
-		}
+<!DOCTYPE html>
+<html lang="en">
 
-		.titulos3 {
-			background-color: #99CCFF;
-			font-family: Tahoma, Geneva, sans-serif;
-			color: #000;
-		}
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="js/jquery.js"></script>
+</head>
 
-		.obli {
-			color: #ff0000;
-		}
+<body style="padding: 0; margin: 0;">
 
-		.texto {
-			font-weight: lighter;
-			text-align: justify;
-		}
 
-		th {
-			width: 25%;
-			padding-top: 10px;
-			padding-bottom: 10px;
-			padding-left: 10px;
-		}
+	<table class="table table-bordered" cellspacing="0" cellpadding="0" style="width: 100%;" id="header">
+		<tbody>
+			<tr>
+				<td>
+					<?php
+					$url = 'http://localhost/ipsen/presentacion/imagenes/EA.png'
+					?>
+					<img src="<?php echo $url ?>" alt="" width="170" height="75" />
+				</td>
+				<td>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%">
+						<tbody>
+							<tr>
+								<td colspan="2">INSPECCIÓN, VIGILANCIA Y CONTROL</td>
+								<td colspan="2">VIGILANCIA</td>
+							</tr>
+							<tr>
+								<td colspan="4" style="font-weight: 700">
+									FORMATO REPORTE DE SOSPECHA DE EVENTOS ADVERSOS A
+									MEDICAMENTOS - FOREAM
+								</td>
+							</tr>
+							<tr>
+								<td>Código: IVC-VIG-FM026</td>
+								<td>Versión: 01</td>
+								<td>Fecha de Emisión: 05/04/2016</td>
+								<td>Página 1 de 3</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-bordered" cellspacing="0" cellpadding="0" style="width: 100%;">
+		<tbody>
+			<tr>
+				<td>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%">
+						<tbody>
+							<tr>
+								<td colspan="4" class="titulos" style="font-weight: 700">1. INFORMACIÓN DEL REPORTANTE</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
+									Fecha de notificación
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Origen del reporte
+									<hr>
+									Departamento – Municipio
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Nombre de la Institución donde ocurrió el evento
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Código PNF
+								</td>
+							</tr>
+							<tr>
+								<td colspan="1">
+									<?php echo $FECHA_NOTIFICA ?>
+								</td>
+								<td>
+									<?php echo $DEPARTAMENTO ?> - <?php echo $MUNICIPIO ?>
+								</td>
+								<td>
+									<?php echo $NOMBRE_INSTITUCION ?>
+								</td>
+								<td>
+									<?php echo $CODIGO_PNF ?>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
+									Nombre del Reportante primario
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Profesión del reportante primario
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Correo electrónico institucional del reportante primario
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<?php echo $NOMBRE_REPORTANTE ?>
+								</td>
+								<td>
+									<?php echo $PROFESION_REPORTANTE ?>
+								</td>
+								<td>
+									<?php echo $CORREO_REPORTANTE ?>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%">
+						<tbody>
+							<tr>
+								<td colspan="7" class="titulos" style="font-weight: 700">2. INFORMACIÓN DEL PACIENTE</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
+									Fecha de nacimiento del paciente
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Edad del paciente en el momento del EA
+									<hr>
+									Edad – Años/Meses/ días
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Documento de identificación del paciente
+									<hr>
+									CC | TI | RC | NUIP | Cód. Lab | Otro | S/I
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Iniciales del paciente
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Sexo
+									<hr>
+									M | F | S/I
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Peso
+									<hr>
+									(Kg)
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Talla
+									<hr>
+									(cm)
+								</td>
+							</tr>
+							<tr>
+								<td colspan="1">
+									<?php echo $FECHA_NACIMIENTO_PACIENTE ?>
+								</td>
+								<td>
+									<?php echo $EDAD_PACIENTE ?>
+								</td>
+								<td>
+									<?php echo $TIPO_DOCUMENTO_PACIENTE ?> - <?php echo $NUMERO_DOCUMENTO_PACIENTE ?>
+								</td>
+								<td>
+									<?php echo $INICIALES_PACIENTE ?>
+								</td>
+								<td>
+									<?php echo $SEXO ?>
+								</td>
+								<td>
+									<?php echo $PESO ?>
+								</td>
+								<td>
+									<?php echo $TALLA ?>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="7" style="text-align: left; font-weight: 700">
+									Diagnóstico principal y otros diagnósticos: <?php echo $DIAGNOSTICO_PRINCIPAL ?>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%">
+						<tbody>
+							<tr>
+								<td colspan="9" class="titulos2" style="font-weight: 700">
+									3. INFORMACIÓN DE LOS MEDICAMENTOS <br>
+									Registre todos los medicamentos utilizados y marque con una “S” el (los) sospechoso(s), con una “C” el (los) concomitantes y con una “I” las interacciones.
+								</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
+									S/C/I
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Medicamento <br>
+									(Denominación Común Internacional o Nombre genérico)
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Indicación
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Dosis
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Unidad de medida
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Vía de administración
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Frecuencia de administración
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Fecha de inicio
+								</td>
+								<td style="font-weight: 700; background-color: #DBDBDB;">
+									Fecha de finalización
+								</td>
+							</tr>
+							<tr>
+								<td colspan="1">
+									<?php echo $SCI1 ?>
+								</td>
+								<td>
+									<?php echo $MEDICAMENTO1 ?>
+								</td>
+								<td>
+									<?php echo $INDICACION1 ?>
+								</td>
+								<td>
+									<?php echo $DOSIS1 ?>
+								</td>
+								<td>
+									<?php echo $UNIDAD_MEDIDA1 ?>
+								</td>
+								<td>
+									<?php echo $VIA_ADMINISTRACION1 ?>
+								</td>
+								<td>
+									<?php echo $FRECUENCIA_ADMINISTRACION1 ?>
+								</td>
+								<td>
+									<?php echo $FECHA_INICIO1 ?>
+								</td>
+								<td>
+									<?php echo $FECHA_FIN1 ?>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="1">
+									<?php echo $SCI2 ?>
+								</td>
+								<td>
+									<?php echo $MEDICAMENTO2 ?>
+								</td>
+								<td>
+									<?php echo $INDICACION2 ?>
+								</td>
+								<td>
+									<?php echo $DOSIS2 ?>
+								</td>
+								<td>
+									<?php echo $UNIDAD_MEDIDA2 ?>
+								</td>
+								<td>
+									<?php echo $VIA_ADMINISTRACION2 ?>
+								</td>
+								<td>
+									<?php echo $FRECUENCIA_ADMINISTRACION2 ?>
+								</td>
+								<td>
+									<?php echo $FECHA_INICIO2 ?>
+								</td>
+								<td>
+									<?php echo $FECHA_FIN2 ?>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="1">
+									<?php echo $SCI3 ?>
+								</td>
+								<td>
+									<?php echo $MEDICAMENTO3 ?>
+								</td>
+								<td>
+									<?php echo $INDICACION3 ?>
+								</td>
+								<td>
+									<?php echo $DOSIS3 ?>
+								</td>
+								<td>
+									<?php echo $UNIDAD_MEDIDA3 ?>
+								</td>
+								<td>
+									<?php echo $VIA_ADMINISTRACION3 ?>
+								</td>
+								<td>
+									<?php echo $FRECUENCIA_ADMINISTRACION3 ?>
+								</td>
+								<td>
+									<?php echo $FECHA_INICIO3 ?>
+								</td>
+								<td>
+									<?php echo $FECHA_FIN3 ?>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="9" style="font-weight: 700; background-color: #DBDBDB;">
+									Información comercial del medicamento sospechoso
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3" style="font-weight: 700;">
+									Titular del Registro sanitario
+								</td>
+								<td colspan="2" style="font-weight: 700;">
+									Nombre Comercial
+								</td>
+								<td colspan="2" style="font-weight: 700;">
+									Registro sanitario
+								</td>
+								<td colspan="2" style="font-weight: 700;">
+									Lote
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<?php echo $TITULAR_REGISTRO ?>
+								</td>
+								<td colspan="2">
+									<?php echo $NOMBRE_COMERCIAL ?>
+								</td>
+								<td colspan="2">
+									<?php echo $REGISTRO_SANITARIO ?>
+								</td>
+								<td colspan="2">
+									<?php echo $LOTE ?>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%">
+						<tbody>
+							<tr>
+								<td colspan="4" class="titulos3" style="font-weight: 700">4. INFORMACIÓN DEL EVENTO ADVERSO</td>
+							</tr>
+							<tr>
+								<td style="font-weight: 700; text-align:left;">
+									Fecha de Inicio del Evento Adverso: <br>
+									<?php echo $FECHA_INICIO_EVENTO ?>
+								</td>
+								<td style="font-weight: 700; text-align:left;">
+									Evento adverso: <?php echo $EVENTO_ADVERSO ?>
+								</td>
+							</tr>
+							<tr>
+								<td style="font-weight: 700; text-align:left;">
+									Descripción y análisis del Evento Adverso:<br>
+									<?php echo $DESCRIPCION_ANALISIS_EVENTO ?>
+								</td>
+								<td>
+									<table border="0" cellspacing="0" cellpadding="0" width="100%">
+										<tbody>
+											<tr>
+												<?php if ($DESENLACE_EVENTO == 'Recuperado / Resuelto sin secuelas') { ?>
+													<td style="font-weight: 700; text-align: left">
+														<p style="font-weight: 700; "> Desenlace del evento (Marcar con una X)</p>
+														<span style="color: #ff0000;">X</span> Recuperado / Resuelto sin secuelas <br>
+														Recuperado / Resuelto con secuelas <br>
+														Recuperando / Resolviendo <br>
+														No recuperado / No resuelto <br>
+														Fatal <br>
+														Desconocido <br>
+													</td>
+												<?php } else if ($DESENLACE_EVENTO == 'Recuperado / Resuelto con secuelas') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; "> Desenlace del evento (Marcar con una X)</p>
+														Recuperado / Resuelto sin secuelas <br>
+														<span style="color: #ff0000;">X</span> Recuperado / Resuelto con secuelas <br>
+														Recuperando / Resolviendo <br>
+														No recuperado / No resuelto <br>
+														Fatal <br>
+														Desconocido <br>
+													</td>
+												<?php } else if ($DESENLACE_EVENTO == 'Recuperando / Resolviendo') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; "> Desenlace del evento (Marcar con una X)</p>
+														Recuperado / Resuelto sin secuelas <br>
+														Recuperado / Resuelto con secuelas <br>
+														<span style="color: #ff0000;">X</span> Recuperando / Resolviendo <br>
+														No recuperado / No resuelto <br>
+														Fatal <br>
+														Desconocido <br>
+													</td>
+												<?php } else if ($DESENLACE_EVENTO == 'No recuperado / No resuelto') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; "> Desenlace del evento (Marcar con una X)</p>
+														Recuperado / Resuelto sin secuelas <br>
+														Recuperado / Resuelto con secuelas <br>
+														Recuperando / Resolviendo <br>
+														<span style="color: #ff0000;">X</span> No recuperado / No resuelto <br>
+														Fatal <br>
+														Desconocido <br>
+													</td>
+												<?php } else if ($DESENLACE_EVENTO == 'Fatal') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; "> Desenlace del evento (Marcar con una X)</p>
+														Recuperado / Resuelto sin secuelas <br>
+														Recuperado / Resuelto con secuelas <br>
+														Recuperando / Resolviendo <br>
+														No recuperado / No resuelto <br>
+														<span style="color: #ff0000;">X</span> Fatal <br>
+														Desconocido <br>
+													</td>
+												<?php } else if ($DESENLACE_EVENTO == 'Desconocido') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; "> Desenlace del evento (Marcar con una X)</p>
+														Recuperado / Resuelto sin secuelas <br>
+														Recuperado / Resuelto con secuelas <br>
+														Recuperando / Resolviendo <br>
+														No recuperado / No resuelto <br>
+														Fatal <br>
+														<span style="color: #ff0000;">X</span> Desconocido <br>
+													</td>
+												<?php } else if ($DESENLACE_EVENTO == '') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; "> Desenlace del evento (Marcar con una X)</p>
+														Recuperado / Resuelto sin secuelas <br>
+														Recuperado / Resuelto con secuelas <br>
+														Recuperando / Resolviendo <br>
+														No recuperado / No resuelto <br>
+														Fatal <br>
+														Desconocido <br>
+													</td>
+												<?php } ?>
+											</tr>
+											<tr>
+												<?php if ($SERIEDAD == 'Produjo o prolongo hospitalizacion') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; ">Seriedad (Marcar con X) </p>
+														<span style="color: #ff0000;">X</span> Produjo o prolongó hospitalización <br>
+														Anomalía congénita <br>
+														Amenaza de vida <br>
+														Muerte (Fecha: _______________) <br>
+														Produjo discapacidad o incapacidad permanente / condición médica importante
+													</td>
+												<?php } else if ($SERIEDAD == 'Anomalia congenita') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; ">Seriedad (Marcar con X) </p>
+														Produjo o prolongó hospitalización <br>
+														<span style="color: #ff0000;">X</span> Anomalía congénita <br>
+														Amenaza de vida <br>
+														Muerte (Fecha: _______________) <br>
+														Produjo discapacidad o incapacidad permanente / condición médica importante
+													</td>
+												<?php } else if ($SERIEDAD == 'Amenaza de vida') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; ">Seriedad (Marcar con X) </p>
+														Produjo o prolongó hospitalización <br>
+														Anomalía congénita <br>
+														<span style="color: #ff0000;">X</span> Amenaza de vida <br>
+														Muerte (Fecha: _______________) <br>
+														Produjo discapacidad o incapacidad permanente / condición médica importante
+													</td>
+												<?php } else if ($SERIEDAD == 'Muerte') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; ">Seriedad (Marcar con X) </p>
+														Produjo o prolongó hospitalización <br>
+														Anomalía congénita <br>
+														Amenaza de vida <br>
+														<span style="color: #ff0000;">X</span> Muerte (Fecha: <?php echo $FECHA_MUERTE ?>) <br>
+														Produjo discapacidad o incapacidad permanente / condición médica importante
+													</td>
+												<?php } else if ($SERIEDAD == 'Produjo discapacidad o incapacidad permanente / condicion medica importante') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; ">Seriedad (Marcar con X) </p>
+														Produjo o prolongó hospitalización <br>
+														Anomalía congénita <br>
+														Amenaza de vida <br>
+														Muerte (Fecha: _______________) <br>
+														<span style="color: #ff0000;">X</span> Produjo discapacidad o incapacidad permanente / condición médica importante
+													</td>
+												<?php } else if ($SERIEDAD == '') { ?>
+													<td style="text-align: left">
+														<p style="font-weight: 700; ">Seriedad (Marcar con X) </p>
+														Produjo o prolongó hospitalización <br>
+														Anomalía congénita <br>
+														Amenaza de vida <br>
+														Muerte (Fecha: _______________) <br>
+														Produjo discapacidad o incapacidad permanente / condición médica importante
+													</td>
+												<?php } ?>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%">
+						<tbody>
+							<tr>
+								<td colspan="4"></td>
+								<td style="font-weight: 700;">Si</td>
+								<td style="font-weight: 700;">No</td>
+								<td style="font-weight: 700;">No sabe</td>
+							</tr>
+							<tr>
+								<td colspan="4" style="text-align: left;">
+									¿El evento se presentó después de administrar el medicamento? <br>
+								</td>
+								<?php
+								if ($PREGUNTA1  == "SI") {
+									$PREGUNTA1 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA1 ?></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+								<?php
+								} elseif ($PREGUNTA1 == "NO") {
+									$PREGUNTA1 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA1 ?></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+								<?php
+								} else {
+									$PREGUNTA1 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA1 ?></span> <br>
+									</td>
+								<?php
+								}
+								?>
+							</tr>
+							<tr>
+								<td colspan="4" style="text-align: left;">
+									¿Existen otros factores que puedan explicar el evento (medicamento, patologías, etc.)? <br>
+								</td>
+								<?php
+								if ($PREGUNTA2  == "SI") {
+									$PREGUNTA2 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA2 ?></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+								<?php
+								} elseif ($PREGUNTA2 == "NO") {
+									$PREGUNTA2 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA2 ?></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+								<?php
+								} else {
+									$PREGUNTA2 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA2 ?></span> <br>
+									</td>
+								<?php
+								}
+								?>
+							</tr>
+							<tr>
+								<td colspan="4" style="text-align: left;">
+									¿El evento desapareció al disminuir o suspender el medicamento sospechoso? <br>
+								</td>
+								<?php
+								if ($PREGUNTA3  == "SI") {
+									$PREGUNTA3 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA3 ?></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+								<?php
+								} elseif ($PREGUNTA3 == "NO") {
+									$PREGUNTA3 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA3 ?></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+								<?php
+								} else {
+									$PREGUNTA3 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA3 ?></span> <br>
+									</td>
+								<?php
+								}
+								?>
+							</tr>
+							<tr>
+								<td colspan="4" style="text-align: left;">
+									¿El paciente ya había presentado la misma reacción al medicamento sospechoso? <br>
+								</td>
+								<?php
+								if ($PREGUNTA4  == "SI") {
+									$PREGUNTA4 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA4 ?></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+								<?php
+								} elseif ($PREGUNTA4 == "NO") {
+									$PREGUNTA4 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA4 ?></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+								<?php
+								} else {
+									$PREGUNTA4 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA4 ?></span> <br>
+									</td>
+								<?php
+								}
+								?>
+							</tr>
+							<tr>
+								<td colspan="4" style="text-align: left;">
+									¿Se puede ampliar la información del paciente relacionando con el evento? <br>
+								</td>
+								<?php
+								if ($PREGUNTA5  == "SI") {
+									$PREGUNTA5 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA5 ?></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+								<?php
+								} elseif ($PREGUNTA5 == "NO") {
+									$PREGUNTA5 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA5 ?></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+								<?php
+								} else {
+									$PREGUNTA5 = "X"
+								?>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"></span> <br>
+									</td>
+									<td style="text-align: center;">
+										<span style=" font-weight:none"><?php echo $PREGUNTA5 ?></span> <br>
+									</td>
+								<?php
+								}
+								?>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+<style>
+	@page {
+		margin: 180px 50px;
+	}
 
-		input[type=text] {
-			width: 40%;
-			height: 17px;
-		}
+	#header {
+		position: fixed;
+		left: 0px;
+		top: -165px;
+		right: 0px;
+		height: 150px;
+		background-color: transparent;
+		text-align: center;
+	}
 
-		input[type=date] {
-			width: 50%;
-		}
+	#footer {
+		position: fixed;
+		left: 0px;
+		bottom: -180px;
+		right: 0px;
+		height: 150px;
+		background-color: transparent;
+	}
 
-		.btn_registrar {
-			padding-top: 2%;
-			background-image: url(imagenes/BTN_CONTINUAR2.png);
-			background-image: url(../presentacion/imagenes/BTN_CONTINUAR2.png);
-			background-repeat: no-repeat;
-			width: 152px;
-			height: 37px;
-			color: transparent;
-			background-color: transparent;
-			border-radius: 5px;
-			border: 1px solid transparent;
-		}
+	#footer .page:after {
+		content: counter(page, upper-roman);
+	}
 
-		.btn_registrar:active {
-			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-			box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
-				inset 0px 0px 20px #EEECEC;
-		}
+	* {
+		font-size: 12px !important;
+	}
 
-		.btn_registrar:hover {
-			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-			box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
-				inset 0px 0px 20px #EEECEC;
-		}
+	.titulos {
+		background-color: #CCECFF;
+		font-family: Tahoma, Geneva, sans-serif;
+		color: #000;
+	}
 
-		.letra {
-			font-family: Tahoma, Geneva, sans-serif;
-		}
-	</style>
-	<tr>
-		<th class="titulos" colspan="4">
-			1. INFORMACION DEL REPORTANTE
-		</th>
-	</tr>
-	<input type="text" name="ID_PACIENTE" id="ID_PACIENTE" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly" style="display:none;">
-	<tr colspan="4">
-		<td style="text-align: center;">
-			<strong>Fecha de Notificacion:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $FECHA_NOTIFICA ?></span>
-		</td>
-		<td style="text-align: center;">
-			<strong>Origen del reporte</strong>
-			<hr>
-			<strong>Departamento - Municipio:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $DEPARTAMENTO ?></span> - <span style=" font-weight:none"><?php echo $MUNICIPIO ?></span>
-		</td>
-		<td style="text-align: center;">
-			<strong>Nombre de la Institucion donde ocurri&oacute; el evento:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $NOMBRE_INSTITUCION ?></span>
-		</td>
-		<td style="text-align: center;">
-			<strong>C&oacute;digo PNF:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $CODIGO_PNF ?></span>
-		</td>
-	</tr>
-	<tr colspan="4">
-		<td colspan="2" style="text-align: center;">
-			<strong>Nombre del Reportante primario:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $NOMBRE_REPORTANTE ?></span>
-		</td>
-		<td style="text-align: center;">
-			<strong>Profesi&oacute;n del reportante primario:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $PROFESION_REPORTANTE ?></span>
-		</td>
-		<td style="text-align: center;">
-			<strong>Correo electr&oacute;nico institucional del reportante primario:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $CORREO_REPORTANTE ?></span>
-		</td>
-	</tr>
-	<tr>
-		<th class="titulos" colspan="4">
-			2. INFORMACION DEL PACIENTE
-		</th>
-	</tr>
-	<tr>
-		<td style="text-align: center;">
-			<strong>Fecha de nacimiento del paciente:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $FECHA_NACIMIENTO_PACIENTE ?></span>
-		</td>
-		<td style="text-align: center;">
-			<strong>Edad del paciente en el momento del EA</strong>
-			<hr>
-			<strong>Edad:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $EDAD_PACIENTE ?></span>
-		</td>
-		<td style="text-align: center;">
-			<strong>Tipo de identificacion - Numero de identificacion del paciente:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $TIPO_DOCUMENTO_PACIENTE ?></span> - <span style=" font-weight:none"><?php echo $NUMERO_DOCUMENTO_PACIENTE ?></span>
-		</td>
-		<td style="text-align: center;">
-			<strong>Iniciales del paciente:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $INICIALES_PACIENTE ?></span>
-		</td>
-	</tr>
-	<tr>
-		<td style="text-align: center;">
-			<strong>Sexo:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $SEXO ?></span>
-		</td>
-		<td style="text-align: center;">
-			<strong>Peso - Talla:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $PESO ?></span> - <span style=" font-weight:none"><?php echo $TALLA ?></span>
-		</td>
-		<td colspan="2" style="text-align: center;">
-			<strong>Diagnostico principal y otros diagnosticos:</strong><br><br>
-			<div style="text-align: left;">
-				<span style=" font-weight:none"><?php echo $DIAGNOSTICO_PRINCIPAL ?></span>
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<th class="titulos2" colspan="4">
-			3. INFORMACION DE LOS MEDICAMENTOS
-			<P>Registre todos los medicamentos utilizados y marque con una <span style="color:#000">(S)</span> el (los) sospechoso(s), con una <span style="color:#000">(C)</span> el (los) concomitantes y con una <span style="color:#000">(I)</span> las interacciones. </P>
-		</th>
-	</tr>
-	<tr>
-		<th style="text-align: left; background-color: #DBDBDB">S/C/I</th>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $SCI1 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $SCI2 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $SCI3 ?></span> <br></td>
-	</tr>
-	<tr>
-		<th style="text-align: left; background-color: #DBDBDB"> Medicamento
-			<p>(Denominacion Comun Internacional o Nombre generico)</p>
-		</th>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $MEDICAMENTO1 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $MEDICAMENTO2 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $MEDICAMENTO3 ?></span> <br></td>
-	</tr>
-	<tr>
-		<th style="text-align: left; background-color: #DBDBDB"> Indicacion</th>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $INDICACION1 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $INDICACION2 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $INDICACION3 ?></span> <br></td>
-	</tr>
-	<tr>
-		<th style="text-align: left; background-color: #DBDBDB"> Dosis</th>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $DOSIS1 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $DOSIS2 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $DOSIS3 ?></span> <br></td>
-	</tr>
-	<tr>
-		<th style="text-align: left; background-color: #DBDBDB"> Unidad de medida</th>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $UNIDAD_MEDIDA1 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $UNIDAD_MEDIDA2 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $UNIDAD_MEDIDA3 ?></span> <br></td>
-	</tr>
-	<tr>
-		<th style="text-align: left; background-color: #DBDBDB"> Via de administracion</th>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $VIA_ADMINISTRACION1 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $VIA_ADMINISTRACION2 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $VIA_ADMINISTRACION3 ?></span> <br></td>
-	</tr>
-	<tr>
-		<th style="text-align: left; background-color: #DBDBDB"> Frecuencia de administracion</th>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $FRECUENCIA_ADMINISTRACION1 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $FRECUENCIA_ADMINISTRACION2 ?></span> <br></td>
-		<td style="text-align: center;"> <span style=" font-weight:none"><?php echo $FRECUENCIA_ADMINISTRACION3 ?></span> <br></td>
-	</tr>
-	<tr>
-		<th style="text-align: left; background-color: #DBDBDB">
-			Fecha inicio<br />
-		</th>
-		<td style="text-align: center;">
-			<span style=" font-weight:none"><?php echo $FECHA_INICIO1 ?></span> <br>
-		</td>
-		<td style="text-align: center;">
-			<span style=" font-weight:none"><?php echo $FECHA_INICIO2 ?></span> <br>
-		</td>
-		<td style="text-align: center;">
-			<span style=" font-weight:none"><?php echo $FECHA_INICIO3 ?></span> <br>
-		</td>
-	</tr>
-	<tr>
-		<th style="text-align: left; background-color: #DBDBDB">
-			Fecha de finalizacion<br />
-		</th>
-		<td style="text-align: center;">
-			<span style=" font-weight:none"><?php echo $FECHA_FIN1 ?></span> <br>
-		</td>
-		<td style="text-align: center;">
-			<span style=" font-weight:none"><?php echo $FECHA_FIN2 ?></span> <br>
-		</td>
-		<td style="text-align: center;">
-			<span style=" font-weight:none"><?php echo $FECHA_FIN3 ?></span> <br>
-		</td>
-	</tr>
-	<tr>
-		<th colspan="4" style="background-color: #DBDBDB"">
-			Informacion comercial del medicamento sospechoso
-		</th>
-	</tr>
-	<tr>
-		<th>
-			Titular del Registro sanitario
-		</th>
-		<th>
-			Nombre Comercial
-		</th>
-		<th>
-			Registro sanitario
-		</th>
-		<th>
-			Lote
-		</th>
-	</tr>
-	<tr>
-		<td style=" text-align: center;">
-			<span style=" font-weight:none"><?php echo $TITULAR_REGISTRO ?></span> <br>
-			</td>
-		<td style="text-align: center;">
-			<span style=" font-weight:none"><?php echo $NOMBRE_COMERCIAL ?></span> <br>
-		</td>
-		<td style="text-align: center;">
-			<span style=" font-weight:none"><?php echo $REGISTRO_SANITARIO ?></span> <br>
-		</td>
-		<td style="text-align: center;">
-			<span style=" font-weight:none"><?php echo $LOTE ?></span> <br>
-		</td>
-	</tr>
-	<tr>
-		<th class="titulos3" colspan="4">
-			4. INFORMACION DEL EVENTO ADVERSO
-		</th>
-	</tr>
-	<tr>
-		<td colspan="2" style="text-align: center;">
-			<strong>Fecha de Inicio del Evento Adverso:</strong><br><br>
-			<span style=" font-weight:none"><?php echo $FECHA_INICIO_EVENTO ?></span> <br>
-		</td>
-		<td colspan="2" style="text-align: center;">
-			<strong>Evento adverso:</strong><br><br>
-			<div style="text-align: left;">
-				<span style=" font-weight:none"><?php echo $EVENTO_ADVERSO ?></span> <br>
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" style="text-align: center;">
-			<strong>Descripcion y analisis del Evento Adverso:</strong><br><br>
-			<div style="text-align: left;">
-				<span style=" font-weight:none"><?php echo $DESCRIPCION_ANALISIS_EVENTO ?></span> <br>
-			</div>
-		</td>
-		<td style="text-align: center;">
-			<strong>Desenlace del evento (Marcar con una X):</strong><br><br>
-			<span style=" font-weight:none"><?php echo $DESENLACE_EVENTO ?></span> <br>
-		</td>
-		<td style="text-align: center;">
-			<strong>Seriedad (Marcar con X):</strong><br><br>
-			<?php
-			if ($SERIEDAD == "Muerte") {
-			?>
-				<span style=" font-weight:none"><?php echo $SERIEDAD ?></span> <br> <span style=" font-weight:none">Fecha de la muerte: <?php echo $FECHA_MUERTE ?></span><br>
-			<?php
-			} else {
-			?>
-				<span style=" font-weight:none"><?php echo $SERIEDAD ?></span><br>
-			<?php
-			}
-			?>
-		</td>
-	</tr>
-	<tr colspan="4">
-		<th colspan="1">
-		</th>
-		<th colspan="1">
-			SI
-		</th>
-		<th colspan="1">
-			NO
-		</th>
-		<th colspan="1">
-			NO SABE
-		</th>
-	</tr>
-	<tr>
-		<th style="text-align: left;">
-			El evento se presento despues de administrar el medicamento <br>
-		</th>
-		<?php
-		if ($PREGUNTA1  == "SI") {
-			$PREGUNTA1 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA1 ?></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-		<?php
-		} elseif ($PREGUNTA1 == "NO") {
-			$PREGUNTA1 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA1 ?></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-		<?php
-		} else {
-			$PREGUNTA1 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA1 ?></span> <br>
-			</td>
-		<?php
-		}
-		?>
-	</tr>
-	<tr>
-		<th style="text-align: left;">
-			Existen otros factores que puedan explicar el evento (medicamento, patologIas, etc.) <br>
-		</th>
-		<?php
-		if ($PREGUNTA2  == "SI") {
-			$PREGUNTA2 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA2 ?></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-		<?php
-		} elseif ($PREGUNTA2 == "NO") {
-			$PREGUNTA2 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA2 ?></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-		<?php
-		} else {
-			$PREGUNTA2 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA2 ?></span> <br>
-			</td>
-		<?php
-		}
-		?>
-	</tr>
-	<tr>
-		<th style="text-align: left;">
-			El evento desaparecio al disminuir o suspender el medicamento sospechoso <br>
-		</th>
-		<?php
-		if ($PREGUNTA3  == "SI") {
-			$PREGUNTA3 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA3 ?></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-		<?php
-		} elseif ($PREGUNTA3 == "NO") {
-			$PREGUNTA3 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA3 ?></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-		<?php
-		} else {
-			$PREGUNTA3 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA3 ?></span> <br>
-			</td>
-		<?php
-		}
-		?>
-	</tr>
-	<tr>
-		<th style="text-align: left;">
-			El paciente ya habIa presentado la misma reaccion al medicamento sospechoso <br>
-		</th>
-		<?php
-		if ($PREGUNTA4  == "SI") {
-			$PREGUNTA4 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA4 ?></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-		<?php
-		} elseif ($PREGUNTA4 == "NO") {
-			$PREGUNTA4 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA4 ?></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-		<?php
-		} else {
-			$PREGUNTA4 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA4 ?></span> <br>
-			</td>
-		<?php
-		}
-		?>
-	</tr>
-	<tr>
-		<th style="text-align: left;">
-			Se puede ampliar la informacion del paciente relacionando con el evento <br>
-		</th>
-		<?php
-		if ($PREGUNTA5  == "SI") {
-			$PREGUNTA5 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA5 ?></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-		<?php
-		} elseif ($PREGUNTA5 == "NO") {
-			$PREGUNTA5 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA5 ?></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-		<?php
-		} else {
-			$PREGUNTA5 = "X"
-		?>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"></span> <br>
-			</td>
-			<td style="text-align: center;">
-				<span style=" font-weight:none"><?php echo $PREGUNTA5 ?></span> <br>
-			</td>
-		<?php
-		}
-		?>
-	</tr>
-</table>
+	.titulos2 {
+		background-color: #B6DDE8;
+		font-family: Tahoma, Geneva, sans-serif;
+		color: #000;
+	}
+
+	.titulos3 {
+		background-color: #99CCFF;
+		font-family: Tahoma, Geneva, sans-serif;
+		color: #000;
+	}
+
+	.obli {
+		color: #ff0000;
+	}
+
+	.texto {
+		font-weight: lighter;
+		text-align: justify;
+	}
+
+	th {
+		width: 25%;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 10px;
+	}
+
+	input[type=text] {
+		width: 40%;
+		height: 17px;
+	}
+
+	input[type=date] {
+		width: 50%;
+	}
+
+	.btn_registrar {
+		padding-top: 2%;
+		background-image: url(imagenes/BTN_CONTINUAR2.png);
+		background-image: url(../presentacion/imagenes/BTN_CONTINUAR2.png);
+		background-repeat: no-repeat;
+		width: 152px;
+		height: 37px;
+		color: transparent;
+		background-color: transparent;
+		border-radius: 5px;
+		border: 1px solid transparent;
+	}
+
+	.btn_registrar:active {
+		box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+		box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
+			inset 0px 0px 20px #EEECEC;
+	}
+
+	.btn_registrar:hover {
+		box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+		box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
+			inset 0px 0px 20px #EEECEC;
+	}
+
+	.letra {
+		font-family: Tahoma, Geneva, sans-serif;
+	}
+
+	.table td,
+	.table th {
+		padding: 10px;
+		text-align: center;
+		color: black;
+	}
+
+	.table {
+		margin-bottom: 1rem;
+		margin: auto;
+		background-color: transparent;
+	}
+
+	table {
+		border-collapse: collapse;
+	}
+
+	.table-bordered th,
+	.table-bordered td {
+		border: 1px solid black;
+	}
+</style>
+
+</html>

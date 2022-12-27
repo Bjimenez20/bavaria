@@ -2,10 +2,7 @@
 require('../datos/parse_str.php');
 require_once("../datos/conex.php");
 $hoy = date('Y-m-d');
-$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso AS EA
-INNER JOIN ipsen_pacientes AS P ON P.ID_PACIENTE=EA.ID_PACIENTE_FK
-INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
-WHERE EA.ID_EVENTO_ADVERSO='1'");
+$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
 echo mysqli_error($conex);
 while ($fila1 = mysqli_fetch_array($consulta)) {
 	$ID_EVENTO_ADVERSO = $fila1['ID_EVENTO_ADVERSO'];

@@ -2504,6 +2504,7 @@ if ($privilegios != '' && $usua != '') {
                         echo "<td class=AccordionPanelTab><strong>FECHA PROX RECOLECCION</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>CODIGO ARGUS</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>ARCHIVO ADJUNTO</strong></td>";
+                        echo "<td class=AccordionPanelTab><strong>EVENTO ADVERSO</strong></td>";
                         echo "</tr>";
                         $numges = 1;
                         while ($fila2 = mysqli_fetch_array($gestion)) {
