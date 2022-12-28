@@ -973,6 +973,6 @@ $output = $dompdf->output();
 $CARPETA = "../EVENTO_ADVERSO/$ID_GESTION";
 if (!is_dir($CARPETA)) {
     mkdir("../EVENTO_ADVERSO/$ID_GESTION", 0777);
-    file_put_contents('' . $CARPETA . '/Evento_adverso_' . $ID_GESTION . '.pdf', $output);
+    file_put_contents('' . $CARPETA . '/Evento_adverso_' . $ID_EVENTO_ADVERSO . '.pdf', $output);
 }
 include("../presentacion/email/mail.php");
