@@ -37,9 +37,10 @@ if ($privilegios != '' && $usua != '') {
         $APELLIDOS = $opcion['APELLIDOS'];
         $EMAIL = $opcion['EMAIL'];
     }
-    $Seleccion = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` AS P INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK = P.ID_PACIENTE WHERE ID_PACIENTE = '" . $ID_PACIENTE . "'");
+    $Seleccion = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` AS P INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK = P.ID_PACIENTE INNER JOIN ipsen_gestiones AS G ON G.ID_PACIENTE_FK2 = P.ID_PACIENTE WHERE ID_PACIENTE = '" . $ID_PACIENTE . "'");
     while ($fila = mysqli_fetch_array($Seleccion)) {
         $ID_PACIENTE2 = $fila['ID_PACIENTE'];
+        $ID_GESTION2 = $fila['ID_GESTION'];
         $EDAD = $fila['EDAD_PACIENTE'];
         $TIPO_IDENTIFICACION_PACIENTE = $fila['TIPO_IDENTIFICACION_PACIENTE'];
         $IDENTIFICACION_PACIENTE = $fila['IDENTIFICACION_PACIENTE'];
@@ -50,6 +51,9 @@ if ($privilegios != '' && $usua != '') {
         $APELLIDO_PACIENTE = $fila['APELLIDO_PACIENTE'];
         $DEPARTAMENTO_PACIENTE = $fila['DEPARTAMENTO_PACIENTE'];
         $CIUDAD_PACIENTE = $fila['CIUDAD_PACIENTE'];
+        
+
+        $ID_GESTION3 = $ID_GESTION2 + 1; 
     }
 
     $re = '/\b(\w)[^\s]*\s*/m';
@@ -104,7 +108,8 @@ if ($privilegios != '' && $usua != '') {
                                     <tr>
                                         <td colspan="4" class="titulos" style="font-weight: 700">1. INFORMACIÓN DEL REPORTANTE</td>
                                     </tr>
-                                    <input type="text" name="ID_PACIENTE" id="ID_PACIENTE" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly">
+                                    <input type="text" name="ID_PACIENTE" id="ID_PACIENTE" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly" style="display: none;">
+                                    <input type="text" name="ID_GESTION" id="ID_GESTION" value="<?php echo $ID_GESTION3 ?>" readonly="readonly" style="display: none;">
                                     <tr>
                                         <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                             Fecha de notificación

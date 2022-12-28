@@ -64,6 +64,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 	$PREGUNTA3 = $fila1['PREGUNTA3'];
 	$PREGUNTA4 = $fila1['PREGUNTA4'];
 	$PREGUNTA5 = $fila1['PREGUNTA5'];
+	$ID_GESTION = $fila1['ID_GESTION_FK'];
 }
 ?>
 

@@ -779,7 +779,7 @@ if ($privilegios != '' && $usua != '') {
 ?>
 
     <body class="body" style="width:100%;">
-        <form id="seguimiento" name="seguimiento" method="post" action="../logica/actualizar_seguimiento.php" onkeydown="return filtro(2)" enctype="multipart/form-data" class="letra">
+        <form id="seguimiento" name="seguimiento" method="post" action="../logica/actualizar_seguimiento.php" enctype="multipart/form-data" class="letra">
             <div id="Accordion1" class="Accordion" tabindex="0" style="height:100%;">
                 <div class="AccordionPanel">
                     <div class="AccordionPanelTab">PACIENTE</div>
@@ -876,7 +876,7 @@ if ($privilegios != '' && $usua != '') {
                                         <span>Asignado para</span>
                                     </td>
                                     <td>
-                                        <input type="text" value="<?php echo $fila['PROVEEDOR'] ?>" readonly>
+                                        <input type="text" value="<?php echo $fila['PROVEEDOR'] ?>" readonly="readonly">
                                     </td>
                                 </tr>
                                 <tr>
@@ -1057,7 +1057,7 @@ if ($privilegios != '' && $usua != '') {
                                                         <span>Direccion<span class="asterisco">*</span></span>
                                                     </td>
                                                     <td bgcolor="#FFFFFF" colspan="3">
-                                                        <input type="text" name="DIRECCION" id="DIRECCION" readonly style="width:99.8%;" />
+                                                        <input type="text" name="DIRECCION" id="DIRECCION" readonly="readonly" style="width:99.8%;" />
                                                     </td>
                                                 </tr>
                                                 <tr style="padding:3%;">
@@ -1140,7 +1140,7 @@ if ($privilegios != '' && $usua != '') {
                                                         <span>Detalle Interior:</span>
                                                     </td>
                                                     <td bgcolor="#FFFFFF">
-                                                        <input name="detalle_int" id="detalle_int" type="text" maxlength="30" readonly style="width:99%" />
+                                                        <input name="detalle_int" id="detalle_int" type="text" maxlength="30" readonly="readonly" style="width:99%" />
                                                     </td>
                                                 </tr>
                                                 <tr style="padding:3%;">
@@ -1178,7 +1178,7 @@ if ($privilegios != '' && $usua != '') {
                                                         <span>Detalle Interior:</span>
                                                     </td>
                                                     <td bgcolor="#FFFFFF">
-                                                        <input name="detalle_int2" id="detalle_int2" type="text" maxlength="30" readonly style="width:99%" />
+                                                        <input name="detalle_int2" id="detalle_int2" type="text" maxlength="30" readonly="readonly" style="width:99%" />
                                                     </td>
                                                 </tr>
                                                 <tr style="padding:3%;">
@@ -1216,7 +1216,7 @@ if ($privilegios != '' && $usua != '') {
                                                         <span>Detalle Interior:</span>
                                                     </td>
                                                     <td bgcolor="#FFFFFF">
-                                                        <input name="detalle_int3" id="detalle_int3" type="text" maxlength="30" style="width:99%" readonly />
+                                                        <input name="detalle_int3" id="detalle_int3" type="text" maxlength="30" style="width:99%" readonly="readonly" />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -1571,10 +1571,10 @@ if ($privilegios != '' && $usua != '') {
                             </td>
                             <td>
                                 <div id="solicitud_cambio_proveedor_people" style="display:none">
-                                    <input type="text" name="proveedor_people" id="proveedor_people" value='People Marketing' readonly>
+                                    <input type="text" name="proveedor_people" id="proveedor_people" value='People Marketing' readonly="readonly">
                                 </div>
                                 <div id="solicitud_cambio_proveedor_psp" style="display:none">
-                                    <input type="text" name="proveedor_psp" id="proveedor_psp" value='People Marketing' readonly>
+                                    <input type="text" name="proveedor_psp" id="proveedor_psp" value='People Marketing' readonly="readonly">
                                 </div>
                             </td>
                             <!-- <td>
@@ -1584,10 +1584,10 @@ if ($privilegios != '' && $usua != '') {
                                 <span id="cambio_estado_interrumpido_solicitar" style="display:none;">Solicitar cambio de estado Paciente</span>
                             </td>
                             <td>
-                                <input type="text" name="estado_activo" id="estado_activo" style="display:none;" value="Activo" readonly>
-                                <input type="text" name="estado_abandono" id="estado_abandono" style="display:none;" value="Abandono" readonly>
-                                <input type="text" name="estado_suspendido" id="estado_suspendido" style="display:none;" value="Suspendido" readonly>
-                                <input type="text" name="estado_interrumpido" id="estado_interrumpido" style="display:none;" value="Interrumpido" readonly>
+                                <input type="text" name="estado_activo" id="estado_activo" style="display:none;" value="Activo" readonly="readonly">
+                                <input type="text" name="estado_abandono" id="estado_abandono" style="display:none;" value="Abandono" readonly="readonly">
+                                <input type="text" name="estado_suspendido" id="estado_suspendido" style="display:none;" value="Suspendido" readonly="readonly">
+                                <input type="text" name="estado_interrumpido" id="estado_interrumpido" style="display:none;" value="Interrumpido" readonly="readonly">
                             </td> -->
                         </tr>
                         <tr>
@@ -1801,7 +1801,7 @@ if ($privilegios != '' && $usua != '') {
                                     <option>Gestion Barreras</option>
                                     <option>Grupo de Apoyo</option>
                                     <option>Ingreso</option>
-                                    <option>Reclamo / Bayer a tu casa</option>
+                                    <option>Reclamo</option>
                                     <option>Titulacion</option>
                                 </select>
                                 <br />
@@ -2175,7 +2175,7 @@ if ($privilegios != '' && $usua != '') {
                                     <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%; display:none" value="" checked="checked" />
                                     <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Farmacovigilancia" />Farmacovigilancia
                                     <br />
-                                    <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia I-neb" />Tecnovigilancia I-neb
+                                    <!-- <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia I-neb" />Tecnovigilancia I-neb -->
                                     <input type="button" name="tipo_evento_adverso2" id="tipo_evento_adverso2" style="background-image:url(imagenes/agregar.png); background-repeat:no-repeat;  width:41px; height:38px; border:1px solid transparent; background-color:transparent" onclick="javascript:ventanaSecundaria('form_evento_adverso.php?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>')" />
                                 </div>
                                 <br />
@@ -2210,7 +2210,7 @@ if ($privilegios != '' && $usua != '') {
                                     <option>Reclamacion</option>
                                     <option>Remision de Caso</option>
                                     <option>Respuesta de Caso</option>
-                                    <option>Reclamo / Bayer a tu casa</option>
+                                    <option>Reclamo</option>
                                     <option>Seguimiento</option>
                                 </select>
                                 <br />
@@ -2502,7 +2502,7 @@ if ($privilegios != '' && $usua != '') {
                         echo "<th class=AccordionPanelTab><strong>MOTIVO COMUNICACION GESTION</strong></th>";
                         echo "<td class=AccordionPanelTab><strong>FECHA ULTI RECOLECCION</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>FECHA PROX RECOLECCION</strong></td>";
-                        echo "<td class=AccordionPanelTab><strong>CODIGO ARGUS</strong></td>";
+                        echo "<td class=AccordionPanelTab><strong>CODIGO EA</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>ARCHIVO ADJUNTO</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>EVENTO ADVERSO</strong></td>";
                         echo "</tr>";
@@ -2575,6 +2575,35 @@ if ($privilegios != '' && $usua != '') {
                                 ?>
                                 <td>
                                 </td>
+                                <?php
+                            }
+                            $ID_GES = $fila2['ID_GESTION'];
+                            $dir = "../EVENTO_ADVERSO/$ID_GES";
+                            if (file_exists($dir)) {
+                                $directorio = opendir($dir);
+                                while ($archivo = readdir($directorio)) {
+                                    if ($archivo == '.' or $archivo == '..') {
+                                    } else {
+                                        $enlace = $dir . "/" . $archivo;
+                                ?>
+                                        <td>
+                                            <a class="highslide" onclick="return hs.expand(this)">
+                                                <img src="<?php echo $enlace; ?>" alt="" title="Click to enlarge" height="100" width="100" onclick="javascript:this.width=500;this.height=500" ondblclick="javascript:this.width=100;this.height=100" /></a>
+                                            <a href="<?php echo $enlace; ?>">ver</a>
+                                            <br />
+                                            <br />
+                                        </td>
+                                <?php
+                                    }
+                                }
+                                closedir($directorio);
+                            } else {
+                                ?>
+                                <td>
+                                    <!-- <a class="highslide" onclick="return hs.expand(this)">
+                                        <img src="../EVENTO_ADVERSO/Evento_Adverso_2820.pdf" alt="" title="Click to enlarge" height="100" width="100" onclick="javascript:this.width=500;this.height=500" ondblclick="javascript:this.width=100;this.height=100" /></a>
+                                    <a href="../EVENTO_ADVERSO/Evento_Adverso_2820.pdf">ver</a> -->
+                                </td>
                         <?php
                             }
                             echo "</tr>";
@@ -2607,7 +2636,7 @@ if ($privilegios != '' && $usua != '') {
                             });
                         </script>
                         <center>
-                            <?PHP
+                            <?php
                             if ($privilegios != 5) {
                             ?>
                                 <input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_registrar" onClick="return validar(seguimiento,2)" />
