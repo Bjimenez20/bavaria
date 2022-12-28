@@ -111,8 +111,8 @@ if ($privilegios != '' && $usua != '') {
                                     <tr>
                                         <td colspan="4" class="titulos" style="font-weight: 700">1. INFORMACIÓN DEL REPORTANTE</td>
                                     </tr>
-                                    <input type="text" name="ID_PACIENTE" id="ID_PACIENTE" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly">
-                                    <input type="text" name="ID_GESTION" id="ID_GESTION" value="<?php echo $ID_GESTION3 ?>" readonly="readonly">
+                                    <input type="text" name="ID_PACIENTE" id="ID_PACIENTE" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly" style="display: none;">
+                                    <input type="text" name="ID_GESTION" id="ID_GESTION" value="<?php echo $ID_GESTION3 ?>" readonly="readonly" style="display: none;">
                                     <tr>
                                         <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                             Fecha de notificación
