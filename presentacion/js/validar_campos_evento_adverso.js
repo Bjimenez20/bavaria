@@ -1,11 +1,11 @@
 function validar(tuformulario, val) {
 
-    var FECHA_NOTIFICACION = $('#fecha_notificacion').val();
-    if (FECHA_NOTIFICACION == '') {
-        alert('La fecha notificacion esta vacia');
-        $('#fecha_notificacion').focus();
-        return false;
-    }
+    // var FECHA_NOTIFICACION = $('#fecha_notificacion').val();
+    // if (FECHA_NOTIFICACION == '') {
+    //     alert('La fecha notificacion esta vacia');
+    //     $('#fecha_notificacion').focus();
+    //     return false;
+    // }
 
     var DEPARTAMENTO = $('#departamento').val();
     if (DEPARTAMENTO == '') {
@@ -119,26 +119,26 @@ function validar(tuformulario, val) {
         return false;
     }
 
-    var FECHA_INICIO = $('#fecha_inicio1').val();
-    if (FECHA_INICIO == '') {
-        alert('La fecha de inicio esta vacia');
-        $('#fecha_inicio1');
-        return false;
-    }
+    // var FECHA_INICIO = $('#fecha_inicio1').val();
+    // if (FECHA_INICIO == '') {
+    //     alert('La fecha de inicio esta vacia');
+    //     $('#fecha_inicio1');
+    //     return false;
+    // }
 
-    var FECHA_FIN = $('#fecha_fin1').val();
-    if (FECHA_FIN == '') {
-        alert('La fecha de finalizacion esta vacia');
-        $('#fecha_fin1');
-        return false;
-    }
+    // var FECHA_FIN = $('#fecha_fin1').val();
+    // if (FECHA_FIN == '') {
+    //     alert('La fecha de finalizacion esta vacia');
+    //     $('#fecha_fin1');
+    //     return false;
+    // }
 
-    var FECHA_INICIO_EVENTO = $('#fecha_ini_evento').val();
-    if (FECHA_INICIO_EVENTO == '') {
-        alert('La fecha de inicio del evento esta vacia');
-        $('#fecha_ini_evento');
-        return false;
-    }
+    // var FECHA_INICIO_EVENTO = $('#fecha_ini_evento').val();
+    // if (FECHA_INICIO_EVENTO == '') {
+    //     alert('La fecha de inicio del evento esta vacia');
+    //     $('#fecha_ini_evento');
+    //     return false;
+    // }
 
     // var EVENTO_ADVERSO = $('#evento_adverso').val();
     // if (EVENTO_ADVERSO == '') {

@@ -527,7 +527,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                                         Anomalía congénita <br>
                                                         Amenaza de vida <br>
                                                         Muerte (Fecha: _______________) <br>
-                                                        Produjo discapacidad o incapacidad permanente / condición médica importante
+                                                        Produjo discapacidad o incapacidad permanente / condición médica importante <br>
+                                                        Ninguno
                                                     </td>
                                                 <?php } else if ($SERIEDAD == 'Anomalia congenita') { ?>
                                                     <td style="text-align: left">
@@ -536,7 +537,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                                         <span style="color: #ff0000;">X</span> Anomalía congénita <br>
                                                         Amenaza de vida <br>
                                                         Muerte (Fecha: _______________) <br>
-                                                        Produjo discapacidad o incapacidad permanente / condición médica importante
+                                                        Produjo discapacidad o incapacidad permanente / condición médica importante <br>
+                                                        Ninguno
                                                     </td>
                                                 <?php } else if ($SERIEDAD == 'Amenaza de vida') { ?>
                                                     <td style="text-align: left">
@@ -545,7 +547,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                                         Anomalía congénita <br>
                                                         <span style="color: #ff0000;">X</span> Amenaza de vida <br>
                                                         Muerte (Fecha: _______________) <br>
-                                                        Produjo discapacidad o incapacidad permanente / condición médica importante
+                                                        Produjo discapacidad o incapacidad permanente / condición médica importante <br>
+                                                        Ninguno
                                                     </td>
                                                 <?php } else if ($SERIEDAD == 'Muerte') { ?>
                                                     <td style="text-align: left">
@@ -554,7 +557,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                                         Anomalía congénita <br>
                                                         Amenaza de vida <br>
                                                         <span style="color: #ff0000;">X</span> Muerte (Fecha: <?php echo $FECHA_MUERTE ?>) <br>
-                                                        Produjo discapacidad o incapacidad permanente / condición médica importante
+                                                        Produjo discapacidad o incapacidad permanente / condición médica importante <br>
+                                                        Ninguno
                                                     </td>
                                                 <?php } else if ($SERIEDAD == 'Produjo discapacidad o incapacidad permanente / condicion medica importante') { ?>
                                                     <td style="text-align: left">
@@ -563,16 +567,29 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                                         Anomalía congénita <br>
                                                         Amenaza de vida <br>
                                                         Muerte (Fecha: _______________) <br>
-                                                        <span style="color: #ff0000;">X</span> Produjo discapacidad o incapacidad permanente / condición médica importante
+                                                        <span style="color: #ff0000;">X</span> Produjo discapacidad o incapacidad permanente / condición médica importante <br>
+                                                        Ninguno
                                                     </td>
-                                                <?php } else if ($SERIEDAD == '') { ?>
+                                                <?php } else if ($SERIEDAD == 'Ninguno') { ?>
                                                     <td style="text-align: left">
                                                         <p style="font-weight: 700; ">Seriedad (Marcar con X) </p>
                                                         Produjo o prolongó hospitalización <br>
                                                         Anomalía congénita <br>
                                                         Amenaza de vida <br>
                                                         Muerte (Fecha: _______________) <br>
-                                                        Produjo discapacidad o incapacidad permanente / condición médica importante
+                                                        Produjo discapacidad o incapacidad permanente / condición médica importante <br>
+                                                        <span style="color: #ff0000;">X</span> Ninguno
+                                                    </td>
+                                                <?php } else if ($SERIEDAD == '') {
+                                                ?>
+                                                    <td style="text-align: left">
+                                                        <p style="font-weight: 700; ">Seriedad (Marcar con X) </p>
+                                                        Produjo o prolongó hospitalización <br>
+                                                        Anomalía congénita <br>
+                                                        Amenaza de vida <br>
+                                                        Muerte (Fecha: _______________) <br>
+                                                        Produjo discapacidad o incapacidad permanente / condición médica importante <br>
+                                                        Ninguno
                                                     </td>
                                                 <?php } ?>
                                             </tr>

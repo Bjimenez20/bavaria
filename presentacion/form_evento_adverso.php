@@ -438,6 +438,7 @@ if ($privilegios != '' && $usua != '') {
                                             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                                 <tbody>
                                                     <tr>
+                                                        <hr>
                                                         <p style="font-weight: 700; "> Desenlace del evento (Marcar con una X)</p>
                                                         <hr>
                                                         <div style="text-align: left;">
@@ -451,6 +452,7 @@ if ($privilegios != '' && $usua != '') {
                                                         </div>
                                                     </tr>
                                                     <tr>
+                                                        <hr>
                                                         <p style="font-weight: 700; ">Seriedad (Marcar con X) </p>
                                                         <hr>
                                                         <div style="text-align: left;">
@@ -461,6 +463,7 @@ if ($privilegios != '' && $usua != '') {
                                                             <input type="radio" name="seriedad" id="seriedad" value="Muerte" onchange="trat_previo(this)"> Muerte
                                                             <div id="fecha_muerte_id" style="display: none;"> Fecha Muerte:<span class="obli">*</span><input type="date" name="fecha_muerte" id="fecha_muerte"></div><br>
                                                             <input type="radio" name="seriedad" id="seriedad" value="Produjo discapacidad o incapacidad permanente / condicion medica importante" onchange="trat_previo(this)"> Produjo discapacidad o incapacidad permanente / condición médica importante <br>
+                                                            <input type="radio" name="seriedad" id="seriedad" value="Ninguno" onchange="trat_previo(this)"> Ninguno <br>
                                                         </div>
                                                     </tr>
                                                 </tbody>

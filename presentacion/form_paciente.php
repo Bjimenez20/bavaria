@@ -350,8 +350,8 @@ include('../logica/session.php')
                 type: 'post',
                 beforeSend: function() {
                     $("#asegurador").attr('disabled', 'disabled');
-                    $('#operador_logistico').html('');
-                    $("#operador_logistico").attr('disabled', 'disabled');
+                    // $('#operador_logistico').html('');
+                    // $("#operador_logistico").attr('disabled', 'disabled');
                 },
                 success: function(data) {
                     $("#asegurador").removeAttr('disabled');
