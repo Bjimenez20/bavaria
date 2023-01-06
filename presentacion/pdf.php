@@ -70,7 +70,9 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
     $PREGUNTA3 = $fila1['PREGUNTA3'];
     $PREGUNTA4 = $fila1['PREGUNTA4'];
     $PREGUNTA5 = $fila1['PREGUNTA5'];
+    $ID_PAP = $fila1['ID_PACIENTE_FK'];
     $ID_GESTION = $fila1['ID_GESTION_FK'];
+    $URL_PDF = $fila1['URL_PDF'];
 }
 ?>
 <!DOCTYPE html>
@@ -990,6 +992,6 @@ $output = $dompdf->output();
 $CARPETA = "../EVENTO_ADVERSO/$ID_GESTION";
 if (!is_dir($CARPETA)) {
     mkdir("../EVENTO_ADVERSO/$ID_GESTION", 0777);
-    file_put_contents('' . $CARPETA . '/Evento_adverso_' . $ID_EVENTO_ADVERSO . '.pdf', $output);
+    file_put_contents('' . $CARPETA . '/Evento_Adverso_' . $ID_PACIENTE . '.pdf', $output);
 }
 include("../presentacion/email/mail.php");
