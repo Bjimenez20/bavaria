@@ -163,6 +163,12 @@
                                     <span class="sidebar-normal"> Otros reportes </span>
                                 </a>
                             </li>
+                            <li class="nav-item select_menu">
+                                <a class="nav-link" href="../presentacion/form_bi.php" target="info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="material-icons">leaderboard </i>
+                                    <span class="sidebar-normal"> BI </span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
