@@ -38,6 +38,8 @@ if ($privilegios != '' && $usua != '') {
                             <option value="">SELECCIONE...</option>
                             <option value="1">COORDINADOR(A)</option>
                             <option value="2">ASESOR(A)</option>
+                            <option value="3">BODEGA</option>
+                            <option value="4">CLIENTE</option>
                         </select>
                     </th>
                     <th>

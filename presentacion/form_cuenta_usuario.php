@@ -100,13 +100,10 @@ if ($privilegios != '' && $usua != '') {
 						$PERFIL = 'BODEGA';
 					}
 					if ($privilegios == 4) {
-						$PERFIL = 'FUNDEM';
-					}
-					if ($privilegios == 5) {
 						$PERFIL = 'CLIENTE';
 					}
-					if ($privilegios == 6) {
-						$PERFIL = 'ASEI';
+					if ($privilegios == 5) {
+						$PERFIL = 'OTRO';
 					}
 					?>
 					<td>

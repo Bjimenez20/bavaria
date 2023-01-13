@@ -38,7 +38,7 @@ if (mysqli_num_rows($sql) > 0) {
 				require("../presentacion/inicio_bodega.php");
 				break;
 			case '4':
-				require("../presentacion/inicio_fundem.php");
+				require("../presentacion/inicio_cliente.php");
 				break;
 			case '5':
 				require("../presentacion/inicio_consultas.php");

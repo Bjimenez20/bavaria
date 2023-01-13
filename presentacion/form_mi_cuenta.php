@@ -23,6 +23,7 @@ if ($privilegios != '' && $usua != '') {
 		$USER = $DATOS['USER'];
 		$CONTRASENA = $DATOS['CONTRASENA'];
 		$NOMBRES = $DATOS['NOMBRES'];
+		$PERFIL = $DATOS['PRIVILEGIOS'];
 		$APELLIDOS = $DATOS['APELLIDOS'];
 		$CELULAR = $DATOS['CELULAR'];
 		$PROGRAMA = $DATOS['PROGRAMA'];
@@ -85,24 +86,24 @@ if ($privilegios != '' && $usua != '') {
 						<span>PERFIL</span>
 					</td>
 					<?php
-					if ($privilegios == 1) {
-						$PERFIL = 'ADMINISTRADOR(A)';
+					if ($PERFIL == 1) {
+						$ROL = 'ADMINISTRADOR(A)';
 					}
-					if ($privilegios == 2) {
-						$PERFIL = 'ASESOR';
+					if ($PERFIL == 2) {
+						$ROL = 'ASESOR';
 					}
-					if ($privilegios == 3) {
-						$PERFIL = 'BODEGA';
+					if ($PERFIL == 3) {
+						$ROL = 'BODEGA';
 					}
-					if ($privilegios == 4) {
-						$PERFIL = 'FUNDEM';
+					if ($PERFIL == 4) {
+						$ROL = 'CLIENTE';
 					}
-					if ($privilegios == 5) {
-						$PERFIL = 'CLIENTE';
+					if ($PERFIL == 5) {
+						$ROL = 'OTRO';
 					}
 					?>
 					<td>
-						<input type="text" name="PERFIL" id="PERFIL" placeholder="PERFIL" readonly value="<?php echo $PERFIL ?>" />
+						<input type="text" name="PERFIL" id="PERFIL" placeholder="PERFIL" readonly value="<?php echo $ROL ?>" />
 					</td>
 				</tr>
 			</table>

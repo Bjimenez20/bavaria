@@ -44,58 +44,26 @@
                     $('#content_welcome').show('slow');
                 }
             </script>
-            <?php
-            if ($privilegios == '4') {
-            ?>
-                <li class="nav-item select_menu">
-                    <a class="nav-link" href="../presentacion/envio_muestra_medica.php" target="info">
-                        <i class="material-icons">send</i>
-                        <p> Envio Muestra Medica</p>
-                    </a>
-                </li>
-                <li class="nav-item select_menu">
-                    <a class="nav-link" href="../presentacion/form_paciente_seguimiento.php" target="info">
-                        <i class="material-icons">badge</i>
-                        <p> Seguimiento </p>
-                    </a>
-                </li>
-            <?php
-            }
-            ?>
-            <?php
-            if ($privilegios == '3') {
-            ?>
-                <li class="nav-item select_menu">
-                    <a class="nav-link" href="../presentacion/form_solicitudes_material.php" target="info">
-                        <i class="material-icons">person_add</i>
-                        <p> Solicitud Material</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples2">
-                        <i class="material-icons">image</i>
-                        <p> Productos
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="pagesExamples2">
-                        <ul class="nav">
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/form_registro_material.php" target="info">
-                                    <span class="sidebar-mini"> P </span>
-                                    <span class="sidebar-normal"> Registro material </span>
-                                </a>
-                            </li>
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/form_inventario.php" target="info">
-                                    <span class="sidebar-mini"> RS </span>
-                                    <span class="sidebar-normal"> Inventario </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            <?php } ?>
+
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#pagesExamples3">
+                    <i class="material-icons">pie_chart</i>
+                    <p> Reportes
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="pagesExamples3">
+                    <ul class="nav">
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../presentacion/form_bi.php" target="info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="material-icons">leaderboard </i>
+                                <span class="sidebar-normal"> BI </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#pagesExamples5">
                     <i class="material-icons">settings</i>

@@ -64,6 +64,12 @@ if ($privilegios != '' && $usua != '') {
                                 $perfil = 'ASESOR(A)';
                             }
                             if ($fila1['PRIVILEGIOS'] == 3) {
+                                $perfil = 'BODEGA';
+                            }
+                            if ($fila1['PRIVILEGIOS'] == 4) {
+                                $perfil = 'CLIENTE';
+                            }
+                            if ($fila1['PRIVILEGIOS'] == 5) {
                                 $perfil = 'OTRO';
                             }
                             if ($fila1['ESTADO'] == 1) {
