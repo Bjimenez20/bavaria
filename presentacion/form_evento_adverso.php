@@ -64,6 +64,15 @@ if ($privilegios != '' && $usua != '') {
     $subst = '$1';
 
     $result = preg_replace($re, $subst, $str);
+
+    $SELECT_EV = mysqli_query($conex, "SELECT COUNT(*) AS EV FROM `ipsen_gestiones` WHERE ID_PACIENTE_FK2 = '" . $ID_PACIENTE2 . "' AND EVENTO_ADVERSO_GESTION = 'SI'");
+    $data = mysqlI_fetch_assoc($SELECT_EV);
+
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    $cad = '';
+    for ($i = 0; $i < 8; $i++) {
+        $cad .= substr($characters, rand(0, 61), 1);
+    }
 ?>
 
     <body style="padding: 0; margin: 0;">
@@ -72,10 +81,7 @@ if ($privilegios != '' && $usua != '') {
                 <tbody>
                     <tr>
                         <td>
-                            <?php
-                            $url = 'http://localhost/ipsen/presentacion/imagenes/EA.png'
-                            ?>
-                            <img src="<?php echo $url ?>" alt="" width="170" height="75" />
+                            <img src="../presentacion/imagenes/EA.png" alt="" width="170" height="75" />
                         </td>
                         <td>
                             <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -109,7 +115,7 @@ if ($privilegios != '' && $usua != '') {
                             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                 <tbody>
                                     <tr>
-                                        <td colspan="4" class="titulos" style="font-weight: 700">1. INFORMACIÓN DEL REPORTANTE</td>
+                                        <td colspan="4" class="titulos" style="font-weight: 700">1. INFORMACIÓN DEL REPORTANTE <?PHP echo $EV ?></td>
                                     </tr>
                                     <input type="text" name="ID_PACIENTE" id="ID_PACIENTE" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly" style="display: none;">
                                     <input type="text" name="ID_GESTION" id="ID_GESTION" value="<?php echo $ID_GESTION3 ?>" readonly="readonly" style="display: none;">
@@ -144,8 +150,11 @@ if ($privilegios != '' && $usua != '') {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td style="font-weight: 700; background-color: #DBDBDB;">
                                             Nombre del Reportante primario
+                                        </td>
+                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                            Consecutivo
                                         </td>
                                         <td style="font-weight: 700; background-color: #DBDBDB;">
                                             Profesión del reportante primario
@@ -155,8 +164,12 @@ if ($privilegios != '' && $usua != '') {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
+                                        <td>
                                             <input type="text" name="nombre_usuario" id="nombre_usuario" value="<?php echo $NOMBRES . ' ' . $APELLIDOS ?>" readonly="readonly" style="width:90%; height:100%;">
+                                        </td>
+                                        <td>
+                                            <!-- <input type="text" name="consecutivo" id="consecutivo" value="<?php echo $cad . ' - V' . $data['EV'] ?>" readonly="readonly" style="width:90%; height:100%;"> -->
+                                            <input type="text" name="consecutivo" id="consecutivo" value="<?php echo $cad ?>" readonly="readonly" style="width:90%; height:100%;">
                                         </td>
                                         <td>
                                             <input type="text" name="profecion_usuario" id="profecion_usuario" style="width:90%; height:100%;">

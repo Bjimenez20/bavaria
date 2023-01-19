@@ -60,6 +60,21 @@ function validar(tuformulario, val) {
 				$('#fecha_reclamacion').focus();
 				return false;
 			}
+
+			var APLICACION = $("#aplicacion_m").val();
+			if (APLICACION == '' || APLICACION == 'Seleccione...') {
+				alert('La aplicacion esta vacia');
+				$('#aplicacion_m').focus();
+				return false;
+			}
+			if (APLICACION == 'SI') {
+				var FECHA_APLICACION = $("#fecha_aplicacion").val();
+				if (FECHA_APLICACION == '') {
+					alert('La fecha de aplicacion esta vacia');
+					$('#fecha_aplicacion').focus();
+					return false;
+				}
+			}
 			var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
 			var FECHA_ACTUAL = $("#fecha_actual").val();
 			if (FECHA_RECLAMACION > FECHA_ACTUAL) {
@@ -93,6 +108,20 @@ function validar(tuformulario, val) {
 				$('#fecha_reclamacion').focus();
 				return false;
 			}
+			var APLICACION = $("#aplicacion_m").val();
+			if (APLICACION == '' || APLICACION == 'Seleccione...') {
+				alert('La aplicacion esta vacia');
+				$('#aplicacion_m').focus();
+				return false;
+			}
+			if (APLICACION == 'SI') {
+				var FECHA_APLICACION = $("#fecha_aplicacion").val();
+				if (FECHA_APLICACION == '') {
+					alert('La fecha de aplicacion esta vacia');
+					$('#fecha_aplicacion').focus();
+					return false;
+				}
+			}
 			var NUMERO_CAJAS = $("#numero_cajas").val();
 			if (NUMERO_CAJAS == '') {
 				alert('El numero de cajas esta vacio');
@@ -103,6 +132,13 @@ function validar(tuformulario, val) {
 			if (TIPO_NUMERO_CAJAS == '') {
 				alert('El tipo numero de cajas esta vacio');
 				$('#tipo_numero_cajas').focus();
+				return false;
+			}
+
+			var NUMERO_AUTORIZACIONES = $("#estado_ctc").val();
+			if (NUMERO_AUTORIZACIONES == 'Seleccione...') {
+				alert('Numero De Autorizacion esta vacio');
+				$('#estado_ctc').focus();
 				return false;
 			}
 		}
@@ -127,6 +163,13 @@ function validar(tuformulario, val) {
 		if (CAUSA_NO_RECLAMACION == '' || CAUSA_NO_RECLAMACION == 'Seleccione...') {
 			alert('La causa de no reclamacion esta vacia');
 			$('#causa_no_reclamacion').focus();
+			return false;
+		}
+
+		var NUMERO_AUTORIZACIONES = $("#estado_ctc").val();
+		if (NUMERO_AUTORIZACIONES == '' || NUMERO_AUTORIZACIONES == 'Seleccione...') {
+			alert('Numero De Autorizacion esta vacio');
+			$('#estado_ctc').focus();
 			return false;
 		}
 	}
@@ -423,6 +466,20 @@ function validar(tuformulario, val) {
 					$('#fecha_reclamacion').focus();
 					return false;
 				}
+				var APLICACION = $("#aplicacion_m").val();
+				if (APLICACION == '' || APLICACION == 'Seleccione...') {
+					alert('La aplicacion esta vacia');
+					$('#aplicacion_m').focus();
+					return false;
+				}
+				if (APLICACION == 'SI') {
+					var FECHA_APLICACION = $("#fecha_aplicacion").val();
+					if (FECHA_APLICACION == '') {
+						alert('La fecha de aplicacion esta vacia');
+						$('#fecha_aplicacion').focus();
+						return false;
+					}
+				}
 				var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
 				var FECHA_ACTUAL = $("#fecha_actual").val();
 				if (FECHA_RECLAMACION > FECHA_ACTUAL) {
@@ -455,6 +512,20 @@ function validar(tuformulario, val) {
 					alert('La fecha de reclamacion esta vacia');
 					$('#fecha_reclamacion').focus();
 					return false;
+				}
+				var APLICACION = $("#aplicacion_m").val();
+				if (APLICACION == '' || APLICACION == 'Seleccione...') {
+					alert('La aplicacion esta vacia');
+					$('#aplicacion_m').focus();
+					return false;
+				}
+				if (APLICACION == 'SI') {
+					var FECHA_APLICACION = $("#fecha_aplicacion").val();
+					if (FECHA_APLICACION == '') {
+						alert('La fecha de aplicacion esta vacia');
+						$('#fecha_aplicacion').focus();
+						return false;
+					}
 				}
 				var NUMERO_CAJAS = $("#numero_cajas").val();
 				if (NUMERO_CAJAS == '') {
@@ -537,6 +608,12 @@ function validar(tuformulario, val) {
 			$('#genera_solicitud').focus();
 			return false;
 		}
+		var NUMERO_AUTORIZACIONES = $("#estado_ctc").val();
+		if (NUMERO_AUTORIZACIONES == '' || NUMERO_AUTORIZACIONES == 'Seleccione...') {
+			alert('Numero De Autorizacion esta vacio');
+			$('#estado_ctc').focus();
+			return false;
+		}
 		var EVENTO_ADVERSO = $('input:radio[name=evento_adverso]:checked').val();
 		if (EVENTO_ADVERSO == '') {
 			alert('El evento adverso esta vacio');
@@ -602,6 +679,12 @@ function validar(tuformulario, val) {
 			$('#fecha_proxima_llamada').focus();
 			return false;
 		}
+		var NUMERO_AUTORIZACIONES = $("#estado_ctc").val();
+		if (NUMERO_AUTORIZACIONES == '' || NUMERO_AUTORIZACIONES == 'Seleccione...') {
+			alert('Numero De Autorizacion esta vacio');
+			$('#estado_ctc').focus();
+			return false;
+		}
 		var MOTIVO_PROXIMA_LLAMADA = $("#motivo_proxima_llamada").val();
 		if (MOTIVO_PROXIMA_LLAMADA == '') {
 			alert('El motivo de proxima llamada esta vacio');
@@ -635,6 +718,13 @@ function validar(tuformulario, val) {
 				}
 			}
 		}
+		var FRECUENCIA = $("#frecuencia").val();
+		if (FRECUENCIA == '') {
+			alert('La frecuencia esta vacia');
+			$('#frecuencia').focus();
+			return false;
+		}
+
 		var DESCRIPCION_COMUNICACION = $("#descripcion_comunicacion").val();
 		if (DESCRIPCION_COMUNICACION == '') {
 			alert('La descripcion de comunicacion esta vacia');
@@ -667,75 +757,6 @@ function validar(tuformulario, val) {
 			$('#via_recepcion').focus();
 			return false;
 		}
-		/*var RECLAMO=$("#reclamo").val();
-		if(RECLAMO==''||RECLAMO=='Seleccione...')
-		{
-			alert('El reclamo esta vacio');
-			$('#reclamo').focus();
-			return false;
-		}
-		if(RECLAMO=='SI')
-		{
-			var MEDICAMENTO=$("#MEDICAMENTO").val();
-			if(MEDICAMENTO=='BETAFERON CMBP X 15 VPFS (3750 MCG) MM')
-			{	
-				var FECHA_RECLAMACION=$("#fecha_reclamacion").val();
-				if(FECHA_RECLAMACION=='')
-				{
-					alert('La fecha de reclamacion esta vacia');
-					$('#fecha_reclamacion').focus();
-					return false;
-				}
-				var CONSECUTIVO_BETAFERON=$("#consecutivo_betaferon").val();
-				if(CONSECUTIVO_BETAFERON=='')
-				{
-					alert('El consecutivo de betaferon esta vacio');
-					$('#consecutivo_betaferon').focus();
-					return false;
-				}
-				var NUMERO_CAJAS=$("#numero_cajas").val();
-				if(NUMERO_CAJAS=='')
-				{
-					alert('El numero de cajas esta vacio');
-					$('#numero_cajas').focus();
-					return false;
-				}
-				var TIPO_NUMERO_CAJAS=$("#tipo_numero_cajas").val();
-				if(TIPO_NUMERO_CAJAS=='')
-				{
-					alert('El tipo numero de cajas esta vacio');
-					$('#tipo_numero_cajas').focus();
-					return false;
-				}
-			}
-			else
-			{
-				var FECHA_RECLAMACION=$("#fecha_reclamacion").val();
-				if(FECHA_RECLAMACION=='')
-				{
-					alert('La fecha de reclamacion esta vacia');
-					$('#fecha_reclamacion').focus();
-					return false;
-				}
-				var NUMERO_CAJAS=$("#numero_cajas").val();
-				if(NUMERO_CAJAS=='')
-				{
-					alert('El numero de cajas esta vacio');
-					$('#numero_cajas').focus();
-					return false;
-				}
-			}
-		}
-		else
-		{
-			var CAUSA_NO_RECLAMACION=$("#causa_no_reclamacion").val();
-			if(CAUSA_NO_RECLAMACION==''||CAUSA_NO_RECLAMACION=='Seleccione...')
-			{
-				alert('La causa de no reclamacion esta vacia');
-				$('#causa_no_reclamacion').focus();
-				return false;
-			}
-		}*/
 		var FECHA_PROXIMA_LLAMADA = $("#fecha_proxima_llamada").val();
 		if (FECHA_PROXIMA_LLAMADA == '') {
 			alert('La fecha de proxima llamada esta vacia');
@@ -746,6 +767,12 @@ function validar(tuformulario, val) {
 		if (MOTIVO_PROXIMA_LLAMADA == '') {
 			alert('El motivo de proxima llamada esta vacio');
 			$('#motivo_proxima_llamada').focus();
+			return false;
+		}
+		var FRECUENCIA = $("#frecuencia").val();
+		if (FRECUENCIA == '') {
+			alert('La frecuencia esta vacia');
+			$('#frecuencia').focus();
 			return false;
 		}
 		var DESCRIPCION_COMUNICACION = $("#descripcion_comunicacion").val();

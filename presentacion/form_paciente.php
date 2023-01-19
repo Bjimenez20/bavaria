@@ -538,6 +538,10 @@ include('../logica/session.php')
                     $('#causa_no_reclamacion').css('display', 'none');
                     $("#fecha_reclamacion_span").css('display', 'none');
                     $('#fecha_reclamacion').css('display', 'none');
+                    $('#span_aplicacion_m').css('display', 'none');
+                    $('#aplicacion_m').css('display', 'none');
+                    $('#span_fecha_aplicacion').css('display', 'none');
+                    $('#fecha_aplicacion').css('display', 'none');
                     $("#consecutivo_betaferon_span").css('display', 'none');
                     $('#consecutivo_betaferon').css('display', 'none');
                     $('#numero_cajas option:eq(0)').attr('selected', 'selected');
@@ -550,6 +554,10 @@ include('../logica/session.php')
                     $('#causa_no_reclamacion').css('display', 'block');
                     $("#fecha_reclamacion_span").css('display', 'none');
                     $('#fecha_reclamacion').css('display', 'none');
+                    $('#span_aplicacion_m').css('display', 'none');
+                    $('#aplicacion_m').css('display', 'none');
+                    $('#span_fecha_aplicacion').css('display', 'none');
+                    $('#fecha_aplicacion').css('display', 'none');
                     $("#consecutivo_betaferon_span").css('display', 'none');
                     $('#consecutivo_betaferon').css('display', 'none');
                     $('#numero_cajas option:eq(0)').attr('selected', 'selected');
@@ -583,6 +591,8 @@ include('../logica/session.php')
                     if (reclamo == 'SI') {
                         $("#fecha_reclamacion_span").css('display', 'block');
                         $('#fecha_reclamacion').css('display', 'block');
+                        $('#span_aplicacion_m').css('display', 'block');
+                        $('#aplicacion_m').css('display', 'block');
                         $("#causa").css('display', 'none');
                         $('#causa_no_reclamacion').css('display', 'none');
                         $('#numero_cajas').removeAttr('disabled');
@@ -599,6 +609,17 @@ include('../logica/session.php')
                             $('#div_tabletas_diarias').css('display', 'none');
                         }
                     }
+                }
+            }
+
+            function aplicaciones() {
+                var aplicacion = $('#aplicacion_m').val();
+                if (aplicacion == 'SI') {
+                    $('#span_fecha_aplicacion').css('display', 'block');
+                    $('#fecha_aplicacion').css('display', 'block');
+                } else {
+                    $('#span_fecha_aplicacion').css('display', 'none');
+                    $('#fecha_aplicacion').css('display', 'none');
                 }
             }
 
@@ -619,6 +640,11 @@ include('../logica/session.php')
             $("#reclamo").change(function() {
                 reclamo();
             });
+
+            $("#aplicacion_m").change(function() {
+                aplicaciones();
+            });
+
             $("#brindo_educacion").change(function() {
                 BrindoEducacion();
             });
@@ -809,6 +835,7 @@ if ($privilegios != '' && $usua != '') {
                                 $PRODUCTO_TRATAMIENTO = $fila['PRODUCTO_TRATAMIENTO'];
                                 $DOSIS = $fila['DOSIS_TRATAMIENTO'];
                                 $TRATAMIENTO_PREVIOS = $fila['TRATAMIENTO_PREVIO'];
+                                $FRECUENCIA_MEDICAMENTO = $fila['FRECUENCIA_MEDICAMENTO'];
                                 function Zeros($numero, $largo)
                                 {
                                     $resultado = $numero;
@@ -1503,6 +1530,8 @@ if ($privilegios != '' && $usua != '') {
                                     $CAUSA_NO_RECLAMACION_GESTIONES = $con['CAUSA_NO_RECLAMACION_GESTION'];
                                     $FECHA_RECLAMACION_GESTION = $con['FECHA_RECLAMACION_GESTION'];
                                     $FECHA_NO_RECLAMACION = $con['FECHA_CITA_PROGRAMADA'];
+                                    $APLICACION = $con['APLICACION'];
+                                    $FECHA_APLICACION = $con['FECHA_APLICACION'];
                         ?>
                             <tr>
                                 <td>
@@ -1552,6 +1581,25 @@ if ($privilegios != '' && $usua != '') {
                                         <option>Suspendido por Cambio de tratamiento</option>
                                     </select>
                                     <input type="date" name="fecha_reclamacion" id="fecha_reclamacion" value="<?php echo $FECHA_RECLAMACION_GESTION ?>" style="display:none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span id="span_aplicacion_m" style="display: none;">Aplicación<span class="asterisco">*</span></span>
+                                </td>
+                                <td>
+                                    <select name="aplicacion_m" id="aplicacion_m" style="display: none;">
+                                        <option><?php echo $APLICACION ?></option>
+                                        <option>Seleccione...</option>
+                                        <option>SI</option>
+                                        <option>NO</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <span id="span_fecha_aplicacion" style="display: none;">Fecha de la aplicación<span class="asterisco">*</span></span>
+                                </td>
+                                <td>
+                                    <input type="date" name="fecha_aplicacion" id="fecha_aplicacion" value="<?php echo $FECHA_APLICACION ?>" style="display: none;">
                                 </td>
                             </tr>
                             <tr>
@@ -2037,7 +2085,7 @@ if ($privilegios != '' && $usua != '') {
                         </tr>
                         <tr>
                             <td>
-                                <span>Numero de Autorizacion</span>
+                                <span>Numero de Autorizacion<span class="asterisco">*</span></span>
                                 <br />
                                 <br />
                             </td>
@@ -2417,6 +2465,14 @@ if ($privilegios != '' && $usua != '') {
                                 ?>
                                 <br />
                                 <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Frecuencia de administración del medicamento<span class="asterisco">*</span></span>
+                            </td>
+                            <td>
+                                <input type="text" name="frecuencia" id="frecuencia" value="<?php echo $FRECUENCIA_MEDICAMENTO ?>">
                             </td>
                         </tr>
                         <tr>
