@@ -341,6 +341,7 @@ include('../logica/session.php');
                 $("#causa_no_reclamacion option:eq(0)").attr("selected", "selected");
                 $("#fecha_reclamacion").val('');
                 var reclamo = $('#reclamo').val();
+                var aplicacion = $('#aplicacion_m').val();
                 var MEDICAMENTO = $('#producto_tratamiento').val();
                 if (reclamo == '') {
                     $("#causa").css('display', 'none');
@@ -354,6 +355,8 @@ include('../logica/session.php');
                     $('#tipo_numero_cajas option:eq(0)').attr('selected', 'selected');
                     $('#numero_cajas').attr('disabled', 'disabled');
                     $('#tipo_numero_cajas').attr('disabled', 'disabled');
+                    $('#fecha_aplicacion').css('display', 'none');
+                    $('#span_fecha_aplicacion').css('display', 'none');
                 }
                 if (reclamo == 'NO') {
                     $("#causa").css('display', 'block');
@@ -371,6 +374,10 @@ include('../logica/session.php');
                     $('#tipo_numero_cajas').removeAttr('required', 'required');
                     $('#asterisco2').css('display', 'block');
                     $('#asterisco').css('display', 'none');
+                    $('#span_aplicacion_m').css('display', 'none');
+                    $('#aplicacion_m').css('display', 'none');
+                    $('#fecha_aplicacion').css('display', 'none');
+                    $('#span_fecha_aplicacion').css('display', 'none');
                 }
                 if (reclamo == 'SI' && MEDICAMENTO == 'BETAFERON CMBP X 15 VPFS (3750 MCG) MM') {
                     $("#fecha_reclamacion").val($('#fecha_reclamacion').prop('defaultValue'));
@@ -384,6 +391,8 @@ include('../logica/session.php');
                     $('#numero_cajas').removeAttr('disabled');
                     $('#tipo_numero_cajas').removeAttr('disabled');
                     $('#tipo_numero_cajas').attr('required');
+                    $('#fecha_aplicacion').css('display', 'none');
+                    $('#span_fecha_aplicacion').css('display', 'none');
                 } else {
                     if (reclamo == 'SI') {
                         $("#consecutivo_betaferon_span").css('display', 'none');
@@ -400,7 +409,22 @@ include('../logica/session.php');
                         $("#fecha_reclamacion").val($('#fecha_reclamacion').prop('defaultValue'));
                         $('#asterisco').css('display', 'block');
                         $('#asterisco2').css('display', 'none');
+                        $('#span_aplicacion_m').css('display', 'block');
+                        $('#aplicacion_m').css('display', 'block');
+                        $('#fecha_aplicacion').css('display', 'none');
+                        $('#span_fecha_aplicacion').css('display', 'none');
                     }
+                }
+            }
+
+            function aplicaciones() {
+                var aplicacion = $('#aplicacion_m').val();
+                if (aplicacion == 'SI') {
+                    $('#span_fecha_aplicacion').css('display', 'block');
+                    $('#fecha_aplicacion').css('display', 'block');
+                } else {
+                    $('#span_fecha_aplicacion').css('display', 'none');
+                    $('#fecha_aplicacion').css('display', 'none');
                 }
             }
 
@@ -420,6 +444,9 @@ include('../logica/session.php');
             reclamo();
             $("#reclamo").change(function() {
                 reclamo();
+            });
+            $("#aplicacion_m").change(function() {
+                aplicaciones()
             });
             $("#brindo_educacion").change(function() {
                 BrindoEducacion();
@@ -553,6 +580,19 @@ include('../logica/session.php');
                     $('#estado_interrumpido').css('display', 'none');
                 }
             });
+
+            $('#causa_no_reclamacion').change(function() {
+                var CAUSA_NO_RECLAMACION = $('#causa_no_reclamacion').val();
+                $('#cambio_estado_abandono_solicitar').val('');
+                if (CAUSA_NO_RECLAMACION == 'Abandono') {
+                    $('#cambio_estado_abandono_solicitar').css('display', 'block');
+                    $('#estado_abandono').css('display', 'block');
+                } else {
+                    $('#cambio_estado_abandono_solicitar').css('display', 'none');
+                    $('#estado_abandono').css('display', 'none');
+                }
+            });
+
             $("#sub_paap").change(function() {
                 $('#sub_barrera option:first-child').attr("selected", "selected");
                 $('#sub_barrera')[0].selectedIndex = 0;
@@ -1239,16 +1279,24 @@ if ($privilegios != '' && $usua != '') {
                                     </div>
                                 </td>
                             </tr>
-                            <script>
-                                $('#causa_no_reclamacion').on('change', function() {
-                                    var selectValor = $(this).val();
-                                    if (selectValor == 'En proceso de Reformulacion') {
-                                        $('#fecha_no_reclamacion').show();
-                                    } else {
-                                        $('#fecha_no_reclamacion').hide();
-                                    }
-                                });
-                            </script>
+                            <tr>
+                                <td>
+                                    <span id="span_aplicacion_m" style="display: none;">Aplicación<span class="asterisco">*</span></span>
+                                </td>
+                                <td>
+                                    <select name="aplicacion_m" id="aplicacion_m" style="display: none;">
+                                        <option>Seleccione...</option>
+                                        <option>SI</option>
+                                        <option>NO</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <span id="span_fecha_aplicacion" style="display: none;">Fecha de la aplicación<span class="asterisco">*</span></span>
+                                </td>
+                                <td>
+                                    <input name="fecha_aplicacion" id="fecha_aplicacion" type="date" style="margin-top: 10px; display: none;" />
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     <label>
@@ -1621,7 +1669,8 @@ if ($privilegios != '' && $usua != '') {
                                     <?php
                                     $Seleccion = mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC ");
                                     ?>
-                                    <input list="medico_p" name="medico_prescriptor" id="medico_prescriptor" value="<?php echo $fila['MEDICO_PRESCRIPTOR'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo5(this)">
+                                    <input list="medico_p" name="
+                                    " id="medico_prescriptor" value="<?php echo $fila['MEDICO_PRESCRIPTOR'] ?>" autocomplete="off" onkeypress="return check(event)" onchange="trat_previo5(this)">
                                     <datalist id="medico_p">
                                         <?php
                                         while ($fila_operador = mysqli_fetch_array($Seleccion)) {
@@ -1704,6 +1753,12 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                             </tr>
                             <tr>
+                                <td>
+                                    <span>Frecuencia de administración del medicamento<span class="asterisco">*</span></span>
+                                </td>
+                                <td>
+                                    <input name="frecuencia_administracion" id="frecuencia_administracion" autocomplete="off" type="text" style="text-transform:ucwords">
+                                </td>
                                 <td>
                                     <span>Ciudad Base Paramedico o Representante</span>
                                 </td>

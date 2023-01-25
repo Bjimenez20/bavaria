@@ -725,6 +725,13 @@ function validar(tuformulario, val) {
 			return false;
 		}
 
+		var ADMINISTRACION_MEDICAMENTO = $("#frecuencia_administracion").val();
+		if (ADMINISTRACION_MEDICAMENTO == '') {
+			alert('La frecuencia de administración del medicamento esta vacia');
+			$('#frecuencia_administracion').focus();
+			return false;
+		}
+
 		var DESCRIPCION_COMUNICACION = $("#descripcion_comunicacion").val();
 		if (DESCRIPCION_COMUNICACION == '') {
 			alert('La descripcion de comunicacion esta vacia');
@@ -775,11 +782,20 @@ function validar(tuformulario, val) {
 			$('#frecuencia').focus();
 			return false;
 		}
+
+		var ADMINISTRACION_MEDICAMENTO = $("#frecuencia_administracion").val();
+		if (ADMINISTRACION_MEDICAMENTO == '') {
+			alert('La frecuencia de administración del medicamento esta vacia');
+			$('#frecuencia_administracion').focus();
+			return false;
+		}
+
 		var DESCRIPCION_COMUNICACION = $("#descripcion_comunicacion").val();
 		if (DESCRIPCION_COMUNICACION == '') {
 			alert('La descripcion de comunicacion esta vacia');
 			$('#descripcion_comunicacion').focus();
 			return false;
 		}
+
 	}
 }

@@ -65,13 +65,14 @@ require_once('session.php');
 		echo mysqli_error($conex);
 		$coincidencias = mysqli_num_rows($numero_registros);
 		$reclamo = $_POST['reclamo'];
+		$aplicacion = $_POST['aplicacion_m'];
 		$consecutivo_betaferon = $_POST['consecutivo_betaferon'];
 		$codigo_xofigo = $_POST['codigo_xofigo'];
 		$num_lotes_dis = $_POST['num_lotes_dis'];
 		$codigo_usuario2 = $_POST['codigo_usuario2'];
 		$causa_no_reclamacion = $_POST['causa_no_reclamacion'];
 		$fecha_no_reclamacion = $_POST['fecha_no_reclamacion'];
-		if ($reclamo == 'SI') {
+		if ($reclamo == 'SI' ) {
 			$fecha_actual = date('Y-m-d');
 			$fecha_reclamacion = $_POST['fecha_reclamacion'];
 			$fecha_rec = explode("-", $fecha_reclamacion);
@@ -150,6 +151,7 @@ require_once('session.php');
 		$acudiente = $_POST['acudiente'];
 		$telefono_acudiente = $_POST['telefono_acudiente'];
 		$producto_tratamiento = $_POST['producto_tratamiento'];
+		$frecuencia_administracion = $_POST['frecuencia_administracion'];
 		if ($producto_tratamiento == 'Xofigo 1x6 ml CO') {
 			$dosis = $_POST['Dosis2'];
 		}
@@ -302,8 +304,8 @@ require_once('session.php');
 					echo mysqli_error($conex);
 				}
 			}
-			$insert_trt = mysqli_query($conex, "INSERT INTO ipsen_tratamiento(PRODUCTO_TRATAMIENTO,NOMBRE_REFERENCIA,DOSIS_TRATAMIENTO,CLASIFICACION_PATOLOGICA_TRATAMIENTO,TRATAMIENTO_PREVIO,CONSENTIMIENTO_TRATAMIENTO,FECHA_INICIO_TERAPIA_TRATAMIENTO,FECHA_PRESCRIPCION,REGIMEN_TRATAMIENTO,ASEGURADOR_TRATAMIENTO,OPERADOR_LOGISTICO_TRATAMIENTO, PUNTO_ENTREGA, FECHA_ULTIMA_RECLAMACION_TRATAMIENTO,OTROS_OPERADORES_TRATAMIENTO,MEDIOS_ADQUISICION_TRATAMIENTO,IPS_ATIENDE_TRATAMIENTO,MEDICO_TRATAMIENTO,MEDICO_PRESCRIPTOR,ESPECIALIDAD_TRATAMIENTO,PARAMEDICO_TRATAMIENTO,ZONA_ATENCION_PARAMEDICO_TRATAMIENTO,CIUDAD_BASE_PARAMEDICO_TRATAMIENTO,NOTAS_ADJUNTOS_TRATAMIENTO,ID_PACIENTE_FK,NUM_LOTES_DISPOSITIVOS)
-			VALUES ('" . $producto_tratamiento . "','" . $producto_tratamiento . "','" . $dosis . "','" . $clasificacion_patologica . "','" . $tratamiento_previo . "','" . $consentimiento . "','" . $fecha_inicio_trt . "','" . $fecha_prescripcion . "','" . $regimen . "','" . $asegurador . "','" . $operador_logistico . "', '" . $punto_entrega . "','" . $fecha_ultima_reclamacion . "','" . $otro_operadores . "','" . $medio_adquision . "','" . $ips_atiende . "','" . $medico_t . "','" . $medico_p . "','" . $especialidad . "','" . $paramedico_representante . "','" . $zona_atencion . "','" . $ciudad_base . "','" . $nota . "','" . $ID_PACIENTE . "', '" . $num_lotes_dis . "')");
+			$insert_trt = mysqli_query($conex, "INSERT INTO ipsen_tratamiento(PRODUCTO_TRATAMIENTO,NOMBRE_REFERENCIA,DOSIS_TRATAMIENTO,FRECUENCIA_MEDICAMENTO,CLASIFICACION_PATOLOGICA_TRATAMIENTO,TRATAMIENTO_PREVIO,CONSENTIMIENTO_TRATAMIENTO,FECHA_INICIO_TERAPIA_TRATAMIENTO,FECHA_PRESCRIPCION,REGIMEN_TRATAMIENTO,ASEGURADOR_TRATAMIENTO,OPERADOR_LOGISTICO_TRATAMIENTO, PUNTO_ENTREGA, FECHA_ULTIMA_RECLAMACION_TRATAMIENTO,OTROS_OPERADORES_TRATAMIENTO,MEDIOS_ADQUISICION_TRATAMIENTO,IPS_ATIENDE_TRATAMIENTO,MEDICO_TRATAMIENTO,MEDICO_PRESCRIPTOR,ESPECIALIDAD_TRATAMIENTO,PARAMEDICO_TRATAMIENTO,ZONA_ATENCION_PARAMEDICO_TRATAMIENTO,CIUDAD_BASE_PARAMEDICO_TRATAMIENTO,NOTAS_ADJUNTOS_TRATAMIENTO,ID_PACIENTE_FK,NUM_LOTES_DISPOSITIVOS)
+			VALUES ('" . $producto_tratamiento . "','" . $producto_tratamiento . "','" . $dosis . "','" . $frecuencia_administracion . "','" . $clasificacion_patologica . "','" . $tratamiento_previo . "','" . $consentimiento . "','" . $fecha_inicio_trt . "','" . $fecha_prescripcion . "','" . $regimen . "','" . $asegurador . "','" . $operador_logistico . "', '" . $punto_entrega . "','" . $fecha_ultima_reclamacion . "','" . $otro_operadores . "','" . $medio_adquision . "','" . $ips_atiende . "','" . $medico_t . "','" . $medico_p . "','" . $especialidad . "','" . $paramedico_representante . "','" . $zona_atencion . "','" . $ciudad_base . "','" . $nota . "','" . $ID_PACIENTE . "', '" . $num_lotes_dis . "')");
 			echo mysqli_error($conex);
 
 			if ($insert_trt) {
