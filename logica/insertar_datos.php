@@ -55,7 +55,7 @@ require_once('session.php');
 
 <body>
 	<?PHP
-	require('../datos/parse_str.php');
+	//require('../datos/parse_str.php');
 	require_once("../datos/conex.php");
 	mysqli_query($conex, "SET NAMES utf8");
 	if (isset($_POST['registrar'])) {
@@ -66,13 +66,14 @@ require_once('session.php');
 		$coincidencias = mysqli_num_rows($numero_registros);
 		$reclamo = $_POST['reclamo'];
 		$aplicacion = $_POST['aplicacion_m'];
+		$fecha_aplicacion = $_POST['fecha_aplicacion'];
 		$consecutivo_betaferon = $_POST['consecutivo_betaferon'];
 		$codigo_xofigo = $_POST['codigo_xofigo'];
 		$num_lotes_dis = $_POST['num_lotes_dis'];
 		$codigo_usuario2 = $_POST['codigo_usuario2'];
 		$causa_no_reclamacion = $_POST['causa_no_reclamacion'];
 		$fecha_no_reclamacion = $_POST['fecha_no_reclamacion'];
-		if ($reclamo == 'SI' ) {
+		if ($reclamo == 'SI') {
 			$fecha_actual = date('Y-m-d');
 			$fecha_reclamacion = $_POST['fecha_reclamacion'];
 			$fecha_rec = explode("-", $fecha_reclamacion);
@@ -106,6 +107,7 @@ require_once('session.php');
 			}
 			$numero_cajas = '0 Aplicacion';
 		}
+
 		$select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 		echo mysqli_error($conex);
 		$reg_hist = mysqli_num_rows($select_historial);
@@ -310,12 +312,14 @@ require_once('session.php');
 
 			if ($insert_trt) {
 				if ($reclamo == 'SI') {
-					$insert_gestion = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,LOGRO_COMUNICACION_GESTION,RECLAMO_GESTION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_CITA_PROGRAMADA,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,NUMERO_CAJAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES)VALUES('Ingreso','SI','" . $reclamo . "','" . $consecutivo_betaferon . "','','" . $fecha_proxima_llamada . "','" . $fecha_reclamacion . "','" . $fecha_no_reclamacion . "','" . $usua . "','" . $nota . "','" . $nota . "','" . $fecha_proxima_llamada . "','" . $ID_PACIENTE . "',CURRENT_TIMESTAMP,'" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $numero_cajas . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "')");
+					$insert_gestion = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,LOGRO_COMUNICACION_GESTION,RECLAMO_GESTION,APLICACION,FECHA_APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_CITA_PROGRAMADA,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,NUMERO_CAJAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES)VALUES('Ingreso','SI','" . $reclamo . "','" . $aplicacion . "','" . $fecha_aplicacion . "','" . $consecutivo_betaferon . "','','" . $fecha_proxima_llamada . "','" . $fecha_reclamacion . "','" . $fecha_no_reclamacion . "','" . $usua . "','" . $nota . "','" . $nota . "','" . $fecha_proxima_llamada . "','" . $ID_PACIENTE . "',CURRENT_TIMESTAMP,'" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $numero_cajas . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "')");
 					echo mysqli_error($conex);
 				} else if ($reclamo == 'NO') {
 					$insert_gestion = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,LOGRO_COMUNICACION_GESTION,RECLAMO_GESTION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_CITA_PROGRAMADA,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,NUMERO_CAJAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES)VALUES('Ingreso','SI','" . $reclamo . "','" . $consecutivo_betaferon . "','" . $causa_no_reclamacion . "','" . $fecha_proxima_llamada . "','','" . $fecha_no_reclamacion . "','" . $usua . "','" . $nota . "','" . $nota . "','" . $fecha_proxima_llamada . "','" . $ID_PACIENTE . "',CURRENT_TIMESTAMP,'" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $numero_cajas . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "')");
 					echo mysqli_error($conex);
 				}
+				
+				
 				$ID_PACIENTE;
 				$select_gestion = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2='" . $ID_PACIENTE . "' ORDER BY ID_GESTION DESC LIMIT 1");
 				while ($datos_gestion = mysqli_fetch_array($select_gestion)) {
