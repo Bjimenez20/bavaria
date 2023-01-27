@@ -24,5 +24,5 @@ Cualquier inquietud con gusto sera atendida.
 Correo enviado de manera automatica.
 <br>
 <br>";
-$mailer = new AttachMailer("pspipsen@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Solicitud Apoyo PAAP - " . $tratamiento_email . " - " . $codigo_usuario . "", $body);
+$mailer = new AttachMailer("pspipsen@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba Solicitud Apoyo PAAP - " . $tratamiento_email . " - " . $codigo_usuario . "", $body);
 $mailer->send() ? "Enviado" : "Problema al enviar";

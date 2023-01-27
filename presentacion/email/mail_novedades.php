@@ -41,8 +41,8 @@ Cualquier inquietud con gusto sera atendida.
 <br />
 Correo enviado de manera automatica.<br /><br />";
 if ($causa_no_reclamacion == 'Solicitud Muestra Medica') {
-	$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "$causa_no_reclamacion - $pap ", $body);
+	$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba - $causa_no_reclamacion - $pap ", $body);
 } else {
-	$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "$causa_no_reclamacion - $pap ", $body);
+	$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba - $causa_no_reclamacion - $pap ", $body);
 }
 $mailer->send() ? "Enviado" : "Problema al enviar";

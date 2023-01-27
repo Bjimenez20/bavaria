@@ -15,7 +15,7 @@ Correo enviado de manera automatica.";
 $mailer = new AttachMailer(
     "reportes_ea@encontactopeoplemarketing.com",
     "bjimenez@app-peoplemarketing.com",
-    "Reporte Farmacovigilancia - " . $nombre . " - " . $PRODUCTO . " - " . $fecha . "",
+    "Prueba Reporte Farmacovigilancia - " . $nombre . " - " . $PRODUCTO . " - " . $fecha . "",
     $body
 );
 $mailer->attachFile('../presentacion/PDF/Evento_Adverso_' . $ID_EVENTO_ADVERSO . '.pdf');

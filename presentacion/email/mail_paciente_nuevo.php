@@ -41,5 +41,5 @@ Cualquier inquietud con gusto sera atendida.
 Correo enviado de manera automatica.
 <br>
 <br>";
-$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "IPSEN PACIENTE NUEVO - " . $producto_tratamiento . " - PAP" . $ID_PACIENTE . "", $body);
+$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "PRUEBA IPSEN PACIENTE NUEVO - " . $producto_tratamiento . " - PAP" . $ID_PACIENTE . "", $body);
 $mailer->send() ? "Enviado" : "Problema al enviar";

@@ -43,7 +43,7 @@ Correo enviado de manera automatica.<br /><br />";
 $mailer = new AttachMailer(
 	"pspbayer@encontactopeoplemarketing.com",
 	"bjimenez@app-peoplemarketing.com",
-	"Respuesta Caso Adempas - PAP$PAP ",
+	"Prueba Respuesta Caso Adempas - PAP$PAP ",
 	$body
 );
 $mailer->send() ? "Enviado" : "Problema al enviar";

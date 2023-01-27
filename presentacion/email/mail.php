@@ -14,6 +14,6 @@ Cordial saludo
 <br />
 Educador Call Center: $usua
 Correo enviado de manera automatica.";
-$mailer = new AttachMailer("reportesfarmacovigilancia@pspipsen.com", "pharmacovigilance.colombia@ipsen.com, diego.enrique.orjuela@ipsen.com, dmendoza@peoplemarketing.com.co, bjimenez@app-peoplemarketing.com", "Reporte Farmacovigilancia - PAP" . $ID_PAP . " - " . $PRODUCTO . " - " . $fecha . "", $body);
+$mailer = new AttachMailer("reportesfarmacovigilancia@pspipsen.com", "bjimenez@app-peoplemarketing.com", "Prueba Reporte Farmacovigilancia - PAP" . $ID_PAP . " - " . $PRODUCTO . " - " . $fecha . "", $body);
 $mailer->attachFile($URL_PDF);
 $mailer->send() ? "Enviado" : "Problema al enviar";

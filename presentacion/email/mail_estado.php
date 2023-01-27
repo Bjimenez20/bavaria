@@ -49,8 +49,8 @@ Cualquier inquietud con gusto sera atendida.
 <br />
 Correo enviado de manera automatica por psp bayer.<br /><br />";
 if ($cambio_estado_paciente == 'Abandono') {
-    $mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Solicitud cambio estado paciente - $pap - " . $fecha . "", $body2);
+    $mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba Solicitud cambio estado paciente - $pap - " . $fecha . "", $body2);
 } else {
-    $mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Solicitud cambio estado paciente - $pap - " . $fecha . "", $body);
+    $mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba Solicitud cambio estado paciente - $pap - " . $fecha . "", $body);
 }
 $mailer->send() ? "Enviado" : "Problema al enviar";

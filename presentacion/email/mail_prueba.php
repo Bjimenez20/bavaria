@@ -12,5 +12,5 @@ Cualquier inquietud con gusto sera atendida.
 <br />
 <br />
 Correo enviado de manera automatica.";
-$mailer = new AttachMailer("reportes_ea@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Reporte Farmacovigilancia - nombre - PRODUCTO fecha", $body);
+$mailer = new AttachMailer("reportes_ea@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba Reporte Farmacovigilancia - nombre - PRODUCTO fecha", $body);
 $mailer->send() ? "Enviado" : "Problema al enviar";
