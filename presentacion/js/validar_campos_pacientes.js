@@ -1,42 +1,21 @@
 // JavaScript Document
 function validar(tuformulario, val) {
-	/*var privilegio=$("#xxx").val();
-	//alert(privilegio);
-	if(privilegio=='1')
-	{
-		var gestion=$("#gestion").val();
-		if(gestion=='')
-		{
-			alert('Seleccione respuesta de crear gestion');
-			$('#gestion').focus();
+
+	var EDUCACION = $('#brindo_educacion')
+	if (EDUCACION == '') {
+		alert('La educacion esta vacia');
+		$('#TemaBrindoEdu').focus();
+		return false;
+	}
+
+	if (EDUCACION == 'SI') {
+		var TEMA_EDUCACION = $('#TemaBrindoEdu').val();
+		if (TEMA_EDUCACION == '' || TEMA_EDUCACION == 'Seleccione...') {
+			alert('El Tema esta vacio');
+			$('#TemaBrindoEdu').focus();
 			return false;
 		}
-	}*/
-	/*
-		var validar_visita_inicial=$("#sel_visita_inicial").val();
-			if (validar_visita_inicial==''||validar_visita_inicial=='Selecionaraa') {
-				alert('La visita Inicial esta vacia');
-				$('#sel_visita_inicial').focus();
-				return false;
-			}
-			if (validar_visita_inicial=='NO') {
-				var span_causa_visita1=$("#span_causa_visita1").val();
-					if(span_causa_visita1=='')
-					{
-						alert('La Causa No Visita no puede ser nula');
-						$('#span_causa_visita1').focus();
-						return false;
-					}
-			}
-			if (validar_visita_inicial=='SI') {
-				var fecha_visita_ini=$("#fecha_visita_ini").val();
-				if (fecha_visita_ini=='') {
-						alert('La fecha de visita inicial esta vacia');
-						$('#fecha_visita_ini').focus();
-						return false;
-					}
-			}
-			*/
+	}
 
 	var LOGRO_COMUNICACION = $('input:radio[name=logro_comunicacion]:checked').val();
 	if (LOGRO_COMUNICACION == '') {
@@ -75,6 +54,17 @@ function validar(tuformulario, val) {
 					return false;
 				}
 			}
+
+			var EDUCACION = $('#brindo_educacion')
+			if (EDUCACION == 'SI') {
+				var TEMA_EDUCACION = $('#TemaBrindoEdu').val();
+				if (TEMA_EDUCACION == '' || TEMA_EDUCACION == 'Seleccione...') {
+					alert('El Tema esta vacio');
+					$('#TemaBrindoEdu').focus();
+					return false;
+				}
+			}
+
 			var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
 			var FECHA_ACTUAL = $("#fecha_actual").val();
 			if (FECHA_RECLAMACION > FECHA_ACTUAL) {
@@ -122,6 +112,17 @@ function validar(tuformulario, val) {
 					return false;
 				}
 			}
+
+			var EDUCACION = $('#brindo_educacion')
+			if (EDUCACION == 'SI') {
+				var TEMA_EDUCACION = $('#TemaBrindoEdu').val();
+				if (TEMA_EDUCACION == '' || TEMA_EDUCACION == 'Seleccione...') {
+					alert('El Tema esta vacio');
+					$('#TemaBrindoEdu').focus();
+					return false;
+				}
+			}
+
 			var NUMERO_CAJAS = $("#numero_cajas").val();
 			if (NUMERO_CAJAS == '') {
 				alert('El numero de cajas esta vacio');
@@ -480,6 +481,17 @@ function validar(tuformulario, val) {
 						return false;
 					}
 				}
+
+				var EDUCACION = $('#brindo_educacion')
+				if (EDUCACION == 'SI') {
+					var TEMA_EDUCACION = $('#TemaBrindoEdu').val();
+					if (TEMA_EDUCACION == '' || TEMA_EDUCACION == 'Seleccione...') {
+						alert('El Tema esta vacio');
+						$('#TemaBrindoEdu').focus();
+						return false;
+					}
+				}
+
 				var FECHA_RECLAMACION = $("#fecha_reclamacion").val();
 				var FECHA_ACTUAL = $("#fecha_actual").val();
 				if (FECHA_RECLAMACION > FECHA_ACTUAL) {
@@ -527,6 +539,17 @@ function validar(tuformulario, val) {
 						return false;
 					}
 				}
+
+				var EDUCACION = $('#brindo_educacion')
+				if (EDUCACION == 'SI') {
+					var TEMA_EDUCACION = $('#TemaBrindoEdu').val();
+					if (TEMA_EDUCACION == '' || TEMA_EDUCACION == 'Seleccione...') {
+						alert('El Tema esta vacio');
+						$('#TemaBrindoEdu').focus();
+						return false;
+					}
+				}
+
 				var NUMERO_CAJAS = $("#numero_cajas").val();
 				if (NUMERO_CAJAS == '') {
 					alert('El numero de cajas esta vacio');

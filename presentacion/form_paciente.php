@@ -1683,30 +1683,15 @@ if ($privilegios != '' && $usua != '') {
                                                     echo 'style="display: none;"';
                                                 } ?>>
                                 <label>
-                                    <span>Tema</span>
+                                    <span>Tema<span class="asterisco">*</span></span>
                                     <select name="TemaBrindoEdu" id="TemaBrindoEdu" disabled>
-                                        <?php if ($brindo_edu == 'NO') {
-                                            echo '<option value="">Seleccione...</option>';
-                                        } elseif ($brindo_edu == 'SI') {
-                                            echo '<option>' . $temaBrindo . '</option>';
-                                        } else {
-                                            echo '<option value="">Seleccione...</option>';
-                                        } ?>
-                                        <option>GM1 Nutricion</option>
-                                        <option>GM2 Auto Cuidado</option>
-                                        <option>GM3 Afrontamiento Enfermedades Cronicas</option>
-                                        <option>GM4 Derechos y deberes en la salud de los pacientes</option>
-                                        <option>GM5 Actitud positiva frente a la enfermedad</option>
-                                        <option>GM6 Inteligencia emocional</option>
-                                        <option>GM7 Barreras mentales</option>
-                                        <option>GM8 Te cuido, me cuido</option>
-                                        <option>GM9 Resiliencia</option>
-                                        <option>GM10 Apoyo familiar a pacientes con enfermedad cronica</option>
-                                        <option>GM11 Regulacion emocional</option>
-                                        <option>GM12 Programacion neurolinguistica</option>
-                                        <option>GM13</option>
-                                        <option>GM14</option>
-                                        <option>GM15</option>
+                                        <option>Seleccione...</option>
+                                        <option>GM1 Concientización de la enfermedad</option>
+                                        <option>GM2 Autocuidado</option>
+                                        <option>GM3 Mitos y realidades</option>
+                                        <option>GM4 Estilo de vida</option>
+                                        <option>GM5 Cuidando el cuidador</option>
+                                        <option>GM6 Técnicas de relajación</option>
                                     </select>
                                 </label>
                             </td>
@@ -1718,7 +1703,7 @@ if ($privilegios != '' && $usua != '') {
                                                     echo 'style="display: none;"';
                                                 } ?>>
                                 <label>
-                                    <span>Fecha Educacion</span>
+                                    <span>Fecha Educacion<span class="asterisco">*</span></span>
                                     <input type="date" name="FechaEduca" id="FechaEduca" value="<?php echo  $fecha_brindo; ?>" disabled>
                                 </label>
                             </td>
