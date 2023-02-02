@@ -1686,12 +1686,12 @@ if ($privilegios != '' && $usua != '') {
                                     <span>Tema<span class="asterisco">*</span></span>
                                     <select name="TemaBrindoEdu" id="TemaBrindoEdu" disabled>
                                         <option>Seleccione...</option>
-                                        <option>GM1 Concientización de la enfermedad</option>
+                                        <option>GM1 Concientizacion de la enfermedad</option>
                                         <option>GM2 Autocuidado</option>
                                         <option>GM3 Mitos y realidades</option>
                                         <option>GM4 Estilo de vida</option>
                                         <option>GM5 Cuidando el cuidador</option>
-                                        <option>GM6 Técnicas de relajación</option>
+                                        <option>GM6 Tecnicas de relajacion</option>
                                     </select>
                                 </label>
                             </td>
