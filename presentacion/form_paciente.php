@@ -340,45 +340,45 @@ include('../logica/session.php')
             })
         }
 
-        // function asegurador() {
-        //     var DEPT = $('#departamento').val();
-        //     $.ajax({
-        //         url: '../presentacion/listado_asegurador.php',
-        //         data: {
-        //             DEPT: DEPT
-        //         },
-        //         type: 'post',
-        //         beforeSend: function() {
-        //             $("#asegurador").attr('disabled', 'disabled');
-        //             // $('#operador_logistico').html('');
-        //             // $("#operador_logistico").attr('disabled', 'disabled');
-        //         },
-        //         success: function(data) {
-        //             $("#asegurador").removeAttr('disabled');
-        //             $('#asegurador').html(data);
-        //         }
-        //     })
-        // }
+        function asegurador() {
+            var DEPT = $('#departamento').val();
+            $.ajax({
+                url: '../presentacion/listado_asegurador.php',
+                data: {
+                    DEPT: DEPT
+                },
+                type: 'post',
+                beforeSend: function() {
+                    $("#asegurador").attr('disabled', 'disabled');
+                    // $('#operador_logistico').html('');
+                    // $("#operador_logistico").attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    $("#asegurador").removeAttr('disabled');
+                    $('#asegurador').html(data);
+                }
+            })
+        }
 
-        // function operador() {
-        //     var DEPT = $('#departamento').val();
-        //     var asegurador = $('#asegurador').val();
-        //     $.ajax({
-        //         url: '../presentacion/listado_operador_logistico.php',
-        //         data: {
-        //             DEPT: DEPT,
-        //             asegurador: asegurador
-        //         },
-        //         type: 'post',
-        //         beforeSend: function() {
-        //             $("#operador_logistico").attr('disabled', 'disabled');
-        //         },
-        //         success: function(data) {
-        //             $("#operador_logistico").removeAttr('disabled');
-        //             $('#operador_logistico').html(data);
-        //         }
-        //     })
-        // }
+        function operador() {
+            var DEPT = $('#departamento').val();
+            var asegurador = $('#asegurador').val();
+            $.ajax({
+                url: '../presentacion/listado_operador_logistico.php',
+                data: {
+                    DEPT: DEPT,
+                    asegurador: asegurador
+                },
+                type: 'post',
+                beforeSend: function() {
+                    $("#operador_logistico").attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    $("#operador_logistico").removeAttr('disabled');
+                    $('#operador_logistico').html(data);
+                }
+            })
+        }
     </script>
     <script>
         $(document).ready(function() {
