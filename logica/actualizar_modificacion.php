@@ -77,6 +77,7 @@ include('../logica/session.php');
 	$id_gestion_ult = $_POST['id_gestion_ult'];
 	$fecha_reclamacion = $_POST['fecha_reclamacion'];
 	$fecha_ultima_reclamacion = $_POST['fecha_reclamaciones'];
+	$fecha_autorizacion = $_POST['fecha_autorizacion'];
 	$fecha_proxima_llamada;
 	$fecha_proxima_llamada_ant;
 	if ($fecha_proxima_llamada < $fecha_proxima_llamada_ant) {
@@ -177,6 +178,7 @@ include('../logica/session.php');
 				$causa_no_reclamacion = '';
 			}
 		}
+		$fecha_medicamento_hasta = $_POST['fecha_medicamento_hasta'];
 		if ($reclamo == 'SI') {
 			$consecutivo_betaferon = $_POST['consecutivo_betaferon'];
 			$causa_no_reclamacion = '';
@@ -256,11 +258,11 @@ include('../logica/session.php');
 		$sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET  TRATAMIENTO_PREVIO='" . $tratamiento_previo . "',CLASIFICACION_PATOLOGICA_TRATAMIENTO='" . $clasificacion_patologica . "', FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "' ,ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
 		echo mysqli_error($conex);
 		if ($num1 > 0) {
-			$sql = mysqli_query($conex, "UPDATE ipsen_gestiones SET ESTADO_CTC_GESTION='" . $estado_ctc . "',ESTADO_FARMACIA_GESTION='" . $estado_farmacia . "',RECLAMO_GESTION='" . $reclamo . "',CONSECUTIVO_BETAFERON='" . $consecutivo_betaferon . "',CAUSA_NO_RECLAMACION_GESTION='" . $causa_no_reclamacion . "',DIFICULTAD_ACCESO_GESTION='" . $dificultad_acceso . "',TIPO_DIFICULTAD_GESTION='" . $tipo_dificultad . "',MEDICAMENTOS_GESTION='" . $MEDICAMENTO . "',FECHA_PROXIMA_LLAMADA='" . $fecha_proxima_llamada . "',FECHA_RECLAMACION_GESTION='" . $fecha_reclamacion . "',DESCRIPCION_COMUNICACION_GESTION='" . $descripcion_comunicacion . "',FECHA_PROGRAMADA_GESTION='" . $fecha_proxima_llamada . "', ID_PACIENTE_FK2='" . $codigo_usuario2 . "', AUTOR_MODIFICACION='" . $usua . "' WHERE ID_GESTION='" . $codigo_ultima_gestion . "'");
+			$sql = mysqli_query($conex, "UPDATE ipsen_gestiones SET ESTADO_CTC_GESTION='" . $estado_ctc . "',FECHA_AUTORIZACION='" . $fecha_autorizacion . "',ESTADO_FARMACIA_GESTION='" . $estado_farmacia . "',RECLAMO_GESTION='" . $reclamo . "',CONSECUTIVO_BETAFERON='" . $consecutivo_betaferon . "',CAUSA_NO_RECLAMACION_GESTION='" . $causa_no_reclamacion . "',DIFICULTAD_ACCESO_GESTION='" . $dificultad_acceso . "',TIPO_DIFICULTAD_GESTION='" . $tipo_dificultad . "',MEDICAMENTOS_GESTION='" . $MEDICAMENTO . "',FECHA_PROXIMA_LLAMADA='" . $fecha_proxima_llamada . "',FECHA_RECLAMACION_GESTION='" . $fecha_reclamacion . "',DESCRIPCION_COMUNICACION_GESTION='" . $descripcion_comunicacion . "',FECHA_PROGRAMADA_GESTION='" . $fecha_proxima_llamada . "', ID_PACIENTE_FK2='" . $codigo_usuario2 . "', AUTOR_MODIFICACION='" . $usua . "' WHERE ID_GESTION='" . $codigo_ultima_gestion . "'");
 			echo mysqli_error($conex);
 		}
 		$descripcion_nuevo_comunicacion = $_POST['descripcion_nuevo_comunicacion'];
-		$insert_gestion = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,RECLAMO_GESTION,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION)VALUES('GESTION COORDINADOR', '" . $reclamo . "','" . $causa_no_reclamacion . "','" . $fecha_proxima_llamada . "','" . $fecha_reclamacion . "','" . $usua . "','GESTION COORDINADOR','" . $descripcion_nuevo_comunicacion . "','" . $fecha_proxima_llamada . "','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP)");
+		$insert_gestion = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,ESTADO_CTC_GESTION,FECHA_AUTORIZACION,RECLAMO_GESTION,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_MEDICAMENTO_HASTA,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION)VALUES('GESTION COORDINADOR', '" . $estado_ctc . "','" . $fecha_autorizacion . "','" . $reclamo . "','" . $causa_no_reclamacion . "','" . $fecha_proxima_llamada . "','" . $fecha_reclamacion . "','" . $fecha_medicamento_hasta . "','" . $usua . "','GESTION COORDINADOR','" . $descripcion_nuevo_comunicacion . "','" . $fecha_proxima_llamada . "','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP)");
 		if ($sql) {
 	?>
 			<span style="margin-top:5%;">

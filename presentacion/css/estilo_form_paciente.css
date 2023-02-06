@@ -110,8 +110,9 @@ input {
 /*	font-size:100%;*/
 /*}*/
 select {
-	width: 97%;
-	height: 20px;
+	width: 100%;
+	height: 22px;
+	font-size: 90%;
 }
 
 .tit {

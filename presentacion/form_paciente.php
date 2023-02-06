@@ -340,45 +340,45 @@ include('../logica/session.php')
             })
         }
 
-        function asegurador() {
-            var DEPT = $('#departamento').val();
-            $.ajax({
-                url: '../presentacion/listado_asegurador.php',
-                data: {
-                    DEPT: DEPT
-                },
-                type: 'post',
-                beforeSend: function() {
-                    $("#asegurador").attr('disabled', 'disabled');
-                    // $('#operador_logistico').html('');
-                    // $("#operador_logistico").attr('disabled', 'disabled');
-                },
-                success: function(data) {
-                    $("#asegurador").removeAttr('disabled');
-                    $('#asegurador').html(data);
-                }
-            })
-        }
+        // function asegurador() {
+        //     var DEPT = $('#departamento').val();
+        //     $.ajax({
+        //         url: '../presentacion/listado_asegurador.php',
+        //         data: {
+        //             DEPT: DEPT
+        //         },
+        //         type: 'post',
+        //         beforeSend: function() {
+        //             $("#asegurador").attr('disabled', 'disabled');
+        //             // $('#operador_logistico').html('');
+        //             // $("#operador_logistico").attr('disabled', 'disabled');
+        //         },
+        //         success: function(data) {
+        //             $("#asegurador").removeAttr('disabled');
+        //             $('#asegurador').html(data);
+        //         }
+        //     })
+        // }
 
-        function operador() {
-            var DEPT = $('#departamento').val();
-            var asegurador = $('#asegurador').val();
-            $.ajax({
-                url: '../presentacion/listado_operador_logistico.php',
-                data: {
-                    DEPT: DEPT,
-                    asegurador: asegurador
-                },
-                type: 'post',
-                beforeSend: function() {
-                    $("#operador_logistico").attr('disabled', 'disabled');
-                },
-                success: function(data) {
-                    $("#operador_logistico").removeAttr('disabled');
-                    $('#operador_logistico').html(data);
-                }
-            })
-        }
+        // function operador() {
+        //     var DEPT = $('#departamento').val();
+        //     var asegurador = $('#asegurador').val();
+        //     $.ajax({
+        //         url: '../presentacion/listado_operador_logistico.php',
+        //         data: {
+        //             DEPT: DEPT,
+        //             asegurador: asegurador
+        //         },
+        //         type: 'post',
+        //         beforeSend: function() {
+        //             $("#operador_logistico").attr('disabled', 'disabled');
+        //         },
+        //         success: function(data) {
+        //             $("#operador_logistico").removeAttr('disabled');
+        //             $('#operador_logistico').html(data);
+        //         }
+        //     })
+        // }
     </script>
     <script>
         $(document).ready(function() {
@@ -526,6 +526,7 @@ include('../logica/session.php')
                 $("#edad").val(edad);
             });
 
+           
             function reclamo() {
                 $("#causa_no_reclamacion").attr("selected", "selected");
                 $("#fecha_reclamacion").val('');
@@ -1940,12 +1941,12 @@ if ($privilegios != '' && $usua != '') {
                             <td></td>
                             <td id="otro_asegurador" style="display:none">
                                 <span>Asegurador por habilitar<span class="asterisco">*</span></span>
-                                <input name="asegurador_otro" id="asegurador_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
+                                <input name="asegurador_otro" id="asegurador_otro" type="text" style="width:78%;"/>
                             </td>
                             <td></td>
                             <td id="otro_ips" style="display:none">
                                 <span>Ips por habilitar<span class="asterisco">*</span></span>
-                                <input name="ips_otro" id="ips_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
+                                <input name="ips_otro" id="ips_otro" type="text" style="width:78%;" />
                             </td>
                         </tr>
                         <tr>
@@ -1985,12 +1986,12 @@ if ($privilegios != '' && $usua != '') {
                             <td></td>
                             <td id="otro_medico_t" style="display:none">
                                 <span>Medico Tratante por habilitar<span class="asterisco">*</span></span>
-                                <input name="medico_t_otro" id="medico_t_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
+                                <input name="medico_t_otro" id="medico_t_otro" type="text" style="width:78%;" />
                             </td>
                             <td></td>
                             <td id="otro_medico_p" style="display:none">
                                 <span>Medico Prescriptor por habilitar<span class="asterisco">*</span></span>
-                                <input name="medico_p_otro" id="medico_p_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
+                                <input name="medico_p_otro" id="medico_p_otro" type="text" style="width:78%;" />
                             </td>
                         </tr>
                         <tr>
@@ -2022,7 +2023,7 @@ if ($privilegios != '' && $usua != '') {
                             <td></td>
                             <td id="otro_operador" style="display:none">
                                 <span>Operador logistico por habilitar<span class="asterisco">*</span></span>
-                                <input name="operador_otro" id="operador_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
+                                <input name="operador_otro" id="operador_otro" type="text" style="width:78%;" />
                             </td>
                         </tr>
                         <tr>
@@ -2065,7 +2066,7 @@ if ($privilegios != '' && $usua != '') {
                             <td></td>
                             <td id="otro_punto" style="display:none">
                                 <span>Punto de entrega por habilitar<span class="asterisco">*</span></span>
-                                <input name="punto_entrega_otro" id="punto_entrega_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
+                                <input name="punto_entrega_otro" id="punto_entrega_otro" type="text" style="width:78%;" />
                             </td>
                         </tr>
                         <tr>
@@ -2118,7 +2119,7 @@ if ($privilegios != '' && $usua != '') {
                                 <span>Fecha de Autorizacion<span class="asterisco">*</span></span>
                             </td>
                             <td>
-                                <input name="fecha_autorizacion" type="date" style="margin-top: 10px;" value="<?php echo $FECHA_AUTORIZACION ?>" />
+                                <input name="fecha_autorizacion" id="fecha_autorizacion" type="date" style="margin-top: 10px;" value="<?php echo $FECHA_AUTORIZACION ?>" />
                             </td>
                         </tr>
                         <tr>
