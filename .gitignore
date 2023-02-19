@@ -7,6 +7,16 @@
 node_modules/
 dist/
 
+#SCRIPTCASE
+SCRIPTCASE/
+new_scriptcase/
+
+#ADJUNTOS
+ADJUNTOS_IPSEN/
+
+#Conexion
+datos/conex.php
+
 # Compiled Java class files
 *.class
 
