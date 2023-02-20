@@ -29,6 +29,6 @@ $subject = "Solicitud Apoyo Terapia - $MEDICAMENTO - $pais - PAP$codigo_usuario2
 
 $mail->Body = $body;
 $mail->Subject = $subject;
-$mail->addAddress('bjimenez@app-peoplemarketing.com, hugalde@alter-pharma.com, oscar.ragua@bayer.com, coordinacion@encontactopeoplemarketing.com');
+$mail->addAddress('dmendoza@peoplemarketing.com.co, bjimenez@app-peoplemarketing.com');
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->smtpClose();
