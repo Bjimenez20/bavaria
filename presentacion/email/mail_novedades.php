@@ -1,5 +1,5 @@
 <?php
-require_once('AttachMailer.php');
+require_once('PHPMailer.php');
 $fecha = date("Y-m-d");
 $ciudad = $ciudad;
 $asegurador = $asegurador;
@@ -41,8 +41,19 @@ Cualquier inquietud con gusto sera atendida.
 <br />
 Correo enviado de manera automatica.<br /><br />";
 if ($causa_no_reclamacion == 'Solicitud Muestra Medica') {
-	$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba - $causa_no_reclamacion - $pap ", $body);
+	$subject = "$causa_no_reclamacion - $pap";
+
+	$mail->Body = $body;
+	$mail->Subject = $subject;
+	$mail->addAddress('bjimenez@app-peoplemarketing.com');
+	$mail->Send() ? "Enviado" : "Problema al enviar";
+	$mail->smtpClose();
 } else {
-	$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba - $causa_no_reclamacion - $pap ", $body);
+	$subject = "$causa_no_reclamacion - $pap";
+
+	$mail->Body = $body;
+	$mail->Subject = $subject;
+	$mail->addAddress('bjimenez@app-peoplemarketing.com');
+	$mail->Send() ? "Enviado" : "Problema al enviar";
+	$mail->smtpClose();
 }
-$mailer->send() ? "Enviado" : "Problema al enviar";

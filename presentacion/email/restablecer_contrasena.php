@@ -6,13 +6,10 @@ $body = "
 Buen dia,
 <br />
 <br />
-Se requiere Habilitar en el sistema el siguiente Medico:
+$NOMBRES $APELLIDOS
 <br>
 <br>
-Medico por habilitar: " . $medico_t . "
-<br>
-<br>
-Asesor que solicita: " . $usua . "
+Se restablecio tu Contraseña: " . $CONTRASENA_NU . "
 <br>
 <br>
 Cualquier inquietud con gusto sera atendida.
@@ -22,10 +19,10 @@ Correo enviado de manera automatica.
 <br>
 <br>";
 
-$subject = 'Habilitar Medico';
+$subject = 'Restablecer contraseña';
 
 $mail->Body = $body;
 $mail->Subject = $subject;
-$mail->addAddress('bjimenez@app-peoplemarketing.com');
+$mail->addAddress($EMAIL);
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->smtpClose();

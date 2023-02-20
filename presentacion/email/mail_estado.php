@@ -1,5 +1,5 @@
 <?php
-require_once('AttachMailer.php');
+require_once('PHPMailer.php');
 $fecha = date("Y-m-d");
 $estado_paciente;
 $cambio_estado_paciente;
@@ -10,7 +10,7 @@ $body = "
 Buen dia,
 <br />
 <br />
-Solicito autorizaci&oacute;n para la modificaci&oacute;n de estado del paciente $nombrepaciente 
+Solicito autorización para la modificación de estado del paciente $nombrepaciente 
 <br />
 identificado con el $pap. 
 <br />
@@ -29,7 +29,7 @@ $body2 = "
 Buen dia,
 <br />
 <br />
-Solicito autorizaci&oacute;n para la modificaci&oacute;n de estado del pacientes $nombrepaciente 
+Solicito autorización para la modificación de estado del pacientes $nombrepaciente 
 <br />
 identificado con el $pap. 
 <br />
@@ -49,8 +49,20 @@ Cualquier inquietud con gusto sera atendida.
 <br />
 Correo enviado de manera automatica por psp bayer.<br /><br />";
 if ($cambio_estado_paciente == 'Abandono') {
-    $mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba Solicitud cambio estado paciente - $pap - " . $fecha . "", $body2);
+
+    $subject = "Solicitud cambio estado paciente - $pap - $fecha";
+
+    $mail->Body = $body2;
+    $mail->Subject = $subject;
+    $mail->addAddress('bjimenez@app-peoplemarketing.com');
+    $mail->Send() ? "Enviado" : "Problema al enviar";
+    $mail->smtpClose();
 } else {
-    $mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba Solicitud cambio estado paciente - $pap - " . $fecha . "", $body);
+    $subject = "Solicitud cambio estado paciente - $pap - $fecha";
+
+    $mail->Body = $body;
+    $mail->Subject = $subject;
+    $mail->addAddress('bjimenez@app-peoplemarketing.com');
+    $mail->Send() ? "Enviado" : "Problema al enviar";
+    $mail->smtpClose();
 }
-$mailer->send() ? "Enviado" : "Problema al enviar";

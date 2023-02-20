@@ -1,5 +1,5 @@
 <?php
-require_once('AttachMailer.php');
+require_once('PHPMailer.php');
 $fecha = date("Y-m-d");
 $body = "
 Buen dia,
@@ -24,5 +24,11 @@ Cualquier inquietud con gusto sera atendida.
 Correo enviado de manera automatica.
 <br>
 <br>";
-$mailer = new AttachMailer("pspipsen@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba Solicitud Apoyo PAAP - " . $tratamiento_email . " - " . $codigo_usuario . "", $body);
-$mailer->send() ? "Enviado" : "Problema al enviar";
+
+$subject = "Solicitud Apoyo PAAP - $tratamiento_email";
+
+$mail->Body = $body;
+$mail->Subject = $subject;
+$mail->addAddress('bjimenez@app-peoplemarketing.com');
+$mail->Send() ? "Enviado" : "Problema al enviar";
+$mail->smtpClose();

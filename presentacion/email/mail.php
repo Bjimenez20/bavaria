@@ -1,19 +1,23 @@
 <?php
-require('../../logica/session.php');
-require_once('AttachMailer.php');
+require_once('PHPMailer.php');
 $fecha = date("Y-m-d");
 $body = "
 Buen dia,
 <br />
 <br />
-Adjunto envio reporte de evento adverso para el paciente relacionado en el archivo.
+Adjunto envio reporte de evento generado para el paciente.
 <br />
 <br />
-Cordial saludo
+Cualquier inquietud con gusto sera atendida.
 <br />
 <br />
-Educador Call Center: $usua
 Correo enviado de manera automatica.";
-$mailer = new AttachMailer("reportesfarmacovigilancia@pspipsen.com", "bjimenez@app-peoplemarketing.com", "Prueba Reporte Farmacovigilancia - PAP" . $ID_PAP . " - " . $PRODUCTO . " - " . $fecha . "", $body);
-$mailer->attachFile($URL_PDF);
-$mailer->send() ? "Enviado" : "Problema al enviar";
+
+$subject = "Reporte Farmacovigilancia - $nombre - $PRODUCTO - $fecha";
+
+$mail->Body = $body;
+$mail->Subject = $subject;
+$mail->addAddress('bjimenez@app-peoplemarketing.com');
+$mail->addAttachment('../presentacion/PDF/Evento_Adverso_' . $ID_EVENTO_ADVERSO . '.pdf');
+$mail->Send() ? "Enviado" : "Problema al enviar";
+$mail->smtpClose();

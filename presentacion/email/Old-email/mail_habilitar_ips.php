@@ -1,6 +1,6 @@
 <?php
 include "../../logica/session.php";
-require_once('PHPMailer.php');
+require_once('AttachMailer.php');
 $fecha = date("Y-m-d");
 $body = "
 Buen dia,
@@ -21,11 +21,5 @@ Cualquier inquietud con gusto sera atendida.
 Correo enviado de manera automatica.
 <br>
 <br>";
-
-$subject = 'Habilitar Ips';
-
-$mail->Body = $body;
-$mail->Subject = $subject;
-$mail->addAddress('bjimenez@app-peoplemarketing.com');
-$mail->Send() ? "Enviado" : "Problema al enviar";
-$mail->smtpClose();
+$mailer = new AttachMailer("pspbayer@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Habilitar Ips", $body);
+$mailer->send() ? "Enviado" : "Problema al enviar";

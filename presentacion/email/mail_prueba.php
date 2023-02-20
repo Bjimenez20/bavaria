@@ -1,5 +1,5 @@
 <?php
-require_once('AttachMailer.php');
+require_once('PHPMailer.php');
 $fecha = date("Y-m-d");
 $body = "
 Buen dia,
@@ -12,5 +12,11 @@ Cualquier inquietud con gusto sera atendida.
 <br />
 <br />
 Correo enviado de manera automatica.";
-$mailer = new AttachMailer("reportes_ea@encontactopeoplemarketing.com", "bjimenez@app-peoplemarketing.com", "Prueba Reporte Farmacovigilancia - nombre - PRODUCTO fecha", $body);
-$mailer->send() ? "Enviado" : "Problema al enviar";
+
+$subject = 'Reporte Farmacovigilancia';
+
+$mail->Body = $body;
+$mail->Subject = $subject;
+$mail->addAddress('bjimenez@app-peoplemarketing.com');
+$mail->Send() ? "Enviado" : "Problema al enviar";
+$mail->smtpClose();

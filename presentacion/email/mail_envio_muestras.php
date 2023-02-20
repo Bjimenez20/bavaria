@@ -1,5 +1,5 @@
 <?php
-require_once('AttachMailer.php');
+require_once('PHPMailer.php');
 $fecha = date("Y-m-d");
 $PAP;
 $ESTATUS_PACIENTE;
@@ -40,10 +40,11 @@ Cualquier inquietud con gusto sera atendida.
 <br />
 <br />
 Correo enviado de manera automatica.<br /><br />";
-$mailer = new AttachMailer(
-	"pspbayer@encontactopeoplemarketing.com",
-	"bjimenez@app-peoplemarketing.com",
-	"Prueba Respuesta Caso Adempas - PAP$PAP ",
-	$body
-);
-$mailer->send() ? "Enviado" : "Problema al enviar";
+
+$subject = "Respuesta Caso Adempas - PAP$PAP";
+
+$mail->Body = $body;
+$mail->Subject = $subject;
+$mail->addAddress('bjimenez@app-peoplemarketing.com');
+$mail->Send() ? "Enviado" : "Problema al enviar";
+$mail->smtpClose();
