@@ -47,14 +47,14 @@ Asesor que solicita $asesor.
 Cualquier inquietud con gusto sera atendida.
 <br />
 <br />
-Correo enviado de manera automatica por psp bayer.<br /><br />";
+Correo enviado de manera automatica por psp ipsen.<br /><br />";
 if ($cambio_estado_paciente == 'Abandono') {
 
     $subject = "Solicitud cambio estado paciente - $pap - $fecha";
 
     $mail->Body = $body2;
     $mail->Subject = $subject;
-    $mail->addAddress('bjimenez@app-peoplemarketing.com');
+    $mail->addAddress('dmendoza@peoplemarketing.com.co, bjimenez@app-peoplemarketing.com');
     $mail->Send() ? "Enviado" : "Problema al enviar";
     $mail->smtpClose();
 } else {
@@ -62,7 +62,7 @@ if ($cambio_estado_paciente == 'Abandono') {
 
     $mail->Body = $body;
     $mail->Subject = $subject;
-    $mail->addAddress('bjimenez@app-peoplemarketing.com');
+    $mail->addAddress('dmendoza@peoplemarketing.com.co, bjimenez@app-peoplemarketing.com');
     $mail->Send() ? "Enviado" : "Problema al enviar";
     $mail->smtpClose();
 }

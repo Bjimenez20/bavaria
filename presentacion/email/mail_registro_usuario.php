@@ -8,10 +8,10 @@ Buen día,
 $name  $last_name
 <br>
 <br>
-Bienvenid@ al sistema de Bayer Contigo Colombia.
+Bienvenid@ al sistema PSP IPSEN.
 <br>
 <br>
-Puedes ingresar al aplicativo desde la siguiente url: <a href='https://app-peoplemarketing.com/bayers/'>https://app-peoplemarketing.com/bayers/</a>
+Puedes ingresar al aplicativo desde la siguiente url: <a href='https://pspipsen.com/'>https://pspipsen.com/</a>
 <br>
 <br>
 Usuario: " . $email . "

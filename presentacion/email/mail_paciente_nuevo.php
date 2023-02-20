@@ -42,10 +42,10 @@ Correo enviado de manera automatica.
 <br>
 <br>";
 
-$subject = "BAYER PACIENTE NUEVO - $producto_tratamiento - PAP$ID_PACIENTE";
+$subject = "IPSEN PACIENTE NUEVO - $producto_tratamiento - PAP$ID_PACIENTE";
 
 $mail->Body = $body;
 $mail->Subject = $subject;
-$mail->addAddress('bjimenez@app-peoplemarketing.com');
+$mail->addAddress('dmendoza@peoplemarketing.com.co, bjimenez@app-peoplemarketing.com');
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->smtpClose();

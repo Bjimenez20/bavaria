@@ -28,12 +28,12 @@ Asesor que solicita $asesor.
 Cualquier inquietud con gusto sera atendida.
 <br />
 <br />
-Correo enviado de manera automatica por psp bayer.<br /><br />";
+Correo enviado de manera automatica por psp ipsen.<br /><br />";
 
 $subject = "Solicitud cambio estado paciente - $pap - $fecha";
 
 $mail->Body = $body;
 $mail->Subject = $subject;
-$mail->addAddress('bjimenez@app-peoplemarketing.com');
+$mail->addAddress('dmendoza@peoplemarketing.com.co, bjimenez@app-peoplemarketing.com');
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->smtpClose();
