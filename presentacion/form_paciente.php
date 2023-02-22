@@ -618,9 +618,13 @@ include('../logica/session.php')
                 if (aplicacion == 'SI') {
                     $('#span_fecha_aplicacion').css('display', 'block');
                     $('#fecha_aplicacion').css('display', 'block');
+                    $('#span_lugar_aplicacion').css('display','block');
+                    $('#lugar_aplicacion').css('display','block');
                 } else {
                     $('#span_fecha_aplicacion').css('display', 'none');
                     $('#fecha_aplicacion').css('display', 'none');
+                    $('#span_lugar_aplicacion').css('display','block');
+                    $('lugar_aplicacion').css('display','block');
                 }
             }
 
@@ -1605,6 +1609,19 @@ if ($privilegios != '' && $usua != '') {
                             </tr>
                             <tr>
                                 <td>
+                                    <span id="span_lugar_aplicacion" style="display: none;">Lugar de aplicación<span class="asterisco">*</span></span>
+                                </td>
+                                <td>
+                                    <select name="lugar_aplicacion" id="lugar_aplicacion" style="display: none;">
+                                    <option><?php echo $LUGAR_APLICACION ?></option>
+                                    <option>Seleccione...</option>
+                                    <option value="IPS">IPS</option>
+                                    <option value="DOMICILIO">DOMICILIO</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <span>Fecha Cita Programada<span class="asterisco">*</span></span>
                                 </td>
                                 <td>
@@ -2208,8 +2225,9 @@ if ($privilegios != '' && $usua != '') {
                                 <div id="envio_evento_adverso_div" style="display:none">
                                     <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%; display:none" value="" checked="checked" />
                                     <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Farmacovigilancia" />Farmacovigilancia
+                                    <br>
+                                    <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia" />Tecnovigilancia
                                     <br />
-                                    <!-- <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia I-neb" />Tecnovigilancia I-neb -->
                                     <input type="button" name="tipo_evento_adverso2" id="tipo_evento_adverso2" style="background-image:url(imagenes/agregar.png); background-repeat:no-repeat;  width:41px; height:38px; border:1px solid transparent; background-color:transparent" onclick="javascript:ventanaSecundaria('form_evento_adverso.php?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>')" />
                                 </div>
                                 <br />

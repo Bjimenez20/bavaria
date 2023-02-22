@@ -54,6 +54,14 @@ function validar(tuformulario, val) {
 					return false;
 				}
 			}
+			if (APLICACION == 'SI') {
+				var LUGAR_APLICACION = $('#lugar_aplicacion').val();
+				if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...'){
+					alert('El lugar de aplicacion esta vacio')
+					$('#lugar_aplicacion').focus();
+					return false;
+				}
+			}
 
 			var EDUCACION = $('#brindo_educacion')
 			if (EDUCACION == 'SI') {
@@ -109,6 +117,15 @@ function validar(tuformulario, val) {
 				if (FECHA_APLICACION == '') {
 					alert('La fecha de aplicacion esta vacia');
 					$('#fecha_aplicacion').focus();
+					return false;
+				}
+			}
+
+			if (APLICACION == 'SI') {
+				var LUGAR_APLICACION = $('#lugar_aplicacion').val();
+				if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...'){
+					alert('El lugar de aplicacion esta vacio')
+					$('#lugar_aplicacion').focus();
 					return false;
 				}
 			}
@@ -481,6 +498,14 @@ function validar(tuformulario, val) {
 						return false;
 					}
 				}
+				if (APLICACION == 'SI') {
+					var LUGAR_APLICACION = $('#lugar_aplicacion').val();
+					if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...'){
+						alert('El lugar de aplicacion esta vacio')
+						$('#lugar_aplicacion').focus();
+						return false;
+					}
+				}
 
 				var EDUCACION = $('#brindo_educacion')
 				if (EDUCACION == 'SI') {
@@ -536,6 +561,14 @@ function validar(tuformulario, val) {
 					if (FECHA_APLICACION == '') {
 						alert('La fecha de aplicacion esta vacia');
 						$('#fecha_aplicacion').focus();
+						return false;
+					}
+				}
+				if (APLICACION == 'SI') {
+					var LUGAR_APLICACION = $('#lugar_aplicacion').val();
+					if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...'){
+						alert('El lugar de aplicacion esta vacio')
+						$('#lugar_aplicacion').focus();
 						return false;
 					}
 				}

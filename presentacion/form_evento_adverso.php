@@ -154,18 +154,21 @@ if ($privilegios != '' && $usua != '') {
                                             Nombre del Reportante primario
                                         </td>
                                         <td style="font-weight: 700; background-color: #DBDBDB;">
+                                            Nombre del Paciente o Acudiente
+                                        </td>
+                                        <td style="font-weight: 700; background-color: #DBDBDB;">
                                             Consecutivo
                                         </td>
                                         <td style="font-weight: 700; background-color: #DBDBDB;">
                                             Profesión del reportante primario
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
-                                            Correo electrónico institucional del reportante primario
-                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <input type="text" name="nombre_usuario" id="nombre_usuario" value="<?php echo $NOMBRES . ' ' . $APELLIDOS ?>" readonly="readonly" style="width:90%; height:100%;">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="nombre_paciente_acudiente" id="nombre_paciente_acudiente" value="" style="width:90%; height:100%;">
                                         </td>
                                         <td>
                                             <!-- <input type="text" name="consecutivo" id="consecutivo" value="<?php echo $cad . ' - V' . $data['EV'] ?>" readonly="readonly" style="width:90%; height:100%;"> -->
@@ -174,7 +177,15 @@ if ($privilegios != '' && $usua != '') {
                                         <td>
                                             <input type="text" name="profecion_usuario" id="profecion_usuario" style="width:90%; height:100%;">
                                         </td>
-                                        <td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: 700; background-color: #DBDBDB;" colspan="4">
+                                            Correo electrónico institucional del reportante primario
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
                                             <input type="email" name="correo_usuario" id="correo_usuario" value="<?php echo $EMAIL ?>" readonly="readonly" style="width:90%; height:100%;">
                                         </td>
                                     </tr>
@@ -388,6 +399,7 @@ if ($privilegios != '' && $usua != '') {
                                             <input type="date" name="fecha_fin3" id="fecha_fin2" style="width:90%; height:100%;">
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td colspan="9" style="font-weight: 700; background-color: #DBDBDB;">
                                             Información comercial del medicamento sospechoso
