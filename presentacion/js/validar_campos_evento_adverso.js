@@ -28,12 +28,12 @@ function validar(tuformulario, val) {
         return false;
     }
 
-    var CODIGO_PNF = $('#codigo_pnf').val();
-    if (CODIGO_PNF == '') {
-        alert('El codigo pnf esta vacio');
-        $('#codigo_pnf');
-        return false;
-    }
+    // var CODIGO_PNF = $('#codigo_pnf').val();
+    // if (CODIGO_PNF == '') {
+    //     alert('El codigo pnf esta vacio');
+    //     $('#codigo_pnf');
+    //     return false;
+    // }
 
     var PROFESION = $('#profecion_usuario').val();
     if (PROFESION == '') {
