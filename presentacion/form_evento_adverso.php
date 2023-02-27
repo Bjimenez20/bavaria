@@ -3,12 +3,16 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/jquery.js"></script>
     <script type="text/javascript" src="js/validar_campos_evento_adverso.js"></script>
     <script>
@@ -74,9 +78,8 @@ if ($privilegios != '' && $usua != '') {
         $cad .= substr($characters, rand(0, 61), 1);
     }
 ?>
-
     <body style="padding: 0; margin: 0;">
-        <form id="evento_adverso" name="evento_adverso" action="../logica/insertar_datos_ea.php" enctype="multipart/form-data" method="post" class="letra">
+        <form id="formulario" method="POST" action="../logica/insertar_datos_ea.php">
             <table class="table table-bordered" cellspacing="0" cellpadding="0" style="width: 100%;" id="header">
                 <tbody>
                     <tr>
@@ -171,7 +174,6 @@ if ($privilegios != '' && $usua != '') {
                                             <input type="text" name="nombre_paciente_acudiente" id="nombre_paciente_acudiente" value="" style="width:90%; height:100%;">
                                         </td>
                                         <td>
-                                            <!-- <input type="text" name="consecutivo" id="consecutivo" value="<?php echo $cad . ' - V' . $data['EV'] ?>" readonly="readonly" style="width:90%; height:100%;"> -->
                                             <input type="text" name="consecutivo" id="consecutivo" value="<?php echo $cad ?>" readonly="readonly" style="width:90%; height:100%;">
                                         </td>
                                         <td>
@@ -312,94 +314,26 @@ if ($privilegios != '' && $usua != '') {
                                             Fecha de finalización
                                         </td>
                                     </tr>
+                                </tbody>
+                                <tbody id="contenedor">
                                     <tr>
-                                        <td colspan="1">
-                                            <input type="text" name="S_C_I1" id="S_C_I1" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="medicamento1" id="medicamento1" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="indicacion1" id="indicacion1" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="dosis1" id="dosis1" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="unidad_medida1" id="unidad_medida1" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="via_administracion1" id="via_administracion1" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="frecuencia_administracion1" id="frecuencia_administracion1" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="date" name="fecha_inicio1" id="fecha_inicio1" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="date" name="fecha_fin1" id="fecha_fin1" style="width:90%; height:100%;">
-                                        </td>
+                                        <td><input type="text" class="form-control" name="S_C_I[]" id="S_C_I" style="width:90%; height:100%;"></td>
+                                        <td><input type="text" class="form-control" name="medicamento[]" id="medicamento" style="width:90%; height:100%;"></td>
+                                        <td><input type="text" class="form-control" name="indicacion[]" id="indicacion" style="width:90%; height:100%;"></td>
+                                        <td><input type="text" class="form-control" name="dosis[]" id="dosis" style="width:90%; height:100%;"></td>
+                                        <td><input type="text" class="form-control" name="unidad_medida[]" id="unidad_medida" style="width:90%; height:100%;"></td>
+                                        <td><input type="text" class="form-control" name="via_administracion[]" id="via_administracion" style="width:90%; height:100%;"></td>
+                                        <td><input type="text" class="form-control" name="frecuencia_administracion[]" id="frecuencia_administracion" style="width:90%; height:100%;"></td>
+                                        <td><input type="date" class="form-control" name="fecha_inicio[]" id="fecha_inicio" style="width:90%; height:100%;"></td>
+                                        <td><input type="date" class="form-control" name="fecha_fin[]" id="fecha_fin" style="width:90%; height:100%;"></td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="1">
-                                            <input type="text" name="S_C_I2" id="S_C_I2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="medicamento2" id="medicamento2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="indicacion2" id="indicacion2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="dosis2" id="dosis2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="unidad_medida2" id="unidad_medida2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="via_administracion2" id="via_administracion2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="frecuencia_administracion2" id="frecuencia_administracion2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="date" name="fecha_inicio2" id="fecha_inicio2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="date" name="fecha_fin2" id="fecha_fin2" style="width:90%; height:100%;">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="1">
-                                            <input type="text" name="S_C_I3" id="S_C_I2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="medicamento3" id="medicamento2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="indicacion3" id="indicacion2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="dosis3" id="dosis2" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="unidad_medida3" id="unidad_medida3" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="via_administracion3" id="via_administracion3" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="frecuencia_administracion3" id="frecuencia_administracion3" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="date" name="fecha_inicio3" id="fecha_inicio3" style="width:90%; height:100%;">
-                                        </td>
-                                        <td>
-                                            <input type="date" name="fecha_fin3" id="fecha_fin2" style="width:90%; height:100%;">
-                                        </td>
-                                    </tr>
-
+                                </tbody>
+                                <tr>
+                                    <td colspan="9" style="font-weight: 700;">
+                                        <button type="button" id="btn-agregar" class="btn btn-secondary">Generar campo</button>
+                                    </td>
+                                </tr>
+                                <tbody>
                                     <tr>
                                         <td colspan="9" style="font-weight: 700; background-color: #DBDBDB;">
                                             Información comercial del medicamento sospechoso
@@ -593,21 +527,36 @@ if ($privilegios != '' && $usua != '') {
                 </tbody>
             </table>
         </form>
+        <script>
+            const botonAgregar = document.querySelector('#btn-agregar');
+            const tabla = document.querySelector('#contenedor');
+
+            botonAgregar.addEventListener('click', () => {
+                const nuevaFila = document.createElement('tr');
+                nuevaFila.innerHTML = `<td><input type="text" class="form-control" name="S_C_I[]" id="S_C_I" style="width:90%; height:100%;"></td>
+                         <td><input type="text" class="form-control" name="medicamento[]" id="medicamento" style="width:90%; height:100%;"></td>
+                         <td><input type="text" class="form-control" name="indicacion[]" id="indicacion" style="width:90%; height:100%;"></td>
+                         <td><input type="text" class="form-control" name="dosis[]" id="dosis" style="width:90%; height:100%;"></td>
+                         <td><input type="text" class="form-control" name="unidad_medida[]" id="unidad_medida" style="width:90%; height:100%;"></td>
+                         <td><input type="text" class="form-control" name="via_administracion[]" id="via_administracion" style="width:90%; height:100%;"></td>
+                         <td><input type="text" class="form-control" name="frecuencia_administracion[]" id="frecuencia_administracion" style="width:90%; height:100%;"></td>
+                         <td><input type="date" class="form-control" name="fecha_inicio[]" id="fecha_inicio" style="width:90%; height:100%;"></td>
+                         <td><input type="date" class="form-control" name="fecha_fin[]" id="fecha_fin" style="width:90%; height:100%;"></td>
+                         <td><button class="eliminar btn btn-danger bg-gradient text-white"><span class="iconify" data-icon="tabler:trash-x-filled" data-width="25"></span></button></td>`;
+                tabla.appendChild(nuevaFila);
+                document.querySelectorAll('.eliminar').forEach(button => {
+                    button.addEventListener('click', () => {
+                        button.closest('tr').remove();
+                    });
+                });
+
+            });
+        </script>
     </body>
     <style>
         @page {
             margin: 180px 50px;
         }
-
-        /* #header {
-            position: fixed;
-            left: 0px;
-            top: -165px;
-            right: 0px;
-            height: 150px;
-            background-color: transparent;
-            text-align: center;
-        } */
 
         #footer {
             position: fixed;

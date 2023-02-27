@@ -17,6 +17,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
     $NOMBRE_INSTITUCION = $fila1['NOMBRE_INSTITUCION'];
     $CODIGO_PNF = $fila1['CODIGO_PNF'];
     $NOMBRE_REPORTANTE = $fila1['NOMBRE_REPORTANTE'];
+    $NOMBRE_PACIENTE_ACUDIENTE = $fila1['NOMBRE_PACIENTE_ACUDIENTE'];
+    $CONSECUTIVO = $fila1['CONSECUTIVO'];
     $PROFESION_REPORTANTE = $fila1['PROFESION_REPORTANTE'];
     $CORREO_REPORTANTE = $fila1['CORREO_REPORTANTE'];
     $FECHA_NACIMIENTO_PACIENTE = $fila1['FECHA_NACIMIENTO_PACIENTE'];
@@ -28,33 +30,6 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
     $PESO = $fila1['PESO'];
     $TALLA = $fila1['TALLA'];
     $DIAGNOSTICO_PRINCIPAL = $fila1['DIAGNOSTICO_PRINCIPAL'];
-    $SCI1 = $fila1['SCI1'];
-    $SCI2 = $fila1['SCI2'];
-    $SCI3 = $fila1['SCI3'];
-    $MEDICAMENTO1 = $fila1['MEDICAMENTO1'];
-    $MEDICAMENTO2 = $fila1['MEDICAMENTO2'];
-    $MEDICAMENTO3 = $fila1['MEDICAMENTO3'];
-    $INDICACION1 = $fila1['INDICACION1'];
-    $INDICACION2 = $fila1['INDICACION2'];
-    $INDICACION3 = $fila1['INDICACION3'];
-    $DOSIS1 = $fila1['DOSIS1'];
-    $DOSIS2 = $fila1['DOSIS2'];
-    $DOSIS3 = $fila1['DOSIS3'];
-    $UNIDAD_MEDIDA1 = $fila1['UNIDAD_MEDIDA1'];
-    $UNIDAD_MEDIDA2 = $fila1['UNIDAD_MEDIDA2'];
-    $UNIDAD_MEDIDA3 = $fila1['UNIDAD_MEDIDA3'];
-    $VIA_ADMINISTRACION1 = $fila1['VIA_ADMINISTRACION1'];
-    $VIA_ADMINISTRACION2 = $fila1['VIA_ADMINISTRACION2'];
-    $VIA_ADMINISTRACION2 = $fila1['VIA_ADMINISTRACION3'];
-    $FRECUENCIA_ADMINISTRACION1 = $fila1['FRECUENCIA_ADMINISTRACION1'];
-    $FRECUENCIA_ADMINISTRACION2 = $fila1['FRECUENCIA_ADMINISTRACION2'];
-    $FRECUENCIA_ADMINISTRACION3 = $fila1['FRECUENCIA_ADMINISTRACION3'];
-    $FECHA_INICIO1 = $fila1['FECHA_INICIO1'];
-    $FECHA_INICIO2 = $fila1['FECHA_INICIO2'];
-    $FECHA_INICIO3 = $fila1['FECHA_INICIO3'];
-    $FECHA_FIN1 = $fila1['FECHA_FIN1'];
-    $FECHA_FIN2 = $fila1['FECHA_FIN2'];
-    $FECHA_FIN3 = $fila1['FECHA_FIN3'];
     $TITULAR_REGISTRO = $fila1['TITULAR_REGISTRO'];
     $NOMBRE_COMERCIAL = $fila1['NOMBRE_COMERCIAL'];
     $REGISTRO_SANITARIO = $fila1['REGISTRO_SANITARIO'];
@@ -83,20 +58,14 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="js/jquery.js"></script>
 </head>
 
 <body style="padding: 0; margin: 0;">
-
-
     <table class="table table-bordered" cellspacing="0" cellpadding="0" style="width: 100%;" id="header">
         <tbody>
             <tr>
                 <td>
-                    <?php
-                    $url = 'http://localhost/ipsen/presentacion/imagenes/EA.png'
-                    ?>
-                    <img src="<?php echo $url ?>" alt="" width="170" height="75" />
+                    <h1>Hola Mundo</h1>
                 </td>
                 <td>
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -163,24 +132,40 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
+                                <td style="font-weight: 700; background-color: #DBDBDB;">
                                     Nombre del Reportante primario
+                                </td>
+                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    Nombre del Paciente o Acudiente
+                                </td>
+                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    Consecutivo
                                 </td>
                                 <td style="font-weight: 700; background-color: #DBDBDB;">
                                     Profesión del reportante primario
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
-                                    Correo electrónico institucional del reportante primario
-                                </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td>
                                     <?php echo $NOMBRE_REPORTANTE ?>
+                                </td>
+                                <td>
+                                    <?php echo $NOMBRE_PACIENTE_ACUDIENTE ?>
+                                </td>
+                                <td>
+                                    <?php echo $CONSECUTIVO ?>
                                 </td>
                                 <td>
                                     <?php echo $PROFESION_REPORTANTE ?>
                                 </td>
-                                <td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 700; background-color: #DBDBDB;" colspan="4">
+                                    Correo electrónico institucional del reportante primario
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
                                     <?php echo $CORREO_REPORTANTE ?>
                                 </td>
                             </tr>
@@ -300,93 +285,52 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                     Fecha de finalización
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="1">
-                                    <?php echo $SCI1 ?>
-                                </td>
-                                <td>
-                                    <?php echo $MEDICAMENTO1 ?>
-                                </td>
-                                <td>
-                                    <?php echo $INDICACION1 ?>
-                                </td>
-                                <td>
-                                    <?php echo $DOSIS1 ?>
-                                </td>
-                                <td>
-                                    <?php echo $UNIDAD_MEDIDA1 ?>
-                                </td>
-                                <td>
-                                    <?php echo $VIA_ADMINISTRACION1 ?>
-                                </td>
-                                <td>
-                                    <?php echo $FRECUENCIA_ADMINISTRACION1 ?>
-                                </td>
-                                <td>
-                                    <?php echo $FECHA_INICIO1 ?>
-                                </td>
-                                <td>
-                                    <?php echo $FECHA_FIN1 ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="1">
-                                    <?php echo $SCI2 ?>
-                                </td>
-                                <td>
-                                    <?php echo $MEDICAMENTO2 ?>
-                                </td>
-                                <td>
-                                    <?php echo $INDICACION2 ?>
-                                </td>
-                                <td>
-                                    <?php echo $DOSIS2 ?>
-                                </td>
-                                <td>
-                                    <?php echo $UNIDAD_MEDIDA2 ?>
-                                </td>
-                                <td>
-                                    <?php echo $VIA_ADMINISTRACION2 ?>
-                                </td>
-                                <td>
-                                    <?php echo $FRECUENCIA_ADMINISTRACION2 ?>
-                                </td>
-                                <td>
-                                    <?php echo $FECHA_INICIO2 ?>
-                                </td>
-                                <td>
-                                    <?php echo $FECHA_FIN2 ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="1">
-                                    <?php echo $SCI3 ?>
-                                </td>
-                                <td>
-                                    <?php echo $MEDICAMENTO3 ?>
-                                </td>
-                                <td>
-                                    <?php echo $INDICACION3 ?>
-                                </td>
-                                <td>
-                                    <?php echo $DOSIS3 ?>
-                                </td>
-                                <td>
-                                    <?php echo $UNIDAD_MEDIDA3 ?>
-                                </td>
-                                <td>
-                                    <?php echo $VIA_ADMINISTRACION3 ?>
-                                </td>
-                                <td>
-                                    <?php echo $FRECUENCIA_ADMINISTRACION3 ?>
-                                </td>
-                                <td>
-                                    <?php echo $FECHA_INICIO3 ?>
-                                </td>
-                                <td>
-                                    <?php echo $FECHA_FIN3 ?>
-                                </td>
-                            </tr>
+                            <?php
+                            $consulta_medicamento = mysqli_query($conex, "SELECT * FROM ipsen_informacion_tratamiento_ea WHERE EVENTO_ADVERSO_ID ='" . $ID_EVENTO_ADVERSO . "'");
+                            echo mysqli_error($conex);
+                            while ($fila = mysqli_fetch_array($consulta_medicamento)) {
+                                $SCI = $fila['SCI'];
+                                $MEDICAMENTO = $fila['MEDICAMENTO'];
+                                $INDICACION = $fila['INDICACION'];
+                                $DOSIS = $fila['DOSIS'];
+                                $UNIDAD_MEDIDA = $fila['UNIDAD_MEDIDA'];
+                                $VIA_ADMINISTRACION = $fila['VIA_ADMINISTRACION'];
+                                $FRECUENCIA_ADMINISTRACION = $fila['FRECUENCIA_ADMINISTRACION'];
+                                $FECHA_INICIO = $fila['FECHA_INICIO'];
+                                $FECHA_FIN = $fila['FECHA_FIN'];
+                            ?>
+                                <tr>
+                                    <td colspan="1">
+                                        <?php echo $SCI ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $MEDICAMENTO ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $INDICACION ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $DOSIS ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $UNIDAD_MEDIDA ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $VIA_ADMINISTRACION ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $FRECUENCIA_ADMINISTRACION ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $FECHA_INICIO ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $FECHA_FIN ?>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                             <tr>
                                 <td colspan="9" style="font-weight: 700; background-color: #DBDBDB;">
                                     Información comercial del medicamento sospechoso
