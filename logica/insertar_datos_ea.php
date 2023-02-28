@@ -61,8 +61,41 @@ if (isset($_POST['registrar'])) {
 			echo mysqli_error($conex);
 		}
 		require('../presentacion/pdf.php');
-		echo 'Exito';
+?>
+		<span style="margin-top:5%;">
+			<center>
+				<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+			</center>
+		</span>
+		<p class="aviso3" style=" width:68.9%; margin:auto auto;">HA CREADO EXISITOSAMENTE EL EVENTO ADVERSO.</p>
+		<br />
+		<br />
+		<input type="button" value="Aceptar" onclick="CloseventanaSecundaria()">
+		<script>
+			function CloseventanaSecundaria(URL) {
+			window: close('form_evento_adverso.php?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>', "ventana1", "width=1650,height=500,Top=150,Left=50%");
+			}
+		</script>
+	<?php
 	} else {
-		echo 'Error';
+	?>
+		<span style="margin-top:5%;">
+			<center>
+				<img src="../presentacion/imagenes/advertencia2.png" width="68" height="78" style="width:70px; margin-top:100px;margin-top:5%;" />
+			</center>
+		</span>
+		<p class="error" style=" width:68.9%; margin:auto auto;">
+			<span style="border-left-color:#fff">ERROR VERIFIQUE LOS DATOS REGISTRADOS</span>
+		</p>
+		<br />
+		<br />
+		<script language=javascript>
+			function ventanaSecundaria(URL) {
+				window.open(URL, "ventana1", "width=1650,height=500,Top=150,Left=50%")
+			}
+		</script>
+			<a onclick="javascript:ventanaSecundaria('../presentacion/form_evento_adverso.php?ID_PACIENTE=<?php echo $ID_PACIENTE ?>') target=" info" class="btn_continuar"><img src="../presentacion/imagenes/BOTON_REGISTRAR_ROJO.png" style="width:152px; height:37px" /></a>
+		</center>
+<?php
 	}
 }

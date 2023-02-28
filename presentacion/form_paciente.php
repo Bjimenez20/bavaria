@@ -526,7 +526,7 @@ include('../logica/session.php')
                 $("#edad").val(edad);
             });
 
-           
+
             function reclamo() {
                 $("#causa_no_reclamacion").attr("selected", "selected");
                 $("#fecha_reclamacion").val('');
@@ -618,13 +618,13 @@ include('../logica/session.php')
                 if (aplicacion == 'SI') {
                     $('#span_fecha_aplicacion').css('display', 'block');
                     $('#fecha_aplicacion').css('display', 'block');
-                    $('#span_lugar_aplicacion').css('display','block');
-                    $('#lugar_aplicacion').css('display','block');
+                    $('#span_lugar_aplicacion').css('display', 'block');
+                    $('#lugar_aplicacion').css('display', 'block');
                 } else {
                     $('#span_fecha_aplicacion').css('display', 'none');
                     $('#fecha_aplicacion').css('display', 'none');
-                    $('#span_lugar_aplicacion').css('display','block');
-                    $('lugar_aplicacion').css('display','block');
+                    $('#span_lugar_aplicacion').css('display', 'block');
+                    $('lugar_aplicacion').css('display', 'block');
                 }
             }
 
@@ -1613,10 +1613,10 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <select name="lugar_aplicacion" id="lugar_aplicacion" style="display: none;">
-                                    <option><?php echo $LUGAR_APLICACION ?></option>
-                                    <option>Seleccione...</option>
-                                    <option value="IPS">IPS</option>
-                                    <option value="DOMICILIO">DOMICILIO</option>
+                                        <option><?php echo $LUGAR_APLICACION ?></option>
+                                        <option>Seleccione...</option>
+                                        <option value="IPS">IPS</option>
+                                        <option value="DOMICILIO">DOMICILIO</option>
                                     </select>
                                 </td>
                             </tr>
@@ -1958,7 +1958,7 @@ if ($privilegios != '' && $usua != '') {
                             <td></td>
                             <td id="otro_asegurador" style="display:none">
                                 <span>Asegurador por habilitar<span class="asterisco">*</span></span>
-                                <input name="asegurador_otro" id="asegurador_otro" type="text" style="width:78%;"/>
+                                <input name="asegurador_otro" id="asegurador_otro" type="text" style="width:78%;" />
                             </td>
                             <td></td>
                             <td id="otro_ips" style="display:none">
@@ -2621,11 +2621,9 @@ if ($privilegios != '' && $usua != '') {
                                         $enlace = $dir . "/" . $archivo;
                                     ?>
                                         <td>
-                                            <a class="highslide" onclick="return hs.expand(this)">
-                                                <img src="<?php echo $enlace; ?>" alt="" title="Click to enlarge" height="100" width="100" onclick="javascript:this.width=500;this.height=500" ondblclick="javascript:this.width=100;this.height=100" /></a>
-                                            <a href="<?php echo $enlace; ?>">ver</a>
-                                            <br />
-                                            <br />
+                                            <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $enlace ?>')">
+                                                <img src="../presentacion/imagenes/archivo.png" alt="" title="Click to enlarge" height="100" width="100">
+                                            </a>
                                         </td>
                                 <?php
                                     }
@@ -2647,11 +2645,9 @@ if ($privilegios != '' && $usua != '') {
                                         $enlace = $dir . "/" . $archivo;
                                 ?>
                                         <td>
-                                            <a class="highslide" onclick="return hs.expand(this)">
-                                                <img src="<?php echo $enlace; ?>" alt="" title="Click to enlarge" height="100" width="100" onclick="javascript:this.width=500;this.height=500" ondblclick="javascript:this.width=100;this.height=100" /></a>
-                                            <a href="<?php echo $enlace; ?>">ver</a>
-                                            <br />
-                                            <br />
+                                            <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $enlace ?>')">
+                                                <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="100" width="100">
+                                            </a>
                                         </td>
                                 <?php
                                     }
@@ -2660,9 +2656,6 @@ if ($privilegios != '' && $usua != '') {
                             } else {
                                 ?>
                                 <td>
-                                    <!-- <a class="highslide" onclick="return hs.expand(this)">
-                                        <img src="../EVENTO_ADVERSO/Evento_Adverso_2820.pdf" alt="" title="Click to enlarge" height="100" width="100" onclick="javascript:this.width=500;this.height=500" ondblclick="javascript:this.width=100;this.height=100" /></a>
-                                    <a href="../EVENTO_ADVERSO/Evento_Adverso_2820.pdf">ver</a> -->
                                 </td>
                         <?php
                             }
