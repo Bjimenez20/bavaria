@@ -1710,6 +1710,8 @@ if ($privilegios != '' && $usua != '') {
                                         <option>GM4 Estilo de vida</option>
                                         <option>GM5 Cuidando el cuidador</option>
                                         <option>GM6 Tecnicas de relajacion</option>
+                                        <option>GM7 Manejo emocional</option>
+                                        <option>GM8 Autoestima</option>
                                     </select>
                                 </label>
                             </td>
