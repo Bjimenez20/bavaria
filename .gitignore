@@ -15,7 +15,7 @@ new_scriptcase/
 ADJUNTOS_IPSEN/
 
 #Conexion
-datos/conex.php
+datos/
 
 # Compiled Java class files
 *.class
