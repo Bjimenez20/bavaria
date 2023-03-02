@@ -1,8 +1,8 @@
 <?php
- $servidor = "localhost";
- $usuario = "ipsen";
- $password = "ipsen";
- $basepaciente = "apppeopl_ipsen_test";
+$servidor = "localhost";
+$usuario = "ipsen";
+$password = "ipsen";
+$basepaciente = "ipsen_test";
 
 // $servidor = "localhost";
 //  $usuario = "root";
