@@ -412,6 +412,20 @@ include('../logica/session.php')
                 }
             });
 
+            $("input[name=tipo_evento_adverso]").change(function() {
+                var evento_adverso_tipo = $('#tipo_evento_adverso:checked').val();
+                if (evento_adverso_tipo == 'Farmacovigilancia') {
+                    $('#farmacovigilancia').css('display', 'inline');
+                    $('#tecnovigilancia').css('display', 'none');
+                } else if (evento_adverso_tipo == 'Tecnovigilancia') {
+                    $('#farmacovigilancia').css('display', 'none');
+                    $('#tecnovigilancia').css('display', 'inline');
+                } else {
+                    $('#farmacovigilancia').css('display', 'none');
+                    $('#tecnovigilancia').css('display', 'none');
+                }
+            });
+
 
             $("#medico").change(function() {
                 $("#medico_nuevo").val('');
@@ -2230,7 +2244,12 @@ if ($privilegios != '' && $usua != '') {
                                     <br>
                                     <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia" />Tecnovigilancia
                                     <br />
+                                </div>
+                                <div id="farmacovigilancia" style="display:none">
                                     <input type="button" name="tipo_evento_adverso2" id="tipo_evento_adverso2" style="background-image:url(imagenes/agregar.png); background-repeat:no-repeat;  width:41px; height:38px; border:1px solid transparent; background-color:transparent" onclick="javascript:ventanaSecundaria('form_evento_adverso.php?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>')" />
+                                </div>
+                                <div id="tecnovigilancia" style="display:none">
+                                    <input type="button" name="tipo_evento_adverso3" id="tipo_evento_adverso3" style="background-image:url(imagenes/agregar.png); background-repeat:no-repeat;  width:41px; height:38px; border:1px solid transparent; background-color:transparent" onclick="javascript:ventanaSecundaria('form_evento_adverso_tecno.php?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>')" />
                                 </div>
                                 <br />
                                 <br />

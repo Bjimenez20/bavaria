@@ -65,7 +65,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
         <tbody>
             <tr>
                 <td>
-                    <h1>Hola Mundo</h1>
+                    <img src="../dompdf/vendor/dompdf/dompdf/lib/res/EA.png">
                 </td>
                 <td>
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
