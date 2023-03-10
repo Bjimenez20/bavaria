@@ -129,7 +129,7 @@ if ($privilegios != '' && $usua != '') {
                                         <span class="mask bg-gradient-dark opacity-6"></span>
                                         <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
                                             <p class="text-white font-weight-bold h3">REPORTES</p>
-                                            <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../new_scriptcase/ipsen_20220614174528" target="info">
+                                            <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../scriptcase/ipsen_20230310122133000000" target="info">
                                                 Ver más
                                                 <i class="material-icons text-sm ms-1 position-relative" aria-hidden="true">arrow_forward</i>
                                             </a>

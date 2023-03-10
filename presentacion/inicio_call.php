@@ -137,25 +137,7 @@ if ($privilegios != '' && $usua != '') {
                                             <span class="mask bg-gradient-dark opacity-6"></span>
                                             <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
                                                 <p class="text-white font-weight-bold h3">REPORTES</p>
-                                                <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../SCRIPTCASE/new_scriptcase" target="info">
-                                                    Ver más
-                                                    <i class="material-icons text-sm ms-1 position-relative" aria-hidden="true">arrow_forward</i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                            <?php
-                            if ($privilegios == '2') {
-                            ?>
-                                <div class="col-md-4 mx-auto">
-                                    <div class="card text-center cardhome">
-                                        <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-image: url('./../presentacion/imagenes/cardhome3.png')">
-                                            <span class="mask bg-gradient-dark opacity-6"></span>
-                                            <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
-                                                <p class="text-white font-weight-bold h3">REPORTES CONTEO</p>
-                                                <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../new_scriptcase/conteo/ipsen_20220706110144" target="info">
+                                                <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../scriptcase/ipsen_20230310122133000000" target="info">
                                                     Ver más
                                                     <i class="material-icons text-sm ms-1 position-relative" aria-hidden="true">arrow_forward</i>
                                                 </a>
@@ -166,11 +148,7 @@ if ($privilegios != '' && $usua != '') {
                             <?php } ?>
                         </div>
                     </div>
-
-
                     <iframe name="info" id="info" frameborder="0" width="100%" height="100%" style="display: none"></iframe>
-
-
                 </div>
             </div>
 
