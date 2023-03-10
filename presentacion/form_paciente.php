@@ -1583,6 +1583,7 @@ if ($privilegios != '' && $usua != '') {
                                         <option>Falta cita para examenes</option>
                                         <option>Falta de cita medica</option>
                                         <option>Falta de contacto</option>
+                                        <option>Falta de cita de aplicacion</option>
                                         <option>Pendiente Radicar Formula en Farmacia</option>
                                         <option>Desafiliacion Asegurador</option>
                                         <option>En proceso de Examenes</option>
