@@ -464,6 +464,8 @@ include('../logica/session.php');
                     $('#aplicacion_m').css('display', 'none');
                     $('#fecha_aplicacion').css('display', 'none');
                     $('#span_fecha_aplicacion').css('display', 'none');
+                    $('#span_lugar_aplicacion').css('display', 'none');
+                    $('#lugar_aplicacion').css('display', 'none');
                 }
                 if (reclamo == 'SI' && MEDICAMENTO == 'BETAFERON CMBP X 15 VPFS (3750 MCG) MM') {
                     $("#fecha_reclamacion").val($('#fecha_reclamacion').prop('defaultValue'));
@@ -505,12 +507,16 @@ include('../logica/session.php');
 
             function aplicaciones() {
                 var aplicacion = $('#aplicacion_m').val();
-                if (aplicacion == 'SI') {
-                    $('#span_fecha_aplicacion').css('display', 'block');
-                    $('#fecha_aplicacion').css('display', 'block');
-                } else {
+                if (aplicacion != 'SI') {
                     $('#span_fecha_aplicacion').css('display', 'none');
                     $('#fecha_aplicacion').css('display', 'none');
+                    $('#span_lugar_aplicacion').css('display', 'none');
+                    $('#lugar_aplicacion').css('display', 'none');
+                } else {
+                    $('#span_fecha_aplicacion').css('display', 'block');
+                    $('#fecha_aplicacion').css('display', 'block');
+                    $('#span_lugar_aplicacion').css('display', 'block');
+                    $('#lugar_aplicacion').css('display', 'block');
                 }
             }
 
@@ -1386,6 +1392,18 @@ if ($privilegios != '' && $usua != '') {
                             </tr>
                             <tr>
                                 <td>
+                                    <span id="span_lugar_aplicacion" style="display: none;">Lugar de aplicación<span class="asterisco">*</span></span>
+                                </td>
+                                <td>
+                                    <select name="lugar_aplicacion" id="lugar_aplicacion" style="display: none;">
+                                        <option>Seleccione...</option>
+                                        <option value="IPS">IPS</option>
+                                        <option value="DOMICILIO">DOMICILIO</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <label>
                                         <span>Se brindo Educacion</span>
                                         <select name="brindo_educacion" id="brindo_educacion">
@@ -1398,13 +1416,15 @@ if ($privilegios != '' && $usua != '') {
                                 <td id="TemaSiEdu" style="display: none;">
                                     <label><span>Tema</span>
                                         <select name="TemaBrindoEdu" id="TemaBrindoEdu">
-                                            <option value="">Seleccione...</option>
+                                            <option>Seleccione...</option>
                                             <option>GM1 Concientizacion de la enfermedad</option>
-                                            <option>GM2 Mitos y realidades</option>
-                                            <option>GM3 Autocuidado</option>
+                                            <option>GM2 Autocuidado</option>
+                                            <option>GM3 Mitos y realidades</option>
                                             <option>GM4 Estilo de vida</option>
                                             <option>GM5 Cuidando el cuidador</option>
                                             <option>GM6 Tecnicas de relajacion</option>
+                                            <option>GM7 Manejo emocional</option>
+                                            <option>GM8 Autoestima</option>
                                         </select>
                                     </label>
                                 </td>

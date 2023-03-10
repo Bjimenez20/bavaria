@@ -555,6 +555,8 @@ include('../logica/session.php')
                     $('#fecha_reclamacion').css('display', 'none');
                     $('#span_aplicacion_m').css('display', 'none');
                     $('#aplicacion_m').css('display', 'none');
+                    $('#span_lugar_aplicacion').css('display', 'none');
+                    $('#lugar_aplicacion').css('display', 'none');
                     $('#span_fecha_aplicacion').css('display', 'none');
                     $('#fecha_aplicacion').css('display', 'none');
                     $("#consecutivo_betaferon_span").css('display', 'none');
@@ -571,6 +573,8 @@ include('../logica/session.php')
                     $('#fecha_reclamacion').css('display', 'none');
                     $('#span_aplicacion_m').css('display', 'none');
                     $('#aplicacion_m').css('display', 'none');
+                    $('#span_lugar_aplicacion').css('display', 'none');
+                    $('#lugar_aplicacion').css('display', 'none');
                     $('#span_fecha_aplicacion').css('display', 'none');
                     $('#fecha_aplicacion').css('display', 'none');
                     $("#consecutivo_betaferon_span").css('display', 'none');
@@ -608,6 +612,10 @@ include('../logica/session.php')
                         $('#fecha_reclamacion').css('display', 'block');
                         $('#span_aplicacion_m').css('display', 'block');
                         $('#aplicacion_m').css('display', 'block');
+                        $('#span_fecha_aplicacion').css('display', 'block');
+                        $('#fecha_aplicacion').css('display', 'block');
+                        $('#span_lugar_aplicacion').css('display', 'block');
+                        $('#lugar_aplicacion').css('display', 'block');
                         $("#causa").css('display', 'none');
                         $('#causa_no_reclamacion').css('display', 'none');
                         $('#numero_cajas').removeAttr('disabled');
@@ -629,16 +637,16 @@ include('../logica/session.php')
 
             function aplicaciones() {
                 var aplicacion = $('#aplicacion_m').val();
-                if (aplicacion == 'SI') {
+                if (aplicacion != 'SI') {
+                    $('#span_fecha_aplicacion').css('display', 'none');
+                    $('#fecha_aplicacion').css('display', 'none');
+                    $('#span_lugar_aplicacion').css('display', 'none');
+                    $('#lugar_aplicacion').css('display', 'none');
+                } else {
                     $('#span_fecha_aplicacion').css('display', 'block');
                     $('#fecha_aplicacion').css('display', 'block');
                     $('#span_lugar_aplicacion').css('display', 'block');
                     $('#lugar_aplicacion').css('display', 'block');
-                } else {
-                    $('#span_fecha_aplicacion').css('display', 'none');
-                    $('#fecha_aplicacion').css('display', 'none');
-                    $('#span_lugar_aplicacion').css('display', 'block');
-                    $('lugar_aplicacion').css('display', 'block');
                 }
             }
 
@@ -1551,6 +1559,7 @@ if ($privilegios != '' && $usua != '') {
                                     $FECHA_NO_RECLAMACION = $con['FECHA_CITA_PROGRAMADA'];
                                     $APLICACION = $con['APLICACION'];
                                     $FECHA_APLICACION = $con['FECHA_APLICACION'];
+                                    $LUGAR_APLICACION = $con['LUGAR_APLICACION'];
                         ?>
                             <tr>
                                 <td>
@@ -1718,6 +1727,7 @@ if ($privilegios != '' && $usua != '') {
                                 <label>
                                     <span>Tema<span class="asterisco">*</span></span>
                                     <select name="TemaBrindoEdu" id="TemaBrindoEdu" disabled>
+                                        <option value="<?php echo $temaBrindo ?>"><?php echo $temaBrindo ?></option>
                                         <option>Seleccione...</option>
                                         <option>GM1 Concientizacion de la enfermedad</option>
                                         <option>GM2 Autocuidado</option>
