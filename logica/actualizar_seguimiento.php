@@ -80,10 +80,6 @@ include('../logica/session.php');
     $MotivoNoEdu = $_POST['MotivoNoEdu'];
     $boton_activo = $_POST['switch-button'];
     $frecuencia = $_POST['frecuencia'];
-    $sql = "SELECT CONSECUTIVO AS CONSECUTIVO_EA FROM ipsen_evento_adverso ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1";
-    $resultado = mysqli_query($conex, $sql);
-    $fila = mysqli_fetch_assoc($resultado);
-    $CONSECUTIVO_EA = $fila['CONSECUTIVO_EA'];
     if ($boton_activo == 'on') {
         if ($brindo_educacion == 'SI') {
             $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $codigo_usuario2 . "', '" . $brindo_educacion . "', '" . $TemaBrindoEdu . "', '" . $FechaEduca . "', NOW())");
@@ -250,6 +246,12 @@ include('../logica/session.php');
     $tipo_evento_adverso = $_POST['tipo_evento_adverso'];
     if ($evento_adverso == 'NO') {
         $tipo_evento_adverso = ' ';
+    }
+    if ($evento_adverso == 'SI') {
+        $sql = "SELECT CONSECUTIVO AS CONSECUTIVO_EA FROM ipsen_evento_adverso ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1";
+        $resultado = mysqli_query($conex, $sql);
+        $fila = mysqli_fetch_assoc($resultado);
+        $CONSECUTIVO_EA = $fila['CONSECUTIVO_EA'];
     }
     if (isset($_POST['genera_solicitud'])) {
         $genera_solicitud = $_POST['genera_solicitud'];
