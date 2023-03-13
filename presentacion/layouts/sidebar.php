@@ -158,7 +158,7 @@
                                 </a>
                             </li>
                             <li class="nav-item select_menu">
-                                <a class="nav-link" href="../scriptcase/ipsen_20230310122133000000" target="info">
+                                <a class="nav-link" href="../scriptcase" target="info">
                                     <span class="sidebar-mini"> RS </span>
                                     <span class="sidebar-normal"> Otros reportes </span>
                                 </a>
@@ -204,7 +204,7 @@
                     <div class="collapse" id="pagesExamples3">
                         <ul class="nav">
                             <li class="nav-item select_menu">
-                                <a class="nav-link" href="../scriptcase/ipsen_20230310122133000000" target="info">
+                                <a class="nav-link" href="../scriptcase" target="info">
                                     <span class="sidebar-mini"> RS </span>
                                     <span class="sidebar-normal"> Otros reportes </span>
                                 </a>
