@@ -17,9 +17,9 @@ $subject = "Reporte Farmacovigilancia - $INICIALES_PACIENTE - $fecha";
 
 $mail->Body = $body;
 $mail->Subject = $subject;
-$mail->addAddress('pharmacovigilance.colombia@ipsen.com');
-$mail->addCC('diego.enrique.orjuela@ipsen.com');
-$mail->addBCC('dmendoza@peoplemarketing.com.co');
+$mail->addAddress('bjimenez@app-peoplemarketing.com');
+// $mail->addCC('diego.enrique.orjuela@ipsen.com');
+// $mail->addBCC('dmendoza@peoplemarketing.com.co');
 $mail->addAttachment('../EVENTO_ADVERSO/' . $ID_GESTION . '/Evento_Adverso_' . $ID_PACIENTE . '.pdf');
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->smtpClose();
