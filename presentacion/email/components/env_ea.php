@@ -10,9 +10,9 @@
 
 
 // VARIABLES DE ENTORNO AWS
-$host = 'email-smtp.us-east-1.amazonaws.com';
-$user = 'AKIAS6XANSXJIISGZ6WM';
-$pass = 'BJYnvnweFxTkl7WWdQ6i5k/WELCCUPjI+hck/u8TEOTX';
+$host = 'smtp.mi.com.co';
+$user = 'reportesfarmacovigilancia@pspipsen.com';
+$pass = 'Rfv2022**';
 $encrypt = 'tls';
 $port = '587';
 $emailout = 'reportesfarmacovigilancia@pspipsen.com';
