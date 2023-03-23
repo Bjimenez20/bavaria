@@ -7,7 +7,7 @@ use Dompdf\Dompdf;
 
 $dompdf = new Dompdf();
 ob_start();
-$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
+$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso WHERE ID_PACIENTE_FK ='" . $ID_PACIENTE . "' ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
 echo mysqli_error($conex);
 while ($fila1 = mysqli_fetch_array($consulta)) {
     $ID_EVENTO_ADVERSO = $fila1['ID_EVENTO_ADVERSO'];
@@ -47,7 +47,6 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
     $PREGUNTA5 = $fila1['PREGUNTA5'];
     $ID_PAP = $fila1['ID_PACIENTE_FK'];
     $ID_GESTION = $fila1['ID_GESTION_FK'];
-    $URL_PDF = $fila1['URL_PDF'];
 }
 ?>
 <!DOCTYPE html>
@@ -63,8 +62,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 <body style="padding: 0; margin: 0;">
     <table class="table table-bordered" cellspacing="0" cellpadding="0" style="width: 100%;" id="header">
         <tbody>
-            <tr>
-                <td>
+            <tr height="10%">
+                <td width="25%">
                     <img src="../dompdf/vendor/dompdf/dompdf/lib/res/EA.png">
                 </td>
                 <td>
@@ -237,8 +236,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" style="text-align: left; font-weight: 700">
-                                    Diagnóstico principal y otros diagnósticos: <?php echo $DIAGNOSTICO_PRINCIPAL ?>
+                                <td colspan="7" style="text-align: left;">
+                                    <span style="font-weight: 700">Diagnóstico principal y otros diagnósticos:</span> <?php echo $DIAGNOSTICO_PRINCIPAL ?>
                                 </td>
                             </tr>
                         </tbody>
@@ -373,28 +372,26 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tbody>
                             <tr>
-                                <td colspan="4" class="titulos3" style="font-weight: 700">4. INFORMACIÓN DEL EVENTO ADVERSO</td>
+                                <td colspan="5" class="titulos3" style="font-weight: 700">4. INFORMACIÓN DEL EVENTO ADVERSO</td>
                             </tr>
                             <tr>
-                                <td style="font-weight: 700; text-align:left;">
-                                    Fecha de Inicio del Evento Adverso: <br>
-                                    <?php echo $FECHA_INICIO_EVENTO ?>
+                                <td colspan="1" style="text-align:left;">
+                                    <span style="font-weight: 700;">Fecha de Inicio del Evento Adverso:</span> <?php echo $FECHA_INICIO_EVENTO ?>
                                 </td>
-                                <td style="font-weight: 700; text-align:left;">
-                                    Evento adverso: <?php echo $EVENTO_ADVERSO ?>
+                                <td colspan="2" style="text-align:left;">
+                                    <span style="font-weight: 700;">Evento adverso:</span> <?php echo $EVENTO_ADVERSO ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight: 700; text-align:left;">
-                                    Descripción y análisis del Evento Adverso:<br>
-                                    <?php echo $DESCRIPCION_ANALISIS_EVENTO ?>
+                                <td colspan="1" style="vertical-align: top; text-align:left; width: 30%;">
+                                    <span style="font-weight: 700;"> Descripción y análisis del Evento Adverso:</span> <br> <?php echo $DESCRIPCION_ANALISIS_EVENTO ?>
                                 </td>
-                                <td>
+                                <td colspan="4">
                                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                         <tbody>
                                             <tr>
                                                 <?php if ($DESENLACE_EVENTO == 'Recuperado / Resuelto sin secuelas') { ?>
-                                                    <td style="font-weight: 700; text-align: left">
+                                                    <td style="text-align: left">
                                                         <p style="font-weight: 700; "> Desenlace del evento (Marcar con una X)</p>
                                                         <span style="color: #ff0000;">X</span> Recuperado / Resuelto sin secuelas <br>
                                                         Recuperado / Resuelto con secuelas <br>
@@ -558,7 +555,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 <td style="font-weight: 700;">No sabe</td>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: left;">
+                                <td colspan="4" style="text-align: left; font-weight: 700;">
                                     ¿El evento se presentó después de administrar el medicamento? <br>
                                 </td>
                                 <?php
@@ -605,7 +602,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 ?>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: left;">
+                                <td colspan="4" style="text-align: left; font-weight: 700;">
                                     ¿Existen otros factores que puedan explicar el evento (medicamento, patologías, etc.)? <br>
                                 </td>
                                 <?php
@@ -652,7 +649,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 ?>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: left;">
+                                <td colspan="4" style="text-align: left; font-weight: 700;">
                                     ¿El evento desapareció al disminuir o suspender el medicamento sospechoso? <br>
                                 </td>
                                 <?php
@@ -699,7 +696,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 ?>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: left;">
+                                <td colspan="4" style="text-align: left; font-weight: 700;">
                                     ¿El paciente ya había presentado la misma reacción al medicamento sospechoso? <br>
                                 </td>
                                 <?php
@@ -746,7 +743,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 ?>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: left;">
+                                <td colspan="4" style="text-align: left; font-weight: 700;">
                                     ¿Se puede ampliar la información del paciente relacionando con el evento? <br>
                                 </td>
                                 <?php
@@ -804,10 +801,11 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
         margin: 180px 50px;
     }
 
+
     #header {
         position: fixed;
         left: 0px;
-        top: -165px;
+        top: -159px;
         right: 0px;
         height: 150px;
         background-color: transparent;
@@ -928,14 +926,13 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 
 </html>
 <?php
-include "./pdf_evento_adverso.php";
 $html = ob_get_clean();
 $dompdf->loadHtml($html);
 $dompdf->render();
 $output = $dompdf->output();
-$CARPETA = "../EVENTO_ADVERSO/$ID_GESTION";
+$CARPETA = "../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO";
 if (!is_dir($CARPETA)) {
-    mkdir("../EVENTO_ADVERSO/$ID_GESTION", 0777);
+    mkdir("../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO", 0777);
     file_put_contents('' . $CARPETA . '/Evento_Adverso_' . $ID_PACIENTE . '.pdf', $output);
 }
-include("../presentacion/email/mail.php");
+require("../presentacion/email/mail.php");

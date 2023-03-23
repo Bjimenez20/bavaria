@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -78,6 +79,7 @@ if ($privilegios != '' && $usua != '') {
         $cad .= substr($characters, rand(0, 61), 1);
     }
 ?>
+
     <body style="padding: 0; margin: 0;">
         <form id="formulario" method="POST" action="../logica/insertar_datos_ea.php">
             <table class="table table-bordered" cellspacing="0" cellpadding="0" style="width: 100%;" id="header">

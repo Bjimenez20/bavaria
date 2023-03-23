@@ -20,6 +20,6 @@ $mail->Subject = $subject;
 $mail->addAddress('bjimenez@app-peoplemarketing.com');
 // $mail->addCC('diego.enrique.orjuela@ipsen.com');
 // $mail->addBCC('dmendoza@peoplemarketing.com.co');
-$mail->addAttachment('../EVENTO_ADVERSO/' . $ID_GESTION . '/Evento_Adverso_' . $ID_PACIENTE . '.pdf');
+$mail->addAttachment('../EVENTO_ADVERSO/' . $ID_EVENTO_ADVERSO . '/Evento_Adverso_' . $ID_PACIENTE . '.pdf');
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->smtpClose();

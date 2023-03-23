@@ -22,7 +22,7 @@ require_once('session.php');
 		.error {
 			font-size: 130%;
 			font-weight: bold;
-			color: #fb8305;
+			color: red;
 			text-transform: uppercase;
 			background-color: transparent;
 			text-align: center;
@@ -94,9 +94,7 @@ require_once('session.php');
 		$PREGUNTA4 = $_POST['pregunta4'];
 		$PREGUNTA5 = $_POST['pregunta5'];
 		$ID_PACIENTE = $_POST['ID_PACIENTE'];
-		$ID_GESTION = $_POST['ID_GESTION'];
-		$URL = "localhost/IPSEN/EVENTO_ADVERSO/$ID_GESTION/Evento_Adverso_$ID_PACIENTE.pdf";
-		$insertar = mysqli_query($conex, "INSERT INTO ipsen_evento_adverso(FECHA_NOTIFICA,DEPARTAMENTO,MUNICIPIO,NOMBRE_INSTITUCION,CODIGO_PNF,NOMBRE_REPORTANTE,NOMBRE_PACIENTE_ACUDIENTE,CONSECUTIVO,PROFESION_REPORTANTE,CORREO_REPORTANTE,FECHA_NACIMIENTO_PACIENTE,EDAD_PACIENTE,TIPO_DOCUMENTO_PACIENTE,NUMERO_DOCUMENTO_PACIENTE,INICIALES_PACIENTE,SEXO,PESO,TALLA,DIAGNOSTICO_PRINCIPAL,TITULAR_REGISTRO,NOMBRE_COMERCIAL,REGISTRO_SANITARIO,LOTE,FECHA_INICIO_EVENTO,EVENTO_ADVERSO,DESCRIPCION_ANALISIS_EVENTO,DESENLACE_EVENTO,SERIEDAD,FECHA_MUERTE,PREGUNTA1,PREGUNTA2,PREGUNTA3,PREGUNTA4,PREGUNTA5,ID_PACIENTE_FK, ID_GESTION_FK, URL_PDF) VALUES ('" . $FECHA_NOTIFICA . "','" . $DEPARTAMENTO . "','" . $MUNICIPIO . "','" . $NOMBRE_INSTITUCION . "','" . $CODIGO_PNF . "','" . $NOMBRE_REPORTANTE . "','" . $NOMBRE_PACIENTE_ACUDIENTE . "','" . $CONSECUTIVO . "','" . $PROFESION_REPORTANTE . "','" . $CORREO_REPORTANTE . "','" . $FECHA_NACIMIENTO_PACIENTE . "','" . $EDAD_PACIENTE . "','" . $TIPO_DOCUMENTO_PACIENTE . "','" . $NUMERO_DOCUMENTO_PACIENTE . "','" . $INICIALES_PACIENTE . "','" . $SEXO . "','" . $PESO . "','" . $TALLA . "','" . $DIAGNOSTICO_PRINCIPAL . "','" . $TITULAR_REGISTRO . "','" . $NOMBRE_COMERCIAL . "','" . $REGISTRO_SANITARIO . "','" . $LOTE . "','" . $FECHA_INICIO_EVENTO . "','" . $EVENTO_ADVERSO . "','" . $DESCRIPCION_ANALISIS_EVENTO . "','" . $DESENLACE_EVENTO . "','" . $SERIEDAD . "','" . $FECHA_MUERTE . "','" . $PREGUNTA1 . "','" . $PREGUNTA2 . "','" . $PREGUNTA3 . "','" . $PREGUNTA4 . "','" . $PREGUNTA5 . "','" . $ID_PACIENTE . "','" . $ID_GESTION . "','" . $URL . "')");
+		$insertar = mysqli_query($conex, "INSERT INTO ipsen_evento_adverso(FECHA_NOTIFICA,DEPARTAMENTO,MUNICIPIO,NOMBRE_INSTITUCION,CODIGO_PNF,NOMBRE_REPORTANTE,NOMBRE_PACIENTE_ACUDIENTE,CONSECUTIVO,PROFESION_REPORTANTE,CORREO_REPORTANTE,FECHA_NACIMIENTO_PACIENTE,EDAD_PACIENTE,TIPO_DOCUMENTO_PACIENTE,NUMERO_DOCUMENTO_PACIENTE,INICIALES_PACIENTE,SEXO,PESO,TALLA,DIAGNOSTICO_PRINCIPAL,TITULAR_REGISTRO,NOMBRE_COMERCIAL,REGISTRO_SANITARIO,LOTE,FECHA_INICIO_EVENTO,EVENTO_ADVERSO,DESCRIPCION_ANALISIS_EVENTO,DESENLACE_EVENTO,SERIEDAD,FECHA_MUERTE,PREGUNTA1,PREGUNTA2,PREGUNTA3,PREGUNTA4,PREGUNTA5,ID_PACIENTE_FK) VALUES ('" . $FECHA_NOTIFICA . "','" . $DEPARTAMENTO . "','" . $MUNICIPIO . "','" . $NOMBRE_INSTITUCION . "','" . $CODIGO_PNF . "','" . $NOMBRE_REPORTANTE . "','" . $NOMBRE_PACIENTE_ACUDIENTE . "','" . $CONSECUTIVO . "','" . $PROFESION_REPORTANTE . "','" . $CORREO_REPORTANTE . "','" . $FECHA_NACIMIENTO_PACIENTE . "','" . $EDAD_PACIENTE . "','" . $TIPO_DOCUMENTO_PACIENTE . "','" . $NUMERO_DOCUMENTO_PACIENTE . "','" . $INICIALES_PACIENTE . "','" . $SEXO . "','" . $PESO . "','" . $TALLA . "','" . $DIAGNOSTICO_PRINCIPAL . "','" . $TITULAR_REGISTRO . "','" . $NOMBRE_COMERCIAL . "','" . $REGISTRO_SANITARIO . "','" . $LOTE . "','" . $FECHA_INICIO_EVENTO . "','" . $EVENTO_ADVERSO . "','" . $DESCRIPCION_ANALISIS_EVENTO . "','" . $DESENLACE_EVENTO . "','" . $SERIEDAD . "','" . $FECHA_MUERTE . "','" . $PREGUNTA1 . "','" . $PREGUNTA2 . "','" . $PREGUNTA3 . "','" . $PREGUNTA4 . "','" . $PREGUNTA5 . "','" . $ID_PACIENTE . "')");
 		echo mysqli_error($conex);
 		if ($insertar) {
 			$sql = "SELECT MAX(ID_EVENTO_ADVERSO) AS ULTIMO_EVENTO_ADVERSO_ID FROM ipsen_evento_adverso";
@@ -143,6 +141,7 @@ require_once('session.php');
 				</center>
 			</span>
 			<p class="error" style=" width:68.9%; margin:auto auto;">
+				<br>
 				<span style="border-left-color:#fff">ERROR VERIFIQUE LOS DATOS REGISTRADOS</span>
 			</p>
 			<br />
@@ -152,7 +151,8 @@ require_once('session.php');
 					window.open(URL, "ventana1", "width=1650,height=500,Top=150,Left=50%")
 				}
 			</script>
-			<a onclick="javascript:ventanaSecundaria('../presentacion/form_evento_adverso.php?ID_PACIENTE=<?php echo $ID_PACIENTE ?>') target=" info" class="btn_continuar"><img src="../presentacion/imagenes/BOTON_REGISTRAR_ROJO.png" style="width:152px; height:37px" /></a>
+			<center>
+				<a onclick="javascript:ventanaSecundaria('../presentacion/form_evento_adverso.php?ID_PACIENTE=<?php echo $ID_PACIENTE ?>') target=" info" class="btn_continuar"><img src="../presentacion/imagenes/BOTON_REGISTRAR_ROJO.png" style="width:152px; height:37px" /></a>
 			</center>
 	<?php
 		}

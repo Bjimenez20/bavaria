@@ -491,18 +491,15 @@ if ($privilegios != '' && $usua != '') {
                                         ?>
                                             <select type="text" name="estado_paciente" id="estado_paciente">
                                                 <option><?php echo $fila['ESTADO_PACIENTE']; ?></option>
-                                                <option>Abandono</option>
                                                 <option>Activo</option>
-                                                <option>En servicio</option>
-                                                <option>Fase 2</option>
-                                                <option>Interrumpido</option>
-                                                <option>Proceso</option>
+                                                <option>Inactivo</option>
+                                                <option>Nuevo</option>
                                                 <option>Suspendido</option>
                                             </select>
                                         <?php
                                         } else {
                                         ?>
-                                            <input name="estado_paciente" type="text" id="estado_paciente" readonly="readonly" value="<?php echo $fila['ESTADO_PACIENTE']; ?>" />
+                                            <input name="esta   do_paciente" type="text" id="estado_paciente" readonly="readonly" value="<?php echo $fila['ESTADO_PACIENTE']; ?>" />
                                         <?php
                                         }
                                         ?>

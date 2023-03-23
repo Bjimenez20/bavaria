@@ -547,9 +547,9 @@ $html = ob_get_clean();
 $dompdf->loadHtml($html);
 $dompdf->render();
 $output = $dompdf->output();
-$CARPETA = "../EVENTO_ADVERSO/$ID_GESTION";
+$CARPETA = "../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO";
 if (!is_dir($CARPETA)) {
-    mkdir("../EVENTO_ADVERSO/$ID_GESTION", 0777);
+    mkdir("../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO", 0777);
     file_put_contents('' . $CARPETA . '/Evento_Adverso_' . $ID_PACIENTE . '.pdf', $output);
 }
-include("../presentacion/email/mail.php");
+require("../presentacion/email/mail.php");

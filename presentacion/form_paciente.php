@@ -2618,7 +2618,7 @@ if ($privilegios != '' && $usua != '') {
                             ?>
                                     <td>
                                         <input name="CODIGO_ARGUS" id="CODIGO_ARGUS" type="text" maxlength="25" style="width:80%" value="<?php echo $fila2['CODIGO_ARGUS']; ?>" readonly="readonly" />
-                                        <a class="btn_gestiones" href="javascript:ventanaSecundaria('../presentacion/codigo_ar.php?xx=<?php echo base64_encode($fila2['ID_GESTION']) ?>&xxp=<?php echo base64_encode($ID_PACIENTE) ?>')"><img src="imagenes/CHULO.png" width="17%" height="25px" title="Agregar Codigo" align="right" /> </a>
+                                        <a class="btn_gestiones" href="javascript:ventanaSecundaria('../presentacion/codigo_ar.php?xx=<?php echo base64_encode($fila2['ID_GESTION']) ?>&xxp=<?php echo base64_encode($ID_PACIENTE) ?>')"></a>
                                     </td>
                                 <?php
                                 } else {
@@ -2633,7 +2633,7 @@ if ($privilegios != '' && $usua != '') {
                                 ?>
                                     <td>
                                         <input name="CODIGO_ARGUS" id="CODIGO_ARGUS" type="text" maxlength="25" style="width:80%" value="<?php echo $fila2['CODIGO_ARGUS']; ?>" readonly="readonly" />
-                                        <a class="btn_gestiones" href="javascript:ventanaSecundaria('../presentacion/codigo_ar.php?xx=<?php echo base64_encode($fila2['ID_GESTION']) ?>&xxp=<?php echo base64_encode($ID_PACIENTE) ?>')"><img src="imagenes/CHULO.png" width="17%" height="25px" title="Agregar Codigo" align="right" /> </a>
+                                        <a class="btn_gestiones" href="javascript:ventanaSecundaria('../presentacion/codigo_ar.php?xx=<?php echo base64_encode($fila2['ID_GESTION']) ?>&xxp=<?php echo base64_encode($ID_PACIENTE) ?>')"></a>
                                     </td>
                                 <?php
                                 } else {
@@ -2667,8 +2667,8 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <?php
                             }
-                            $ID_GES = $fila2['ID_GESTION'];
-                            $dir = "../EVENTO_ADVERSO/$ID_GES";
+                            $EVENTO_ADVERSO = $fila2['EVENTO_ADVERSO_FK'];
+                            $dir = "../EVENTO_ADVERSO/$EVENTO_ADVERSO";
                             if (file_exists($dir)) {
                                 $directorio = opendir($dir);
                                 while ($archivo = readdir($directorio)) {
