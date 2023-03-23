@@ -552,4 +552,4 @@ if (!is_dir($CARPETA)) {
     mkdir("../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO", 0777);
     file_put_contents('' . $CARPETA . '/Evento_Adverso_' . $ID_PACIENTE . '.pdf', $output);
 }
-require("../presentacion/email/mail.php");
+require("../presentacion/email/mail_tecno.php");
