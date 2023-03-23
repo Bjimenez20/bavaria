@@ -253,6 +253,9 @@ include('../logica/session.php');
         $fila = mysqli_fetch_assoc($resultado);
         $CONSECUTIVO_EA = $fila['CONSECUTIVO_EA'];
         $ID_EVENTO_ADVERSO = $fila['ID_EVENTO_ADVERSO_ULT'];
+    } else {
+        $CONSECUTIVO_EA = '';
+        $ID_EVENTO_ADVERSO = '';
     }
     if (isset($_POST['genera_solicitud'])) {
         $genera_solicitud = $_POST['genera_solicitud'];
