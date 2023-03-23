@@ -2688,6 +2688,7 @@ if ($privilegios != '' && $usua != '') {
                             } else {
                                 ?>
                                 <td>
+                                    Hola Mundo
                                 </td>
                         <?php
                             }
