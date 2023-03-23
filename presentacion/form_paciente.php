@@ -2687,7 +2687,7 @@ if ($privilegios != '' && $usua != '') {
                                 closedir($directorio);
                             } else {
                                 ?>
-                                <td style="border-radius: 1px; border-color: red;">
+                                <td>
                                 </td>
                         <?php
                             }
