@@ -2685,10 +2685,16 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                 }
                                 closedir($directorio);
-                            } else {
+                            } else if (file_exists(false)) {
                                 ?>
                                 <td>
-                                    Hola Mundo
+                                    Hola Mundo 1
+                                </td>
+                            <?php
+                            } else {
+                            ?>
+                                <td>
+                                    Hola Mundo 2
                                 </td>
                         <?php
                             }
