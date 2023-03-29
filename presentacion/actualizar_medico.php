@@ -137,7 +137,6 @@ require('../datos/conex.php');
                         <tr>
                             <th colspan="4">
                                 <input type="submit" class="actualizar" value="Actualizar" id="actualizar" name="actualizar">
-                                <input type="submit" class="eliminar" value="Eliminar" id="eliminar" name="eliminar">
                             </th>
                         </tr>
                     </table>
