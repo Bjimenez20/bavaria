@@ -1,26 +1,4 @@
 function validar(tuformulario, val) {
-
-    // var FECHA_NOTIFICACION = $('#fecha_notificacion').val();
-    // if (FECHA_NOTIFICACION == '') {
-    //     alert('La fecha notificacion esta vacia');
-    //     $('#fecha_notificacion').focus();
-    //     return false;
-    // }
-
-    var DEPARTAMENTO = $('#departamento').val();
-    if (DEPARTAMENTO == '') {
-        alert('El departamento esta vacio');
-        $('#departamento').focus();
-        return false;
-    }
-
-    var MUNICIPIO = $('#municipio').val();
-    if (MUNICIPIO == '') {
-        alert('El municipio esta vacio');
-        $('#municipio').focus();
-        return false;
-    }
-
     var INSTITUCION = $('#institucion_evento').val();
     if (INSTITUCION == '') {
         alert('La institucion esta vacia');
@@ -28,24 +6,10 @@ function validar(tuformulario, val) {
         return false;
     }
 
-    // var CODIGO_PNF = $('#codigo_pnf').val();
-    // if (CODIGO_PNF == '') {
-    //     alert('El codigo pnf esta vacio');
-    //     $('#codigo_pnf');
-    //     return false;
-    // }
-
     var PROFESION = $('#profecion_usuario').val();
     if (PROFESION == '') {
         alert('La profesion esta vacia');
         $('#profecion_usuario');
-        return false;
-    }
-
-    var INICIALES = $('#iniciales_pa').val();
-    if (INICIALES == '') {
-        alert('Las iniciales del paciente estan vacias');
-        $('#iniciales_pa');
         return false;
     }
 
@@ -70,82 +34,54 @@ function validar(tuformulario, val) {
         return false;
     }
 
-    var SCI = $('#S_C_I1').val();
+    var SCI = $('#S_C_I').val();
     if (SCI == '') {
         alert('El SCI esta vacio');
-        $('#S_C_I1');
+        $('#S_C_I');
         return false;
     }
 
-    var MEDICAMENTO = $('#medicamento1').val();
+    var MEDICAMENTO = $('#medicamento').val();
     if (MEDICAMENTO == '') {
         alert('El medicamento esta vacio');
-        $('#medicamento1');
+        $('#medicamento');
         return false;
     }
 
-    var INDICACION = $('#indicacion1').val();
+    var INDICACION = $('#indicacion').val();
     if (INDICACION == '') {
         alert('La indicacion esta vacia');
-        $('#indicacion1');
+        $('#indicacion');
         return false;
     }
 
-    var DOSIS = $('#dosis1').val();
+    var DOSIS = $('#dosis').val();
     if (DOSIS == '') {
         alert('La dosis esta vacia');
-        $('#dosis1');
+        $('#dosis');
         return false;
     }
 
-    var UNIDAD_MEDIDA = $('#unidad_medida1').val();
+    var UNIDAD_MEDIDA = $('#unidad_medida').val();
     if (UNIDAD_MEDIDA == '') {
         alert('La unidad de medida esta vacia');
-        $('#unidad_medida1');
+        $('#unidad_medida');
         return false;
     }
 
-    var VIA_ADMINISTRACION = $('#via_administracion1').val();
+    var VIA_ADMINISTRACION = $('#via_administracion').val();
     if (VIA_ADMINISTRACION == '') {
         alert('La via de administracion esta vacia');
-        $('#via_administracion1');
+        $('#via_administracion');
         return false;
     }
 
-    var FRECUENCIA_ADMINISTRACION = $('#frecuencia_administracion1').val();
+    var FRECUENCIA_ADMINISTRACION = $('#frecuencia_administracion').val();
     if (FRECUENCIA_ADMINISTRACION == '') {
         alert('La frecuencia de administracion esta vacia');
-        $('#frecuencia_administracion1');
+        $('#frecuencia_administracion');
         return false;
     }
-
-    // var FECHA_INICIO = $('#fecha_inicio1').val();
-    // if (FECHA_INICIO == '') {
-    //     alert('La fecha de inicio esta vacia');
-    //     $('#fecha_inicio1');
-    //     return false;
-    // }
-
-    // var FECHA_FIN = $('#fecha_fin1').val();
-    // if (FECHA_FIN == '') {
-    //     alert('La fecha de finalizacion esta vacia');
-    //     $('#fecha_fin1');
-    //     return false;
-    // }
-
-    // var FECHA_INICIO_EVENTO = $('#fecha_ini_evento').val();
-    // if (FECHA_INICIO_EVENTO == '') {
-    //     alert('La fecha de inicio del evento esta vacia');
-    //     $('#fecha_ini_evento');
-    //     return false;
-    // }
-
-    // var EVENTO_ADVERSO = $('#evento_adverso').val();
-    // if (EVENTO_ADVERSO == '') {
-    //     alert('El evento adverso esta vacio');
-    //     $('#evento_adverso');
-    //     return false;
-    // }
 
     var DESCRIPCION_EVENTO = $('#descripcion_evento').val();
     if (DESCRIPCION_EVENTO == '') {

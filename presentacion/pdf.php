@@ -7,7 +7,7 @@ use Dompdf\Dompdf;
 
 $dompdf = new Dompdf();
 ob_start();
-$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso WHERE ID_PACIENTE_FK ='" . $ID_PACIENTE . "' ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
+$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso WHERE ID_PACIENTE_FK ='" . $codigo_paciente . "' ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
 echo mysqli_error($conex);
 while ($fila1 = mysqli_fetch_array($consulta)) {
     $ID_EVENTO_ADVERSO = $fila1['ID_EVENTO_ADVERSO'];
