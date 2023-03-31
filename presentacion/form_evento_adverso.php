@@ -153,7 +153,7 @@ if ($privilegios != '' && $usua != '') {
                                     </tr>
                                     <tr>
                                         <td colspan="1">
-                                            <input type="date" class="form-control w-100 h-100" name="fecha_notificacion" id="fecha_notificacion" value="<?php echo date('Y-m-d'); ?>" readonly="readonly">
+                                            <input type="date" class="form-control w-100 h-100" name="fecha_notificacion" id="fecha_notificacion" value="<?php echo date('Y-m-d'); ?>">
                                         </td>
                                         <td>
                                             <div class="row">
@@ -302,7 +302,7 @@ if ($privilegios != '' && $usua != '') {
                                     <tr>
                                         <td colspan="7" style="text-align: left; font-weight: 700">
                                             Diagnóstico principal y otros diagnósticos:
-                                            <input type="text" class="form-control w-100 h-100" name="diagnostico[]" id="diagnostico[]" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>" readonly="readonly">
+                                            <input type="text" class="form-control w-100 h-100" name="diagnostico[]" id="diagnostico" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>" readonly="readonly">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -610,10 +610,25 @@ if ($privilegios != '' && $usua != '') {
             function btnSubmit() {
 
                 let date = {
+                    fecha_notificacion: document.getElementById('fecha_notificacion').value,
+                    departamento: document.getElementById('departamento').value,
+                    municipio: document.getElementById('municipio').value,
                     institucion_evento: document.getElementById('institucion_evento').value,
+                    codigo_pnf: document.getElementById('codigo_pnf').value,
+                    nombre_usuario: document.getElementById('nombre_usuario').value,
+                    nombre_paciente_acudiente: document.getElementById('nombre_paciente_acudiente').value,
+                    consecutivo: document.getElementById('consecutivo').value,
                     profecion_usuario: document.getElementById('profecion_usuario').value,
+                    correo_usuario: document.getElementById('correo_usuario').value,
+                    fecha_nacimiento: document.getElementById('fecha_nacimiento').value,
+                    edad_paciente: document.getElementById('edad_paciente').value,
+                    tipo_documento_paciente: document.getElementById('tipo_documento_paciente').value,
+                    documento_paciente: document.getElementById('documento_paciente').value,
+                    iniciales_pa: document.getElementById('iniciales_pa').value,
+                    genero: document.getElementById('genero').value,
                     peso: document.getElementById('peso').value,
                     talla: document.getElementById('talla').value,
+                    diagnostico: document.getElementById('diagnostico').value,
                     sci: document.getElementById('sci').value,
                     medicamento: document.getElementById('medicamento').value,
                     indicacion: document.getElementById('indicacion').value,
@@ -621,7 +636,23 @@ if ($privilegios != '' && $usua != '') {
                     unidad_medida: document.getElementById('unidad_medida').value,
                     via_administracion: document.getElementById('via_administracion').value,
                     frecuencia_administracion: document.getElementById('frecuencia_administracion').value,
+                    fecha_inicio: document.getElementById('fecha_inicio').value,
+                    fecha_fin: document.getElementById('fecha_fin').value,
+                    titular_registro: document.getElementById('titular_registro').value,
+                    nombre_comercial: document.getElementById('nombre_comercial').value,
+                    registro_sanitario: document.getElementById('registro_sanitario').value,
+                    lote: document.getElementById('lote').value,
+                    fecha_ini_evento: document.getElementById('fecha_ini_evento').value,
+                    evento_adverso: document.getElementById('evento_adverso').value,
                     descripcion_evento: document.getElementById('descripcion_evento').value,
+                    desenlace_evento: document.getElementById('desenlace_evento').value,
+                    seriedad: document.getElementById('seriedad').value,
+                    fecha_muerte: document.getElementById('fecha_muerte').value,
+                    pregunta1: document.getElementById('pregunta1').value,
+                    pregunta2: document.getElementById('pregunta2').value,
+                    pregunta3: document.getElementById('pregunta3').value,
+                    pregunta4: document.getElementById('pregunta4').value,
+                    pregunta5: document.getElementById('pregunta5').value,
                     codigo_paciente: document.getElementById('codigo_paciente').value,
                 }
 
@@ -644,7 +675,6 @@ if ($privilegios != '' && $usua != '') {
                         var titulo = respuesta[0];
                         var icono = respuesta[1];
                         var mensaje = respuesta[2];
-                        console.log(date);
                         Swal.fire({
                             title: titulo,
                             html: mensaje,
@@ -701,7 +731,22 @@ if ($privilegios != '' && $usua != '') {
                     unidad_medida: document.getElementById('unidad_medida').value,
                     via_administracion: document.getElementById('via_administracion').value,
                     frecuencia_administracion: document.getElementById('frecuencia_administracion').value,
+                    fecha_inicio: document.getElementById('fecha_inicio').value,
+                    fecha_fin: document.getElementById('fecha_fin').value,
+                    titular_registro: document.getElementById('titular_registro').value,
+                    nombre_comercial: document.getElementById('nombre_comercial').value,
+                    registro_sanitario: document.getElementById('registro_sanitario').value,
+                    lote: document.getElementById('lote').value,
+                    fecha_ini_evento: document.getElementById('fecha_ini_evento').value,
+                    evento_adverso: document.getElementById('evento_adverso').value,
                     descripcion_evento: document.getElementById('descripcion_evento').value,
+                    desenlace_evento: document.getElementById('desenlace_evento').value,
+                    seriedad: document.getElementById('seriedad').value,
+                    pregunta1: document.getElementById('pregunta1').value,
+                    pregunta2: document.getElementById('pregunta2').value,
+                    pregunta3: document.getElementById('pregunta3').value,
+                    pregunta4: document.getElementById('pregunta4').value,
+                    pregunta5: document.getElementById('pregunta5').value,
                     codigo_paciente: document.getElementById('codigo_paciente').value,
                 }
 
