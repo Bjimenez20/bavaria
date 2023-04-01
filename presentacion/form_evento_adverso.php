@@ -573,15 +573,15 @@ if ($privilegios != '' && $usua != '') {
 
             botonAgregar.addEventListener('click', () => {
                 const nuevaFila = document.createElement('tr');
-                nuevaFila.innerHTML = `<td><input type="text" class="form-control w-100 h-100" name="sci[]" id="sci" ></td>
-                         <td><input type="text" class="form-control w-100 h-100" name="medicamento[]" id="medicamento" ></td>
-                         <td><input type="text" class="form-control w-100 h-100" name="indicacion[]" id="indicacion" ></td>
-                         <td><input type="text" class="form-control w-100 h-100" name="dosis[]" id="dosis" ></td>
-                         <td><input type="text" class="form-control w-100 h-100" name="unidad_medida[]" id="unidad_medida" ></td>
-                         <td><input type="text" class="form-control w-100 h-100" name="via_administracion[]" id="via_administracion" ></td>
-                         <td><input type="text" class="form-control w-100 h-100" name="frecuencia_administracion[]" id="frecuencia_administracion" ></td>
-                         <td><input type="text" class="form-control w-100 h-100" name="fecha_inicio[]" id="fecha_inicio" ></td>
-                         <td><input type="text" class="form-control w-100 h-100" name="fecha_fin[]" id="fecha_fin" ></td>
+                nuevaFila.innerHTML = `<td><input type="text" class="form-control w-100 h-100" name="sci[]" ></td>
+                         <td><input type="text" class="form-control w-100 h-100" name="medicamento[]"" ></td>
+                         <td><input type="text" class="form-control w-100 h-100" name="indicacion[]"></td>
+                         <td><input type="text" class="form-control w-100 h-100" name="dosis[]"></td>
+                         <td><input type="text" class="form-control w-100 h-100" name="unidad_medida[]"></td>
+                         <td><input type="text" class="form-control w-100 h-100" name="via_administracion[]"></td>
+                         <td><input type="text" class="form-control w-100 h-100" name="frecuencia_administracion[]" ></td>
+                         <td><input type="text" class="form-control w-100 h-100" name="fecha_inicio[]"></td>
+                         <td><input type="text" class="form-control w-100 h-100" name="fecha_fin[]"></td>
                          <td><button class="eliminar btn btn-danger bg-gradient text-white"><span class="iconify" data-icon="tabler:trash-x-filled" data-width="25"></span></button></td>`;
                 tabla.appendChild(nuevaFila);
                 document.querySelectorAll('.eliminar').forEach(button => {
@@ -669,8 +669,29 @@ if ($privilegios != '' && $usua != '') {
                     }
                 }
 
-                axios.post('./insertar_datos_ea.php', date)
-                    .then(function(response) {
+                let rows = [];
+
+                const filas = document.querySelectorAll('#contenedor tr');
+                filas.forEach(fila => {
+                    let row = {
+                        sci: fila.querySelector('input[name="sci[]"]').value,
+                        medicamento: fila.querySelector('input[name="medicamento[]"]').value,
+                        indicacion: fila.querySelector('input[name="indicacion[]"]').value,
+                        dosis: fila.querySelector('input[name="dosis[]"]').value,
+                        unidad_medida: fila.querySelector('input[name="unidad_medida[]"]').value,
+                        via_administracion: fila.querySelector('input[name="via_administracion[]"]').value,
+                        frecuencia_administracion: fila.querySelector('input[name="frecuencia_administracion[]"]').value,
+                        fecha_inicio: fila.querySelector('input[name="fecha_inicio[]"]').value,
+                        fecha_fin: fila.querySelector('input[name="fecha_fin[]"]').value,
+                    }
+                    rows.push(row);
+                });
+
+                axios.post('./insertar_datos_ea.php', {
+                        rows: rows,
+                        date: date
+
+                    }).then(function(response) {
                         var respuesta = response.data.split(',');
                         var titulo = respuesta[0];
                         var icono = respuesta[1];
@@ -684,11 +705,8 @@ if ($privilegios != '' && $usua != '') {
                         }).then((result) => {
                             if (result.isConfirmed && icono === 'success') {
                                 btnConvertPdf()
-                                setTimeout(() => {
-                                    var url = "./insertar_datos_ea.php";
-                                    var target = "info";
-                                    window.open(url, target);
-                                }, 1000);
+                                window.close();
+                                window.location.reload();
                             }
                         });
                     })

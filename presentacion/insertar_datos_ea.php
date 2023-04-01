@@ -8,50 +8,53 @@ header('Content-Type: text/plain');
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
 
-$fecha_notificacion = $data['fecha_notificacion'];
-$departamento = $data['departamento'];
-$municipio = $data['municipio'];
-$institucion_evento = $data['institucion_evento'];
-$codigo_pnf = $data['codigo_pnf'];
-$nombre_usuario = $data['nombre_usuario'];
-$nombre_paciente_acudiente = $data['nombre_paciente_acudiente'];
-$consecutivo = $data['consecutivo'];
-$profecion_usuario = $data['profecion_usuario'];
-$correo_usuario = $data['correo_usuario'];
-$fecha_nacimiento = $data['fecha_nacimiento'];
-$edad_paciente = $data['edad_paciente'];
-$tipo_documento_paciente = $data['tipo_documento_paciente'];
-$documento_paciente = $data['documento_paciente'];
-$iniciales_pa = $data['iniciales_pa'];
-$genero = $data['genero'];
-$peso = $data['peso'];
-$talla = $data['talla'];
-$sci = $data['sci'];
-$medicamento = $data['medicamento'];
-$indicacion = $data['indicacion'];
-$dosis = $data['dosis'];
-$unidad_medida = $data['unidad_medida'];
-$via_administracion = $data['via_administracion'];
-$frecuencia_administracion = $data['frecuencia_administracion'];
-$fecha_inicio = $data['fecha_inicio'];
-$fecha_fin = $data['fecha_fin'];
-$diagnostico = $data['diagnostico'];
-$titular_registro = $data['titular_registro'];
-$nombre_comercial = $data['nombre_comercial'];
-$registro_sanitario = $data['registro_sanitario'];
-$lote = $data['lote'];
-$fecha_ini_evento = $data['fecha_ini_evento'];
-$evento_adverso = $data['evento_adverso'];
-$descripcion_evento = $data['descripcion_evento'];
-$desenlace_evento = $data['desenlace_evento'];
-$seriedad = $data['seriedad'];
-$fecha_muerte = $data['fecha_muerte'];
-$pregunta1 = $data['pregunta1'];
-$pregunta2 = $data['pregunta2'];
-$pregunta3 = $data['pregunta3'];
-$pregunta4 = $data['pregunta4'];
-$pregunta5 = $data['pregunta5'];
-$codigo_paciente = $data['codigo_paciente'];
+$rows = $data['rows'];
+$date = $data['date'];
+
+$fecha_notificacion = $date['fecha_notificacion'];
+$departamento = $date['departamento'];
+$municipio = $date['municipio'];
+$institucion_evento = $date['institucion_evento'];
+$codigo_pnf = $date['codigo_pnf'];
+$nombre_usuario = $date['nombre_usuario'];
+$nombre_paciente_acudiente = $date['nombre_paciente_acudiente'];
+$consecutivo = $date['consecutivo'];
+$profecion_usuario = $date['profecion_usuario'];
+$correo_usuario = $date['correo_usuario'];
+$fecha_nacimiento = $date['fecha_nacimiento'];
+$edad_paciente = $date['edad_paciente'];
+$tipo_documento_paciente = $date['tipo_documento_paciente'];
+$documento_paciente = $date['documento_paciente'];
+$iniciales_pa = $date['iniciales_pa'];
+$genero = $date['genero'];
+$peso = $date['peso'];
+$talla = $date['talla'];
+$sci = $date['sci'];
+$medicamento = $date['medicamento'];
+$indicacion = $date['indicacion'];
+$dosis = $date['dosis'];
+$unidad_medida = $date['unidad_medida'];
+$via_administracion = $date['via_administracion'];
+$frecuencia_administracion = $date['frecuencia_administracion'];
+$fecha_inicio = $date['fecha_inicio'];
+$fecha_fin = $date['fecha_fin'];
+$diagnostico = $date['diagnostico'];
+$titular_registro = $date['titular_registro'];
+$nombre_comercial = $date['nombre_comercial'];
+$registro_sanitario = $date['registro_sanitario'];
+$lote = $date['lote'];
+$fecha_ini_evento = $date['fecha_ini_evento'];
+$evento_adverso = $date['evento_adverso'];
+$descripcion_evento = $date['descripcion_evento'];
+$desenlace_evento = $date['desenlace_evento'];
+$seriedad = $date['seriedad'];
+$fecha_muerte = $date['fecha_muerte'];
+$pregunta1 = $date['pregunta1'];
+$pregunta2 = $date['pregunta2'];
+$pregunta3 = $date['pregunta3'];
+$pregunta4 = $date['pregunta4'];
+$pregunta5 = $date['pregunta5'];
+$codigo_paciente = $date['codigo_paciente'];
 
 if (
 	empty($institucion_evento) ||
@@ -137,36 +140,36 @@ if (
 		echo $titulo . ',' . $icono . ',' . $mensaje;
 	}
 } else {
-	$insertar = mysqli_query($conex, "INSERT INTO ipsen_evento_adverso(FECHA_NOTIFICA,DEPARTAMENTO,MUNICIPIO,NOMBRE_INSTITUCION,CODIGO_PNF,NOMBRE_REPORTANTE,NOMBRE_PACIENTE_ACUDIENTE,CONSECUTIVO,PROFESION_REPORTANTE,CORREO_REPORTANTE,FECHA_NACIMIENTO_PACIENTE,EDAD_PACIENTE,TIPO_DOCUMENTO_PACIENTE,NUMERO_DOCUMENTO_PACIENTE,INICIALES_PACIENTE,SEXO,PESO,TALLA,DIAGNOSTICO_PRINCIPAL,TITULAR_REGISTRO,NOMBRE_COMERCIAL,REGISTRO_SANITARIO,LOTE,FECHA_INICIO_EVENTO,EVENTO_ADVERSO,DESCRIPCION_ANALISIS_EVENTO,DESENLACE_EVENTO,SERIEDAD,FECHA_MUERTE,PREGUNTA1,PREGUNTA2,PREGUNTA3,PREGUNTA4,PREGUNTA5,ID_PACIENTE_FK) VALUES ('$fecha_notificacion','$departamento','$municipio','$institucion_evento','$codigo_pnf','$nombre_usuario','$nombre_paciente_acudiente','$consecutivo','$profecion_usuario','$correo_usuario','$fecha_nacimiento','$edad_paciente','$tipo_documento_paciente','$documento_paciente','$iniciales_pa','$genero','$peso','$talla','$diagnostico','$titular_registro','$nombre_comercial','$registro_sanitario','$lote','$fecha_ini_evento','$evento_adverso','$descripcion_evento','$desenlace_evento','$seriedad','$fecha_muerte','$pregunta1','$pregunta2','$pregunta3','$pregunta4','$pregunta5','$codigo_paciente')");
+	$insertar = mysqli_query($conex, "INSERT INTO ipsen_evento_adverso (FECHA_NOTIFICA, DEPARTAMENTO, MUNICIPIO, NOMBRE_INSTITUCION, CODIGO_PNF, NOMBRE_REPORTANTE, NOMBRE_PACIENTE_ACUDIENTE, CONSECUTIVO, PROFESION_REPORTANTE, CORREO_REPORTANTE, FECHA_NACIMIENTO_PACIENTE, EDAD_PACIENTE, TIPO_DOCUMENTO_PACIENTE, NUMERO_DOCUMENTO_PACIENTE, INICIALES_PACIENTE, SEXO, PESO, TALLA, DIAGNOSTICO_PRINCIPAL, TITULAR_REGISTRO, NOMBRE_COMERCIAL, REGISTRO_SANITARIO, LOTE, FECHA_INICIO_EVENTO, EVENTO_ADVERSO, DESCRIPCION_ANALISIS_EVENTO, DESENLACE_EVENTO, SERIEDAD, LUGAR_DISTRIBUCION, FECHA_MUERTE, PREGUNTA1, PREGUNTA2, PREGUNTA3, PREGUNTA4, PREGUNTA5, ID_PACIENTE_FK) VALUES ('$fecha_notificacion','$departamento','$municipio','$institucion_evento','$codigo_pnf','$nombre_usuario','$nombre_paciente_acudiente','$consecutivo','$profecion_usuario','$correo_usuario','$fecha_nacimiento','$edad_paciente','$tipo_documento_paciente','$documento_paciente','$iniciales_pa','$genero','$peso','$talla','$diagnostico','$titular_registro','$nombre_comercial','$registro_sanitario','$lote','$fecha_ini_evento','$evento_adverso','$descripcion_evento','$desenlace_evento','$seriedad','','$fecha_muerte','$pregunta1','$pregunta2','$pregunta3','$pregunta4','$pregunta5','$codigo_paciente')");
 	if ($insertar) {
 		$sql = "SELECT MAX(ID_EVENTO_ADVERSO) AS ULTIMO_EVENTO_ADVERSO_ID FROM ipsen_evento_adverso";
 		$resultado = mysqli_query($conex, $sql);
 		$fila = mysqli_fetch_assoc($resultado);
 		$FK_EVENTO_ADVERSO = $fila['ULTIMO_EVENTO_ADVERSO_ID'];
 
-		// Check if medicamento is an array before using foreach
-		if (is_array($data['medicamento'])) {
-			foreach ($data['medicamento'] as $index => $medicamento) {
-				$sc = $sci[$index];
-				$medi = $medicamento[$index];
-				$ind = $indicacion[$index];
-				$dos = $dosis[$index];
-				$um = $unidad_medida[$index];
-				$va = $via_administracion[$index];
-				$fa = $frecuencia_administracion[$index];
-				$fi = $fecha_inicio[$index];
-				$ff = $fecha_fin[$index];
+		foreach ($rows as $row) {
 
-				$inter_medicamentos = mysqli_query($conex, "INSERT INTO `ipsen_informacion_tratamiento_ea`(`SCI`, `MEDICAMENTO`, `INDICACION`, `DOSIS`, `UNIDAD_MEDIDA`, `VIA_ADMINISTRACION`, `FRECUENCIA_ADMINISTRACION`, `FECHA_INICIO`, `FECHA_FIN`, `EVENTO_ADVERSO_ID`) VALUES ('$sc','$medi','$ind','$dos','$um','$va','$fa','$fi','$ff','$FK_EVENTO_ADVERSO')");
+			$sc = $row['sci'];
+			$medi = $row['medicamento'];
+			$ind = $row['indicacion'];
+			$dos = $row['dosis'];
+			$um = $row['unidad_medida'];
+			$va = $row['via_administracion'];
+			$fa = $row['frecuencia_administracion'];
+			$fi = $row['fecha_inicio'];
+			$ff = $row['fecha_fin'];
 
-				if ($inter_medicamentos) {
-					$titulo = 'Datos cargados';
-					$icono = 'success';
-					$mensaje = 'El evento ha sido creado';
 
-					echo $titulo . ',' . $icono . ',' . $mensaje;
-				}
-			}
+			$inter_medicamentos = mysqli_query($conex, "INSERT INTO ipsen_informacion_tratamiento_ea (SCI, MEDICAMENTO, INDICACION, DOSIS, UNIDAD_MEDIDA, VIA_ADMINISTRACION, FRECUENCIA_ADMINISTRACION, FECHA_INICIO, FECHA_FIN, EVENTO_ADVERSO_ID) VALUES ('$sc','$medi','$ind','$dos','$um','$va','$fa','$fi','$ff','$FK_EVENTO_ADVERSO')");
+		}
+
+
+		if ($inter_medicamentos) {
+			$titulo = 'Datos cargados';
+			$icono = 'success';
+			$mensaje = 'El evento ha sido creado';
+
+			echo $titulo . ',' . $icono . ',' . $mensaje;
 		}
 	}
 }
