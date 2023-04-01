@@ -3,12 +3,14 @@ include "../logica/session.php";
 include "../datos/conex.php";
 include_once "../dompdf/vendor/autoload.php";
 
+$data = json_decode(file_get_contents('php://input'));
+
 use Dompdf\Dompdf;
 
 $dompdf = new Dompdf();
 ob_start();
 
-$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
+$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso WHERE ID_PACIENTE_FK ='$data->codigo_paciente' ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
 echo mysqli_error($conex);
 while ($fila1 = mysqli_fetch_array($consulta)) {
     $ID_EVENTO_ADVERSO = $fila1['ID_EVENTO_ADVERSO'];
@@ -16,7 +18,6 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
     $DEPARTAMENTO = $fila1['DEPARTAMENTO'];
     $MUNICIPIO = $fila1['MUNICIPIO'];
     $NOMBRE_INSTITUCION = $fila1['NOMBRE_INSTITUCION'];
-    $CODIGO_PNF = $fila1['CODIGO_PNF'];
     $NOMBRE_REPORTANTE = $fila1['NOMBRE_REPORTANTE'];
     $NOMBRE_PACIENTE_ACUDIENTE = $fila1['NOMBRE_PACIENTE_ACUDIENTE'];
     $CONSECUTIVO = $fila1['CONSECUTIVO'];
@@ -28,8 +29,6 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
     $NUMERO_DOCUMENTO_PACIENTE = $fila1['NUMERO_DOCUMENTO_PACIENTE'];
     $INICIALES_PACIENTE = $fila1['INICIALES_PACIENTE'];
     $SEXO = $fila1['SEXO'];
-    $PESO = $fila1['PESO'];
-    $TALLA = $fila1['TALLA'];
     $DIAGNOSTICO_PRINCIPAL = $fila1['DIAGNOSTICO_PRINCIPAL'];
     $TITULAR_REGISTRO = $fila1['TITULAR_REGISTRO'];
     $NOMBRE_COMERCIAL = $fila1['NOMBRE_COMERCIAL'];
@@ -39,17 +38,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
     $EVENTO_ADVERSO = $fila1['EVENTO_ADVERSO'];
     $DESCRIPCION_ANALISIS_EVENTO = $fila1['DESCRIPCION_ANALISIS_EVENTO'];
     $DESENLACE_EVENTO = $fila1['DESENLACE_EVENTO'];
-    $SERIEDAD = $fila1['SERIEDAD'];
     $LUGAR_DISTRIBUCION = $fila1['LUGAR_DISTRIBUCION'];
-    $FECHA_MUERTE = $fila1['FECHA_MUERTE'];
-    $PREGUNTA1 = $fila1['PREGUNTA1'];
-    $PREGUNTA2 = $fila1['PREGUNTA2'];
-    $PREGUNTA3 = $fila1['PREGUNTA3'];
-    $PREGUNTA4 = $fila1['PREGUNTA4'];
-    $PREGUNTA5 = $fila1['PREGUNTA5'];
     $ID_PAP = $fila1['ID_PACIENTE_FK'];
-    $ID_GESTION = $fila1['ID_GESTION_FK'];
-    $URL_PDF = $fila1['URL_PDF'];
 }
 ?>
 <!DOCTYPE html>
@@ -542,7 +532,6 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 
 </html>
 <?php
-include "./pdf_evento_adverso.php";
 $html = ob_get_clean();
 $dompdf->loadHtml($html);
 $dompdf->render();
@@ -550,6 +539,6 @@ $output = $dompdf->output();
 $CARPETA = "../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO";
 if (!is_dir($CARPETA)) {
     mkdir("../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO", 0777);
-    file_put_contents('' . $CARPETA . '/Evento_Adverso_' . $ID_PACIENTE . '.pdf', $output);
+    file_put_contents('' . $CARPETA . '/Evento_Adverso_' . $ID_PAP . '.pdf', $output);
 }
-require("../presentacion/email/mail_tecno.php");
+require("./email/mail_tecno.php");

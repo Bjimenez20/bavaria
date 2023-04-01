@@ -9,13 +9,22 @@ include('../logica/session.php')
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/direccion.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/jquery.js"></script>
-    <!-- <script type="text/javascript" src="js/validar_campos_evento_adverso.js"></script> -->
     <script>
         function trat_previo(sel) {
             if (sel.value == "Muerte") {
@@ -27,6 +36,20 @@ include('../logica/session.php')
                 divC.style.display = "none";
             }
         }
+
+        $(document).ready(function() {
+            $('input[id="lugar_distribucion"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_lugar_distribucion').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="desenlace_evento"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_desenlace_evento').val(inputValue);
+            });
+        });
     </script>
 </head>
 <?php
@@ -58,7 +81,7 @@ while ($fila = mysqli_fetch_array($Seleccion)) {
     $CIUDAD_PACIENTE = $fila['CIUDAD_PACIENTE'];
 }
 
-$SELECT_GESTION = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
+$SELECT_GESTION = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones WHERE ID_PACIENTE_FK = '$ID_PACIENTE' ORDER BY ID_GESTION DESC LIMIT 1");
 while ($dato = mysqli_fetch_array($SELECT_GESTION)) {
     $ID_GESTION = $dato['ID_GESTION'];
     $ID_GESTION3 = $ID_GESTION + 1;
@@ -81,7 +104,7 @@ for ($i = 0; $i < 8; $i++) {
 ?>
 
 <body style="padding: 0; margin: 0;">
-    <form id="formulario" method="POST" action="../logica/insertar_datos_ea_tecno.php">
+    <form>
         <table class="table table-bordered" cellspacing="0" cellpadding="0" style="width: 100%;" id="header">
             <tbody>
                 <tr colspan="3">
@@ -121,8 +144,8 @@ for ($i = 0; $i < 8; $i++) {
                                 <tr>
                                     <td colspan="4" class="titulos" style="font-weight: 700; color:#fff;">1. INFORMACIÓN DEL REPORTANTE <?PHP echo $EV ?></td>
                                 </tr>
-                                <input type="text" name="ID_PACIENTE" id="ID_PACIENTE" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly" style="display: none;">
-                                <input type="text" name="ID_GESTION" id="ID_GESTION" value="<?php echo $ID_GESTION3 ?>" readonly="readonly" style="display: none;">
+                                <input type="text" name="codigo_paciente2" id="codigo_paciente2" value="?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>" readonly="readonly">
+                                <input type="text" name="ID_GESTION" id="ID_GESTION" value="<?php echo $ID_GESTION ?>" readonly="readonly" style="display: none;">
                                 <tr>
                                     <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                         Fecha de notificación
@@ -141,16 +164,26 @@ for ($i = 0; $i < 8; $i++) {
                                 </tr>
                                 <tr>
                                     <td colspan="1">
-                                        <input type="date" name="fecha_notificacion" id="fecha_notificacion" value="<?php echo date('Y-m-d'); ?>" style="width:90%; height:100%;" readonly="readonly">
+                                        <input type="date" class="form-control w-100 h-100" name="fecha_notificacion" id="fecha_notificacion" value="<?php echo date('Y-m-d'); ?>" readonly="readonly">
                                     </td>
                                     <td>
-                                        <input type="text" name="departamento" id="departamento" value="<?php echo $DEPARTAMENTO_PACIENTE ?>" readonly="readonly"> - <input type="text" name="municipio" id="municipio" value="<?php echo $CIUDAD_PACIENTE ?>" readonly="readonly">
+                                        <div class="row">
+                                            <div class="col d-flex justify-content-center">
+                                                <input type="text" class="form-control w-100 h-100" name="departamento" id="departamento" value="<?php echo $DEPARTAMENTO_PACIENTE ?>" readonly="readonly">
+                                            </div>
+                                            <div class="col-auto d-flex justify-content-center align-items-center">
+                                                <span>-</span>
+                                            </div>
+                                            <div class="col d-flex justify-content-center">
+                                                <input type="text" class="form-control w-100 h-100" name="municipio" id="municipio" value="<?php echo $CIUDAD_PACIENTE ?>" readonly="readonly">
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>
-                                        <input type="text" name="institucion_evento" id="institucion_evento" style="width:90%; height:100%;">
+                                        <input type="text" class="form-control w-100 h-100" name="institucion_evento" id="institucion_evento">
                                     </td>
                                     <td>
-                                        <input type="text" value="<?php echo $ID_PACIENTE2 ?>" style="width:90%; height:100%;" readonly="readonly">
+                                        <input type="text" class="form-control w-100 h-100" name="codigo_paciente" id="codigo_paciente" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly">
                                     </td>
                                 </tr>
                                 <tr>
@@ -169,18 +202,17 @@ for ($i = 0; $i < 8; $i++) {
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" name="nombre_usuario" id="nombre_usuario" value="<?php echo $NOMBRES . ' ' . $APELLIDOS ?>" readonly="readonly" style="width:90%; height:100%;">
+                                        <input type="text" class="form-control w-100 h-100" name="nombre_usuario" id="nombre_usuario" value="<?php echo $NOMBRES . ' ' . $APELLIDOS ?>" readonly="readonly">
                                     </td>
                                     <td>
-                                        <input type="text" name="nombre_paciente_acudiente" id="nombre_paciente_acudiente" value="" style="width:90%; height:100%;">
+                                        <input type="text" class="form-control w-100 h-100" name="nombre_paciente_acudiente" id="nombre_paciente_acudiente" value="">
                                     </td>
                                     <td>
-                                        <input type="text" name="consecutivo" id="consecutivo" value="<?php echo $cad ?>" readonly="readonly" style="width:90%; height:100%;">
+                                        <input type="text" class="form-control w-100 h-100" name="consecutivo" id="consecutivo" value="<?php echo $cad ?>" readonly="readonly">
                                     </td>
                                     <td>
-                                        <input type="text" name="profecion_usuario" id="profecion_usuario" style="width:90%; height:100%;">
+                                        <input type="text" class="form-control w-100 h-100" name="profecion_usuario" id="profecion_usuario">
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 700; background-color: #DBDBDB;" colspan="4">
@@ -189,7 +221,7 @@ for ($i = 0; $i < 8; $i++) {
                                 </tr>
                                 <tr>
                                     <td colspan="4">
-                                        <input type="email" name="correo_usuario" id="correo_usuario" value="<?php echo $EMAIL ?>" readonly="readonly" style="width:90%; height:100%;">
+                                        <input type="email" class="form-control w-100 h-100" name="correo_usuario" id="correo_usuario" value="<?php echo $EMAIL ?>" readonly="readonly">
                                     </td>
                                 </tr>
                             </tbody>
@@ -228,35 +260,45 @@ for ($i = 0; $i < 8; $i++) {
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo $FECHA_NACIMIENTO ?>" readonly="readonly" style="width:90%; height:100%;">
+                                        <input type="date" class="form-control w-100 h-100" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo $FECHA_NACIMIENTO ?>" readonly="readonly">
                                     </td>
                                     <td colspan="2">
-                                        <input type="number" name="edad_paciente" id="edad_paciente" value="<?php echo $EDAD ?>" readonly="readonly" style="width:90%; height:100%;">
+                                        <input type="number" class="form-control w-100 h-100" name="edad_paciente" id="edad_paciente" value="<?php echo $EDAD ?>" readonly="readonly">
                                     </td>
                                     <td>
-                                        <input type="text" name="tipo_documento_paciente" id="tipo_documento_paciente" value="<?php echo $TIPO_IDENTIFICACION_PACIENTE ?>" readonly="readonly"> - <input type="text" name="documento_paciente" id="documento_paciente" value="<?php echo $IDENTIFICACION_PACIENTE ?>" readonly="readonly">
+                                        <div class="row">
+                                            <div class="col d-flex justify-content-center">
+                                                <input type="text" class="form-control w-100 h-100" name="tipo_documento_paciente" id="tipo_documento_paciente" value="<?php echo $TIPO_IDENTIFICACION_PACIENTE ?>" readonly="readonly">
+                                            </div>
+                                            <div class="col-auto d-flex justify-content-center align-items-center">
+                                                <span>-</span>
+                                            </div>
+                                            <div class="col d-flex justify-content-center">
+                                                <input type="text" class="form-control w-100 h-100" name="documento_paciente" id="documento_paciente" value="<?php echo $IDENTIFICACION_PACIENTE ?>" readonly="readonly">
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>
-                                        <input type="text" name="iniciales_pa" id="iniciales_pa" value="<?php echo $result ?>" style="width:90%; height:100%;" readonly="readonly">
+                                        <input type="text" class="form-control w-100 h-100" class="form-control w-100 h-100" name="iniciales_pa" id="iniciales_pa" value="<?php echo $result ?>" readonly="readonly">
                                     </td>
                                     <?php if ($GENERO_PACIENTE == 'Mujer') { ?>
                                         <td>
-                                            <input type="text" name="genero" id="genero" value="F" readonly="readonly" style="width:90%; height:100%;">
+                                            <input type="text" class="form-control w-100 h-100" name="genero" id="genero" value="F" readonly="readonly">
                                         </td>
                                     <?php } else if ($GENERO_PACIENTE == 'Hombre') { ?>
                                         <td>
-                                            <input type="text" name="genero" id="genero" value="M" readonly="readonly" style="width:90%; height:100%;">
+                                            <input type="text" class="form-control w-100 h-100" name="genero" id="genero" value="M" readonly="readonly">
                                         </td>
                                     <?php } else { ?>
                                         <td>
-                                            <input type="text" name="genero" id="genero" value="N/A" readonly="readonly" style="width:90%; height:100%;">
+                                            <input type="text" class="form-control w-100 h-100" name="genero" id="genero" value="N/A" readonly="readonly">
                                         </td>
                                     <?php } ?>
                                 </tr>
                                 <tr>
                                     <td colspan="7" style="text-align: left; font-weight: 700">
                                         Diagnóstico principal y otros diagnósticos:
-                                        <input type="text" name="diagnostico" id="diagnostico" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>" readonly="readonly">
+                                        <input type="text" class="form-control w-100 h-100" name="diagnostico" id="diagnostico" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>" readonly="readonly">
                                     </td>
                                 </tr>
                                 <tr>
@@ -280,16 +322,16 @@ for ($i = 0; $i < 8; $i++) {
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <textarea name="titular_registro" id="titular_registro" cols="50" rows="5"></textarea>
+                                        <textarea name="titular_registro" id="titular_registro" class="form-control w-100 h-100" cols="50" rows="5"></textarea>
                                     </td>
                                     <td colspan="2">
-                                        <textarea name="nombre_comercial" id="nombre_comercial" cols="50" rows="5"></textarea>
+                                        <textarea name="nombre_comercial" id="nombre_comercial" class="form-control w-100 h-100" cols="50" rows="5"></textarea>
                                     </td>
                                     <td colspan="2">
-                                        <textarea name="registro_sanitario" id="registro_sanitario" cols="50" rows="5"></textarea>
+                                        <textarea name="registro_sanitario" id="registro_sanitario" class="form-control w-100 h-100" cols="50" rows="5"></textarea>
                                     </td>
                                     <td colspan="1">
-                                        <textarea name="lote" id="lote" cols="50" rows="5"></textarea>
+                                        <textarea name="lote" id="lote" class="form-control w-100 h-100" cols="50" rows="5"></textarea>
                                     </td>
                                 </tr>
                             </tbody>
@@ -306,17 +348,17 @@ for ($i = 0; $i < 8; $i++) {
                                 <tr>
                                     <td style="font-weight: 700; text-align:left;">
                                         Fecha de Inicio del Reporte: <br>
-                                        <input type="date" name="fecha_ini_evento" id="fecha_ini_evento">
+                                        <input type="date" class="form-control w-100 h-100" name="fecha_ini_evento" id="fecha_ini_evento">
                                     </td>
                                     <td style="font-weight: 700; text-align:left;">
                                         <p>Queja técnica /Reclamos Técnicos de Producto:</p>
-                                        <textarea name="evento_adverso" id="evento_adverso" cols="95" rows="5"></textarea>
+                                        <textarea name="evento_adverso" id="evento_adverso" class="form-control w-100 h-100" cols="95" rows="5"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 700; text-align:left;">
                                         Descripción y análisis del Reclamo:<br>
-                                        <textarea name="descripcion_evento" id="descripcion_evento" cols="95" rows="5"></textarea>
+                                        <textarea name="descripcion_evento" id="descripcion_evento" class="form-control w-100 h-100" cols="95" rows="5"></textarea>
                                     </td>
                                     <td>
                                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -326,9 +368,9 @@ for ($i = 0; $i < 8; $i++) {
                                                     <p style="font-weight: 700; ">Información complementaria (Marcar con X) </p>
                                                     <hr>
                                                     <div style="text-align: left;">
-                                                        <input type="radio" name="desenlace_evento" id="desenlace_evento" style=" width:20%; display:none" value="">
                                                         <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Cuando se notifico el problema, ¿el paciente estaba utilizando el producto?"> Cuando se notificó el problema, ¿el paciente estaba utilizando el producto? <br>
                                                         <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Se notifico algun dano o lesion"> Se notificó algún daño o lesión
+                                                        <input type="hidden" name="valor_desenlace_evento" id="valor_desenlace_evento">
                                                     </div>
                                                 </tr>
                                                 <hr>
@@ -341,17 +383,15 @@ for ($i = 0; $i < 8; $i++) {
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input type="radio" name="lugar_distribucion" id="lugar_distribucion" style=" width:20%; display:none" value="">
                                                         <input type="radio" name="lugar_distribucion" id="lugar_distribucion" value="Asegurador">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input type="radio" name="lugar_distribucion" id="lugar_distribucion" style=" width:20%; display:none" value="">
                                                         <input type="radio" name="lugar_distribucion" id="lugar_distribucion" value="Operador Logistico">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input type="radio" name="lugar_distribucion" id="lugar_distribucion" style=" width:20%; display:none" value="">
                                                         <input type="radio" name="lugar_distribucion" id="lugar_distribucion" value="Punto de Entrega">
                                                     </td>
+                                                    <input type="hidden" name="valor_lugar_distribucion" id="valor_lugar_distribucion">
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -363,38 +403,126 @@ for ($i = 0; $i < 8; $i++) {
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <br />
-                        <input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_registrar" onClick="return validar(evento_adverso,1);this.disabled=true" />
-                        <br />
+                        <button type="button" id="boton" onclick="btnSubmit()" class="btn_registrar">
+                            REGISTRAR
+                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </form>
     <script>
-        const botonAgregar = document.querySelector('#btn-agregar');
-        const tabla = document.querySelector('#contenedor');
+        function btnSubmit() {
 
-        botonAgregar.addEventListener('click', () => {
-            const nuevaFila = document.createElement('tr');
-            nuevaFila.innerHTML = `<td><input type="text" class="form-control" name="S_C_I[]" id="S_C_I" style="width:90%; height:100%;"></td>
-                         <td><input type="text" class="form-control" name="medicamento[]" id="medicamento" style="width:90%; height:100%;"></td>
-                         <td><input type="text" class="form-control" name="indicacion[]" id="indicacion" style="width:90%; height:100%;"></td>
-                         <td><input type="text" class="form-control" name="dosis[]" id="dosis" style="width:90%; height:100%;"></td>
-                         <td><input type="text" class="form-control" name="unidad_medida[]" id="unidad_medida" style="width:90%; height:100%;"></td>
-                         <td><input type="text" class="form-control" name="via_administracion[]" id="via_administracion" style="width:90%; height:100%;"></td>
-                         <td><input type="text" class="form-control" name="frecuencia_administracion[]" id="frecuencia_administracion" style="width:90%; height:100%;"></td>
-                         <td><input type="date" class="form-control" name="fecha_inicio[]" id="fecha_inicio" style="width:90%; height:100%;"></td>
-                         <td><input type="date" class="form-control" name="fecha_fin[]" id="fecha_fin" style="width:90%; height:100%;"></td>
-                         <td><button class="eliminar btn btn-danger bg-gradient text-white"><span class="iconify" data-icon="tabler:trash-x-filled" data-width="25"></span></button></td>`;
-            tabla.appendChild(nuevaFila);
-            document.querySelectorAll('.eliminar').forEach(button => {
-                button.addEventListener('click', () => {
-                    button.closest('tr').remove();
+            let date = {
+                fecha_notificacion: document.getElementById('fecha_notificacion').value,
+                departamento: document.getElementById('departamento').value,
+                municipio: document.getElementById('municipio').value,
+                institucion_evento: document.getElementById('institucion_evento').value,
+                nombre_usuario: document.getElementById('nombre_usuario').value,
+                nombre_paciente_acudiente: document.getElementById('nombre_paciente_acudiente').value,
+                consecutivo: document.getElementById('consecutivo').value,
+                profecion_usuario: document.getElementById('profecion_usuario').value,
+                correo_usuario: document.getElementById('correo_usuario').value,
+                fecha_nacimiento: document.getElementById('fecha_nacimiento').value,
+                edad_paciente: document.getElementById('edad_paciente').value,
+                tipo_documento_paciente: document.getElementById('tipo_documento_paciente').value,
+                documento_paciente: document.getElementById('documento_paciente').value,
+                iniciales_pa: document.getElementById('iniciales_pa').value,
+                genero: document.getElementById('genero').value,
+                diagnostico: document.getElementById('diagnostico').value,
+                titular_registro: document.getElementById('titular_registro').value,
+                nombre_comercial: document.getElementById('nombre_comercial').value,
+                registro_sanitario: document.getElementById('registro_sanitario').value,
+                lote: document.getElementById('lote').value,
+                fecha_ini_evento: document.getElementById('fecha_ini_evento').value,
+                evento_adverso: document.getElementById('evento_adverso').value,
+                descripcion_evento: document.getElementById('descripcion_evento').value,
+                desenlace_evento: document.getElementById('valor_desenlace_evento').value,
+                lugar_distribucion: document.getElementById('valor_lugar_distribucion').value,
+                codigo_paciente: document.getElementById('codigo_paciente').value,
+            }
+
+            for (let key in date) {
+                if (date.hasOwnProperty(key)) {
+                    const value = Number(date[key]);
+                    const element = document.getElementById(key);
+                    if (value === 0) {
+                        element.classList.add('is-invalid');
+                    } else {
+                        element.classList.remove('is-invalid');
+                        element.classList.add('is-valid');
+                    }
+                }
+            }
+
+            axios.post('../logica/insertar_datos_ea_tecno.php', date)
+                .then(function(response) {
+                    var respuesta = response.data.split(',');
+                    var titulo = respuesta[0];
+                    var icono = respuesta[1];
+                    var mensaje = respuesta[2];
+                    Swal.fire({
+                        title: titulo,
+                        html: mensaje,
+                        width: '20%',
+                        icon: icono,
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        if (result.isConfirmed && icono === 'success') {
+                            btnConvertPdf()
+                            Bloquear()
+                        }
+                    });
+                })
+                .catch(function(error) {
+                    Swal.fire({
+                        title: 'Error con el servidor',
+                        text: 'Por favor consulte con el administrador',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    })
                 });
-            });
+        }
 
-        });
+        function btnConvertPdf() {
+
+            let date = {
+                codigo_paciente: document.getElementById('codigo_paciente').value,
+                codigo_paciente2: document.getElementById('codigo_paciente2').value,
+            }
+
+            axios.post('./pdf_tecno.php', date)
+                .then(function(response) {
+                    Swal.fire({
+                            title: 'success',
+                            html: 'Por favor espere unos minutos, se esta creadndo el pdf para el envio del correo',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        })
+                        .then((result) => {
+                            if (result.isConfirmed && icono === 'success') {
+                                SendMailer()
+                                window.close();
+                                window.location.reload();
+                            }
+                        });
+                });
+        }
+
+        function SendMailer() {
+            axios.post('./email/mail_tecno.php', date)
+                .then(respuesta => {
+                    console.log(respuesta);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        function Bloquear() {
+            document.getElementById("boton").disabled = true;
+        }
     </script>
 </body>
 <style>
@@ -467,7 +595,7 @@ for ($i = 0; $i < 8; $i++) {
         font-size: 20px !important;
     }
 
-    .btn_registrar {
+    /* .btn_registrar {
         padding-top: 2%;
         background-image: url(imagenes/BTN_CONTINUAR2.png);
         background-image: url(../presentacion/imagenes/BTN_CONTINUAR2.png);
@@ -490,7 +618,7 @@ for ($i = 0; $i < 8; $i++) {
         box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
             inset 0px 0px 20px #EEECEC;
-    }
+    } */
 
     .letra {
         font-family: Tahoma, Geneva, sans-serif;
@@ -518,17 +646,5 @@ for ($i = 0; $i < 8; $i++) {
         border: 1px solid black;
     }
 </style>
-<?php
-// } else {
-// 
-?>
-// <script type="text/javascript">
-    //         window.onload = window.top.location.href = "../logica/cerrar_sesion2.php";
-    //     
-</script>-
-// <?php
-    // }
-    // 
-    ?>
 
 </html>
