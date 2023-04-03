@@ -455,7 +455,7 @@ if ($privilegios != '' && $usua != '') {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" style="font-weight: 700; text-align:left;">
+                                        <td colspan="4" style="font-weight: 700; height: 250px; width: 400px; text-align:left;">
                                             Descripción y análisis del Evento Adverso:<br>
                                             <textarea name="descripcion_evento" id="descripcion_evento" class="form-control w-100 h-100" cols="95" rows="5"></textarea>
                                         </td>
