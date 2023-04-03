@@ -212,8 +212,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="9" style="text-align: left; font-weight: 700">
-                                    Diagnóstico principal y otros diagnósticos: <?php echo $DIAGNOSTICO_PRINCIPAL ?>
+                                <td colspan="9" style="text-align: left;">
+                                    <span style="font-weight: 700;">Diagnóstico principal y otros diagnósticos:</span> <?php echo $DIAGNOSTICO_PRINCIPAL ?>
                                 </td>
                             </tr>
                             <tr>
@@ -261,26 +261,23 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 <td colspan="4" class="titulos3" style="font-weight: 700; color:#fff;">3.RECLAMOS TECNICOS DE PRODUCTO</td>
                             </tr>
                             <tr>
-                                <td colspan="1" style="font-weight: 700; text-align:left;">
-                                    Fecha de Inicio del Reporte: <br>
-                                    <?php echo $FECHA_INICIO_EVENTO ?>
+                                <td colspan="1" style="vertical-align: top; text-align:left; width: 30%;">
+                                    <span style="font-weight: 700;">Fecha de Inicio del Reporte: </span> <br> <?php echo $FECHA_INICIO_EVENTO ?>
                                 </td>
-                                <td colspan="3" style="font-weight: 700; text-align:left;">
-                                    <p>Queja técnica /Reclamos Técnicos de Producto:</p>
-                                    <?php echo $EVENTO_ADVERSO ?>
+                                <td colspan="3" style="vertical-align: top; text-align:left; width: 30%;">
+                                    <span style="font-weight: 700;">Queja técnica /Reclamos Técnicos de Producto:</span> <br> <?php echo $EVENTO_ADVERSO ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="1" style="font-weight: 700; text-align:left;">
-                                    Descripción y análisis del Reclamo:<br>
-                                    <?php echo $DESCRIPCION_ANALISIS_EVENTO ?>
+                                <td colspan="1" style="vertical-align: top; text-align:left; width: 30%;">
+                                    <span style="font-weight: 700;">Descripción y análisis del Reclamo: </span> <br> <?php echo $DESCRIPCION_ANALISIS_EVENTO ?>
                                 </td>
                                 <td colspan="3">
                                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                         <tbody>
                                             <tr>
                                                 <?php if ($DESENLACE_EVENTO == 'Cuando se notifico el problema, ¿el paciente estaba utilizando el producto?') { ?>
-                                                    <td style="font-weight: 700; text-align: left">
+                                                    <td style="text-align: left">
                                                         <p style="font-weight: 700; "> Información complementaria (Marcar con X)</p>
                                                         <span style="color: #ff0000;">X</span> Cuando se notificó el problema, ¿el paciente estaba utilizando el producto? <br>
                                                         Se notificó algún daño o lesión <br>

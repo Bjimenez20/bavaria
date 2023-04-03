@@ -142,23 +142,22 @@ for ($i = 0; $i < 8; $i++) {
                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
                             <tbody>
                                 <tr>
-                                    <td colspan="4" class="titulos" style="font-weight: 700; color:#fff;">1. INFORMACIÓN DEL REPORTANTE <?PHP echo $EV ?></td>
+                                    <td colspan="7" class="titulos" style="font-weight: 700; color:#fff;">1. INFORMACIÓN DEL REPORTANTE <?PHP echo $EV ?></td>
                                 </tr>
-                                <input type="text" name="codigo_paciente2" id="codigo_paciente2" value="?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>" readonly="readonly">
                                 <input type="text" name="ID_GESTION" id="ID_GESTION" value="<?php echo $ID_GESTION ?>" readonly="readonly" style="display: none;">
                                 <tr>
                                     <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                         Fecha de notificación
                                     </td>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="3" style="font-weight: 700; background-color: #DBDBDB;">
                                         Origen del reporte
                                         <hr>
                                         Departamento – Municipio
                                     </td>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                         Nombre de la Institución donde ocurrió el evento
                                     </td>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                         ID Paciente
                                     </td>
                                 </tr>
@@ -166,7 +165,7 @@ for ($i = 0; $i < 8; $i++) {
                                     <td colspan="1">
                                         <input type="date" class="form-control w-100 h-100" name="fecha_notificacion" id="fecha_notificacion" value="<?php echo date('Y-m-d'); ?>" readonly="readonly">
                                     </td>
-                                    <td>
+                                    <td colspan="3">
                                         <div class="row">
                                             <div class="col d-flex justify-content-center">
                                                 <input type="text" class="form-control w-100 h-100" name="departamento" id="departamento" value="<?php echo $DEPARTAMENTO_PACIENTE ?>" readonly="readonly">
@@ -179,93 +178,85 @@ for ($i = 0; $i < 8; $i++) {
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td colspan="2">
                                         <input type="text" class="form-control w-100 h-100" name="institucion_evento" id="institucion_evento">
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <input type="text" class="form-control w-100 h-100" name="codigo_paciente" id="codigo_paciente" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                         Nombre del Reportante primario
                                     </td>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="3" style="font-weight: 700; background-color: #DBDBDB;">
                                         Nombre del Paciente o Acudiente
                                     </td>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                         Consecutivo
                                     </td>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                         Profesión del reportante primario
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td colspan="1">
                                         <input type="text" class="form-control w-100 h-100" name="nombre_usuario" id="nombre_usuario" value="<?php echo $NOMBRES . ' ' . $APELLIDOS ?>" readonly="readonly">
                                     </td>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" class="form-control w-100 h-100" name="nombre_paciente_acudiente" id="nombre_paciente_acudiente" value="">
                                     </td>
-                                    <td>
+                                    <td colspan="2">
                                         <input type="text" class="form-control w-100 h-100" name="consecutivo" id="consecutivo" value="<?php echo $cad ?>" readonly="readonly">
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <input type="text" class="form-control w-100 h-100" name="profecion_usuario" id="profecion_usuario">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;" colspan="4">
+                                    <td colspan="7" style="font-weight: 700; background-color: #DBDBDB;" colspan="4">
                                         Correo electrónico institucional del reportante primario
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4">
+                                    <td colspan="7">
                                         <input type="email" class="form-control w-100 h-100" name="correo_usuario" id="correo_usuario" value="<?php echo $EMAIL ?>" readonly="readonly">
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                            <tbody>
                                 <tr>
                                     <td colspan="7" class="titulos" style="font-weight: 700; color:#fff;">2. INFORMACIÓN DEL PACIENTE</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                         Fecha de nacimiento del paciente
                                     </td>
-                                    <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                         Edad del paciente en el momento del EA
                                         <hr>
                                         Edad – Años/Meses/ días
                                     </td>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="3" style="font-weight: 700; background-color: #DBDBDB;">
                                         Documento de identificación del paciente
                                         <hr>
                                         CC | TI | RC | NUIP | Cód. Lab | Otro | S/I
                                     </td>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                         Iniciales del paciente
                                     </td>
-                                    <td style="font-weight: 700; background-color: #DBDBDB;">
+                                    <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                         Sexo
                                         <hr>
                                         M | F | S/I
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">
+                                    <td colspan="1">
                                         <input type="date" class="form-control w-100 h-100" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo $FECHA_NACIMIENTO ?>" readonly="readonly">
                                     </td>
-                                    <td colspan="2">
+                                    <td colspan="1">
                                         <input type="number" class="form-control w-100 h-100" name="edad_paciente" id="edad_paciente" value="<?php echo $EDAD ?>" readonly="readonly">
                                     </td>
-                                    <td>
+                                    <td colspan="3">
                                         <div class="row">
                                             <div class="col d-flex justify-content-center">
                                                 <input type="text" class="form-control w-100 h-100" name="tipo_documento_paciente" id="tipo_documento_paciente" value="<?php echo $TIPO_IDENTIFICACION_PACIENTE ?>" readonly="readonly">
@@ -278,19 +269,19 @@ for ($i = 0; $i < 8; $i++) {
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <input type="text" class="form-control w-100 h-100" class="form-control w-100 h-100" name="iniciales_pa" id="iniciales_pa" value="<?php echo $result ?>" readonly="readonly">
                                     </td>
                                     <?php if ($GENERO_PACIENTE == 'Mujer') { ?>
-                                        <td>
+                                        <td colspan="1">
                                             <input type="text" class="form-control w-100 h-100" name="genero" id="genero" value="F" readonly="readonly">
                                         </td>
                                     <?php } else if ($GENERO_PACIENTE == 'Hombre') { ?>
-                                        <td>
+                                        <td colspan="1">
                                             <input type="text" class="form-control w-100 h-100" name="genero" id="genero" value="M" readonly="readonly">
                                         </td>
                                     <?php } else { ?>
-                                        <td>
+                                        <td colspan="1">
                                             <input type="text" class="form-control w-100 h-100" name="genero" id="genero" value="N/A" readonly="readonly">
                                         </td>
                                     <?php } ?>
@@ -334,33 +325,25 @@ for ($i = 0; $i < 8; $i++) {
                                         <textarea name="lote" id="lote" class="form-control w-100 h-100" cols="50" rows="5"></textarea>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                            <tbody>
                                 <tr>
-                                    <td colspan="4" class="titulos3" style="font-weight: 700; color:#fff;">3.RECLAMOS TECNICOS DE PRODUCTO</td>
+                                    <td colspan="7" class="titulos3" style="font-weight: 700; color:#fff;">3.RECLAMOS TECNICOS DE PRODUCTO</td>
                                 </tr>
                                 <tr>
-                                    <td style="font-weight: 700; text-align:left;">
+                                    <td colspan="4" style="font-weight: 700; text-align:left;">
                                         Fecha de Inicio del Reporte: <br>
                                         <input type="date" class="form-control w-100 h-100" name="fecha_ini_evento" id="fecha_ini_evento">
                                     </td>
-                                    <td style="font-weight: 700; text-align:left;">
+                                    <td colspan="3" style="font-weight: 700; text-align:left;">
                                         <p>Queja técnica /Reclamos Técnicos de Producto:</p>
                                         <textarea name="evento_adverso" id="evento_adverso" class="form-control w-100 h-100" cols="95" rows="5"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="font-weight: 700; text-align:left;">
+                                    <td colspan="4" style="font-weight: 700; height: 250px; width: 400px; text-align:left;">
                                         Descripción y análisis del Reclamo:<br>
                                         <textarea name="descripcion_evento" id="descripcion_evento" class="form-control w-100 h-100" cols="95" rows="5"></textarea>
                                     </td>
-                                    <td>
+                                    <td colspan="3">
                                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                             <tbody>
                                                 <tr>
@@ -467,11 +450,15 @@ for ($i = 0; $i < 8; $i++) {
                         html: mensaje,
                         width: '20%',
                         icon: icono,
-                        confirmButtonText: 'Aceptar'
+                        showCancelButton: false,
+                        focusConfirm: false,
+                        allowOutsideClick: false,
+                        confirmButtonText: "Aceptar"
                     }).then((result) => {
                         if (result.isConfirmed && icono === 'success') {
+                            window.close();
+                            window.location.reload();
                             btnConvertPdf()
-                            Bloquear()
                         }
                     });
                 })
@@ -489,7 +476,6 @@ for ($i = 0; $i < 8; $i++) {
 
             let date = {
                 codigo_paciente: document.getElementById('codigo_paciente').value,
-                codigo_paciente2: document.getElementById('codigo_paciente2').value,
             }
 
             axios.post('./pdf_tecno.php', date)
@@ -503,14 +489,17 @@ for ($i = 0; $i < 8; $i++) {
                         .then((result) => {
                             if (result.isConfirmed && icono === 'success') {
                                 SendMailer()
-                                window.close();
-                                window.location.reload();
                             }
                         });
                 });
         }
 
         function SendMailer() {
+
+            let date = {
+                codigo_paciente: document.getElementById('codigo_paciente').value,
+            }
+
             axios.post('./email/mail_tecno.php', date)
                 .then(respuesta => {
                     console.log(respuesta);
@@ -518,10 +507,6 @@ for ($i = 0; $i < 8; $i++) {
                 .catch(error => {
                     console.error(error);
                 });
-        }
-
-        function Bloquear() {
-            document.getElementById("boton").disabled = true;
         }
     </script>
 </body>

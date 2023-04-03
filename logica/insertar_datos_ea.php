@@ -8,6 +8,7 @@ header('Content-Type: text/plain');
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
 
+$rows1 = $data['rows1'];
 $rows = $data['rows'];
 $date = $data['date'];
 
@@ -140,7 +141,7 @@ if (
 		echo $titulo . ',' . $icono . ',' . $mensaje;
 	}
 } else {
-	$insertar = mysqli_query($conex, "INSERT INTO ipsen_evento_adverso (FECHA_NOTIFICA, DEPARTAMENTO, MUNICIPIO, NOMBRE_INSTITUCION, CODIGO_PNF, NOMBRE_REPORTANTE, NOMBRE_PACIENTE_ACUDIENTE, CONSECUTIVO, PROFESION_REPORTANTE, CORREO_REPORTANTE, FECHA_NACIMIENTO_PACIENTE, EDAD_PACIENTE, TIPO_DOCUMENTO_PACIENTE, NUMERO_DOCUMENTO_PACIENTE, INICIALES_PACIENTE, SEXO, PESO, TALLA, DIAGNOSTICO_PRINCIPAL, TITULAR_REGISTRO, NOMBRE_COMERCIAL, REGISTRO_SANITARIO, LOTE, FECHA_INICIO_EVENTO, EVENTO_ADVERSO, DESCRIPCION_ANALISIS_EVENTO, DESENLACE_EVENTO, SERIEDAD, LUGAR_DISTRIBUCION, FECHA_MUERTE, PREGUNTA1, PREGUNTA2, PREGUNTA3, PREGUNTA4, PREGUNTA5, ID_PACIENTE_FK) VALUES ('$fecha_notificacion','$departamento','$municipio','$institucion_evento','$codigo_pnf','$nombre_usuario','$nombre_paciente_acudiente','$consecutivo','$profecion_usuario','$correo_usuario','$fecha_nacimiento','$edad_paciente','$tipo_documento_paciente','$documento_paciente','$iniciales_pa','$genero','$peso','$talla','$diagnostico','$titular_registro','$nombre_comercial','$registro_sanitario','$lote','$fecha_ini_evento','$evento_adverso','$descripcion_evento','$desenlace_evento','$seriedad','','$fecha_muerte','$pregunta1','$pregunta2','$pregunta3','$pregunta4','$pregunta5','$codigo_paciente')");
+	$insertar = mysqli_query($conex, "INSERT INTO ipsen_evento_adverso (FECHA_NOTIFICA, DEPARTAMENTO, MUNICIPIO, NOMBRE_INSTITUCION, CODIGO_PNF, NOMBRE_REPORTANTE, NOMBRE_PACIENTE_ACUDIENTE, CONSECUTIVO, PROFESION_REPORTANTE, CORREO_REPORTANTE, FECHA_NACIMIENTO_PACIENTE, EDAD_PACIENTE, TIPO_DOCUMENTO_PACIENTE, NUMERO_DOCUMENTO_PACIENTE, INICIALES_PACIENTE, SEXO, PESO, TALLA, TITULAR_REGISTRO, NOMBRE_COMERCIAL, REGISTRO_SANITARIO, LOTE, FECHA_INICIO_EVENTO, EVENTO_ADVERSO, DESCRIPCION_ANALISIS_EVENTO, DESENLACE_EVENTO, SERIEDAD, LUGAR_DISTRIBUCION, FECHA_MUERTE, PREGUNTA1, PREGUNTA2, PREGUNTA3, PREGUNTA4, PREGUNTA5, ID_PACIENTE_FK) VALUES ('$fecha_notificacion','$departamento','$municipio','$institucion_evento','$codigo_pnf','$nombre_usuario','$nombre_paciente_acudiente','$consecutivo','$profecion_usuario','$correo_usuario','$fecha_nacimiento','$edad_paciente','$tipo_documento_paciente','$documento_paciente','$iniciales_pa','$genero','$peso','$talla','$titular_registro','$nombre_comercial','$registro_sanitario','$lote','$fecha_ini_evento','$evento_adverso','$descripcion_evento','$desenlace_evento','$seriedad','','$fecha_muerte','$pregunta1','$pregunta2','$pregunta3','$pregunta4','$pregunta5','$codigo_paciente')");
 	if ($insertar) {
 		$sql = "SELECT MAX(ID_EVENTO_ADVERSO) AS ULTIMO_EVENTO_ADVERSO_ID FROM ipsen_evento_adverso";
 		$resultado = mysqli_query($conex, $sql);
@@ -163,8 +164,13 @@ if (
 			$inter_medicamentos = mysqli_query($conex, "INSERT INTO ipsen_informacion_tratamiento_ea (SCI, MEDICAMENTO, INDICACION, DOSIS, UNIDAD_MEDIDA, VIA_ADMINISTRACION, FRECUENCIA_ADMINISTRACION, FECHA_INICIO, FECHA_FIN, EVENTO_ADVERSO_ID) VALUES ('$sc','$medi','$ind','$dos','$um','$va','$fa','$fi','$ff','$FK_EVENTO_ADVERSO')");
 		}
 
+		foreach ($rows1 as $row1) {
+			$dg = $row1['diagnostico'];
+			$inser_diagnostico = mysqli_query($conex, "INSERT INTO `ipsen_diagnosticos_ea`(`DIAGNOSTICO`, `EVENTO_ADVERSO_ID`) VALUES ('$dg','$FK_EVENTO_ADVERSO')");
+		}
 
-		if ($inter_medicamentos) {
+
+		if ($inter_medicamentos && $inser_diagnostico) {
 			$titulo = 'Datos cargados';
 			$icono = 'success';
 			$mensaje = 'El evento ha sido creado';

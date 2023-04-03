@@ -3,11 +3,14 @@ include "../logica/session.php";
 include "../datos/conex.php";
 include_once "../dompdf/vendor/autoload.php";
 
+$data = json_decode(file_get_contents('php://input'));
+
 use Dompdf\Dompdf;
 
 $dompdf = new Dompdf();
 ob_start();
-$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso WHERE ID_PACIENTE_FK ='" . $codigo_paciente . "' ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
+
+$consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso WHERE ID_PACIENTE_FK ='$data->codigo_paciente' ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
 echo mysqli_error($conex);
 while ($fila1 = mysqli_fetch_array($consulta)) {
     $ID_EVENTO_ADVERSO = $fila1['ID_EVENTO_ADVERSO'];
@@ -46,7 +49,6 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
     $PREGUNTA4 = $fila1['PREGUNTA4'];
     $PREGUNTA5 = $fila1['PREGUNTA5'];
     $ID_PAP = $fila1['ID_PACIENTE_FK'];
-    $ID_GESTION = $fila1['ID_GESTION_FK'];
 }
 ?>
 <!DOCTYPE html>
@@ -158,6 +160,10 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                     <?php echo $PROFESION_REPORTANTE ?>
                                 </td>
                             </tr>
+                        </tbody>
+                    </table>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
                             <tr>
                                 <td style="font-weight: 700; background-color: #DBDBDB;" colspan="4">
                                     Correo electrónico institucional del reportante primario
@@ -236,10 +242,24 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" style="text-align: left;">
-                                    <span style="font-weight: 700">Diagnóstico principal y otros diagnósticos:</span> <?php echo $DIAGNOSTICO_PRINCIPAL ?>
+                                <td colspan="7" style="font-weight: 700; background-color: #DBDBDB;">
+                                    <span style="font-weight: 700">Diagnóstico principal y otros diagnósticos:</span>
                                 </td>
                             </tr>
+                            <?php
+                            $consulta_diagnostico = mysqli_query($conex, "SELECT * FROM ipsen_diagnosticos_ea WHERE EVENTO_ADVERSO_ID ='" . $ID_EVENTO_ADVERSO . "'");
+                            echo mysqli_error($conex);
+                            while ($fila = mysqli_fetch_array($consulta_diagnostico)) {
+                                $DIAGNOSTICO_PRINCIPAL = $fila['DIAGNOSTICO'];
+                            ?>
+                                <tr>
+                                    <td colspan="7">
+                                        <?php echo $DIAGNOSTICO_PRINCIPAL ?>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </td>
@@ -933,6 +953,6 @@ $output = $dompdf->output();
 $CARPETA = "../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO";
 if (!is_dir($CARPETA)) {
     mkdir("../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO", 0777);
-    file_put_contents('' . $CARPETA . '/Evento_Adverso_' . $ID_PACIENTE . '.pdf', $output);
+    file_put_contents('' . $CARPETA . '/Evento_Adverso_' . $ID_PAP . '.pdf', $output);
 }
 require("../presentacion/email/mail.php");

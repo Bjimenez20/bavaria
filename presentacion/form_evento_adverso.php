@@ -38,6 +38,55 @@ include('../logica/session.php')
                 divC.style.display = "none";
             }
         }
+
+        $(document).ready(function() {
+            $('input[id="desenlace_evento"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_desenlace_evento').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="seriedad"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_seriedad').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="pregunta1"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_pregunta1').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="pregunta2"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_pregunta2').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="pregunta3"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_pregunta3').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="pregunta4"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_pregunta4').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="pregunta5"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_pregunta5').val(inputValue);
+            });
+        });
     </script>
 </head>
 <?php
@@ -96,10 +145,10 @@ if ($privilegios != '' && $usua != '') {
             <table class="table table-bordered" cellspacing="0" cellpadding="0" style="width: 100%;" id="header">
                 <tbody>
                     <tr>
-                        <td>
+                        <td colspan="4">
                             <img src="../presentacion/imagenes/EA.png" alt="" width="170" height="75" />
                         </td>
-                        <td>
+                        <td colspan="5">
                             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                 <tbody>
                                     <tr>
@@ -131,31 +180,31 @@ if ($privilegios != '' && $usua != '') {
                             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                 <tbody>
                                     <tr>
-                                        <td colspan="4" class="titulos" style="font-weight: 700">1. INFORMACIÓN DEL REPORTANTE</td>
+                                        <td colspan="9" class="titulos" style="font-weight: 700">1. INFORMACIÓN DEL REPORTANTE</td>
                                     </tr>
-                                    <input type="text" name="codigo_paciente" id="codigo_paciente" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly">
+                                    <input type="hidden" name="codigo_paciente" id="codigo_paciente" value="<?php echo $ID_PACIENTE2 ?>" readonly="readonly">
                                     <input type="text" name="ID_GESTION" id="ID_GESTION" value="<?php echo $ID_GESTION3 ?>" readonly="readonly" style="display: none;">
                                     <tr>
-                                        <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                             Fecha de notificación
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="3" style="font-weight: 700; background-color: #DBDBDB;">
                                             Origen del reporte
                                             <hr>
                                             Departamento – Municipio
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                             Nombre de la Institución donde ocurrió el evento
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                             Código PNF
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="1">
+                                        <td colspan="2">
                                             <input type="date" class="form-control w-100 h-100" name="fecha_notificacion" id="fecha_notificacion" value="<?php echo date('Y-m-d'); ?>">
                                         </td>
-                                        <td>
+                                        <td colspan="3">
                                             <div class="row">
                                                 <div class="col d-flex justify-content-center">
                                                     <input type="text" class="form-control w-100 h-100" name="departamento" id="departamento" value="<?php echo $DEPARTAMENTO_PACIENTE ?>" readonly="readonly">
@@ -168,104 +217,95 @@ if ($privilegios != '' && $usua != '') {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <input type="text" class="form-control w-100 h-100" name="institucion_evento" id="institucion_evento">
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <input type="text" class="form-control w-100 h-100" name="codigo_pnf" id="codigo_pnf">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                             Nombre del Reportante primario
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                             Nombre del Paciente o Acudiente
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                             Consecutivo
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="3" style="font-weight: 700; background-color: #DBDBDB;">
                                             Profesión del reportante primario
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td colspan="2">
                                             <input type="text" class="form-control w-100 h-100" name="nombre_usuario" id="nombre_usuario" value="<?php echo $NOMBRES . ' ' . $APELLIDOS ?>" readonly="readonly">
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <input type="text" class="form-control w-100 h-100" name="nombre_paciente_acudiente" id="nombre_paciente_acudiente" value="">
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <input type="text" class="form-control w-100 h-100" name="consecutivo" id="consecutivo" value="<?php echo $cad ?>" readonly="readonly">
                                         </td>
-                                        <td>
+                                        <td colspan="3">
                                             <input type="text" class="form-control w-100 h-100" name="profecion_usuario" id="profecion_usuario">
                                         </td>
-
                                     </tr>
                                     <tr>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;" colspan="4">
+                                        <td colspan="9" style="font-weight: 700; background-color: #DBDBDB;" colspan="4">
                                             Correo electrónico institucional del reportante primario
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="9">
                                             <input type="email" class="form-control w-100 h-100" name="correo_usuario" id="correo_usuario" value="<?php echo $EMAIL ?>" readonly="readonly">
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                                <tbody>
                                     <tr>
-                                        <td colspan="7" class="titulos" style="font-weight: 700">2. INFORMACIÓN DEL PACIENTE</td>
+                                        <td colspan="9" class="titulos" style="font-weight: 700">2. INFORMACIÓN DEL PACIENTE</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                             Fecha de nacimiento del paciente
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                             Edad del paciente en el momento del EA
                                             <hr>
                                             Edad – Años/Meses/ días
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                             Documento de identificación del paciente
                                             <hr>
                                             CC | TI | RC | NUIP | Cód. Lab | Otro | S/I
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                             Iniciales del paciente
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                             Sexo
                                             <hr>
                                             M | F | S/I
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                             Peso
                                             <hr>
                                             (Kg)
                                         </td>
-                                        <td style="font-weight: 700; background-color: #DBDBDB;">
+                                        <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                             Talla
                                             <hr>
                                             (cm)
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="1">
+                                        <td colspan="2">
                                             <input type="date" class="form-control w-100 h-100" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo $FECHA_NACIMIENTO ?>" readonly="readonly" style="width:90%; height:100%;">
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <input type="number" class="form-control w-100 h-100" name="edad_paciente" id="edad_paciente" value="<?php echo $EDAD ?>" readonly="readonly" style="width:90%; height:100%;">
                                         </td>
-                                        <td>
+                                        <td colspan="1">
                                             <div class="row">
                                                 <div class="col d-flex justify-content-center">
                                                     <input type="text" class="form-control w-100 h-100" name="tipo_documento_paciente" id="tipo_documento_paciente" value="<?php echo $TIPO_IDENTIFICACION_PACIENTE ?>" readonly="readonly">
@@ -278,29 +318,29 @@ if ($privilegios != '' && $usua != '') {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td colspan="1">
                                             <input type="text" class="form-control w-100 h-100" name="iniciales_pa" id="iniciales_pa" value="<?php echo $result ?>" style="width:90%; height:100%;" readonly="readonly">
                                         </td>
                                         <?php if ($GENERO_PACIENTE == 'Mujer') { ?>
-                                            <td>
+                                            <td colspan="1">
                                                 <input type="text" class="form-control w-100 h-100" name="genero" id="genero" value="F" readonly="readonly" style="width:90%; height:100%;">
                                             </td>
                                         <?php } else if ($GENERO_PACIENTE == 'Hombre') { ?>
-                                            <td>
+                                            <td colspan="1">
                                                 <input type="text" class="form-control w-100 h-100" name="genero" id="genero" value="M" readonly="readonly" style="width:90%; height:100%;">
                                             </td>
                                         <?php } ?>
-                                        <td>
+                                        <td colspan="1">
                                             <input type="text" class="form-control w-100 h-100" name="peso" id="peso">
                                         </td>
-                                        <td>
+                                        <td colspan="1">
                                             <input type="text" class="form-control w-100 h-100" name="talla" id="talla">
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tbody id="contenedor_1">
                                     <tr>
-                                        <td colspan="7" style="text-align: left; font-weight: 700">
+                                        <td colspan="9" style="text-align: left; font-weight: 700">
                                             Diagnóstico principal y otros diagnósticos:
                                             <input type="text" class="form-control w-100 h-100" name="diagnostico[]" id="diagnostico" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>" readonly="readonly">
                                         </td>
@@ -311,12 +351,6 @@ if ($privilegios != '' && $usua != '') {
                                         <button type="button" id="btn-agregar_diagnostico" class="btn btn-secondary">Generar campo</button>
                                     </td>
                                 </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                 <tbody>
                                     <tr>
                                         <td colspan="9" class="titulos2" style="font-weight: 700">
@@ -407,33 +441,25 @@ if ($privilegios != '' && $usua != '') {
                                             <textarea name="lote" id="lote" class="form-control w-100 h-100" cols="50" rows="5"></textarea>
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                                <tbody>
                                     <tr>
-                                        <td colspan="4" class="titulos3" style="font-weight: 700">4. INFORMACIÓN DEL EVENTO ADVERSO</td>
+                                        <td colspan="9" class="titulos3" style="font-weight: 700">4. INFORMACIÓN DEL EVENTO ADVERSO</td>
                                     </tr>
                                     <tr>
-                                        <td style="font-weight: 700; text-align:left;">
+                                        <td colspan="4" style="font-weight: 700; text-align:left;">
                                             Fecha de Inicio del Evento Adverso: <br>
                                             <input type="date" class="form-control w-100 h-100" name="fecha_ini_evento" id="fecha_ini_evento">
                                         </td>
-                                        <td style="font-weight: 700; text-align:left;">
+                                        <td colspan="5" style="font-weight: 700; text-align:left;">
                                             Evento adverso:
                                             <textarea name="evento_adverso" id="evento_adverso" class="form-control w-100 h-100" cols="95" rows="5"></textarea>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="font-weight: 700; text-align:left;">
+                                        <td colspan="4" style="font-weight: 700; text-align:left;">
                                             Descripción y análisis del Evento Adverso:<br>
                                             <textarea name="descripcion_evento" id="descripcion_evento" class="form-control w-100 h-100" cols="95" rows="5"></textarea>
                                         </td>
-                                        <td>
+                                        <td colspan="5">
                                             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                                 <tbody>
                                                     <tr>
@@ -441,7 +467,7 @@ if ($privilegios != '' && $usua != '') {
                                                         <p style="font-weight: 700; "> Desenlace del evento (Marcar con una X)</p>
                                                         <hr>
                                                         <div style="text-align: left;">
-                                                            <input type="radio" name="desenlace_evento" id="desenlace_evento" style=" width:20%; display:none" value="">
+                                                            <input type="hidden" name="valor_desenlace_evento" id="valor_desenlace_evento"> <br>
                                                             <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto sin secuelas"> Recuperado / Resuelto sin secuelas <br>
                                                             <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperado / Resuelto con secuelas"> Recuperado / Resuelto con secuelas <br>
                                                             <input type="radio" name="desenlace_evento" id="desenlace_evento" value="Recuperando / Resolviendo"> Recuperando / Resolviendo <br>
@@ -455,7 +481,7 @@ if ($privilegios != '' && $usua != '') {
                                                         <p style="font-weight: 700; ">Seriedad (Marcar con X) </p>
                                                         <hr>
                                                         <div style="text-align: left;">
-                                                            <input type="radio" name="seriedad" id="seriedad" style=" width:20%; display:none">
+                                                            <input type="hidden" name="valor_seriedad" id="valor_seriedad"> <br>
                                                             <input type="radio" name="seriedad" id="seriedad" value="Produjo o prolongo hospitalizacion" onchange="trat_previo(this)"> Produjo o prolongó hospitalización <br>
                                                             <input type="radio" name="seriedad" id="seriedad" value="Anomalia congenita" onchange="trat_previo(this)"> Anomalía congénita <br>
                                                             <input type="radio" name="seriedad" id="seriedad" value="Amenaza de vida" onchange="trat_previo(this)"> Amenaza de vida <br>
@@ -469,88 +495,85 @@ if ($privilegios != '' && $usua != '') {
                                             </table>
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                                <tbody>
                                     <tr>
-                                        <td colspan="4"></td>
-                                        <td style="font-weight: 700;">Si</td>
-                                        <td style="font-weight: 700;">No</td>
-                                        <td style="font-weight: 700;">No sabe</td>
+                                        <td colspan="3"></td>
+                                        <td colspan="2" style="font-weight: 700;">Si</td>
+                                        <td colspan="2" style="font-weight: 700;">No</td>
+                                        <td colspan="2" style="font-weight: 700;">No sabe</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" style="text-align: left;">
+                                        <td colspan="3" style="text-align: left;">
                                             ¿El evento se presentó después de administrar el medicamento? <br>
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta1" id="pregunta1" value="SI"> <br>
+                                        <td colspan="2">
+                                            <input type="hidden" name="valor_pregunta1" id="valor_pregunta1"> <br>
+                                            <input type="radio" name="pregunta1" id="pregunta1" value="SI">
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <input type="radio" name="pregunta1" id="pregunta1" value="NO">
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <input type="radio" name="pregunta1" id="pregunta1" value="NO SEBE">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" style="text-align: left;">
+                                        <td colspan="3" style="text-align: left;">
                                             ¿Existen otros factores que puedan explicar el evento (medicamento, patologías, etc.)? <br>
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta2" id="pregunta2" value="SI"> <br>
+                                        <td colspan="2">
+                                            <input type="hidden" name="valor_pregunta2" id="valor_pregunta2"> <br>
+                                            <input type="radio" name="pregunta2" id="pregunta2" value="SI">
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta2" id="pregunta2" value="NO"> <br>
+                                        <td colspan="2">
+                                            <input type="radio" name="pregunta2" id="pregunta2" value="NO">
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <input type="radio" name="pregunta2" id="pregunta2" value="NO SABE"> <br>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" style="text-align: left;">
+                                        <td colspan="3" style="text-align: left;">
                                             ¿El evento desapareció al disminuir o suspender el medicamento sospechoso? <br>
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta3" id="pregunta3" value="SI"> <br>
+                                        <td colspan="2">
+                                            <input type="hidden" name="valor_pregunta3" id="valor_pregunta3"> <br>
+                                            <input type="radio" name="pregunta3" id="pregunta3" value="SI">
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta3" id="pregunta3" value="NO"> <br>
+                                        <td colspan="2">
+                                            <input type="radio" name="pregunta3" id="pregunta3" value="NO">
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta3" id="pregunta3" value="NO SABE"> <br>
+                                        <td colspan="2">
+                                            <input type="radio" name="pregunta3" id="pregunta3" value="NO SABE">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" style="text-align: left;">
+                                        <td colspan="3" style="text-align: left;">
                                             ¿El paciente ya había presentado la misma reacción al medicamento sospechoso? <br>
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta4" id="pregunta4" value="SI"> <br>
+                                        <td colspan="2">
+                                            <input type="hidden" name="valor_pregunta4" id="valor_pregunta4"> <br>
+                                            <input type="radio" name="pregunta4" id="pregunta4" value="SI">
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta4" id="pregunta4" value="NO"> <br>
+                                        <td colspan="2">
+                                            <input type="radio" name="pregunta4" id="pregunta4" value="NO">
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta4" id="pregunta4" value="NO SABE"> <br>
+                                        <td colspan="2">
+                                            <input type="radio" name="pregunta4" id="pregunta4" value="NO SABE">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" style="text-align: left;">
+                                        <td colspan="3" style="text-align: left;">
                                             ¿Se puede ampliar la información del paciente relacionando con el evento? <br>
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta5" id="pregunta5" value="SI"> <br>
+                                        <td colspan="2">
+                                            <input type="hidden" name="valor_pregunta5" id="valor_pregunta5"> <br>
+                                            <input type="radio" name="pregunta5" id="pregunta5" value="SI">
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta5" id="pregunta5" value="NO"> <br>
+                                        <td colspan="2">
+                                            <input type="radio" name="pregunta5" id="pregunta5" value="NO">
                                         </td>
-                                        <td>
-                                            <input type="radio" name="pregunta5" id="pregunta5" value="NO SABE"> <br>
+                                        <td colspan="2">
+                                            <input type="radio" name="pregunta5" id="pregunta5" value="NO SABE">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -559,7 +582,7 @@ if ($privilegios != '' && $usua != '') {
                     </tr>
                     <tr>
                         <td colspan="4">
-                            <button type="button" onclick="btnSubmit()" class="btn_registrar">
+                            <button type="button" id="boton" onclick="btnSubmit()" class="btn_registrar">
                                 REGISTRAR
                             </button>
                         </td>
@@ -589,14 +612,13 @@ if ($privilegios != '' && $usua != '') {
                         button.closest('tr').remove();
                     });
                 });
-
             });
             const botonAgregarDiagnostico = document.querySelector('#btn-agregar_diagnostico');
             const tabla_diagnostico = document.querySelector('#contenedor_1');
 
             botonAgregarDiagnostico.addEventListener('click', () => {
                 const nuevaFila = document.createElement('tr');
-                nuevaFila.innerHTML = `<td colspan="7" style="text-align: left; font-weight: 700"><input type ="text" class="form-control w-100 h-100" name="diagnostico" id="diagnostico"></td>
+                nuevaFila.innerHTML = `<td colspan="9" style="text-align: left; font-weight: 700"><input type ="text" class="form-control w-100 h-100" name="diagnostico[]"></td>
                 <td><button class="eliminar btn btn-danger bg-gradient text-white"><span class="iconify" data-icon="tabler:trash-x-filled" data-width="25"></span></button></td>`;
                 tabla_diagnostico.appendChild(nuevaFila);
                 document.querySelectorAll('.eliminar').forEach(button => {
@@ -604,7 +626,6 @@ if ($privilegios != '' && $usua != '') {
                         button.closest('tr').remove();
                     });
                 });
-
             });
 
             function btnSubmit() {
@@ -645,14 +666,14 @@ if ($privilegios != '' && $usua != '') {
                     fecha_ini_evento: document.getElementById('fecha_ini_evento').value,
                     evento_adverso: document.getElementById('evento_adverso').value,
                     descripcion_evento: document.getElementById('descripcion_evento').value,
-                    desenlace_evento: document.getElementById('desenlace_evento').value,
-                    seriedad: document.getElementById('seriedad').value,
+                    desenlace_evento: document.getElementById('valor_desenlace_evento').value,
+                    seriedad: document.getElementById('valor_seriedad').value,
                     fecha_muerte: document.getElementById('fecha_muerte').value,
-                    pregunta1: document.getElementById('pregunta1').value,
-                    pregunta2: document.getElementById('pregunta2').value,
-                    pregunta3: document.getElementById('pregunta3').value,
-                    pregunta4: document.getElementById('pregunta4').value,
-                    pregunta5: document.getElementById('pregunta5').value,
+                    pregunta1: document.getElementById('valor_pregunta1').value,
+                    pregunta2: document.getElementById('valor_pregunta2').value,
+                    pregunta3: document.getElementById('valor_pregunta3').value,
+                    pregunta4: document.getElementById('valor_pregunta4').value,
+                    pregunta5: document.getElementById('valor_pregunta5').value,
                     codigo_paciente: document.getElementById('codigo_paciente').value,
                 }
 
@@ -668,6 +689,16 @@ if ($privilegios != '' && $usua != '') {
                         }
                     }
                 }
+
+                let rows1 = [];
+
+                const fila = document.querySelectorAll('#contenedor_1 tr');
+                fila.forEach(fila => {
+                    let row1 = {
+                        diagnostico: fila.querySelector('input[name="diagnostico[]"]').value,
+                    }
+                    rows1.push(row1);
+                });
 
                 let rows = [];
 
@@ -687,7 +718,8 @@ if ($privilegios != '' && $usua != '') {
                     rows.push(row);
                 });
 
-                axios.post('./insertar_datos_ea.php', {
+                axios.post('../logica/insertar_datos_ea.php', {
+                        rows1: rows1,
                         rows: rows,
                         date: date
 
@@ -701,12 +733,16 @@ if ($privilegios != '' && $usua != '') {
                             html: mensaje,
                             width: '20%',
                             icon: icono,
-                            confirmButtonText: 'Aceptar'
+                            showCancelButton: false,
+                            focusConfirm: false,
+                            allowOutsideClick: false,
+                            confirmButtonText: "Aceptar"
                         }).then((result) => {
                             if (result.isConfirmed && icono === 'success') {
-                                btnConvertPdf()
+                                Bloquear()
                                 window.close();
                                 window.location.reload();
+                                btnConvertPdf()
                             }
                         });
                     })
@@ -723,63 +759,20 @@ if ($privilegios != '' && $usua != '') {
             function btnConvertPdf() {
 
                 let date = {
-                    fecha_notificacion: document.getElementById('fecha_notificacion').value,
-                    departamento: document.getElementById('departamento').value,
-                    municipio: document.getElementById('municipio').value,
-                    institucion_evento: document.getElementById('institucion_evento').value,
-                    codigo_pnf: document.getElementById('codigo_pnf').value,
-                    nombre_usuario: document.getElementById('nombre_usuario').value,
-                    nombre_paciente_acudiente: document.getElementById('nombre_paciente_acudiente').value,
-                    consecutivo: document.getElementById('consecutivo').value,
-                    profecion_usuario: document.getElementById('profecion_usuario').value,
-                    correo_usuario: document.getElementById('correo_usuario').value,
-                    fecha_nacimiento: document.getElementById('fecha_nacimiento').value,
-                    edad_paciente: document.getElementById('edad_paciente').value,
-                    tipo_documento_paciente: document.getElementById('tipo_documento_paciente').value,
-                    documento_paciente: document.getElementById('documento_paciente').value,
-                    iniciales_pa: document.getElementById('iniciales_pa').value,
-                    genero: document.getElementById('genero').value,
-                    peso: document.getElementById('peso').value,
-                    talla: document.getElementById('talla').value,
-                    diagnostico: document.getElementById('diagnostico').value,
-                    sci: document.getElementById('sci').value,
-                    medicamento: document.getElementById('medicamento').value,
-                    indicacion: document.getElementById('indicacion').value,
-                    dosis: document.getElementById('dosis').value,
-                    unidad_medida: document.getElementById('unidad_medida').value,
-                    via_administracion: document.getElementById('via_administracion').value,
-                    frecuencia_administracion: document.getElementById('frecuencia_administracion').value,
-                    fecha_inicio: document.getElementById('fecha_inicio').value,
-                    fecha_fin: document.getElementById('fecha_fin').value,
-                    titular_registro: document.getElementById('titular_registro').value,
-                    nombre_comercial: document.getElementById('nombre_comercial').value,
-                    registro_sanitario: document.getElementById('registro_sanitario').value,
-                    lote: document.getElementById('lote').value,
-                    fecha_ini_evento: document.getElementById('fecha_ini_evento').value,
-                    evento_adverso: document.getElementById('evento_adverso').value,
-                    descripcion_evento: document.getElementById('descripcion_evento').value,
-                    desenlace_evento: document.getElementById('desenlace_evento').value,
-                    seriedad: document.getElementById('seriedad').value,
-                    pregunta1: document.getElementById('pregunta1').value,
-                    pregunta2: document.getElementById('pregunta2').value,
-                    pregunta3: document.getElementById('pregunta3').value,
-                    pregunta4: document.getElementById('pregunta4').value,
-                    pregunta5: document.getElementById('pregunta5').value,
                     codigo_paciente: document.getElementById('codigo_paciente').value,
                 }
 
                 axios.post('./pdf.php', date)
                     .then(function(response) {
                         Swal.fire({
-                                title: response.data.title,
-                                html: response.data.mensaje,
-                                icon: response.data.tipo,
+                                title: 'success',
+                                html: 'Por favor espere unos minutos, se esta creadndo el pdf para el envio del correo',
+                                icon: 'success',
                                 confirmButtonText: 'Aceptar'
                             })
                             .then((result) => {
                                 if (result.isConfirmed) {
                                     SendMailer()
-                                    window.open(url, target);
                                 }
                             });
                     })
@@ -795,18 +788,6 @@ if ($privilegios != '' && $usua != '') {
 
             function SendMailer() {
                 let date = {
-                    institucion_evento: document.getElementById('institucion_evento').value,
-                    profecion_usuario: document.getElementById('profecion_usuario').value,
-                    peso: document.getElementById('peso').value,
-                    talla: document.getElementById('talla').value,
-                    sci: document.getElementById('sci').value,
-                    medicamento: document.getElementById('medicamento').value,
-                    indicacion: document.getElementById('indicacion').value,
-                    dosis: document.getElementById('dosis').value,
-                    unidad_medida: document.getElementById('unidad_medida').value,
-                    via_administracion: document.getElementById('via_administracion').value,
-                    frecuencia_administracion: document.getElementById('frecuencia_administracion').value,
-                    descripcion_evento: document.getElementById('descripcion_evento').value,
                     codigo_paciente: document.getElementById('codigo_paciente').value,
                 }
 
@@ -817,6 +798,10 @@ if ($privilegios != '' && $usua != '') {
                     .catch(error => {
                         console.error(error);
                     });
+            }
+
+            function Bloquear() {
+                document.getElementById("boton").disabled = true;
             }
         </script>
     </body>
@@ -885,7 +870,7 @@ if ($privilegios != '' && $usua != '') {
             width: 50%;
         }
 
-        .btn_registrar {
+        /* .btn_registrar {
             padding-top: 2%;
             background-image: url(imagenes/BTN_CONTINUAR2.png);
             background-image: url(../presentacion/imagenes/BTN_CONTINUAR2.png);
@@ -908,7 +893,7 @@ if ($privilegios != '' && $usua != '') {
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
             box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
                 inset 0px 0px 20px #EEECEC;
-        }
+        } */
 
         .letra {
             font-family: Tahoma, Geneva, sans-serif;
