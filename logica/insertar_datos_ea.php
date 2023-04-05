@@ -71,6 +71,7 @@ if (
 	empty($frecuencia_administracion) ||
 	empty($fecha_inicio) ||
 	empty($fecha_fin) ||
+	empty($nombre_comercial) ||
 	empty($fecha_ini_evento) ||
 	empty($evento_adverso) ||
 	empty($descripcion_evento)
@@ -115,6 +116,9 @@ if (
 	}
 	if (empty($fecha_fin)) {
 		array_push($campos_vacios, 'Fecha de finalización');
+	}
+	if (empty($nombre_comercial)) {
+		array_push($campos_vacios, 'Nombre Comercial');
 	}
 	if (empty($fecha_ini_evento)) {
 		array_push($campos_vacios, 'Fecha de Inicio del Evento Adverso');
