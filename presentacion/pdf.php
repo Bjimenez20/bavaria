@@ -100,63 +100,63 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tbody>
                             <tr>
-                                <td colspan="4" class="titulos" style="font-weight: 700">1. INFORMACIÓN DEL REPORTANTE</td>
+                                <td colspan="9" class="titulos" style="font-weight: 700">1. INFORMACIÓN DEL REPORTANTE</td>
                             </tr>
                             <tr>
-                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                     Fecha de notificación
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="3" style="font-weight: 700; background-color: #DBDBDB;">
                                     Origen del reporte
                                     <hr>
                                     Departamento – Municipio
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                     Nombre de la Institución donde ocurrió el evento
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                     Código PNF
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="1">
+                                <td colspan="2">
                                     <?php echo $FECHA_NOTIFICA ?>
                                 </td>
-                                <td>
+                                <td colspan="3">
                                     <?php echo $DEPARTAMENTO ?> - <?php echo $MUNICIPIO ?>
                                 </td>
-                                <td>
+                                <td colspan="2">
                                     <?php echo $NOMBRE_INSTITUCION ?>
                                 </td>
-                                <td>
+                                <td colspan="2">
                                     <?php echo $CODIGO_PNF ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                     Nombre del Reportante primario
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                     Nombre del Paciente o Acudiente
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                     Consecutivo
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="3" style="font-weight: 700; background-color: #DBDBDB;">
                                     Profesión del reportante primario
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td colspan="2">
                                     <?php echo $NOMBRE_REPORTANTE ?>
                                 </td>
-                                <td>
+                                <td colspan="2">
                                     <?php echo $NOMBRE_PACIENTE_ACUDIENTE ?>
                                 </td>
-                                <td>
+                                <td colspan="2">
                                     <?php echo $CONSECUTIVO ?>
                                 </td>
-                                <td>
+                                <td colspan="3">
                                     <?php echo $PROFESION_REPORTANTE ?>
                                 </td>
                             </tr>
@@ -165,12 +165,12 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tbody>
                             <tr>
-                                <td style="font-weight: 700; background-color: #DBDBDB;" colspan="4">
+                                <td colspan="9" style="font-weight: 700; background-color: #DBDBDB;">
                                     Correo electrónico institucional del reportante primario
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4">
+                                <td colspan="9">
                                     <?php echo $CORREO_REPORTANTE ?>
                                 </td>
                             </tr>
@@ -183,66 +183,66 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tbody>
                             <tr>
-                                <td colspan="7" class="titulos" style="font-weight: 700">2. INFORMACIÓN DEL PACIENTE</td>
+                                <td colspan="9" class="titulos" style="font-weight: 700">2. INFORMACIÓN DEL PACIENTE</td>
                             </tr>
                             <tr>
-                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                     Fecha de nacimiento del paciente
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="2" style="font-weight: 700; background-color: #DBDBDB;">
                                     Edad del paciente en el momento del EA
                                     <hr>
                                     Edad – Años/Meses/ días
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Documento de identificación del paciente
                                     <hr>
                                     CC | TI | RC | NUIP | Cód. Lab | Otro | S/I
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Iniciales del paciente
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Sexo
                                     <hr>
                                     M | F | S/I
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Peso
                                     <hr>
                                     (Kg)
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Talla
                                     <hr>
                                     (cm)
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="1">
+                                <td colspan="2">
                                     <?php echo $FECHA_NACIMIENTO_PACIENTE ?>
                                 </td>
-                                <td>
+                                <td colspan="2">
                                     <?php echo $EDAD_PACIENTE ?>
                                 </td>
-                                <td>
+                                <td colspan="1">
                                     <?php echo $TIPO_DOCUMENTO_PACIENTE ?> - <?php echo $NUMERO_DOCUMENTO_PACIENTE ?>
                                 </td>
-                                <td>
+                                <td colspan="1">
                                     <?php echo $INICIALES_PACIENTE ?>
                                 </td>
-                                <td>
+                                <td colspan="1">
                                     <?php echo $SEXO ?>
                                 </td>
-                                <td>
+                                <td colspan="1">
                                     <?php echo $PESO ?>
                                 </td>
-                                <td>
+                                <td colspan="1">
                                     <?php echo $TALLA ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="9" style="font-weight: 700; background-color: #DBDBDB;">
                                     <span style="font-weight: 700">Diagnóstico principal y otros diagnósticos:</span>
                                 </td>
                             </tr>
@@ -253,7 +253,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 $DIAGNOSTICO_PRINCIPAL = $fila['DIAGNOSTICO'];
                             ?>
                                 <tr>
-                                    <td colspan="7">
+                                    <td colspan="9">
                                         <?php echo $DIAGNOSTICO_PRINCIPAL ?>
                                     </td>
                                 </tr>
@@ -278,29 +278,29 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     S/C/I
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Medicamento <br>
                                     (Denominación Común Internacional o Nombre genérico)
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Indicación
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Dosis
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Unidad de medida
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Vía de administración
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Frecuencia de administración
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Fecha de inicio
                                 </td>
-                                <td style="font-weight: 700; background-color: #DBDBDB;">
+                                <td colspan="1" style="font-weight: 700; background-color: #DBDBDB;">
                                     Fecha de finalización
                                 </td>
                             </tr>
@@ -322,28 +322,28 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                     <td colspan="1">
                                         <?php echo $SCI ?>
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <?php echo $MEDICAMENTO ?>
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <?php echo $INDICACION ?>
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <?php echo $DOSIS ?>
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <?php echo $UNIDAD_MEDIDA ?>
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <?php echo $VIA_ADMINISTRACION ?>
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <?php echo $FRECUENCIA_ADMINISTRACION ?>
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <?php echo $FECHA_INICIO ?>
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         <?php echo $FECHA_FIN ?>
                                     </td>
                                 </tr>
@@ -392,21 +392,21 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tbody>
                             <tr>
-                                <td colspan="5" class="titulos3" style="font-weight: 700">4. INFORMACIÓN DEL EVENTO ADVERSO</td>
+                                <td colspan="9" class="titulos3" style="font-weight: 700">4. INFORMACIÓN DEL EVENTO ADVERSO</td>
                             </tr>
                             <tr>
-                                <td colspan="1" style="text-align:left;">
+                                <td colspan="4" style="text-align:left;">
                                     <span style="font-weight: 700;">Fecha de Inicio del Evento Adverso:</span> <?php echo $FECHA_INICIO_EVENTO ?>
                                 </td>
-                                <td colspan="2" style="text-align:left;">
+                                <td colspan="5" style="text-align:left;">
                                     <span style="font-weight: 700;">Evento adverso:</span> <?php echo $EVENTO_ADVERSO ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="1" style="vertical-align: top; text-align:left; width: 30%;">
+                                <td colspan="4" style="vertical-align: top; text-align:left; width: 30%;">
                                     <span style="font-weight: 700;"> Descripción y análisis del Evento Adverso:</span> <br> <?php echo $DESCRIPCION_ANALISIS_EVENTO ?>
                                 </td>
-                                <td colspan="4">
+                                <td colspan="5">
                                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                         <tbody>
                                             <tr>
@@ -569,52 +569,52 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tbody>
                             <tr>
-                                <td colspan="4"></td>
-                                <td style="font-weight: 700;">Si</td>
-                                <td style="font-weight: 700;">No</td>
-                                <td style="font-weight: 700;">No sabe</td>
+                                <td colspan="3"></td>
+                                <td colspan="2" style="font-weight: 700;">Si</td>
+                                <td colspan="2" style="font-weight: 700;">No</td>
+                                <td colspan="2" style="font-weight: 700;">No sabe</td>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: left; font-weight: 700;">
+                                <td colspan="3" style="text-align: left; font-weight: 700;">
                                     ¿El evento se presentó después de administrar el medicamento? <br>
                                 </td>
                                 <?php
                                 if ($PREGUNTA1  == "SI") {
                                     $PREGUNTA1 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA1 ?></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
                                 <?php
                                 } elseif ($PREGUNTA1 == "NO") {
                                     $PREGUNTA1 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA1 ?></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
                                 <?php
                                 } else {
                                     $PREGUNTA1 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA1 ?></span> <br>
                                     </td>
                                 <?php
@@ -622,46 +622,46 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 ?>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: left; font-weight: 700;">
+                                <td colspan="3" style="text-align: left; font-weight: 700;">
                                     ¿Existen otros factores que puedan explicar el evento (medicamento, patologías, etc.)? <br>
                                 </td>
                                 <?php
                                 if ($PREGUNTA2  == "SI") {
                                     $PREGUNTA2 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA2 ?></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
                                 <?php
                                 } elseif ($PREGUNTA2 == "NO") {
                                     $PREGUNTA2 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA2 ?></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
                                 <?php
                                 } else {
                                     $PREGUNTA2 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA2 ?></span> <br>
                                     </td>
                                 <?php
@@ -669,46 +669,46 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 ?>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: left; font-weight: 700;">
+                                <td colspan="3" style="text-align: left; font-weight: 700;">
                                     ¿El evento desapareció al disminuir o suspender el medicamento sospechoso? <br>
                                 </td>
                                 <?php
                                 if ($PREGUNTA3  == "SI") {
                                     $PREGUNTA3 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA3 ?></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
                                 <?php
                                 } elseif ($PREGUNTA3 == "NO") {
                                     $PREGUNTA3 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA3 ?></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
                                 <?php
                                 } else {
                                     $PREGUNTA3 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA3 ?></span> <br>
                                     </td>
                                 <?php
@@ -716,46 +716,46 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 ?>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: left; font-weight: 700;">
+                                <td colspan="3" style="text-align: left; font-weight: 700;">
                                     ¿El paciente ya había presentado la misma reacción al medicamento sospechoso? <br>
                                 </td>
                                 <?php
                                 if ($PREGUNTA4  == "SI") {
                                     $PREGUNTA4 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA4 ?></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
                                 <?php
                                 } elseif ($PREGUNTA4 == "NO") {
                                     $PREGUNTA4 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA4 ?></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
                                 <?php
                                 } else {
                                     $PREGUNTA4 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA4 ?></span> <br>
                                     </td>
                                 <?php
@@ -763,46 +763,46 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 ?>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: left; font-weight: 700;">
+                                <td colspan="3" style="text-align: left; font-weight: 700;">
                                     ¿Se puede ampliar la información del paciente relacionando con el evento? <br>
                                 </td>
                                 <?php
                                 if ($PREGUNTA5  == "SI") {
                                     $PREGUNTA5 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA5 ?></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
                                 <?php
                                 } elseif ($PREGUNTA5 == "NO") {
                                     $PREGUNTA5 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA5 ?></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
                                 <?php
                                 } else {
                                     $PREGUNTA5 = "X"
                                 ?>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"></span> <br>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td colspan="2" style="text-align: center;">
                                         <span style=" font-weight:none"><?php echo $PREGUNTA5 ?></span> <br>
                                     </td>
                                 <?php
@@ -818,15 +818,17 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 </body>
 <style>
     @page {
-        margin: 180px 50px;
+        margin-top: 159px;
+        margin-left: 1px;
+        margin-right: 1px;
     }
-
 
     #header {
         position: fixed;
         left: 0px;
         top: -159px;
         right: 0px;
+        width: 100%;
         height: 150px;
         background-color: transparent;
         text-align: center;
@@ -948,6 +950,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 <?php
 $html = ob_get_clean();
 $dompdf->loadHtml($html);
+$dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 $output = $dompdf->output();
 $CARPETA = "../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO";

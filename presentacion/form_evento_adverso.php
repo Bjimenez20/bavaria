@@ -173,7 +173,7 @@ if ($privilegios != '' && $usua != '') {
                     </tr>
                 </tbody>
             </table>
-            <table class="table table-bordered" cellspacing="0" cellpadding="0" style="width: 100%;">
+            <table class="table table-bordered table-sm" cellspacing="0" cellpadding="0" style="width: 100%;">
                 <tbody>
                     <tr>
                         <td>
