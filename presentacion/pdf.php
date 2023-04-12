@@ -823,6 +823,15 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
         margin-right: 1px;
     }
 
+    /* html {
+        margin: 0;
+    }
+
+    body {
+        font-family: "Times New Roman", serif;
+        margin: 45mm 8mm 2mm 8mm;
+    } */
+
     #header {
         position: fixed;
         left: 0px;
@@ -950,7 +959,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 <?php
 $html = ob_get_clean();
 $dompdf->loadHtml($html);
-$dompdf->setPaper('A4', 'portrait');
+$customPaper = array(0, 0, 999, 999);
+$dompdf->setPaper($customPaper);
 $dompdf->render();
 $output = $dompdf->output();
 $CARPETA = "../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO";
