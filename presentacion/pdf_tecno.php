@@ -531,6 +531,8 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 <?php
 $html = ob_get_clean();
 $dompdf->loadHtml($html);
+$customPaper = array(0, 0, 999, 999);
+$dompdf->setPaper($customPaper);
 $dompdf->render();
 $output = $dompdf->output();
 $CARPETA = "../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO";
