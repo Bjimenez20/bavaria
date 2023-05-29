@@ -2509,7 +2509,24 @@ if ($privilegios != '' && $usua != '') {
                                 <span>Frecuencia de administración del medicamento<span class="asterisco">*</span></span>
                             </td>
                             <td>
-                                <input type="text" name="frecuencia" id="frecuencia" value="<?php echo $FRECUENCIA_MEDICAMENTO ?>">
+                                <!-- <input type="text" name="frecuencia" id="frecuencia" value="<?php echo $FRECUENCIA_MEDICAMENTO ?>"> -->
+                                <select name="frecuencia" id="frecuencia">
+                                    <option value="<?php echo $FRECUENCIA_MEDICAMENTO ?>"><?php echo $FRECUENCIA_MEDICAMENTO ?></option>
+                                    <option>Seleccione...</option>
+                                    <option>FRECUENCIA_MEDICAMENTO</option>
+                                    <option>1 TABLETA CADA 12 HORAS</option>
+                                    <option>1 TABLETA CADA 24 HORAS</option>
+                                    <option>2 TABLETAS CADA 24 HORAS</option>
+                                    <option>CADA 15 DIAS</option>
+                                    <option>CADA 21 DIAS</option>
+                                    <option>CADA 28 DIAS</option>
+                                    <option>CADA 30 DIAS</option>
+                                    <option>CADA 42 DIAS</option>
+                                    <option>CADA 45 DIAS</option>
+                                    <option>CADA 60 DIAS</option>
+                                    <option>CADA 90 DIAS</option>
+                                    <option>POR CONFIRMAR</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>

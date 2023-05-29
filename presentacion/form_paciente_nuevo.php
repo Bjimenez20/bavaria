@@ -1831,7 +1831,23 @@ if ($privilegios != '' && $usua != '') {
                                     <span>Frecuencia de administración del medicamento<span class="asterisco">*</span></span>
                                 </td>
                                 <td>
-                                    <input name="frecuencia_administracion" id="frecuencia_administracion" autocomplete="off" type="text" style="text-transform:ucwords">
+                                    <!-- <input name="frecuencia_administracion" id="frecuencia_administracion" autocomplete="off" type="text" style="text-transform:ucwords"> -->
+                                    <select name="frecuencia_administracion" id="frecuencia_administracion">
+                                        <option>Seleccione...</option>
+                                        <option>FRECUENCIA_MEDICAMENTO</option>
+                                        <option>1 TABLETA CADA 12 HORAS</option>
+                                        <option>1 TABLETA CADA 24 HORAS</option>
+                                        <option>2 TABLETAS CADA 24 HORAS</option>
+                                        <option>CADA 15 DIAS</option>
+                                        <option>CADA 21 DIAS</option>
+                                        <option>CADA 28 DIAS</option>
+                                        <option>CADA 30 DIAS</option>
+                                        <option>CADA 42 DIAS</option>
+                                        <option>CADA 45 DIAS</option>
+                                        <option>CADA 60 DIAS</option>
+                                        <option>CADA 90 DIAS</option>
+                                        <option>POR CONFIRMAR</option>
+                                    </select>
                                 </td>
                                 <td>
                                     <span>Ciudad Base Paramedico o Representante</span>
