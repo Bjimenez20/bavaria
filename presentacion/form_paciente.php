@@ -1729,14 +1729,19 @@ if ($privilegios != '' && $usua != '') {
                                     <select name="TemaBrindoEdu" id="TemaBrindoEdu" disabled>
                                         <option value="<?php echo $temaBrindo ?>"><?php echo $temaBrindo ?></option>
                                         <option>Seleccione...</option>
-                                        <option>GM1 Concientizacion de la enfermedad</option>
-                                        <option>GM2 Autocuidado</option>
-                                        <option>GM3 Mitos y realidades</option>
-                                        <option>GM4 Estilo de vida</option>
-                                        <option>GM5 Cuidando el cuidador</option>
-                                        <option>GM6 Tecnicas de relajacion</option>
-                                        <option>GM7 Manejo emocional</option>
-                                        <option>GM8 Autoestima</option>
+                                        <option>Concientizacion de la enfermedad</option>
+                                        <option>Mitos y realidades</option>
+                                        <option>Autocuidado</option>
+                                        <option>Higiene del sueño</option>
+                                        <option>Manejo del tiempo libre</option>
+                                        <option>Estrategias para mejorar la memoria</option>
+                                        <option>La actividad fisica</option>
+                                        <option>Tips para una comunicacion asertiva</option>
+                                        <option>El descanso</option>
+                                        <option>Receta saludable</option>
+                                        <option>Manejo emocional</option>
+                                        <option>Autoestima</option>
+                                        <option>Cuidando al cuidador</option>
                                     </select>
                                 </label>
                             </td>
