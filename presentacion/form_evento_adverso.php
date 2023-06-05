@@ -597,7 +597,7 @@ if ($privilegios != '' && $usua != '') {
             botonAgregar.addEventListener('click', () => {
                 const nuevaFila = document.createElement('tr');
                 nuevaFila.innerHTML = `<td><input type="text" class="form-control w-100 h-100" name="sci[]" ></td>
-                         <td><input type="text" class="form-control w-100 h-100" name="medicamento[]"" ></td>
+                         <td><input type="text" class="form-control w-100 h-100" name="medicamento[]"></td>
                          <td><input type="text" class="form-control w-100 h-100" name="indicacion[]"></td>
                          <td><input type="text" class="form-control w-100 h-100" name="dosis[]"></td>
                          <td><input type="text" class="form-control w-100 h-100" name="unidad_medida[]"></td>
