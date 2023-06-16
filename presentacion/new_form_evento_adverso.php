@@ -946,15 +946,15 @@ if ($privilegios != '' && $usua != '') {
                                     <td colspan="1">
                                         <input type="text" class="form-control w-100 h-100" name="duration[]" id="duration">
                                     </td>
-                                    <td colspan="2">
-                                        <table class="w-100 h-100">
-                                            <td style="border: none;">
+                                    <td colspan="2" style="border: none; padding: 0;">
+                                        <div style="display: flex; gap: 5px; padding: 5px">
+                                            <div style="flex: 1;">
                                                 <input type="date" class="form-control w-100 h-100" name="start[]" id="start">
-                                            </td>
-                                            <td style="border: none;">
+                                            </div>
+                                            <div style="flex: 1;">
                                                 <input type="date" class="form-control w-100 h-100" name="stop[]" id="stop">
-                                            </td>
-                                        </table>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td colspan="1">
                                         <input type="text" class="form-control w-100 h-100" name="indication[]" id="indication">
@@ -1189,11 +1189,15 @@ if ($privilegios != '' && $usua != '') {
                 <td colspan="1"><input type="text" class="form-control w-100 h-100" class="form-control w-100 h-100" name="route[]"></td>
                 <td colspan="1"><input type="text" class="form-control w-100 h-100" name="daily_dose[]"></td>
                 <td colspan="1"><input type="text" class="form-control w-100 h-100" name="duration[]"></td>
-                <td colspan="2">
-                    <table class="w-100 h-100">
-                        <td class="w-50 h-50" style="border: none;"><input type="date" class="form-control w-100 h-100" name="start[]"></td>
-                        <td class="w-50 h-50" style="border: none;"><input type="date" class="form-control w-100 h-100" name="stop[]"></td>
-                    </table>
+                <td colspan="2" style="border: none; padding: 0;">
+                    <div style="display: flex; gap: 5px; padding: 5px">
+                        <div style="flex: 1;">
+                            <input type="date" class="form-control w-100 h-100" name="start[]">
+                        </div>
+                        <div style="flex: 1;">
+                            <input type="date" class="form-control w-100 h-100" name="stop[]">
+                        </div>
+                    </div>
                 </td>
                 <td colspan="1"><input type="text" class="form-control w-100 h-100" name="indication[]"></td>
                 <td colspan="1">
