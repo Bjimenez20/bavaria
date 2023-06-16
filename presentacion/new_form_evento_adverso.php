@@ -41,11 +41,11 @@ include('../logica/session.php')
 
         function habilitar2(sel) {
             if (sel.value == "YES") {
-                divC = document.getElementById("reporter_causality_yes_id");
+                divC = document.getElementById("patient_pregnant_yes_id");
                 divC.style.display = "";
             }
             if (sel.value != "YES") {
-                divC = document.getElementById("reporter_causality_yes_id");
+                divC = document.getElementById("patient_pregnant_yes_id");
                 divC.style.display = "none";
             }
         }
@@ -72,54 +72,149 @@ include('../logica/session.php')
             }
         }
 
+        function habilitar5(sel) {
+            if (sel.value == "Other") {
+                divC = document.getElementById("occupation_health_authority_specify_id");
+                divC.style.display = "";
+            }
+            if (sel.value != "Other") {
+                divC = document.getElementById("occupation_health_authority_specify_id");
+                divC.style.display = "none";
+            }
+        }
+
         $(document).ready(function() {
-            $('input[id="desenlace_evento"]').change(function() {
+            $('input[id="source_type"]').change(function() {
                 var inputValue = $(this).val();
-                $('#valor_desenlace_evento').val(inputValue);
+                $('#valor_source_type').val(inputValue);
             });
         });
 
         $(document).ready(function() {
-            $('input[id="seriedad"]').change(function() {
+            $('input[id="other_source_type"]').change(function() {
                 var inputValue = $(this).val();
-                $('#valor_seriedad').val(inputValue);
+                $('#valor_source_type').val(inputValue);
             });
         });
 
         $(document).ready(function() {
-            $('input[id="pregunta1"]').change(function() {
+            $('input[id="sample_available"]').change(function() {
                 var inputValue = $(this).val();
-                $('#valor_pregunta1').val(inputValue);
+                $('#valor_sample_available').val(inputValue);
             });
         });
 
         $(document).ready(function() {
-            $('input[id="pregunta2"]').change(function() {
+            $('input[id="event_abated"]').change(function() {
                 var inputValue = $(this).val();
-                $('#valor_pregunta2').val(inputValue);
+                $('#valor_event_abated').val(inputValue);
             });
         });
 
         $(document).ready(function() {
-            $('input[id="pregunta3"]').change(function() {
+            $('input[id="event_reappeared"]').change(function() {
                 var inputValue = $(this).val();
-                $('#valor_pregunta3').val(inputValue);
+                $('#valor_event_reappeared').val(inputValue);
             });
         });
 
         $(document).ready(function() {
-            $('input[id="pregunta4"]').change(function() {
+            $('input[id="previously_been"]').change(function() {
                 var inputValue = $(this).val();
-                $('#valor_pregunta4').val(inputValue);
+                $('#valor_previously_been').val(inputValue);
             });
         });
 
-        // $(document).ready(function() {
-        //     $('input[id="weight_type"]').change(function() {
-        //         var inputValue = $(this).val();
-        //         $('#weight').val(inputValue);
-        //     });
-        // });
+        $(document).ready(function() {
+            $('input[id="seriousness"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_seriousness').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="autopsy"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_autopsy').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="treatment_for_ae"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_treatment_for_ae').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="outcome"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_outcome').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="reporter_causality"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_reporter_causality').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="patient_pregnant"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_patient_pregnant').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="special_situations"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_special_situations').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="special_situations_specify"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_special_situations').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="quiality_defect"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_quiality_defect').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="health_care_professional"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_health_care_professional').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="occupation_health_authority"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_occupation_health_authority').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="occupation_health_authority_specify"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_occupation_health_authority').val(inputValue);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[id="mah"]').change(function() {
+                var inputValue = $(this).val();
+                $('#valor_mah').val(inputValue);
+            });
+        });
     </script>
 </head>
 <?php
@@ -177,6 +272,8 @@ if ($privilegios != '' && $usua != '') {
     for ($i = 0; $i < 8; $i++) {
         $cad .= substr($characters, rand(0, 61), 1);
     }
+    date_default_timezone_set('America/Bogota');
+    $fecha_actual = date('Y-m-d');
 ?>
 
     <body style="padding: 0; margin: 0;">
@@ -212,6 +309,8 @@ if ($privilegios != '' && $usua != '') {
                             </tr>
                             <tr>
                                 <td colspan="9">
+                                    <input type="hidden" name="codigo_paciente" id="codigo_paciente" value="<?php echo $ID_PACIENTE ?>">
+                                    <input type="hidden" name="email_user" id="email_user" value="<?php echo $EMAIL ?>">
                                     <p style="text-align: left;">
                                         <strong>
                                             SOURCE TYPE:
@@ -219,6 +318,7 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
+                                            <input type="hidden" name="valor_source_type" id="valor_source_type">
                                             <input type="radio" name="source_type" id="source_type" value="Early Access" onchange="habilitar1(this)"> Early Access
                                         </div>
                                         <div class="col d-flex justify-content-left">
@@ -243,7 +343,7 @@ if ($privilegios != '' && $usua != '') {
                             <tr>
                                 <td colspan="5">
                                     <div style="text-align: left;">
-                                        <strong>Date of First Notification (Day 0)</strong> <input type="date" name="first_notification" id="first_notification" class="form-control w-100 h-100">
+                                        <strong>Date of First Notification (Day 0)</strong> <input type="date" name="first_notification" id="first_notification" value="<?php echo $fecha_actual ?>" class="form-control w-100 h-100" disabled>
                                     </div>
                                     <p style="text-align: left;">(date first aware of the adverse event/safety information by a company employee/contractor)</p>
                                 </td>
@@ -356,6 +456,7 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-center">
+                                            <input type="hidden" name="valor_sample_available" id="valor_sample_available">
                                             <input type="radio" name="sample_available" id="sample_available" value="YES"> Yes
                                         </div>
                                         <div class="col d-flex justify-content-center">
@@ -432,7 +533,7 @@ if ($privilegios != '' && $usua != '') {
                                             1.c Duration
                                         </strong>
                                     </p>
-                                    <input type="text" name="duration" id="duration" class="form-control w-100 h-100">
+                                    <input type="text" name="tra_duration" id="tra_duration" class="form-control w-100 h-100">
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
@@ -440,6 +541,7 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-center">
+                                            <input type="hidden" name="valor_event_abated" id="valor_event_abated">
                                             <input type="radio" name="event_abated" id="event_abated" value="NO"> No
                                         </div>
                                         <div class="col d-flex justify-content-center">
@@ -466,6 +568,7 @@ if ($privilegios != '' && $usua != '') {
                                                 <p style="text-align: left;">1.e Event <strong>reappeared</strong> after reintroduction</p>
                                                 <div class="row">
                                                     <div class="col d-flex justify-content-center">
+                                                        <input type="hidden" name="valor_event_reappeared" id="valor_event_reappeared">
                                                         <input type="radio" name="event_reappeared" id="event_reappeared" value="NO"> No
                                                     </div>
                                                     <div class="col d-flex justify-content-center">
@@ -483,6 +586,7 @@ if ($privilegios != '' && $usua != '') {
 
                                                 <div class="row">
                                                     <div class="col d-flex justify-content-center">
+                                                        <input type="hidden" name="valor_previously_been" id="valor_previously_been">
                                                         <input type="radio" name="previously_been" id="previously_been" value="NO"> No
                                                     </div>
                                                     <div class="col d-flex justify-content-center">
@@ -504,6 +608,7 @@ if ($privilegios != '' && $usua != '') {
                                                 <div style="text-align: left;">
                                                     <div class="row">
                                                         <div class="col-auto d-flex justify-content-left">
+                                                            <input type="hidden" name="valor_seriousness" id="valor_seriousness">
                                                             <input type="radio" name="seriousness" id="seriousness" value="Non serious event"> Non serious event
                                                         </div>
                                                     </div>
@@ -523,10 +628,11 @@ if ($privilegios != '' && $usua != '') {
                                                                 <span>Autopsy performed</span>
                                                             </div>
                                                             <div class="col d-flex justify-content-center">
-                                                                <input type="radio" name="autopsy" id="autopsy">YES
+                                                                <input type="hidden" name="valor_autopsy" id="valor_autopsy">
+                                                                <input type="radio" name="autopsy" id="autopsy" value="YES">Yes
                                                             </div>
                                                             <div class="col d-flex justify-content-center">
-                                                                <input type="radio" name="autopsy" id="autopsy">NO
+                                                                <input type="radio" name="autopsy" id="autopsy" value="NO">No
                                                             </div>
                                                         </div>
                                                         <br>
@@ -558,6 +664,7 @@ if ($privilegios != '' && $usua != '') {
                                             <span style="text-align: left;">1.i Treatment for AE</span>
                                         </div>
                                         <div class="col d-flex justify-content-left">
+                                            <input type="hidden" name="valor_treatment_for_ae" id="valor_treatment_for_ae">
                                             <input type="radio" name="treatment_for_ae" id="treatment_for_ae" value="YES"> Yes
                                         </div>
                                         <div class="col d-flex justify-content-left">
@@ -580,6 +687,7 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
+                                            <input type="hidden" name="valor_outcome" id="valor_outcome">
                                             <input type="radio" name="outcome" id="outcome" value="Not recovered"> Not recovered
                                         </div>
                                         <div class="col d-flex justify-content-left">
@@ -634,13 +742,14 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-center">
-                                            <input type="radio" name="reporter_causality" value="YES"> Yes
+                                            <input type="hidden" name="valor_reporter_causality" id="valor_reporter_causality">
+                                            <input type="radio" name="reporter_causality" id="reporter_causality" value="YES"> Yes
                                         </div>
                                         <div class="col d-flex justify-content-center">
-                                            <input type="radio" name="reporter_causality" value="NO"> No
+                                            <input type="radio" name="reporter_causality" id="reporter_causality" value="NO"> No
                                         </div>
                                         <div class="col d-flex justify-content-center">
-                                            <input type="radio" name="reporter_causality" value="Unknown"> Unknown
+                                            <input type="radio" name="reporter_causality" id="reporter_causality" value="Unknown"> Unknown
                                         </div>
                                     </div>
                                 </td>
@@ -654,21 +763,22 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="reporter_causality" value="YES" onchange="habilitar2(this)"> Yes
+                                            <input type="hidden" name="valor_patient_pregnant" id="valor_patient_pregnant">
+                                            <input type="radio" name="patient_pregnant" id="patient_pregnant" value="YES" onchange="habilitar2(this)"> Yes
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="reporter_causality" value="NO" onchange="habilitar2(this)"> No
+                                            <input type="radio" name="patient_pregnant" id="patient_pregnant" value="NO" onchange="habilitar2(this)"> No
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="reporter_causality" value="Unknown" onchange="habilitar2(this)"> Unknown
+                                            <input type="radio" name="patient_pregnant" id="patient_pregnant" value="Unknown" onchange="habilitar2(this)"> Unknown
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="reporter_causality" value="N/A" onchange="habilitar2(this)"> N/A <br>
+                                            <input type="radio" name="patient_pregnant" id="patient_pregnant" value="N/A" onchange="habilitar2(this)"> N/A <br>
                                         </div>
                                     </div>
                                     <br>
-                                    <p style="display: none; text-align: left;" id="reporter_causality_yes_id">If yes, gestation period:
-                                        <input type="text" name="reporter_causality_yes" id="reporter_causality_yes" class="form-control w-30 h-100"> weeks
+                                    <p style="display: none; text-align: left;" id="patient_pregnant_yes_id">If yes, gestation period:
+                                        <input type="text" name="patient_pregnant_yes" id="patient_pregnant_yes" class="form-control w-30 h-100"> weeks
                                     </p>
                                 </td>
                             </tr>
@@ -679,6 +789,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td colspan="9">
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
+                                            <input type="hidden" name="valor_special_situations" id="valor_special_situations">
                                             <input type="radio" name="special_situations" id="special_situations" value="Pregnancy (maternal exposure or paternal exposure (including potential alteration of spermatozoids))" onchange="habilitar3(this)"> Pregnancy (maternal exposure or paternal exposure (including potential alteration of spermatozoids))
                                         </div>
                                         <div class="col d-flex justify-content-left">
@@ -738,6 +849,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td colspan="9">
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
+                                            <input type="hidden" name="valor_quiality_defect" id="valor_quiality_defect">
                                             <input type="radio" name="quiality_defect" id="quiality_defect" value="Event related to a quality defect issue"> Event related to a quality defect issue
                                         </div>
                                         <div class="col d-flex justify-content-left">
@@ -823,39 +935,39 @@ if ($privilegios != '' && $usua != '') {
                             <tbody id="contenedor">
                                 <tr>
                                     <td colspan="1">
-                                        <input type="text" name="drug[]" id="drug" class="form-control w-100 h-100">
+                                        <input type="text" class="form-control w-100 h-100" name="drug[]" id="drug">
                                     </td>
                                     <td colspan="1">
-                                        <input type="text" name="route[]" id="route" class="form-control w-100 h-100">
+                                        <input type="text" class="form-control w-100 h-100" name="route[]" id="route">
                                     </td>
                                     <td colspan="1">
-                                        <input type="text" name="daily_dose[]" id="daily_dose" class="form-control w-100 h-100">
+                                        <input type="text" class="form-control w-100 h-100" name="daily_dose[]" id="daily_dose">
                                     </td>
                                     <td colspan="1">
-                                        <input type="text" name="duration[]" id="duration" class="form-control w-100 h-100">
+                                        <input type="text" class="form-control w-100 h-100" name="duration[]" id="duration">
                                     </td>
                                     <td colspan="2">
                                         <table class="w-100 h-100">
                                             <td style="border: none;">
-                                                <input type="date" name="start[]" id="start" class="form-control w-100 h-100">
+                                                <input type="date" class="form-control w-100 h-100" name="start[]" id="start">
                                             </td>
                                             <td style="border: none;">
-                                                <input type="date" name="stop[]" id="stop" class="form-control w-100 h-100">
+                                                <input type="date" class="form-control w-100 h-100" name="stop[]" id="stop">
                                             </td>
                                         </table>
                                     </td>
                                     <td colspan="1">
-                                        <input type="text" name="indication[]" id="indication" class="form-control w-100 h-100">
+                                        <input type="text" class="form-control w-100 h-100" name="indication[]" id="indication">
                                     </td>
                                     <td colspan="1">
-                                        <select name="s_or_c[]" id="s_or_c" class="form-control w-100 h-100">
-                                            <option>Seleccione...</option>
+                                        <select class="form-control w-100 h-100" name="s_or_c[]" id="s_or_c">
+                                            <option value=""></option>
                                             <option value="S">S</option>
                                             <option value="C">C</option>
                                         </select>
                                     </td>
                                     <td colspan="1">
-                                        <input type="text" name="company_drug[]" id="company_drug" class="form-control w-100 h-100">
+                                        <input type="text" class="form-control w-100 h-100" name="company_drug[]" id="company_drug">
                                     </td>
                                 </tr>
                             </tbody>
@@ -915,10 +1027,11 @@ if ($privilegios != '' && $usua != '') {
                                                         </span>
                                                     </div>
                                                     <div class="col d-flex justify-content-left">
-                                                        <input type="radio" name="health_care_professional" value="YES"> Yes
+                                                        <input type="hidden" name="valor_health_care_professional" id="valor_health_care_professional">
+                                                        <input type="radio" name="health_care_professional" id="health_care_professional" value="YES"> Yes
                                                     </div>
                                                     <div class="col d-flex justify-content-left">
-                                                        <input type="radio" name="health_care_professional" value="NO"> No
+                                                        <input type="radio" name="health_care_professional" id="health_care_professional" value="NO"> No
                                                     </div>
                                                 </div>
                                             </td>
@@ -931,41 +1044,42 @@ if ($privilegios != '' && $usua != '') {
                                                         4. Country of Reporting event:
                                                     </strong>
                                                 </p>
-                                                <textarea name="reporting_event" id="reporting_event" class="form-control w-100 h-100" cols="90" rows="5"></textarea>
+                                                <input type="text" name="reporting_event" id="reporting_event" class="form-control w-100 h-100" value="COLOMBIA" disabled>
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
                                 <td colspan="4">
-                                    <p style="text-align: left; margin-top: -6%;">
+                                    <p style="text-align: left;">
                                         <strong>
                                             3. Profession/Occupation or Health Authority:
                                         </strong>
                                     </p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="occupation_health_authority" value="Doctor" onchange="habilitar4(this)"> Doctor
+                                            <input type="hidden" name="valor_occupation_health_authority" id="valor_occupation_health_authority">
+                                            <input type="radio" name="occupation_health_authority" id="occupation_health_authority" value="Doctor" onchange="habilitar4(this)"> Doctor
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="occupation_health_authority" value="Nurse" onchange="habilitar4(this)"> Nurse
+                                            <input type="radio" name="occupation_health_authority" id="occupation_health_authority" value="Nurse" onchange="habilitar4(this)"> Nurse
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="occupation_health_authority" value="Pharmacist" onchange="habilitar4(this)"> Pharmacist
+                                            <input type="radio" name="occupation_health_authority" id="occupation_health_authority" value="Pharmacist" onchange="habilitar4(this)"> Pharmacist
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="occupation_health_authority" value="Dentist" onchange="habilitar4(this)"> Dentist
+                                            <input type="radio" name="occupation_health_authority" id="occupation_health_authority" value="Dentist" onchange="habilitar4(this)"> Dentist
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="occupation_health_authority" value="Patient" onchange="habilitar4(this)"> Patient
+                                            <input type="radio" name="occupation_health_authority" id="occupation_health_authority" value="Patient" onchange="habilitar4(this)"> Patient
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="occupation_health_authority" value="Health Authority" onchange="habilitar4(this)"> Health Authority
+                                            <input type="radio" name="occupation_health_authority" id="occupation_health_authority" value="Health Authority" onchange="habilitar4(this)"> Health Authority
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="occupation_health_authority" value="Other" onchange="habilitar4(this)"> Other
+                                            <input type="radio" name="occupation_health_authority" id="occupation_health_authority" value="Other" onchange="habilitar4(this)"> Other
                                         </div>
                                     </div>
                                     <br>
@@ -987,6 +1101,7 @@ if ($privilegios != '' && $usua != '') {
                                     <br>
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
+                                            <input type="hidden" name="valor_mah" id="valor_mah">
                                             <input type="radio" name="mah" id="mah" value="YES"> Yes
                                         </div>
                                         <div class="col d-flex justify-content-left">
@@ -1036,8 +1151,6 @@ if ($privilegios != '' && $usua != '') {
                                         <br>
                                         <strong>
                                             <?php
-                                            date_default_timezone_set('America/Bogota');
-                                            $fecha_actual = date('d/M/Y');
                                             echo $fecha_actual;
                                             ?>
                                         </strong>
@@ -1071,41 +1184,28 @@ if ($privilegios != '' && $usua != '') {
 
             botonAgregar.addEventListener('click', () => {
                 const nuevaFila = document.createElement('tr');
-                nuevaFila.innerHTML = `<td colspan="1"><input type="text" name="drug[]" class="form-control w-100 h-100"></td>
-                        <td colspan="1"><input type="text" name="route[]" class="form-control w-100 h-100"></td>
-                        <td colspan="1"><input type="text" name="daily_dose[]" class="form-control w-100 h-100"></td>
-                        <td colspan="1"><input type="text" name="duration[]" class="form-control w-100 h-100"></td>
-                        <td colspan="2">
-                            <table class="w-100 h-100">
-                                <td class="w-50 h-50" style="border: none;"><input type="date" name="start[]" class="form-control w-100 h-100"></td>
-                                <td class="w-50 h-50" style="border: none;"><input type="date" name="stop[]" class="form-control w-100 h-100"></td>
-                            </table>
-                        </td>
-                        <td colspan="1"><input type="text" name="indication[]" class="form-control w-100 h-100"></td>
-                        <td colspan="1">
-                            <select name="s_or_c[]" class="form-control w-100 h-100">
-                                <option>Seleccione...</option>
-                                <option value="S">S</option>
-                                <option value="C">C</option>
-                            </select>
-                        </td>
-                        <td colspan="1"><input type="text" name="company_drug[]" class="form-control w-100 h-100"></td>
-                        <td><button class="eliminar btn btn-danger bg-gradient text-white"><span class="iconify" data-icon="tabler:trash-x-filled" data-width="25"></span></button></td>`;
-                tabla.appendChild(nuevaFila);
-                document.querySelectorAll('.eliminar').forEach(button => {
-                    button.addEventListener('click', () => {
-                        button.closest('tr').remove();
-                    });
-                });
-            });
-            const botonAgregarDiagnostico = document.querySelector('#btn-agregar_diagnostico');
-            const tabla_diagnostico = document.querySelector('#contenedor_1');
-
-            botonAgregarDiagnostico.addEventListener('click', () => {
-                const nuevaFila = document.createElement('tr');
-                nuevaFila.innerHTML = `<td colspan="9" style="text-align: left; font-weight: 700"><input type ="text" class="form-control w-100 h-100" name="diagnostico[]"></td>
+                nuevaFila.innerHTML = `
+                <td colspan="1"><input type="text" class="form-control w-100 h-100" class="form-control w-100 h-100" name="drug[]"></td>
+                <td colspan="1"><input type="text" class="form-control w-100 h-100" class="form-control w-100 h-100" name="route[]"></td>
+                <td colspan="1"><input type="text" class="form-control w-100 h-100" name="daily_dose[]"></td>
+                <td colspan="1"><input type="text" class="form-control w-100 h-100" name="duration[]"></td>
+                <td colspan="2">
+                    <table class="w-100 h-100">
+                        <td class="w-50 h-50" style="border: none;"><input type="date" class="form-control w-100 h-100" name="start[]"></td>
+                        <td class="w-50 h-50" style="border: none;"><input type="date" class="form-control w-100 h-100" name="stop[]"></td>
+                    </table>
+                </td>
+                <td colspan="1"><input type="text" class="form-control w-100 h-100" name="indication[]"></td>
+                <td colspan="1">
+                    <select class="form-control w-100 h-100" name="s_or_c[]">
+                        <option></option>
+                        <option value="S">S</option>
+                        <option value="C">C</option>
+                    </select>
+                </td>
+                <td colspan="1"><input type="text" class="form-control w-100 h-100" name="company_drug[]"></td>
                 <td><button class="eliminar btn btn-danger bg-gradient text-white"><span class="iconify" data-icon="tabler:trash-x-filled" data-width="25"></span></button></td>`;
-                tabla_diagnostico.appendChild(nuevaFila);
+                tabla.appendChild(nuevaFila);
                 document.querySelectorAll('.eliminar').forEach(button => {
                     button.addEventListener('click', () => {
                         button.closest('tr').remove();
@@ -1116,50 +1216,65 @@ if ($privilegios != '' && $usua != '') {
             function btnSubmit() {
 
                 let date = {
-                    fecha_notificacion: document.getElementById('fecha_notificacion').value,
-                    departamento: document.getElementById('departamento').value,
-                    municipio: document.getElementById('municipio').value,
-                    institucion_evento: document.getElementById('institucion_evento').value,
-                    codigo_pnf: document.getElementById('codigo_pnf').value,
-                    nombre_usuario: document.getElementById('nombre_usuario').value,
-                    nombre_paciente_acudiente: document.getElementById('nombre_paciente_acudiente').value,
-                    consecutivo: document.getElementById('consecutivo').value,
-                    profecion_usuario: document.getElementById('profecion_usuario').value,
-                    correo_usuario: document.getElementById('correo_usuario').value,
-                    fecha_nacimiento: document.getElementById('fecha_nacimiento').value,
-                    edad_paciente: document.getElementById('edad_paciente').value,
-                    tipo_documento_paciente: document.getElementById('tipo_documento_paciente').value,
-                    documento_paciente: document.getElementById('documento_paciente').value,
-                    iniciales_pa: document.getElementById('iniciales_pa').value,
-                    genero: document.getElementById('genero').value,
-                    peso: document.getElementById('peso').value,
-                    talla: document.getElementById('talla').value,
-                    diagnostico: document.getElementById('diagnostico').value,
-                    sci: document.getElementById('sci').value,
-                    medicamento: document.getElementById('medicamento').value,
-                    indicacion: document.getElementById('indicacion').value,
-                    dosis: document.getElementById('dosis').value,
-                    unidad_medida: document.getElementById('unidad_medida').value,
-                    via_administracion: document.getElementById('via_administracion').value,
-                    frecuencia_administracion: document.getElementById('frecuencia_administracion').value,
-                    fecha_inicio: document.getElementById('fecha_inicio').value,
-                    fecha_fin: document.getElementById('fecha_fin').value,
-                    titular_registro: document.getElementById('titular_registro').value,
-                    nombre_comercial: document.getElementById('nombre_comercial').value,
-                    registro_sanitario: document.getElementById('registro_sanitario').value,
-                    lote: document.getElementById('lote').value,
-                    fecha_ini_evento: document.getElementById('fecha_ini_evento').value,
-                    evento_adverso: document.getElementById('evento_adverso').value,
-                    descripcion_evento: document.getElementById('descripcion_evento').value,
-                    desenlace_evento: document.getElementById('valor_desenlace_evento').value,
-                    seriedad: document.getElementById('valor_seriedad').value,
-                    fecha_muerte: document.getElementById('fecha_muerte').value,
-                    pregunta1: document.getElementById('valor_pregunta1').value,
-                    pregunta2: document.getElementById('valor_pregunta2').value,
-                    pregunta3: document.getElementById('valor_pregunta3').value,
-                    pregunta4: document.getElementById('valor_pregunta4').value,
-                    pregunta5: document.getElementById('valor_pregunta5').value,
                     codigo_paciente: document.getElementById('codigo_paciente').value,
+                    email_user: document.getElementById('email_user').value,
+                    source_type: document.getElementById('valor_source_type').value,
+                    first_notification: document.getElementById('first_notification').value,
+                    initials: document.getElementById('initials').value,
+                    birth: document.getElementById('birth').value,
+                    age_time_event: document.getElementById('age_time_event').value,
+                    gender: document.getElementById('gender').value,
+                    weight: document.getElementById('weight').value,
+                    height: document.getElementById('height').value,
+                    trade_name: document.getElementById('trade_name').value,
+                    expiry_date: document.getElementById('expiry_date').value,
+                    sample_available: document.getElementById('valor_sample_available').value,
+                    dose: document.getElementById('dose').value,
+                    frequency: document.getElementById('frequency').value,
+                    route_administration: document.getElementById('route_administration').value,
+                    diagnosis: document.getElementById('diagnosis').value,
+                    treatment_start_date: document.getElementById('treatment_start_date').value,
+                    treatment_end_date: document.getElementById('treatment_end_date').value,
+                    any_other_information: document.getElementById('any_other_information').value,
+                    onset_date: document.getElementById('onset_date').value,
+                    event_stop_date: document.getElementById('event_stop_date').value,
+                    tra_duration: document.getElementById('tra_duration').value,
+                    event_abated: document.getElementById('valor_event_abated').value,
+                    event_term: document.getElementById('event_term').value,
+                    event_reappeared: document.getElementById('event_reappeared').value,
+                    previously_been: document.getElementById('previously_been').value,
+                    seriousness: document.getElementById('valor_seriousness').value,
+                    death_date: document.getElementById('death_date').value,
+                    autopsy: document.getElementById('valor_autopsy').value,
+                    cause_death: document.getElementById('cause_death').value,
+                    treatment_for_ae: document.getElementById('valor_treatment_for_ae').value,
+                    treatment_details: document.getElementById('treatment_details').value,
+                    outcome: document.getElementById('valor_outcome').value,
+                    laboratory: document.getElementById('laboratory').value,
+                    medical_history: document.getElementById('medical_history').value,
+                    reporter_causality: document.getElementById('valor_reporter_causality').value,
+                    patient_pregnant: document.getElementById('valor_patient_pregnant').value,
+                    patient_pregnant_yes: document.getElementById('patient_pregnant_yes').value,
+                    special_situations: document.getElementById('valor_special_situations').value,
+                    quiality_defect: document.getElementById('valor_quiality_defect').value,
+                    drug: document.getElementById('drug').value,
+                    route: document.getElementById('route').value,
+                    daily_dose: document.getElementById('daily_dose').value,
+                    duration: document.getElementById('duration').value,
+                    start: document.getElementById('start').value,
+                    stop: document.getElementById('stop').value,
+                    indication: document.getElementById('indication').value,
+                    s_or_c: document.getElementById('s_or_c').value,
+                    company_drug: document.getElementById('company_drug').value,
+                    name: document.getElementById('name').value,
+                    phone_number: document.getElementById('phone_number').value,
+                    address: document.getElementById('address').value,
+                    email: document.getElementById('email').value,
+                    health_care_professional: document.getElementById('valor_health_care_professional').value,
+                    reporting_event: document.getElementById('reporting_event').value,
+                    occupation_health_authority: document.getElementById('valor_occupation_health_authority').value,
+                    mah: document.getElementById('valor_mah').value,
+                    if_patient: document.getElementById('if_patient').value,
                 }
 
                 for (let key in date) {
@@ -1175,36 +1290,25 @@ if ($privilegios != '' && $usua != '') {
                     }
                 }
 
-                let rows1 = [];
-
-                const fila = document.querySelectorAll('#contenedor_1 tr');
-                fila.forEach(fila => {
-                    let row1 = {
-                        diagnostico: fila.querySelector('input[name="diagnostico[]"]').value,
-                    }
-                    rows1.push(row1);
-                });
-
                 let rows = [];
 
                 const filas = document.querySelectorAll('#contenedor tr');
                 filas.forEach(fila => {
                     let row = {
-                        sci: fila.querySelector('input[name="sci[]"]').value,
-                        medicamento: fila.querySelector('input[name="medicamento[]"]').value,
-                        indicacion: fila.querySelector('input[name="indicacion[]"]').value,
-                        dosis: fila.querySelector('input[name="dosis[]"]').value,
-                        unidad_medida: fila.querySelector('input[name="unidad_medida[]"]').value,
-                        via_administracion: fila.querySelector('input[name="via_administracion[]"]').value,
-                        frecuencia_administracion: fila.querySelector('input[name="frecuencia_administracion[]"]').value,
-                        fecha_inicio: fila.querySelector('input[name="fecha_inicio[]"]').value,
-                        fecha_fin: fila.querySelector('input[name="fecha_fin[]"]').value,
+                        drug: fila.querySelector('input[name="drug[]"]').value,
+                        route: fila.querySelector('input[name="route[]"]').value,
+                        daily_dose: fila.querySelector('input[name="daily_dose[]"]').value,
+                        duration: fila.querySelector('input[name="duration[]"]').value,
+                        start: fila.querySelector('input[name="start[]"]').value,
+                        stop: fila.querySelector('input[name="stop[]"]').value,
+                        indication: fila.querySelector('input[name="indication[]"]').value,
+                        s_or_c: fila.querySelector('select[name="s_or_c[]"]').value,
+                        company_drug: fila.querySelector('input[name="company_drug[]"]').value,
                     }
                     rows.push(row);
                 });
 
                 axios.post('../logica/insertar_datos_ea.php', {
-                        rows1: rows1,
                         rows: rows,
                         date: date
 
@@ -1225,8 +1329,8 @@ if ($privilegios != '' && $usua != '') {
                         }).then((result) => {
                             if (result.isConfirmed && icono === 'success') {
                                 Bloquear()
-                                window.close();
-                                window.location.reload();
+                                // window.close();
+                                // window.location.reload();
                                 btnConvertPdf()
                             }
                         });
@@ -1247,7 +1351,7 @@ if ($privilegios != '' && $usua != '') {
                     codigo_paciente: document.getElementById('codigo_paciente').value,
                 }
 
-                axios.post('./pdf.php', date)
+                axios.post('./pdf_new.php', date)
                     .then(function(response) {
                         Swal.fire({
                                 title: 'success',
