@@ -936,6 +936,7 @@ if ($privilegios != '' && $usua != '') {
                                     <td colspan="1">
                                         <input type="text" class="form-control w-100 h-100" name="duration[]" id="duration">
                                     </td>
+<<<<<<< Updated upstream
                                     <td colspan="2" style="border: none; padding: 0;">
                                         <div style="display: flex; gap: 5px; padding: 5px">
                                             <div style="flex: 1;">
@@ -945,6 +946,13 @@ if ($privilegios != '' && $usua != '') {
                                                 <input type="date" class="form-control w-100 h-100" name="stop[]" id="stop">
                                             </div>
                                         </div>
+=======
+                                    <td colspan="1">
+                                        <input type="date" class="form-control w-100 h-100" name="start[]" id="start">
+                                    </td>
+                                    <td colspan="1">
+                                        <input type="date" class="form-control w-100 h-100" name="stop[]" id="stop">
+>>>>>>> Stashed changes
                                     </td>
                                     <td colspan="1">
                                         <input type="text" class="form-control w-100 h-100" name="indication[]" id="indication">
@@ -1299,8 +1307,10 @@ if ($privilegios != '' && $usua != '') {
                         s_or_c: fila.querySelector('select[name="s_or_c[]"]').value,
                         company_drug: fila.querySelector('input[name="company_drug[]"]').value,
                     }
+
                     rows.push(row);
                 });
+
 
                 axios.post('../logica/insertar_datos_ea.php', {
                         rows: rows,
