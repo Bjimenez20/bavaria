@@ -13,14 +13,14 @@ Cualquier inquietud con gusto sera atendida.
 <br />
 Correo enviado de manera automatica.";
 
-$subject = "Prueba reporte Farmacovigilancia - PAP$ID_PAP - $fecha";
+$subject = "Prueba reporte Farmacovigilancia - PAP$ID_PACIENTE_FK - $fecha";
 
 $mail->Body = $body;
 $mail->Subject = $subject;
-$mail->addAddress('pharmacovigilance.colombia@ipsen.com');
-$mail->addAddress('diego.enrique.orjuela@ipsen.com');
-$mail->addCC('dmendoza@peoplemarketing.com.co');
+// $mail->addAddress('pharmacovigilance.colombia@ipsen.com');
+// $mail->addAddress('diego.enrique.orjuela@ipsen.com');
+// $mail->addCC('dmendoza@peoplemarketing.com.co');
 $mail->addBCC('bjimenez@app-peoplemarketing.com');
-$mail->addAttachment('../EVENTO_ADVERSO/' . $ID_EVENTO_ADVERSO . '/Evento_Adverso_' . $ID_PAP . '.pdf');
+$mail->addAttachment('../EVENTO_ADVERSO/' . $ID_EVENTO_ADVERSO . '/Evento_Adverso_' . $ID_PACIENTE_FK . '.pdf');
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->smtpClose();

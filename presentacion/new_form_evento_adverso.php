@@ -358,8 +358,8 @@ if ($privilegios != '' && $usua != '') {
                                 <td colspan="9" class="titulos" style="font-weight: 700; text-align: left;">I) PATIENT Details (Identifier)</td>
                             </tr>
                             <tr>
-                                <td colspan="1">
-                                    <p style="text-align: left; margin-top: -40%;">1.Patient Initials/Number</p>
+                                <td colspan="1" style="vertical-align: top;">
+                                    <p style="text-align: left;">1.Patient Initials/Number</p>
                                     <input type="text" id="initials" name="initials" value="<?php echo $result ?>" class="form-control w-100 h-100" disabled>
                                 </td>
                                 <td colspan="3">
@@ -389,42 +389,32 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
 
                                 <?php if ($GENERO_PACIENTE == 'Mujer') { ?>
-                                    <td colspan="1">
-                                        <p style="text-align: left; margin-top: -22%;">3. Gender </p>
+                                    <td colspan="1" style="vertical-align: top;">
+                                        <p style="text-align: left;">3. Gender </p>
                                         <input type="text" class="form-control w-100 h-100" name="gender" id="gender" value="Female" style="width:90%; height:100%;" disabled>
                                     </td>
                                 <?php } else if ($GENERO_PACIENTE == 'Hombre') { ?>
-                                    <td colspan="1">
-                                        <p style="text-align: left; margin-top: -22%;">3. Gender </p>
+                                    <td colspan="1" style="vertical-align: top;">
+                                        <p style="text-align: left;">3. Gender </p>
                                         <input type="text" class="form-control w-100 h-100" name="gender" id="gender" value="Male" style="width:90%; height:100%;" disabled>
                                     </td>
                                 <?php } ?>
 
-                                <td colspan="2">
-                                    <p style="text-align: left; margin-top: -23%;">4. Weight</p>
+                                <td colspan="2" style="vertical-align: top;">
+                                    <p style="text-align: left;">4. Weight</p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
                                             <input type="text" name="weight" id="weight" class="form-control w-100 h-100">
-                                        </div>
-                                        <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="weight_type" id="weight_type" value="kg"> kg
-                                        </div>
-                                        <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="weight_type" id="weight_type" value="lbs"> lbs
+                                            <input type="text" class="form-control w-10 h-100" value="kg/lbs" disabled style="text-align: center;">
                                         </div>
                                     </div>
                                 </td>
-                                <td colspan="2">
-                                    <p style="text-align: left; margin-top: -23%;">5. Height</p>
+                                <td colspan="2" style="vertical-align: top;">
+                                    <p style="text-align: left;">5. Height</p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
                                             <input type="text" name="height" id="height" class="form-control w-100 h-100">
-                                        </div>
-                                        <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="height_type" id="height_type" value="cm"> cm
-                                        </div>
-                                        <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="height_type" id="height_type" value="inch"> inch
+                                            <input type="text" class="form-control w-10 h-100" value="cm/inch" disabled style="text-align: center;">
                                         </div>
                                     </div>
                                 </td>
@@ -515,19 +505,19 @@ if ($privilegios != '' && $usua != '') {
                                 <td colspan="9" class="titulos" style="font-weight: 700; text-align: left;">III) MAIN EVENT</td>
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td colspan="2" style="vertical-align: top;">
                                     <p style="text-align: left;">
                                         1.a <strong>Onset</strong> Date <br>
                                     </p>
                                     <input type="date" name="onset_date" id="onset_date" class="form-control w-100 h-100">
                                 </td>
-                                <td colspan="2">
+                                <td colspan="2" style="vertical-align: top;">
                                     <p style="text-align: left;">
                                         1.b Event <strong>Stop Date (if applicable) or <br> Mention Ongoing</strong>
                                     </p>
                                     <input type="date" name="event_stop_date" id="event_stop_date" class="form-control w-100 h-100">
                                 </td>
-                                <td colspan="2">
+                                <td colspan="2" style="vertical-align: top;">
                                     <p style="text-align: left;">
                                         <strong>
                                             1.c Duration
@@ -535,7 +525,7 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <input type="text" name="tra_duration" id="tra_duration" class="form-control w-100 h-100">
                                 </td>
-                                <td colspan="3">
+                                <td colspan="3" style="vertical-align: top;">
                                     <p style="text-align: left;">
                                         1.d Event <strong>abated</strong> after use stopped
                                     </p>
@@ -554,8 +544,8 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="5">
-                                    <p style="margin-top: -6%; text-align: left;">
+                                <td colspan="5" style="vertical-align: top;">
+                                    <p style="text-align: left;">
                                         <strong>1.h Event term</strong> <br>
                                         (full description of the event including body site and severity)
                                     </p>
@@ -679,8 +669,8 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <textarea name="treatment_details" id="treatment_details" class="form-control w-100 h-100" cols="90" rows="5"></textarea>
                                 </td>
-                                <td colspan="5">
-                                    <p style="margin-top: -6%; text-align: left;">
+                                <td colspan="5" style="vertical-align: top;">
+                                    <p style="text-align: left;">
                                         <strong>
                                             1.h Outcome
                                         </strong>
@@ -741,14 +731,14 @@ if ($privilegios != '' && $usua != '') {
                                         Does the Reporter consider that the event was possibly related to the drug?
                                     </p>
                                     <div class="row">
-                                        <div class="col d-flex justify-content-center">
+                                        <div class="col d-flex justify-content-left">
                                             <input type="hidden" name="valor_reporter_causality" id="valor_reporter_causality">
                                             <input type="radio" name="reporter_causality" id="reporter_causality" value="YES"> Yes
                                         </div>
-                                        <div class="col d-flex justify-content-center">
+                                        <div class="col d-flex justify-content-left">
                                             <input type="radio" name="reporter_causality" id="reporter_causality" value="NO"> No
                                         </div>
-                                        <div class="col d-flex justify-content-center">
+                                        <div class="col d-flex justify-content-left">
                                             <input type="radio" name="reporter_causality" id="reporter_causality" value="Unknown"> Unknown
                                         </div>
                                     </div>
@@ -1049,7 +1039,7 @@ if ($privilegios != '' && $usua != '') {
                                         </tr>
                                     </table>
                                 </td>
-                                <td colspan="4">
+                                <td colspan="4" style="vertical-align: top;">
                                     <p style="text-align: left;">
                                         <strong>
                                             3. Profession/Occupation or Health Authority:
@@ -1093,8 +1083,8 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="5">
-                                    <p style="text-align: left; margin-top: -5%;">
+                                <td colspan="5" style="vertical-align: top;">
+                                    <p style="text-align: left;">
                                         5. As a <strong>MAH</strong>, we have an obligation to collect and report adverse events/safety information with our products to Health Authority to improve patient safety. <br>
                                         Are you willing for Ipsen safety team to contact you/your doctor for further details if required?
                                     </p>
@@ -1109,7 +1099,7 @@ if ($privilegios != '' && $usua != '') {
                                         </div>
                                     </div>
                                 </td>
-                                <td colspan="4">
+                                <td colspan="4" style="vertical-align: top;">
                                     <p style="text-align: left;">
                                         6. If the reporter is a patient, what is their <strong>doctor's name and address?</strong> (complete only if section 5. is ticked Yes)
                                     </p>
@@ -1245,8 +1235,8 @@ if ($privilegios != '' && $usua != '') {
                     tra_duration: document.getElementById('tra_duration').value,
                     event_abated: document.getElementById('valor_event_abated').value,
                     event_term: document.getElementById('event_term').value,
-                    event_reappeared: document.getElementById('event_reappeared').value,
-                    previously_been: document.getElementById('previously_been').value,
+                    event_reappeared: document.getElementById('valor_event_reappeared').value,
+                    previously_been: document.getElementById('valor_previously_been').value,
                     seriousness: document.getElementById('valor_seriousness').value,
                     death_date: document.getElementById('death_date').value,
                     autopsy: document.getElementById('valor_autopsy').value,
@@ -1332,7 +1322,7 @@ if ($privilegios != '' && $usua != '') {
                             confirmButtonText: "Aceptar"
                         }).then((result) => {
                             if (result.isConfirmed && icono === 'success') {
-                                Bloquear()
+                                // Bloquear()
                                 // window.close();
                                 // window.location.reload();
                                 btnConvertPdf()
@@ -1361,7 +1351,7 @@ if ($privilegios != '' && $usua != '') {
                                 title: 'success',
                                 html: 'Por favor espere unos minutos, se esta creadndo el pdf para el envio del correo',
                                 icon: 'success',
-                                confirmButtonText: 'Aceptar'
+                                //confirmButtonText: 'Aceptar'
                             })
                             .then((result) => {
                                 if (result.isConfirmed) {
@@ -1385,8 +1375,16 @@ if ($privilegios != '' && $usua != '') {
                 }
 
                 axios.post('./email/mail.php', date)
-                    .then(respuesta => {
-                        console.log(respuesta);
+                    .then(function(response) {
+                        Swal.fire({
+                                title: 'success',
+                                html: 'Correo enviado por favor cierre la ventana',
+                                icon: 'success',
+                                //confirmButtonText: 'Aceptar'
+                            })
+                            .then((result) => {
+                                console.log();
+                            });
                     })
                     .catch(error => {
                         console.error(error);
