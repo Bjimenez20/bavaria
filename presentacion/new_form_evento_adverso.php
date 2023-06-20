@@ -1322,9 +1322,6 @@ if ($privilegios != '' && $usua != '') {
                             confirmButtonText: "Aceptar"
                         }).then((result) => {
                             if (result.isConfirmed && icono === 'success') {
-                                // Bloquear()
-                                // window.close();
-                                // window.location.reload();
                                 btnConvertPdf()
                             }
                         });
@@ -1349,45 +1346,25 @@ if ($privilegios != '' && $usua != '') {
                     .then(function(response) {
                         Swal.fire({
                                 title: 'success',
-                                html: 'Por favor espere unos minutos, se esta creadndo el pdf para el envio del correo',
+                                html: 'El correo fue enviado',
                                 icon: 'success',
-                                //confirmButtonText: 'Aceptar'
+                                confirmButtonText: 'Aceptar'
                             })
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    SendMailer()
+                                    Bloquear()
+                                    window.close();
+                                    window.location.reload();
                                 }
                             });
                     })
                     .catch(function(error) {
                         Swal.fire({
-                            title: 'Error con el servidor',
+                            title: 'Error',
                             text: 'Por favor consulte con el administrador',
                             icon: 'error',
                             confirmButtonText: 'Aceptar'
                         })
-                    });
-            }
-
-            function SendMailer() {
-                let date = {
-                    codigo_paciente: document.getElementById('codigo_paciente').value,
-                }
-
-                axios.post('./email/mail.php', date)
-                    .then(function(response) {
-                        Swal.fire({
-                                title: 'success',
-                                html: 'Correo enviado por favor cierre la ventana',
-                                icon: 'success',
-                                //confirmButtonText: 'Aceptar'
-                            })
-                            .then((result) => {
-                                console.log();
-                            });
-                    })
-                    .catch(error => {
-                        console.error(error);
                     });
             }
 

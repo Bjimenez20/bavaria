@@ -359,14 +359,18 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tr>
                             <td>
-                                <p style="text-align: left;">1.e Event <strong>reappeared</strong> after reintroduction</p>
-                                <?php echo $REAPPEARED ?>
+                                <p style="text-align: left;">1.e Event <strong>reappeared</strong> after reintroduction
+                                    <br> <br>
+                                    <?php echo $REAPPEARED ?>
+                                </p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p style="text-align: left;"> 1.f Has this drug <strong>previously</strong> been used</p>
-                                <?php echo $PREVIOUSLY ?>
+                                <p style="text-align: left;"> 1.f Has this drug <strong>previously</strong> been used
+                                    <br> <br>
+                                    <?php echo $PREVIOUSLY ?>
+                                </p>
                             </td>
                         </tr>
                         <tr>
@@ -393,26 +397,43 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                             </div>
                                         </div>
                                         <br>
+                                        <style>
+                                            .rows {
+                                                display: flex;
+                                                justify-content: center;
+                                            }
+                                        </style>
                                         <div style="text-align: center;">
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-left">
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -13%;">
                                                     <span>Autopsy performed</span>
-                                                </div>
-                                                <div class="col d-flex justify-content-left">
-                                                    <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                    <input type="radio"> Yes
-                                                </div>
-                                                <div class="col d-flex justify-content-left">
-                                                    <input type="radio"> No
+                                                    <?php
+                                                    if ($AUTOPSY == 'YES') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else if ($AUTOPSY == 'NO') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center" style="margin-left: -14%;">
-                                                    <span>Cause of Death</span>
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -14%;">
+                                                    <span>Cause of Death:</span>
                                                 </div>
-                                                <div class="col d-flex justify-content-center">
-                                                    <input type="hidden" name="cause_death" id="cause_death" class="form-control w-100 h-100">
+                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -451,47 +472,30 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                             <div class="rows">
                                                 <div class="rows" style="margin-left: -13%;">
                                                     <span>Autopsy performed</span>
-                                                </div>
-                                                <?php
-                                                if ($AUTOPSY == 'YES') {
-                                                ?>
-                                                    <div class="rows" style="width: 25%;">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
+                                                    <?php
+                                                    if ($AUTOPSY == 'YES') {
+                                                    ?>
                                                         <input type="radio" checked> Yes
-                                                    </div>
-                                                    <div class="rows" style="width: 25%;">
                                                         <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else if ($AUTOPSY == 'NO') {
-                                                ?>
-                                                    <div class="rows" style="width: 25%;">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
+                                                    <?php
+                                                    } else if ($AUTOPSY == 'NO') {
+                                                    ?>
                                                         <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="rows" style="width: 25%;">
                                                         <input type="radio" checked> No
-                                                    </div>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <div class="rows" style="width: 25%;">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
+                                                    <?php
+                                                    } else {
+                                                    ?>
                                                         <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="rows" style="width: 25%;">
                                                         <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                }
-                                                ?>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
                                             </div>
                                             <br>
                                             <div class="rows">
                                                 <div class="rows" style="margin-left: -14%;">
                                                     <span>Cause of Death:</span>
-                                                </div>
-                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
                                                     <?php echo $CAUSE_OF_DEATH ?>
                                                 </div>
                                             </div>
@@ -521,51 +525,42 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                             </div>
                                         </div>
                                         <br>
+                                        <style>
+                                            .rows {
+                                                display: flex;
+                                                justify-content: center;
+                                            }
+                                        </style>
                                         <div style="text-align: center;">
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center">
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -13%;">
                                                     <span>Autopsy performed</span>
+                                                    <?php
+                                                    if ($AUTOPSY == 'YES') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else if ($AUTOPSY == 'NO') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <?php
-                                                if ($AUTOPSY == 'YES') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else if ($AUTOPSY == 'NO') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                }
-                                                ?>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center" style="margin-left: -14%;">
-                                                    <span>Cause of Death</span>
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -14%;">
+                                                    <span>Cause of Death:</span>
                                                 </div>
-                                                <div class="col d-flex justify-content-center">
+                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
 
                                                 </div>
                                             </div>
@@ -595,51 +590,42 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                             </div>
                                         </div>
                                         <br>
+                                        <style>
+                                            .rows {
+                                                display: flex;
+                                                justify-content: center;
+                                            }
+                                        </style>
                                         <div style="text-align: center;">
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center">
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -13%;">
                                                     <span>Autopsy performed</span>
+                                                    <?php
+                                                    if ($AUTOPSY == 'YES') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else if ($AUTOPSY == 'NO') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <?php
-                                                if ($AUTOPSY == 'YES') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else if ($AUTOPSY == 'NO') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                }
-                                                ?>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center" style="margin-left: -14%;">
-                                                    <span>Cause of Death</span>
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -14%;">
+                                                    <span>Cause of Death:</span>
                                                 </div>
-                                                <div class="col d-flex justify-content-center">
+                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
 
                                                 </div>
                                             </div>
@@ -669,51 +655,42 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                             </div>
                                         </div>
                                         <br>
+                                        <style>
+                                            .rows {
+                                                display: flex;
+                                                justify-content: center;
+                                            }
+                                        </style>
                                         <div style="text-align: center;">
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center">
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -13%;">
                                                     <span>Autopsy performed</span>
+                                                    <?php
+                                                    if ($AUTOPSY == 'YES') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else if ($AUTOPSY == 'NO') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <?php
-                                                if ($AUTOPSY == 'YES') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else if ($AUTOPSY == 'NO') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                }
-                                                ?>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center" style="margin-left: -14%;">
-                                                    <span>Cause of Death</span>
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -14%;">
+                                                    <span>Cause of Death:</span>
                                                 </div>
-                                                <div class="col d-flex justify-content-center">
+                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
 
                                                 </div>
                                             </div>
@@ -743,51 +720,42 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                             </div>
                                         </div>
                                         <br>
+                                        <style>
+                                            .rows {
+                                                display: flex;
+                                                justify-content: center;
+                                            }
+                                        </style>
                                         <div style="text-align: center;">
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center">
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -13%;">
                                                     <span>Autopsy performed</span>
+                                                    <?php
+                                                    if ($AUTOPSY == 'YES') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else if ($AUTOPSY == 'NO') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <?php
-                                                if ($AUTOPSY == 'YES') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else if ($AUTOPSY == 'NO') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                }
-                                                ?>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center" style="margin-left: -14%;">
-                                                    <span>Cause of Death</span>
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -14%;">
+                                                    <span>Cause of Death:</span>
                                                 </div>
-                                                <div class="col d-flex justify-content-center">
+                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
 
                                                 </div>
                                             </div>
@@ -817,51 +785,42 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                             </div>
                                         </div>
                                         <br>
+                                        <style>
+                                            .rows {
+                                                display: flex;
+                                                justify-content: center;
+                                            }
+                                        </style>
                                         <div style="text-align: center;">
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center">
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -13%;">
                                                     <span>Autopsy performed</span>
+                                                    <?php
+                                                    if ($AUTOPSY == 'YES') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else if ($AUTOPSY == 'NO') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <?php
-                                                if ($AUTOPSY == 'YES') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else if ($AUTOPSY == 'NO') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                }
-                                                ?>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center" style="margin-left: -14%;">
-                                                    <span>Cause of Death</span>
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -14%;">
+                                                    <span>Cause of Death:</span>
                                                 </div>
-                                                <div class="col d-flex justify-content-center">
+                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
 
                                                 </div>
                                             </div>
@@ -891,51 +850,42 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                             </div>
                                         </div>
                                         <br>
+                                        <style>
+                                            .rows {
+                                                display: flex;
+                                                justify-content: center;
+                                            }
+                                        </style>
                                         <div style="text-align: center;">
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center">
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -13%;">
                                                     <span>Autopsy performed</span>
+                                                    <?php
+                                                    if ($AUTOPSY == 'YES') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else if ($AUTOPSY == 'NO') {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <input type="radio"> Yes
+                                                        <input type="radio"> No
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <?php
-                                                if ($AUTOPSY == 'YES') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else if ($AUTOPSY == 'NO') {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_autopsy" id="valor_autopsy">
-                                                        <input type="radio"> Yes
-                                                    </div>
-                                                    <div class="col d-flex justify-content-center">
-                                                        <input type="radio"> No
-                                                    </div>
-                                                <?php
-                                                }
-                                                ?>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-center" style="margin-left: -14%;">
-                                                    <span>Cause of Death</span>
+                                            <div class="rows">
+                                                <div class="rows" style="margin-left: -14%;">
+                                                    <span>Cause of Death:</span>
                                                 </div>
-                                                <div class="col d-flex justify-content-center">
+                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
 
                                                 </div>
                                             </div>
@@ -974,7 +924,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                         </strong>
                     </p>
                     <div class="row">
-                        <div class="col d-flex justify-content-left">
+                        <div class="col d-flex justify-content-left" style="text-align: left;">
                             <?php echo $OUTCOME ?>
                         </div>
                     </div>
@@ -1071,7 +1021,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                 <td colspan="9">
                     <div class="row">
                         <div class="col d-flex justify-content-left">
-                            <?php echo $DEFECT_ISSUE ?>
+                            <P style="text-align: left;"> <?php echo $DEFECT_ISSUE ?> </P>
                         </div>
                     </div>
                 </td>
@@ -1083,7 +1033,9 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                 <td>
                     <p style="text-align: left;">
                         <strong>
-                            Drug (including dosage form)
+                            Drug
+                            <br>
+                            (including dosage form)
                         </strong>
                     </p>
                 </td>
@@ -1108,25 +1060,19 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                         </strong>
                     </p>
                 </td>
-                <td colspan="2">
-                    <p>
-                        <strong>
-                            Date of administration
-                        </strong>
-                    </p>
-                    <hr>
-                    <div style="display: flex; gap: 5px; padding: 5px">
-                        <div style="flex: 1;">
-                            <strong>
-                                Start
-                            </strong>
-                        </div>
-                        <div style="flex: 1;">
-                            <strong>
-                                Stop
-                            </strong>
-                        </div>
-                    </div>
+                <td>
+                    <strong>
+                        Date of
+                        <br>
+                        administration Start
+                    </strong>
+                </td>
+                <td>
+                    <strong>
+                        Date of
+                        <br>
+                        administration Stop
+                    </strong>
                 </td>
                 <td>
                     <p style="text-align: left;">
@@ -1177,15 +1123,11 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                     <td>
                         <p style="text-align: left;"> <?php echo $DURATION ?> </p>
                     </td>
-                    <td colspan="2" style="padding: 0;">
-                        <div style="display: flex; gap: 5px; padding: 5px">
-                            <div style="flex: 1;">
-                                <p style="text-align: left;"> <?php echo $DATE_START ?> </p>
-                            </div>
-                            <div style="flex: 1;">
-                                <p style="text-align: left;"> <?php echo $DATE_STOP ?> </p>
-                            </div>
-                        </div>
+                    <td>
+                        <p style="text-align: left;"> <?php echo $DATE_START ?> </p>
+                    </td>
+                    <td>
+                        <p style="text-align: left;"> <?php echo $DATE_STOP ?> </p>
                     </td>
                     <td>
                         <p style="text-align: left;"> <?php echo $INDICATION ?> </p>
@@ -1251,7 +1193,6 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                         </tr>
                         <tr>
                             <td style="border: none; vertical-align: top;">
-                                <hr>
                                 <p style="text-align: left;">
                                     <strong> 4. Country of Reporting event: </strong> COLOMBIA
                                 </p>
