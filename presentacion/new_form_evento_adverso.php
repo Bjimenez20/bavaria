@@ -1322,6 +1322,7 @@ if ($privilegios != '' && $usua != '') {
                             confirmButtonText: "Aceptar"
                         }).then((result) => {
                             if (result.isConfirmed && icono === 'success') {
+                                Bloquear()
                                 btnConvertPdf()
                             }
                         });
@@ -1352,7 +1353,6 @@ if ($privilegios != '' && $usua != '') {
                             })
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    Bloquear()
                                     window.close();
                                     window.location.reload();
                                 }
