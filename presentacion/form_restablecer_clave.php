@@ -134,10 +134,14 @@ include('../logica/session.php')
                      session_destroy();
                      exit();
                   } else {
-                     echo "<span class=error>Las contrase&ntilde;as no coinciden</span>";
+                     echo '<script type="text/javascript">';
+                     echo ' alert("Las contraseñas no coinciden")';  //not showing an alert box.
+                     echo '</script>';
                   }
                } else {
-                  echo "<span class=error>CONTRASE&Ntilde;A NO V&Aacute;LIDA </span>" . $error_encontrado;
+                  echo '<script type="text/javascript">';
+                  echo " alert('$error_encontrado')";  //not showing an alert box.
+                  echo '</script>';
                }
             }
             ?>
