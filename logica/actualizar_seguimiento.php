@@ -248,7 +248,7 @@ include('../logica/session.php');
         $tipo_evento_adverso = ' ';
     }
     if ($evento_adverso == 'SI') {
-        $sql = "SELECT CONSECUTIVO AS CONSECUTIVO_EA, ID_EVENTO_ADVERSO AS ID_EVENTO_ADVERSO_ULT FROM ipsen_evento_adverso WHERE ID_PACIENTE_FK ='" . $codigo_usuario2 . "' ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1";
+        $sql = "SELECT ID_EVENTO_ADVERSO AS ID_EVENTO_ADVERSO_ULT FROM ipsen_evento_adverso WHERE ID_PACIENTE_FK ='" . $codigo_usuario2 . "' ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1";
         $resultado = mysqli_query($conex, $sql);
         $fila = mysqli_fetch_assoc($resultado);
         $CONSECUTIVO_EA = $fila['CONSECUTIVO_EA'];

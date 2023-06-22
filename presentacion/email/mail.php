@@ -19,7 +19,7 @@ $mail->Body = $body;
 $mail->Subject = $subject;
 // $mail->addAddress('pharmacovigilance.colombia@ipsen.com');
 // $mail->addAddress('diego.enrique.orjuela@ipsen.com');
-// $mail->addCC('dmendoza@peoplemarketing.com.co');
+$mail->addAddress('dmendoza@peoplemarketing.com.co');
 $mail->addAddress('bjimenez@app-peoplemarketing.com');
 $mail->addAttachment('../EVENTO_ADVERSO/' . $ID_EVENTO_ADVERSO . '/Evento_Adverso_' . $ID_PACIENTE_FK . '.pdf');
 $mail->Send() ? "Enviado" : "Problema al enviar";
