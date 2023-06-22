@@ -250,6 +250,7 @@ if ($privilegios != '' && $usua != '') {
         $DOSIS = $fila['DOSIS_TRATAMIENTO'];
         $FRECUENCIA_TRATAMIENTO = $fila['FRECUENCIA_MEDICAMENTO'];
         $FECHA_INICO_TRATAMIENTO = $fila['FECHA_INICIO_TERAPIA_TRATAMIENTO'];
+        $PRODUCTO_TRATAMIENTO = $fila['PRODUCTO_TRATAMIENTO'];
     }
 
     $SELECT_GESTION = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
@@ -432,7 +433,7 @@ if ($privilegios != '' && $usua != '') {
                                     <p style="text-align: left;">
                                         1.Trade Name (INN/Generic Name)
                                     </p>
-                                    <input type="text" name="trade_name" id="trade_name" class="form-control w-100 h-100">
+                                    <input type="text" name="trade_name" id="trade_name" class="form-control w-100 h-100" value="<?php echo $PRODUCTO_TRATAMIENTO ?>" disabled>
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">

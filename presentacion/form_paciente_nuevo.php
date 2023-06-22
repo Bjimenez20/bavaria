@@ -1542,7 +1542,7 @@ if ($privilegios != '' && $usua != '') {
                                     <select type="text" name="producto_tratamiento" id="producto_tratamiento">
                                         <option value="">Seleccione...</option>
                                         <option>CABOMETIX</option>
-                                        <option>Somatuline</option>
+                                        <option>LANREOTIDE</option>
                                     </select>
                                 </td>
                                 <td width="20%">
