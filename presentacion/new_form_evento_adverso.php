@@ -460,13 +460,13 @@ if ($privilegios != '' && $usua != '') {
                                     <p style="text-align: left;">
                                         4. Dose (specify units)
                                     </p>
-                                    <input type="text" name="dose" id="dose" class="form-control w-100 h-100" value="<?php echo $DOSIS ?>" disabled>
+                                    <input type="text" name="dose" id="dose" class="form-control w-100 h-100" value="<?php echo $DOSIS ?>">
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
                                         5. Frequency
                                     </p>
-                                    <input type="text" name="frequency" id="frequency" class="form-control w-100 h-100" value="<?php echo $FRECUENCIA_TRATAMIENTO ?>" disabled>
+                                    <input type="text" name="frequency" id="frequency" class="form-control w-100 h-100" value="<?php echo $FRECUENCIA_TRATAMIENTO ?>">
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
@@ -480,13 +480,13 @@ if ($privilegios != '' && $usua != '') {
                                     <p style="text-align: left;">
                                         7. Diagnosis/Indication
                                     </p>
-                                    <input type="text" name="diagnosis" id="diagnosis" class="form-control w-100 h-100" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>" disabled>
+                                    <input type="text" name="diagnosis" id="diagnosis" class="form-control w-100 h-100" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>">
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
                                         8. Treatment Start date
                                     </p>
-                                    <input type="date" name="treatment_start_date" id="treatment_start_date" class="form-control w-100 h-100" value="<?php echo $FECHA_INICO_TRATAMIENTO ?>" disabled>
+                                    <input type="date" name="treatment_start_date" id="treatment_start_date" class="form-control w-100 h-100" value="<?php echo $FECHA_INICO_TRATAMIENTO ?>">
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
