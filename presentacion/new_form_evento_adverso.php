@@ -251,6 +251,7 @@ if ($privilegios != '' && $usua != '') {
         $FRECUENCIA_TRATAMIENTO = $fila['FRECUENCIA_MEDICAMENTO'];
         $FECHA_INICO_TRATAMIENTO = $fila['FECHA_INICIO_TERAPIA_TRATAMIENTO'];
         $PRODUCTO_TRATAMIENTO = $fila['PRODUCTO_TRATAMIENTO'];
+        $MEDICO_TRATAMIENTO = $fila['MEDICO_TRATAMIENTO'];
     }
 
     $SELECT_GESTION = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
@@ -1104,7 +1105,8 @@ if ($privilegios != '' && $usua != '') {
                                     <p style="text-align: left;">
                                         6. If the reporter is a patient, what is their <strong>doctor's name and address?</strong> (complete only if section 5. is ticked Yes)
                                     </p>
-                                    <textarea name="if_patient" id="if_patient" class="form-control w-100 h-100" cols="90" rows="5"></textarea>
+                                    <!-- <textarea name="if_patient" id="if_patient" class="form-control w-100 h-100" cols="90" rows="5"></textarea> -->
+                                    <input type="text" name="if_patient" id="if_patient" class="form-control w-100 h-100" value="<?php echo $MEDICO_TRATAMIENTO ?>" disabled>
                                 </td>
                             </tr>
                             <tr>

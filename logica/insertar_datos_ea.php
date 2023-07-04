@@ -79,10 +79,10 @@ if (
 	empty($expiry_date) ||
 	empty($sample_available) ||
 	empty($route_administration) ||
-	empty($treatment_end_date) ||
-	empty($any_other_information) ||
+	// empty($treatment_end_date) ||
+	// empty($any_other_information) ||
 	empty($onset_date) ||
-	empty($event_stop_date) ||
+	// empty($event_stop_date) ||
 	empty($tra_duration) ||
 	empty($event_abated) ||
 	empty($event_reappeared) ||
@@ -102,8 +102,8 @@ if (
 	empty($patient_pregnant) ||
 	//todo: revisar datos
 	//empty($patient_pregnant_yes) ||
-	empty($special_situations) ||
-	empty($quiality_defect) ||
+	// empty($special_situations) ||
+	// empty($quiality_defect) ||
 	empty($drug) ||
 	empty($route) ||
 	empty($daily_dose) ||
@@ -142,18 +142,18 @@ if (
 	if (empty($route_administration)) {
 		array_push($campos_vacios, 'Route of administration');
 	}
-	if (empty($treatment_end_date)) {
-		array_push($campos_vacios, 'Treatment End date (or mention continuing)');
-	}
-	if (empty($any_other_information)) {
-		array_push($campos_vacios, 'Any other information');
-	}
+	// if (empty($treatment_end_date)) {
+	// 	array_push($campos_vacios, 'Treatment End date (or mention continuing)');
+	// }
+	// if (empty($any_other_information)) {
+	// 	array_push($campos_vacios, 'Any other information');
+	// }
 	if (empty($onset_date)) {
 		array_push($campos_vacios, 'Onset Date');
 	}
-	if (empty($event_stop_date)) {
-		array_push($campos_vacios, 'Event Stop Date (if applicable) or Mention Ongoing');
-	}
+	// if (empty($event_stop_date)) {
+	// 	array_push($campos_vacios, 'Event Stop Date (if applicable) or Mention Ongoing');
+	// }
 	if (empty($duration)) {
 		array_push($campos_vacios, 'Duration');
 	}
@@ -193,12 +193,12 @@ if (
 	if (empty($patient_pregnant)) {
 		array_push($campos_vacios, 'Was the patient pregnant?');
 	}
-	if (empty($special_situations)) {
-		array_push($campos_vacios, 'Special situations');
-	}
-	if (empty($quiality_defect)) {
-		array_push($campos_vacios, 'Quality defect issue / suspected falsified/counterfeit medicinal product');
-	}
+	// if (empty($special_situations)) {
+	// 	array_push($campos_vacios, 'Special situations');
+	// }
+	// if (empty($quiality_defect)) {
+	// 	array_push($campos_vacios, 'Quality defect issue / suspected falsified/counterfeit medicinal product');
+	// }
 	if (empty($drug)) {
 		array_push($campos_vacios, 'Drug (including dosage form)');
 	}
