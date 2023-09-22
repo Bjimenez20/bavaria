@@ -78,17 +78,53 @@
                     </div>
                 </li>
             <?php } ?>
-            <li class="nav-item select_menu">
-                <a class="nav-link" href="../presentacion/form_paciente_nuevo.php" target="info">
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#pagesExamples5">
                     <i class="material-icons">person_add</i>
-                    <p> Paciente nuevo </p>
+                    <p> Paciente
+                        <b class="caret"></b>
+                    </p>
                 </a>
+                <div class="collapse" id="pagesExamples5">
+                    <ul class="nav">
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../presentacion/form_paciente_nuevo.php" target="info">
+                                <i class="material-icons">person_add</i>
+                                <p> Crear paciente </p>
+                            </a>
+                        </li>
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../presentacion/form_paciente_seguimiento.php" target="info">
+                                <i class="material-icons">list</i>
+                                <p> Seguimiento paciente </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
-            <li class="nav-item select_menu">
-                <a class="nav-link" href="../presentacion/form_paciente_seguimiento.php" target="info">
-                    <i class="material-icons">badge</i>
-                    <p> Seguimiento </p>
+            <li class="nav-item" style="background-color: #5DADE2;">
+                <a class="nav-link" data-toggle="collapse" href="#pagesExamples6">
+                    <i class="material-icons">person</i>
+                    <p> Aspirantes
+                        <b class="caret"></b>
+                    </p>
                 </a>
+                <div class="collapse" id="pagesExamples6">
+                    <ul class="nav">
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../presentacion/form_paciente_aspirante.php" target="info">
+                                <i class="material-icons">person</i>
+                                <p> Crear aspirante </p>
+                            </a>
+                        </li>
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../presentacion/form_aspirante_seguimiento.php" target="info">
+                                <i class="material-icons">list</i>
+                                <p> Seguimiento aspirante </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <?php
             if ($privilegios == '1') {
