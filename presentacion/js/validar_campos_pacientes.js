@@ -56,7 +56,7 @@ function validar(tuformulario, val) {
 			}
 			if (APLICACION == 'SI') {
 				var LUGAR_APLICACION = $('#lugar_aplicacion').val();
-				if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...'){
+				if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...') {
 					alert('El lugar de aplicacion esta vacio')
 					$('#lugar_aplicacion').focus();
 					return false;
@@ -123,7 +123,7 @@ function validar(tuformulario, val) {
 
 			if (APLICACION == 'SI') {
 				var LUGAR_APLICACION = $('#lugar_aplicacion').val();
-				if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...'){
+				if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...') {
 					alert('El lugar de aplicacion esta vacio')
 					$('#lugar_aplicacion').focus();
 					return false;
@@ -333,48 +333,7 @@ function validar(tuformulario, val) {
 			$('#producto_tratamiento').focus();
 			return false;
 		}
-		if (PRODUCTO == 'KOGENATE FS 2000 PLAN' || PRODUCTO == 'Xofigo 1x6 ml CO' || PRODUCTO == 'Kovaltry' || PRODUCTO == 'Jivi') {
-			if (PRODUCTO == 'Xofigo 1x6 ml CO') {
-				var DOSIS2 = $("#Dosis2").val();
-				if (DOSIS2 == '') {
-					alert('La dosis esta vacia');
-					$('#Dosis2').focus();
-					return false;
-				}
-			}
-			if (PRODUCTO == 'KOGENATE FS 2000 PLAN') {
-				var DOSIS3 = $("#Dosis3").val();
-				if (DOSIS3 == '') {
-					alert('La dosis esta vacia');
-					$('#Dosis3').focus();
-					return false;
-				}
-			}
-			if (PRODUCTO == 'Kovaltry') {
-				var DOSIS4 = $("#Dosis2").val();
-				if (DOSIS4 == '') {
-					alert('La dosis esta vacia');
-					$('#Dosis2').focus();
-					return false;
-				}
-			}
-			if (PRODUCTO == 'Jivi') {
-				var DOSIS5 = $("#Dosis2").val();
-				if (DOSIS5 == '') {
-					alert('La dosis esta vacia');
-					$('#Dosis2').focus();
-					return false;
-				}
-			}
-		}
-		else {
-			var DOSIS = $("#Dosis").val();
-			if (DOSIS == '' || DOSIS == 'Seleccione...') {
-				alert('La dosis esta vacia');
-				$('#Dosis').focus();
-				return false;
-			}
-		}
+
 		if (PRODUCTO == 'BETAFERON CMBP X 15 VPFS (3750 MCG) MM' || PRODUCTO == 'ADEMPAS' || PRODUCTO == 'Eylia 2MG VL 1x2ML CO INST') {
 			var STATUS = $("#status_paciente").val();
 			if (STATUS == '' || STATUS == 'Seleccione...') {
@@ -500,7 +459,7 @@ function validar(tuformulario, val) {
 				}
 				if (APLICACION == 'SI') {
 					var LUGAR_APLICACION = $('#lugar_aplicacion').val();
-					if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...'){
+					if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...') {
 						alert('El lugar de aplicacion esta vacio')
 						$('#lugar_aplicacion').focus();
 						return false;
@@ -566,7 +525,7 @@ function validar(tuformulario, val) {
 				}
 				if (APLICACION == 'SI') {
 					var LUGAR_APLICACION = $('#lugar_aplicacion').val();
-					if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...'){
+					if (LUGAR_APLICACION == '' || LUGAR_APLICACION == 'Seleccione...') {
 						alert('El lugar de aplicacion esta vacio')
 						$('#lugar_aplicacion').focus();
 						return false;
@@ -749,22 +708,6 @@ function validar(tuformulario, val) {
 		}
 		var MEDICAMENTO = $("#MEDICAMENTO").val();
 		if (MEDICAMENTO != '') {
-			if (MEDICAMENTO == 'KOGENATE FS 2000 PLAN' || MEDICAMENTO == 'Xofigo 1x6 ml CO') {
-				var DOSIS2 = $("#Dosis2").val();
-				if (DOSIS2 == '') {
-					alert('La dosis esta vacia');
-					$('#Dosis2').focus();
-					return false;
-				}
-			}
-			else {
-				var DOSIS = $("#Dosis").val();
-				if (DOSIS == '' || DOSIS == 'Seleccione...') {
-					alert('La dosis esta vacia');
-					$('#Dosis').focus();
-					return false;
-				}
-			}
 			if (MEDICAMENTO == 'VENTAVIS 10 1SOL/2ML X30AMP(Conse) MM') {
 				var NEBULIZACIONES = $("#nebulizaciones").val();
 				if (NEBULIZACIONES == '') {
@@ -786,6 +729,65 @@ function validar(tuformulario, val) {
 			alert('La frecuencia de administración del medicamento esta vacia');
 			$('#frecuencia_administracion').focus();
 			return false;
+		}
+
+		var CAMBIO_DOSIS = $("#cambio_dosis").val();
+		if (CAMBIO_DOSIS == '') {
+			alert('El cambio de dosis esta vacio');
+			$('#cambio_dosis').focus();
+			return false;
+		} else {
+			if (CAMBIO_DOSIS == 'SI') {
+				if (PRODUCTO == 'KOGENATE FS 2000 PLAN' || PRODUCTO == 'Xofigo 1x6 ml CO' || PRODUCTO == 'Kovaltry' || PRODUCTO == 'Jivi') {
+					if (PRODUCTO == 'Xofigo 1x6 ml CO') {
+						var DOSIS2 = $("#Dosis2").val();
+						if (DOSIS2 == '') {
+							alert('La nueva dosis del tratamiento esta vacia');
+							$('#Dosis2').focus();
+							return false;
+						}
+					}
+					if (PRODUCTO == 'KOGENATE FS 2000 PLAN') {
+						var DOSIS3 = $("#Dosis3").val();
+						if (DOSIS3 == '') {
+							alert('La nueva dosis del tratamiento esta vacia');
+							$('#Dosis3').focus();
+							return false;
+						}
+					}
+					if (PRODUCTO == 'Kovaltry') {
+						var DOSIS4 = $("#Dosis2").val();
+						if (DOSIS4 == '') {
+							alert('La nueva dosis del tratamiento esta vacia');
+							$('#Dosis2').focus();
+							return false;
+						}
+					}
+					if (PRODUCTO == 'Jivi') {
+						var DOSIS5 = $("#Dosis2").val();
+						if (DOSIS5 == '') {
+							alert('La nueva dosis del tratamiento esta vacia');
+							$('#Dosis2').focus();
+							return false;
+						}
+					}
+				}
+				else {
+					var DOSIS = $("#Dosis").val();
+					if (DOSIS == '' || DOSIS == 'Seleccione...') {
+						alert('La nueva dosis del tratamiento esta vacia');
+						$('#Dosis').focus();
+						return false;
+					}
+				}
+
+				var FECHA_CAMBIO_DOSIS = $('#fecha_cambio_dosis').val();
+				if (FECHA_CAMBIO_DOSIS == '') {
+					alert('La fecha cambio de dosis esta vacia');
+					$('#fecha_cambio_dosis').focus();
+					return false;
+				}
+			}
 		}
 
 		var DESCRIPCION_COMUNICACION = $("#descripcion_comunicacion").val();
@@ -831,6 +833,64 @@ function validar(tuformulario, val) {
 			alert('El motivo de proxima llamada esta vacio');
 			$('#motivo_proxima_llamada').focus();
 			return false;
+		}
+		var CAMBIO_DOSIS = $("#cambio_dosis").val();
+		if (CAMBIO_DOSIS == '') {
+			alert('El cambio de dosis esta vacio');
+			$('#cambio_dosis').focus();
+			return false;
+		} else {
+			if (CAMBIO_DOSIS == 'SI') {
+				if (PRODUCTO == 'KOGENATE FS 2000 PLAN' || PRODUCTO == 'Xofigo 1x6 ml CO' || PRODUCTO == 'Kovaltry' || PRODUCTO == 'Jivi') {
+					if (PRODUCTO == 'Xofigo 1x6 ml CO') {
+						var DOSIS2 = $("#Dosis2").val();
+						if (DOSIS2 == '') {
+							alert('La nueva dosis del tratamiento esta vacia');
+							$('#Dosis2').focus();
+							return false;
+						}
+					}
+					if (PRODUCTO == 'KOGENATE FS 2000 PLAN') {
+						var DOSIS3 = $("#Dosis3").val();
+						if (DOSIS3 == '') {
+							alert('La nueva dosis del tratamiento esta vacia');
+							$('#Dosis3').focus();
+							return false;
+						}
+					}
+					if (PRODUCTO == 'Kovaltry') {
+						var DOSIS4 = $("#Dosis2").val();
+						if (DOSIS4 == '') {
+							alert('La nueva dosis del tratamiento esta vacia');
+							$('#Dosis2').focus();
+							return false;
+						}
+					}
+					if (PRODUCTO == 'Jivi') {
+						var DOSIS5 = $("#Dosis2").val();
+						if (DOSIS5 == '') {
+							alert('La nueva dosis del tratamiento esta vacia');
+							$('#Dosis2').focus();
+							return false;
+						}
+					}
+				}
+				else {
+					var DOSIS = $("#Dosis").val();
+					if (DOSIS == '' || DOSIS == 'Seleccione...') {
+						alert('La nueva dosis del tratamiento esta vacia');
+						$('#Dosis').focus();
+						return false;
+					}
+				}
+
+				var FECHA_CAMBIO_DOSIS = $('#fecha_cambio_dosis').val();
+				if (FECHA_CAMBIO_DOSIS == '') {
+					alert('La fecha cambio de dosis esta vacia');
+					$('#fecha_cambio_dosis').focus();
+					return false;
+				}
+			}
 		}
 		var FRECUENCIA = $("#frecuencia").val();
 		if (FRECUENCIA == '') {

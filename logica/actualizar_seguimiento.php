@@ -80,6 +80,16 @@ include('../logica/session.php');
     $MotivoNoEdu = $_POST['MotivoNoEdu'];
     $boton_activo = $_POST['switch-button'];
     $frecuencia = $_POST['frecuencia'];
+    if ($_POST['sel_visita_inicial'] == "") {
+        $sel_visita_inicial = 'N/A';
+    } else {
+        $sel_visita_inicial = $_POST['sel_visita_inicial'];
+        $programada_visita = $_POST['progra_visi_ini'];
+        $respues_visi_si = $_POST['fecha_visita_ini'];
+        $respues_visi_no = $_POST['span_causa_visita1'];
+        $visitarrr1 = mysqli_query($conex, "UPDATE ipsen_tratamiento SET VISI_INI_EFEC = '" . $sel_visita_inicial . "', PROGRA_VIS_EDU ='" . $programada_visita . "' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+        echo mysqli_error($conex);
+    }
     if ($boton_activo == 'on') {
         if ($brindo_educacion == 'SI') {
             $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $codigo_usuario2 . "', '" . $brindo_educacion . "', '" . $TemaBrindoEdu . "', '" . $FechaEduca . "', NOW())");
@@ -88,19 +98,6 @@ include('../logica/session.php');
         }
     } else {
         $var = '';
-    }
-    if ($_POST['sel_visita_inicial'] == "") {
-        $sel_visita_inicial = 'N/A';
-    } else {
-        $sel_visita_inicial = $_POST['sel_visita_inicial'];
-        $programada_visita = $_POST['progra_visi_ini'];
-        $respues_visi_si = $_POST['fecha_visita_ini'];
-        $respues_visi_no = $_POST['span_causa_visita1'];
-        if ($sel_visita_inicial == "SI") {
-            $visitarrr1 = mysqli_query($conex, "UPDATE ipsen_tratamiento SET VISI_INI_EFEC = '" . $sel_visita_inicial . "', PROGRA_VIS_INI_DATE ='" . $programada_visita . "',RESPU_VISI_EFECTI='" . $respues_visi_si . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
-        } elseif ($sel_visita_inicial == "NO") {
-            $visitarrr = mysqli_query($conex, "UPDATE ipsen_tratamiento SET VISI_INI_EFEC = '" . $sel_visita_inicial . "', PROGRA_VIS_INI_DATE ='" . $programada_visita . "',RESPU_VISI_EFECTI='" . $respues_visi_no . "' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
-        }
     }
     if ($_POST['progra_visi_ini'] == '') {
         $progra_visi_ini = 'N/A';
@@ -175,48 +172,61 @@ include('../logica/session.php');
     } else {
         $tratamiento_previo = $_POST['tratamiento_previo'];
     }
-    if ($_POST['ips_atiende'] == 'NO ENCONTRADO' && $_POST['ips_otro'] != '') {
-        $ips_atiende  = $_POST['ips_otro'];
-        $insert_ips = mysqli_query($conex, "INSERT INTO ipsen_ips (`IPS`,`ESTADO`) VALUES ('" . $ips_atiende . "','OUT')");
-        require('../presentacion/email/mail_habilitar_ips.php');
-    } else {
-        $ips_atiende  = $_POST['ips_atiende'];
+
+    $ips_atiende = $_POST['ips_atiende'];
+    if ($ips_atiende == 'NO ENCONTRADO') {
+        $ips_otro = $_POST['ips_otro'];
+        if ($ips_otro != '') {
+            $insert_ips = mysqli_query($conex, "INSERT INTO ipsen_ips (IPS,ESTADO) VALUES ('" . $ips_otro . "','OUT')");
+            require('../presentacion/email/mail_habilitar_ips.php');
+        }
     }
-    if ($_POST['operador_logistico'] == 'NO ENCONTRADO' && $_POST['operador_otro'] != '') {
-        $operador_logistico = $_POST['operador_otro'];
-        $insert_opl = mysqli_query($conex, "INSERT INTO ipsen_operador_logistico (`OPERADOR_LOGISTICO`,`ESTADO`) VALUES ('" . $operador_logistico . "','OUT')");
-        require('../presentacion/email/mail_habilitar_operador.php');
-    } else {
-        $operador_logistico = $_POST['operador_logistico'];
+
+    $operador_logistico = $_POST['operador_logistico'];
+    if ($operador_logistico == 'NO ENCONTRADO') {
+        $operador_otro = $_POST['operador_otro'];
+        if ($operador_otro != '') {
+            $insert_opl = mysqli_query($conex, "INSERT INTO ipsen_operador_logistico(OPERADOR_LOGISTICO,ESTADO) VALUES('" . $operador_otro . "','OUT')");
+            require('../presentacion/email/mail_habilitar_operador.php');
+        }
     }
-    if ($_POST['asegurador'] == 'NO ENCONTRADO' && $_POST['asegurador_otro'] != '') {
-        $asegurador = $_POST['asegurador_otro'];
-        $insert_eps = mysqli_query($conex, "INSERT INTO ipsen_asegurador (`ASEGURADOR`,`ESTADO`) VALUES ('" . $asegurador . "','OUT')");
-        require('../presentacion/email/mail_habilitar_eps.php');
-    } else {
-        $asegurador = $_POST['asegurador'];
+
+    $asegurador = $_POST['asegurador'];
+    if ($asegurador == 'NO ENCONTRADO') {
+        $asegurador_otro = $_POST['asegurador_otro'];
+        if ($asegurador_otro != '') {
+            $insert_eps = mysqli_query($conex, "INSERT INTO ipsen_asegurador(ASEGURADOR,ESTADO) VALUES('" . $asegurador_otro . "','OUT')");
+            require('../presentacion/email/mail_habilitar_eps.php');
+        }
     }
-    if ($_POST['medico_tratante'] == 'NO ENCONTRADO' && $_POST['medico_t_otro'] != '') {
-        $medico_t  = $_POST['medico_t_otro'];
-        $INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_t . "','OUT')");
-        require('../presentacion/email/mail_habilitar_medico.php');
-    } else {
-        $medico_t  = $_POST['medico_tratante'];
+
+    $medico_t = $_POST['medico_tratante'];
+    if ($medico_t == 'NO ENCONTRADO') {
+        $medico_t_otro = $_POST['medico_t_otro'];
+        if ($medico_t_otro != '') {
+            $INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_t_otro . "','OUT')");
+            require('../presentacion/email/mail_habilitar_medico.php');
+        }
     }
-    if ($_POST['medico_prescriptor'] == 'NO ENCONTRADO' && $_POST['medico_p_otro'] != '') {
-        $medico_p  = $_POST['medico_p_otro'];
-        $INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_p . "','OUT')");
-        require('../presentacion/email/mail_habilitar_medico.php');
-    } else {
-        $medico_p  = $_POST['medico_prescriptor'];
+
+    $medico_p = $_POST['medico_prescriptor'];
+    if ($medico_p == 'NO ENCONTRADO') {
+        $medico_p_otro = $_POST['medico_p_otro'];
+        if ($medico_p_otro != '') {
+            $INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_p_otro . "','OUT')");
+            require('../presentacion/email/mail_habilitar_medico.php');
+        }
     }
-    if ($_POST['punto_entrega'] == 'NO ENCONTRADO' && $_POST['punto_entrega_otro'] != '') {
-        $punto_entrega  = $_POST['punto_entrega_otro'];
-        $INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_puntos_entrega(NOMBRE_PUNTO,ESTADO)VALUES('" . $punto_entrega . "','OUT')");
-        require('../presentacion/email/mail_habilitar_punto.php');
-    } else {
-        $punto_entrega  = $_POST['punto_entrega'];
+
+    $punto_entrega = $_POST['punto_entrega'];
+    if ($punto_entrega == 'NO ENCONTRADO') {
+        $punto_entrega_otro = $_POST['punto_entrega_otro'];
+        if ($punto_entrega_otro != '') {
+            $INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_puntos_entrega(NOMBRE_PUNTO,ESTADO)VALUES('" . $punto_entrega_otro . "','OUT')");
+            require('../presentacion/email/mail_habilitar_punto.php');
+        }
     }
+
     $fecha_prescripcion = $_POST['fecha_prescripcion'];
     $MEDICAMENTO = $_POST['MEDICAMENTO'];
     if ($MEDICAMENTO == 'Xofigo 1x6 ml CO' || $MEDICAMENTO == 'BETAFERON CMBP X 15 VPFS (3750 MCG) MM') {
@@ -224,22 +234,31 @@ include('../logica/session.php');
         $update_codigo_betafe = mysqli_query($conex, "UPDATE ipsen_pacientes SET CODIGO_XOFIGO='" . $codigo_xofigo_sut . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
         echo mysqli_error($conex);
     }
-    if ($MEDICAMENTO == 'Xofigo 1x6 ml CO') {
-        $dosis = $_POST['Dosis2'];
+    $cambio_dosis = $_POST['cambio_dosis'];
+    if ($cambio_dosis == 'SI') {
+        $dosis_antigua = $_POST['dosis_actual'];
+        $fecha_cambio_d = $_POST['fecha_cambio_dosis'];
+        if ($MEDICAMENTO == 'Xofigo 1x6 ml CO') {
+            $dosis = $_POST['Dosis2'];
+        }
+        if ($MEDICAMENTO == 'Kovaltry') {
+            $dosis = $_POST['Dosis2'];
+        }
+        if ($MEDICAMENTO == 'Jivi') {
+            $dosis = $_POST['Dosis2'];
+        }
+        if ($MEDICAMENTO == 'KOGENATE FS 2000 PLAN') {
+            $dosis = $_POST['Dosis3'];
+        }
+        if ($MEDICAMENTO != 'Xofigo 1x6 ml CO' && $MEDICAMENTO != 'KOGENATE FS 2000 PLAN' && $MEDICAMENTO != 'Kovaltry' && $MEDICAMENTO != 'Jivi') {
+            $dosis = $_POST['Dosis'];
+        }
+        $insert_historico_dosis = mysqli_query($conex, "INSERT INTO ipsen_historico_dosis(DOSIS_ANTIGUA,DOSIS_NUEVA,FECHA_CAMBIO,ID_PACIENTE_FK) VALUES ('" . $dosis_antigua . "','" . $dosis . "','" . $fecha_cambio_d . "','" . $codigo_usuario2 . "')");
+        echo mysqli_error($conex);
+    } else {
+        $dosis = $_POST['dosis_actual'];
     }
-    if ($MEDICAMENTO == 'Kovaltry') {
-        $dosis = $_POST['Dosis2'];
-    }
-    if ($MEDICAMENTO == 'Jivi') {
-        $dosis = $_POST['Dosis2'];
-    }
-    if ($MEDICAMENTO == 'KOGENATE FS 2000 PLAN') {
-        $dosis = $_POST['Dosis3'];
-    }
-    if ($MEDICAMENTO != 'Xofigo 1x6 ml CO' && $MEDICAMENTO != 'KOGENATE FS 2000 PLAN' && $MEDICAMENTO != 'Kovaltry' && $MEDICAMENTO != 'Jivi') {
-        $dosis = $_POST['Dosis'];
-    }
-    $dosis;
+
     $tipo_envio = $_POST['tipo_envio'];
     $num_lotes_dis = $_POST['num_lotes_dis'];
     $evento_adverso = $_POST['evento_adverso'];
@@ -255,7 +274,7 @@ include('../logica/session.php');
         $ID_EVENTO_ADVERSO = $fila['ID_EVENTO_ADVERSO_ULT'];
     } else {
         $CONSECUTIVO_EA = '';
-        $ID_EVENTO_ADVERSO = '';
+        $ID_EVENTO_ADVERSO = '0';
     }
     if (isset($_POST['genera_solicitud'])) {
         $genera_solicitud = $_POST['genera_solicitud'];
@@ -582,6 +601,8 @@ include('../logica/session.php');
                     }
                     if ($logro_comunicacion == 'NO') {
                         $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $estado_paciente . "', TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "', PROVEEDOR ='" . $proveedor . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
+                        echo mysqli_error($conex);
+                        $sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET FRECUENCIA_MEDICAMENTO ='" . $frecuencia . "', TRATAMIENTO_PREVIO='" . $tratamiento_previo . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "',ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_ultima_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "',FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "',PAAP = '" . $paap . "', SUB_PAAP = '" . $sub_paap . "',BARRERA = '" . $sub_barrera . "' ,NUM_LOTES_DISPOSITIVOS = '" . $num_lotes_dis . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
                     }
                     if ($reclamo == 'SI') {

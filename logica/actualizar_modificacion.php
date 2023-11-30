@@ -93,53 +93,61 @@ include('../logica/session.php');
 	} else {
 		$tratamiento_previo = $_POST['tratamiento_previo'];
 	}
-	if ($_POST['ips_atiende'] == 'NO ENCONTRADO') {
-		$ips_atiende  = $_POST['ips_otro'];
-		$insert_ips = mysqli_query($conex, "INSERT INTO ipsen_ips (`IPS`,`ESTADO`) VALUES ('" . $ips_atiende . "','OUT')");
-		require('../presentacion/email/mail_habilitar_ips.php');
-	} else {
-		$ips_atiende  = $_POST['ips_atiende'];
+
+	$ips_atiende = $_POST['ips_atiende'];
+	if ($ips_atiende == 'NO ENCONTRADO') {
+		$ips_otro = $_POST['ips_otro'];
+		if ($ips_otro != '') {
+			$insert_ips = mysqli_query($conex, "INSERT INTO ipsen_ips (IPS,ESTADO) VALUES ('" . $ips_otro . "','OUT')");
+			require('../presentacion/email/mail_habilitar_ips.php');
+		}
 	}
 
-	if ($_POST['operador_logistico'] == 'NO ENCONTRADO') {
-		$operador_logistico = $_POST['operador_otro'];
-		$insert_opl = mysqli_query($conex, "INSERT INTO ipsen_operador_logistico (`OPERADOR_LOGISTICO`,`ESTADO`) VALUES ('" . $operador_logistico . "','OUT')");
-		require('../presentacion/email/mail_habilitar_operador.php');
-	} else {
-		$operador_logistico = $_POST['operador_logistico'];
+	$operador_logistico = $_POST['operador_logistico'];
+	if ($operador_logistico == 'NO ENCONTRADO') {
+		$operador_otro = $_POST['operador_otro'];
+		if ($operador_otro != '') {
+			$insert_opl = mysqli_query($conex, "INSERT INTO ipsen_operador_logistico (OPERADOR_LOGISTICO,ESTADO) VALUES ('" . $operador_otro . "','OUT')");
+			require('../presentacion/email/mail_habilitar_operador.php');
+		}
 	}
 
-	if ($_POST['asegurador'] == 'NO ENCONTRADO') {
-		$asegurador = $_POST['asegurador_otro'];
-		$insert_eps = mysqli_query($conex, "INSERT INTO ipsen_asegurador (`ASEGURADOR`,`ESTADO`) VALUES ('" . $asegurador . "','OUT')");
-		require('../presentacion/email/mail_habilitar_eps.php');
-	} else {
-		$asegurador = $_POST['asegurador'];
+	$asegurador = $_POST['asegurador'];
+	if ($asegurador == 'NO ENCONTRADO') {
+		$asegurador_otro = $_POST['asegurador_otro'];
+		if ($asegurador_otro != '') {
+			$insert_eps = mysqli_query($conex, "INSERT INTO ipsen_asegurador (ASEGURADOR,ESTADO) VALUES ('" . $asegurador_otro . "','OUT')");
+			require('../presentacion/email/mail_habilitar_eps.php');
+		}
 	}
 
-	if ($_POST['medico_tratante'] == 'NO ENCONTRADO') {
-		$medico_t  = $_POST['medico_t_otro'];
-		$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_t . "','OUT')");
-		require('../presentacion/email/mail_habilitar_medico.php');
-	} else {
-		$medico_t  = $_POST['medico_tratante'];
+	$medico_t = $_POST['medico_tratante'];
+	if ($medico_t == 'NO ENCONTRADO') {
+		$medico_t_otro  = $_POST['medico_t_otro'];
+		if ($medico_t_otro != '') {
+			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_t_otro . "','OUT')");
+			require('../presentacion/email/mail_habilitar_medico.php');
+		}
 	}
 
-	if ($_POST['medico_prescriptor'] == 'NO ENCONTRADO') {
-		$medico_p  = $_POST['medico_p_otro'];
-		$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_p . "','OUT')");
-		require('../presentacion/email/mail_habilitar_medico_p.php');
-	} else {
-		$medico_p  = $_POST['medico_prescriptor'];
+	$medico_p = $_POST['medico_prescriptor'];
+	if ($medico_p == 'NO ENCONTRADO') {
+		$medico_p_otro = $_POST['medico_p_otro'];
+		if ($medico_p_otro != '') {
+			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_p_otro . "','OUT')");
+			require('../presentacion/email/mail_habilitar_medico_p.php');
+		}
 	}
 
-	if ($_POST['punto_entrega'] == 'NO ENCONTRADO') {
-		$punto_entrega  = $_POST['punto_entrega_otro'];
-		$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_puntos_entrega(NOMBRE_PUNTO,ESTADO)VALUES('" . $punto_entrega . "','OUT')");
-		require('../presentacion/email/mail_habilitar_punto.php');
-	} else {
-		$punto_entrega  = $_POST['punto_entrega'];
-	}
+	$punto_entrega = $_POST['punto_entrega'];
+	if ($punto_entrega == 'NO ENCONTRADO') {
+		$punto_entrega_otro = $_POST['punto_entrega_otro'];
+		if ($punto_entrega_otro != ''){
+			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_puntos_entrega(NOMBRE_PUNTO,ESTADO)VALUES('" . $punto_entrega_otro . "','OUT')");
+			require('../presentacion/email/mail_habilitar_punto.php');
+		}
+	} 
+
 	$fecha_prescripcion = $_POST['fecha_prescripcion'];
 	$num1 = $_POST['num1'];
 	if ($num1 > 0) {

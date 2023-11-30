@@ -175,48 +175,61 @@ require_once('session.php');
 		} else {
 			$tratamiento_previo = $_POST['tratamiento_previo'];
 		}
-		if ($_POST['ips_atiende'] == 'NO ENCONTRADO') {
-			$ips_atiende  = $_POST['ips_otro'];
-			$insert_ips = mysqli_query($conex, "INSERT INTO ipsen_ips (`IPS`,`ESTADO`) VALUES ('" . $ips_atiende . "','OUT')");
-			require('../presentacion/email/mail_habilitar_ips.php');
-		} else {
-			$ips_atiende  = $_POST['ips_atiende'];
+
+		$ips_atiende = $_POST['ips_atiende'];
+		if ($ips_atiende == 'NO ENCONTRADO') {
+			$ips_otro = $_POST['ips_otro'];
+			if ($ips_otro != '') {
+				$insert_ips = mysqli_query($conex, "INSERT INTO ipsen_ips (IPS,ESTADO) VALUES ('" . $ips_otro . "','OUT')");
+				require('../presentacion/email/mail_habilitar_ips.php');
+			}
 		}
-		if ($_POST['operador_logistico'] == 'NO ENCONTRADO') {
-			$operador_logistico = $_POST['operador_otro'];
-			$insert_opl = mysqli_query($conex, "INSERT INTO ipsen_operador_logistico (`OPERADOR_LOGISTICO`,`ESTADO`) VALUES ('" . $operador_logistico . "','OUT')");
-			require('../presentacion/email/mail_habilitar_operador.php');
-		} else {
-			$operador_logistico = $_POST['operador_logistico'];
+
+		$operador_logistico = $_POST['operador_logistico'];
+		if ($operador_logistico == 'NO ENCONTRADO') {
+			$operador_otro = $_POST['operador_otro'];
+			if ($operador_otro != '') {
+				$insert_opl = mysqli_query($conex, "INSERT INTO ipsen_operador_logistico (OPERADOR_LOGISTICO,ESTADO) VALUES ('" . $operador_otro . "','OUT')");
+				require('../presentacion/email/mail_habilitar_operador.php');
+			}
 		}
-		if ($_POST['asegurador'] == 'NO ENCONTRADO') {
-			$asegurador = $_POST['asegurador_otro'];
-			$insert_eps = mysqli_query($conex, "INSERT INTO ipsen_asegurador (`ASEGURADOR`,`ESTADO`) VALUES ('" . $asegurador . "','OUT')");
-			require('../presentacion/email/mail_habilitar_eps.php');
-		} else {
-			$asegurador = $_POST['asegurador'];
+
+		$asegurador = $_POST['asegurador'];
+		if ($asegurador == 'NO ENCONTRADO') {
+			$asegurador_otro = $_POST['asegurador_otro'];
+			if ($asegurador_otro != '') {
+				$insert_eps = mysqli_query($conex, "INSERT INTO ipsen_asegurador (ASEGURADOR,ESTADO) VALUES ('" . $asegurador_otro . "','OUT')");
+				require('../presentacion/email/mail_habilitar_eps.php');
+			}
 		}
-		if ($_POST['medico_tratante'] == 'NO ENCONTRADO') {
-			$medico_t  = $_POST['medico_t_otro'];
-			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_t . "','OUT')");
-			require('../presentacion/email/mail_habilitar_medico.php');
-		} else {
-			$medico_t  = $_POST['medico_tratante'];
+
+		$medico_t = $_POST['medico_tratante'];
+		if ($medico_t == 'NO ENCONTRADO') {
+			$medico_t_otro = $_POST['medico_t_otro'];
+			if ($medico_t_otro != '') {
+				$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_t_otro . "','OUT')");
+				require('../presentacion/email/mail_habilitar_medico.php');
+			}
 		}
-		if ($_POST['medico_prescriptor'] == 'NO ENCONTRADO') {
-			$medico_p  = $_POST['medico_p_otro'];
-			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_p . "','OUT')");
-			require('../presentacion/email/mail_habilitar_medico_p.php');
-		} else {
-			$medico_p  = $_POST['medico_prescriptor'];
+
+		$medico_p = $_POST['medico_prescriptor'];
+		if ($medico_p == 'NO ENCONTRADO') {
+			$medico_p_otro = $_POST['medico_p_otro'];
+			if ($medico_p_otro != '') {
+				$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas(MEDICO,ESTADO)VALUES('" . $medico_p_otro . "','OUT')");
+				require('../presentacion/email/mail_habilitar_medico_p.php');
+			}
 		}
-		if ($_POST['punto_entrega'] == 'NO ENCONTRADO') {
-			$punto_entrega  = $_POST['punto_entrega_otro'];
-			$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_puntos_entrega(NOMBRE_PUNTO,ESTADO)VALUES('" . $punto_entrega . "','OUT')");
-			require('../presentacion/email/mail_habilitar_punto.php');
-		} else {
-			$punto_entrega  = $_POST['punto_entrega'];
+
+		$punto_entrega = $_POST['punto_entrega'];
+		if ($punto_entrega == 'NO ENCONTRADO') {
+			$punto_entrega_otro = $_POST['punto_entrega_otro'];
+			if ($punto_entrega_otro != '') {
+				$INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_puntos_entrega(NOMBRE_PUNTO,ESTADO)VALUES('" . $punto_entrega_otro . "','OUT')");
+				require('../presentacion/email/mail_habilitar_punto.php');
+			}
 		}
+
 		$fecha_prescripcion = $_POST['fecha_prescripcion'];
 		$especialidad = $_POST['especialidad'];
 		$paramedico_representante = $_POST['paramedico_representante'];
@@ -307,27 +320,10 @@ require_once('session.php');
 					echo mysqli_error($conex);
 				}
 			}
-			if ($ips_atiende == 'NO ENCONTRADO' or $operador_logistico == 'NO ENCONTRADO' or $medico_p == 'NO ENCONTRADO' or $medico_t == 'NO ENCONTRADO' or $asegurador == 'NO ENCONTRADO' or $punto_entrega == 'NO ENCONTRADO') {
-				$punto_entrega  = $_POST['punto_entrega_otro'];
-				$medico_p  = $_POST['medico_p_otro'];
-				$medico_t  = $_POST['medico_t_otro'];
-				$asegurador = $_POST['asegurador_otro'];
-				$operador_logistico = $_POST['operador_otro'];
-				$ips_atiende  = $_POST['ips_otro'];
-				$insert_trt = mysqli_query($conex, "INSERT INTO ipsen_tratamiento(PRODUCTO_TRATAMIENTO,NOMBRE_REFERENCIA,DOSIS_TRATAMIENTO,FRECUENCIA_MEDICAMENTO,CLASIFICACION_PATOLOGICA_TRATAMIENTO,TRATAMIENTO_PREVIO,CONSENTIMIENTO_TRATAMIENTO,FECHA_INICIO_TERAPIA_TRATAMIENTO,FECHA_PRESCRIPCION,REGIMEN_TRATAMIENTO,ASEGURADOR_TRATAMIENTO,OPERADOR_LOGISTICO_TRATAMIENTO, PUNTO_ENTREGA, FECHA_ULTIMA_RECLAMACION_TRATAMIENTO,OTROS_OPERADORES_TRATAMIENTO,MEDIOS_ADQUISICION_TRATAMIENTO,IPS_ATIENDE_TRATAMIENTO,MEDICO_TRATAMIENTO,MEDICO_PRESCRIPTOR,ESPECIALIDAD_TRATAMIENTO,PARAMEDICO_TRATAMIENTO,ZONA_ATENCION_PARAMEDICO_TRATAMIENTO,CIUDAD_BASE_PARAMEDICO_TRATAMIENTO,NOTAS_ADJUNTOS_TRATAMIENTO,ID_PACIENTE_FK,NUM_LOTES_DISPOSITIVOS)
-			VALUES ('" . $producto_tratamiento . "','" . $producto_tratamiento . "','" . $dosis . "','" . $frecuencia_administracion . "','" . $clasificacion_patologica . "','" . $tratamiento_previo . "','" . $consentimiento . "','" . $fecha_inicio_trt . "','" . $fecha_prescripcion . "','" . $regimen . "','" . $asegurador . "','" . $operador_logistico . "', '" . $punto_entrega . "','" . $fecha_ultima_reclamacion . "','" . $otro_operadores . "','" . $medio_adquision . "','" . $ips_atiende . "','" . $medico_t . "','" . $medico_p . "','" . $especialidad . "','" . $paramedico_representante . "','" . $zona_atencion . "','" . $ciudad_base . "','" . $nota . "','" . $ID_PACIENTE . "', '" . $num_lotes_dis . "')");
-				echo mysqli_error($conex);
-			} else {
-				$punto_entrega  = $_POST['punto_entrega'];
-				$medico_p  = $_POST['medico_prescriptor'];
-				$medico_t  = $_POST['medico_tratante'];
-				$asegurador = $_POST['asegurador'];
-				$operador_logistico = $_POST['operador_logistico'];
-				$ips_atiende  = $_POST['ips_atiende'];
-				$insert_trt = mysqli_query($conex, "INSERT INTO ipsen_tratamiento(PRODUCTO_TRATAMIENTO,NOMBRE_REFERENCIA,DOSIS_TRATAMIENTO,FRECUENCIA_MEDICAMENTO,CLASIFICACION_PATOLOGICA_TRATAMIENTO,TRATAMIENTO_PREVIO,CONSENTIMIENTO_TRATAMIENTO,FECHA_INICIO_TERAPIA_TRATAMIENTO,FECHA_PRESCRIPCION,REGIMEN_TRATAMIENTO,ASEGURADOR_TRATAMIENTO,OPERADOR_LOGISTICO_TRATAMIENTO, PUNTO_ENTREGA, FECHA_ULTIMA_RECLAMACION_TRATAMIENTO,OTROS_OPERADORES_TRATAMIENTO,MEDIOS_ADQUISICION_TRATAMIENTO,IPS_ATIENDE_TRATAMIENTO,MEDICO_TRATAMIENTO,MEDICO_PRESCRIPTOR,ESPECIALIDAD_TRATAMIENTO,PARAMEDICO_TRATAMIENTO,ZONA_ATENCION_PARAMEDICO_TRATAMIENTO,CIUDAD_BASE_PARAMEDICO_TRATAMIENTO,NOTAS_ADJUNTOS_TRATAMIENTO,ID_PACIENTE_FK,NUM_LOTES_DISPOSITIVOS)
+			$insert_trt = mysqli_query($conex, "INSERT INTO ipsen_tratamiento(PRODUCTO_TRATAMIENTO,NOMBRE_REFERENCIA,DOSIS_TRATAMIENTO,FRECUENCIA_MEDICAMENTO,CLASIFICACION_PATOLOGICA_TRATAMIENTO,TRATAMIENTO_PREVIO,CONSENTIMIENTO_TRATAMIENTO,FECHA_INICIO_TERAPIA_TRATAMIENTO,FECHA_PRESCRIPCION,REGIMEN_TRATAMIENTO,ASEGURADOR_TRATAMIENTO,OPERADOR_LOGISTICO_TRATAMIENTO, PUNTO_ENTREGA, FECHA_ULTIMA_RECLAMACION_TRATAMIENTO,OTROS_OPERADORES_TRATAMIENTO,MEDIOS_ADQUISICION_TRATAMIENTO,IPS_ATIENDE_TRATAMIENTO,MEDICO_TRATAMIENTO,MEDICO_PRESCRIPTOR,ESPECIALIDAD_TRATAMIENTO,PARAMEDICO_TRATAMIENTO,ZONA_ATENCION_PARAMEDICO_TRATAMIENTO,CIUDAD_BASE_PARAMEDICO_TRATAMIENTO,NOTAS_ADJUNTOS_TRATAMIENTO,ID_PACIENTE_FK,NUM_LOTES_DISPOSITIVOS)
 				VALUES ('" . $producto_tratamiento . "','" . $producto_tratamiento . "','" . $dosis . "','" . $frecuencia_administracion . "','" . $clasificacion_patologica . "','" . $tratamiento_previo . "','" . $consentimiento . "','" . $fecha_inicio_trt . "','" . $fecha_prescripcion . "','" . $regimen . "','" . $asegurador . "','" . $operador_logistico . "', '" . $punto_entrega . "','" . $fecha_ultima_reclamacion . "','" . $otro_operadores . "','" . $medio_adquision . "','" . $ips_atiende . "','" . $medico_t . "','" . $medico_p . "','" . $especialidad . "','" . $paramedico_representante . "','" . $zona_atencion . "','" . $ciudad_base . "','" . $nota . "','" . $ID_PACIENTE . "', '" . $num_lotes_dis . "')");
-				echo mysqli_error($conex);
-			}
+			echo mysqli_error($conex);
+
 			if ($insert_trt) {
 				if ($reclamo == 'SI') {
 					$insert_gestion = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,LOGRO_COMUNICACION_GESTION,RECLAMO_GESTION,APLICACION,FECHA_APLICACION,LUGAR_APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,FECHA_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_CITA_PROGRAMADA,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,ID_PACIENTE_FK2,FECHA_COMUNICACION,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,NUMERO_CAJAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES)VALUES('Ingreso','SI','" . $reclamo . "','" . $aplicacion . "','" . $fecha_aplicacion . "','" . $lugar_aplicacion . "','" . $consecutivo_betaferon . "','','" . $fecha_proxima_llamada . "','" . $fecha_reclamacion . "','" . $fecha_no_reclamacion . "','" . $usua . "','" . $nota . "','" . $nota . "','" . $fecha_proxima_llamada . "','" . $ID_PACIENTE . "',CURRENT_TIMESTAMP,'" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $numero_cajas . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "')");

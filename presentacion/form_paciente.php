@@ -801,6 +801,26 @@ include('../logica/session.php')
                     $('#estado_interrumpido').css('display', 'none');
                 }
             });
+
+            $('#cambio_dosis').change(function() {
+                var CAMBIO_DOSIS = $('#cambio_dosis').val();
+                if (CAMBIO_DOSIS == 'SI') {
+                    $('#nueva_dosis').css('display', 'block');
+                    $('#Dosis3').css('display', 'block');
+                    $('#Dosis2').css('display', 'block');
+                    $('#Dosis').css('display', 'block');
+                    $('#fecha_cambio').css('display', 'block');
+                    $('#fecha_cambio_dosis').css('display', 'block');
+                } else {
+                    $('#nueva_dosis').css('display', 'none');
+                    $('#Dosis3').css('display', 'none');
+                    $('#Dosis2').css('display', 'none');
+                    $('#Dosis').css('display', 'none');
+                    $('#fecha_cambio').css('display', 'none');
+                    $('#fecha_cambio_dosis').css('display', 'none');
+                }
+            });
+
         });
     </script>
     <script>
@@ -863,6 +883,7 @@ if ($privilegios != '' && $usua != '') {
                                 $DOSIS = $fila['DOSIS_TRATAMIENTO'];
                                 $TRATAMIENTO_PREVIOS = $fila['TRATAMIENTO_PREVIO'];
                                 $FRECUENCIA_MEDICAMENTO = $fila['FRECUENCIA_MEDICAMENTO'];
+                                $VISI_INI_EFEC = $fila['VISI_INI_EFEC'];
                                 function Zeros($numero, $largo)
                                 {
                                     $resultado = $numero;
@@ -1422,7 +1443,7 @@ if ($privilegios != '' && $usua != '') {
                             </tr>
                             <tr>
                                 <td>
-                                    <span>Programacion visita inicial</span>
+                                    <span>Programacion visita de educacion</span>
                                     <input type="hidden" name="medicamentojair" id="medicamentojair" value="<?php echo $producto_tratamiento; ?>" />
                                     <br /><br />
                                 </td>
@@ -1449,24 +1470,21 @@ if ($privilegios != '' && $usua != '') {
                             </tr>
                             <tr>
                                 <td>
-                                    <span>Visita inicial efectiva<span class="asterisco">*</span></span>
+                                    <span>Visita inicial efectiva</span>
                                 </td>
                                 <td>
                                     <select id="sel_visita_inicial" name="sel_visita_inicial">
-                                        <option value="<?php echo $visita_privilegio ?>"><?php echo $visita_privilegio; ?></option>
-                                        <?php
-                                        if ($visita_privilegio == 'NO') {    ?>
-                                            <option value="SI">SI</option>
-                                        <?php    }
-                                        if ($visita_privilegio == 'SI') {     ?>
-                                            <option value="NO">NO</option>
-                                        <?php     }
-                                        if ($reclamo == '' || $visita_privilegio == 'N/A') {    ?>
-                                            <option value="SI">SI</option>
-                                            <option value="NO">NO</option>
-                                        <?php
+                                        <?php 
+                                        if ($VISI_INI_EFEC != ''){
+                                        ?>
+                                        <option value="<?php echo $VISI_INI_EFEC ?>"><?php echo $VISI_INI_EFEC ?></option>
+                                        <?php 
                                         }
                                         ?>
+                                        <option value="">Seleccione...</option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                        <option value="PENDIENTE">PENDIENTE</option>
                                     </select>
                                 </td>
                             </tr>
@@ -1482,7 +1500,7 @@ if ($privilegios != '' && $usua != '') {
                             ?>
                             <tr>
                                 <td>
-                                    <span>Programacion visita inicial</span>
+                                    <span>Programacion visita de educacion</span>
                                     <input type="hidden" name="medicamentojair" id="medicamentojair" value="<?php echo $producto_tratamiento; ?>" /><br /><br />
                                 </td>
                                 <td>
@@ -1510,21 +1528,11 @@ if ($privilegios != '' && $usua != '') {
                                     <span>Visita inicial efectiva</span>
                                 </td>
                                 <td>
-                                    <select id="sel_visita_inicial" name="sel_visita_inicial" disabled>
-                                        <option value="<?php echo $visita_privilegio; ?>"><?php echo $visita_privilegio; ?></option>
-                                        <?php
-                                        if ($visita_privilegio == 'NO') {    ?>
-                                            <option value="SI">SI</option>
-                                        <?php    }
-                                        if ($visita_privilegio == 'SI') {     ?>
-                                            <option value="NO">NO</option>
-                                        <?php     }
-                                        if ($reclamo == '' || $visita_privilegio == 'N/A') {    ?>
-                                            <option value="SI">SI</option>
-                                            <option value="NO">NO</option>
-                                        <?php
-                                        }
-                                        ?>
+                                    <select id="sel_visita_inicial" name="sel_visita_inicial">
+                                        <option value="">Seleccione...</option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                        <option value="PENDIENTE">PENDIENTE</option>
                                     </select>
                                 </td>
                             </tr>
@@ -2461,6 +2469,28 @@ if ($privilegios != '' && $usua != '') {
                                 <br />
                             </td>
                             <td>
+                                <input style="text-transform:capitalize;" type="text" name="dosis_actual" id="dosis_actual" value="<?php echo $DOSIS ?>" readonly>
+                                <br />
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Cambiar dosis<span class="asterisco">*</span></span>
+                            </td>
+                            <td>
+                                <select name="cambio_dosis" id="cambio_dosis">
+                                    <option value="">Seleccione...</option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="text-transform:capitalize; display:none;" id="nueva_dosis">Nueva dosis tratamiento<span class="asterisco">*</span></span>
+                            </td>
+                            <td>
                                 <?php
                                 $dosis_bd = $fila['DOSIS_TRATAMIENTO'];
                                 if ($producto_tratamiento == 'ADEMPAS 1MG 42TABL' || $producto_tratamiento == 'ADEMPAS 2.5MG 84TABL' || $producto_tratamiento == 'ADEMPAS 1.5MG 42TABL' || $producto_tratamiento == 'ADEMPAS 0.5MG 42TABL' || $producto_tratamiento == 'ADEMPAS 2MG 42TABL' || $producto_tratamiento == 'ADEMPAS') {
@@ -2468,32 +2498,31 @@ if ($privilegios != '' && $usua != '') {
                                 }
                                 if ($producto_tratamiento == 'KOGENATE FS 2000 PLAN') {
                                 ?>
-                                    <input type="text" maxlength="6" name="Dosis3" id="Dosis3" onKeyDown="return validarNumeros(event)" value="<?php echo $DOSIS ?>" />
+                                    <input type="text" maxlength="6" name="Dosis3" id="Dosis3" onKeyDown="return validarNumeros(event)" style="display:none;">
                                 <?PHP
                                 }
                                 if ($producto_tratamiento == 'Xofigo 1x6 ml CO') {
                                 ?>
-                                    <input style="text-transform:capitalize;" type="text" name="Dosis2" id="Dosis2" value="<?php echo $DOSIS ?>" />
+                                    <input style="text-transform:capitalize; display:none;" type="text" name="Dosis2" id="Dosis2">
                                 <?PHP
                                 }
                                 if ($producto_tratamiento == 'Kovaltry') {
                                 ?>
-                                    <input style="text-transform:capitalize;" type="text" name="Dosis2" id="Dosis2" value="<?php echo $DOSIS ?>" />
+                                    <input style="text-transform:capitalize; display:none;" type="text" name="Dosis2" id="Dosis2">
                                 <?PHP
                                 }
                                 if ($producto_tratamiento == 'Jivi') {
                                 ?>
-                                    <input style="text-transform:capitalize;" type="text" name="Dosis2" id="Dosis2" value="<?php echo $DOSIS ?>" />
+                                    <input style="text-transform:capitalize; display:none;" type="text" name="Dosis2" id="Dosis2">
                                 <?php
                                 }
                                 if ($producto_tratamiento != 'Xofigo 1x6 ml CO' && $producto_tratamiento != 'KOGENATE FS 2000 PLAN' && $producto_tratamiento != 'Kovaltry' && $producto_tratamiento != 'Jivi') {
                                 ?>
-                                    <select name="Dosis" id="Dosis">
-                                        <option><?php echo $DOSIS ?></option>
-                                        <option>Seleccione...</option>
+                                    <select name="Dosis" id="Dosis" style="display:none;">
+                                        <option value="">Seleccione...</option>
                                         <?php
                                         $producto = $fila['PRODUCTO_TRATAMIENTO'];
-                                        $select = mysqli_query($conex, "SELECT DOSIS FROM  ipsen_dosis WHERE NOMBRE_REFERENCIA LIKE '" . $producto_tratamiento . "%' AND DOSIS!='" . $dosis_bd . "'");
+                                        $select = mysqli_query($conex, "SELECT DOSIS FROM ipsen_dosis WHERE NOMBRE_REFERENCIA LIKE '" . $producto_tratamiento . "%' AND DOSIS!='" . $dosis_bd . "'");
                                         echo mysqli_error($conex);
                                         while ($filass = (mysqli_fetch_array($select))) {
                                         ?>
@@ -2505,8 +2534,12 @@ if ($privilegios != '' && $usua != '') {
                                 <?php
                                 }
                                 ?>
-                                <br />
-                                <br />
+                            </td>
+                            <td>
+                                <span id="fecha_cambio" style="display:none;">Fecha cambio de dosis<span class="asterisco">*</span></span>
+                            </td>
+                            <td>
+                                <input type="date" name="fecha_cambio_dosis" id="fecha_cambio_dosis" style="display:none;">
                             </td>
                         </tr>
                         <tr>
