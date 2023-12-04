@@ -8,7 +8,7 @@ if (isset($_POST['actualizar'])) {
         $ips = 'NO DEFINIDO VOLVER A PREGUNTAR';
         $update = mysqli_query($conex, "UPDATE ipsen_ips SET IPS='" . $ips . "' WHERE ID_IPS = '" . $ID . "'");
     } else {
-        $ips = $_POST['operador_habilitar'];
+        $ips = $_POST['ips_habilitar'];
         $update = mysqli_query($conex, "UPDATE ipsen_ips SET IPS='" . $ips . "', ESTADO = 'IN' WHERE ID_IPS = '" . $ID . "'");
     }
     if ($update) {

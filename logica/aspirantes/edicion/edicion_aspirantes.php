@@ -196,14 +196,18 @@ if (
 
     if ($asegurador == 'NO ENCONTRADO') {
         $asegurador_otro = $data['asegurador_otro'];
-        $insert_eps = mysqli_query($conex, "INSERT INTO ipsen_asegurador (ASEGURADOR, ESTADO) VALUES ('" . $asegurador_otro . "','OUT')");
+        if ($asegurador_otro != '') {
+            $insert_eps = mysqli_query($conex, "INSERT INTO ipsen_asegurador (ASEGURADOR, ESTADO) VALUES ('" . $asegurador_otro . "','OUT')");
+        }
     }
 
     if ($medico_tratante == 'NO ENCONTRADO') {
         $medico_t_otro = $data['medico_t_otro'];
-        $INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas (MEDICO, ESTADO) VALUES ('" . $medico_t_otro . "','OUT')");
+        if ($medico_t_otro != '') {
+            $INSERT_MEDICO = mysqli_query($conex, "INSERT INTO ipsen_listas (MEDICO, ESTADO) VALUES ('" . $medico_t_otro . "','OUT')");
+        }
     }
-    
+
 
     // PRIMER NIVEL DE UPDATE
 

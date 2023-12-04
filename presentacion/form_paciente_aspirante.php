@@ -1739,7 +1739,7 @@ if ($privilegios != '' && $usua != '') {
                                             </div>
                                             <div class="col-8">
                                                 <select name="canal_contacto" id="canal_contacto" class="form-control">
-                                                    <option>Seleccione...</option>
+                                                    <option value="">Seleccione...</option>
                                                     <option>Presencial</option>
                                                     <option>Virtual</option>
                                                     <option>Telefonico</option>

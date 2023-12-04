@@ -312,46 +312,6 @@ include('../logica/session.php');
             })
         }
 
-        function asegurador() {
-            var DEPT = $('#departamento').val();
-            $.ajax({
-                url: '../presentacion/listado_asegurador.php',
-                data: {
-                    DEPT: DEPT
-                },
-                type: 'post',
-                beforeSend: function() {
-                    $("#asegurador").attr('disabled', 'disabled');
-                    $('#operador_logistico').html('');
-                    $("#operador_logistico").attr('disabled', 'disabled');
-                },
-                success: function(data) {
-                    $("#asegurador").removeAttr('disabled');
-                    $('#asegurador').html(data);
-                }
-            })
-        }
-
-        function operador() {
-            var DEPT = $('#departamento').val();
-            var asegurador = $('#asegurador').val();
-            $.ajax({
-                url: '../presentacion/listado_operador_logistico.php',
-                data: {
-                    DEPT: DEPT,
-                    asegurador: asegurador
-                },
-                type: 'post',
-                beforeSend: function() {
-                    $("#operador_logistico").attr('disabled', 'disabled');
-                },
-                success: function(data) {
-                    $("#operador_logistico").removeAttr('disabled');
-                    $('#operador_logistico').html(data);
-                }
-            })
-        }
-
         function mostrar_dosis() {
             var reclamo = $('#reclamo').val();
             var MEDICAMENTO = $('#producto_tratamiento').val();
@@ -542,12 +502,6 @@ include('../logica/session.php');
             });
             $("#brindo_educacion").change(function() {
                 BrindoEducacion();
-            });
-            $("#departamento").change(function() {
-                asegurador();
-            });
-            $("#asegurador").change(function() {
-                operador();
             });
             $('#cambio').click(function() {
                 $('#cambio_direccion').toggle();
@@ -941,7 +895,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <select name="estado_paciente" id="estado_paciente">
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                         <option>Activo</option>
                                         <option>Inactivo</option>
                                         <option>Nuevo</option>
@@ -991,7 +945,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <select name="tipo_identificacion" id="tipo_identificacion">
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                         <option>R.C</option>
                                         <option>T.I</option>
                                         <option>C.C</option>
@@ -1322,7 +1276,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <select type="text" name="reclamo" id="reclamo">
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                         <option>SI</option>
                                         <option>NO</option>
                                     </select>
@@ -1333,8 +1287,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <select type="text" name="causa_no_reclamacion" id="causa_no_reclamacion" style=" display:none">
-                                        <option></option>
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                         <option>Cita inoportuna</option>
                                         <option>Demora en la Autorizacion Cita Medica</option>
                                         <option>Demora en la autorizacion de medicamento</option>
@@ -1378,7 +1331,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <select name="aplicacion_m" id="aplicacion_m" style="display: none;">
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                         <option>SI</option>
                                         <option>NO</option>
                                     </select>
@@ -1396,7 +1349,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <select name="lugar_aplicacion" id="lugar_aplicacion" style="display: none;">
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                         <option value="IPS">IPS</option>
                                         <option value="DOMICILIO">DOMICILIO</option>
                                     </select>
@@ -1416,7 +1369,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td id="TemaSiEdu" style="display: none;">
                                     <label><span>Tema</span>
                                         <select name="TemaBrindoEdu" id="TemaBrindoEdu">
-                                            <option>Seleccione...</option>
+                                            <option value="">Seleccione...</option>
                                             <option>Concientizacion de la enfermedad</option>
                                             <option>Mitos y realidades</option>
                                             <option>Autocuidado</option>
@@ -1470,7 +1423,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td>
                                     <select name="numero_cajas" id="numero_cajas" style="width:30%;" required>
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                         <option>0</option>
                                         <option>1</option>
                                         <option>2</option>
@@ -1524,7 +1477,7 @@ if ($privilegios != '' && $usua != '') {
                                         <option>50</option>
                                     </select>
                                     <select name="tipo_numero_cajas" id="tipo_numero_cajas" style="width:60%;" required="required">
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                         <option>Ampolla(s)</option>
                                         <option>Aplicacion</option>
                                         <option>Caja(s)</option>
@@ -1550,7 +1503,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td style="width:30%;">
                                     <select type="text" name="Dosis" id="Dosis" disabled="disabled">
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                     </select>
                                     <span class="aviso3" id="span_dosis"></span>
                                     <input type="text" maxlength="20" name="Dosis2" id="Dosis2" style="display:none" />
@@ -1564,7 +1517,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <span style="width:30%;">
                                         <select name="clasificacion_patologica" id="clasificacion_patologica">
-                                            <option>Seleccione...</option>
+                                            <option value="">Seleccione...</option>
                                         </select>
                                     </span>
                                 </td>
@@ -1632,7 +1585,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select id="asegurador" name="asegurador" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo1(this)">
                                         <option value="">Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM ipsen_asegurador WHERE ESTADO = 'IN' ORDER BY ID_ASEGURADOR DESC");
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM ipsen_asegurador WHERE ESTADO != 'OUT' ORDER BY ASEGURADOR ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['ASEGURADOR'] ?></option>
@@ -1647,7 +1600,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select id="operador_logistico" name="operador_logistico" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo2(this)">
                                         <option value="">Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM ipsen_operador_logistico WHERE ESTADO = 'IN' ORDER BY ID_OPERADOR_LOGISTICO DESC");
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM ipsen_operador_logistico WHERE ESTADO != 'OUT' ORDER BY OPERADOR_LOGISTICO ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['OPERADOR_LOGISTICO'] ?></option>
@@ -1684,7 +1637,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select name="punto_entrega" id="punto_entrega" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo6(this)">
                                         <option value="">Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM ipsen_puntos_entrega WHERE ESTADO = 'IN' ORDER BY ID_PUNTO DESC");
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM ipsen_puntos_entrega WHERE ESTADO != 'OUT' ORDER BY NOMBRE_PUNTO ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['NOMBRE_PUNTO'] ?></option>
@@ -1699,7 +1652,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select name="ips_atiende" id="ips_atiende" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo3(this)">
                                         <option value="">Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT IPS FROM ipsen_ips WHERE ESTADO = 'IN' ORDER BY ID_IPS DESC");
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT IPS FROM ipsen_ips WHERE ESTADO != 'OUT' ORDER BY IPS ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['IPS'] ?></option>
@@ -1736,7 +1689,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select name="medico_tratante" id="medico_tratante" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo4(this)">
                                         <option value="">Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC");
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO != 'OUT' ORDER BY MEDICO ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['MEDICO'] ?></option>
@@ -1751,7 +1704,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select name="medico_prescriptor" id="medico_prescriptor" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo5(this)">
                                         <option value="">Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC");
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO != 'OUT' ORDER BY MEDICO DESC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['MEDICO'] ?></option>
@@ -1838,7 +1791,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <!-- <input name="frecuencia_administracion" id="frecuencia_administracion" autocomplete="off" type="text" style="text-transform:ucwords"> -->
                                     <select name="frecuencia_administracion" id="frecuencia_administracion">
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                         <option>FRECUENCIA_MEDICAMENTO</option>
                                         <option>1 TABLETA CADA 12 HORAS</option>
                                         <option>1 TABLETA CADA 24 HORAS</option>
@@ -1982,7 +1935,7 @@ if ($privilegios != '' && $usua != '') {
                                         ?>
                                     </select>
                                     <select name="nombre_producto" id="nombre_producto" style="display:none">
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                     </select>
                                     <br />
                                     <br />

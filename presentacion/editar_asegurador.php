@@ -8,7 +8,7 @@ if (isset($_POST['actualizar'])) {
         $asegurador = 'NO DEFINIDO VOLVER A PREGUNTAR';
         $update = mysqli_query($conex, "UPDATE ipsen_asegurador SET ASEGURADOR='" . $asegurador . "' WHERE ID_ASEGURADOR = '" . $ID . "'");
     } else {
-        $asegurador = $_POST['operador_habilitar'];
+        $asegurador = $_POST['asegurador_habilitar'];
         $update = mysqli_query($conex, "UPDATE ipsen_asegurador SET ASEGURADOR='" . $asegurador . "', ESTADO = 'IN' WHERE ID_ASEGURADOR = '" . $ID . "'");
     }
     if ($update) {

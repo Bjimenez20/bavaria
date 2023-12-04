@@ -922,7 +922,7 @@ if ($privilegios != '' && $usua != '') {
                                                 <div class="col-8">
                                                     <select name="tipo_identificacion" id="tipo_identificacion" class="form-control" data-title="Tipo de identificacion">
                                                         <option><?php echo $fila['TIPO_IDENTIFICACION_PACIENTE'] ?></option>
-                                                        <option>Seleccione...</option>
+                                                        <option value="">Seleccione...</option>
                                                         <option>R.C</option>
                                                         <option>T.I</option>
                                                         <option>C.C</option>
@@ -1006,7 +1006,7 @@ if ($privilegios != '' && $usua != '') {
                                                 <div class="col-8">
                                                     <select class="form-control" name="departamento" id="departamento" data-title="Departamento" onchange="mostrar_ciudades()">
                                                         <option><?php echo $fila['DEPARTAMENTO_PACIENTE']; ?></option>
-                                                        <option>Seleccione...</option>
+                                                        <option value="">Seleccione...</option>
                                                         <?php
                                                         $DEPT = $fila['DEPARTAMENTO_PACIENTE'];
                                                         $Seleccionar = mysqli_query($conex, "SELECT nombre FROM `ipsen_departamento` WHERE nombre != '' AND nombre != '$DEPT' ORDER BY nombre ASC");
@@ -1029,7 +1029,7 @@ if ($privilegios != '' && $usua != '') {
                                                 <div class="col-8">
                                                     <select class="form-control" name="ciudad" id="ciudad" data-title="Ciudad">
                                                         <option><?php echo $fila['CIUDAD_PACIENTE']; ?></option>
-                                                        <option>Seleccione...</option>
+                                                        <option value="">Seleccione...</option>
                                                         <?php
                                                         $Selecciones = mysqli_query($conex, "SELECT c.nombre FROM ipsen_ciudad AS c INNER JOIN ipsen_departamento AS d ON d.id=c.departamento_id WHERE d.nombre='$DEPT' ORDER BY c.nombre ASC");
                                                         while ($fila2 = mysqli_fetch_array($Selecciones)) {
@@ -1674,7 +1674,7 @@ if ($privilegios != '' && $usua != '') {
                                                 <div class="col-8">
                                                     <select name="canal_contacto" id="canal_contacto" class="form-control">
                                                         <option value="<?php echo $CANAL_CONTACTO ?>"><?php echo $CANAL_CONTACTO ?></option>
-                                                        <option>Seleccione...</option>
+                                                        <option value="">Seleccione...</option>
                                                         <option>Presencial</option>
                                                         <option>Virtual</option>
                                                         <option>Telefonico</option>

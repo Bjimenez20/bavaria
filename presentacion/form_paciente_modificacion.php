@@ -579,7 +579,7 @@ if ($privilegios != '' && $usua != '') {
                                     <td>
                                         <select name="tipo_identificacion" id="tipo_identificacion">
                                             <option><?php echo $fila['TIPO_IDENTIFICACION_PACIENTE'] ?></option>
-                                            <option>Seleccione...</option>
+                                            <option value="">Seleccione...</option>
                                             <option>R.C</option>
                                             <option>T.I</option>
                                             <option>C.C</option>
@@ -968,8 +968,8 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select id="asegurador" name="asegurador" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo1(this)">
                                         <option value="<?php echo $fila['ASEGURADOR_TRATAMIENTO'] ?>"><?php echo $fila['ASEGURADOR_TRATAMIENTO'] ?></option>
-                                        <option>Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM ipsen_asegurador WHERE ESTADO = 'IN' ORDER BY ID_ASEGURADOR DESC");
+                                        <option value="">Seleccione...</option>
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM ipsen_asegurador WHERE ESTADO != 'OUT' ORDER BY ASEGURADOR ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['ASEGURADOR'] ?></option>
@@ -984,8 +984,8 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select name="ips_atiende" id="ips_atiende" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo3(this)">
                                         <option value="<?php echo $fila['IPS_ATIENDE_TRATAMIENTO'] ?>"><?php echo $fila['IPS_ATIENDE_TRATAMIENTO'] ?></option>
-                                        <option>Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT IPS FROM ipsen_ips WHERE ESTADO = 'IN' ORDER BY ID_IPS DESC");
+                                        <option value="">Seleccione...</option>
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT IPS FROM ipsen_ips WHERE ESTADO != 'OUT' ORDER BY IPS ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['IPS'] ?></option>
@@ -1014,8 +1014,8 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select name="medico_tratante" id="medico_tratante" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo4(this)">
                                         <option value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>"><?php echo $fila['MEDICO_TRATAMIENTO'] ?></option>
-                                        <option>Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC");
+                                        <option value="">Seleccione...</option>
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO != 'OUT' ORDER BY MEDICO ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['MEDICO'] ?></option>
@@ -1030,8 +1030,8 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select name="medico_prescriptor" id="medico_prescriptor" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo5(this)">
                                         <option value="<?php echo $fila['MEDICO_PRESCRIPTOR'] ?>"><?php echo $fila['MEDICO_PRESCRIPTOR'] ?></option>
-                                        <option>Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO = 'IN' ORDER BY ID_LISTA DESC");
+                                        <option value="">Seleccione...</option>
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO != 'OUT' ORDER BY MEDICO ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['MEDICO'] ?></option>
@@ -1066,8 +1066,8 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select id="operador_logistico" name="operador_logistico" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo2(this)">
                                         <option value="<?php echo $fila['OPERADOR_LOGISTICO_TRATAMIENTO'] ?>"><?php echo $fila['OPERADOR_LOGISTICO_TRATAMIENTO'] ?></option>
-                                        <option>Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM ipsen_operador_logistico WHERE ESTADO = 'IN' ORDER BY ID_OPERADOR_LOGISTICO DESC");
+                                        <option value="">Seleccione...</option>
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM ipsen_operador_logistico WHERE ESTADO != 'OUT' ORDER BY OPERADOR_LOGISTICO ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['OPERADOR_LOGISTICO'] ?></option>
@@ -1093,8 +1093,8 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select name="punto_entrega" id="punto_entrega" style="width:95%;" onkeypress="return check(event)" onchange="trat_previo6(this)">
                                         <option value="<?php echo $fila['PUNTO_ENTREGA'] ?>"><?php echo $fila['PUNTO_ENTREGA'] ?></option>
-                                        <option>Seleccione...</option>
-                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM ipsen_puntos_entrega WHERE ESTADO = 'IN' ORDER BY ID_PUNTO DESC");
+                                        <option value="">Seleccione...</option>
+                                        <?php $query =  mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM ipsen_puntos_entrega WHERE ESTADO != 'OUT' ORDER BY NOMBRE_PUNTO ASC");
                                         while ($valores = mysqli_fetch_array($query)) {
                                         ?>
                                             <option><?php echo $valores['NOMBRE_PUNTO'] ?></option>
@@ -1295,7 +1295,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select type="text" name="estado_ctc" id="estado_ctc">
                                         <option><?php echo $ESTADO_CTC_GESTION ?></option>
-                                        <option>Seleccione...</option>
+                                        <option value="">Seleccione...</option>
                                         <option>Pendiente Por Aprobacion</option>
                                         <option>1Ra Entrega De 1 Autorizada</option>
                                         <option>1Ra Entrega De 2 Autorizadas</option>

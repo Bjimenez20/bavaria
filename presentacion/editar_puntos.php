@@ -8,7 +8,7 @@ if (isset($_POST['actualizar'])) {
         $punto = 'NO DEFINIDO VOLVER A PREGUNTAR';
         $update = mysqli_query($conex, "UPDATE ipsen_puntos_entrega SET NOMBRE_PUNTO='" . $punto . "' WHERE ID_PUNTO = '" . $ID . "'");
     } else {
-        $punto = $_POST['operador_habilitar'];
+        $punto = $_POST['punto_habilitar'];
         $update = mysqli_query($conex, "UPDATE ipsen_puntos_entrega SET NOMBRE_PUNTO='" . $punto . "', ESTADO = 'IN' WHERE ID_PUNTO = '" . $ID . "'");
     }
     if ($update) {

@@ -1,5 +1,4 @@
 <?php
-include "../../logica/session.php";
 require_once('PHPMailer.php');
 $fecha = date("Y-m-d");
 $body = "
