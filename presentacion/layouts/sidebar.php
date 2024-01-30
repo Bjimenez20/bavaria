@@ -205,6 +205,12 @@
                                     <span class="sidebar-normal"> BI </span>
                                 </a>
                             </li>
+                            <li class="nav-item select_menu">
+                                <a class="nav-link" href="../scriptcase/aspirantes" target="info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="material-icons">alt_route </i>
+                                    <span class="sidebar-normal"> Aspirantes </span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
