@@ -1704,6 +1704,10 @@ if ($privilegios != '' && $usua != '') {
                                         <option>Manejo emocional</option>
                                         <option>Autoestima</option>
                                         <option>Cuidando al cuidador</option>
+                                        <option>11 Recomendaciones para afrontar una emergencia</option>
+                                        <option>Alimentacion consciente</option>
+                                        <option>Inteligencia financiera</option>
+                                        <option>Inteligencia emocional</option>
                                     </select>
                                 </label>
                             </td>
