@@ -189,13 +189,13 @@
                         <ul class="nav">
                             <li class="nav-item select_menu">
                                 <a class="nav-link" href="../presentacion/form_reporte.php" target="info">
-                                    <span class="sidebar-mini"> P </span>
+                                    <i class="material-icons">filter_list</i>
                                     <span class="sidebar-normal"> Filtro por tabla </span>
                                 </a>
                             </li>
                             <li class="nav-item select_menu">
                                 <a class="nav-link" href="../scriptcase" target="info">
-                                    <span class="sidebar-mini"> RS </span>
+                                <i class="material-icons">filter_list</i>
                                     <span class="sidebar-normal"> Otros reportes </span>
                                 </a>
                             </li>
@@ -257,7 +257,7 @@
             <?php } ?>
             <?php
             if ($privilegios == '1' || $privilegios == '5') {
-                if ($usua == 'ADMIN' || $usua == 'YRAMIREZ') {
+                if ($usua == 'bjimenez' || $usua == 'YRAMIREZ') {
             ?>
                     <li class="nav-item ">
                         <a class="nav-link" data-toggle="collapse" href="#pagesExamples4">
@@ -268,7 +268,7 @@
                         </a>
                         <div class="collapse" id="pagesExamples4">
                             <ul class="nav">
-                                <li class="nav-item select_menu">
+                                <!-- <li class="nav-item select_menu">
                                     <a class="nav-link" href="../presentacion/form_cargar_observacion_fundem.php" target="info">
                                         <span class="sidebar-mini"> RS </span>
                                         <span class="sidebar-normal"> Gestiones Fundem </span>
@@ -285,16 +285,16 @@
                                         <span class="sidebar-mini"> RS </span>
                                         <span class="sidebar-normal"> Asignación </span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item select_menu">
                                     <a class="nav-link" href="../presentacion/form_usuarios.php" target="info">
-                                        <span class="sidebar-mini"> RS </span>
+                                        <i class="material-icons">person_add</i>
                                         <span class="sidebar-normal"> Usuarios </span>
                                     </a>
                                 </li>
                                 <li class="nav-item select_menu">
                                     <a class="nav-link" href="../presentacion/form_cuenta_usuario.php" target="info">
-                                        <span class="sidebar-mini"> RS </span>
+                                        <i class="material-icons">person</i>
                                         <span class="sidebar-normal"> Mi cuenta </span>
                                     </a>
                                 </li>
@@ -311,7 +311,7 @@
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse" id="pagesExamples5">
+                        <div class="collapse" id="pagesExamples8">
                             <ul class="nav">
                                 <li class="nav-item select_menu">
                                     <a class="nav-link" href="../presentacion/form_cuenta_usuario.php" target="info">
