@@ -195,7 +195,7 @@
                             </li>
                             <li class="nav-item select_menu">
                                 <a class="nav-link" href="../scriptcase" target="info">
-                                <i class="material-icons">filter_list</i>
+                                    <span class="sidebar-mini"> RS </span>
                                     <span class="sidebar-normal"> Otros reportes </span>
                                 </a>
                             </li>
