@@ -305,7 +305,7 @@
                 } else {
                 ?>
                     <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples5">
+                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples8">
                             <i class="material-icons">settings</i>
                             <p> Configuración
                                 <b class="caret"></b>
