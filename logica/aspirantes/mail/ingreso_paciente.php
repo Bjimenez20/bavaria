@@ -10,13 +10,9 @@ while ($row_paciente_new = mysqli_fetch_array($sql_paciente_new)) {
     $ID_PACIENTE = $row_paciente_new['ID_PACIENTE'];
 }
 
-$subject = "BAYER PACIENTE NUEVO - $data->producto_tratamiento - PAP$ID_PACIENTE";
+$subject = "IPSEN PACIENTE NUEVO - $data->producto_tratamiento - PAP$ID_PACIENTE";
 
 // Define el contenido del correo electrónico
-// $mail->addAddress('claudiapatricia.rojas@bayer.com');
-// $mail->addAddress('jessica.vera@litya.ec');
-// $mail->addAddress('mayra.chipuqsi@litya.ec');
-// $mail->addAddress('coordinacion@encontactopeoplemarketing.com');
 $mail->addAddress('bjimenez@app-peoplemarketing.com');
 $mail->Subject = $subject;
 $mail->Body = "
