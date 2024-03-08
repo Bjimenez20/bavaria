@@ -44,7 +44,54 @@
                     $('#content_welcome').show('slow');
                 }
             </script>
-
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#pagesExamples1">
+                    <i class="material-icons">menu_book</i>
+                    <p> Novedades
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="pagesExamples1">
+                    <ul class="nav">
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../presentacion/novedades_registro.php" target="info">
+                                <span class="sidebar-mini"> P </span>
+                                <span class="sidebar-normal"> Registro novedad </span>
+                            </a>
+                        </li>
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../presentacion/novedades_correo.php" target="info">
+                                <span class="sidebar-mini"> RS </span>
+                                <span class="sidebar-normal"> Consulta novedad </span>
+                            </a>
+                        </li>
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../informes/grid_bayer_novedades" target="info">
+                                <span class="sidebar-mini"> T </span>
+                                <span class="sidebar-normal"> Reporte novedad </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#pagesExamples5">
+                    <i class="material-icons">person_add</i>
+                    <p> Paciente
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="pagesExamples5">
+                    <ul class="nav">
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../presentacion/form_paciente_seguimiento.php" target="info">
+                                <i class="material-icons">list</i>
+                                <p> Seguimiento paciente </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#pagesExamples3">
                     <i class="material-icons">pie_chart</i>
@@ -63,15 +110,14 @@
                     </ul>
                 </div>
             </li>
-
             <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#pagesExamples5">
+                <a class="nav-link" data-toggle="collapse" href="#pagesExamples6">
                     <i class="material-icons">settings</i>
                     <p> Configuración
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="pagesExamples5">
+                <div class="collapse" id="pagesExamples6">
                     <ul class="nav">
                         <li class="nav-item select_menu">
                             <a class="nav-link" href="../presentacion/form_cuenta_usuario.php" target="info">

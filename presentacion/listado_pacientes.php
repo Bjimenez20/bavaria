@@ -228,12 +228,8 @@ if ($privilegios != '' && $usua != '') {
 			<table border="0" bordercolor="#A1A1A1" width="100%" rules="cols">
 				<tr>
 					<th width="9%" class="botones">CODIGO</th>
-					<?php
-					if ($privilegios != 4) {
-					?>
-						<th width="31%" class="botones">NOMBRE</th>
-						<th width="12%" class="botones">DOCUMENTO</th>
-					<?php } ?>
+					<th width="31%" class="botones">NOMBRE</th>
+					<th width="12%" class="botones">DOCUMENTO</th>
 					<th width="7%" class="botones">GENERO</th>
 					<th width="12%" class="botones">CIUDAD</th>
 					<th width="12%" class="botones">PRODUCTO</th>
@@ -253,7 +249,7 @@ if ($privilegios != '' && $usua != '') {
 					if ($privilegios == 4) {
 					?>
 						<th width="6%" class="botones">GESTION</th>
-						<th width="6%" class="botones">ENVIO</th>
+						<!-- <th width="6%" class="botones">ENVIO</th> -->
 					<?php
 					}
 					?>
@@ -332,7 +328,7 @@ if ($privilegios != '' && $usua != '') {
 						if ($privilegios == 4) {
 						?>
 							<td><a href="../presentacion/form_paciente.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a></td>
-							<td><a href="../presentacion/envio_fundem.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a></td>
+							<!-- <td><a href="../presentacion/envio_fundem.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a></td> -->
 						<?php
 						}
 						?>
