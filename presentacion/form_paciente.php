@@ -22,6 +22,8 @@ include('../logica/session.php')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(function() {
             $("#asegurador").select2();
@@ -291,6 +293,43 @@ include('../logica/session.php')
                 success: function(data) {
                     $('#ciudad').html(data);
                     $('#ciudad_reclamacion').html(data);
+                }
+            })
+        }
+
+        function mostrar_consentimiento() {
+            var ID_PACIENTE = $('#codigo_usuario2').val();
+            var ID_GESTION_ULT = $('#codigo_gestion').val();
+            var consentimiento = $('#consentimiento').val();
+            $("#url_consentimiento").html('<img src="imgagenes/cargando.gif" />');
+            $("#span_consentimiento").html('<img src="imgagenes/cargando.gif" />');
+            $.ajax({
+                url: '../presentacion/consentimiento.php',
+                data: {
+                    ID_PACIENTE: ID_PACIENTE,
+                    ID_GESTION_ULT: ID_GESTION_ULT,
+                },
+                type: 'post',
+                beforeSend: function() {
+                    $("#url_consentimiento").html("Procesando, espere por favor" +
+                        '<img src="img/cargando.gif" />');
+                    $("#span_consentimiento").html("Procesando, espere por favor" +
+                        '<img src="img/cargando.gif" />');
+                    $("#url_consentimiento").css('display', 'none');
+                    $('#span_consentimiento').css('display', 'none');
+                },
+                success: function(data) {
+                    $('#url_consentimiento').html(data);
+                    $('#span_consentimiento').html(data);
+                    if (consentimiento == 'NO' || consentimiento == '' || consentimiento == 'Seleccione...') {
+                        $("#url_consentimiento").css('display', 'none');
+                        $("#url_span_consentimiento").css('display', 'none');
+                        $('#span_consentimiento').css('display', 'none');
+                    } else {
+                        $("#url_consentimiento").css('display', 'block');
+                        $("#url_span_consentimiento").css('display', 'block');
+                        $('#span_consentimiento').css('display', 'block');
+                    }
                 }
             })
         }
@@ -813,6 +852,33 @@ if ($privilegios != '' && $usua != '') {
                     <div class="AccordionPanelContent">
                         <table width="100%" border="0">
                             <?php
+                            $Seleccion_consentimiento = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` WHERE ID_PACIENTE = '" . $ID_PACIENTE . "'");
+                            while ($fila = mysqli_fetch_array($Seleccion_consentimiento)) {
+                                $CONSENTIMIENTO = $fila['CONSENTIMIENTO'];
+                                if ($CONSENTIMIENTO == 'SI') {
+                            ?>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <div class="alert alert-danger" role="alert">
+                                                El paciente requiere ser re consentido, por favor copie el link del consentimiento para remitir al
+                                                paciente <a href="#" onclick="mostrar_consentimiento()">Ver link</a>
+                                                <tr>
+                                                    <td>
+                                                        <span id="url_span_consentimiento" style="display: none;">Url Consentimiento <span class="asterisco">*</span></span>
+                                                    </td>
+                                                    <td colspan="3">
+                                                        <span id="span_consentimiento" style="display: none;"></span>
+                                                    </td>
+                                                </tr>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            <?php
+                                }
+                            }
+                            ?>
+                            <?php
                             $Sel = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2 = '" . $ID_PACIENTE . "' ORDER BY ID_GESTION DESC LIMIT 1");
                             while ($con = mysqli_fetch_array($Sel)) {
                                 $ID_GESTION_ULT = $con['ID_GESTION'];
@@ -863,7 +929,7 @@ if ($privilegios != '' && $usua != '') {
                                     </td>
                                     <td width="30%">
                                         <?php
-                                        if ($usua == 'ADMIN' || $usua == 'Bjimenez') {
+                                        if ($usua == 'bjimenez' ) {
                                         ?>
                                             <input name="codigo_gestion" type="text" id="codigo_gestion" max="10" readonly="readonly" value="<?php echo $ID_GESTION_ULT; ?>" />
                                         <?php
@@ -2611,7 +2677,7 @@ if ($privilegios != '' && $usua != '') {
                         echo "<td class=AccordionPanelTab><strong>FECHA PROX RECOLECCION</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>CODIGO EA</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>ARCHIVO ADJUNTO</strong></td>";
-                        if($privilegios != 4){
+                        if ($privilegios != 4) {
                             echo "<td class=AccordionPanelTab><strong>EVENTO ADVERSO</strong></td>";
                         }
                         echo "</tr>";
@@ -2753,6 +2819,17 @@ if ($privilegios != '' && $usua != '') {
                             <br />
                     </div>
                 </div>
+                <style>
+                    .alert {
+                        /* margin-left: 22%; */
+                        width: 100%;
+                        text-align: center;
+                    }
+
+                    .row {
+                        --bs-gutter-x: 1 rem !important;
+                    }
+                </style>
             </div>
         </form>
         <script type="text/javascript">

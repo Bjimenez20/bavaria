@@ -69,6 +69,7 @@ include('../logica/session.php');
     $telefono5 = $_POST['telefono5'];
     $correo = $_POST['correo'];
     $ciudad = $_POST['ciudad'];
+    $consentimiento_informado = $_POST['consentimiento_informado'];
     $fecha_retiro = $_POST['fecha_retiro'];
     $motivo_retiro = $_POST['motivo_retiro'];
     $observacion_retiro = $_POST['observacion_retiro'];
@@ -594,13 +595,13 @@ include('../logica/session.php');
                     $sql = mysqli_query($conex, "UPDATE ipsen_gestiones SET ESTADO_GESTION='GESTIONADO' WHERE ID_GESTION='" . $codigo_gestion . "'");
                     echo mysqli_error($conex);
                     if ($logro_comunicacion == 'SI') {
-                        $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $estado_paciente . "',  STATUS_PACIENTE='" . $status_paciente . "', FECHA_ACTIVACION_PACIENTE='" . $fecha_activacion . "', FECHA_RETIRO_PACIENTE='" . $fecha_retiro . "', MOTIVO_RETIRO_PACIENTE='" . $motivo_retiro . "', OBSERVACION_MOTIVO_RETIRO_PACIENTE='" . $observacion_retiro . "',TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "' ,TELEFONO_PACIENTE='" . $telefono1 . "', TELEFONO2_PACIENTE='" . $telefono2 . "', TELEFONO3_PACIENTE='" . $telefono3 . "', TELEFONO4_PACIENTE='" . $telefono4 . "', TELEFONO5_PACIENTE='" . $telefono5 . "', CORREO_PACIENTE='" . $correo . "', DIRECCION_PACIENTE='" . $direccion . "', BARRIO_PACIENTE='" . $barrio . "', DEPARTAMENTO_PACIENTE='" . $departamento . "',CIUDAD_PACIENTE='" . $ciudad . "',FECHA_NACIMINETO_PACIENTE='" . $fecha_nacimiento . "',EDAD_PACIENTE='" . $edad . "', PROVEEDOR ='" . $proveedor . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
+                        $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $estado_paciente . "',  STATUS_PACIENTE='" . $status_paciente . "', FECHA_ACTIVACION_PACIENTE='" . $fecha_activacion . "', FECHA_RETIRO_PACIENTE='" . $fecha_retiro . "', MOTIVO_RETIRO_PACIENTE='" . $motivo_retiro . "', OBSERVACION_MOTIVO_RETIRO_PACIENTE='" . $observacion_retiro . "',TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "' ,TELEFONO_PACIENTE='" . $telefono1 . "', TELEFONO2_PACIENTE='" . $telefono2 . "', TELEFONO3_PACIENTE='" . $telefono3 . "', TELEFONO4_PACIENTE='" . $telefono4 . "', TELEFONO5_PACIENTE='" . $telefono5 . "', CORREO_PACIENTE='" . $correo . "', DIRECCION_PACIENTE='" . $direccion . "', BARRIO_PACIENTE='" . $barrio . "', DEPARTAMENTO_PACIENTE='" . $departamento . "',CIUDAD_PACIENTE='" . $ciudad . "',FECHA_NACIMINETO_PACIENTE='" . $fecha_nacimiento . "',EDAD_PACIENTE='" . $edad . "', PROVEEDOR ='" . $proveedor . "', CONSENTIMIENTO ='" . $consentimiento_informado . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
                         $sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET FRECUENCIA_MEDICAMENTO ='" . $frecuencia . "', TRATAMIENTO_PREVIO='" . $tratamiento_previo . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "',ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_ultima_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "',FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "',PAAP = '" . $paap . "', SUB_PAAP = '" . $sub_paap . "',BARRERA = '" . $sub_barrera . "' ,NUM_LOTES_DISPOSITIVOS = '" . $num_lotes_dis . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
                     }
                     if ($logro_comunicacion == 'NO') {
-                        $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $estado_paciente . "', TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "', PROVEEDOR ='" . $proveedor . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
+                        $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $estado_paciente . "', TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "', PROVEEDOR ='" . $proveedor . "', CONSENTIMIENTO ='" . $consentimiento_informado . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
                         $sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET FRECUENCIA_MEDICAMENTO ='" . $frecuencia . "', TRATAMIENTO_PREVIO='" . $tratamiento_previo . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "',ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_ultima_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "',FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "',PAAP = '" . $paap . "', SUB_PAAP = '" . $sub_paap . "',BARRERA = '" . $sub_barrera . "' ,NUM_LOTES_DISPOSITIVOS = '" . $num_lotes_dis . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
@@ -625,6 +626,9 @@ include('../logica/session.php');
                     $select_id_tra_sql = mysqli_query($conex, "SELECT ID_TRATAMIENTO AS ID_TRATAMIENT FROM ipsen_tratamiento WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
                     while ($datos_tratamiento = mysqli_fetch_array($select_id_tra_sql)) {
                         $idtratamientoss = $datos_tratamiento['ID_TRATAMIENT'];
+                    }
+                    if ($consentimiento_informado == "SI") {
+                        require("../presentacion/email/mail_ci_seguimiento.php");
                     }
                     date_default_timezone_set("America/Bogota");
                     $d      = date('d');
