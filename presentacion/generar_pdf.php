@@ -10,8 +10,10 @@ $telefono = $_POST['telefono'];
 $fecha = $_POST['fecha'];
 $nombre_medico = $_POST['nombre_medico'];
 $pap = $_POST['pap'];
+$id_ges = $_POST['id_ges'];
+$correo_pap = $_POST['correo_pap'];
 
-$insert_pap_ci = mysqli_query($conex, "INSERT INTO `ipsen_informacion_ci` (`NOMBRE_PACIENTE`, `PAP`, `FECHA_FIRMA`) VALUES ('$nombre', '$pap', '$fecha');");
+$insert_pap_ci = mysqli_query($conex, "INSERT INTO `ipsen_informacion_ci` (`NOMBRE_PACIENTE`, `CORREO`, `ID_PACIENTE_FK`, `ID_GESTION_FK`,`FECHA_FIRMA`) VALUES ('$nombre', '$correo_pap', '$pap', '$id_ges', CURRENT_TIMESTAMP);");
 
 // Decodifica la firma base64 si es necesario
 $firma = base64_decode($firmaBase64);
@@ -162,8 +164,8 @@ $html = '<!DOCTYPE html>
             <p class="texto">
                 Ipsen Colombia S.A.S. (“Ipsen”) maneja dentro de sus bases de datos información que usted en calidad de
                 PACIENTE nos ha proporcionado y reportado en el desarrollo de las diferentes actividades y servicios en
-                el marco del Programa de Soporte a Pacientes bajo tratamiento con el medicamento ' . $medicamento . '
-                (el “Medicamento”), del programa ' . $programa . ' (el “Programa”).
+                el marco del Programa de Soporte a Pacientes bajo tratamiento con el medicamento <strong> ' . $medicamento . ' </strong>
+                (el “Medicamento”), del programa <strong> ' . $programa . ' </strong> (el “Programa”).
             </p>
             <span class="br"></span>
             <p class="texto">
@@ -360,23 +362,23 @@ $html = '<!DOCTYPE html>
             </p>
             <span class="br"></span>
             <p class="texto">
-                Nombre y apellidos completos: ' . $nombre . '
+                Nombre y apellidos completos: <strong>' . $nombre . '</strong>
             </p>
             <span class="br"></span>
             <p class="texto">
-                Documento de identidad: ' . $documento . '
+                Documento de identidad: <strong>' . $documento . '</strong>
             </p>
             <span class="br"></span>
             <p class="texto">
-                Teléfono: ' . $telefono . '
+                Teléfono: <strong>' . $telefono . '</strong>
             </p>
             <span class="br"></span>
             <p class="texto">
-                Fecha: ' . $fecha . '
+                Fecha: <strong>' . $fecha . '</strong>
             </p>
             <span class="br"></span>
             <p class="texto">
-                Nombre del médico tratante: ' . $nombre_medico . '
+                Nombre del médico tratante:  <strong>' . $nombre_medico . '</strong>
             </p>
         </div>
     </div>
@@ -388,26 +390,24 @@ $html = '<!DOCTYPE html>
 </body>
 
 </html>';
-
-// Busca el marcador de posición para la firma en la plantilla HTML
-// Supongamos que tienes un marcador de posición en tu plantilla HTML como {{firma}}
-// Reemplaza este marcador de posición con la firma
 $html = str_replace('{{firma}}', '<img src="data:image/png;base64,' . base64_encode($firma) . '">', $html);
-
-// Crear una instancia de Dompdf
 include_once "../dompdf/vendor/autoload.php";
 
 use Dompdf\Dompdf;
 
 $dompdf = new Dompdf();
 $dompdf->loadHtml($html);
-
-// Renderiza el HTML en PDF
 $dompdf->render();
-
-// Salida del PDF
-// $dompdf->stream("'$nombre'_'$pap'.pdf");
 $output = $dompdf->output();
-file_put_contents('../EVENTO_ADVERSO/' . $pap . '.pdf', $output);
+file_put_contents('../EVENTO_ADVERSO/' . $nombre . '_' . $pap . '.pdf', $output);
 $update_pap_ci = mysqli_query($conex, "UPDATE ipsen_pacientes SET `CONSENTIMIENTO` = 'NO' WHERE `ID_PACIENTE` = '$pap'");
-include '../presentacion/email/mail_envio_ci_pap.php';
+if ($update_pap_ci && $insert_pap_ci) {
+    include '../presentacion/email/mail_envio_ci_pap.php'; // Envío del correo
+    echo '<div style="background-color: #dff0d8; color: #3c763d; border: 1px solid #d6e9c6; border-radius: 4px; padding: 15px; margin-bottom: 20px;">';
+    echo '<strong>¡Éxito!</strong> El consentimiento ha sido registrado y el correo ha sido enviado correctamente.';
+    echo '</div>';
+} else {
+    echo '<div style="background-color: #f2dede; color: #a94442; border: 1px solid #ebccd1; border-radius: 4px; padding: 15px; margin-bottom: 20px;">';
+    echo '<strong>Error:</strong> Ha ocurrido un error al registrar el consentimiento o enviar el correo.';
+    echo '</div>';
+}

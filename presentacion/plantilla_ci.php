@@ -137,8 +137,8 @@ require '../datos/conex.php';
             $CONSENTIMIENTO = $fila_pap_ci['CONSENTIMIENTO'];
             $PRODUCTO_TRATAMIENTO = $fila_pap_ci['PRODUCTO_TRATAMIENTO'];
             $PROGRAMA_TRA = $fila_pap_ci['PROGRAMA_TRA'];
-            // $ID_PAP = $fila_pap_ci['ID_PACIENTE'];
-            // $ID_PAP = $fila_pap_ci['ID_PACIENTE'];
+            $MEDICO_TRATAMIENTO = $fila_pap_ci['MEDICO_TRATAMIENTO'];
+            $CORREO_PACIENTE = $fila_pap_ci['CORREO_PACIENTE'];
         }
         if ($CONSENTIMIENTO == 'SI') {
     ?>
@@ -153,7 +153,7 @@ require '../datos/conex.php';
                                     <span class="br"></span>
                                     <span class="br"></span>
                                     <strong>
-                                        PROGRAMA DE SOPORTE A PACIENTES DE LABORATORIO IPSEN COLOMBIA S.A.S. <?php echo $ID_GES ?>
+                                        PROGRAMA DE SOPORTE A PACIENTES DE LABORATORIO IPSEN COLOMBIA S.A.S. <input type="hidden" name="id_ges" id="id_ges" value="<?php echo $ID_GES ?>" readonly>
                                         <span class="br"></span>
                                         <span class="br"></span>
                                         AUTORIZACIÓN TRATAMIENTO DE DATOS PERSONALES PACIENTE- MAYOR DE EDAD
@@ -344,7 +344,7 @@ require '../datos/conex.php';
                             <span class="br"></span>
                             <p class="texto">
                                 <strong>
-                                    FIRMA DEL PACIENTE <input type="text" name="pap" id="pap" value="<?php echo $ID_PAP ?>" readonly>
+                                    FIRMA DEL PACIENTE <input type="hidden" name="pap" id="pap" value="<?php echo $ID_PAP ?>" readonly>
                                 </strong>
                             </p>
                             <span class="br"></span>
@@ -376,7 +376,8 @@ require '../datos/conex.php';
                             <span class="br"></span>
                             <p class="texto">
                                 Nombre del médico tratante:
-                                <input type="text" name="nombre_medico" id="nombre_medico" value="Prueba Desarrollo" readonly>
+                                <input type="text" name="nombre_medico" id="nombre_medico" value="<?php echo $MEDICO_TRATAMIENTO ?>" readonly>
+                                <input type="hidden" name="correo_pap" id="correo_pap" value="<?php echo $CORREO_PACIENTE ?>" readonly>
                             </p>
                             <span class="br"></span>
                             <span class="br"></span>
@@ -555,6 +556,16 @@ require '../datos/conex.php';
                     papInput.type = 'hidden';
                     papInput.name = 'pap';
                     papInput.value = document.getElementById('pap').value; // Obtener el valor del campo nombre del formulario
+
+                    var id_gesInput = document.createElement('input');
+                    id_gesInput.type = 'hidden';
+                    id_gesInput.name = 'id_ges';
+                    id_gesInput.value = document.getElementById('id_ges').value; // Obtener el valor del campo nombre del formulario
+
+                    var correoInput = document.createElement('input');
+                    correoInput.type = 'hidden';
+                    correoInput.name = 'correo_pap';
+                    correoInput.value = document.getElementById('correo_pap').value; // Obtener el valor del campo nombre del formulario
                     // Crear más inputs para otros valores aquí...
 
                     // Agregar los elementos de entrada al formulario
@@ -567,6 +578,8 @@ require '../datos/conex.php';
                     form.appendChild(fechaInput);
                     form.appendChild(medicoInput);
                     form.appendChild(papInput);
+                    form.appendChild(id_gesInput);
+                    form.appendChild(correoInput);
                     // Agregar más inputs al formulario si es necesario...
 
                     // Agregar el formulario al documento y enviarlo
