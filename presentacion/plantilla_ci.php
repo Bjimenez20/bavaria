@@ -166,7 +166,7 @@ require '../datos/conex.php';
                                 Ipsen Colombia S.A.S. (“Ipsen”) maneja dentro de sus bases de datos información que usted en calidad de
                                 PACIENTE nos ha proporcionado y reportado en el desarrollo de las diferentes actividades y servicios en
                                 el marco del Programa de Soporte a Pacientes bajo tratamiento con el medicamento <input type="text" id="medicamento" name="medicamento" value="<?php echo $PRODUCTO_TRATAMIENTO ?>" style="width: 9%;" readonly>
-                                (el “Medicamento”), del programa <input type="text" id="medicamento" name="medicamento" value="<?php echo $PROGRAMA_TRA ?>" style="width: 7%;" readonly> (el “Programa”).
+                                (el “Medicamento”), del programa <input type="text" id="programa" name="programa" value="<?php echo $PROGRAMA_TRA ?>" style="width: 7%;" readonly> (el “Programa”).
                             </p>
                             <span class="br"></span>
                             <p class="texto">
@@ -344,7 +344,7 @@ require '../datos/conex.php';
                             <span class="br"></span>
                             <p class="texto">
                                 <strong>
-                                    FIRMA DEL PACIENTE
+                                    FIRMA DEL PACIENTE <input type="text" name="pap" id="pap" value="<?php echo $ID_PAP ?>" readonly>
                                 </strong>
                             </p>
                             <span class="br"></span>
@@ -516,6 +516,16 @@ require '../datos/conex.php';
                     firmaInput.value = signatureImage;
 
                     // Crear input para otros valores (nombre, documento, teléfono, etc.)
+                    var medicamentoInput = document.createElement('input');
+                    medicamentoInput.type = 'hidden';
+                    medicamentoInput.name = 'medicamento';
+                    medicamentoInput.value = document.getElementById('medicamento').value; // Obtener el valor del campo nombre del formulario
+
+                    var programaInput = document.createElement('input');
+                    programaInput.type = 'hidden';
+                    programaInput.name = 'programa';
+                    programaInput.value = document.getElementById('programa').value; // Obtener el valor del campo nombre del formulario
+
                     var nombreInput = document.createElement('input');
                     nombreInput.type = 'hidden';
                     nombreInput.name = 'nombre';
@@ -540,15 +550,23 @@ require '../datos/conex.php';
                     medicoInput.type = 'hidden';
                     medicoInput.name = 'nombre_medico';
                     medicoInput.value = document.getElementById('nombre_medico').value; // Obtener el valor del campo nombre del formulario
+
+                    var papInput = document.createElement('input');
+                    papInput.type = 'hidden';
+                    papInput.name = 'pap';
+                    papInput.value = document.getElementById('pap').value; // Obtener el valor del campo nombre del formulario
                     // Crear más inputs para otros valores aquí...
 
                     // Agregar los elementos de entrada al formulario
                     form.appendChild(firmaInput);
+                    form.appendChild(medicamentoInput);
+                    form.appendChild(programaInput);
                     form.appendChild(nombreInput);
                     form.appendChild(documentoInput);
                     form.appendChild(telefonoInput);
                     form.appendChild(fechaInput);
                     form.appendChild(medicoInput);
+                    form.appendChild(papInput);
                     // Agregar más inputs al formulario si es necesario...
 
                     // Agregar el formulario al documento y enviarlo

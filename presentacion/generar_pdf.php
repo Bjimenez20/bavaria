@@ -2,11 +2,16 @@
 require '../datos/conex.php';
 
 $firmaBase64 = $_POST['firma'];
+$medicamento = $_POST['medicamento'];
+$programa = $_POST['programa'];
 $nombre = $_POST['nombre'];
 $documento = $_POST['documento'];
 $telefono = $_POST['telefono'];
 $fecha = $_POST['fecha'];
 $nombre_medico = $_POST['nombre_medico'];
+$pap = $_POST['pap'];
+
+$insert_pap_ci = mysqli_query($conex, "INSERT INTO `ipsen_informacion_ci` (`NOMBRE_PACIENTE`, `PAP`, `FECHA_FIRMA`) VALUES ('$nombre', '$pap', '$fecha');");
 
 // Decodifica la firma base64 si es necesario
 $firma = base64_decode($firmaBase64);
@@ -157,8 +162,8 @@ $html = '<!DOCTYPE html>
             <p class="texto">
                 Ipsen Colombia S.A.S. (“Ipsen”) maneja dentro de sus bases de datos información que usted en calidad de
                 PACIENTE nos ha proporcionado y reportado en el desarrollo de las diferentes actividades y servicios en
-                el marco del Programa de Soporte a Pacientes bajo tratamiento con el medicamento __________________
-                (el “Medicamento”), del programa ______________________ (el “Programa”).
+                el marco del Programa de Soporte a Pacientes bajo tratamiento con el medicamento ' . $medicamento . '
+                (el “Medicamento”), del programa ' . $programa . ' (el “Programa”).
             </p>
             <span class="br"></span>
             <p class="texto">
@@ -401,8 +406,8 @@ $dompdf->loadHtml($html);
 $dompdf->render();
 
 // Salida del PDF
-$dompdf->stream("consentimiento.pdf");
+// $dompdf->stream("'$nombre'_'$pap'.pdf");
 $output = $dompdf->output();
-file_put_contents('../EVENTO_ADVERSO/CI_00005.pdf', $output);
-
-$update_pap_ci = mysqli_query($conex, "UPDATE ipsen_pacientes SET `CONSENTIMIENTO` = 'NO' WHERE `ID_PACIENTE` = '00005'");
+file_put_contents('../EVENTO_ADVERSO/' . $pap . '.pdf', $output);
+$update_pap_ci = mysqli_query($conex, "UPDATE ipsen_pacientes SET `CONSENTIMIENTO` = 'NO' WHERE `ID_PACIENTE` = '$pap'");
+include '../presentacion/email/mail_envio_ci_pap.php';
