@@ -10,9 +10,9 @@
 
 
 // VARIABLES DE ENTORNO AWS
-$host = 'app-peoplemarketing.com';
-$user = 'pspbayer@app-peoplemarketing.com';
-$pass = 't@]sJGKunv@u';
+$host = 'smtp.mi.com.co';
+$user = 'programadepacientescolombia@pspipsen.com';
+$pass = 'Ppc2022*';
 $encrypt = 'tls';
 $port = '587';
-$emailout = 'pspbayer@app-peoplemarketing.com';
+$emailout = 'programadepacientescolombia@pspipsen.com';

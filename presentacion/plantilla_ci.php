@@ -115,6 +115,27 @@ require '../datos/conex.php';
             text-decoration: underline;
             /* Para quitar también el resaltado al enfocar el input */
         }
+
+
+        .containers {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .valid {
+            background-color: #c8e6c9;
+            color: #388e3c;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .error {
+            background-color: #ffcdd2;
+            color: #d32f2f;
+            padding: 10px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
@@ -598,16 +619,18 @@ require '../datos/conex.php';
                     });
                 }
             </script>
-    <?php
+            <div class="containers">
+        <?php
         } else {
-            echo "Firma no válida. Acceso denegado.";
+            echo "<div class='valid'>Firma no válida. Acceso denegado.</div>";
         }
     } else {
         // La firma no es válida, es posible que haya habido manipulación o un intento de ataque
-        echo "Error: La firma no coincide. Acceso denegado." . $received_signature . ' = ' . $signature_to_check;
+        echo "<div class='error'>Error: El link no coincide o tiene los accesos y permisos denegados, por favor comunicate con el administrador</div>";
         // Puedes registrar este intento de acceso no autorizado para futuras investigaciones
     }
-    ?>
+        ?>
+            </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

@@ -929,7 +929,7 @@ if ($privilegios != '' && $usua != '') {
                                     </td>
                                     <td width="30%">
                                         <?php
-                                        if ($usua == 'bjimenez' ) {
+                                        if ($usua == 'bjimenez') {
                                         ?>
                                             <input name="codigo_gestion" type="text" id="codigo_gestion" max="10" readonly="readonly" value="<?php echo $ID_GESTION_ULT; ?>" />
                                         <?php
@@ -2785,38 +2785,60 @@ if ($privilegios != '' && $usua != '') {
                 <div class="AccordionPanel">
                     <div class="AccordionPanelTab">NOTAS Y ADJUNTOS</div>
                     <div class="AccordionPanelContent">
-                        <br />
-                        <br />
-                        <div style="width:91.4%;">
-                            <textarea name="nota" id="nota" style="width:100%; height:100px" title="Escriba una Nota" placeholder="Escriba una Nota"></textarea>
-                        </div>
-                        <br />
-                        <br />
-                        <span>Seleccione archivo...</span>
-                        <div class="input__row uploader">
-                            <div id="inputval" class="input-value"></div>
-                            <label for="archivo"></label>
-                            <input type="file" class="upload" name="archivo" id="archivo" class="aceptar">
-                        </div>
-                        <script>
-                            $('#archivo').on('change', function() {
-                                $('#inputval').text($(this).val());
-                            });
-                        </script>
-                        <center>
-                            <?php
-                            if ($privilegios != 5) {
-                            ?>
-                                <input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_registrar" onClick="return validar(seguimiento,2)" />
-                            <?php
-                            }
-                            ?>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
+                        <table width="100%">
+                            <br>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col">
+                                            ¿El paciente requiere ser re consentido?
+                                        </div>
+                                        <div class="col">
+                                            <select name="consentimiento_informado" id="consentimiento_informado">
+                                                <option></option>
+                                                <option>Seleccione...</option>
+                                                <option value="SI">Si, enviar el link al paciente</option>
+                                                <option value="NO">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <textarea name="nota" id="nota" style="width:100%; height:90.5px;" title="Escriba una Nota" placeholder="Escriba una Nota"></textarea>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span>Seleccione archivo...</span>
+                                    <div class="input__row uploader">
+                                        <div id="inputval" class="input-value"></div>
+                                        <label for="archivo"></label>
+                                        <input type="file" class="upload" name="archivo" id="archivo" class="aceptar">
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                $('#archivo').on('change', function() {
+                                    $('#inputval').text($(this).val());
+                                });
+                            </script>
+                            <center>
+                                <?php
+                                if ($privilegios != 5) {
+                                ?>
+                                    <input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_registrar" onClick="return validar(seguimiento,2)" />
+                                <?php
+                                }
+                                ?>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                        </table>
                     </div>
                 </div>
                 <style>

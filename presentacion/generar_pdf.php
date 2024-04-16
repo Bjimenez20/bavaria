@@ -399,7 +399,7 @@ $dompdf = new Dompdf();
 $dompdf->loadHtml($html);
 $dompdf->render();
 $output = $dompdf->output();
-file_put_contents('../EVENTO_ADVERSO/' . $nombre . '_' . $pap . '.pdf', $output);
+file_put_contents('../PDF_CI/' . $nombre . '_' . $pap . '.pdf', $output);
 $update_pap_ci = mysqli_query($conex, "UPDATE ipsen_pacientes SET `CONSENTIMIENTO` = 'NO' WHERE `ID_PACIENTE` = '$pap'");
 if ($update_pap_ci && $insert_pap_ci) {
     include '../presentacion/email/mail_envio_ci_pap.php'; // Envío del correo

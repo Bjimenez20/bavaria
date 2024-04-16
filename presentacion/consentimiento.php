@@ -1,13 +1,13 @@
 <?php
 $ID_PACIENTE = $_POST['ID_PACIENTE'];
 $ID_GESTION_ULT = $_POST['ID_GESTION_ULT'];
+// $PAP = base64_encode($ID_PACIENTE);
+// $GES = base64_encode($ID_GESTION_ULT);
 $time = strtotime("now +168 hours");
 $dominio = 'http://localhost:8000';
 $url = "{$dominio}/presentacion/plantilla_ci.php?pap={$ID_PACIENTE}&ges={$ID_GESTION_ULT}&expires={$time}";
-$length = 32; // Longitud de la clave en bytes (ajusta según necesites)
-$randomBytes = openssl_random_pseudo_bytes($length);
-$secretKey = bin2hex($randomBytes); // Convierte los bytes aleatorios en una cadena hexadecimal
-$signature = hash_hmac("sha256", $url, $secretKey);
+$key = "base64:yv051saGBdRpua6fS3ec5gR8jeymLoIfnejGQSzj70g=";
+$signature = hash_hmac("sha256", $url, $key);
 
 // Crear la URL con la firma incluida
 $url_with_signature = $url . "&signature=" . $signature;

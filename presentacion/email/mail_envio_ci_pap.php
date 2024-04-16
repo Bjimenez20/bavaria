@@ -21,13 +21,12 @@ Cualquier inquietud con gusto sera atendida.
 <br />
 Correo enviado de manera automatica.";
 
-
-$subject = "PROGRAMA DE PACIENTES IPSEN $NOMBRE_PACIENTE - $PAP";
+$subject = "Consentimiento informado - Programa de soporte a pacientes - IPSEN";
 $mail->isHTML(true);
 $mail->Body = $body;
 $mail->Subject = $subject;
 $mail->addAddress($CORREO);
 $mail->addAddress('bjimenez@app-peoplemarketing.com');
-$mail->addAttachment('../EVENTO_ADVERSO/' . $NOMBRE_PACIENTE . '_' . $PAP . '.pdf');
+$mail->addAttachment('../PDF_CI/' . $NOMBRE_PACIENTE . '_' . $PAP . '.pdf');
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->smtpClose();
