@@ -7,12 +7,10 @@ while ($datos = mysqli_fetch_array($select)) {
     $CORREO_PACIENTE = $datos['CORREO_PACIENTE'];
 }
 $time = strtotime("now +168 hours");
-$dominio = 'http://localhost:8000';
+$dominio = 'http://ec2-34-233-161-124.compute-1.amazonaws.com:8007';
 $url = "{$dominio}/presentacion/plantilla_ci.php?pap={$codigo_usuario2}&ges={$ID_ULTIMA_GESTION}&expires={$time}";
-$length = 32; // Longitud de la clave en bytes (ajusta según necesites)
-$randomBytes = openssl_random_pseudo_bytes($length);
-$secretKey = bin2hex($randomBytes); // Convierte los bytes aleatorios en una cadena hexadecimal
-$signature = hash_hmac("sha256", $url, $secretKey);
+$key = "base64:yv051saGBdRpua6fS3ec5gR8jeymLoIfnejGQSzj70g=";
+$signature = hash_hmac("sha256", $url, $key);
 
 // Crear la URL con la firma incluida
 $url_with_signature = $url . "&signature=" . $signature;
