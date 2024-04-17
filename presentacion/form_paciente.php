@@ -2785,12 +2785,12 @@ if ($privilegios != '' && $usua != '') {
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col">
-                                            ¿El paciente requiere ser re consentido?
+                                            <span>¿El paciente requiere ser re consentido?<span class="asterisco">*</span></span>
                                         </div>
                                         <div class="col">
                                             <select name="consentimiento_informado" id="consentimiento_informado">
-                                                <option></option>
-                                                <option>Seleccione...</option>
+                                                <option value=""></option>
+                                                <option value="">Seleccione...</option>
                                                 <option value="SI">Si, enviar el link al paciente</option>
                                                 <option value="NO">No</option>
                                             </select>
@@ -2848,6 +2848,14 @@ if ($privilegios != '' && $usua != '') {
                 </style>
             </div>
         </form>
+        <script>
+            var CONSENTIMIENTO_INFORMADO = $("#consentimiento_informado").val();
+            if (CONSENTIMIENTO_INFORMADO == 'Seleccione...' || CONSENTIMIENTO_INFORMADO == '') {
+                alert('Confirme si el paciente requiere ser re consentido');
+                $('#consentimiento_informado').focus();
+                return false;
+            }
+        </script>
         <script type="text/javascript">
             var Accordion1 = new Spry.Widget.Accordion("Accordion1");
         </script>

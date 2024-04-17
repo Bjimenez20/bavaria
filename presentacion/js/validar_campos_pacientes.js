@@ -1,6 +1,13 @@
 // JavaScript Document
 function validar(tuformulario, val) {
 
+	var CONSENTIMIENTO_INFORMADO = $("#consentimiento_informado").val();
+	if (CONSENTIMIENTO_INFORMADO == 'Seleccione...' || CONSENTIMIENTO_INFORMADO == '') {
+		alert('Confirme si el paciente requiere ser re consentido');
+		$('#consentimiento_informado').focus();
+		return false;
+	}
+
 	var EDUCACION = $('#brindo_educacion')
 	if (EDUCACION == '') {
 		alert('La educacion esta vacia');
@@ -30,6 +37,14 @@ function validar(tuformulario, val) {
 		$('#reclamo').focus();
 		return false;
 	}
+
+	var CONSENTIMIENTO_INFORMADO = $("#consentimiento_informado").val();
+	if (CONSENTIMIENTO_INFORMADO == 'Seleccione...' || CONSENTIMIENTO_INFORMADO == '') {
+		alert('Confirme si el paciente requiere ser re consentido');
+		$('#consentimiento_informado').focus();
+		return false;
+	}
+
 	if (RECLAMO == 'SI') {
 		var MEDICAMENTO = $("#MEDICAMENTO").val();
 		if (MEDICAMENTO == 'BETAFERON CMBP X 15 VPFS (3750 MCG) MM') {
@@ -160,6 +175,13 @@ function validar(tuformulario, val) {
 				return false;
 			}
 		}
+
+		var CONSENTIMIENTO_INFORMADO = $("#consentimiento_informado").val();
+		if (CONSENTIMIENTO_INFORMADO == 'Seleccione...' || CONSENTIMIENTO_INFORMADO == '') {
+			alert('Confirme si el paciente requiere ser re consentido');
+			$('#consentimiento_informado').focus();
+			return false;
+		}
 	}
 	else {
 		var MEDICAMENTO = $("#MEDICAMENTO").val();
@@ -188,6 +210,13 @@ function validar(tuformulario, val) {
 		if (NUMERO_AUTORIZACIONES == '' || NUMERO_AUTORIZACIONES == 'Seleccione...') {
 			alert('Numero De Autorizacion esta vacio');
 			$('#estado_ctc').focus();
+			return false;
+		}
+
+		var CONSENTIMIENTO_INFORMADO = $("#consentimiento_informado").val();
+		if (CONSENTIMIENTO_INFORMADO == 'Seleccione...' || CONSENTIMIENTO_INFORMADO == '') {
+			alert('Confirme si el paciente requiere ser re consentido');
+			$('#consentimiento_informado').focus();
 			return false;
 		}
 	}
@@ -790,6 +819,13 @@ function validar(tuformulario, val) {
 			}
 		}
 
+		var CONSENTIMIENTO_INFORMADO = $("#consentimiento_informado").val();
+		if (CONSENTIMIENTO_INFORMADO == 'Seleccione...' || CONSENTIMIENTO_INFORMADO == '') {
+			alert('Confirme si el paciente requiere ser re consentido');
+			$('#consentimiento_informado').focus();
+			return false;
+		}
+
 		var DESCRIPCION_COMUNICACION = $("#descripcion_comunicacion").val();
 		if (DESCRIPCION_COMUNICACION == '') {
 			alert('La descripcion de comunicacion esta vacia');
@@ -903,6 +939,13 @@ function validar(tuformulario, val) {
 		if (ADMINISTRACION_MEDICAMENTO == '') {
 			alert('La frecuencia de administración del medicamento esta vacia');
 			$('#frecuencia_administracion').focus();
+			return false;
+		}
+
+		var CONSENTIMIENTO_INFORMADO = $("#consentimiento_informado").val();
+		if (CONSENTIMIENTO_INFORMADO == 'Seleccione...' || CONSENTIMIENTO_INFORMADO == '') {
+			alert('Confirme si el paciente requiere ser re consentido');
+			$('#consentimiento_informado').focus();
 			return false;
 		}
 
