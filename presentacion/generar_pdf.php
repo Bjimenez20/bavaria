@@ -14,7 +14,10 @@ $id_ges = $_POST['id_ges'];
 $correo_pap = $_POST['correo_pap'];
 
 $insert_pap_ci = mysqli_query($conex, "INSERT INTO `ipsen_informacion_ci` (`NOMBRE_PACIENTE`, `CORREO`, `ID_PACIENTE_FK`, `ID_GESTION_FK`,`FECHA_FIRMA`) VALUES ('$nombre', '$correo_pap', '$pap', '$id_ges', CURRENT_TIMESTAMP);");
-
+$select_id_ci = mysqli_query($conex, "SELECT * FROM `ipsen_informacion_ci` ORDER BY ID DESC LIMIT 1");
+while ($dato_ci = mysqli_fetch_array($select_id_ci)) {
+    $ID_CI = $dato_ci['ID'];
+}
 // Decodifica la firma base64 si es necesario
 $firma = base64_decode($firmaBase64);
 
@@ -399,7 +402,11 @@ $dompdf = new Dompdf();
 $dompdf->loadHtml($html);
 $dompdf->render();
 $output = $dompdf->output();
-file_put_contents('../PDF_CI/' . $nombre . '_' . $pap . '.pdf', $output);
+$CARPETA = "../PDF_CI/$ID_CI";
+if (!is_dir($CARPETA)) {
+    mkdir("../PDF_CI/$ID_CI", 0777);
+    file_put_contents('' . $CARPETA . '/' . $nombre . '_' . $pap . '.pdf', $output);
+}
 $update_pap_ci = mysqli_query($conex, "UPDATE ipsen_pacientes SET `CONSENTIMIENTO` = 'NO' WHERE `ID_PACIENTE` = '$pap'");
 if ($update_pap_ci && $insert_pap_ci) {
     include '../presentacion/email/mail_envio_ci_pap.php'; // Envío del correo

@@ -2664,7 +2664,9 @@ if ($privilegios != '' && $usua != '') {
                     <div class="AccordionPanelTab" style="padding:5px">COMUNICACIONES</div>
                     <div class="AccordionPanelContent">
                         <?PHP
-                        $gestion = mysqli_query($conex, "SELECT * FROM `ipsen_gestiones` WHERE `ID_PACIENTE_FK2` = '" . $ID_PACIENTE2 . "' ORDER BY `FECHA_COMUNICACION` DESC");
+                        $gestion = mysqli_query($conex, "SELECT `ipsen_gestiones`.*, (SELECT CONCAT(ID, '/', NOMBRE_PACIENTE, '_', ID_PACIENTE_FK) FROM `ipsen_informacion_ci` WHERE `ipsen_informacion_ci`.`ID_GESTION_FK` = `ipsen_gestiones`.`ID_GESTION` 
+                        AND EXISTS( SELECT * FROM `ipsen_pacientes` WHERE `ipsen_informacion_ci`.`ID_PACIENTE_FK` = `ipsen_pacientes`.`ID_PACIENTE`) LIMIT 1) AS file_pdf FROM `ipsen_gestiones` 
+                        WHERE ID_PACIENTE_FK2 =$ID_PACIENTE2 ORDER BY FECHA_COMUNICACION DESC");
                         echo mysqli_error($conex);
                         echo "<table width=100% border=1 rules=all  align=left class=Estilo2 >";
                         echo "<tr style='border:1px solid #fff'>";
@@ -2678,35 +2680,35 @@ if ($privilegios != '' && $usua != '') {
                         echo "<td class=AccordionPanelTab><strong>CODIGO EA</strong></td>";
                         echo "<td class=AccordionPanelTab><strong>ARCHIVO ADJUNTO</strong></td>";
                         if ($privilegios != 4) {
-                            echo "<td class=AccordionPanelTab><strong>EVENTO ADVERSO</strong></td>";
+                            echo "<td class=AccordionPanelTab><strong>CONSENTIMIENTO INFORMADO</strong></td>";
                         }
                         echo "</tr>";
                         $numges = 1;
                         while ($fila2 = mysqli_fetch_array($gestion)) {
                             echo "<tr>";
-                            echo "<td>" . $fila2['FECHA_COMUNICACION'] . "</td>";
-                            echo "<td>";
+                            echo "<td style='border:1px solid gray'>" . $fila2['FECHA_COMUNICACION'] . "</td>";
+                            echo "<td style='border:1px solid gray'>";
                         ?>
                             <textarea name="observaciones" cols="60" rows="2" readonly="readonly" id="observaciones" class="letra" style="text-transform:uppercase"><?php echo $fila2['DESCRIPCION_COMUNICACION_GESTION']; ?></textarea>
                             <?PHP
                             echo "</td>";
-                            echo "<td>" . $fila2['FECHA_PROGRAMADA_GESTION'] . "</td>";
-                            echo "<td>" . $fila2['AUTOR_GESTION'] . "</td>";
-                            echo "<td>" . $fila2['MOTIVO_COMUNICACION_GESTION'] . "</td>";
-                            echo "<td>" . $fila2['FECHA_ULT_RECOLECCION'] . "</td>";
-                            echo "<td>" . $fila2['FECHA_PRO_RECOLECCION'] . "</td>";
+                            echo "<td style='border:1px solid gray'>" . $fila2['FECHA_PROGRAMADA_GESTION'] . "</td>";
+                            echo "<td style='border:1px solid gray'>" . $fila2['AUTOR_GESTION'] . "</td>";
+                            echo "<td style='border:1px solid gray'>" . $fila2['MOTIVO_COMUNICACION_GESTION'] . "</td>";
+                            echo "<td style='border:1px solid gray'>" . $fila2['FECHA_ULT_RECOLECCION'] . "</td>";
+                            echo "<td style='border:1px solid gray'>" . $fila2['FECHA_PRO_RECOLECCION'] . "</td>";
                             if ($privilegios == '1') {
                                 $evento = $fila2['EVENTO_ADVERSO_GESTION'];
                                 if ($evento == 'SI' || $evento == 'Si') {
                             ?>
-                                    <td>
+                                    <td style='border:1px solid gray'>
                                         <input name="CODIGO_ARGUS" id="CODIGO_ARGUS" type="text" maxlength="25" style="width:80%" value="<?php echo $fila2['CODIGO_ARGUS']; ?>" readonly="readonly" />
                                         <a class="btn_gestiones" href="javascript:ventanaSecundaria('../presentacion/codigo_ar.php?xx=<?php echo base64_encode($fila2['ID_GESTION']) ?>&xxp=<?php echo base64_encode($ID_PACIENTE) ?>')"><img src="imagenes/CHULO.png" width="17%" height="25px" title="Agregar Codigo" align="right" /> </a>
                                     </td>
                                 <?php
                                 } else {
                                 ?>
-                                    <td>
+                                    <td style='border:1px solid gray'>
                                     </td>
                                 <?php
                                 }
@@ -2714,14 +2716,14 @@ if ($privilegios != '' && $usua != '') {
                                 $evento = $fila2['EVENTO_ADVERSO_GESTION'];
                                 if ($evento == 'SI' || $evento == 'Si') {
                                 ?>
-                                    <td>
+                                    <td style='border:1px solid gray'>
                                         <input name="CODIGO_ARGUS" id="CODIGO_ARGUS" type="text" maxlength="25" style="width:80%" value="<?php echo $fila2['CODIGO_ARGUS']; ?>" readonly="readonly" />
                                         <a class="btn_gestiones" href="javascript:ventanaSecundaria('../presentacion/codigo_ar.php?xx=<?php echo base64_encode($fila2['ID_GESTION']) ?>&xxp=<?php echo base64_encode($ID_PACIENTE) ?>')"><img src="imagenes/CHULO.png" width="17%" height="25px" title="Agregar Codigo" align="right" /> </a>
                                     </td>
                                 <?php
                                 } else {
                                 ?>
-                                    <td>
+                                    <td style='border:1px solid gray'>
                                     </td>
                                     <?php
                                 }
@@ -2735,7 +2737,7 @@ if ($privilegios != '' && $usua != '') {
                                     } else {
                                         $enlace = $dir . "/" . $archivo;
                                     ?>
-                                        <td>
+                                        <td style='border:1px solid gray'>
                                             <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $enlace ?>')">
                                                 <img src="../presentacion/imagenes/archivo.png" alt="" title="Click to enlarge" height="100" width="100">
                                             </a>
@@ -2746,31 +2748,23 @@ if ($privilegios != '' && $usua != '') {
                                 closedir($directorio);
                             } else {
                                 ?>
-                                <td>
+                                <td style='border:1px solid gray'>
                                 </td>
-                                <?php
+                            <?php
                             }
-                            $EVENTO_ADVERSO = $fila2['EVENTO_ADVERSO_FK'];
-                            $dir = "../EVENTO_ADVERSO/$EVENTO_ADVERSO";
-                            if (file_exists($dir)) {
-                                $directorio = opendir($dir);
-                                while ($archivo = readdir($directorio)) {
-                                    if ($archivo == '.' or $archivo == '..') {
-                                    } else {
-                                        $enlace = $dir . "/" . $archivo;
-                                ?>
-                                        <td>
-                                            <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $enlace ?>')">
-                                                <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="100" width="100">
-                                            </a>
-                                        </td>
-                                <?php
-                                    }
-                                }
-                                closedir($directorio);
+                            $url = "http://ec2-34-233-161-124.compute-1.amazonaws.com:8007/PDF_CI/{$fila2["file_pdf"]}.pdf";
+                            if ($fila2["file_pdf"] != '') {
+                            ?>
+                                <td style='border:1px solid gray'>
+                                    <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
+                                        <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="100" width="100">
+                                    </a>
+                                </td>
+                            <?php
                             } else {
-                                ?>
-                                <td>
+                            ?>
+                                <td style='border:1px solid gray'>
+
                                 </td>
                         <?php
                             }
