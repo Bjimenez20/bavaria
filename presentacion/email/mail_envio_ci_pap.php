@@ -31,7 +31,6 @@ $mail->isHTML(true);
 $mail->Body = $body;
 $mail->Subject = $subject;
 $mail->addAddress($CORREO);
-$mail->addAddress('bjimenez@app-peoplemarketing.com');
 $mail->addAttachment('../PDF_CI/' . $ID . '/' . $NOMBRE_PACIENTE . '_' . $PAP . '.pdf');
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->smtpClose();
