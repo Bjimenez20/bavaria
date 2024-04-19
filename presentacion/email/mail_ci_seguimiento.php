@@ -7,7 +7,7 @@ while ($datos = mysqli_fetch_array($select)) {
     $CORREO_PACIENTE = $datos['CORREO_PACIENTE'];
 }
 $time = strtotime("now +168 hours");
-$dominio = 'http://ec2-34-233-161-124.compute-1.amazonaws.com:8007';
+$dominio = 'https://pspipsen.com';
 $url = "{$dominio}/presentacion/plantilla_ci.php?pap={$codigo_usuario2}&ges={$ID_ULTIMA_GESTION}&expires={$time}";
 $key = "base64:yv051saGBdRpua6fS3ec5gR8jeymLoIfnejGQSzj70g=";
 $signature = hash_hmac("sha256", $url, $key);

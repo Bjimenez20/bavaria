@@ -2752,7 +2752,7 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                             <?php
                             }
-                            $url = "http://ec2-34-233-161-124.compute-1.amazonaws.com:8007/PDF_CI/{$fila2["file_pdf"]}.pdf";
+                            $url = "https://pspipsen.com/PDF_CI/{$fila2["file_pdf"]}.pdf";
                             if ($fila2["file_pdf"] != '') {
                             ?>
                                 <td style='border:1px solid gray'>
