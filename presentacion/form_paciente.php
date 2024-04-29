@@ -2571,24 +2571,23 @@ if ($privilegios != '' && $usua != '') {
                                 <span>Frecuencia de administración del medicamento<span class="asterisco">*</span></span>
                             </td>
                             <td>
-                                <!-- <input type="text" name="frecuencia" id="frecuencia" value="<?php echo $FRECUENCIA_MEDICAMENTO ?>"> -->
                                 <select name="frecuencia" id="frecuencia">
                                     <option value="<?php echo $FRECUENCIA_MEDICAMENTO ?>"><?php echo $FRECUENCIA_MEDICAMENTO ?></option>
                                     <option value="">Seleccione...</option>
-                                    <option>FRECUENCIA_MEDICAMENTO</option>
-                                    <option>1 TABLETA CADA 12 HORAS</option>
-                                    <option>1 TABLETA CADA 24 HORAS</option>
-                                    <option>2 TABLETAS CADA 24 HORAS</option>
-                                    <option>CADA 15 DIAS</option>
-                                    <option>CADA 20 DIAS</option>
-                                    <option>CADA 21 DIAS</option>
-                                    <option>CADA 28 DIAS</option>
-                                    <option>CADA 30 DIAS</option>
-                                    <option>CADA 42 DIAS</option>
-                                    <option>CADA 45 DIAS</option>
-                                    <option>CADA 60 DIAS</option>
-                                    <option>CADA 90 DIAS</option>
-                                    <option>POR CONFIRMAR</option>
+                                    <option value="1 TABLETA CADA 12 HORAS">1 TABLETA CADA 12 HORAS</option>
+                                    <option value="1 TABLETA CADA 24 HORAS">1 TABLETA CADA 24 HORAS</option>
+                                    <option value="2 TABLETAS CADA 24 HORAS">2 TABLETAS CADA 24 HORAS</option>
+                                    <option value="CADA 15 DIAS">CADA 15 DIAS</option>
+                                    <option value="CADA 20 DIAS">CADA 20 DIAS</option>
+                                    <option value="CADA 21 DIAS">CADA 21 DIAS</option>
+                                    <option value="CADA 24 DIAS">CADA 24 DIAS</option>
+                                    <option value="CADA 28 DIAS">CADA 28 DIAS</option>
+                                    <option value="CADA 30 DIAS">CADA 30 DIAS</option>
+                                    <option value="CADA 42 DIAS">CADA 42 DIAS</option>
+                                    <option value="CADA 45 DIAS">CADA 45 DIAS</option>
+                                    <option value="CADA 60 DIAS">CADA 60 DIAS</option>
+                                    <option value="CADA 90 DIAS">CADA 90 DIAS</option>
+                                    <option value="POR CONFIRMAR">POR CONFIRMAR</option>
                                 </select>
                             </td>
                         </tr>
