@@ -14,7 +14,13 @@ require '../datos/conex.php';
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         #signatureCanvas {
+            border: 1px solid black;
+        }
+
+        #canvas {
             border: 2px solid #000;
+            border-radius: 25px;
+            margin: 20px 0;
         }
 
         .titulo {
@@ -417,15 +423,15 @@ require '../datos/conex.php';
                             <div class="col mb-3">
                                 <div class="row-reverse">
                                     <div class="col d-flex justify-content-center">
-                                        <canvas id="canvas" width="500" height="200" class="border border-3 border-dark rounded-5"></canvas>
+                                        <canvas id="canvas" width="300" height="150"></canvas>
                                     </div>
-                                    <div class="col my-3">
+                                    <div class="col mb-3">
                                         <div class="row">
-                                            <div class="col-4 mx-auto">
-                                                <button class="btn btn-danger w-100" id="clearBtn">Limpiar</button>
+                                            <div class="col d-flex justify-content-end">
+                                                <button class="btn btn-danger" id="clearBtn">Limpiar</button>
                                             </div>
-                                            <div class="col-4 mx-auto">
-                                                <button class="btn btn-primary w-100" id="saveBtn">Confirmar firma</button>
+                                            <div class="col d-flex justify-content-right">
+                                                <button class="btn btn-primary" id="saveBtn">Confirmar firma</button>
                                             </div>
                                         </div>
                                     </div>
@@ -447,12 +453,48 @@ require '../datos/conex.php';
                     var context = canvas.getContext('2d');
                     var isDrawing = false;
 
+                    // Función para obtener las coordenadas táctiles
+                    function getTouchPos(canvasDom, touchEvent) {
+                        var rect = canvasDom.getBoundingClientRect();
+                        return {
+                            x: touchEvent.touches[0].clientX - rect.left,
+                            y: touchEvent.touches[0].clientY - rect.top
+                        };
+                    }
+
+                    // Evento de inicio de toque
+                    canvas.addEventListener('touchstart', function(event) {
+                        event.preventDefault();
+                        var touchPos = getTouchPos(canvas, event);
+                        isDrawing = true;
+                        context.beginPath();
+                        context.moveTo(touchPos.x, touchPos.y);
+                    }, false);
+
+                    // Evento de movimiento de toque
+                    canvas.addEventListener('touchmove', function(event) {
+                        event.preventDefault();
+                        if (isDrawing) {
+                            var touchPos = getTouchPos(canvas, event);
+                            context.lineTo(touchPos.x, touchPos.y);
+                            context.stroke();
+                        }
+                    }, false);
+
+                    // Evento de finalización de toque
+                    canvas.addEventListener('touchend', function(event) {
+                        event.preventDefault();
+                        isDrawing = false;
+                    }, false);
+
+                    // Evento de inicio de clic (ratón)
                     canvas.addEventListener('mousedown', function(event) {
                         isDrawing = true;
                         context.beginPath();
                         context.moveTo(event.offsetX, event.offsetY);
                     });
 
+                    // Evento de movimiento de ratón
                     canvas.addEventListener('mousemove', function(event) {
                         if (isDrawing) {
                             context.lineTo(event.offsetX, event.offsetY);
@@ -460,9 +502,11 @@ require '../datos/conex.php';
                         }
                     });
 
+                    // Evento de finalización de clic (ratón)
                     canvas.addEventListener('mouseup', function() {
                         isDrawing = false;
                     });
+
 
                     document.getElementById('clearBtn').addEventListener('click', function() {
                         Swal.fire({

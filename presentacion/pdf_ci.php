@@ -217,7 +217,6 @@
             </p>
             <span class="br"></span>
             <span class="br"></span>
-            <span class="br"></span>
             <p class="texto" style="margin-top: 1%;">
                 Usted no está obligado a autorizar el tratamiento de sus Datos Personales sensibles como aquellos
                 relacionados a su salud. Usted declara y expresa que es consciente de sus derechos a conocer, actualizar,
