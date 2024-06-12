@@ -8,9 +8,7 @@ include('../logica/session.php')
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IPSEN</title>
-    <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
-    <script src="css/SpryAssets/SpryAccordion.js" type="text/javascript"></script>
-    <link href="css/SpryAssets/SpryAccordion.css" rel="stylesheet" type="text/css" />
+    <!-- <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" /> -->
     <script src="js/jquery.js"></script>
     <script type="text/javascript" src="js/calcular_edad.js"></script>
     <script type="text/javascript" src="js/direccion.js"></script>
@@ -19,11 +17,14 @@ include('../logica/session.php')
     <script type="text/javascript" src="js/validar_caracteres.js"></script>
     <script src="../presentacion/js/jquery.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(function() {
             $("#asegurador").select2();
@@ -44,139 +45,11 @@ include('../logica/session.php')
             $("#medico_tratante").select2();
         });
     </script>
-    <style>
-        body {
-            background: #eee;
-            font-family: Tahoma, Geneva, sans-serif;
-            font-size: 15px;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            color: #444;
-            line-height: 28px;
-            font-size: 14px;
-        }
-
-        .select2-search--dropdown {
-            display: block;
-            padding: 4px;
-        }
-
-        .select2-container--default .select2-results>.select2-results__options {
-            max-height: 200px;
-            overflow-y: auto;
-            font-size: 14px;
-        }
-
-        .select2-search--dropdown .select2-search__field {
-            padding: 4px;
-            width: 100%;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-
-        select,
-        textarea {
-            margin: 0;
-            font-family: inherit;
-            font-size: 13px;
-            line-height: inherit;
-        }
-
-        button,
-        input,
-        optgroup,
-        select,
-        textarea {
-            margin: 0;
-            font-family: inherit;
-            font-size: 13px;
-            line-height: inherit;
-        }
-
-        .signupdiv {
-            background: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 1px 2px 3px #ccc;
-            padding: 10px;
-            margin-top: 100px;
-        }
-
-        .form-group {
-            margin-bottom: 10px;
-        }
-
-        td {
-            padding: 6px;
-            background-color: transparent;
-        }
-
-        .custom-input-file {
-            background-color: #0C68B0;
-            color: #fff;
-            width: 313px;
-            border: 1px solid rgb(206, 212, 218);
-        }
-
-        .custom-input-file .input-file {
-            cursor: pointer;
-            margin: 0;
-            outline: 0 none;
-            padding: 0;
-        }
-
-        input[type=file] {
-            width: 95%;
-            height: 20%
-        }
-    </style>
     <script language=javascript>
         function ventanaSecundaria(URL) {
             window.open(URL, "ventana1", "width=1650,height=500,Top=150,Left=50%")
         }
     </script>
-    <style>
-        td {
-            padding: 3px;
-            background-color: transparent;
-        }
-
-        .input__row {
-            margin-top: 10px;
-        }
-
-        .upload {
-            display: none;
-        }
-
-        .uploader {
-            border: 2px solid #2797d3;
-            width: 300px;
-            position: relative;
-            height: 30px;
-            display: flex;
-        }
-
-        .uploader .input-value {
-            width: 250px;
-            padding: 5px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-height: 25px;
-            font-family: sans-serif;
-            font-size: 16px;
-        }
-
-        .uploader label {
-            cursor: pointer;
-            margin: 0;
-            width: 30px;
-            height: 30px;
-            position: absolute;
-            right: 0;
-            background: #2797d3 url('https://www.interactius.com/wp-content/uploads/2017/09/folder.png') no-repeat center;
-        }
-    </style>
     <script type="text/javascript">
         function trat_previo(sel) {
             if (sel.value == "Otro") {
@@ -410,7 +283,6 @@ include('../logica/session.php')
                     $('#envio_evento_adverso_div').css('display', 'none');
                 }
             });
-
             $("input[name=tipo_evento_adverso]").change(function() {
                 var evento_adverso_tipo = $('#tipo_evento_adverso:checked').val();
                 if (evento_adverso_tipo == 'Farmacovigilancia') {
@@ -424,8 +296,6 @@ include('../logica/session.php')
                     $('#tecnovigilancia').css('display', 'none');
                 }
             });
-
-
             $("#medico").change(function() {
                 $("#medico_nuevo").val('');
                 var medico = $('#medico').val();
@@ -538,7 +408,6 @@ include('../logica/session.php')
                 var edad = nacio(fecha);
                 $("#edad").val(edad);
             });
-
 
             function reclamo() {
                 $("#causa_no_reclamacion").attr("selected", "selected");
@@ -666,11 +535,9 @@ include('../logica/session.php')
             $("#reclamo").change(function() {
                 reclamo();
             });
-
             $("#aplicacion_m").change(function() {
                 aplicaciones();
             });
-
             $("#brindo_educacion").change(function() {
                 BrindoEducacion();
             });
@@ -746,7 +613,6 @@ include('../logica/session.php')
                     $('#estado_suspendido').css('display', 'none');
                     $('#cambio_estado_interrumpido_solicitar').css('display', 'none');
                     $('#estado_interrumpido').css('display', 'none');
-
                 } else {
                     $('#causa_no_reclamacion').css('display', 'block');
                     $("#fecha_reclamacion_span").css('display', 'none');
@@ -758,7 +624,6 @@ include('../logica/session.php')
                     $('#solo_psp').css('display', 'none');
                 }
             });
-
             $('#causa_no_reclamacion').change(function() {
                 var CAUSA_NO_RECLAMACION = $('#causa_no_reclamacion').val();
                 $('#cambio_estado_abandono_solicitar').val('');
@@ -770,7 +635,6 @@ include('../logica/session.php')
                     $('#estado_abandono').css('display', 'none');
                 }
             });
-
             $('#causa_no_reclamacion').change(function() {
                 var CAUSA_NO_RECLAMACION = $('#causa_no_reclamacion').val();
                 $('#cambio_estado_suspendido_solicitar').val('');
@@ -782,7 +646,6 @@ include('../logica/session.php')
                     $('#estado_suspendido').css('display', 'none');
                 }
             });
-
             $('#causa_no_reclamacion').change(function() {
                 var CAUSA_NO_RECLAMACION = $('#causa_no_reclamacion').val();
                 $('#cambio_estado_interrumpido_solicitar').val('');
@@ -794,7 +657,6 @@ include('../logica/session.php')
                     $('#estado_interrumpido').css('display', 'none');
                 }
             });
-
             $('#cambio_dosis').change(function() {
                 var CAMBIO_DOSIS = $('#cambio_dosis').val();
                 if (CAMBIO_DOSIS == 'SI') {
@@ -813,7 +675,6 @@ include('../logica/session.php')
                     $('#fecha_cambio_dosis').css('display', 'none');
                 }
             });
-
         });
     </script>
     <script>
@@ -844,40 +705,227 @@ $DIAS_ANTES = date('Y-m-d', strtotime('-31 day'));
 if ($privilegios != '' && $usua != '') {
 ?>
 
-    <body class="body" style="width:100%;">
+    <body class="body">
         <form id="seguimiento" name="seguimiento" method="post" action="../logica/actualizar_seguimiento.php" enctype="multipart/form-data" class="letra">
-            <div id="Accordion1" class="Accordion" tabindex="0" style="height:100%;">
-                <div class="AccordionPanel">
-                    <div class="AccordionPanelTab">PACIENTE</div>
-                    <div class="AccordionPanelContent">
-                        <table width="100%" border="0">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header " id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            LINEA DE TIEMPO PACIENTE
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
                             <?php
                             $Seleccion_consentimiento = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` WHERE ID_PACIENTE = '" . $ID_PACIENTE . "'");
                             while ($fila = mysqli_fetch_array($Seleccion_consentimiento)) {
                                 $CONSENTIMIENTO = $fila['CONSENTIMIENTO'];
-                                if ($CONSENTIMIENTO == 'SI') {
+                            }
+                            $sel_ges = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2 = '" . $ID_PACIENTE . "' ORDER BY ID_GESTION DESC LIMIT 1");
+                            while ($con_ges = mysqli_fetch_array($sel_ges)) {
+                                $ID_GESTION_ULT = $con_ges['ID_GESTION'];
+                                $FECHA_NO_RECLAMACION = $con_ges['FECHA_CITA_PROGRAMADA'];
+                                $RECLAMO_GESTION = $con_ges['RECLAMO_GESTION'];
+                                $CAUSA_NO_RECLAMACION_GESTION = $con_ges['CAUSA_NO_RECLAMACION_GESTION'];
+                                $FECHA_MEDICAMENTO_HASTA = $con_ges['FECHA_MEDICAMENTO_HASTA'];
+                                $FECHA_RECLAMACIONN = $con_ges['FECHA_RECLAMACION_GESTION'];
+                                $FECHA_AUTORIZACION = $con_ges['FECHA_AUTORIZACION'];
+                            }
+                            $Seleccion_pa_tra = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` AS P
+							INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
+							WHERE ID_PACIENTE = '" . $ID_PACIENTE . "'");
+                            while ($fila_pa_tra = mysqli_fetch_array($Seleccion_pa_tra)) {
+                                $ID_PACIENTE2 = $fila_pa_tra['ID_PACIENTE'];
+                                $ID_PA = $fila_pa_tra['ID_PACIENTE'];
+                                $ESTADO_PACIENTE = $fila_pa_tra['ESTADO_PACIENTE'];
+                                $FECHA_ACTIVACION_PACIENTE = $fila_pa_tra['FECHA_ACTIVACION_PACIENTE'];
+                                $PROVEEDOR = $fila_pa_tra['PROVEEDOR'];
+                                $NOMBRE_REFERENCIA = $fila_pa_tra['NOMBRE_REFERENCIA'];
+                                $producto_tratamiento = $fila_pa_tra['PRODUCTO_TRATAMIENTO'];
+                                $STATUS_PACIENTE = $fila_pa_tra['STATUS_PACIENTE'];
+                                $PROVEEDOR = $fila_pa_tra['PROVEEDOR'];
+                                $PRODUCTO_TRATAMIENTO = $fila_pa_tra['PRODUCTO_TRATAMIENTO'];
+                                $DOSIS = $fila_pa_tra['DOSIS_TRATAMIENTO'];
+                                $TRATAMIENTO_PREVIOS = $fila_pa_tra['TRATAMIENTO_PREVIO'];
+                                $FRECUENCIA_MEDICAMENTO = $fila_pa_tra['FRECUENCIA_MEDICAMENTO'];
+                                $VISI_INI_EFEC = $fila_pa_tra['VISI_INI_EFEC'];
+                            }
+                            $select_edu_linea = mysqli_query($conex, "SELECT * FROM `ipsen_educacion` WHERE ID_PACI_FK = '" . $ID_PACIENTE . "' ORDER BY ID_EDU DESC LIMIT 1");
+                            while ($fila_edu = mysqli_fetch_array($select_edu_linea)) {
+                                $TEMA_SI_EDU = $fila_edu['TEMA_SI_EDU'];
+                                $FECHA_SI_EDU = $fila_edu['FECHA_SI_EDU'];
+                            }
+                            if ($CONSENTIMIENTO == 'SI') {
                             ?>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <div class="alert alert-danger" role="alert">
-                                                El paciente requiere ser re consentido, por favor copie el link del consentimiento para remitir al
-                                                paciente <a href="#" onclick="mostrar_consentimiento()">Ver link</a>
-                                                <tr>
-                                                    <td>
-                                                        <span id="url_span_consentimiento" style="display: none;">Url Consentimiento <span class="asterisco">*</span></span>
-                                                    </td>
-                                                    <td colspan="3">
-                                                        <span id="span_consentimiento" style="display: none;"></span>
-                                                    </td>
-                                                </tr>
-                                            </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="alert alert-danger" role="alert">
+                                            El paciente requiere ser re consentido, por favor copie el link del consentimiento para remitir al
+                                            paciente <a href="#" onclick="mostrar_consentimiento()">Ver link</a>
+                                            <tr>
+                                                <td>
+                                                    <span id="url_span_consentimiento" style="display: none;">Url Consentimiento <span class="asterisco">*</span></span>
+                                                </td>
+                                                <td colspan="3">
+                                                    <span id="span_consentimiento" style="display: none;"></span>
+                                                </td>
+                                            </tr>
                                         </div>
                                     </div>
-
+                                </div>
                             <?php
-                                }
                             }
                             ?>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Codigo de Usuario <span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" name="codigo_usuario" type="text" id="codigo_usuario" max="10" readonly value="<?php echo 'PAP' . $ID_PACIENTE; ?>" />
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold">Estado del Paciente<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <select type="text" name="estado_paciente" id="estado_paciente" class="form-control">
+                                        <option><?php echo $ESTADO_PACIENTE ?></option>
+                                        <option value="">Seleccione...</option>
+                                        <option>Activo</option>
+                                        <option>Inactivo</option>
+                                        <option>Nuevo</option>
+                                        <option>Suspendido</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col">
+                                    <span class="fw-bold">Fecha de Activacion<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="date" name="fecha_activacion" id="fecha_activacion" value="<?php echo $FECHA_ACTIVACION_PACIENTE ?>" readonly>
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold">Asignado para</span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" value="<?php echo $PROVEEDOR ?>" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <span class="fw-bold">Consentimiento Informado</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <?php
+                                        $gestion_ci = mysqli_query($conex, "SELECT `ipsen_gestiones`.*, (SELECT CONCAT(ID, '/', NOMBRE_PACIENTE, '_', ID_PACIENTE_FK) FROM `ipsen_informacion_ci` WHERE `ipsen_informacion_ci`.`ID_GESTION_FK` = `ipsen_gestiones`.`ID_GESTION` AND EXISTS( SELECT * FROM `ipsen_pacientes` WHERE `ipsen_informacion_ci`.`ID_PACIENTE_FK` = `ipsen_pacientes`.`ID_PACIENTE`) LIMIT 1) AS file_pdf FROM `ipsen_gestiones` WHERE ID_PACIENTE_FK2 =$ID_PACIENTE2 ORDER BY FECHA_COMUNICACION DESC LIMIT 1");
+                                        while ($fila_ci = mysqli_fetch_array($gestion_ci)) {
+                                            $url = "http://localhost:8000/PDF_CI/{$fila_ci["file_pdf"]}.pdf";
+                                            if ($fila_ci["file_pdf"] != '') {
+                                        ?>
+                                                <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
+                                                    <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="100" width="100" style="margin-left: 15%;">
+                                                </a>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <div class="border border-danger" style="width: 60%; height: 50%;">
+                                                    <p style="text-align: center;">Sin Consentimiento Informado</p>
+                                                </div>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <span class="fw-bold">Grabación llamada inicial</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
+                                            <img src="../presentacion/imagenes/reproducir.png" alt="" title="Click to enlarge" height="100" width="100" style="margin-left: 15%;">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col">
+                                            <?php
+                                            if ($RECLAMO_GESTION == 'SI') {
+                                            ?>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="fw-bold">Fecha de ultima Reclamación</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="date" class="form-control" value="<?php echo $FECHA_RECLAMACIONN ?>" readonly>
+                                                    </div>
+                                                </div>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="fw-bold">Causa No Reclamación <span class="asterisco">*</span></span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" class="form-control" value="<?php echo $CAUSA_NO_RECLAMACION_GESTION ?>" readonly>
+                                                    </div>
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h5>
+                                        <span class="fw-bold">Educación Mes Actual</span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="fw-bold">Tema</span>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" value="<?php echo $TEMA_SI_EDU ?>" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="fw-bold">Fecha Educación</span>
+                                        </div>
+                                        <div class="col">
+                                            <input type="date" class="form-control" value="<?php echo $FECHA_SI_EDU ?>" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header " id="headingTwo">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            PACIENTE
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
                             <?php
                             $Sel = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2 = '" . $ID_PACIENTE . "' ORDER BY ID_GESTION DESC LIMIT 1");
                             while ($con = mysqli_fetch_array($Sel)) {
@@ -914,14 +962,13 @@ if ($privilegios != '' && $usua != '') {
                                 }
                                 $ID_PACIENTE = Zeros($ID_PA, 5);
                             ?>
-                                <input type="text" style="display:none;" name="nombre_referencia" id="nombre_referencia" value="<?php echo $NOMBRE_REFERENCIA; ?>" readonly="readonly" />
-                                <tr>
+                                <input type="text" style="display:none;" name="nombre_referencia" id="nombre_referencia" value="<?php echo $NOMBRE_REFERENCIA; ?>" readonly />
+                                <!-- <tr>
                                     <td width="20%">
                                         <span>Codigo de Usuario</span>
                                         <?php
                                         if ($fila['PRODUCTO_TRATAMIENTO'] == 'Xofigo 1x6 ml CO') {
                                         ?>
-                                            <br />
                                             <span>Codigo Xofigo</span>
                                         <?php
                                         }
@@ -931,20 +978,19 @@ if ($privilegios != '' && $usua != '') {
                                         <?php
                                         if ($usua == 'bjimenez') {
                                         ?>
-                                            <input name="codigo_gestion" type="text" id="codigo_gestion" max="10" readonly="readonly" value="<?php echo $ID_GESTION_ULT; ?>" />
+                                            <input name="codigo_gestion" type="text" id="codigo_gestion" max="10" readonly value="<?php echo $ID_GESTION_ULT; ?>" />
                                         <?php
                                         }
                                         ?>
-                                        <input name="codigo_usuario" type="text" id="codigo_usuario" max="10" readonly="readonly" value="<?php echo 'PAP' . $ID_PACIENTE; ?>" />
+                                        <input name="codigo_usuario" type="text" id="codigo_usuario" max="10" readonly value="<?php echo 'PAP' . $ID_PACIENTE; ?>" />
                                         <?php
                                         if ($fila['PRODUCTO_TRATAMIENTO'] == 'Xofigo 1x6 ml CO') {
                                         ?>
-                                            <br />
-                                            <input name="codigo_xofigo" type="text" id="codigo_xofigo" max="10" readonly="readonly" value="<?php echo 'X' . $fila['CODIGO_XOFIGO']; ?>" />
+                                            <input name="codigo_xofigo" type="text" id="codigo_xofigo" max="10" readonly value="<?php echo 'X' . $fila['CODIGO_XOFIGO']; ?>" />
                                         <?php
                                         }
                                         ?>
-                                        <input name="codigo_usuario2" type="text" id="codigo_usuario2" max="10" readonly="readonly" value="<?php echo $fila['ID_PACIENTE']; ?>" style="display:none" />
+                                        <input name="codigo_usuario2" type="text" id="codigo_usuario2" max="10" readonly value="<?php echo $fila['ID_PACIENTE']; ?>" style="display:none" />
                                     </td>
                                     <td width="20%">
                                         <span>Estado del Paciente<span class="asterisco">*</span></span>
@@ -959,33 +1005,19 @@ if ($privilegios != '' && $usua != '') {
                                             <option>Suspendido</option>
                                         </select>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td width="20%">
-                                        <span>Fecha de Activacion<span class="asterisco">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    </td>
-                                    <td width="30%">
-                                        <input type="date" name="fecha_activacion" id="fecha_activacion" value="<?php echo $fila['FECHA_ACTIVACION_PACIENTE']; ?>" readonly="readonly" />
-                                    </td>
-                                    <td>
-                                        <span>Asignado para</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" value="<?php echo $fila['PROVEEDOR'] ?>" readonly="readonly">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="20%">
-                                        <span>Fecha de Retiro&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    </td>
-                                    <td width="30%">
-                                        <input type="date" name="fecha_retiro" id="fecha_retiro" max="10" value="<?php echo $fila['FECHA_RETIRO_PACIENTE']; ?>" />
-                                    </td>
-                                    <td width="20%">
-                                        <span>Motivo de Retiro</span>
-                                    </td>
-                                    <td>
-                                        <select type="text" name="motivo_retiro" id="motivo_retiro">
+                                </tr> -->
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Fecha de Retiro <span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="date" name="fecha_retiro" id="fecha_retiro" max="10" value="<?php echo $fila['FECHA_RETIRO_PACIENTE']; ?>">
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Motivo de Retiro <span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select type="text" name="motivo_retiro" id="motivo_retiro" class="form-control">
                                             <option><?php echo $fila['MOTIVO_RETIRO_PACIENTE']; ?></option>
                                             <option value="">Seleccione...</option>
                                             <option>Cambio de tratamiento</option>
@@ -1003,36 +1035,34 @@ if ($privilegios != '' && $usua != '') {
                                             <option>Voluntario</option>
                                             <option value="">NO APLICA</option>
                                         </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Observaciones Motivo de Retiro</span>
-                                    </td>
-                                    <td colspan="3">
-                                        <textarea name="observacion_retiro" id="observacion_retiro" style="width:98%; height:100px"><?php echo $fila['OBSERVACION_MOTIVO_RETIRO_PACIENTE']; ?></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Nombre<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="nombre" id="nombre" value="<?php echo $fila['NOMBRE_PACIENTE']; ?>" readonly="readonly" />
-                                    </td>
-                                    <td>
-                                        <span>Apellidos<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="apellidos" id="apellidos" value="<?php echo $fila['APELLIDO_PACIENTE']; ?>" readonly="readonly" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Tipo de identificacion<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td>
-                                        <select name="tipo_identificacion" id="tipo_identificacion">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Observaciones Motivo de Retiro <span class="asterisco">*</span></span>
+                                        <textarea class="form-control" name="observacion_retiro" id="observacion_retiro" style="width:98%; height:100px"><?php echo $fila['OBSERVACION_MOTIVO_RETIRO_PACIENTE']; ?></textarea>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Nombre<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="nombre" id="nombre" value="<?php echo $fila['NOMBRE_PACIENTE']; ?>" readonly />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Apellidos<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="apellidos" id="apellidos" value="<?php echo $fila['APELLIDO_PACIENTE']; ?>" readonly />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Tipo de identificacion<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select name="tipo_identificacion" id="tipo_identificacion" class="form-control">
                                             <option><?php echo $fila['TIPO_IDENTIFICACION_PACIENTE'] ?></option>
                                             <option value="">Seleccione...</option>
                                             <option>R.C</option>
@@ -1041,62 +1071,62 @@ if ($privilegios != '' && $usua != '') {
                                             <option>C.E</option>
                                             <option>P.T</option>
                                         </select>
-                                    </td>
-                                    <td>
-                                        <span>Identificacion<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="identificacion" id="identificacion" value="<?php echo $fila['IDENTIFICACION_PACIENTE']; ?>" readonly="readonly" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Telefono 1<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td>
-                                        <input type="number" name="telefono1" id="telefono1" value="<?php echo $fila['TELEFONO_PACIENTE']; ?>" />
-                                    </td>
-                                    <td>
-                                        <span>Telefono 2</span>
-                                    </td>
-                                    <td>
-                                        <input type="number" name="telefono2" id="telefono2" value="<?php echo $fila['TELEFONO2_PACIENTE']; ?>" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Telefono 3</span>
-                                    </td>
-                                    <td>
-                                        <input type="number" name="telefono3" id="telefono3" value="<?php echo $fila['TELEFONO3_PACIENTE']; ?>" />
-                                    </td>
-                                    <td>
-                                        <span>Telefono 4</span>
-                                    </td>
-                                    <td>
-                                        <input type="number" name="telefono4" id="telefono4" value="<?php echo $fila['TELEFONO4_PACIENTE']; ?>" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Telefono 5</span>
-                                    </td>
-                                    <td>
-                                        <input type="number" name="telefono5" id="telefono5" value="<?php echo $fila['TELEFONO5_PACIENTE']; ?>" />
-                                    </td>
-                                    <td>
-                                        <span>Correo Electronico</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="correo" id="correo" value="<?php echo $fila['CORREO_PACIENTE']; ?>" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Departamento<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td>
-                                        <select type="text" name="departamento" id="departamento" onchange="mostrar_ciudades()">
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Identificacion<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="identificacion" id="identificacion" value="<?php echo $fila['IDENTIFICACION_PACIENTE']; ?>" readonly />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono 1<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="telefono1" id="telefono1" value="<?php echo $fila['TELEFONO_PACIENTE']; ?>" />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono 2</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="telefono2" id="telefono2" value="<?php echo $fila['TELEFONO2_PACIENTE']; ?>" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono 3</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="telefono3" id="telefono3" value="<?php echo $fila['TELEFONO3_PACIENTE']; ?>" />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono 4</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="telefono4" id="telefono4" value="<?php echo $fila['TELEFONO4_PACIENTE']; ?>" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono 5</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="telefono5" id="telefono5" value="<?php echo $fila['TELEFONO5_PACIENTE']; ?>" />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Correo Electronico</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="correo" id="correo" value="<?php echo $fila['CORREO_PACIENTE']; ?>" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Departamento<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select type="text" name="departamento" id="departamento" onchange="mostrar_ciudades()" class="form-control">
                                             <option><?php echo $fila['DEPARTAMENTO_PACIENTE']; ?></option>
                                             <option value="">Seleccione...</option>
                                             <?php
@@ -1108,12 +1138,12 @@ if ($privilegios != '' && $usua != '') {
                                             }
                                             ?>
                                         </select>
-                                    </td>
-                                    <td>
-                                        <span>Ciudad<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td>
-                                        <select type="text" name="ciudad" id="ciudad">
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Ciudad<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select type="text" name="ciudad" id="ciudad" class="form-control">
                                             <option><?php echo $fila['CIUDAD_PACIENTE']; ?></option>
                                             <option value="">Seleccione...</option>
                                             <?php
@@ -1126,41 +1156,41 @@ if ($privilegios != '' && $usua != '') {
                                             }
                                             ?>
                                         </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Barrio<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="barrio" id="barrio" value="<?php echo $fila['BARRIO_PACIENTE']; ?>" onkeypress="return check(event)" />
-                                    </td>
-                                    <td>
-                                        <span>Direccion<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td colspan="3">
-                                        <input name="direccion_act" id="direccion_act" style="width:93%" value="<?php echo $fila['DIRECCION_PACIENTE']; ?>" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Barrio<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="barrio" id="barrio" value="<?php echo $fila['BARRIO_PACIENTE']; ?>" onkeypress="return check(event)" />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Direccion<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" name="direccion_act" id="direccion_act" style="width:93%" value="<?php echo $fila['DIRECCION_PACIENTE']; ?>" readonly />
                                         <img src="imagenes/lapiz 100.png" id="cambio" name="cambio" title="Editar" style="width:4%; height:20px; margin-left:-10%;" align="right" />
-                                    </td>
-                                </tr>
-                                <tr style="padding:3%;">
-                                    <td colspan="4" width="90%">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
                                         <div id="cambio_direccion" style="display:none; border:#F00 1px solid;">
-                                            <table width="99%">
-                                                <tr style="padding:3%;">
-                                                    <td style="width:10%;">
-                                                        <span>Direccion<span class="asterisco">*</span></span>
-                                                    </td>
-                                                    <td bgcolor="#FFFFFF" colspan="3">
-                                                        <input type="text" name="DIRECCION" id="DIRECCION" readonly="readonly" style="width:99.8%;" />
-                                                    </td>
-                                                </tr>
-                                                <tr style="padding:3%;">
-                                                    <td>
-                                                        <span>Via:</span>
-                                                    </td>
-                                                    <td style="width:35%">
-                                                        <select id="VIA" name="VIA" style="width:96%">
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <span class="fw-bold">Direccion<span class="asterisco">*</span></span>
+                                                </div>
+                                                <div class="col-10">
+                                                    <input type="text" name="DIRECCION" id="DIRECCION" readonly class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <span class="fw-bold">Via:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <select id="VIA" name="VIA" class="form-control">
                                                             <option value="">Seleccione...</option>
                                                             <option>ANILLO VIAL</option>
                                                             <option>AUTOPISTA</option>
@@ -1180,32 +1210,39 @@ if ($privilegios != '' && $usua != '') {
                                                             <option>VEREDA</option>
                                                             <option>VIA</option>
                                                         </select>
-                                                    </td>
-                                                    <td style="width:10%;">
-                                                        <span>Detalle via:</span>
-                                                    </td>
-                                                    <td width="177" bgcolor="#FFFFFF">
-                                                        <input name="detalle_via" id="detalle_via" type="text" maxlength="30" style="width:99%" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="96">
-                                                        <span>Numero:</span>
-                                                    </td>
-                                                    <td bgcolor="#FFFFFF">
-                                                        <input name="numero" id="numero" type="text" maxlength="5" style=" width:45%" />
-                                                        -
-                                                        <input name="numero2" id="numero2" type="text" maxlength="5" style=" width:45%" />
-                                                    </td>
-                                                    <td></td>
-                                                    <td bgcolor="#FFFFFF"></td>
-                                                </tr>
-                                                <tr style="padding:3%;">
-                                                    <td>
-                                                        <span>Interior:</span>
-                                                    </td>
-                                                    <td bgcolor="#FFFFFF">
-                                                        <select id="interior" name="interior" style="width:96%">
+                                                    </span>
+                                                </div>
+                                                <div class="col">
+                                                    <span class="fw-bold">Detalle via:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <input name="detalle_via" id="detalle_via" type="text" maxlength="30" class="form-control" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-3">
+                                                    <span class="fw-bold">Numero:</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input name="numero" id="numero" type="text" maxlength="5" class="form-control" />
+                                                        </div>
+                                                        <div class="col">
+                                                            <input name="numero2" id="numero2" type="text" maxlength="5" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <span class="fw-bold">Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <select id="interior" name="interior" class="form-control">
                                                             <option value="">Seleccione...</option>
                                                             <option>APARTAMENTO</option>
                                                             <option>BARRIO</option>
@@ -1230,20 +1267,24 @@ if ($privilegios != '' && $usua != '') {
                                                             <option>SUR</option>
                                                             <option>TORRE</option>
                                                         </select>
-                                                    </td>
-                                                    <td>
-                                                        <span>Detalle Interior:</span>
-                                                    </td>
-                                                    <td bgcolor="#FFFFFF">
-                                                        <input name="detalle_int" id="detalle_int" type="text" maxlength="30" readonly="readonly" style="width:99%" />
-                                                    </td>
-                                                </tr>
-                                                <tr style="padding:3%;">
-                                                    <td>
-                                                        <span>Interior:</span>
-                                                    </td>
-                                                    <td bgcolor="#FFFFFF">
-                                                        <select id="interior2" name="interior2" style="width:96%">
+                                                    </span>
+                                                </div>
+                                                <div class="col">
+                                                    <span class="fw-bold">Detalle Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <input name="detalle_int" id="detalle_int" type="text" maxlength="30" readonly class="form-control" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <span class="fw-bold">Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <select id="interior2" name="interior2" class="form-control">
                                                             <option value="">Seleccione...</option>
                                                             <option>APARTAMENTO</option>
                                                             <option>BARRIO</option>
@@ -1268,20 +1309,24 @@ if ($privilegios != '' && $usua != '') {
                                                             <option>SUR</option>
                                                             <option>TORRE</option>
                                                         </select>
-                                                    </td>
-                                                    <td>
-                                                        <span>Detalle Interior:</span>
-                                                    </td>
-                                                    <td bgcolor="#FFFFFF">
-                                                        <input name="detalle_int2" id="detalle_int2" type="text" maxlength="30" readonly="readonly" style="width:99%" />
-                                                    </td>
-                                                </tr>
-                                                <tr style="padding:3%;">
-                                                    <td>
-                                                        <span>Interior:</span>
-                                                    </td>
-                                                    <td bgcolor="#FFFFFF">
-                                                        <select id="interior3" name="interior3" style="width:96%">
+                                                    </span>
+                                                </div>
+                                                <div class="col">
+                                                    <span class="fw-bold">Detalle Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <input name="detalle_int2" id="detalle_int2" type="text" maxlength="30" readonly class="form-control" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <span class="fw-bold">Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <select id="interior3" name="interior3" class="form-control">
                                                             <option value="">Seleccione...</option>
                                                             <option>APARTAMENTO</option>
                                                             <option>BARRIO</option>
@@ -1306,86 +1351,83 @@ if ($privilegios != '' && $usua != '') {
                                                             <option>SUR</option>
                                                             <option>TORRE</option>
                                                         </select>
-                                                    </td>
-                                                    <td>
-                                                        <span>Detalle Interior:</span>
-                                                    </td>
-                                                    <td bgcolor="#FFFFFF">
-                                                        <input name="detalle_int3" id="detalle_int3" type="text" maxlength="30" style="width:99%" readonly="readonly" />
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                                    </span>
+                                                </div>
+                                                <div class="col">
+                                                    <span class="fw-bold">Detalle Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <input name="detalle_int3" id="detalle_int3" type="text" maxlength="30" class="form-control" readonly />
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="20%">
-                                        <span>Fecha de Nacimiento<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td width="30%">
-                                        <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" max="<?php echo date('Y-m-d'); ?>" value="<?php echo $fila['FECHA_NACIMINETO_PACIENTE']; ?>" />
-                                    </td>
-                                    <td>
-                                        <span>Edad</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="edad" id="edad" readonly="readonly" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Acudiente</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="acudiente" id="acudiente" readonly="readonly" value="<?php echo $fila['ACUDIENTE_PACIENTE'] ?>" />
-                                    </td>
-                                    <td>
-                                        <span>Telefono del Acudiente</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="telefono_acudiente1" id="telefono_acudiente1" value="<?php echo $fila['TELEFONO_ACUDIENTE_PACIENTE'] ?>" readonly="readonly" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Clasificacion Patologica<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col" width="20%">
+                                        <span class="fw-bold">Fecha de Nacimiento<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col" width="30%">
+                                        <input class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" max="<?php echo date('Y-m-d'); ?>" value="<?php echo $fila['FECHA_NACIMINETO_PACIENTE']; ?>" />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Edad <span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="edad" id="edad" readonly />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Acudiente</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="acudiente" id="acudiente" readonly value="<?php echo $fila['ACUDIENTE_PACIENTE'] ?>" />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono del Acudiente</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="telefono_acudiente1" id="telefono_acudiente1" value="<?php echo $fila['TELEFONO_ACUDIENTE_PACIENTE'] ?>" readonly />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Clasificacion Patologica<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
                                         <span style="width:30%;">
-                                            <input type="text" name="clasificacion_patologicas" id="clasificacion_patologicas" value="<?php echo $fila['CLASIFICACION_PATOLOGICA_TRATAMIENTO'] ?>" readonly="readonly">
+                                            <input class="form-control" type="text" name="clasificacion_patologicas" id="clasificacion_patologicas" value="<?php echo $fila['CLASIFICACION_PATOLOGICA_TRATAMIENTO'] ?>" readonly>
                                         </span>
-                                    </td>
-                                    <td>
-                                        <span>Fecha Inicio Terapia<span class="asterisco">*</span></span>
-                                    </td>
-                                    <td>
-                                        <input type="date" name="fecha_ini_terapia" id="fecha_ini_terapia" value="<?php echo $fila['FECHA_INICIO_TERAPIA_TRATAMIENTO'] ?>" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1">
-                                        <input type="button" name="historico" id="historico" title="Historico reclamacion" style="width:100%; height:50px" value="Historico Reclamaciones" onclick="javascript:ventanaSecundaria('form_historico_reclamacion.php?xxx=<?php echo base64_encode($fila['ID_PACIENTE']) ?>')" />
-                                    </td>
-                                    <?php if ($producto_tratamiento == "ADEMPAS") {  ?>
-                                        <td>
-                                            <input type="button" name="pedidos" id="pedidos" title="Mis Pedidos" style="width:100%; height:50px" value="Mis Pedidos" onclick="javascript:ventanaSecundaria('form_productos_paciente.php?xxx=<?php echo base64_encode($fila['ID_PACIENTE']) ?>')" />
-                                        </td>
-                                        <td>
-                                            <input type="button" name="pedidos" id="pedidos" title="Muestras Medicas" style="width:100%; height:50px" value="Muestras Medicas" onclick="javascript:ventanaSecundaria('lista_envios_muestra.php?xxx=<?php echo base64_encode($fila['ID_PACIENTE']) ?>')" />
-                                        </td>
-                                    <?php } else { ?>
-                                        <td colspan="1">
-                                            <input type="button" name="pedidos" id="pedidos" title="Mis Pedidos" style="width:100%; height:50px" value="Mis Pedidos" onclick="javascript:ventanaSecundaria('form_productos_paciente.php?xxx=<?php echo base64_encode($fila['ID_PACIENTE']) ?>')" />
-                                        </td>
-                                    <?php } ?>
-                                </tr>
-                        </table>
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Fecha Inicio Terapia<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="date" name="fecha_ini_terapia" id="fecha_ini_terapia" value="<?php echo $fila['FECHA_INICIO_TERAPIA_TRATAMIENTO'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col" colspan="1">
+                                        <input class="btn btn-modify w-100 text-white" type="button" name="historico" id="historico" title="Historico reclamacion" style="width:100%; height:50px" value="Historico Reclamaciones" onclick="javascript:ventanaSecundaria('form_historico_reclamacion.php?xxx=<?php echo base64_encode($fila['ID_PACIENTE']) ?>')" />
+                                    </div>
+                                    <div class="col" colspan="1">
+                                        <input class="btn btn-modify w-100 text-white" type="button" name="pedidos" id="pedidos" title="Mis Pedidos" style="width:100%; height:50px" value="Mis Pedidos" onclick="javascript:ventanaSecundaria('form_productos_paciente.php?xxx=<?php echo base64_encode($fila['ID_PACIENTE']) ?>')" />
+                                    </div>
+                                </div>
+                        </div>
                     </div>
                 </div>
-                <div class="AccordionPanel">
-                    <div class="AccordionPanelTab">GENERAL</div>
-                    <div class="AccordionPanelContent">
-                        <table width="100%">
+                <div class="accordion-item">
+                    <h2 class="accordion-header " id="headingThree">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                            GENERAL
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
                             <?php
                                 $fecha_actual = date('Y-m-d');
                                 $fecha_rec_act = explode("-", $fecha_actual);
@@ -1461,22 +1503,20 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                     ?>
                             </tr>
-                            <tr>
-                                <td>
-                                    <span>Programacion visita de educacion</span>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Programacion visita de educacion</span>
                                     <input type="hidden" name="medicamentojair" id="medicamentojair" value="<?php echo $producto_tratamiento; ?>" />
-                                    <br /><br />
-                                </td>
-                                <td>
-                                    <input type="date" id="progra_visi_ini" name="progra_visi_ini" value="<?php echo $Fecha_privilegio; ?>" />
-                                    <br /><br />
-                                </td>
-                                <td>
-                                    <span id="span_causa_visita" style="display: none;">Causa No visitas<span class="asterisco">*</span></span>
-                                    <span id="span_fecha_visita" style="display: none;">Fecha Visita Inicial<span class="asterisco">*</span></span>
-                                </td>
-                                <td>
-                                    <select id="span_causa_visita1" style="display: none;" name="span_causa_visita1">
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="date" id="progra_visi_ini" name="progra_visi_ini" value="<?php echo $Fecha_privilegio; ?>" />
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold" id="span_causa_visita" style="display: none;">Causa No visitas<span class="asterisco">*</span></span>
+                                    <span class="fw-bold" id="span_fecha_visita" style="display: none;">Fecha Visita Inicial<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <select id="span_causa_visita1" style="display: none;" name="span_causa_visita1" class="form-control">
                                         <option value="<?php echo $resultadoso2; ?>"><?php echo $resultadoso2; ?></option>
                                         <option value="">Seleccione...</option>
                                         <option value="Falta de Contacto">Falta de Contacto</option>
@@ -1485,29 +1525,33 @@ if ($privilegios != '' && $usua != '') {
                                         <option value="Paciente sin tiempo para atender Visita">Paciente sin tiempo para atender Visita</option>
                                         <option value="Desconfianza">Desconfianza</option>
                                     </select>
-                                    <input style="display: none;" type="date" id="fecha_visita_ini" name="fecha_visita_ini" value="<?php echo $resultadoso; ?>" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span>Visita inicial efectiva</span>
-                                </td>
-                                <td>
-                                    <select id="sel_visita_inicial" name="sel_visita_inicial">
-                                        <?php
-                                        if ($VISI_INI_EFEC != '') {
-                                        ?>
-                                            <option value="<?php echo $VISI_INI_EFEC ?>"><?php echo $VISI_INI_EFEC ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                        <option value="">Seleccione...</option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                        <option value="PENDIENTE">PENDIENTE</option>
-                                    </select>
-                                </td>
-                            </tr>
+                                    <input class="form-control" style="display: none;" type="date" id="fecha_visita_ini" name="fecha_visita_ini" value="<?php echo $resultadoso; ?>" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="fw-bold">Visita inicial efectiva</span>
+                                        </div>
+                                        <div class="col">
+                                            <select id="sel_visita_inicial" name="sel_visita_inicial" class="form-control">
+                                                <?php
+                                                if ($VISI_INI_EFEC != '') {
+                                                ?>
+                                                    <option value="<?php echo $VISI_INI_EFEC ?>"><?php echo $VISI_INI_EFEC ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                                <option value="">Seleccione...</option>
+                                                <option value="SI">SI</option>
+                                                <option value="NO">NO</option>
+                                                <option value="PENDIENTE">PENDIENTE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <?php  }
                                 if ($privilegios == '2') { ?>
                             <?php $formt = date('Y-m-d');
@@ -1518,20 +1562,20 @@ if ($privilegios != '' && $usua != '') {
                                         $resultadoso2 = "";
                                     }
                             ?>
-                            <tr>
-                                <td>
-                                    <span>Programacion visita de educacion</span>
-                                    <input type="hidden" name="medicamentojair" id="medicamentojair" value="<?php echo $producto_tratamiento; ?>" /><br /><br />
-                                </td>
-                                <td>
-                                    <input type="date" id="progra_visi_ini" name="progra_visi_ini" value="<?php echo $Fecha_privilegio; ?>" disabled /> <br /><br />
-                                </td>
-                                <td>
-                                    <span id="span_causa_visita" style="display: none;">Causa No visitas</span>
-                                    <span id="span_fecha_visita" style="display: none;">Fecha Visita Inicial</span>
-                                </td>
-                                <td>
-                                    <select id="span_causa_visita1" style="display: none;" name="span_causa_visita1" disabled>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Programacion visita de educacion</span>
+                                    <input class="form-control" type="hidden" name="medicamentojair" id="medicamentojair" value="<?php echo $producto_tratamiento; ?>" />
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="date" id="progra_visi_ini" name="progra_visi_ini" value="<?php echo $Fecha_privilegio; ?>" disabled />
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold" id="span_causa_visita" style="display: none;">Causa No visitas</span>
+                                    <span class="fw-bold" id="span_fecha_visita" style="display: none;">Fecha Visita Inicial</span>
+                                </div>
+                                <div class="col">
+                                    <select id="span_causa_visita1" style="display: none;" name="span_causa_visita1" class="form-control" disabled>
                                         <option value="<?php echo $resultadoso2; ?>"><?php echo $resultadoso2; ?></option>
                                         <option value="">Seleccione...</option>
                                         <option value="Falta de Contacto">Falta de Contacto</option>
@@ -1540,44 +1584,46 @@ if ($privilegios != '' && $usua != '') {
                                         <option value="Paciente sin tiempo para atender Visita">Paciente sin tiempo para atender Visita</option>
                                         <option value="Desconfianza">Desconfianza</option>
                                     </select>
-                                    <input style="display: none;" type="date" id="fecha_visita_ini" name="fecha_visita_ini" value="<?php echo $resultadoso; ?>" disabled />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span>Visita inicial efectiva</span>
-                                </td>
-                                <td>
-                                    <select id="sel_visita_inicial" name="sel_visita_inicial">
-                                        <option value="">Seleccione...</option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                        <option value="PENDIENTE">PENDIENTE</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                        <?php if ($producto_tratamiento != 'Xofigo 1x6 ml CO') {
-                                    echo '';
-                                } else {   ?>
-                            <tr>
-                                <td>
-                                    <span>Fecha de Formulacion<span class="asterisco">*</span></span>
-                                </td>
-                                <td>
+                                    <input class="form-control" style="display: none;" type="date" id="fecha_visita_ini" name="fecha_visita_ini" value="<?php echo $resultadoso; ?>" disabled />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="fw-bold">Visita inicial efectiva</span>
+                                        </div>
+                                        <div class="col">
+                                            <select id="sel_visita_inicial" name="sel_visita_inicial" class="form-control">
+                                                <option value="">Seleccione...</option>
+                                                <option value="SI">SI</option>
+                                                <option value="NO">NO</option>
+                                                <option value="PENDIENTE">PENDIENTE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?> <?php if ($producto_tratamiento != 'Xofigo 1x6 ml CO') {
+                                        echo '';
+                                    } else {   ?> <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Fecha de Formulacion<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
                                     <?php if ($privilegios == "1") { ?>
                                         <input id="fecha_formulacion" name="fecha_formulacion" type="date" value="<?php echo $fecha_formulacionv; ?>" required="required" />
                                     <?php } else {
-                                        if ($fecha_formulacionv == '') {
-                                            echo 'N/A';
-                                        } else {
-                                            echo "<p style='border:1px solid; background-color:#FFFFFF; border-color:#aaaaaa;'>" . $fecha_formulacionv . "</p>";
-                                        }
-                                    } ?>
-                                </td>
-                            </tr>
+                                            if ($fecha_formulacionv == '') {
+                                                echo 'N/A';
+                                            } else {
+                                                echo "<p style='border:1px solid; background-color:#FFFFFF; border-color:#aaaaaa;'>" . $fecha_formulacionv . "</p>";
+                                            }
+                                        } ?>
+                                </div>
+                            </div>
                         <?php
-                                } ?>
+                                    } ?>
                         <?php
                                 $Sel = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2 = '" . $ID_PACIENTE . "' AND ID_GESTION = '" . $ID_GESTION_ULT . "' ORDER BY ID_GESTION DESC LIMIT 1");
                                 while ($con = mysqli_fetch_array($Sel)) {
@@ -1589,23 +1635,23 @@ if ($privilegios != '' && $usua != '') {
                                     $FECHA_APLICACION = $con['FECHA_APLICACION'];
                                     $LUGAR_APLICACION = $con['LUGAR_APLICACION'];
                         ?>
-                            <tr>
-                                <td>
-                                    <span>Reclamo<span class="asterisco">*</span></span>
-                                </td>
-                                <td>
-                                    <select type="text" name="reclamo" id="reclamo">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Reclamo<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <select type="text" name="reclamo" id="reclamo" class="form-control">
                                         <option><?php echo $RECLAMO_GESTION ?></option>
                                         <option>SI</option>
                                         <option>NO</option>
                                     </select>
-                                </td>
-                                <td>
-                                    <span id="causa" style="display:none">Causa No Reclamacion<span class="asterisco">*</span></span>
-                                    <span id="fecha_reclamacion_span" style="display:none">Fecha de Reclamacion<span class="asterisco">*</span></span>
-                                </td>
-                                <td>
-                                    <select type="text" name="causa_no_reclamacion" id="causa_no_reclamacion" style="display:none">
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold" id="causa" style="display:none">Causa No Reclamacion<span class="asterisco">*</span></span>
+                                    <span class="fw-bold" id="fecha_reclamacion_span" style="display:none">Fecha de Reclamacion<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <select type="text" name="causa_no_reclamacion" id="causa_no_reclamacion" style="display:none" class="form-control">
                                         <option><?php echo $CAUSA_NO_RECLAMACION_GESTION ?></option>
                                         <option value="">Seleccione...</option>
                                         <option>Cita inoportuna</option>
@@ -1637,206 +1683,211 @@ if ($privilegios != '' && $usua != '') {
                                         <option>Problemas de Translado del Paciente</option>
                                         <option>Suspendido por Cambio de tratamiento</option>
                                     </select>
-                                    <input type="date" name="fecha_reclamacion" id="fecha_reclamacion" value="<?php echo $FECHA_RECLAMACION_GESTION ?>" style="display:none" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span id="span_aplicacion_m" style="display: none;">Aplicación<span class="asterisco">*</span></span>
-                                </td>
-                                <td>
-                                    <select name="aplicacion_m" id="aplicacion_m" style="display: none;">
+                                    <input class="form-control" type="date" name="fecha_reclamacion" id="fecha_reclamacion" value="<?php echo $FECHA_RECLAMACION_GESTION ?>" style="display:none" />
+                                </div>
+                            </div>
+                            <div class="row bm-3">
+                                <div class="col">
+                                    <span class="fw-bold" id="span_aplicacion_m" style="display: none;">Aplicación<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <select name="aplicacion_m" id="aplicacion_m" style="display: none;" class="form-control">
                                         <option><?php echo $APLICACION ?></option>
                                         <option value="">Seleccione...</option>
                                         <option>SI</option>
                                         <option>NO</option>
                                     </select>
-                                </td>
-                                <td>
-                                    <span id="span_fecha_aplicacion" style="display: none;">Fecha de la aplicación<span class="asterisco">*</span></span>
-                                </td>
-                                <td>
-                                    <input type="date" name="fecha_aplicacion" id="fecha_aplicacion" value="<?php echo $FECHA_APLICACION ?>" style="display: none;">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span id="span_lugar_aplicacion" style="display: none;">Lugar de aplicación<span class="asterisco">*</span></span>
-                                </td>
-                                <td>
-                                    <select name="lugar_aplicacion" id="lugar_aplicacion" style="display: none;">
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold" id="span_fecha_aplicacion" style="display: none;">Fecha de la aplicación<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="date" name="fecha_aplicacion" id="fecha_aplicacion" value="<?php echo $FECHA_APLICACION ?>" style="display: none;">
+                                </div>
+                            </div>
+                            <div class="row bm-3">
+                                <div class="col">
+                                    <span class="fw-bold" id="span_lugar_aplicacion" style="display: none;">Lugar de aplicación<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <select name="lugar_aplicacion" id="lugar_aplicacion" style="display: none;" class="form-control">
                                         <option><?php echo $LUGAR_APLICACION ?></option>
                                         <option value="">Seleccione...</option>
                                         <option value="IPS">IPS</option>
                                         <option value="DOMICILIO">DOMICILIO</option>
                                     </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span>Fecha Cita Programada<span class="asterisco">*</span></span>
-                                </td>
-                                <td>
-                                    <input type="date" value="<?php echo $FECHA_NO_RECLAMACION ?>" name="fecha_cita_programada" id="fecha_cita_programada">
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                            <div class="row bm-3">
+                                <div class="col">
+                                    <span class="fw-bold">Fecha Cita Programada<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="date" value="<?php echo $FECHA_NO_RECLAMACION ?>" name="fecha_cita_programada" id="fecha_cita_programada">
+                                </div>
+                            </div>
                         <?php } ?>
-                        <tr>
-                            <td>
+                        <div class="row mb-3">
+                            <div class="col">
                                 <div id="asignado" style="display:none">
                                     <span>Asignado para</span>
                                 </div>
-                            </td>
-                            <td>
+                            </div>
+                            <div class="col">
                                 <div id="solicitud_cambio_proveedor_people" style="display:none">
-                                    <input type="text" name="proveedor_people" id="proveedor_people" value='People Marketing' readonly="readonly">
+                                    <input class="form-control" type="text" name="proveedor_people" id="proveedor_people" value='People Marketing' readonly>
                                 </div>
                                 <div id="solicitud_cambio_proveedor_psp" style="display:none">
-                                    <input type="text" name="proveedor_psp" id="proveedor_psp" value='People Marketing' readonly="readonly">
+                                    <input class="form-control" type="text" name="proveedor_psp" id="proveedor_psp" value='People Marketing' readonly>
                                 </div>
-                            </td>
-                            <!-- <td>
-                                <span id="cambio_estado_activo_solicitar" style="display:none;">Solicitar cambio de estado Paciente</span>
-                                <span id="cambio_estado_abandono_solicitar" style="display:none;">Solicitar cambio de estado Paciente</span>
-                                <span id="cambio_estado_suspendido_solicitar" style="display:none;">Solicitar cambio de estado Paciente</span>
-                                <span id="cambio_estado_interrumpido_solicitar" style="display:none;">Solicitar cambio de estado Paciente</span>
-                            </td>
-                            <td>
-                                <input type="text" name="estado_activo" id="estado_activo" style="display:none;" value="Activo" readonly="readonly">
-                                <input type="text" name="estado_abandono" id="estado_abandono" style="display:none;" value="Abandono" readonly="readonly">
-                                <input type="text" name="estado_suspendido" id="estado_suspendido" style="display:none;" value="Suspendido" readonly="readonly">
-                                <input type="text" name="estado_interrumpido" id="estado_interrumpido" style="display:none;" value="Interrumpido" readonly="readonly">
-                            </td> -->
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <span>Active para cambio </span>
-                                    <div class="switch-button">
-                                        <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox">
-                                        <label for="switch-label" class="switch-button__label"></label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="fw-bold">Se brindo Educacion</span>
                                     </div>
-                                </label>
-                            </td>
-                            <td>
-                                <label>
-                                    <span>Se brindo Educacion</span>
-                                    <select name="brindo_educacion" id="brindo_educacion" disabled>
-                                        <?php $select_edu = mysqli_query($conex, "SELECT * FROM `ipsen_educacion` WHERE `ID_PACI_FK` = '" . $ID_PACIENTE2 . "' ORDER BY `FECHA_REGISTRO` DESC LIMIT 1");
-                                        while ($dato = mysqli_fetch_array($select_edu)) {
-                                            $brindo_edu = $dato['SE_BRINDO_EDU'];
-                                            $temaBrindo = $dato['TEMA_SI_EDU'];
-                                            $fecha_brindo = $dato['FECHA_SI_EDU'];
-                                            $motivoNo = $dato['MOTIVO_NO_EDU'];
-                                        }
-                                        if ($brindo_edu == 'SI') {
-                                            echo  '<option>' . $brindo_edu . '</option>' . '<option>NO</option>';
-                                        } elseif ($brindo_edu == 'NO') {
-                                            echo  '<option>' . $brindo_edu . '</option>' . '<option>SI</option>';
-                                        } else {
-                                            $brindo_edu = 'NULL';
-                                            $temaBrindo = 'NULL';
-                                            $fecha_brindo = 'NULL';
-                                            $motivoNo = 'NULL';
-                                            echo '<option value="">Seleccione...</option>
+                                    <div class="col">
+                                        <select name="brindo_educacion" id="brindo_educacion" class="form-control">
+                                            <?php $select_edu = mysqli_query($conex, "SELECT * FROM `bayer_educacion` WHERE `ID_PACI_FK` = '$ID_PACIENTE2' ORDER BY `FECHA_REGISTRO` DESC LIMIT 1");
+                                            while ($dato = mysqli_fetch_array($select_edu)) {
+                                                $brindo_edu = $dato['SE_BRINDO_EDU'];
+                                                $temaBrindo = $dato['TEMA_SI_EDU'];
+                                                $fecha_brindo = $dato['FECHA_SI_EDU'];
+                                                $motivoNo = $dato['MOTIVO_NO_EDU'];
+                                            }
+                                            if ($brindo_edu == 'SI') {
+                                                echo '<option>' . $brindo_edu . '</option>' . '<option>NO</option>';
+                                            } elseif ($brindo_edu == 'NO') {
+                                                echo '<option>' . $brindo_edu . '</option>' . '<option>SI</option>';
+                                            } else {
+                                                $brindo_edu = 'NULL';
+                                                $temaBrindo = 'NULL';
+                                                $fecha_brindo = 'NULL';
+                                                $motivoNo = 'NULL';
+                                                echo '<option value="">Seleccione...</option>
                                                       <option>SI</option>
                                                       <option>NO</option>';
-                                        } ?>
-                                    </select>
-                                </label>
-                            </td>
-                            <td id="TemaSiEdu" <?php if ($brindo_edu == 'SI') {
-                                                    echo 'style="display: block;"';
-                                                } elseif ($brindo_edu == 'NO') {
-                                                    echo 'style="display: none;"';
-                                                } else {
-                                                    echo 'style="display: none;"';
-                                                } ?>>
-                                <label>
-                                    <span>Tema<span class="asterisco">*</span></span>
-                                    <select name="TemaBrindoEdu" id="TemaBrindoEdu" disabled>
-                                        <option value="<?php echo $temaBrindo ?>"><?php echo $temaBrindo ?></option>
-                                        <option value="">Seleccione...</option>
-                                        <option>Concientizacion de la enfermedad</option>
-                                        <option>Mitos y realidades</option>
-                                        <option>Autocuidado</option>
-                                        <option>Higiene del sueño</option>
-                                        <option>Manejo del tiempo libre</option>
-                                        <option>Estrategias para mejorar la memoria</option>
-                                        <option>La actividad fisica</option>
-                                        <option>Tips para una comunicacion asertiva</option>
-                                        <option>El descanso</option>
-                                        <option>Receta saludable</option>
-                                        <option>Manejo emocional</option>
-                                        <option>Autoestima</option>
-                                        <option>Cuidando al cuidador</option>
-                                        <option>11 Recomendaciones para afrontar una emergencia</option>
-                                        <option>Alimentacion consciente</option>
-                                        <option>Inteligencia financiera</option>
-                                        <option>Inteligencia emocional</option>
-                                    </select>
-                                </label>
-                            </td>
-                            <td id="FechaSiEdu" <?php if ($brindo_edu == 'SI') {
-                                                    echo 'style="display: block;"';
-                                                } elseif ($brindo_edu == 'NO') {
-                                                    echo 'style="display: none;"';
-                                                } else {
-                                                    echo 'style="display: none;"';
-                                                } ?>>
-                                <label>
-                                    <span>Fecha Educacion<span class="asterisco">*</span></span>
-                                    <input type="date" name="FechaEduca" id="FechaEduca" value="<?php echo  $fecha_brindo; ?>" disabled>
-                                </label>
-                            </td>
-                            <td id="motivo_no" <?php if ($brindo_edu == 'NO') {
-                                                    echo 'style="display: block;"';
+                                            } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div id="TemaSiEdu" <?php if ($brindo_edu == 'SI') {
+                                                        echo 'style="display: block;"';
+                                                    } elseif ($brindo_edu == 'NO') {
+                                                        echo 'style="display: none;"';
+                                                    } else {
+                                                        echo 'style="display: none;"';
+                                                    } ?>>
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="fw-bold">Tema</span>
+                                        </div>
+                                        <div class="col">
+                                            <select name="TemaBrindoEdu" id="TemaBrindoEdu" class="form-control">
+                                                <?php if ($brindo_edu == 'NO') {
+                                                    echo '<option value="">Seleccione...</option>';
                                                 } elseif ($brindo_edu == 'SI') {
-                                                    echo 'style="display: none;"';
+                                                    echo '<option>' . $temaBrindo . '</option>';
                                                 } else {
-                                                    echo 'style="display: none;"';
-                                                } ?>>
-                                <label>
-                                    <span>Motivo</span>
-                                    <select name="MotivoNoEdu" id="MotivoNoEdu" disabled>
-                                        <?php if ($brindo_edu == 'SI') {
-                                            echo '<option value="">Seleccione...</option>';
-                                        } elseif ($brindo_edu == 'NO') {
-                                            echo '<option>' . $motivoNo . '</option>';
-                                        } else {
-                                            echo '<option value="">Seleccione...</option>';
-                                        } ?>
-                                        <option>No permite brindar informacion</option>
-                                        <option>Solicita que sea de forma presencial</option>
-                                        <option>No acepta visita</option>
-                                        <option>Solicita envio por Email</option>
-                                        <option>No Interesada</option>
-                                    </select>
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span style=" display:none" id="consecutivo_betaferon_span">Consecutivo Betaferon<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <input type="text" name="consecutivo_betaferon" id="consecutivo_betaferon" style=" display:none" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+                                                    echo '<option value="">Seleccione...</option>';
+                                                } ?>
+                                                <option value="">Seleccione...</option>
+                                                <option>Concientizacion de la enfermedad</option>
+                                                <option>Mitos y realidades</option>
+                                                <option>Autocuidado</option>
+                                                <option>Higiene del sueño</option>
+                                                <option>Manejo del tiempo libre</option>
+                                                <option>Estrategias para mejorar la memoria</option>
+                                                <option>La actividad fisica</option>
+                                                <option>Tips para una comunicacion asertiva</option>
+                                                <option>El descanso</option>
+                                                <option>Receta saludable</option>
+                                                <option>Manejo emocional</option>
+                                                <option>Autoestima</option>
+                                                <option>Cuidando al cuidador</option>
+                                                <option>11 Recomendaciones para afrontar una emergencia</option>
+                                                <option>Alimentacion consciente</option>
+                                                <option>Inteligencia financiera</option>
+                                                <option>Inteligencia emocional</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="FechaSiEdu" <?php if ($brindo_edu == 'SI') {
+                                                            echo 'style="display: block;"';
+                                                        } elseif ($brindo_edu == 'NO') {
+                                                            echo 'style="display: none;"';
+                                                        } else {
+                                                            echo 'style="display: none;"';
+                                                        } ?>>
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="fw-bold">Fecha Educacion</span>
+                                        </div>
+                                        <div class="col">
+                                            <input class="form-control" type="date" name="FechaEduca" id="FechaEduca" value="<?php echo $fecha_brindo; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="motivo_no" <?php if ($brindo_edu == 'NO') {
+                                                        echo 'style="display: block;"';
+                                                    } elseif ($brindo_edu == 'SI') {
+                                                        echo 'style="display: none;"';
+                                                    } else {
+                                                        echo 'style="display: none;"';
+                                                    } ?>>
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="fw-bold">Motivo</span>
+                                        </div>
+                                        <div class="col">
+                                            <select class="form-control" name="MotivoNoEdu" id="MotivoNoEdu">
+                                                <?php if ($brindo_edu == 'SI') {
+                                                    echo '<option value="">Seleccione...</option>';
+                                                } elseif ($brindo_edu == 'NO') {
+                                                    echo '<option>' . $motivoNo . '</option>';
+                                                } else {
+                                                    echo '<option value="">Seleccione...</option>';
+                                                } ?>
+                                                <option>No permite brindar informacion</option>
+                                                <option>Solicita que sea de forma presencial</option>
+                                                <option>No acepta visita</option>
+                                                <option>Solicita envio por Email</option>
+                                                <option>No Interesada</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col">
+                                        <span style=" display:none" id="consecutivo_betaferon_span">Consecutivo Betaferon<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="consecutivo_betaferon" id="consecutivo_betaferon" style=" display:none" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
                                 <div style="display:none" id="span_apoyo">
-                                    <span>Se brindo apoyo<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">Se brindo apoyo<span class="asterisco">*</span></span>
                                 </div>
                                 <div style="display:none" id="span_aplicacion">
-                                    <span>Agregar informacion aplicaciones<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">Agregar informacion aplicaciones<span class="asterisco">*</span></span>
                                 </div>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
+                            </div>
+                            <div class="col">
                                 <div style="display:none; width:100%" id="div_apoyo">
-                                    <select type="text" name="brindo_apoyo" id="brindo_apoyo" style="width:82%">
+                                    <select type="text" name="brindo_apoyo" id="brindo_apoyo" class="form-control">
                                         <option value="">Seleccione...</option>
                                         <option>SI</option>
                                         <option>NO</option>
@@ -1844,69 +1895,57 @@ if ($privilegios != '' && $usua != '') {
                                     <input type="button" name="ver_apoyo" id="ver_apoyo" title="Ver apoyo" style=" visibility:hidden" value="Historico Reclamaciones" onclick="javascript:ventanaSecundaria('form_brindar_apoyo.php?xxx=<?php echo base64_encode($fila['ID_PACIENTE']) ?>&xxxx=<?php echo base64_encode($fila['PRODUCTO_TRATAMIENTO']) ?>')" class="btn_ver" />
                                 </div>
                                 <div style="display:none; width:100%" id="div_aplicaciones">
-                                    <select type="text" name="aplicaicones" id="aplicaicones" style="width:82%">
+                                    <select type="text" name="aplicaicones" id="aplicaicones" class="form-control">
                                         <option value="">Seleccione...</option>
                                         <option>SI</option>
                                         <option>NO</option>
                                     </select>
                                     <input type="button" name="ver_aplicaciones" id="ver_aplicaciones" title="Ver aplicaciones" style=" visibility:hidden" value="Historico Reclamaciones" onclick="javascript:ventanaSecundaria('form_aplicaciones_eylia.php?xxx=<?php echo base64_encode($fila['ID_PACIENTE']) ?>&xxxx=<?php echo base64_encode($fila['PRODUCTO_TRATAMIENTO']) ?>')" class="btn_ver" />
                                 </div>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
+                            </div>
+                            <div class="col">
                                 <div style="display:none" id="span_tabletas_diarias">
-                                    <span>Numero Tabletas Diarias</span>
+                                    <span class="fw-bold">Numero Tabletas Diarias</span>
                                 </div>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
+                            </div>
+                            <div class="col">
                                 <div style="display:none; width:100%;" id="div_tabletas_diarias">
-                                    <input value="0" type="text" name="numero_tabletas_diarias" id="numero_tabletas_diarias" style="width:95%;" placeholder="0" />
+                                    <input class="form-control" value="0" type="text" name="numero_tabletas_diarias" id="numero_tabletas_diarias" placeholder="0" />
                                 </div>
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Medicamento Hasta<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="date" name="fecha_medicamento_hasta" id="fecha_medicamento_hasta" value="<?php echo $FECHA_MEDICAMENTO_HASTA; ?>" />
-                                <br />
-                                <br />
-                            </td>
-                            <td class="tit"><br />
-                                <br />
-                            </td>
-                            <td style="width:30%;"><br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Se Logro la Comunicacion<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="radio" name="logro_comunicacion" id="logro_comunicacion" style=" width:20%; display:none" value="" checked="checked" />
-                                <input type="radio" name="logro_comunicacion" id="logro_comunicacion" style=" width:20%;" value="SI" />SI
-                                <input type="radio" name="logro_comunicacion" id="logro_comunicacion" style=" width:20%;" value="NO" />NO
-                                <br />
-                                <br />
-                            </td>
-                            <td class="tit">
-                                <span>Motivo de Comunicacion<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td style="width:30%;">
-                                <select type="text" name="motivo_comunicacion" id="motivo_comunicacion">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="fw-bold">Medicamento Hasta<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="date" name="fecha_medicamento_hasta" id="fecha_medicamento_hasta" value="<?php echo $FECHA_MEDICAMENTO_HASTA; ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Se Logro la Comunicacion<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion" style="display:none" value="" checked="checked" />
+                                        <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion" value="SI" />SI
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion" value="NO" />NO
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Motivo de Comunicacion<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <select type="text" name="motivo_comunicacion" id="motivo_comunicacion" class="form-control">
                                     <option value="">Seleccione...</option>
                                     <option>Apoyo Emocional</option>
                                     <option>Educacion Mes Actual</option>
@@ -1919,49 +1958,37 @@ if ($privilegios != '' && $usua != '') {
                                     <option>Reclamo</option>
                                     <option>Titulacion</option>
                                 </select>
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tit">
-                                <span>Medio de Contacto<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td style="width:30%;">
-                                <select type="text" name="medio_contacto" id="medio_contacto">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Medio de Contacto<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <select type="text" name="medio_contacto" id="medio_contacto" class="form-control">
                                     <option value="">Seleccione...</option>
                                     <option>Electronico</option>
                                     <option>Telefonico</option>
                                     <option>Visita</option>
                                 </select>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <span>Tipo de Llamada<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <select type="text" name="tipo_llamada" id="tipo_llamada">
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Tipo de Llamada<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <select type="text" name="tipo_llamada" id="tipo_llamada" class="form-control">
                                     <option value="">Seleccione...</option>
                                     <option>Entrada</option>
                                     <option>Salida</option>
                                 </select>
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Motivo de No Comunicacion</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <select type="text" name="motivo_no_comunicacion" id="motivo_no_comunicacion">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Motivo de No Comunicacion</span>
+                            </div>
+                            <div class="col">
+                                <select type="text" name="motivo_no_comunicacion" id="motivo_no_comunicacion" class="form-control">
                                     <option value="">Seleccione...</option>
                                     <option>Apagado</option>
                                     <option>No Esta</option>
@@ -1972,26 +1999,20 @@ if ($privilegios != '' && $usua != '') {
                                     <option>Telefono Fuera de Servicio</option>
                                     <option>Otro</option>
                                 </select>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <span>Numero de Intentos<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="number" name="via_recepcion" id="via_recepcion" />
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Asegurador<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <select id="asegurador" name="asegurador" style="width:95%;" onchange="trat_previo1(this)">
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Numero de Intentos<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="number" name="via_recepcion" id="via_recepcion">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Asegurador<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <select id="asegurador" name="asegurador" style="width:95%;" onchange="trat_previo1(this)" class="form-control">
                                     <option value="<?php echo $fila['ASEGURADOR_TRATAMIENTO'] ?>"><?php echo $fila['ASEGURADOR_TRATAMIENTO'] ?></option>
                                     <?php $query =  mysqli_query($conex, "SELECT DISTINCT ASEGURADOR FROM ipsen_asegurador WHERE ESTADO != 'OUT' ORDER BY ASEGURADOR ASC");
                                     while ($valores = mysqli_fetch_array($query)) {
@@ -2001,12 +2022,12 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                     ?>
                                 </select>
-                            </td>
-                            <td>
-                                <span>Ips que Atiende<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <select name="ips_atiende" id="ips_atiende" style="width:95%;" onchange="trat_previo3(this)">
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Ips que Atiende<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <select name="ips_atiende" id="ips_atiende" style="width:95%;" onchange="trat_previo3(this)" class="form-control">
                                     <option value="<?php echo $fila['IPS_ATIENDE_TRATAMIENTO'] ?>"><?php echo $fila['IPS_ATIENDE_TRATAMIENTO'] ?></option>
                                     <?php $query =  mysqli_query($conex, "SELECT DISTINCT IPS FROM ipsen_ips WHERE ESTADO != 'OUT' ORDER BY IPS ASC");
                                     while ($valores = mysqli_fetch_array($query)) {
@@ -2016,26 +2037,24 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                     ?>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td id="otro_asegurador" style="display:none">
-                                <span>Asegurador por habilitar<span class="asterisco">*</span></span>
-                                <input name="asegurador_otro" id="asegurador_otro" type="text" style="width:78%;" />
-                            </td>
-                            <td></td>
-                            <td id="otro_ips" style="display:none">
-                                <span>Ips por habilitar<span class="asterisco">*</span></span>
-                                <input name="ips_otro" id="ips_otro" type="text" style="width:78%;" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Medico Tratante<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <select name="medico_tratante" id="medico_tratante" style="width:95%;" onchange="trat_previo4(this)">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col" id="otro_asegurador" style="display:none">
+                                <span class="fw-bold">Asegurador por habilitar<span class="asterisco">*</span></span>
+                                <input name="asegurador_otro" id="asegurador_otro" type="text" class="form-control" />
+                            </div>
+                            <div class="col" id="otro_ips" style="display:none">
+                                <span class="fw-bold">Ips por habilitar<span class="asterisco">*</span></span>
+                                <input name="ips_otro" id="ips_otro" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Medico Tratante<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <select name="medico_tratante" id="medico_tratante" style="width:95%;" onchange="trat_previo4(this)" class="form-control">
                                     <option value="<?php echo $fila['MEDICO_TRATAMIENTO'] ?>"><?php echo $fila['MEDICO_TRATAMIENTO'] ?></option>
                                     <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO != 'OUT' ORDER BY MEDICO ASC");
                                     while ($valores = mysqli_fetch_array($query)) {
@@ -2045,12 +2064,12 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                     ?>
                                 </select>
-                            </td>
-                            <td>
-                                <span>Medico Prescriptor<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <select name="medico_prescriptor" id="medico_prescriptor" style="width:95%;" onchange="trat_previo5(this)">
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Medico Prescriptor<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <select name="medico_prescriptor" id="medico_prescriptor" style="width:95%;" onchange="trat_previo5(this)" class="form-control">
                                     <option value="<?php echo $fila['MEDICO_PRESCRIPTOR'] ?>"><?php echo $fila['MEDICO_PRESCRIPTOR'] ?></option>
                                     <option value="">Seleccione...</option>
                                     <?php $query =  mysqli_query($conex, "SELECT DISTINCT MEDICO FROM ipsen_listas WHERE ESTADO != 'OUT' ORDER BY MEDICO ASC");
@@ -2061,32 +2080,30 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                     ?>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td id="otro_medico_t" style="display:none">
-                                <span>Medico Tratante por habilitar<span class="asterisco">*</span></span>
-                                <input name="medico_t_otro" id="medico_t_otro" type="text" style="width:78%;" />
-                            </td>
-                            <td></td>
-                            <td id="otro_medico_p" style="display:none">
-                                <span>Medico Prescriptor por habilitar<span class="asterisco">*</span></span>
-                                <input name="medico_p_otro" id="medico_p_otro" type="text" style="width:78%;" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Fecha Prescripcion<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <input type="date" name="fecha_prescripcion" id="fecha_prescripcion" value="<?php echo $fila['FECHA_PRESCRIPCION'] ?>">
-                            </td>
-                            <td>
-                                <span>Operador Logistico<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <select id="operador_logistico" name="operador_logistico" style="width:95%;" onchange="trat_previo2(this)">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col" id="otro_medico_t" style="display:none">
+                                <span class="fw-bold">Medico Tratante por habilitar<span class="asterisco">*</span></span>
+                                <input name="medico_t_otro" id="medico_t_otro" type="text" class="form-control" />
+                            </div>
+                            <div class="col" id="otro_medico_p" style="display:none">
+                                <span class="fw-bold">Medico Prescriptor por habilitar<span class="asterisco">*</span></span>
+                                <input name="medico_p_otro" id="medico_p_otro" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Fecha Prescripcion<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="date" name="fecha_prescripcion" id="fecha_prescripcion" value="<?php echo $fila['FECHA_PRESCRIPCION'] ?>">
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Operador Logistico<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <select id="operador_logistico" name="operador_logistico" style="width:95%;" onchange="trat_previo2(this)" class="form-control">
                                     <option value="<?php echo $fila['OPERADOR_LOGISTICO_TRATAMIENTO'] ?>"><?php echo $fila['OPERADOR_LOGISTICO_TRATAMIENTO'] ?></option>
                                     <?php $query =  mysqli_query($conex, "SELECT DISTINCT OPERADOR_LOGISTICO FROM ipsen_operador_logistico WHERE ESTADO != 'OUT' ORDER BY OPERADOR_LOGISTICO ASC");
                                     while ($valores = mysqli_fetch_array($query)) {
@@ -2096,23 +2113,20 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                     ?>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td id="otro_operador" style="display:none">
-                                <span>Operador logistico por habilitar<span class="asterisco">*</span></span>
-                                <input name="operador_otro" id="operador_otro" type="text" style="width:78%;" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Ciudad de Entrega</span><span class="asterisco">*</span><br />
-                            </td>
-                            <td>
-                                <select type="text" name="ciudad_reclamacion" id="ciudad_reclamacion">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6" id="otro_operador" style="display:none">
+                                <span class="fw-bold">Operador logistico por habilitar<span class="asterisco">*</span></span>
+                                <input name="operador_otro" id="operador_otro" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Ciudad de Entrega</span><span class="asterisco">*</span>
+                            </div>
+                            <div class="col">
+                                <select type="text" name="ciudad_reclamacion" id="ciudad_reclamacion" class="form-control">
                                     <option><?php echo $fila['CIUDAD_RECLAMACION']; ?></option>
                                     <option value="">Seleccione...</option>
                                     <?php
@@ -2124,12 +2138,12 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                     ?>
                                 </select>
-                            </td>
-                            <td>
-                                <span>Punto De Entrega</span>
-                            </td>
-                            <td>
-                                <select name="punto_entrega" id="punto_entrega" style="width:95%;" onchange="trat_previo6(this)">
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Punto De Entrega</span>
+                            </div>
+                            <div class="col">
+                                <select name="punto_entrega" id="punto_entrega" style="width:95%;" onchange="trat_previo6(this)" class="form-control">
                                     <option value="<?php echo $fila['PUNTO_ENTREGA'] ?>"><?php echo $fila['PUNTO_ENTREGA'] ?></option>
                                     <?php $query =  mysqli_query($conex, "SELECT DISTINCT NOMBRE_PUNTO FROM ipsen_puntos_entrega WHERE ESTADO != 'OUT' ORDER BY NOMBRE_PUNTO ASC");
                                     while ($valores = mysqli_fetch_array($query)) {
@@ -2139,25 +2153,20 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                     ?>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td id="otro_punto" style="display:none">
-                                <span>Punto de entrega por habilitar<span class="asterisco">*</span></span>
-                                <input name="punto_entrega_otro" id="punto_entrega_otro" type="text" style="width:78%;" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Numero de Autorizacion<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <select type="text" name="estado_ctc" id="estado_ctc">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6" id="otro_punto" style="display:none">
+                                <span class="fw-bold">Punto de entrega por habilitar<span class="asterisco">*</span></span>
+                                <input name="punto_entrega_otro" id="punto_entrega_otro" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Numero de Autorizacion<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <select type="text" name="estado_ctc" id="estado_ctc" class="form-control">
                                     <option value="">Seleccione...</option>
                                     <option>Pendiente Por Aprobacion</option>
                                     <option>1Ra Entrega De 1 Autorizada</option>
@@ -2196,132 +2205,115 @@ if ($privilegios != '' && $usua != '') {
                                     <option>Pendiente Confirmar</option>
                                     <option>Paciente No Proporciona Informacion</option>
                                 </select>
-                            </td>
-                            <td>
-                                <span>Fecha de Autorizacion<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <input name="fecha_autorizacion" id="fecha_autorizacion" type="date" style="margin-top: 10px;" value="<?php echo $FECHA_AUTORIZACION ?>" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Estado Farmacia</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <select type="text" name="estado_farmacia" id="estado_farmacia">
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Fecha de Autorizacion<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" name="fecha_autorizacion" id="fecha_autorizacion" type="date" style="margin-top: 10px;" value="<?php echo $FECHA_AUTORIZACION ?>">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Estado Farmacia</span>
+                            </div>
+                            <div class="col">
+                                <select type="text" name="estado_farmacia" id="estado_farmacia" class="form-control">
                                     <option value="">Seleccione...</option>
                                     <option>Aprobado</option>
                                     <option>Pendiente Radicar</option>
                                     <option>Radicado</option>
                                 </select>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <span>Dificultad en el Acceso</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="radio" name="dificultad_acceso" id="dificultad_acceso" style=" width:20%;" value="SI" />SI
-                                <input type="radio" name="dificultad_acceso" id="dificultad_acceso" style=" width:20%;" value="NO" />NO
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Tipo de Dificultad</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td colspan="3">
-                                <textarea style="width:98%; height:72.5px;" id="tipo_dificultad" name="tipo_dificultad"></textarea>
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Autor</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="text" name="autor" id="autor" readonly="readonly" value="<?php echo $usua ?>" />
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <span>Genera Solicitud<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="radio" name="genera_solicitud" id="genera_solicitud" style=" width:20%; display:none" value="" checked="checked" />
-                                <input type="radio" name="genera_solicitud" id="genera_solicitud" style=" width:20%;" value="SI" />SI
-                                <input type="radio" name="genera_solicitud" id="genera_solicitud" style=" width:20%;" value="NO" />NO
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Evento Adverso<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="radio" name="evento_adverso" id="evento_adverso" style=" width:20%; display:none" value="" checked="checked" />
-                                <input type="radio" name="evento_adverso" id="evento_adverso" style=" width:20%;" value="SI" />SI
-                                <input type="radio" name="evento_adverso" id="evento_adverso" style=" width:20%;" value="NO" />NO
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <span id="envio_evento_adverso_span" style="display:none">Tipo de Evento<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <div id="envio_evento_adverso_div" style="display:none">
-                                    <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%; display:none" value="" checked="checked" />
-                                    <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Farmacovigilancia" />Farmacovigilancia
-                                    <br>
-                                    <input type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style=" width:20%" value="Tecnovigilancia" />Tecnovigilancia
-                                    <br />
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Dificultad en el Acceso</span>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-check-input me-1" type="radio" name="dificultad_acceso" id="dificultad_acceso" value="SI" />SI
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-check-input me-1" type="radio" name="dificultad_acceso" id="dificultad_acceso" value="NO" />NO
+                                    </div>
                                 </div>
-                                <div id="farmacovigilancia" style="display:none">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Tipo de Dificultad</span>
+                                <textarea class="form-control" style="width:98%; height:72.5px;" id="tipo_dificultad" name="tipo_dificultad"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Autor</span>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="text" name="autor" id="autor" readonly value="<?php echo $usua ?>">
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Genera Solicitud<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-check-input me-1" type="radio" name="genera_solicitud" id="genera_solicitud" style="display:none" value="" checked="checked" />
+                                        <input class="form-check-input me-1" type="radio" name="genera_solicitud" id="genera_solicitud" value="SI" />SI
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-check-input me-1" type="radio" name="genera_solicitud" id="genera_solicitud" value="NO" />NO
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Evento Adverso<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-check-input me-1" type="radio" name="evento_adverso" id="evento_adverso" style="display:none" value="" checked="checked" />
+                                        <input class="form-check-input me-1" type="radio" name="evento_adverso" id="evento_adverso" value="SI" />SI
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-check-input me-1" type="radio" name="evento_adverso" id="evento_adverso" value="NO" />NO
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold" id="envio_evento_adverso_span" style="display:none">Tipo de Evento<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col" id="envio_evento_adverso_div" style="display:none">
+                                        <div class="col">
+                                            <input class="form-check-input me-1" type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style="display:none" value="" checked="checked" />
+                                            <input class="form-check-input me-1" type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" value="Farmacovigilancia" />Farmacovigilancia
+                                        </div>
+                                        <div class="col">
+                                            <input class="form-check-input me-1" type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" value="Tecnovigilancia" />Tecnovigilancia
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col" id="farmacovigilancia" style="display:none">
                                     <input type="button" name="tipo_evento_adverso2" id="tipo_evento_adverso2" style="background-image:url(imagenes/agregar.png); background-repeat:no-repeat;  width:41px; height:38px; border:1px solid transparent; background-color:transparent" onclick="javascript:ventanaSecundaria('new_form_evento_adverso.php?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>')" />
                                 </div>
-                                <!-- <div id="tecnovigilancia" style="display:none">
-                                    <input type="button" name="tipo_evento_adverso3" id="tipo_evento_adverso3" style="background-image:url(imagenes/agregar.png); background-repeat:no-repeat;  width:41px; height:38px; border:1px solid transparent; background-color:transparent" onclick="javascript:ventanaSecundaria('form_evento_adverso_tecno.php?xnfgti=<?php echo base64_encode($ID_PACIENTE) ?>>&artget=<?php echo base64_encode($ID_GESTION); ?>')" />
-                                </div> -->
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Fecha de la Proxima Llamada<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="date" name="fecha_proxima_llamada" id="fecha_proxima_llamada" min="<?php echo date('Y-m-d'); ?>" />
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <span>Motivo de Proxima Llamada<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <select type="text" name="motivo_proxima_llamada" id="motivo_proxima_llamada">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Fecha de la Proxima Llamada<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="date" name="fecha_proxima_llamada" id="fecha_proxima_llamada" min="<?php echo date('Y-m-d'); ?>">
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Motivo de Proxima Llamada<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <select type="text" name="motivo_proxima_llamada" id="motivo_proxima_llamada" class="form-control">
                                     <option value="">Seleccione...</option>
                                     <option>Actualizacion de Datos</option>
                                     <option>Campanas</option>
@@ -2335,40 +2327,28 @@ if ($privilegios != '' && $usua != '') {
                                     <option>Reclamo</option>
                                     <option>Seguimiento</option>
                                 </select>
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Observaciones Proxima Llamada</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="text" name="observacion_proxima_llamada" id="observacion_proxima_llamada" onkeypress="return check(event)" />
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <span>Consecutivo</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="text" name="consecutivo" id="consecutivo" />
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Numero cajas/ Unidades</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <select name="numero_cajas" id="numero_cajas" style="width:30%;">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Observaciones Proxima Llamada</span>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="text" name="observacion_proxima_llamada" id="observacion_proxima_llamada" onkeypress="return check(event)" />
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Consecutivo</span>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="text" name="consecutivo" id="consecutivo" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Numero cajas/ Unidades</span>
+                            </div>
+                            <div class="col">
+                                <select name="numero_cajas" id="numero_cajas" class="form-control">
                                     <option value="">Seleccione...</option>
                                     <option>0</option>
                                     <option>1</option>
@@ -2422,99 +2402,94 @@ if ($privilegios != '' && $usua != '') {
                                     <option>49</option>
                                     <option>50</option>
                                 </select>
-                                <select name="tipo_numero_cajas" id="tipo_numero_cajas" style="width:60%;">
+                                <select name="tipo_numero_cajas" id="tipo_numero_cajas" class="form-control">
                                     <option value="">Seleccione...</option>
                                     <option>Ampolla(s)</option>
                                     <option>Aplicacion</option>
                                     <option>Caja(s)</option>
                                     <option>Inyeccion pre llenada</option>
                                 </select>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
+                            </div>
+                            <div class="col">
                                 <div style="display:none" id="span_nebulizaciones">
-                                    <span>Numero Nebulizaciones</span>
-                                    <br />
-                                    <br />
+                                    <span class="fw-bold">Numero Nebulizaciones</span>
                                 </div>
-                            </td>
-                            <td>
+                            </div>
+                            <div class="col">
                                 <div style="display:none" id="div_nebulizaciones">
-                                    <input type="text" name="nebulizaciones" id="nebulizaciones" />
-                                    <br />
-                                    <br />
+                                    <input class="form-control" type="text" name="nebulizaciones" id="nebulizaciones" />
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span style="text-transform:capitalize;">Tratamiento Previo</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <select type="text" name="tratamiento_previo" id="tratamiento_previo" onchange="trat_previo(this)">
-                                    <option><?php echo $TRATAMIENTO_PREVIOS ?></option>
-                                    <option value="">Seleccione...</option>
-                                    <?php
-                                    $Seleccion = mysqli_query($conex, "SELECT DISTINCT TRATAMIENTO_PREVIO FROM `ipsen_listas` WHERE TRATAMIENTO_PREVIO != '' AND TRATAMIENTO_PREVIO!='" . $tratamiento_previo . "' ORDER BY TRATAMIENTO_PREVIO ASC");
-                                    while ($fila_trt = mysqli_fetch_array($Seleccion)) {
-                                        $TRATAMIENTO_PREVIO = $fila_trt['TRATAMIENTO_PREVIO'];
-                                        echo "<option>" . $TRATAMIENTO_PREVIO . "</option>";
-                                    }
-                                    ?>
-                                    <option>Otro</option>
-                                </select>
-                                <div id="otro_tratamiento" style="display:none">
-                                    <span>Cual?</span>
-                                    <input name="tratamiento_previo_otro" id="tratamiento_previo_otro" type="text" style="width:78%;" onkeypress="return check(event)" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="fw-bold">Tratamiento Previo</span>
+                                    </div>
+                                    <div class="col">
+                                        <select type="text" name="tratamiento_previo" id="tratamiento_previo" onchange="trat_previo(this)" class="form-control">
+                                            <option><?php echo $TRATAMIENTO_PREVIOS ?></option>
+                                            <option value="">Seleccione...</option>
+                                            <?php
+                                            $Seleccion = mysqli_query($conex, "SELECT DISTINCT TRATAMIENTO_PREVIO FROM `ipsen_listas` WHERE TRATAMIENTO_PREVIO != '' AND TRATAMIENTO_PREVIO!='" . $tratamiento_previo . "' ORDER BY TRATAMIENTO_PREVIO ASC");
+                                            while ($fila_trt = mysqli_fetch_array($Seleccion)) {
+                                                $TRATAMIENTO_PREVIO = $fila_trt['TRATAMIENTO_PREVIO'];
+                                                echo "<option>" . $TRATAMIENTO_PREVIO . "</option>";
+                                            }
+                                            ?>
+                                            <option>Otro</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <br />
-                                <br />
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span style="text-transform:capitalize;">Medicamento</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input style="text-transform:capitalize;" type="text" readonly="readonly" name="MEDICAMENTO" id="MEDICAMENTO" value="<?php echo $PRODUCTO_TRATAMIENTO ?>" />
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <span style="text-transform:capitalize;">Dosis Tratamiento<span class="asterisco">*</span></span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input style="text-transform:capitalize;" type="text" name="dosis_actual" id="dosis_actual" value="<?php echo $DOSIS ?>" readonly>
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Cambiar dosis<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <select name="cambio_dosis" id="cambio_dosis">
-                                    <option value="">Seleccione...</option>
-                                    <option value="SI">SI</option>
-                                    <option value="NO">NO</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span style="text-transform:capitalize; display:none;" id="nueva_dosis">Nueva dosis tratamiento<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
+                            </div>
+                            <div class="col-6" id="otro_tratamiento" style="display:none">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="fw-bold">Cual?</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" name="tratamiento_previo_otro" id="tratamiento_previo_otro" type="text" onkeypress="return check(event)" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Medicamento</span>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" style="text-transform:capitalize;" type="text" readonly name="MEDICAMENTO" id="MEDICAMENTO" value="<?php echo $PRODUCTO_TRATAMIENTO ?>" />
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Dosis Tratamiento<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" style="text-transform:capitalize;" type="text" name="dosis_actual" id="dosis_actual" value="<?php echo $DOSIS ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="fw-bold">Cambiar dosis<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select name="cambio_dosis" id="cambio_dosis" class="form-control" class="form-control">
+                                            <option value="">Seleccione...</option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold" style="display:none;" id="nueva_dosis">Nueva dosis tratamiento<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
                                 <?php
                                 $dosis_bd = $fila['DOSIS_TRATAMIENTO'];
                                 if ($producto_tratamiento == 'ADEMPAS 1MG 42TABL' || $producto_tratamiento == 'ADEMPAS 2.5MG 84TABL' || $producto_tratamiento == 'ADEMPAS 1.5MG 42TABL' || $producto_tratamiento == 'ADEMPAS 0.5MG 42TABL' || $producto_tratamiento == 'ADEMPAS 2MG 42TABL' || $producto_tratamiento == 'ADEMPAS') {
@@ -2522,27 +2497,27 @@ if ($privilegios != '' && $usua != '') {
                                 }
                                 if ($producto_tratamiento == 'KOGENATE FS 2000 PLAN') {
                                 ?>
-                                    <input type="text" maxlength="6" name="Dosis3" id="Dosis3" onKeyDown="return validarNumeros(event)" style="display:none;">
+                                    <input class="form-control" type="text" maxlength="6" name="Dosis3" id="Dosis3" onKeyDown="return validarNumeros(event)" style="display:none;">
                                 <?PHP
                                 }
                                 if ($producto_tratamiento == 'Xofigo 1x6 ml CO') {
                                 ?>
-                                    <input style="text-transform:capitalize; display:none;" type="text" name="Dosis2" id="Dosis2">
+                                    <input class="form-control" style="text-transform:capitalize; display:none;" type="text" name="Dosis2" id="Dosis2">
                                 <?PHP
                                 }
                                 if ($producto_tratamiento == 'Kovaltry') {
                                 ?>
-                                    <input style="text-transform:capitalize; display:none;" type="text" name="Dosis2" id="Dosis2">
+                                    <input class="form-control" style="text-transform:capitalize; display:none;" type="text" name="Dosis2" id="Dosis2">
                                 <?PHP
                                 }
                                 if ($producto_tratamiento == 'Jivi') {
                                 ?>
-                                    <input style="text-transform:capitalize; display:none;" type="text" name="Dosis2" id="Dosis2">
+                                    <input class="form-control" style="text-transform:capitalize; display:none;" type="text" name="Dosis2" id="Dosis2">
                                 <?php
                                 }
                                 if ($producto_tratamiento != 'Xofigo 1x6 ml CO' && $producto_tratamiento != 'KOGENATE FS 2000 PLAN' && $producto_tratamiento != 'Kovaltry' && $producto_tratamiento != 'Jivi') {
                                 ?>
-                                    <select name="Dosis" id="Dosis" style="display:none;">
+                                    <select name="Dosis" id="Dosis" style="display:none;" class="form-control">
                                         <option value="">Seleccione...</option>
                                         <?php
                                         $producto = $fila['PRODUCTO_TRATAMIENTO'];
@@ -2558,60 +2533,62 @@ if ($privilegios != '' && $usua != '') {
                                 <?php
                                 }
                                 ?>
-                            </td>
-                            <td>
-                                <span id="fecha_cambio" style="display:none;">Fecha cambio de dosis<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <input type="date" name="fecha_cambio_dosis" id="fecha_cambio_dosis" style="display:none;">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Frecuencia de administración del medicamento<span class="asterisco">*</span></span>
-                            </td>
-                            <td>
-                                <select name="frecuencia" id="frecuencia">
-                                    <option value="<?php echo $FRECUENCIA_MEDICAMENTO ?>"><?php echo $FRECUENCIA_MEDICAMENTO ?></option>
-                                    <option value="">Seleccione...</option>
-                                    <option value="1 TABLETA CADA 12 HORAS">1 TABLETA CADA 12 HORAS</option>
-                                    <option value="1 TABLETA CADA 24 HORAS">1 TABLETA CADA 24 HORAS</option>
-                                    <option value="2 TABLETAS CADA 24 HORAS">2 TABLETAS CADA 24 HORAS</option>
-                                    <option value="CADA 15 DIAS">CADA 15 DIAS</option>
-                                    <option value="CADA 20 DIAS">CADA 20 DIAS</option>
-                                    <option value="CADA 21 DIAS">CADA 21 DIAS</option>
-                                    <option value="CADA 24 DIAS">CADA 24 DIAS</option>
-                                    <option value="CADA 28 DIAS">CADA 28 DIAS</option>
-                                    <option value="CADA 30 DIAS">CADA 30 DIAS</option>
-                                    <option value="CADA 42 DIAS">CADA 42 DIAS</option>
-                                    <option value="CADA 45 DIAS">CADA 45 DIAS</option>
-                                    <option value="CADA 60 DIAS">CADA 60 DIAS</option>
-                                    <option value="CADA 90 DIAS">CADA 90 DIAS</option>
-                                    <option value="POR CONFIRMAR">POR CONFIRMAR</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Envios</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <input type="radio" name="envios" id="envios" style=" width:20%;" value="SI" />SI
-                                <input type="radio" name="envios" id="envios" style=" width:20%;" value="NO" />NO
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Tipo de Envio</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <select name="tipo_envio" id="tipo_envio">
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold" id="fecha_cambio" style="display:none;">Fecha cambio de dosis<span class="asterisco">*</span></span>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="date" name="fecha_cambio_dosis" id="fecha_cambio_dosis" style="display:none;">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="fw-bold">Frecuencia de administración del medicamento<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select name="frecuencia" id="frecuencia" class="form-control">
+                                            <option value="<?php echo $FRECUENCIA_MEDICAMENTO ?>"><?php echo $FRECUENCIA_MEDICAMENTO ?></option>
+                                            <option value="">Seleccione...</option>
+                                            <option value="1 TABLETA CADA 12 HORAS">1 TABLETA CADA 12 HORAS</option>
+                                            <option value="1 TABLETA CADA 24 HORAS">1 TABLETA CADA 24 HORAS</option>
+                                            <option value="2 TABLETAS CADA 24 HORAS">2 TABLETAS CADA 24 HORAS</option>
+                                            <option value="CADA 15 DIAS">CADA 15 DIAS</option>
+                                            <option value="CADA 20 DIAS">CADA 20 DIAS</option>
+                                            <option value="CADA 21 DIAS">CADA 21 DIAS</option>
+                                            <option value="CADA 24 DIAS">CADA 24 DIAS</option>
+                                            <option value="CADA 28 DIAS">CADA 28 DIAS</option>
+                                            <option value="CADA 30 DIAS">CADA 30 DIAS</option>
+                                            <option value="CADA 42 DIAS">CADA 42 DIAS</option>
+                                            <option value="CADA 45 DIAS">CADA 45 DIAS</option>
+                                            <option value="CADA 60 DIAS">CADA 60 DIAS</option>
+                                            <option value="CADA 90 DIAS">CADA 90 DIAS</option>
+                                            <option value="POR CONFIRMAR">POR CONFIRMAR</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="fw-bold">Envios</span>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-check-input me-1" type="radio" name="envios" id="envios" value="SI" />SI
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-check-input me-1" type="radio" name="envios" id="envios" value="NO" />NO
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <span class="fw-bold">Tipo de Envio</span>
+                            </div>
+                            <div class="col">
+                                <select name="tipo_envio" id="tipo_envio" class="form-control">
                                     <option value="">Seleccione...</option>
                                     <?php
                                     while ($opcion = mysqli_fetch_array($listado_envio)) {
@@ -2621,173 +2598,164 @@ if ($privilegios != '' && $usua != '') {
                                     }
                                     ?>
                                 </select>
-                                <select name="nombre_producto" id="nombre_producto" style="display:none">
+                                <select name="nombre_producto" id="nombre_producto" style="display:none" class="form-control">
                                 </select>
-                                <br />
-                                <br />
-                            </td>
-                            <td>
-                                <div id="div_agregar" style="visibility:hidden">
-                                    <input type="submit" name="agregar_seg" id="agregar_seg" formaction="form_productos_envio.php" formtarget="registro_productos_form" style="background-image:url(imagenes/agregar.png); background-repeat:no-repeat;  width:41px; height:38px; border:1px solid transparent; background-color:transparent" value="" />
-                                </div>
-                            </td>
-                        <?php
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div id="div_agregar" style="visibility:hidden">
+                                <input type="submit" name="agregar_seg" id="agregar_seg" formaction="form_productos_envio.php" formtarget="registro_productos_form" style="background-image:url(imagenes/agregar.png); background-repeat:no-repeat;  width:41px; height:38px; border:1px solid transparent; background-color:transparent" value="" />
+                            </div>
+                        </div>
+                    <?php
                             }
-                        ?>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                                <div id="div_material_agregar" style="width:50%; margin:auto auto; display:none">
-                                    <iframe name="registro_productos_form" style="width:100%; height:250px; border:1px solid #000;" scrolling="auto"></iframe>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Descripcion de Comunicacion</span>
-                                <br />
-                                <br />
-                            </td>
-                            <td colspan="3">
-                                <textarea style="width:98%; height:72.5px;" id="descripcion_comunicacion" name="descripcion_comunicacion"></textarea>
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        </table>
-                        <br />
-                        <br />
+                    ?>
+                    <div class="row mb-3">
+                        <div class="col" id="div_material_agregar" style="width:50%; margin:auto auto; display:none">
+                            <iframe name="registro_productos_form" style="width:100%; height:250px; border:1px solid #000;" scrolling="auto"></iframe>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <span class="fw-bold">Descripcion de Comunicacion<span class="asterisco">*</span></span>
+                            <textarea class="form-control" id="descripcion_comunicacion" name="descripcion_comunicacion"></textarea>
+                        </div>
+                    </div>
+                        </div>
                     </div>
                 </div>
-                <div class="AccordionPanel">
-                    <div class="AccordionPanelTab" style="padding:5px">COMUNICACIONES</div>
-                    <div class="AccordionPanelContent">
-                        <?PHP
-                        $gestion = mysqli_query($conex, "SELECT `ipsen_gestiones`.*, (SELECT CONCAT(ID, '/', NOMBRE_PACIENTE, '_', ID_PACIENTE_FK) FROM `ipsen_informacion_ci` WHERE `ipsen_informacion_ci`.`ID_GESTION_FK` = `ipsen_gestiones`.`ID_GESTION` 
-                        AND EXISTS( SELECT * FROM `ipsen_pacientes` WHERE `ipsen_informacion_ci`.`ID_PACIENTE_FK` = `ipsen_pacientes`.`ID_PACIENTE`) LIMIT 1) AS file_pdf FROM `ipsen_gestiones` 
-                        WHERE ID_PACIENTE_FK2 =$ID_PACIENTE2 ORDER BY FECHA_COMUNICACION DESC");
-                        echo mysqli_error($conex);
-                        echo "<table width=100% border=1 rules=all  align=left class=Estilo2 >";
-                        echo "<tr style='border:1px solid #fff'>";
-                        echo "<th class=AccordionPanelTab><strong>FECHA DE GESTION</strong></th>";
-                        echo "<th class=AccordionPanelTab><strong>DESCRIPCION</strong></th>";
-                        echo "<th class=AccordionPanelTab><strong>FECHA PROXIMO CONTACTO</strong></th>";
-                        echo "<th class=AccordionPanelTab><strong>AUTOR</strong></th>";
-                        echo "<th class=AccordionPanelTab><strong>MOTIVO COMUNICACION GESTION</strong></th>";
-                        echo "<td class=AccordionPanelTab><strong>FECHA ULTI RECOLECCION</strong></td>";
-                        echo "<td class=AccordionPanelTab><strong>FECHA PROX RECOLECCION</strong></td>";
-                        echo "<td class=AccordionPanelTab><strong>CODIGO EA</strong></td>";
-                        echo "<td class=AccordionPanelTab><strong>ARCHIVO ADJUNTO</strong></td>";
-                        if ($privilegios != 4) {
-                            echo "<td class=AccordionPanelTab><strong>CONSENTIMIENTO INFORMADO</strong></td>";
-                        }
-                        echo "</tr>";
-                        $numges = 1;
-                        while ($fila2 = mysqli_fetch_array($gestion)) {
-                            echo "<tr>";
-                            echo "<td style='border:1px solid gray'>" . $fila2['FECHA_COMUNICACION'] . "</td>";
-                            echo "<td style='border:1px solid gray'>";
-                        ?>
-                            <textarea name="observaciones" cols="60" rows="2" readonly="readonly" id="observaciones" class="letra" style="text-transform:uppercase"><?php echo $fila2['DESCRIPCION_COMUNICACION_GESTION']; ?></textarea>
+                <div class="accordion-item">
+                    <h2 class="accordion-header " id="headingFour">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                            COMUNICACIONES
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
                             <?PHP
-                            echo "</td>";
-                            echo "<td style='border:1px solid gray'>" . $fila2['FECHA_PROGRAMADA_GESTION'] . "</td>";
-                            echo "<td style='border:1px solid gray'>" . $fila2['AUTOR_GESTION'] . "</td>";
-                            echo "<td style='border:1px solid gray'>" . $fila2['MOTIVO_COMUNICACION_GESTION'] . "</td>";
-                            echo "<td style='border:1px solid gray'>" . $fila2['FECHA_ULT_RECOLECCION'] . "</td>";
-                            echo "<td style='border:1px solid gray'>" . $fila2['FECHA_PRO_RECOLECCION'] . "</td>";
-                            if ($privilegios == '1') {
-                                $evento = $fila2['EVENTO_ADVERSO_GESTION'];
-                                if ($evento == 'SI' || $evento == 'Si') {
+                            $gestion = mysqli_query($conex, "SELECT `ipsen_gestiones`.*, (SELECT CONCAT(ID, '/', NOMBRE_PACIENTE, '_', ID_PACIENTE_FK) FROM `ipsen_informacion_ci` WHERE `ipsen_informacion_ci`.`ID_GESTION_FK` = `ipsen_gestiones`.`ID_GESTION` AND EXISTS( SELECT * FROM `ipsen_pacientes` WHERE `ipsen_informacion_ci`.`ID_PACIENTE_FK` = `ipsen_pacientes`.`ID_PACIENTE`) LIMIT 1) AS file_pdf FROM `ipsen_gestiones` WHERE ID_PACIENTE_FK2 =$ID_PACIENTE2 ORDER BY FECHA_COMUNICACION DESC");
+                            echo mysqli_error($conex);
                             ?>
-                                    <td style='border:1px solid gray'>
-                                        <input name="CODIGO_ARGUS" id="CODIGO_ARGUS" type="text" maxlength="25" style="width:80%" value="<?php echo $fila2['CODIGO_ARGUS']; ?>" readonly="readonly" />
-                                        <a class="btn_gestiones" href="javascript:ventanaSecundaria('../presentacion/codigo_ar.php?xx=<?php echo base64_encode($fila2['ID_GESTION']) ?>&xxp=<?php echo base64_encode($ID_PACIENTE) ?>')"><img src="imagenes/CHULO.png" width="17%" height="25px" title="Agregar Codigo" align="right" /> </a>
-                                    </td>
-                                <?php
-                                } else {
-                                ?>
-                                    <td style='border:1px solid gray'>
-                                    </td>
-                                <?php
-                                }
-                            } else if ($privilegios == '2') {
-                                $evento = $fila2['EVENTO_ADVERSO_GESTION'];
-                                if ($evento == 'SI' || $evento == 'Si') {
-                                ?>
-                                    <td style='border:1px solid gray'>
-                                        <input name="CODIGO_ARGUS" id="CODIGO_ARGUS" type="text" maxlength="25" style="width:80%" value="<?php echo $fila2['CODIGO_ARGUS']; ?>" readonly="readonly" />
-                                        <a class="btn_gestiones" href="javascript:ventanaSecundaria('../presentacion/codigo_ar.php?xx=<?php echo base64_encode($fila2['ID_GESTION']) ?>&xxp=<?php echo base64_encode($ID_PACIENTE) ?>')"><img src="imagenes/CHULO.png" width="17%" height="25px" title="Agregar Codigo" align="right" /> </a>
-                                    </td>
-                                <?php
-                                } else {
-                                ?>
-                                    <td style='border:1px solid gray'>
-                                    </td>
+                            <div class="table-container">
+                                <table class="table">
+                                    <tr style='border:1px solid gray'>
+                                        <th class=AccordionPanelTab><strong>FECHA DE GESTION</strong></th>
+                                        <th class=AccordionPanelTab><strong>DESCRIPCION</strong></th>
+                                        <th class=AccordionPanelTab><strong>FECHA PROXIMO CONTACTO</strong></th>
+                                        <th class=AccordionPanelTab><strong>AUTOR</strong></th>
+                                        <th class=AccordionPanelTab><strong>MOTIVO COMUNICACION GESTION</strong></th>
+                                        <td class=AccordionPanelTab><strong>CODIGO EA</strong></td>
+                                        <td class=AccordionPanelTab><strong>ARCHIVO ADJUNTO</strong></td>
+                                        <td class=AccordionPanelTab><strong>CONSENTIMIENTO INFORMADO</strong></td>
+                                    </tr>
                                     <?php
-                                }
-                            }
-                            $ID_GES = $fila2['ID_GESTION'];
-                            $dir = "../ADJUNTOS_IPSEN/$ID_GES";
-                            if (file_exists($dir)) {
-                                $directorio = opendir($dir);
-                                while ($archivo = readdir($directorio)) {
-                                    if ($archivo == '.' or $archivo == '..') {
-                                    } else {
-                                        $enlace = $dir . "/" . $archivo;
+                                    $numges = 1;
+                                    while ($fila2 = mysqli_fetch_array($gestion)) {
+                                        echo "<tr>";
+                                        echo "<td style='border:1px solid gray'>" . $fila2['FECHA_COMUNICACION'] . "</td>";
+                                        echo "<td style='border:1px solid gray'>";
                                     ?>
-                                        <td style='border:1px solid gray'>
-                                            <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $enlace ?>')">
-                                                <img src="../presentacion/imagenes/archivo.png" alt="" title="Click to enlarge" height="100" width="100">
-                                            </a>
-                                        </td>
-                                <?php
+                                        <textarea name="observaciones" cols="60" rows="2" readonly id="observaciones" class="letra" style="text-transform:uppercase"><?php echo $fila2['DESCRIPCION_COMUNICACION_GESTION']; ?></textarea>
+                                        <?PHP
+                                        echo "</td>";
+                                        echo "<td style='border:1px solid gray'>" . $fila2['FECHA_PROGRAMADA_GESTION'] . "</td>";
+                                        echo "<td style='border:1px solid gray'>" . $fila2['AUTOR_GESTION'] . "</td>";
+                                        echo "<td style='border:1px solid gray'>" . $fila2['MOTIVO_COMUNICACION_GESTION'] . "</td>";
+                                        if ($privilegios == '1') {
+                                            $evento = $fila2['EVENTO_ADVERSO_GESTION'];
+                                            if ($evento == 'SI' || $evento == 'Si') {
+                                        ?>
+                                                <td style='border:1px solid gray'>
+                                                    <input name="CODIGO_ARGUS" id="CODIGO_ARGUS" type="text" maxlength="25" style="width:80%" value="<?php echo $fila2['CODIGO_ARGUS']; ?>" readonly />
+                                                    <a class="btn_gestiones" href="javascript:ventanaSecundaria('../presentacion/codigo_ar.php?xx=<?php echo base64_encode($fila2['ID_GESTION']) ?>&xxp=<?php echo base64_encode($ID_PACIENTE) ?>')"><img src="imagenes/CHULO.png" width="17%" height="25px" title="Agregar Codigo" align="right" /> </a>
+                                                </td>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <td style='border:1px solid gray'>
+                                                </td>
+                                            <?php
+                                            }
+                                        } else if ($privilegios == '2') {
+                                            $evento = $fila2['EVENTO_ADVERSO_GESTION'];
+                                            if ($evento == 'SI' || $evento == 'Si') {
+                                            ?>
+                                                <td style='border:1px solid gray'>
+                                                    <input name="CODIGO_ARGUS" id="CODIGO_ARGUS" type="text" maxlength="25" style="width:80%" value="<?php echo $fila2['CODIGO_ARGUS']; ?>" readonly />
+                                                    <a class="btn_gestiones" href="javascript:ventanaSecundaria('../presentacion/codigo_ar.php?xx=<?php echo base64_encode($fila2['ID_GESTION']) ?>&xxp=<?php echo base64_encode($ID_PACIENTE) ?>')"><img src="imagenes/CHULO.png" width="17%" height="25px" title="Agregar Codigo" align="right" /> </a>
+                                                </td>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <td style='border:1px solid gray'>
+                                                </td>
+                                                <?php
+                                            }
+                                        }
+                                        $ID_GES = $fila2['ID_GESTION'];
+                                        $dir = "../ADJUNTOS_IPSEN/$ID_GES";
+                                        if (file_exists($dir)) {
+                                            $directorio = opendir($dir);
+                                            while ($archivo = readdir($directorio)) {
+                                                if ($archivo == '.' or $archivo == '..') {
+                                                } else {
+                                                    $enlace = $dir . "/" . $archivo;
+                                                ?>
+                                                    <td style='border:1px solid gray'>
+                                                        <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $enlace ?>')">
+                                                            <img src="../presentacion/imagenes/archivo.png" alt="" title="Click to enlarge" height="100" width="100">
+                                                        </a>
+                                                    </td>
+                                            <?php
+                                                }
+                                            }
+                                            closedir($directorio);
+                                        } else {
+                                            ?>
+                                            <td style='border:1px solid gray'>
+                                            </td>
+                                        <?php
+                                        }
+                                        $url = "https://pspipsen.com/PDF_CI/{$fila2["file_pdf"]}.pdf";
+                                        if ($fila2["file_pdf"] != '') {
+                                        ?>
+                                            <td style='border:1px solid gray'>
+                                                <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
+                                                    <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="100" width="100">
+                                                </a>
+                                            </td>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <td style='border:1px solid gray'>
+                                            </td>
+                                    <?php
+                                        }
+                                        echo "</tr>";
+                                        $numges = $numges + 1;
                                     }
-                                }
-                                closedir($directorio);
-                            } else {
-                                ?>
-                                <td style='border:1px solid gray'>
-                                </td>
-                            <?php
-                            }
-                            $url = "https://pspipsen.com/PDF_CI/{$fila2["file_pdf"]}.pdf";
-                            if ($fila2["file_pdf"] != '') {
-                            ?>
-                                <td style='border:1px solid gray'>
-                                    <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
-                                        <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="100" width="100">
-                                    </a>
-                                </td>
-                            <?php
-                            } else {
-                            ?>
-                                <td style='border:1px solid gray'>
-
-                                </td>
-                        <?php
-                            }
-                            echo "</tr>";
-                            $numges = $numges + 1;
-                        }
-                        echo "</table>";
-                        echo "<br />";
-                        ?>
+                                    ?>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="AccordionPanel">
-                    <div class="AccordionPanelTab">NOTAS Y ADJUNTOS</div>
-                    <div class="AccordionPanelContent">
-                        <table width="100%">
-                            <br>
+                <div class="accordion-item">
+                    <h2 class="accordion-header " id="headingFive">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                            NOTAS Y ADJUNTOS
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col">
-                                            <span>¿El paciente requiere ser re consentido?<span class="asterisco">*</span></span>
+                                            <span class="fw-bold">¿El paciente requiere ser re consentido?<span class="asterisco">*</span></span>
                                         </div>
                                         <div class="col">
-                                            <select name="consentimiento_informado" id="consentimiento_informado">
+                                            <select name="consentimiento_informado" id="consentimiento_informado" class="form-control">
                                                 <option value=""></option>
                                                 <option value="">Seleccione...</option>
                                                 <option value="SI">Si, enviar el link al paciente</option>
@@ -2799,52 +2767,176 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <textarea name="nota" id="nota" style="width:100%; height:90.5px;" title="Escriba una Nota" placeholder="Escriba una Nota"></textarea>
+                                    <textarea class="form-control" name="nota" id="nota" title="Escriba una Nota" placeholder="Escriba una Nota"></textarea>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <span>Seleccione archivo...</span>
-                                    <div class="input__row uploader">
-                                        <div id="inputval" class="input-value"></div>
-                                        <label for="archivo"></label>
-                                        <input type="file" class="upload" name="archivo" id="archivo" class="aceptar">
+                                    <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
+                                        <input type="file" name="archivo" id="archivo" class="form-control" accept="application/pdf" onchange="validateFileType()">
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span>Tipo de documento</span>
+                                    <ul>
+                                        <li><input type="radio" name="tipo_doc" id="tipo_doc" style="width: 2%;" value="Consentimiento Informado">Consentimiento Informado</li>
+                                        <li><input type="radio" name="tipo_doc" id="tipo_doc" style="width: 2%;" value="Voucher">Voucher</li>
+                                        <li><input type="radio" name="tipo_doc" id="tipo_doc" style="width: 2%;" value="Acta de entrega Dispositivos">Acta de entrega Dispositivos</li>
+                                        <li><input type="radio" name="tipo_doc" id="tipo_doc" style="width: 2%;" value="Grabacion Llamada">Grabacion Llamada</li>
+                                    </ul>
+                                </div>
+                            </div>
                             <script>
-                                $('#archivo').on('change', function() {
-                                    $('#inputval').text($(this).val());
-                                });
-                            </script>
-                            <center>
-                                <?php
-                                if ($privilegios != 5) {
-                                ?>
-                                    <input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_registrar" onClick="return validar(seguimiento,2)" />
-                                <?php
+                                function validateFileType() {
+                                    var fileInput = document.getElementById('archivo');
+                                    var filePath = fileInput.value;
+                                    var allowedExtensions = /(\.pdf)$/i;
+                                    if (!allowedExtensions.exec(filePath)) {
+                                        alert('Solo se aceptan archivos PDF.');
+                                        fileInput.value = '';
+                                        return false;
+                                    }
+
+                                    if (fileInput != '') {
+                                        alert('Por favor seleccione el tipo de documento adjunto');
+                                    }
                                 }
-                                ?>
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                        </table>
+                            </script>
+                            <?php
+                            if ($privilegios != 5) {
+                            ?>
+                                <div class="d-flex justify-content-center">
+                                    <input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_registrar btn btn-modify bg-gradient text-white w-25" onClick="return validar(seguimiento,2)" />
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <style>
+                    .btn {
+                        padding: 10px 20px;
+                        border: none;
+                        cursor: pointer;
+                        font-size: 16px;
+                    }
+
+                    .bg-gradient {
+                        background: linear-gradient(to right, #ff7e5f, #feb47b);
+                    }
+
+                    .text-white {
+                        color: white;
+                    }
+
+                    .w-25 {
+                        width: 25%;
+                    }
+
                     .alert {
                         /* margin-left: 22%; */
                         width: 100%;
                         text-align: center;
                     }
 
-                    .row {
-                        --bs-gutter-x: 1 rem !important;
+                    @media (max-width: 768px) {
+
+                        /* Define styles for smaller screens here */
+                        table {
+                            width: 100%;
+                        }
+
+                        th,
+                        td {
+                            display: block;
+                        }
+                    }
+
+                    .table-container {
+                        width: 100%;
+                        overflow-x: auto;
+                    }
+
+                    tbody,
+                    td,
+                    tfoot,
+                    th,
+                    thead,
+                    tr {
+                        border-color: inherit;
+                        border-style: solid;
+                        border-width: 1px;
+                        /* border-color: red; */
+                    }
+
+                    .accordion {
+                        --bs-accordion-active-bg: #0C68B0;
+                        --bs-accordion-active-color: white;
+                        --bs-accordion-btn-bg: #035da3;
+                        --bs-accordion-btn-color: white;
+                    }
+
+                    .asterisco {
+                        font-weight: 700;
+                        color: #F00 !important;
+                    }
+
+                    body,
+                    .accordion-item {
+                        background-color: transparent;
+                    }
+
+                    .accordion-collapse {
+                        border: solid #0C68B0 1px;
+                        border-end-start-radius: 10px;
+                        border-end-end-radius: 10px;
+                    }
+
+                    .btn-modify {
+                        background: #0C68B0;
+                    }
+
+                    .btn:hover {
+                        background: #0C68B0;
+                    }
+
+                    .readonly {
+                        background-color: #E5E5E5;
+                    }
+
+                    .readonly:focus {
+                        background-color: #E5E5E5;
+                    }
+
+                    .btn_ver {
+                        background-image: url(imagenes/search.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 15%;
+                        height: 50px;
+                        color: transparent;
+                        background-color: transparent;
+                        border-radius: 5px;
+                        border: 1px solid transparent;
+                    }
+
+                    .btn_ver:active {
+                        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+                        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
+                            inset 0px 0px 20px #EEECEC;
+                    }
+
+                    .btn_ver:hover {
+                        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+                        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
+                            inset 0px 0px 20px #EEECEC;
                     }
                 </style>
+            </div>
             </div>
         </form>
         <script>
