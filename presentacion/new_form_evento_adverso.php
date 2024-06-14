@@ -324,7 +324,7 @@ if ($privilegios != '' && $usua != '') {
                                             <input type="radio" name="source_type" id="source_type" value="Early Access" onchange="habilitar1(this)"> Early Access
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="source_type" id="source_type" value="Patient Support PSP-L-0017" onchange="habilitar1(this)"> Patient Support PSP-L-0017
+                                            <input type="radio" name="source_type" id="source_type" value="Patient Support" onchange="habilitar1(this)"> Patient Support
                                         </div>
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="source_type" id="source_type" value="Market Research" onchange="habilitar1(this)"> Market Research
