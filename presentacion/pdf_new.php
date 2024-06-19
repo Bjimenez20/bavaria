@@ -10,6 +10,31 @@ use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 ob_start();
 
+function formatDate($dateString)
+{
+    // Array de nombres de meses en español
+    $meses = array(
+        1 => "enero",
+        2 => "febrero",
+        3 => "marzo",
+        4 => "abril",
+        5 => "mayo",
+        6 => "junio",
+        7 => "julio",
+        8 => "agosto",
+        9 => "septiembre",
+        10 => "octubre",
+        11 => "noviembre",
+        12 => "diciembre"
+    );
+
+    $date = new DateTime($dateString);
+    $numeroMes = $date->format('n'); // Obtener número del mes (1 a 12)
+    $nombreMes = $meses[$numeroMes]; // Obtener nombre del mes en español
+
+    return $date->format('d') . '-' . $nombreMes . '-' . $date->format('Y');
+}
+
 $consulta = mysqli_query($conex, "SELECT * FROM ipsen_evento_adverso WHERE ID_PACIENTE_FK ='$data->codigo_paciente' ORDER BY ID_EVENTO_ADVERSO DESC LIMIT 1");
 echo mysqli_error($conex);
 while ($fila1 = mysqli_fetch_array($consulta)) {
@@ -63,8 +88,19 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
     $MAH = $fila1['MAH'];
     $DOCTORS = $fila1['DOCTORS'];
     $COMPLETED_BY = $fila1['COMPLETED_BY'];
+    $EMAIL_USER = $fila1['EMAIL_USER'];
     $ID_PACIENTE_FK = $fila1['ID_PACIENTE_FK'];
 }
+
+$formatted_birth_date = formatDate($DATE_OF_BIRTH);
+$formatted_onset_date = formatDate($ONSET_DATE);
+$formatted_death_date = formatDate($DATE_OF_DEATH);
+$formatted_of_notification_date = formatDate($DATE_OF_NOTIFICATION);
+$formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
+$formatted_treatment_end_date = formatDate($TREATMENT_END_DATE);
+$formatted_event_stop_date = formatDate($EVENT_STOP_DATE);
+$formatted_start_date = formatDate($DATE_START);
+$formatted_stop_date = formatDate($DATE_STOP);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -146,7 +182,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
             <tr>
                 <td colspan="4">
                     <div style="text-align: left;">
-                        <strong>Date of First Notification (Day 0)</strong> <?php echo $DATE_OF_NOTIFICATION ?>
+                        <strong>Date of First Notification (Day 0)</strong> <?php echo $formatted_of_notification_date ?>
                     </div>
                     <p style="text-align: left;">(date first aware of the adverse event/safety information by a company employee/contractor)</p>
                 </td>
@@ -175,7 +211,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                 <p style="text-align: left;">
                                     2. Date of Birth
                                     <br> <br>
-                                    <?php echo $DATE_OF_BIRTH ?>
+                                    <?php echo $formatted_birth_date ?>
                                 </p>
                             </td>
                             <td colspan="1" style="border-radius: 0,5px; border: dotted;">
@@ -292,14 +328,14 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                     <p style="text-align: left;">
                         8. Treatment Start date
                         <br> <br>
-                        <?php echo $TREATMENT_START_DATE ?>
+                        <?php echo $formatted_treatment_start_date ?>
                     </p>
                 </td>
                 <td colspan="3">
                     <p style="text-align: left;">
                         9. Treatment End date (or mention continuing)
                         <br> <br>
-                        <?php echo $TREATMENT_END_DATE ?>
+                        <?php echo $formatted_treatment_end_date ?>
                     </p>
                 </td>
             </tr>
@@ -320,14 +356,14 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                     <p style="text-align: left;">
                         1.a <strong>Onset</strong> Date
                         <br> <br>
-                        <?php echo $ONSET_DATE ?>
+                        <?php echo $formatted_onset_date ?>
                     </p>
                 </td>
                 <td colspan="1" style="vertical-align: top; width:25%;">
                     <p style="text-align: left;">
                         1.b Event <strong>Stop Date (if applicable) or Mention Ongoing</strong>
                         <br> <br>
-                        <?php echo $EVENT_STOP_DATE ?>
+                        <?php echo $formatted_event_stop_date ?>
                     </p>
                 </td>
                 <td colspan="1" style="vertical-align: top; width:25%;">
@@ -430,7 +466,7 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                                             <br>
                                             <div class="rows">
                                                 <div class="rows" style="margin-left: -14%;">
-                                                    <span>Cause of Death:</span>
+                                                    <span>Cause of Death: <?php echo $formatted_death_date ?></span>
                                                 </div>
                                                 <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
 
@@ -1124,10 +1160,10 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                         <p style="text-align: left;"> <?php echo $DURATION ?> </p>
                     </td>
                     <td>
-                        <p style="text-align: left;"> <?php echo $DATE_START ?> </p>
+                        <p style="text-align: left;"> <?php echo $formatted_start_date ?> </p>
                     </td>
                     <td>
-                        <p style="text-align: left;"> <?php echo $DATE_STOP ?> </p>
+                        <p style="text-align: left;"> <?php echo $formatted_stop_date ?> </p>
                     </td>
                     <td>
                         <p style="text-align: left;"> <?php echo $INDICATION ?> </p>
@@ -1263,30 +1299,20 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
                 <td colspan="8">
                     <p style="text-align: left;">
                         <strong>
-                            <?php
-                            $select_user = mysqli_query($conex, "SELECT NOMBRES, APELLIDOS FROM ipsen_usuario WHERE EMAIL = '" . $COMPLETED_BY . "';");
-                            while ($fila_user = mysqli_fetch_array($select_user)) {
-                                $NOMBRES = $fila_user['NOMBRES'];
-                                $APELLIDOS = $fila_user['APELLIDOS'];
-                            }
-                            echo $NOMBRES . ' ' . $APELLIDOS;
-                            ?>
-
+                            <?php echo $COMPLETED_BY ?>
                         </strong> <br> <br>
                         <strong>
                             PEOPLE MARKETING
                         </strong> <br> <br>
                         <strong style="text-decoration: underline; color: blue;">
-                            <?php
-                            echo $COMPLETED_BY
-                            ?>
+                            <?php echo $EMAIL_USER ?>
                         </strong>
                         <br>
                         <br>
                         <br>
                         <br>
                         <strong>
-                            <?php echo $DATE_OF_NOTIFICATION ?>
+                            <?php echo $formatted_of_notification_date ?>
                         </strong>
                     </p>
                 </td>
@@ -1431,5 +1457,4 @@ $CARPETA = "../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO";
 if (!is_dir($CARPETA)) {
     mkdir("../EVENTO_ADVERSO/$ID_EVENTO_ADVERSO", 0777);
     file_put_contents('' . $CARPETA . '/Evento_Adverso_' . $ID_PACIENTE_FK . '.pdf', $output);
-    require("../presentacion/email/mail.php");
 }

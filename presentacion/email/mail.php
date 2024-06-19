@@ -22,6 +22,7 @@ $mail->Subject = $subject;
 // $mail->addAddress('dmendoza@peoplemarketing.com.co');
 $mail->addAddress('bjimenez@app-peoplemarketing.com');
 $mail->addAddress('bjimenez@overall.com.co');
+$mail->addAttachment('../EVENTO_ADVERSO/' . $ID_EVENTO_ADVERSO . '/Evento_Adverso_' . $ID_PACIENTE_FK . '.docx');
 $mail->addAttachment('../EVENTO_ADVERSO/' . $ID_EVENTO_ADVERSO . '/Evento_Adverso_' . $ID_PACIENTE_FK . '.pdf');
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->smtpClose();

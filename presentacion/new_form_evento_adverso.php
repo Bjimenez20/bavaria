@@ -313,6 +313,7 @@ if ($privilegios != '' && $usua != '') {
                                 <td colspan="9">
                                     <input type="hidden" name="codigo_paciente" id="codigo_paciente" value="<?php echo $ID_PACIENTE ?>">
                                     <input type="hidden" name="email_user" id="email_user" value="<?php echo $EMAIL ?>">
+                                    <input type="hidden" name="name_user" id="name_user" value="<?php echo $NOMBRES . ' ' . $APELLIDOS ?>">
                                     <p style="text-align: left;">
                                         <strong>
                                             SOURCE TYPE:
@@ -462,13 +463,13 @@ if ($privilegios != '' && $usua != '') {
                                     <p style="text-align: left;">
                                         4. Dose (specify units)
                                     </p>
-                                    <input type="text" name="dose" id="dose" class="form-control w-100 h-100" value="<?php echo $DOSIS ?>">
+                                    <input type="text" name="dose" id="dose" class="form-control w-100 h-100" value="<?php echo $DOSIS ?>" disabled>
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
                                         5. Frequency
                                     </p>
-                                    <input type="text" name="frequency" id="frequency" class="form-control w-100 h-100" value="<?php echo $FRECUENCIA_TRATAMIENTO ?>">
+                                    <input type="text" name="frequency" id="frequency" class="form-control w-100 h-100" value="<?php echo $FRECUENCIA_TRATAMIENTO ?>" disabled>
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
@@ -482,13 +483,13 @@ if ($privilegios != '' && $usua != '') {
                                     <p style="text-align: left;">
                                         7. Diagnosis/Indication
                                     </p>
-                                    <input type="text" name="diagnosis" id="diagnosis" class="form-control w-100 h-100" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>">
+                                    <input type="text" name="diagnosis" id="diagnosis" class="form-control w-100 h-100" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>" disabled>
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
                                         8. Treatment Start date
                                     </p>
-                                    <input type="date" name="treatment_start_date" id="treatment_start_date" class="form-control w-100 h-100" value="<?php echo $FECHA_INICO_TRATAMIENTO ?>">
+                                    <input type="date" name="treatment_start_date" id="treatment_start_date" class="form-control w-100 h-100" value="<?php echo $FECHA_INICO_TRATAMIENTO ?>" disabled>
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
@@ -994,7 +995,7 @@ if ($privilegios != '' && $usua != '') {
                                             1.c Address
                                         </strong>
                                     </p>
-                                    <input type="text" name="address" id="address" class="form-control w-100 h-100" value="<?php echo $DIRECCION_PACIENTE ?>" disabled>
+                                    <input type="text" name="address" id="address" class="form-control w-100 h-100">
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
@@ -1215,6 +1216,7 @@ if ($privilegios != '' && $usua != '') {
                 let date = {
                     codigo_paciente: document.getElementById('codigo_paciente').value,
                     email_user: document.getElementById('email_user').value,
+                    name_user: document.getElementById('name_user').value,
                     source_type: document.getElementById('valor_source_type').value,
                     first_notification: document.getElementById('first_notification').value,
                     initials: document.getElementById('initials').value,
@@ -1314,6 +1316,7 @@ if ($privilegios != '' && $usua != '') {
                         var titulo = respuesta[0];
                         var icono = respuesta[1];
                         var mensaje = respuesta[2];
+                        console.log(respuesta);
                         Swal.fire({
                             title: titulo,
                             html: mensaje,
@@ -1348,9 +1351,42 @@ if ($privilegios != '' && $usua != '') {
 
                 axios.post('./pdf_new.php', date)
                     .then(function(response) {
+                        console.log(response);
                         Swal.fire({
                                 title: 'success',
-                                html: 'El correo fue enviado',
+                                html: 'El pdf fue creado',
+                                icon: 'success',
+                                confirmButtonText: 'Aceptar'
+                            })
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    Bloquear()
+                                    btnConvertWord()
+                                }
+                            });
+                    })
+                    .catch(function(error) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Por favor consulte con el administrador',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        })
+                    });
+            }
+
+            function btnConvertWord() {
+
+                let date = {
+                    codigo_paciente: document.getElementById('codigo_paciente').value,
+                }
+
+                axios.post('./word.php', date)
+                    .then(function(response) {
+                        console.log(response);
+                        Swal.fire({
+                                title: 'success',
+                                html: 'El word fue creado',
                                 icon: 'success',
                                 confirmButtonText: 'Aceptar'
                             })
