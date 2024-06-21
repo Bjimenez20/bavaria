@@ -1509,7 +1509,7 @@ if ($privilegios != '' && $usua != '') {
                                     <input type="hidden" name="medicamentojair" id="medicamentojair" value="<?php echo $producto_tratamiento; ?>" />
                                 </div>
                                 <div class="col">
-                                    <input class="form-control" type="date" id="progra_visi_ini" name="progra_visi_ini" value="<?php echo $Fecha_privilegio; ?>" />
+                                    <input class="form-control" type="date" id="progra_visi_ini" name="progra_visi_ini">
                                 </div>
                                 <div class="col">
                                     <span class="fw-bold" id="span_causa_visita" style="display: none;">Causa No visitas<span class="asterisco">*</span></span>
@@ -1568,7 +1568,7 @@ if ($privilegios != '' && $usua != '') {
                                     <input class="form-control" type="hidden" name="medicamentojair" id="medicamentojair" value="<?php echo $producto_tratamiento; ?>" />
                                 </div>
                                 <div class="col">
-                                    <input class="form-control" type="date" id="progra_visi_ini" name="progra_visi_ini" value="<?php echo $Fecha_privilegio; ?>" disabled />
+                                    <input class="form-control" type="date" id="progra_visi_ini" name="progra_visi_ini">
                                 </div>
                                 <div class="col">
                                     <span class="fw-bold" id="span_causa_visita" style="display: none;">Causa No visitas</span>
@@ -2560,6 +2560,7 @@ if ($privilegios != '' && $usua != '') {
                                             <option value="CADA 24 DIAS">CADA 24 DIAS</option>
                                             <option value="CADA 28 DIAS">CADA 28 DIAS</option>
                                             <option value="CADA 30 DIAS">CADA 30 DIAS</option>
+                                            <option value="CADA 30 DIAS">CADA 40 DIAS</option>
                                             <option value="CADA 42 DIAS">CADA 42 DIAS</option>
                                             <option value="CADA 45 DIAS">CADA 45 DIAS</option>
                                             <option value="CADA 60 DIAS">CADA 60 DIAS</option>
