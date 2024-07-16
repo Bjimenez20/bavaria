@@ -81,16 +81,13 @@ include('../logica/session.php');
     $MotivoNoEdu = $_POST['MotivoNoEdu'];
     $boton_activo = $_POST['switch-button'];
     $frecuencia = $_POST['frecuencia'];
-    if ($_POST['sel_visita_inicial'] == "") {
-        $sel_visita_inicial = 'N/A';
-    } else {
-        $sel_visita_inicial = $_POST['sel_visita_inicial'];
-        $programada_visita = $_POST['progra_visi_ini'];
-        $respues_visi_si = $_POST['fecha_visita_ini'];
-        $respues_visi_no = $_POST['span_causa_visita1'];
-        $visitarrr1 = mysqli_query($conex, "UPDATE ipsen_tratamiento SET VISI_INI_EFEC = '" . $sel_visita_inicial . "', PROGRA_VIS_EDU ='" . $programada_visita . "' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
-        echo mysqli_error($conex);
-    }
+    $sel_visita_inicial = $_POST['sel_visita_inicial'];
+    $programada_visita = $_POST['progra_visi_ini'];
+    $respues_visi_si = $_POST['fecha_visita_ini'];
+    $respues_visi_no = $_POST['span_causa_visita1'];
+
+    $visitarrr1 = mysqli_query($conex, "UPDATE ipsen_tratamiento SET VISI_INI_EFEC = '" . $sel_visita_inicial . "', PROGRA_VIS_EDU ='" . $programada_visita . "' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+    echo mysqli_error($conex);
     if ($boton_activo == 'on') {
         if ($brindo_educacion == 'SI') {
             $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $codigo_usuario2 . "', '" . $brindo_educacion . "', '" . $TemaBrindoEdu . "', '" . $FechaEduca . "', NOW())");
