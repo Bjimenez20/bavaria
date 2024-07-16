@@ -98,8 +98,6 @@ $formatted_of_notification_date = formatDate($DATE_OF_NOTIFICATION);
 $formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
 $formatted_treatment_end_date = formatDate($TREATMENT_END_DATE);
 $formatted_event_stop_date = formatDate($EVENT_STOP_DATE);
-$formatted_start_date = formatDate($DATE_START);
-$formatted_stop_date = formatDate($DATE_STOP);
 
 $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('../plantilla/Adverse Events.docx');
 
@@ -126,6 +124,8 @@ while ($fila = mysqli_fetch_array($consulta_medicamento)) {
     $S_OR_C = $fila['S_OR_C'];
     $COMPANY_DRUG = $fila['COMPANY_DRUG'];
 
+    $formatted_start_date = formatDate($DATE_START);
+    $formatted_stop_date = formatDate($DATE_STOP);
     // Asignar valores con los nombres de marcadores de posición clonados
     $templateProcessor->setValue('DRUG#' . $counter, $DRUG);
     $templateProcessor->setValue('ROUTE#' . $counter, $ROUTE);
@@ -141,35 +141,10 @@ while ($fila = mysqli_fetch_array($consulta_medicamento)) {
     $counter++;
 }
 
-switch ($SOURCE_TYPE) {
-    case 'Early Access':
-        $templateProcessor->setValue('valor1', '☑');
-        $templateProcessor->setValue('valor2', '☐');
-        $templateProcessor->setValue('valor3', '☐');
-        $templateProcessor->setValue('valor4', '☐');
-        break;
-
-    case 'Patient Support':
-        $templateProcessor->setValue('valor1', '☐');
-        $templateProcessor->setValue('valor2', '☑');
-        $templateProcessor->setValue('valor3', '☐');
-        $templateProcessor->setValue('valor4', '☐');
-        break;
-
-    case 'Market Research':
-        $templateProcessor->setValue('valor1', '☐');
-        $templateProcessor->setValue('valor2', '☐');
-        $templateProcessor->setValue('valor3', '☑');
-        $templateProcessor->setValue('valor4', '☐');
-        break;
-
-    case 'Other':
-        $templateProcessor->setValue('valor1', '☐');
-        $templateProcessor->setValue('valor2', '☐');
-        $templateProcessor->setValue('valor3', '☐');
-        $templateProcessor->setValue('valor4', '☑');
-        break;
-}
+$templateProcessor->setValue('valor1', '☐');
+$templateProcessor->setValue('valor2', '☑');
+$templateProcessor->setValue('valor3', '☐');
+$templateProcessor->setValue('valor4', '☐');
 $templateProcessor->setValue('DATE_OF_NOTIFICATION', $formatted_of_notification_date);
 $templateProcessor->setValue('PATIENT_INITIALS', $PATIENT_INITIALS);
 $templateProcessor->setValue('DATE_OF_BIRTH', $formatted_birth_date);
@@ -202,64 +177,16 @@ $templateProcessor->setValue('ANY_OTHER_INFORMATION', $ANY_OTHER_INFORMATION);
 $templateProcessor->setValue('ONSET_DATE', $formatted_onset_date);
 $templateProcessor->setValue('EVENT_STOP_DATE', $formatted_event_stop_date);
 $templateProcessor->setValue('DURATION', $DURATION);
-switch ($EVENT_ABATED) {
-    case 'NO':
-        $templateProcessor->setValue('ABATED1', '☑');
-        $templateProcessor->setValue('ABATED2', '☐');
-        $templateProcessor->setValue('ABATED3', '☐');
-        break;
-
-    case 'YES':
-        $templateProcessor->setValue('ABATED1', '☐');
-        $templateProcessor->setValue('ABATED2', '☑');
-        $templateProcessor->setValue('ABATED3', '☐');
-        break;
-
-    case 'N/A':
-        $templateProcessor->setValue('ABATED1', '☐');
-        $templateProcessor->setValue('ABATED2', '☐');
-        $templateProcessor->setValue('ABATED3', '☑');
-        break;
-}
+$templateProcessor->setValue('ABATED1', '☐');
+$templateProcessor->setValue('ABATED2', '☐');
+$templateProcessor->setValue('ABATED3', '☑');
 $templateProcessor->setValue('EVENT_TERM', $EVENT_TERM);
-switch ($REAPPEARED) {
-    case 'NO':
-        $templateProcessor->setValue('REAPPEARED1', '☑');
-        $templateProcessor->setValue('REAPPEARED2', '☐');
-        $templateProcessor->setValue('REAPPEARED3', '☐');
-        break;
-
-    case 'YES':
-        $templateProcessor->setValue('REAPPEARED1', '☐');
-        $templateProcessor->setValue('REAPPEARED2', '☑');
-        $templateProcessor->setValue('REAPPEARED3', '☐');
-        break;
-
-    case 'N/A':
-        $templateProcessor->setValue('REAPPEARED1', '☐');
-        $templateProcessor->setValue('REAPPEARED2', '☐');
-        $templateProcessor->setValue('REAPPEARED3', '☑');
-        break;
-}
-switch ($PREVIOUSLY) {
-    case 'NO':
-        $templateProcessor->setValue('PREVIOUSLY1', '☑');
-        $templateProcessor->setValue('PREVIOUSLY2', '☐');
-        $templateProcessor->setValue('PREVIOUSLY3', '☐');
-        break;
-
-    case 'YES':
-        $templateProcessor->setValue('PREVIOUSLY1', '☐');
-        $templateProcessor->setValue('PREVIOUSLY2', '☑');
-        $templateProcessor->setValue('PREVIOUSLY3', '☐');
-        break;
-
-    case 'N/A':
-        $templateProcessor->setValue('PREVIOUSLY1', '☐');
-        $templateProcessor->setValue('PREVIOUSLY2', '☐');
-        $templateProcessor->setValue('PREVIOUSLY3', '☑');
-        break;
-}
+$templateProcessor->setValue('REAPPEARED1', '☐');
+$templateProcessor->setValue('REAPPEARED2', '☐');
+$templateProcessor->setValue('REAPPEARED3', '☑');
+$templateProcessor->setValue('PREVIOUSLY1', '☐');
+$templateProcessor->setValue('PREVIOUSLY2', '☑');
+$templateProcessor->setValue('PREVIOUSLY3', '☐');
 switch ($SERIOUSNESS) {
     case 'Non serious event':
         $templateProcessor->setValue('SERIOUSNESS1', '☑');
@@ -359,13 +286,9 @@ if ($AUTOPSY == 'YES') {
     $templateProcessor->setValue('AUTNO', '☐');
 }
 $templateProcessor->setValue('CAUSE_OF_DEATH', $CAUSE_OF_DEATH);
-if ($AUTOPSY == 'TREATMENT_FOR_AE') {
-    $templateProcessor->setValue('FORAE1', '☑');
-    $templateProcessor->setValue('FORAE2', '☐');
-} else {
-    $templateProcessor->setValue('FORAE1', '☐');
-    $templateProcessor->setValue('FORAE2', '☑');
-}
+$templateProcessor->setValue('FORAE1', '☐');
+$templateProcessor->setValue('FORAE2', '☑');
+
 $templateProcessor->setValue('TREATMENT_DETAILS', $TREATMENT_DETAILS);
 switch ($OUTCOME) {
     case 'Not recovered':
@@ -669,6 +592,21 @@ switch ($SPECIAL_SITUATIONS) {
         $templateProcessor->setValue('12', '☐');
         $templateProcessor->setValue('13', '☑');
         break;
+
+    default:
+        $templateProcessor->setValue('1', '☐');
+        $templateProcessor->setValue('2', '☐');
+        $templateProcessor->setValue('3', '☐');
+        $templateProcessor->setValue('4', '☐');
+        $templateProcessor->setValue('5', '☐');
+        $templateProcessor->setValue('6', '☐');
+        $templateProcessor->setValue('7', '☐');
+        $templateProcessor->setValue('8', '☐');
+        $templateProcessor->setValue('9', '☐');
+        $templateProcessor->setValue('10', '☐');
+        $templateProcessor->setValue('11', '☐');
+        $templateProcessor->setValue('12', '☐');
+        $templateProcessor->setValue('13', '☐');
 }
 if ($DEFECT_ISSUE == 'Event related to a quality defect issue') {
     $templateProcessor->setValue('DEFECT_ISSUE1', '☑');
@@ -681,13 +619,9 @@ $templateProcessor->setValue('REPORTER_NAME', $REPORTER_NAME);
 $templateProcessor->setValue('PHONE_NUMBER', $PHONE_NUMBER);
 $templateProcessor->setValue('ADDRESS', $ADDRESS);
 $templateProcessor->setValue('REPORTER_EMAIL', $REPORTER_EMAIL);
-if ($PROFESSIONAL == 'YES') {
-    $templateProcessor->setValue('PROFESSIONAL1', '☑');
-    $templateProcessor->setValue('PROFESSIONAL2', '☐');
-} else {
-    $templateProcessor->setValue('PROFESSIONAL1', '☐');
-    $templateProcessor->setValue('PROFESSIONAL2', '☑');
-}
+$templateProcessor->setValue('PROFESSIONAL1', '☐');
+$templateProcessor->setValue('PROFESSIONAL2', '☑');
+
 switch ($OCCUPATION) {
     case 'Doctor':
         $templateProcessor->setValue('OCU1', '☑');
@@ -781,6 +715,6 @@ $savePath = '../EVENTO_ADVERSO/' . $ID_EVENTO_ADVERSO . '/Evento_Adverso_' . $ID
 $templateProcessor->saveAs($savePath);
 chmod($savePath, 0755);
 
-echo "El archivo se ha guardado en: " . $savePath;
+// echo "El archivo se ha guardado en: " . $savePath;
 
 require("../presentacion/email/mail.php");

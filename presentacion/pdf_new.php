@@ -94,7 +94,9 @@ while ($fila1 = mysqli_fetch_array($consulta)) {
 
 $formatted_birth_date = formatDate($DATE_OF_BIRTH);
 $formatted_onset_date = formatDate($ONSET_DATE);
-$formatted_death_date = formatDate($DATE_OF_DEATH);
+if ($DATE_OF_DEATH != '') {
+    $formatted_death_date = formatDate($DATE_OF_DEATH);
+}
 $formatted_of_notification_date = formatDate($DATE_OF_NOTIFICATION);
 $formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
 $formatted_treatment_end_date = formatDate($TREATMENT_END_DATE);
@@ -161,22 +163,22 @@ $formatted_stop_date = formatDate($DATE_STOP);
                             SOURCE TYPE:
                         </strong>
                     </p>
-                    <?php
-                    if ($SOURCE_TYPE == 'Early Access' || $SOURCE_TYPE == 'Patient Support PSP-L-0017' || $SOURCE_TYPE == 'Market Research') {
-                    ?>
-                        <p style="text-align: left;">
-                            <?php echo $SOURCE_TYPE ?>
-                        </p>
-                    <?php
-                    } else {
-                    ?>
-                        <p style="text-align: left;">
-                            Other <br>
-                            <strong>Specify:</strong> <?php echo $SOURCE_TYPE ?>
-                        </p>
-                    <?php
-                    }
-                    ?>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox"> Early Access
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" checked> Patient Support PSP-L-0017
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox"> Market Research
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox"> Other
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -231,33 +233,24 @@ $formatted_stop_date = formatDate($DATE_STOP);
                         </tr>
                     </table>
                 </td>
-
-                <?php if ($GENDER == 'Female') { ?>
-                    <td colspan="1" style="vertical-align: top;">
-                        <p style="text-align: left;">3. Gender
-                            <br> <br>
-                            <span>Female</span>
-                        </p>
-                    </td>
-                <?php } else if ($GENDER == 'Male') { ?>
-                    <td colspan="1" style="vertical-align: top;">
-                        <p style="text-align: left;">3. Gender
-                            <br> <br>
-                            <span>Male</span>
-                        </p>
-                    </td>
-                <?php } ?>
-
+                <td colspan="1" style="vertical-align: top;">
+                    <p style="text-align: left;">3. Gender
+                        <br> <br>
+                        <input type="checkbox" <?php if ($GENDER == 'Male') echo 'checked'; ?>>Male
+                        <br>
+                        <input type="checkbox" <?php if ($GENDER == 'Female') echo 'checked'; ?>>Female
+                    </p>
+                </td>
                 <td colspan="2" style="vertical-align: top;">
                     <p style="text-align: left;">4. Weight
                         <br> <br>
-                        <?php echo $WEIGHT ?> kg/lbs
+                        <?php echo $WEIGHT ?> kg
                     </p>
                 </td>
                 <td colspan="2" style="vertical-align: top;">
                     <p style="text-align: left;">5. Height
                         <br> <br>
-                        <?php echo $HEIGHT ?> cm/inch
+                        <?php echo $HEIGHT ?> cm
                     </p>
                 </td>
             </tr>
@@ -288,9 +281,17 @@ $formatted_stop_date = formatDate($DATE_STOP);
                 <td colspan="3">
                     <p style="text-align: left;">
                         3. Sample Available
-                        <br> <br>
-                        <?php echo $SAMPLE_AVAILABLE ?>
                     </p>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SAMPLE_AVAILABLE == 'YES') echo 'checked'; ?>>Yes
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SAMPLE_AVAILABLE == 'NO') echo 'checked'; ?>>No
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -376,13 +377,24 @@ $formatted_stop_date = formatDate($DATE_STOP);
                 <td colspan="6" style="vertical-align: top; width:25%;">
                     <p style="text-align: left;">
                         1.d Event <strong>abated</strong> after use stopped
-                        <br> <br>
-                        <?php echo $EVENT_ABATED ?>
                     </p>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($EVENT_ABATED == 'NO') echo 'checked'; ?>>No
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($EVENT_ABATED == 'YES') echo 'checked'; ?>>Yes
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($EVENT_ABATED == 'N/A') echo 'checked'; ?>>N/A
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="vertical-align: top; width: 60%;">
+                <td colspan="3" style="vertical-align: top; width: 60%;">
                     <p style="text-align: left;">
                         <strong>1.h Event term</strong> <br>
                         (full description of the event including body site and severity)
@@ -391,22 +403,46 @@ $formatted_stop_date = formatDate($DATE_STOP);
                         <?php echo $EVENT_TERM ?>
                     </div>
                 </td>
-                <td colspan="7">
+                <td colspan="6">
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tr>
                             <td>
-                                <p style="text-align: left;">1.e Event <strong>reappeared</strong> after reintroduction
-                                    <br> <br>
-                                    <?php echo $REAPPEARED ?>
+                                <p style="text-align: left;">
+                                    1.e Event <strong>reappeared</strong> after reintroduction
                                 </p>
+                                <table style="width: 100%; border-collapse: collapse; border: none;">
+                                    <tr>
+                                        <td style="padding: 5px; border: none; text-align: left;">
+                                            <input type="checkbox" <?php if ($REAPPEARED == 'NO') echo 'checked'; ?>>No
+                                        </td>
+                                        <td style="padding: 5px; border: none; text-align: left;">
+                                            <input type="checkbox" <?php if ($REAPPEARED == 'YES') echo 'checked'; ?>>Yes
+                                        </td>
+                                        <td style="padding: 5px; border: none; text-align: left;">
+                                            <input type="checkbox" <?php if ($REAPPEARED == 'N/A') echo 'checked'; ?>>N/A
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p style="text-align: left;"> 1.f Has this drug <strong>previously</strong> been used
-                                    <br> <br>
-                                    <?php echo $PREVIOUSLY ?>
+                                <p style="text-align: left;">
+                                    1.f Has this drug <strong>previously</strong> been used
                                 </p>
+                                <table style="width: 100%; border-collapse: collapse; border: none;">
+                                    <tr>
+                                        <td style="padding: 5px; border: none; text-align: left;">
+                                            <input type="checkbox" <?php if ($PREVIOUSLY == 'NO') echo 'checked'; ?>>No
+                                        </td>
+                                        <td style="padding: 5px; border: none; text-align: left;">
+                                            <input type="checkbox" <?php if ($PREVIOUSLY == 'YES') echo 'checked'; ?>>Yes
+                                        </td>
+                                        <td style="padding: 5px; border: none; text-align: left;">
+                                            <input type="checkbox" <?php if ($PREVIOUSLY == 'N/A') echo 'checked'; ?>>N/A
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                         <tr>
@@ -416,527 +452,43 @@ $formatted_stop_date = formatDate($DATE_STOP);
                                         1.g Seriousness of the event per Reporter
                                     </strong>
                                 </p>
-                                <?php
-                                if ($SERIOUSNESS == 'Non serious event') {
-                                ?>
-                                    <div style="text-align: left;">
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <!-- <span style="color: #ff0000;"> Non serious event </span> -->
-                                                <input type="radio" checked> Non serious event
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <input type="radio"> Death - Date of death:
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <style>
-                                            .rows {
-                                                display: flex;
-                                                justify-content: center;
-                                            }
-                                        </style>
-                                        <div style="text-align: center;">
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -13%;">
-                                                    <span>Autopsy performed</span>
-                                                    <?php
-                                                    if ($AUTOPSY == 'YES') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else if ($AUTOPSY == 'NO') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -14%;">
-                                                    <span>Cause of Death: <?php echo $formatted_death_date ?></span>
-                                                </div>
-                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
 
-                                                </div>
-                                            </div>
+                                <div style="text-align: left;">
+                                    <div class="row">
+                                        <div class="col-auto d-flex justify-content-left">
+                                            <input type="checkbox" <?php if ($SERIOUSNESS == 'Non serious event') echo 'checked'; ?>> Non serious event
                                         </div>
-                                        <br>
-                                        <input type="radio"> Life threatening <br> <br>
-                                        <input type="radio"> Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
-                                        <input type="radio"> Persistent or significant disability/Incapacity <br> <br>
-                                        <input type="radio"> Congenital anomaly/birth defect <br> <br>
-                                        <input type="radio"> Other Serious (Medically important event) <br> <br>
-                                        <input type="radio"> “Require intervention” (only for devices)
                                     </div>
-                                <?php
-                                } else if ($SERIOUSNESS == 'Death - Date of death') {
-                                ?>
-                                    <div style="text-align: left;">
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <!-- <span style="color: #ff0000;"> Non serious event </span> -->
-                                                <input type="radio"> Non serious event
-                                            </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-auto d-flex justify-content-left">
+                                            <input type="checkbox" <?php if ($SERIOUSNESS == 'Death - Date of death') echo 'checked'; ?>> Death - Date of death: <?php echo $formatted_death_date ?>
                                         </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <input type="radio" checked> Death - Date of death:
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <style>
-                                            .rows {
-                                                display: flex;
-                                                justify-content: center;
-                                            }
-                                        </style>
-                                        <div style="text-align: center;">
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -13%;">
-                                                    <span>Autopsy performed</span>
-                                                    <?php
-                                                    if ($AUTOPSY == 'YES') {
-                                                    ?>
-                                                        <input type="radio" checked> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else if ($AUTOPSY == 'NO') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio" checked> No
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -14%;">
-                                                    <span>Cause of Death:</span>
-                                                    <?php echo $CAUSE_OF_DEATH ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <input type="radio"> Life threatening <br> <br>
-                                        <input type="radio"> Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
-                                        <input type="radio"> Persistent or significant disability/Incapacity <br> <br>
-                                        <input type="radio"> Congenital anomaly/birth defect <br> <br>
-                                        <input type="radio"> Other Serious (Medically important event) <br> <br>
-                                        <input type="radio"> “Require intervention” (only for devices)
                                     </div>
-                                <?php
-                                } else if ($SERIOUSNESS == 'Life threatening') {
-                                ?>
-                                    <div style="text-align: left;">
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <!-- <span style="color: #ff0000;"> Non serious event </span> -->
-                                                <input type="radio"> Non serious event
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <input type="radio"> Death - Date of death:
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <style>
-                                            .rows {
-                                                display: flex;
-                                                justify-content: center;
-                                            }
-                                        </style>
-                                        <div style="text-align: center;">
+                                    <br>
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                        <div class="rows">
                                             <div class="rows">
-                                                <div class="rows" style="margin-left: -13%;">
-                                                    <span>Autopsy performed</span>
-                                                    <?php
-                                                    if ($AUTOPSY == 'YES') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else if ($AUTOPSY == 'NO') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -14%;">
-                                                    <span>Cause of Death:</span>
-                                                </div>
-                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
-
-                                                </div>
+                                                <span>Autopsy performed</span>
+                                                <input type="checkbox" <?php if ($AUTOPSY == 'YES') echo 'checked'; ?>> Yes
+                                                <input type="checkbox" <?php if ($AUTOPSY == 'NO') echo 'checked'; ?>> No
                                             </div>
                                         </div>
                                         <br>
-                                        <input type="radio" checked> Life threatening <br> <br>
-                                        <input type="radio"> Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
-                                        <input type="radio"> Persistent or significant disability/Incapacity <br> <br>
-                                        <input type="radio"> Congenital anomaly/birth defect <br> <br>
-                                        <input type="radio"> Other Serious (Medically important event) <br> <br>
-                                        <input type="radio"> “Require intervention” (only for devices)
+                                        <div class="rows">
+                                            <div class="rows">
+                                                <span>Cause of Death: <?php echo $CAUSE_OF_DEATH ?></span>
+                                            </div>
+                                        </div>
                                     </div>
-                                <?php
-                                } else if ($SERIOUSNESS == 'Inpatient hospitalisation or prolongation of existing hospitalisation') {
-                                ?>
-                                    <div style="text-align: left;">
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <!-- <span style="color: #ff0000;"> Non serious event </span> -->
-                                                <input type="radio"> Non serious event
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <input type="radio"> Death - Date of death:
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <style>
-                                            .rows {
-                                                display: flex;
-                                                justify-content: center;
-                                            }
-                                        </style>
-                                        <div style="text-align: center;">
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -13%;">
-                                                    <span>Autopsy performed</span>
-                                                    <?php
-                                                    if ($AUTOPSY == 'YES') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else if ($AUTOPSY == 'NO') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -14%;">
-                                                    <span>Cause of Death:</span>
-                                                </div>
-                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <input type="radio"> Life threatening <br> <br>
-                                        <input type="radio" checked> Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
-                                        <input type="radio"> Persistent or significant disability/Incapacity <br> <br>
-                                        <input type="radio"> Congenital anomaly/birth defect <br> <br>
-                                        <input type="radio"> Other Serious (Medically important event) <br> <br>
-                                        <input type="radio"> “Require intervention” (only for devices)
-                                    </div>
-                                <?php
-                                } else if ($SERIOUSNESS == 'Persistent or significant disability/Incapacity') {
-                                ?>
-                                    <div style="text-align: left;">
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <!-- <span style="color: #ff0000;"> Non serious event </span> -->
-                                                <input type="radio"> Non serious event
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <input type="radio"> Death - Date of death:
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <style>
-                                            .rows {
-                                                display: flex;
-                                                justify-content: center;
-                                            }
-                                        </style>
-                                        <div style="text-align: center;">
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -13%;">
-                                                    <span>Autopsy performed</span>
-                                                    <?php
-                                                    if ($AUTOPSY == 'YES') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else if ($AUTOPSY == 'NO') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -14%;">
-                                                    <span>Cause of Death:</span>
-                                                </div>
-                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <input type="radio"> Life threatening <br> <br>
-                                        <input type="radio"> Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
-                                        <input type="radio" checked> Persistent or significant disability/Incapacity <br> <br>
-                                        <input type="radio"> Congenital anomaly/birth defect <br> <br>
-                                        <input type="radio"> Other Serious (Medically important event) <br> <br>
-                                        <input type="radio"> “Require intervention” (only for devices)
-                                    </div>
-                                <?php
-                                } else if ($SERIOUSNESS == 'Congenital anomaly/birth defect') {
-                                ?>
-                                    <div style="text-align: left;">
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <!-- <span style="color: #ff0000;"> Non serious event </span> -->
-                                                <input type="radio"> Non serious event
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <input type="radio"> Death - Date of death:
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <style>
-                                            .rows {
-                                                display: flex;
-                                                justify-content: center;
-                                            }
-                                        </style>
-                                        <div style="text-align: center;">
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -13%;">
-                                                    <span>Autopsy performed</span>
-                                                    <?php
-                                                    if ($AUTOPSY == 'YES') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else if ($AUTOPSY == 'NO') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -14%;">
-                                                    <span>Cause of Death:</span>
-                                                </div>
-                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <input type="radio"> Life threatening <br> <br>
-                                        <input type="radio"> Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
-                                        <input type="radio"> Persistent or significant disability/Incapacity <br> <br>
-                                        <input type="radio" checked> Congenital anomaly/birth defect <br> <br>
-                                        <input type="radio"> Other Serious (Medically important event) <br> <br>
-                                        <input type="radio"> “Require intervention” (only for devices)
-                                    </div>
-                                <?php
-                                } else if ($SERIOUSNESS == 'Other Serious (Medically important event)') {
-                                ?>
-                                    <div style="text-align: left;">
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <!-- <span style="color: #ff0000;"> Non serious event </span> -->
-                                                <input type="radio"> Non serious event
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <input type="radio"> Death - Date of death:
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <style>
-                                            .rows {
-                                                display: flex;
-                                                justify-content: center;
-                                            }
-                                        </style>
-                                        <div style="text-align: center;">
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -13%;">
-                                                    <span>Autopsy performed</span>
-                                                    <?php
-                                                    if ($AUTOPSY == 'YES') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else if ($AUTOPSY == 'NO') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -14%;">
-                                                    <span>Cause of Death:</span>
-                                                </div>
-                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <input type="radio"> Life threatening <br> <br>
-                                        <input type="radio"> Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
-                                        <input type="radio"> Persistent or significant disability/Incapacity <br> <br>
-                                        <input type="radio"> Congenital anomaly/birth defect <br> <br>
-                                        <input type="radio" checked> Other Serious (Medically important event) <br> <br>
-                                        <input type="radio"> “Require intervention” (only for devices)
-                                    </div>
-                                <?php
-                                } else if ($SERIOUSNESS == 'Require intervention (only for devices)') {
-                                ?>
-                                    <div style="text-align: left;">
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <!-- <span style="color: #ff0000;"> Non serious event </span> -->
-                                                <input type="radio"> Non serious event
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-auto d-flex justify-content-left">
-                                                <input type="radio"> Death - Date of death:
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <style>
-                                            .rows {
-                                                display: flex;
-                                                justify-content: center;
-                                            }
-                                        </style>
-                                        <div style="text-align: center;">
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -13%;">
-                                                    <span>Autopsy performed</span>
-                                                    <?php
-                                                    if ($AUTOPSY == 'YES') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else if ($AUTOPSY == 'NO') {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <input type="radio"> Yes
-                                                        <input type="radio"> No
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="rows">
-                                                <div class="rows" style="margin-left: -14%;">
-                                                    <span>Cause of Death:</span>
-                                                </div>
-                                                <div class="rows" style="text-align: left; width: 50%; margin-left: 1%;">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <input type="radio"> Life threatening <br> <br>
-                                        <input type="radio"> Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
-                                        <input type="radio"> Persistent or significant disability/Incapacity <br> <br>
-                                        <input type="radio"> Congenital anomaly/birth defect <br> <br>
-                                        <input type="radio"> Other Serious (Medically important event) <br> <br>
-                                        <input type="radio" checked> “Require intervention” (only for devices)
-                                    </div>
-                                <?php
-                                }
-                                ?>
+                                    <br>
+                                    <input type="checkbox" <?php if ($SERIOUSNESS == 'Life threatening') echo 'checked'; ?>> Life threatening <br> <br>
+                                    <input type="checkbox" <?php if ($SERIOUSNESS == 'Inpatient hospitalisation or prolongation of existing hospitalisation') echo 'checked'; ?>> Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
+                                    <input type="checkbox" <?php if ($SERIOUSNESS == 'Persistent or significant disability/Incapacity') echo 'checked'; ?>> Persistent or significant disability/Incapacity <br> <br>
+                                    <input type="checkbox" <?php if ($SERIOUSNESS == 'Congenital anomaly/birth defect') echo 'checked'; ?>> Congenital anomaly/birth defect <br> <br>
+                                    <input type="checkbox" <?php if ($SERIOUSNESS == 'Other Serious (Medically important event)') echo 'checked'; ?>> Other Serious (Medically important event) <br> <br>
+                                    <input type="checkbox" <?php if ($SERIOUSNESS == 'Require intervention (only for devices)') echo 'checked'; ?>> “Require intervention” (only for devices)
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -945,7 +497,7 @@ $formatted_stop_date = formatDate($DATE_STOP);
             <tr>
                 <td colspan="3" style="vertical-align: top; width: 60%;">
                     <div style="text-align: left;">
-                        <strong style="text-align: left;">1.i Treatment for AE</strong> <?php echo $TREATMENT_FOR_AE ?>
+                        <strong style="text-align: left;">1.i Treatment for AE</strong> <input type="checkbox" <?php if ($TREATMENT_FOR_AE == 'YES') echo 'checked'; ?>> Yes <input type="checkbox" <?php if ($TREATMENT_FOR_AE == 'NO') echo 'checked'; ?>> No
                     </div>
                     <br>
                     <p style="text-align: left;">
@@ -959,11 +511,33 @@ $formatted_stop_date = formatDate($DATE_STOP);
                             1.h Outcome
                         </strong>
                     </p>
-                    <div class="row">
-                        <div class="col d-flex justify-content-left" style="text-align: left;">
-                            <?php echo $OUTCOME ?>
-                        </div>
-                    </div>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OUTCOME == 'Not recovered') echo 'checked'; ?>> Not recovered
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OUTCOME == 'Recovering') echo 'checked'; ?>> Recovering
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OUTCOME == 'Recovered with sequelae') echo 'checked'; ?>> Recovered with sequelae
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OUTCOME == 'Recovered without sequelae') echo 'checked'; ?>> Recovered without sequelae
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OUTCOME == 'Unknown') echo 'checked'; ?>> Unknown
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -993,7 +567,20 @@ $formatted_stop_date = formatDate($DATE_STOP);
                             4. Reporter’s Causality
                         </strong>
                         <br>
-                        Does the Reporter consider that the event was possibly related to the drug? <?php echo $REPORTE_CAUSALITY ?>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            Does the Reporter consider that the event was possibly related to the drug?
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($REPORTE_CAUSALITY == 'YES') echo 'checked'; ?>> Yes
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($REPORTE_CAUSALITY == 'NO') echo 'checked'; ?>> No
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($REPORTE_CAUSALITY == 'Unknown') echo 'checked'; ?>> Unknown
+                            </td>
+                        </tr>
+                    </table>
                     </p>
                 </td>
             </tr>
@@ -1004,22 +591,37 @@ $formatted_stop_date = formatDate($DATE_STOP);
                             5. Was the patient pregnant?
                         </strong>
                     </p>
-                    <?php
-                    if ($PATIENT_PREGNANT != 'Yes') {
-                    ?>
-                        <p style="text-align: left;" id="patient_pregnant_yes_id">
-                            <?php echo $PATIENT_PREGNANT ?> <br>
-                            <strong>If yes, gestation period:</strong> <?php echo $PATIENT_PREGNANT_YES ?> <strong>weeks</strong>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($PATIENT_PREGNANT == 'YES') echo 'checked'; ?>> Yes
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($PATIENT_PREGNANT == 'NO') echo 'checked'; ?>> No
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($PATIENT_PREGNANT == 'Unknown') echo 'checked'; ?>> Unknown
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($PATIENT_PREGNANT == 'N/A') echo 'checked'; ?>> N/A
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="margin-top: 30px;">
+                        <p style="text-align: center;">
+                            <?php
+                            if ($PATIENT_PREGNANT == 'YES') {
+                            ?>
+                                <strong>If yes, gestation period:</strong> <?php echo $PATIENT_PREGNANT_YES ?> <strong>weeks</strong>
+                            <?php
+                            } else {
+                            ?>
+                                <strong>If yes, gestation period:</strong>___________________________<strong>weeks</strong>
+                            <?php
+                            }
+                            ?>
                         </p>
-                    <?php
-                    } else {
-                    ?>
-                        <div class="col d-flex justify-content-left">
-                            <?php echo $PATIENT_PREGNANT ?>
-                        </div>
-                    <?php
-                    }
-                    ?>
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -1031,23 +633,57 @@ $formatted_stop_date = formatDate($DATE_STOP);
             </tr>
             <tr>
                 <td colspan="9">
-                    <?php
-                    if ($SPECIAL_SITUATIONS == 'Pregnancy (maternal exposure or paternal exposure (including potential alteration of spermatozoids))' || $SPECIAL_SITUATIONS == 'Breastfeeding' || $SPECIAL_SITUATIONS == 'Overdose' || $SPECIAL_SITUATIONS == 'Misuse' || $SPECIAL_SITUATIONS == 'Abuse' || $SPECIAL_SITUATIONS == 'Medication Error' || $SPECIAL_SITUATIONS == 'Lack of Efficacy' || $SPECIAL_SITUATIONS == 'Occupational exposure' || $SPECIAL_SITUATIONS == 'Drug interaction' || $SPECIAL_SITUATIONS == 'Off-label Use' || $SPECIAL_SITUATIONS == 'Suspected transmission of infectious agent' || $SPECIAL_SITUATIONS == 'Unexpected beneficial event') {
-                    ?>
-                        <p style="text-align: left;" id="special_situations_specify_id">
-                            <?php echo $SPECIAL_SITUATIONS ?>
-                        </p>
-                    <?php
-                    } else {
-                    ?>
-                        <p style="text-align: left;" id="special_situations_specify_id">
-                            Other <br>
-                            <strong>Specify:</strong>
-                            <?php echo $SPECIAL_SITUATIONS ?>
-                        </p>
-                    <?php
-                    }
-                    ?>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Pregnancy (maternal exposure or paternal exposure (including potential alteration of spermatozoids))') echo 'checked'; ?>> Pregnancy (maternal exposure or paternal exposure (including potential alteration of spermatozoids))
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Breastfeeding') echo 'checked'; ?>> Breastfeeding
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Overdose') echo 'checked'; ?>> Overdose
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Misuse') echo 'checked'; ?>> Misuse
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Abuse') echo 'checked'; ?>> Abuse
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Medication Error') echo 'checked'; ?>> Medication Error
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Lack of Efficacy') echo 'checked'; ?>> Lack of Efficacy
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Occupational exposure') echo 'checked'; ?>> Occupational exposure
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Drug interaction') echo 'checked'; ?>> Drug interaction
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Off-label Use') echo 'checked'; ?>> Off-label Use
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Suspected transmission of infectious agent') echo 'checked'; ?>> Suspected transmission of infectious agent
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Unexpected beneficial event') echo 'checked'; ?>> Unexpected beneficial event
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($SPECIAL_SITUATIONS == 'Other') echo 'checked'; ?>> Other, specify: ________________
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -1055,11 +691,16 @@ $formatted_stop_date = formatDate($DATE_STOP);
             </tr>
             <tr>
                 <td colspan="9">
-                    <div class="row">
-                        <div class="col d-flex justify-content-left">
-                            <P style="text-align: left;"> <?php echo $DEFECT_ISSUE ?> </P>
-                        </div>
-                    </div>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($DEFECT_ISSUE == 'Event related to a quality defect issue') echo 'checked'; ?>> Event related to a quality defect issue
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($DEFECT_ISSUE == 'Event related to a suspected falsified/counterfeit medicinal product') echo 'checked'; ?>> Event related to a suspected falsified/counterfeit medicinal product
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -1223,7 +864,7 @@ $formatted_stop_date = formatDate($DATE_STOP);
                         <tr>
                             <td style="border: none; vertical-align: top;">
                                 <div style="text-align: left;">
-                                    <strong> 2. Health Care Professional </strong> <?php echo $PROFESSIONAL ?>
+                                    <strong> 2. Health Care Professional </strong> <input type="checkbox" <?php if ($PROFESSIONAL == 'YES') echo 'checked'; ?>> YES <input type="checkbox" <?php if ($PROFESSIONAL == 'NO') echo 'checked'; ?>> NO
                                 </div>
                             </td>
                         </tr>
@@ -1242,25 +883,35 @@ $formatted_stop_date = formatDate($DATE_STOP);
                             3. Profession/Occupation or Health Authority:
                         </strong>
                     </p>
-                    <?php
-                    if ($OCCUPATION != 'Doctor' && $OCCUPATION != 'Nurse' && $OCCUPATION != 'Pharmacist' && $OCCUPATION != 'Dentist' && $OCCUPATION != 'Patient' && $OCCUPATION != 'Health Authority') {
-                    ?>
-                        <div style="text-align:left;">
-                            Other <br>
-                            <strong>
-                                Specify:
-                            </strong>
-                            <?php echo $OCCUPATION ?>
-                        </div>
-                    <?php
-                    } else {
-                    ?>
-                        <div style="text-align:left;">
-                            <?php echo $OCCUPATION ?>
-                        </div>
-                    <?php
-                    }
-                    ?>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OCCUPATION == 'Doctor') echo 'checked'; ?>> Doctor
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OCCUPATION == 'Nurse') echo 'checked'; ?>> Nurse
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OCCUPATION == 'Pharmacist') echo 'checked'; ?>> Pharmacist
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OCCUPATION == 'Dentist') echo 'checked'; ?>> Dentist
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OCCUPATION == 'Patient') echo 'checked'; ?>> Patient
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OCCUPATION == 'Health Authority') echo 'checked'; ?>> Health Authority
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($OCCUPATION == 'Other') echo 'checked'; ?>> Other (Specify): _______________
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -1269,8 +920,17 @@ $formatted_stop_date = formatDate($DATE_STOP);
                         5. As a <strong>MAH</strong>, we have an obligation to collect and report adverse events/safety information with our products to Health Authority to improve patient safety. <br>
                         Are you willing for Ipsen safety team to contact you/your doctor for further details if required?
                         <br> <br>
-                        <?php echo $MAH ?>
                     </p>
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($MAH == 'YES') echo 'checked'; ?>> Yes
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox" <?php if ($MAH == 'NO') echo 'checked'; ?>> No
+                            </td>
+                        </tr>
+                    </table>
                 </td>
                 <td colspan="6" style="vertical-align: top; width: 55%;">
                     <p style="text-align: left;">

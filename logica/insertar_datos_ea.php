@@ -73,7 +73,6 @@ $mah = $date['mah'];
 $if_patient = $date['if_patient'];
 
 if (
-	empty($source_type) ||
 	empty($weight) ||
 	empty($height) ||
 	empty($trade_name) ||
@@ -85,17 +84,12 @@ if (
 	empty($onset_date) ||
 	// empty($event_stop_date) ||
 	empty($tra_duration) ||
-	empty($event_abated) ||
-	empty($event_reappeared) ||
-	empty($previously_been) ||
 	empty($seriousness) ||
 	empty($event_term) ||
 	// todo: revisar estod datos
 	//empty($death_date) ||
 	// empty($autopsy) ||
 	// empty($cause_death) ||
-	empty($treatment_for_ae) ||
-	empty($treatment_details) ||
 	empty($outcome) ||
 	empty($laboratory) ||
 	empty($medical_history) ||
@@ -115,16 +109,11 @@ if (
 	empty($s_or_c) ||
 	empty($company_drug) ||
 	empty($name) ||
-	empty($health_care_professional) ||
 	empty($occupation_health_authority) ||
 	empty($mah) ||
 	empty($if_patient)
 ) {
 	$campos_vacios = array();
-
-	if (empty($source_type)) {
-		array_push($campos_vacios, 'Source type');
-	}
 	if (empty($weight)) {
 		array_push($campos_vacios, 'Weight');
 	}
@@ -158,26 +147,11 @@ if (
 	if (empty($duration)) {
 		array_push($campos_vacios, 'Duration');
 	}
-	if (empty($event_abated)) {
-		array_push($campos_vacios, 'Event abated after use stopped');
-	}
-	if (empty($event_reappeared)) {
-		array_push($campos_vacios, 'Event reappeared after reintroduction');
-	}
-	if (empty($previously_been)) {
-		array_push($campos_vacios, 'Has this drug previously been used');
-	}
 	if (empty($seriousness)) {
 		array_push($campos_vacios, 'Seriousness of the event per Reporter');
 	}
 	if (empty($event_term)) {
 		array_push($campos_vacios, 'Event term');
-	}
-	if (empty($treatment_for_ae)) {
-		array_push($campos_vacios, 'Treatment for AE');
-	}
-	if (empty($treatment_details)) {
-		array_push($campos_vacios, 'Treatment Details');
 	}
 	if (empty($outcome)) {
 		array_push($campos_vacios, 'Outcome');
@@ -230,9 +204,6 @@ if (
 	if (empty($name)) {
 		array_push($campos_vacios, 'Name');
 	}
-	if (empty($health_care_professional)) {
-		array_push($campos_vacios, 'Health Care Professional');
-	}
 	if (empty($occupation_health_authority)) {
 		array_push($campos_vacios, 'Profession/Occupation or Health Authority');
 	}
@@ -258,7 +229,7 @@ if (
 		echo $titulo . ',' . $icono . ',' . $mensaje;
 	}
 } else {
-	$insertar = mysqli_query($conex, "INSERT INTO `ipsen_evento_adverso`(`SOURCE_TYPE`, `DATE_OF_NOTIFICATION`, `PATIENT_INITIALS`, `DATE_OF_BIRTH`, `AGE`, `GENDER`, `WEIGHT`, `HEIGHT`, `TRADE_NAME`, `EXPIRY_DATE`, `SAMPLE_AVAILABLE`, `DOSE`, `FREQUENCY`, `ROUTE_OF_ADMINISTRATION`, `DIAGNOSIS`, `TREATMENT_START_DATE`, `TREATMENT_END_DATE`, `ANY_OTHER_INFORMATION`, `ONSET_DATE`, `EVENT_STOP_DATE`, `DURATION`, `EVENT_ABATED`, `EVENT_TERM`, `REAPPEARED`, `PREVIOUSLY`, `SERIOUSNESS`, `DATE_OF_DEATH`, `AUTOPSY`, `CAUSE_OF_DEATH`, `TREATMENT_FOR_AE`, `TREATMENT_DETAILS`, `OUTCOME`, `LABORATORY_DATA`, `MEDICAL_HISTORY`, `REPORTE_CAUSALITY`, `PATIENT_PREGNANT`, `PATIENT_PREGNANT_YES`, `SPECIAL_SITUATIONS`, `DEFECT_ISSUE`, `REPORTER_NAME`, `PHONE_NUMBER`, `ADDRESS`, `REPORTER_EMAIL`, `PROFESSIONAL`, `OCCUPATION`, `COUNTRY`, `MAH`, `DOCTORS`, `COMPLETED_BY`, `EMAIL_USER`, `ID_PACIENTE_FK`) VALUES ('$source_type','$first_notification','$initials','$birth','$age_time_event','$gender','$weight','$height','$trade_name','$expiry_date','$sample_available','$dose','$frequency','$route_administration','$diagnosis','$treatment_start_date','$treatment_end_date','$any_other_information','$onset_date','$event_stop_date','$tra_duration','$event_abated','$event_term','$event_reappeared','$previously_been','$seriousness','$death_date','$autopsy','$cause_death','$treatment_for_ae','$treatment_details','$outcome','$laboratory','$medical_history','$reporter_causality','$patient_pregnant','$patient_pregnant_yes','$special_situations','$quiality_defect','$name','$phone_number','$address','$email','$health_care_professional','$occupation_health_authority','COLOMBIA','$mah','$if_patient','$name_user','$email_user','$codigo_paciente')");
+	$insertar = mysqli_query($conex, "INSERT INTO `ipsen_evento_adverso`(`SOURCE_TYPE`, `DATE_OF_NOTIFICATION`, `PATIENT_INITIALS`, `DATE_OF_BIRTH`, `AGE`, `GENDER`, `WEIGHT`, `HEIGHT`, `TRADE_NAME`, `EXPIRY_DATE`, `SAMPLE_AVAILABLE`, `DOSE`, `FREQUENCY`, `ROUTE_OF_ADMINISTRATION`, `DIAGNOSIS`, `TREATMENT_START_DATE`, `TREATMENT_END_DATE`, `ANY_OTHER_INFORMATION`, `ONSET_DATE`, `EVENT_STOP_DATE`, `DURATION`, `EVENT_ABATED`, `EVENT_TERM`, `REAPPEARED`, `PREVIOUSLY`, `SERIOUSNESS`, `DATE_OF_DEATH`, `AUTOPSY`, `CAUSE_OF_DEATH`, `TREATMENT_FOR_AE`, `TREATMENT_DETAILS`, `OUTCOME`, `LABORATORY_DATA`, `MEDICAL_HISTORY`, `REPORTE_CAUSALITY`, `PATIENT_PREGNANT`, `PATIENT_PREGNANT_YES`, `SPECIAL_SITUATIONS`, `DEFECT_ISSUE`, `REPORTER_NAME`, `PHONE_NUMBER`, `ADDRESS`, `REPORTER_EMAIL`, `PROFESSIONAL`, `OCCUPATION`, `COUNTRY`, `MAH`, `DOCTORS`, `COMPLETED_BY`, `EMAIL_USER`, `ID_PACIENTE_FK`) VALUES ('Patient Support PSP-L-0017','$first_notification','$initials','$birth','$age_time_event','$gender','$weight','$height','$trade_name','$expiry_date','$sample_available','$dose','$frequency','$route_administration','$diagnosis','$treatment_start_date','$treatment_end_date','$any_other_information','$onset_date','$event_stop_date','$tra_duration','N/A','$event_term','N/A','YES','$seriousness','$death_date','$autopsy','$cause_death','NO','$treatment_details','$outcome','$laboratory','$medical_history','$reporter_causality','$patient_pregnant','$patient_pregnant_yes','$special_situations','$quiality_defect','$name','$phone_number','$address','$email','NO','$occupation_health_authority','COLOMBIA','$mah','$if_patient','$name_user','$email_user','$codigo_paciente')");
 	if ($insertar) {
 		$sql = "SELECT MAX(ID_EVENTO_ADVERSO) AS ULTIMO_EVENTO_ADVERSO_ID FROM ipsen_evento_adverso";
 		$resultado = mysqli_query($conex, $sql);
@@ -284,8 +255,12 @@ if (
 			$titulo = 'Datos cargados';
 			$icono = 'success';
 			$mensaje = 'El evento ha sido creado';
-
 			echo $titulo . ',' . $icono . ',' . $mensaje;
 		}
+	} else {
+		$titulo = 'Datos no cargados';
+		$icono = 'error';
+		$mensaje = 'El evento no ha sido creado. Error: ' . mysqli_error($conex);
+		echo $titulo . ',' . $icono . ',' . $mensaje;
 	}
 }

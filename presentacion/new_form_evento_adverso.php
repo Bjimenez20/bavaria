@@ -321,11 +321,11 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
-                                            <input type="hidden" name="valor_source_type" id="valor_source_type">
+                                            <!-- <input type="hidden" name="valor_source_type" id="valor_source_type"> -->
                                             <input type="radio" name="source_type" id="source_type" value="Early Access" onchange="habilitar1(this)"> Early Access
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="source_type" id="source_type" value="Patient Support" onchange="habilitar1(this)"> Patient Support
+                                            <input type="radio" name="source_type" id="source_type" value="Patient Support PSP-L-0017" checked onchange="habilitar1(this)"> Patient Support PSP-L-0017
                                         </div>
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="source_type" id="source_type" value="Market Research" onchange="habilitar1(this)"> Market Research
@@ -408,7 +408,7 @@ if ($privilegios != '' && $usua != '') {
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
                                             <input type="text" name="weight" id="weight" class="form-control w-100 h-100">
-                                            <input type="text" class="form-control w-10 h-100" value="kg/lbs" disabled style="text-align: center;">
+                                            <input type="text" class="form-control w-10 h-100" value="kg" disabled style="text-align: center;">
                                         </div>
                                     </div>
                                 </td>
@@ -417,7 +417,7 @@ if ($privilegios != '' && $usua != '') {
                                     <div class="row">
                                         <div class="col d-flex justify-content-left">
                                             <input type="text" name="height" id="height" class="form-control w-100 h-100">
-                                            <input type="text" class="form-control w-10 h-100" value="cm/inch" disabled style="text-align: center;">
+                                            <input type="text" class="form-control w-10 h-100" value="cm" disabled style="text-align: center;">
                                         </div>
                                     </div>
                                 </td>
@@ -435,7 +435,17 @@ if ($privilegios != '' && $usua != '') {
                                     <p style="text-align: left;">
                                         1.Trade Name (INN/Generic Name)
                                     </p>
-                                    <input type="text" name="trade_name" id="trade_name" class="form-control w-100 h-100" value="<?php echo $PRODUCTO_TRATAMIENTO ?>" disabled>
+                                    <?php
+                                    if ($PRODUCTO_TRATAMIENTO = 'Somatuline') {
+                                    ?>
+                                        <input type="text" name="trade_name" id="trade_name" class="form-control w-100 h-100" value="<?php echo $PRODUCTO_TRATAMIENTO ?> (LANREOTIDE)" disabled>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <input type="text" name="trade_name" id="trade_name" class="form-control w-100 h-100" value="<?php echo $PRODUCTO_TRATAMIENTO ?> (CABOZANTINIB)" disabled>
+                                    <?php
+                                    }
+                                    ?>
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
@@ -534,14 +544,14 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-center">
-                                            <input type="hidden" name="valor_event_abated" id="valor_event_abated">
+                                            <!-- <input type="hidden" name="valor_event_abated" id="valor_event_abated"> -->
                                             <input type="radio" name="event_abated" id="event_abated" value="NO"> No
                                         </div>
                                         <div class="col d-flex justify-content-center">
                                             <input type="radio" name="event_abated" id="event_abated" value="YES"> Yes
                                         </div>
                                         <div class="col d-flex justify-content-center">
-                                            <input type="radio" name="event_abated" id="event_abated" value="N/A"> N/A
+                                            <input type="radio" name="event_abated" id="event_abated" value="N/A" checked> N/A
                                         </div>
                                     </div>
                                 </td>
@@ -561,14 +571,14 @@ if ($privilegios != '' && $usua != '') {
                                                 <p style="text-align: left;">1.e Event <strong>reappeared</strong> after reintroduction</p>
                                                 <div class="row">
                                                     <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_event_reappeared" id="valor_event_reappeared">
+                                                        <!-- <input type="hidden" name="valor_event_reappeared" id="valor_event_reappeared"> -->
                                                         <input type="radio" name="event_reappeared" id="event_reappeared" value="NO"> No
                                                     </div>
                                                     <div class="col d-flex justify-content-center">
                                                         <input type="radio" name="event_reappeared" id="event_reappeared" value="YES"> Yes
                                                     </div>
                                                     <div class="col d-flex justify-content-center">
-                                                        <input type="radio" name="event_reappeared" id="event_reappeared" value="N/A"> N/A
+                                                        <input type="radio" name="event_reappeared" id="event_reappeared" value="N/A" checked> N/A
                                                     </div>
                                                 </div>
                                             </td>
@@ -579,11 +589,11 @@ if ($privilegios != '' && $usua != '') {
 
                                                 <div class="row">
                                                     <div class="col d-flex justify-content-center">
-                                                        <input type="hidden" name="valor_previously_been" id="valor_previously_been">
+                                                        <!-- <input type="hidden" name="valor_previously_been" id="valor_previously_been"> -->
                                                         <input type="radio" name="previously_been" id="previously_been" value="NO"> No
                                                     </div>
                                                     <div class="col d-flex justify-content-center">
-                                                        <input type="radio" name="previously_been" id="previously_been" value="YES"> Yes
+                                                        <input type="radio" name="previously_been" id="previously_been" value="YES" checked> Yes
                                                     </div>
                                                     <div class="col d-flex justify-content-center">
                                                         <input type="radio" name="previously_been" id="previously_been" value="N/A"> N/A
@@ -639,7 +649,7 @@ if ($privilegios != '' && $usua != '') {
                                                         </div>
                                                     </div>
                                                     <input type="radio" name="seriousness" id="seriousness" value="Life threatening"> Life threatening <br> <br>
-                                                    Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
+                                                    <input type="radio" name="seriousness" id="seriousness" value="Inpatient hospitalisation or prolongation of existing hospitalisation"> Inpatient hospitalisation or prolongation of existing hospitalisation <br> <br>
                                                     <input type="radio" name="seriousness" id="seriousness" value="Persistent or significant disability/Incapacity"> Persistent or significant disability/Incapacity <br> <br>
                                                     <input type="radio" name="seriousness" id="seriousness" value="Congenital anomaly/birth defect"> Congenital anomaly/birth defect <br> <br>
                                                     <input type="radio" name="seriousness" id="seriousness" value="Other Serious (Medically important event)"> Other Serious (Medically important event) <br> <br>
@@ -657,11 +667,11 @@ if ($privilegios != '' && $usua != '') {
                                             <span style="text-align: left;">1.i Treatment for AE</span>
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="hidden" name="valor_treatment_for_ae" id="valor_treatment_for_ae">
+                                            <!-- <input type="hidden" name="valor_treatment_for_ae" id="valor_treatment_for_ae"> -->
                                             <input type="radio" name="treatment_for_ae" id="treatment_for_ae" value="YES"> Yes
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="treatment_for_ae" id="treatment_for_ae" value="NO"> No
+                                            <input type="radio" name="treatment_for_ae" id="treatment_for_ae" value="NO" checked> No
                                         </div>
                                     </div>
                                     <br>
@@ -781,19 +791,20 @@ if ($privilegios != '' && $usua != '') {
                             <tr>
                                 <td colspan="9">
                                     <div class="row">
-                                        <div class="col d-flex justify-content-left">
+                                        <input type="text" name="special_situations" id="special_situations" class="form-control w-90 h-100">
+                                        <!-- <div class="col d-flex justify-content-left">
                                             <input type="hidden" name="valor_special_situations" id="valor_special_situations">
                                             <input type="radio" name="special_situations" id="special_situations" value="Pregnancy (maternal exposure or paternal exposure (including potential alteration of spermatozoids))" onchange="habilitar3(this)"> Pregnancy (maternal exposure or paternal exposure (including potential alteration of spermatozoids))
-                                        </div>
-                                        <div class="col d-flex justify-content-left">
+                                        </div> -->
+                                        <!-- <div class="col d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Breastfeeding" onchange="habilitar3(this)"> Breastfeeding
                                         </div>
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Overdose" onchange="habilitar3(this)"> Overdose
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <br>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Misuse" onchange="habilitar3(this)"> Misuse
                                         </div>
@@ -812,9 +823,9 @@ if ($privilegios != '' && $usua != '') {
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Drug interaction" onchange="habilitar3(this)"> Drug interaction
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <br>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Off-label Use" onchange="habilitar3(this)"> Off-label Use
                                         </div>
@@ -828,11 +839,11 @@ if ($privilegios != '' && $usua != '') {
                                             <input type="radio" name="special_situations" id="special_situations" value="Other" onchange="habilitar3(this)"> Other
                                         </div>
                                     </div>
-                                    <br>
-                                    <p style="display: none; text-align: left;" id="special_situations_specify_id">
+                                    <br> -->
+                                    <!-- <p style="display: none; text-align: left;" id="special_situations_specify_id">
                                         <strong>Specify:</strong>
                                         <input type="text" name="special_situations_specify" id="special_situations_specify" class="form-control w-50 h-100">
-                                    </p>
+                                    </p> -->
                                 </td>
                             </tr>
                             <tr>
@@ -1020,11 +1031,11 @@ if ($privilegios != '' && $usua != '') {
                                                         </span>
                                                     </div>
                                                     <div class="col d-flex justify-content-left">
-                                                        <input type="hidden" name="valor_health_care_professional" id="valor_health_care_professional">
+                                                        <!-- <input type="hidden" name="valor_health_care_professional" id="valor_health_care_professional"> -->
                                                         <input type="radio" name="health_care_professional" id="health_care_professional" value="YES"> Yes
                                                     </div>
                                                     <div class="col d-flex justify-content-left">
-                                                        <input type="radio" name="health_care_professional" id="health_care_professional" value="NO"> No
+                                                        <input type="radio" name="health_care_professional" id="health_care_professional" value="NO" checked> No
                                                     </div>
                                                 </div>
                                             </td>
@@ -1217,7 +1228,7 @@ if ($privilegios != '' && $usua != '') {
                     codigo_paciente: document.getElementById('codigo_paciente').value,
                     email_user: document.getElementById('email_user').value,
                     name_user: document.getElementById('name_user').value,
-                    source_type: document.getElementById('valor_source_type').value,
+                    // source_type: document.getElementById('valor_source_type').value,
                     first_notification: document.getElementById('first_notification').value,
                     initials: document.getElementById('initials').value,
                     birth: document.getElementById('birth').value,
@@ -1238,15 +1249,15 @@ if ($privilegios != '' && $usua != '') {
                     onset_date: document.getElementById('onset_date').value,
                     event_stop_date: document.getElementById('event_stop_date').value,
                     tra_duration: document.getElementById('tra_duration').value,
-                    event_abated: document.getElementById('valor_event_abated').value,
+                    // event_abated: document.getElementById('valor_event_abated').value,
                     event_term: document.getElementById('event_term').value,
-                    event_reappeared: document.getElementById('valor_event_reappeared').value,
-                    previously_been: document.getElementById('valor_previously_been').value,
+                    // event_reappeared: document.getElementById('valor_event_reappeared').value,
+                    // previously_been: document.getElementById('valor_previously_been').value,
                     seriousness: document.getElementById('valor_seriousness').value,
                     death_date: document.getElementById('death_date').value,
                     autopsy: document.getElementById('valor_autopsy').value,
                     cause_death: document.getElementById('cause_death').value,
-                    treatment_for_ae: document.getElementById('valor_treatment_for_ae').value,
+                    // treatment_for_ae: document.getElementById('valor_treatment_for_ae').value,
                     treatment_details: document.getElementById('treatment_details').value,
                     outcome: document.getElementById('valor_outcome').value,
                     laboratory: document.getElementById('laboratory').value,
@@ -1254,7 +1265,7 @@ if ($privilegios != '' && $usua != '') {
                     reporter_causality: document.getElementById('valor_reporter_causality').value,
                     patient_pregnant: document.getElementById('valor_patient_pregnant').value,
                     patient_pregnant_yes: document.getElementById('patient_pregnant_yes').value,
-                    special_situations: document.getElementById('valor_special_situations').value,
+                    // special_situations: document.getElementById('valor_special_situations').value,
                     quiality_defect: document.getElementById('valor_quiality_defect').value,
                     drug: document.getElementById('drug').value,
                     route: document.getElementById('route').value,
@@ -1269,7 +1280,7 @@ if ($privilegios != '' && $usua != '') {
                     phone_number: document.getElementById('phone_number').value,
                     address: document.getElementById('address').value,
                     email: document.getElementById('email').value,
-                    health_care_professional: document.getElementById('valor_health_care_professional').value,
+                    // health_care_professional: document.getElementById('valor_health_care_professional').value,
                     reporting_event: document.getElementById('reporting_event').value,
                     occupation_health_authority: document.getElementById('valor_occupation_health_authority').value,
                     mah: document.getElementById('valor_mah').value,
