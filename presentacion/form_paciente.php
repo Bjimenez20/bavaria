@@ -737,6 +737,7 @@ if ($privilegios != '' && $usua != '') {
                             while ($fila_pa_tra = mysqli_fetch_array($Seleccion_pa_tra)) {
                                 $ID_PACIENTE2 = $fila_pa_tra['ID_PACIENTE'];
                                 $ID_PA = $fila_pa_tra['ID_PACIENTE'];
+                                $ID_PA_TRA = $fila_pa_tra['ID_PACIENTE_FK'];
                                 $ESTADO_PACIENTE = $fila_pa_tra['ESTADO_PACIENTE'];
                                 $FECHA_ACTIVACION_PACIENTE = $fila_pa_tra['FECHA_ACTIVACION_PACIENTE'];
                                 $PROVEEDOR = $fila_pa_tra['PROVEEDOR'];
@@ -846,10 +847,41 @@ if ($privilegios != '' && $usua != '') {
                                             <span class="fw-bold">Grabación llamada inicial</span>
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
-                                            <img src="../presentacion/imagenes/reproducir.png" alt="" title="Click to enlarge" height="100" width="100" style="margin-left: 15%;">
-                                        </a>
+                                    <div class="player-container">
+                                        <?php
+                                        // Directorio donde están los archivos MP3
+                                        $directorio = '../Audios/' . $ID_PA_TRA . '/';
+                                        if (file_exists($directorio)) {
+                                            // Obtener lista de archivos MP3 en el directorio
+                                            $archivos = glob($directorio . "*.mp3");
+                                            foreach ($archivos as $archivo) {
+                                                $nombreArchivo = basename($archivo);
+                                                // Comprobar si el archivo existe
+                                                if (file_exists($archivo)) {
+                                        ?>
+                                                    <audio id="audioPlayer" controls>
+                                                        <source src="<?php echo $archivo ?>" type="audio/mpeg">
+                                                        Tu navegador no soporta el elemento de audio.
+                                                    </audio>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <p class="error-message">El archivo MP3 no se encuentra disponible.</p>
+                                            <?php
+                                                }
+                                            }
+                                        } else {
+                                            ?>
+                                            <p class="error-message">No cuenta con grabación de llamada inicial.</p>
+                                        <?php
+                                        }
+                                        ?>
+
+                                        <script>
+                                            const audioPlayer = document.getElementById('audioPlayer');
+                                            // Puedes añadir controles adicionales con JavaScript
+                                            // audioPlayer.play(); // Reproducción automática
+                                        </script>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -2867,6 +2899,34 @@ if ($privilegios != '' && $usua != '') {
                         box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
                         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3),
                             inset 0px 0px 20px #EEECEC;
+                    }
+
+                    /* Estilo del contenedor */
+                    .player-container {
+                        /* width: 300px;
+                        margin: 50px auto;*/
+                        padding: 10px;
+                        background-color: transparent;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                        text-align: center;
+                        font-family: Arial, sans-serif;
+                    }
+
+
+                    /* Estilo del reproductor de audio */
+                    .player-container audio {
+                        width: 100%;
+                        outline: none;
+                        margin: 5px;
+                        border: 3px;
+                        border-color: #000;
+                    }
+
+                    /* Estilo para mensaje de error */
+                    .error-message {
+                        color: red;
+                        font-size: 16px;
                     }
                 </style>
             </div>
