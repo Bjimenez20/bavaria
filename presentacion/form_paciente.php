@@ -823,7 +823,7 @@ if ($privilegios != '' && $usua != '') {
                                         <?php
                                         $gestion_ci = mysqli_query($conex, "SELECT `ipsen_gestiones`.*, (SELECT CONCAT(ID, '/', NOMBRE_PACIENTE, '_', ID_PACIENTE_FK) FROM `ipsen_informacion_ci` WHERE `ipsen_informacion_ci`.`ID_GESTION_FK` = `ipsen_gestiones`.`ID_GESTION` AND EXISTS( SELECT * FROM `ipsen_pacientes` WHERE `ipsen_informacion_ci`.`ID_PACIENTE_FK` = `ipsen_pacientes`.`ID_PACIENTE`) LIMIT 1) AS file_pdf FROM `ipsen_gestiones` WHERE ID_PACIENTE_FK2 =$ID_PACIENTE2 ORDER BY FECHA_COMUNICACION DESC LIMIT 1");
                                         while ($fila_ci = mysqli_fetch_array($gestion_ci)) {
-                                            $url = "http://localhost:8000/PDF_CI/{$fila_ci["file_pdf"]}.pdf";
+                                            $url = "https://pspipsen.com/PDF_CI/{$fila_ci["file_pdf"]}.pdf";
                                             if ($fila_ci["file_pdf"] != '') {
                                         ?>
                                                 <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
