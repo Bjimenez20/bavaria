@@ -832,9 +832,9 @@ if ($privilegios != '' && $usua != '') {
                                             <?php
                                             } else {
                                             ?>
-                                                <div class="border border-danger" style="width: 60%; height: 50%;">
-                                                    <p style="text-align: center;">Sin Consentimiento Informado</p>
-                                                </div>
+                                                <!-- <div class="border border-danger" style="width: 60%; height: 50%;"> -->
+                                                <p style="text-align: center;">Sin Consentimiento Informado</p>
+                                                <!-- </div> -->
                                         <?php
                                             }
                                         }
@@ -2515,21 +2515,15 @@ if ($privilegios != '' && $usua != '') {
                                             <select name="frecuencia" id="frecuencia" class="form-control">
                                                 <option value="<?php echo $FRECUENCIA_MEDICAMENTO ?>"><?php echo $FRECUENCIA_MEDICAMENTO ?></option>
                                                 <option value="">Seleccione...</option>
-                                                <option value="1 TABLETA CADA 12 HORAS">1 TABLETA CADA 12 HORAS</option>
-                                                <option value="1 TABLETA CADA 24 HORAS">1 TABLETA CADA 24 HORAS</option>
-                                                <option value="2 TABLETAS CADA 24 HORAS">2 TABLETAS CADA 24 HORAS</option>
-                                                <option value="CADA 15 DIAS">CADA 15 DIAS</option>
-                                                <option value="CADA 20 DIAS">CADA 20 DIAS</option>
-                                                <option value="CADA 21 DIAS">CADA 21 DIAS</option>
-                                                <option value="CADA 24 DIAS">CADA 24 DIAS</option>
-                                                <option value="CADA 28 DIAS">CADA 28 DIAS</option>
-                                                <option value="CADA 30 DIAS">CADA 30 DIAS</option>
-                                                <option value="CADA 30 DIAS">CADA 40 DIAS</option>
-                                                <option value="CADA 42 DIAS">CADA 42 DIAS</option>
-                                                <option value="CADA 45 DIAS">CADA 45 DIAS</option>
-                                                <option value="CADA 60 DIAS">CADA 60 DIAS</option>
-                                                <option value="CADA 90 DIAS">CADA 90 DIAS</option>
-                                                <option value="POR CONFIRMAR">POR CONFIRMAR</option>
+                                                <?php
+                                                $select = mysqli_query($conex, "SELECT NOMBRE_FRECUENCIA FROM ipsen_frecuencias");
+                                                echo mysqli_error($conex);
+                                                while ($filass = (mysqli_fetch_array($select))) {
+                                                ?>
+                                                    <option value="<?php echo $filass['NOMBRE_FRECUENCIA'] ?>"><?php echo $filass['NOMBRE_FRECUENCIA'] ?></option>
+                                                <?php
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -2738,7 +2732,7 @@ if ($privilegios != '' && $usua != '') {
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
-                                        <input type="file" name="archivo" id="archivo" class="form-control" accept="application/pdf" onchange="validateFileType()">
+                                        <input type="file" name="archivo" id="archivo" class="form-control" onchange="validateFileType()">
                                     </div>
                                 </div>
                             </div>
@@ -2758,12 +2752,6 @@ if ($privilegios != '' && $usua != '') {
                                 function validateFileType() {
                                     var fileInput = document.getElementById('archivo');
                                     var filePath = fileInput.value;
-                                    var allowedExtensions = /(\.pdf)$/i;
-                                    if (!allowedExtensions.exec(filePath)) {
-                                        alert('Solo se aceptan archivos PDF.');
-                                        fileInput.value = '';
-                                        return false;
-                                    }
 
                                     if (fileInput != '') {
                                         alert('Por favor seleccione el tipo de documento adjunto');
