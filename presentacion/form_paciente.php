@@ -755,6 +755,8 @@ if ($privilegios != '' && $usua != '') {
                             while ($fila_edu = mysqli_fetch_array($select_edu_linea)) {
                                 $TEMA_SI_EDU = $fila_edu['TEMA_SI_EDU'];
                                 $FECHA_SI_EDU = $fila_edu['FECHA_SI_EDU'];
+                                $SE_BRINDO_EDU = $fila_edu['SE_BRINDO_EDU'];
+                                $MOTIVO_NO_EDU = $fila_edu['MOTIVO_NO_EDU'];
                             }
                             if ($CONSENTIMIENTO == 'SI') {
                             ?>
@@ -923,30 +925,51 @@ if ($privilegios != '' && $usua != '') {
                                     </h5>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col">
-                                            <span class="fw-bold">Tema</span>
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" class="form-control" value="<?php echo $TEMA_SI_EDU ?>" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col">
-                                            <span class="fw-bold">Fecha Educación</span>
-                                        </div>
-                                        <div class="col">
-                                            <input type="date" class="form-control" value="<?php echo $FECHA_SI_EDU ?>" readonly>
+                            <?php
+                            if ($SE_BRINDO_EDU == 'SI') {
+                            ?>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="fw-bold">Tema</span>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" value="<?php echo $TEMA_SI_EDU ?>" readonly>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="fw-bold">Fecha Educación</span>
+                                            </div>
+                                            <div class="col">
+                                                <input type="date" class="form-control" value="<?php echo $FECHA_SI_EDU ?>" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                            } else {
+                            ?>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="fw-bold">Motivo No Educación</span>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" value="<?php echo $MOTIVO_NO_EDU ?>" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

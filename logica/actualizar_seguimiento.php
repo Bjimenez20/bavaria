@@ -89,14 +89,10 @@ include('../logica/session.php');
 
     $visitarrr1 = mysqli_query($conex, "UPDATE ipsen_tratamiento SET VISI_INI_EFEC = '" . $sel_visita_inicial . "', PROGRA_VIS_EDU ='" . $programada_visita . "' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
     echo mysqli_error($conex);
-    if ($boton_activo == 'on') {
-        if ($brindo_educacion == 'SI') {
-            $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $codigo_usuario2 . "', '" . $brindo_educacion . "', '" . $TemaBrindoEdu . "', '" . $FechaEduca . "', NOW())");
-        } elseif ($brindo_educacion == 'NO') {
-            $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`,  `MOTIVO_NO_EDU`, `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $codigo_usuario2 . "', '" . $brindo_educacion . "', '" . $MotivoNoEdu . "', NOW())");
-        }
-    } else {
-        $var = '';
+    if ($brindo_educacion == 'SI') {
+        $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`, `TEMA_SI_EDU`, `FECHA_SI_EDU`,  `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $codigo_usuario2 . "', '" . $brindo_educacion . "', '" . $TemaBrindoEdu . "', '" . $FechaEduca . "', NOW())");
+    } elseif ($brindo_educacion == 'NO') {
+        $insert_edu = mysqli_query($conex, "INSERT INTO `ipsen_educacion`( USER, `ID_PACI_FK`, `SE_BRINDO_EDU`,  `MOTIVO_NO_EDU`, `FECHA_REGISTRO`) VALUES ( '" . $usua . "', '" . $codigo_usuario2 . "', '" . $brindo_educacion . "', '" . $MotivoNoEdu . "', NOW())");
     }
     if ($_POST['progra_visi_ini'] == '') {
         $progra_visi_ini = 'N/A';
