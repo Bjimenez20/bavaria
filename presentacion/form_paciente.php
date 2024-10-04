@@ -1057,747 +1057,372 @@ if ($privilegios != '' && $usua != '') {
                                         <textarea class="form-control" name="observacion_retiro" id="observacion_retiro" style="width:98%; height:100px"><?php echo $fila['OBSERVACION_MOTIVO_RETIRO_PACIENTE']; ?></textarea>
                                     </div>
                                 </div>
-                                <?php
-                                if ($usua != 'DMENDOZA') {
-                                ?>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Nombre<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="nombre" id="nombre" value="<?php echo $fila['NOMBRE_PACIENTE']; ?>" readonly />
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Apellidos<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="apellidos" id="apellidos" value="<?php echo $fila['APELLIDO_PACIENTE']; ?>" readonly />
-                                        </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Nombre<span class="asterisco">*</span></span>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Tipo de identificacion<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <select name="tipo_identificacion" id="tipo_identificacion" class="form-control">
-                                                <option><?php echo $fila['TIPO_IDENTIFICACION_PACIENTE'] ?></option>
-                                                <option value="">Seleccione...</option>
-                                                <option>R.C</option>
-                                                <option>T.I</option>
-                                                <option>C.C</option>
-                                                <option>C.E</option>
-                                                <option>P.T</option>
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Identificacion<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="identificacion" id="identificacion" value="<?php echo $fila['IDENTIFICACION_PACIENTE']; ?>" readonly />
-                                        </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="nombre" id="nombre" value="<?php echo $fila['NOMBRE_PACIENTE']; ?>" readonly />
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono 1<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="number" name="telefono1" id="telefono1" value="<?php echo $fila['TELEFONO_PACIENTE']; ?>" />
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono 2</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="number" name="telefono2" id="telefono2" value="<?php echo $fila['TELEFONO2_PACIENTE']; ?>" />
-                                        </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Apellidos<span class="asterisco">*</span></span>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono 3</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="number" name="telefono3" id="telefono3" value="<?php echo $fila['TELEFONO3_PACIENTE']; ?>" />
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono 4</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="number" name="telefono4" id="telefono4" value="<?php echo $fila['TELEFONO4_PACIENTE']; ?>" />
-                                        </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="apellidos" id="apellidos" value="<?php echo $fila['APELLIDO_PACIENTE']; ?>" readonly />
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono 5</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="number" name="telefono5" id="telefono5" value="<?php echo $fila['TELEFONO5_PACIENTE']; ?>" />
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Correo Electronico</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="correo" id="correo" value="<?php echo $fila['CORREO_PACIENTE']; ?>" />
-                                        </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Tipo de identificacion<span class="asterisco">*</span></span>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Departamento<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <select type="text" name="departamento" id="departamento" onchange="mostrar_ciudades()" class="form-control">
-                                                <option><?php echo $fila['DEPARTAMENTO_PACIENTE']; ?></option>
-                                                <option value="">Seleccione...</option>
-                                                <?php
-                                                $DEPT = $fila['DEPARTAMENTO_PACIENTE'];
-                                                $Seleccionar = mysqli_query($conex, "SELECT nombre FROM `ipsen_departamento` WHERE nombre != '' AND nombre != '" . $DEPT . "' ORDER BY nombre ASC");
-                                                while ($fila3 = mysqli_fetch_array($Seleccionar)) {
-                                                    $DEPARTAMENTO = $fila3['nombre'];
-                                                    echo "<option>" . $DEPARTAMENTO . "</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Ciudad<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <select type="text" name="ciudad" id="ciudad" class="form-control">
-                                                <option><?php echo $fila['CIUDAD_PACIENTE']; ?></option>
-                                                <option value="">Seleccione...</option>
-                                                <?php
-                                                $Selecciones = mysqli_query($conex, "SELECT c.nombre FROM ipsen_ciudad AS c
+                                    <div class="col">
+                                        <select name="tipo_identificacion" id="tipo_identificacion" class="form-control">
+                                            <option><?php echo $fila['TIPO_IDENTIFICACION_PACIENTE'] ?></option>
+                                            <option value="">Seleccione...</option>
+                                            <option>R.C</option>
+                                            <option>T.I</option>
+                                            <option>C.C</option>
+                                            <option>C.E</option>
+                                            <option>P.T</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Identificacion<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="identificacion" id="identificacion" value="<?php echo $fila['IDENTIFICACION_PACIENTE']; ?>" readonly />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono 1<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="telefono1" id="telefono1" value="<?php echo $fila['TELEFONO_PACIENTE']; ?>" />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono 2</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="telefono2" id="telefono2" value="<?php echo $fila['TELEFONO2_PACIENTE']; ?>" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono 3</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="telefono3" id="telefono3" value="<?php echo $fila['TELEFONO3_PACIENTE']; ?>" />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono 4</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="telefono4" id="telefono4" value="<?php echo $fila['TELEFONO4_PACIENTE']; ?>" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono 5</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="telefono5" id="telefono5" value="<?php echo $fila['TELEFONO5_PACIENTE']; ?>" />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Correo Electronico</span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="correo" id="correo" value="<?php echo $fila['CORREO_PACIENTE']; ?>" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Departamento<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select type="text" name="departamento" id="departamento" onchange="mostrar_ciudades()" class="form-control">
+                                            <option><?php echo $fila['DEPARTAMENTO_PACIENTE']; ?></option>
+                                            <option value="">Seleccione...</option>
+                                            <?php
+                                            $DEPT = $fila['DEPARTAMENTO_PACIENTE'];
+                                            $Seleccionar = mysqli_query($conex, "SELECT nombre FROM `ipsen_departamento` WHERE nombre != '' AND nombre != '" . $DEPT . "' ORDER BY nombre ASC");
+                                            while ($fila3 = mysqli_fetch_array($Seleccionar)) {
+                                                $DEPARTAMENTO = $fila3['nombre'];
+                                                echo "<option>" . $DEPARTAMENTO . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Ciudad<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select type="text" name="ciudad" id="ciudad" class="form-control">
+                                            <option><?php echo $fila['CIUDAD_PACIENTE']; ?></option>
+                                            <option value="">Seleccione...</option>
+                                            <?php
+                                            $Selecciones = mysqli_query($conex, "SELECT c.nombre FROM ipsen_ciudad AS c
                                             INNER JOIN ipsen_departamento AS d ON d.id=c.departamento_id
                                             WHERE d.nombre='" . $DEPT . "' ORDER BY c.nombre ASC");
-                                                while ($fila2 = mysqli_fetch_array($Selecciones)) {
-                                                    $CIUDAD = $fila2['nombre'];
-                                                    echo "<option>" . $CIUDAD . "</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
+                                            while ($fila2 = mysqli_fetch_array($Selecciones)) {
+                                                $CIUDAD = $fila2['nombre'];
+                                                echo "<option>" . $CIUDAD . "</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Barrio<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="barrio" id="barrio" value="<?php echo $fila['BARRIO_PACIENTE']; ?>" onkeypress="return check(event)" />
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Direccion<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" name="direccion_act" id="direccion_act" style="width:93%" value="<?php echo $fila['DIRECCION_PACIENTE']; ?>" readonly />
-                                            <img src="imagenes/lapiz 100.png" id="cambio" name="cambio" title="Editar" style="width:4%; height:20px; margin-left:-10%;" align="right" />
-                                        </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Barrio<span class="asterisco">*</span></span>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <div id="cambio_direccion" style="display:none; border:#F00 1px solid;">
-                                                <div class="row mb-3">
-                                                    <div class="col">
-                                                        <span class="fw-bold">Direccion<span class="asterisco">*</span></span>
-                                                    </div>
-                                                    <div class="col-10">
-                                                        <input type="text" name="DIRECCION" id="DIRECCION" readonly class="form-control" />
-                                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="barrio" id="barrio" value="<?php echo $fila['BARRIO_PACIENTE']; ?>" onkeypress="return check(event)" />
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Direccion<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" name="direccion_act" id="direccion_act" style="width:93%" value="<?php echo $fila['DIRECCION_PACIENTE']; ?>" readonly />
+                                        <img src="imagenes/lapiz 100.png" id="cambio" name="cambio" title="Editar" style="width:4%; height:20px; margin-left:-10%;" align="right" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div id="cambio_direccion" style="display:none; border:#F00 1px solid;">
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <span class="fw-bold">Direccion<span class="asterisco">*</span></span>
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <div class="col">
-                                                        <span class="fw-bold">Via:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <select id="VIA" name="VIA" class="form-control">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>ANILLO VIAL</option>
-                                                                <option>AUTOPISTA</option>
-                                                                <option>AVENIDA</option>
-                                                                <option>BOULEVAR</option>
-                                                                <option>CALLE</option>
-                                                                <option>CALLEJON</option>
-                                                                <option>CARRERA</option>
-                                                                <option>CIRCUNVALAR</option>
-                                                                <option>CONDOMINIO</option>
-                                                                <option>DIAGONAL</option>
-                                                                <option>KILOMETRO</option>
-                                                                <option>LOTE</option>
-                                                                <option>SALIDA</option>
-                                                                <option>SECTOR</option>
-                                                                <option>TRANSVERSAL</option>
-                                                                <option>VEREDA</option>
-                                                                <option>VIA</option>
-                                                            </select>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span class="fw-bold">Detalle via:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <input name="detalle_via" id="detalle_via" type="text" maxlength="30" class="form-control" />
-                                                        </span>
-                                                    </div>
+                                                <div class="col-10">
+                                                    <input type="text" name="DIRECCION" id="DIRECCION" readonly class="form-control" />
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <div class="col-3">
-                                                        <span class="fw-bold">Numero:</span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <input name="numero" id="numero" type="text" maxlength="5" class="form-control" />
-                                                            </div>
-                                                            <div class="col">
-                                                                <input name="numero2" id="numero2" type="text" maxlength="5" class="form-control" />
-                                                            </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <span class="fw-bold">Via:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <select id="VIA" name="VIA" class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <option>ANILLO VIAL</option>
+                                                            <option>AUTOPISTA</option>
+                                                            <option>AVENIDA</option>
+                                                            <option>BOULEVAR</option>
+                                                            <option>CALLE</option>
+                                                            <option>CALLEJON</option>
+                                                            <option>CARRERA</option>
+                                                            <option>CIRCUNVALAR</option>
+                                                            <option>CONDOMINIO</option>
+                                                            <option>DIAGONAL</option>
+                                                            <option>KILOMETRO</option>
+                                                            <option>LOTE</option>
+                                                            <option>SALIDA</option>
+                                                            <option>SECTOR</option>
+                                                            <option>TRANSVERSAL</option>
+                                                            <option>VEREDA</option>
+                                                            <option>VIA</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <div class="col">
+                                                    <span class="fw-bold">Detalle via:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <input name="detalle_via" id="detalle_via" type="text" maxlength="30" class="form-control" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-3">
+                                                    <span class="fw-bold">Numero:</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input name="numero" id="numero" type="text" maxlength="5" class="form-control" />
+                                                        </div>
+                                                        <div class="col">
+                                                            <input name="numero2" id="numero2" type="text" maxlength="5" class="form-control" />
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <div class="col">
-                                                        <span class="fw-bold">Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <select id="interior" name="interior" class="form-control">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>APARTAMENTO</option>
-                                                                <option>BARRIO</option>
-                                                                <option>BLOQUE</option>
-                                                                <option>CASA</option>
-                                                                <option>CIUDADELA</option>
-                                                                <option>CONJUNTO</option>
-                                                                <option>CONJUNTO RESIDENCIAL</option>
-                                                                <option>EDIFICIO</option>
-                                                                <option>ENTRADA</option>
-                                                                <option>ETAPA</option>
-                                                                <option>INTERIOR</option>
-                                                                <option>MANZANA</option>
-                                                                <option>NORTE</option>
-                                                                <option>OFICINA</option>
-                                                                <option>OCCIDENTE</option>
-                                                                <option>ORIENTE</option>
-                                                                <option>PENTHOUSE</option>
-                                                                <option>PISO</option>
-                                                                <option>PORTERIA</option>
-                                                                <option>SOTANO</option>
-                                                                <option>SUR</option>
-                                                                <option>TORRE</option>
-                                                            </select>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span class="fw-bold">Detalle Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <input name="detalle_int" id="detalle_int" type="text" maxlength="30" readonly class="form-control" />
-                                                        </span>
-                                                    </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <span class="fw-bold">Interior:</span>
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <div class="col">
-                                                        <span class="fw-bold">Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <select id="interior2" name="interior2" class="form-control">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>APARTAMENTO</option>
-                                                                <option>BARRIO</option>
-                                                                <option>BLOQUE</option>
-                                                                <option>CASA</option>
-                                                                <option>CIUDADELA</option>
-                                                                <option>CONJUNTO</option>
-                                                                <option>CONJUNTO RESIDENCIAL</option>
-                                                                <option>EDIFICIO</option>
-                                                                <option>ENTRADA</option>
-                                                                <option>ETAPA</option>
-                                                                <option>INTERIOR</option>
-                                                                <option>MANZANA</option>
-                                                                <option>NORTE</option>
-                                                                <option>OFICINA</option>
-                                                                <option>OCCIDENTE</option>
-                                                                <option>ORIENTE</option>
-                                                                <option>PENTHOUSE</option>
-                                                                <option>PISO</option>
-                                                                <option>PORTERIA</option>
-                                                                <option>SOTANO</option>
-                                                                <option>SUR</option>
-                                                                <option>TORRE</option>
-                                                            </select>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span class="fw-bold">Detalle Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <input name="detalle_int2" id="detalle_int2" type="text" maxlength="30" readonly class="form-control" />
-                                                        </span>
-                                                    </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <select id="interior" name="interior" class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <option>APARTAMENTO</option>
+                                                            <option>BARRIO</option>
+                                                            <option>BLOQUE</option>
+                                                            <option>CASA</option>
+                                                            <option>CIUDADELA</option>
+                                                            <option>CONJUNTO</option>
+                                                            <option>CONJUNTO RESIDENCIAL</option>
+                                                            <option>EDIFICIO</option>
+                                                            <option>ENTRADA</option>
+                                                            <option>ETAPA</option>
+                                                            <option>INTERIOR</option>
+                                                            <option>MANZANA</option>
+                                                            <option>NORTE</option>
+                                                            <option>OFICINA</option>
+                                                            <option>OCCIDENTE</option>
+                                                            <option>ORIENTE</option>
+                                                            <option>PENTHOUSE</option>
+                                                            <option>PISO</option>
+                                                            <option>PORTERIA</option>
+                                                            <option>SOTANO</option>
+                                                            <option>SUR</option>
+                                                            <option>TORRE</option>
+                                                        </select>
+                                                    </span>
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <div class="col">
-                                                        <span class="fw-bold">Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <select id="interior3" name="interior3" class="form-control">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>APARTAMENTO</option>
-                                                                <option>BARRIO</option>
-                                                                <option>BLOQUE</option>
-                                                                <option>CASA</option>
-                                                                <option>CIUDADELA</option>
-                                                                <option>CONJUNTO</option>
-                                                                <option>CONJUNTO RESIDENCIAL</option>
-                                                                <option>EDIFICIO</option>
-                                                                <option>ENTRADA</option>
-                                                                <option>ETAPA</option>
-                                                                <option>INTERIOR</option>
-                                                                <option>MANZANA</option>
-                                                                <option>NORTE</option>
-                                                                <option>OFICINA</option>
-                                                                <option>OCCIDENTE</option>
-                                                                <option>ORIENTE</option>
-                                                                <option>PENTHOUSE</option>
-                                                                <option>PISO</option>
-                                                                <option>PORTERIA</option>
-                                                                <option>SOTANO</option>
-                                                                <option>SUR</option>
-                                                                <option>TORRE</option>
-                                                            </select>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span class="fw-bold">Detalle Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <input name="detalle_int3" id="detalle_int3" type="text" maxlength="30" class="form-control" readonly />
-                                                        </span>
-                                                    </div>
+                                                <div class="col">
+                                                    <span class="fw-bold">Detalle Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <input name="detalle_int" id="detalle_int" type="text" maxlength="30" readonly class="form-control" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <span class="fw-bold">Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <select id="interior2" name="interior2" class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <option>APARTAMENTO</option>
+                                                            <option>BARRIO</option>
+                                                            <option>BLOQUE</option>
+                                                            <option>CASA</option>
+                                                            <option>CIUDADELA</option>
+                                                            <option>CONJUNTO</option>
+                                                            <option>CONJUNTO RESIDENCIAL</option>
+                                                            <option>EDIFICIO</option>
+                                                            <option>ENTRADA</option>
+                                                            <option>ETAPA</option>
+                                                            <option>INTERIOR</option>
+                                                            <option>MANZANA</option>
+                                                            <option>NORTE</option>
+                                                            <option>OFICINA</option>
+                                                            <option>OCCIDENTE</option>
+                                                            <option>ORIENTE</option>
+                                                            <option>PENTHOUSE</option>
+                                                            <option>PISO</option>
+                                                            <option>PORTERIA</option>
+                                                            <option>SOTANO</option>
+                                                            <option>SUR</option>
+                                                            <option>TORRE</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <div class="col">
+                                                    <span class="fw-bold">Detalle Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <input name="detalle_int2" id="detalle_int2" type="text" maxlength="30" readonly class="form-control" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <span class="fw-bold">Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <select id="interior3" name="interior3" class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <option>APARTAMENTO</option>
+                                                            <option>BARRIO</option>
+                                                            <option>BLOQUE</option>
+                                                            <option>CASA</option>
+                                                            <option>CIUDADELA</option>
+                                                            <option>CONJUNTO</option>
+                                                            <option>CONJUNTO RESIDENCIAL</option>
+                                                            <option>EDIFICIO</option>
+                                                            <option>ENTRADA</option>
+                                                            <option>ETAPA</option>
+                                                            <option>INTERIOR</option>
+                                                            <option>MANZANA</option>
+                                                            <option>NORTE</option>
+                                                            <option>OFICINA</option>
+                                                            <option>OCCIDENTE</option>
+                                                            <option>ORIENTE</option>
+                                                            <option>PENTHOUSE</option>
+                                                            <option>PISO</option>
+                                                            <option>PORTERIA</option>
+                                                            <option>SOTANO</option>
+                                                            <option>SUR</option>
+                                                            <option>TORRE</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <div class="col">
+                                                    <span class="fw-bold">Detalle Interior:</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        <input name="detalle_int3" id="detalle_int3" type="text" maxlength="30" class="form-control" readonly />
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col" width="20%">
-                                            <span class="fw-bold">Fecha de Nacimiento<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col" width="30%">
-                                            <input class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" max="<?php echo date('Y-m-d'); ?>" value="<?php echo $fila['FECHA_NACIMINETO_PACIENTE']; ?>" />
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Edad <span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="edad" id="edad" readonly />
-                                        </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col" width="20%">
+                                        <span class="fw-bold">Fecha de Nacimiento<span class="asterisco">*</span></span>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Acudiente</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="acudiente" id="acudiente" readonly value="<?php echo $fila['ACUDIENTE_PACIENTE'] ?>" />
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono del Acudiente</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="telefono_acudiente1" id="telefono_acudiente1" value="<?php echo $fila['TELEFONO_ACUDIENTE_PACIENTE'] ?>" readonly />
-                                        </div>
+                                    <div class="col" width="30%">
+                                        <input class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" max="<?php echo date('Y-m-d'); ?>" value="<?php echo $fila['FECHA_NACIMINETO_PACIENTE']; ?>" />
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Clasificacion Patologica<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <span style="width:30%;">
-                                                <input class="form-control" type="text" name="clasificacion_patologicas" id="clasificacion_patologicas" value="<?php echo $fila['CLASIFICACION_PATOLOGICA_TRATAMIENTO'] ?>" readonly>
-                                            </span>
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Fecha Inicio Terapia<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="date" name="fecha_ini_terapia" id="fecha_ini_terapia" value="<?php echo $fila['FECHA_INICIO_TERAPIA_TRATAMIENTO'] ?>" />
-                                        </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Edad <span class="asterisco">*</span></span>
                                     </div>
-                                <?php
-                                } else {
-                                ?>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Nombre<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="nombre" id="nombre" value="*****" readonly />
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Apellidos<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="apellidos" id="apellidos" value="*****" readonly />
-                                        </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="edad" id="edad" readonly />
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Tipo de identificacion<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <select name="tipo_identificacion" id="tipo_identificacion" class="form-control">
-                                                <option>*****</option>
-                                                <option value="">Seleccione...</option>
-                                                <option>R.C</option>
-                                                <option>T.I</option>
-                                                <option>C.C</option>
-                                                <option>C.E</option>
-                                                <option>P.T</option>
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Identificacion<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="identificacion" id="identificacion" value="*****" readonly />
-                                        </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Acudiente</span>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono 1<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="number" name="telefono1" id="telefono1" value="*****">
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono 2</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="number" name="telefono2" id="telefono2" value="*****">
-                                        </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="acudiente" id="acudiente" readonly value="<?php echo $fila['ACUDIENTE_PACIENTE'] ?>" />
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono 3</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="number" name="telefono3" id="telefono3" value="*****">
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono 4</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="number" name="telefono4" id="telefono4" value="*****">
-                                        </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Telefono del Acudiente</span>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono 5</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="number" name="telefono5" id="telefono5" value="*****">
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Correo Electronico</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="correo" id="correo" value="*****">
-                                        </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" name="telefono_acudiente1" id="telefono_acudiente1" value="<?php echo $fila['TELEFONO_ACUDIENTE_PACIENTE'] ?>" readonly />
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Departamento<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <select type="text" name="departamento" id="departamento" onchange="mostrar_ciudades()" class="form-control">
-                                                <option>*****</option>
-                                                <option value="">Seleccione...</option>
-                                                <?php
-                                                $DEPT = $fila['DEPARTAMENTO_PACIENTE'];
-                                                $Seleccionar = mysqli_query($conex, "SELECT nombre FROM `ipsen_departamento` WHERE nombre != '' AND nombre != '" . $DEPT . "' ORDER BY nombre ASC");
-                                                while ($fila3 = mysqli_fetch_array($Seleccionar)) {
-                                                    $DEPARTAMENTO = $fila3['nombre'];
-                                                    echo "<option>" . $DEPARTAMENTO . "</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Ciudad<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <select type="text" name="ciudad" id="ciudad" class="form-control">
-                                                <option>*****</option>
-                                                <option value="">Seleccione...</option>
-                                                <?php
-                                                $Selecciones = mysqli_query($conex, "SELECT c.nombre FROM ipsen_ciudad AS c
-                                            INNER JOIN ipsen_departamento AS d ON d.id=c.departamento_id
-                                            WHERE d.nombre='" . $DEPT . "' ORDER BY c.nombre ASC");
-                                                while ($fila2 = mysqli_fetch_array($Selecciones)) {
-                                                    $CIUDAD = $fila2['nombre'];
-                                                    echo "<option>" . $CIUDAD . "</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Clasificacion Patologica<span class="asterisco">*</span></span>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Barrio<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="barrio" id="barrio" value="*****" onkeypress="return check(event)" />
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Direccion<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" name="direccion_act" id="direccion_act" style="width:93%" value="*****" readonly>
-                                            <img src="imagenes/lapiz 100.png" id="cambio" name="cambio" title="Editar" style="width:4%; height:20px; margin-left:-10%;" align="right" />
-                                        </div>
+                                    <div class="col">
+                                        <span style="width:30%;">
+                                            <input class="form-control" type="text" name="clasificacion_patologicas" id="clasificacion_patologicas" value="<?php echo $fila['CLASIFICACION_PATOLOGICA_TRATAMIENTO'] ?>" readonly>
+                                        </span>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <div id="cambio_direccion" style="display:none; border:#F00 1px solid;">
-                                                <div class="row mb-3">
-                                                    <div class="col">
-                                                        <span class="fw-bold">Direccion<span class="asterisco">*</span></span>
-                                                    </div>
-                                                    <div class="col-10">
-                                                        <input type="text" name="DIRECCION" id="DIRECCION" readonly class="form-control" />
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col">
-                                                        <span class="fw-bold">Via:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <select id="VIA" name="VIA" class="form-control">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>ANILLO VIAL</option>
-                                                                <option>AUTOPISTA</option>
-                                                                <option>AVENIDA</option>
-                                                                <option>BOULEVAR</option>
-                                                                <option>CALLE</option>
-                                                                <option>CALLEJON</option>
-                                                                <option>CARRERA</option>
-                                                                <option>CIRCUNVALAR</option>
-                                                                <option>CONDOMINIO</option>
-                                                                <option>DIAGONAL</option>
-                                                                <option>KILOMETRO</option>
-                                                                <option>LOTE</option>
-                                                                <option>SALIDA</option>
-                                                                <option>SECTOR</option>
-                                                                <option>TRANSVERSAL</option>
-                                                                <option>VEREDA</option>
-                                                                <option>VIA</option>
-                                                            </select>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span class="fw-bold">Detalle via:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <input name="detalle_via" id="detalle_via" type="text" maxlength="30" class="form-control" />
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col-3">
-                                                        <span class="fw-bold">Numero:</span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <input name="numero" id="numero" type="text" maxlength="5" class="form-control" />
-                                                            </div>
-                                                            <div class="col">
-                                                                <input name="numero2" id="numero2" type="text" maxlength="5" class="form-control" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col">
-                                                        <span class="fw-bold">Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <select id="interior" name="interior" class="form-control">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>APARTAMENTO</option>
-                                                                <option>BARRIO</option>
-                                                                <option>BLOQUE</option>
-                                                                <option>CASA</option>
-                                                                <option>CIUDADELA</option>
-                                                                <option>CONJUNTO</option>
-                                                                <option>CONJUNTO RESIDENCIAL</option>
-                                                                <option>EDIFICIO</option>
-                                                                <option>ENTRADA</option>
-                                                                <option>ETAPA</option>
-                                                                <option>INTERIOR</option>
-                                                                <option>MANZANA</option>
-                                                                <option>NORTE</option>
-                                                                <option>OFICINA</option>
-                                                                <option>OCCIDENTE</option>
-                                                                <option>ORIENTE</option>
-                                                                <option>PENTHOUSE</option>
-                                                                <option>PISO</option>
-                                                                <option>PORTERIA</option>
-                                                                <option>SOTANO</option>
-                                                                <option>SUR</option>
-                                                                <option>TORRE</option>
-                                                            </select>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span class="fw-bold">Detalle Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <input name="detalle_int" id="detalle_int" type="text" maxlength="30" readonly class="form-control" />
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col">
-                                                        <span class="fw-bold">Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <select id="interior2" name="interior2" class="form-control">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>APARTAMENTO</option>
-                                                                <option>BARRIO</option>
-                                                                <option>BLOQUE</option>
-                                                                <option>CASA</option>
-                                                                <option>CIUDADELA</option>
-                                                                <option>CONJUNTO</option>
-                                                                <option>CONJUNTO RESIDENCIAL</option>
-                                                                <option>EDIFICIO</option>
-                                                                <option>ENTRADA</option>
-                                                                <option>ETAPA</option>
-                                                                <option>INTERIOR</option>
-                                                                <option>MANZANA</option>
-                                                                <option>NORTE</option>
-                                                                <option>OFICINA</option>
-                                                                <option>OCCIDENTE</option>
-                                                                <option>ORIENTE</option>
-                                                                <option>PENTHOUSE</option>
-                                                                <option>PISO</option>
-                                                                <option>PORTERIA</option>
-                                                                <option>SOTANO</option>
-                                                                <option>SUR</option>
-                                                                <option>TORRE</option>
-                                                            </select>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span class="fw-bold">Detalle Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <input name="detalle_int2" id="detalle_int2" type="text" maxlength="30" readonly class="form-control" />
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col">
-                                                        <span class="fw-bold">Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <select id="interior3" name="interior3" class="form-control">
-                                                                <option value="">Seleccione...</option>
-                                                                <option>APARTAMENTO</option>
-                                                                <option>BARRIO</option>
-                                                                <option>BLOQUE</option>
-                                                                <option>CASA</option>
-                                                                <option>CIUDADELA</option>
-                                                                <option>CONJUNTO</option>
-                                                                <option>CONJUNTO RESIDENCIAL</option>
-                                                                <option>EDIFICIO</option>
-                                                                <option>ENTRADA</option>
-                                                                <option>ETAPA</option>
-                                                                <option>INTERIOR</option>
-                                                                <option>MANZANA</option>
-                                                                <option>NORTE</option>
-                                                                <option>OFICINA</option>
-                                                                <option>OCCIDENTE</option>
-                                                                <option>ORIENTE</option>
-                                                                <option>PENTHOUSE</option>
-                                                                <option>PISO</option>
-                                                                <option>PORTERIA</option>
-                                                                <option>SOTANO</option>
-                                                                <option>SUR</option>
-                                                                <option>TORRE</option>
-                                                            </select>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span class="fw-bold">Detalle Interior:</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span>
-                                                            <input name="detalle_int3" id="detalle_int3" type="text" maxlength="30" class="form-control" readonly />
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col">
+                                        <span class="fw-bold">Fecha Inicio Terapia<span class="asterisco">*</span></span>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col" width="20%">
-                                            <span class="fw-bold">Fecha de Nacimiento<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col" width="30%">
-                                            <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value="*****">
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Edad <span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="edad" id="edad" readonly />
-                                        </div>
+                                    <div class="col">
+                                        <input class="form-control" type="date" name="fecha_ini_terapia" id="fecha_ini_terapia" value="<?php echo $fila['FECHA_INICIO_TERAPIA_TRATAMIENTO'] ?>" />
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Acudiente</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="acudiente" id="acudiente" readonly value="*****">
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Telefono del Acudiente</span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="telefono_acudiente1" id="telefono_acudiente1" value="*****" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <span class="fw-bold">Clasificacion Patologica<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <span style="width:30%;">
-                                                <input class="form-control" type="text" name="clasificacion_patologicas" id="clasificacion_patologicas" value="*****" readonly>
-                                            </span>
-                                        </div>
-                                        <div class="col">
-                                            <span class="fw-bold">Fecha Inicio Terapia<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" type="text" name="fecha_ini_terapia" id="fecha_ini_terapia" value="*****">
-                                        </div>
-                                    </div>
-                                <?php
-                                }
-                                ?>
+                                </div>
                                 <div class="row mb-3">
                                     <div class="col" colspan="1">
                                         <input class="btn btn-modify w-100 text-white" type="button" name="historico" id="historico" title="Historico reclamacion" style="width:100%; height:50px" value="Historico Reclamaciones" onclick="javascript:ventanaSecundaria('form_historico_reclamacion.php?xxx=<?php echo base64_encode($fila['ID_PACIENTE']) ?>')" />
