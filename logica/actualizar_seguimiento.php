@@ -69,6 +69,7 @@ include('../logica/session.php');
     $telefono5 = $_POST['telefono5'];
     $correo = $_POST['correo'];
     $ciudad = $_POST['ciudad'];
+    $clasificacion_patologica = $_POST['clasificacion_patologica'];
     $consentimiento_informado = $_POST['consentimiento_informado'];
     $fecha_retiro = $_POST['fecha_retiro'];
     $motivo_retiro = $_POST['motivo_retiro'];
@@ -86,6 +87,7 @@ include('../logica/session.php');
     $respues_visi_si = $_POST['fecha_visita_ini'];
     $respues_visi_no = $_POST['span_causa_visita1'];
     $tipo_doc = $_POST['tipo_doc'];
+    $tipo_doc_str = implode(",", $tipo_doc);
 
     $visitarrr1 = mysqli_query($conex, "UPDATE ipsen_tratamiento SET VISI_INI_EFEC = '" . $sel_visita_inicial . "', PROGRA_VIS_EDU ='" . $programada_visita . "' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
     echo mysqli_error($conex);
@@ -597,20 +599,20 @@ include('../logica/session.php');
                     if ($logro_comunicacion == 'SI') {
                         $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $estado_paciente . "',  STATUS_PACIENTE='" . $status_paciente . "', FECHA_ACTIVACION_PACIENTE='" . $fecha_activacion . "', FECHA_RETIRO_PACIENTE='" . $fecha_retiro . "', MOTIVO_RETIRO_PACIENTE='" . $motivo_retiro . "', OBSERVACION_MOTIVO_RETIRO_PACIENTE='" . $observacion_retiro . "',TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "' ,TELEFONO_PACIENTE='" . $telefono1 . "', TELEFONO2_PACIENTE='" . $telefono2 . "', TELEFONO3_PACIENTE='" . $telefono3 . "', TELEFONO4_PACIENTE='" . $telefono4 . "', TELEFONO5_PACIENTE='" . $telefono5 . "', CORREO_PACIENTE='" . $correo . "', DIRECCION_PACIENTE='" . $direccion . "', BARRIO_PACIENTE='" . $barrio . "', DEPARTAMENTO_PACIENTE='" . $departamento . "',CIUDAD_PACIENTE='" . $ciudad . "',FECHA_NACIMINETO_PACIENTE='" . $fecha_nacimiento . "',EDAD_PACIENTE='" . $edad . "', PROVEEDOR ='" . $proveedor . "', CONSENTIMIENTO ='" . $consentimiento_informado . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
-                        $sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET FRECUENCIA_MEDICAMENTO ='" . $frecuencia . "', TRATAMIENTO_PREVIO='" . $tratamiento_previo . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "',ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_ultima_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "',FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "',PAAP = '" . $paap . "', SUB_PAAP = '" . $sub_paap . "',BARRERA = '" . $sub_barrera . "' ,NUM_LOTES_DISPOSITIVOS = '" . $num_lotes_dis . "', PROGRAMA_TRA = '" . $programa . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+                        $sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET FRECUENCIA_MEDICAMENTO ='" . $frecuencia . "', CLASIFICACION_PATOLOGICA_TRATAMIENTO = '" . $clasificacion_patologica . "', TRATAMIENTO_PREVIO='" . $tratamiento_previo . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "',ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_ultima_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "',FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "',PAAP = '" . $paap . "', SUB_PAAP = '" . $sub_paap . "',BARRERA = '" . $sub_barrera . "' ,NUM_LOTES_DISPOSITIVOS = '" . $num_lotes_dis . "', PROGRAMA_TRA = '" . $programa . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
                     }
                     if ($logro_comunicacion == 'NO') {
                         $sql = mysqli_query($conex, "UPDATE ipsen_pacientes SET ESTADO_PACIENTE = '" . $estado_paciente . "', TIPO_IDENTIFICACION_PACIENTE='" . $tipo_identificacion . "', PROVEEDOR ='" . $proveedor . "', CONSENTIMIENTO ='" . $consentimiento_informado . "' WHERE ID_PACIENTE='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
-                        $sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET FRECUENCIA_MEDICAMENTO ='" . $frecuencia . "', TRATAMIENTO_PREVIO='" . $tratamiento_previo . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "',ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_ultima_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "',FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "',PAAP = '" . $paap . "', SUB_PAAP = '" . $sub_paap . "',BARRERA = '" . $sub_barrera . "' ,NUM_LOTES_DISPOSITIVOS = '" . $num_lotes_dis . "', PROGRAMA_TRA = '" . $programa . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+                        $sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET FRECUENCIA_MEDICAMENTO ='" . $frecuencia . "', CLASIFICACION_PATOLOGICA_TRATAMIENTO = '" . $clasificacion_patologica . "', TRATAMIENTO_PREVIO='" . $tratamiento_previo . "', FECHA_PRESCRIPCION='" . $fecha_prescripcion . "',ASEGURADOR_TRATAMIENTO='" . $asegurador . "', OPERADOR_LOGISTICO_TRATAMIENTO='" . $operador_logistico . "',FECHA_ULTIMA_RECLAMACION_TRATAMIENTO='" . $fecha_ultima_reclamacion . "',PUNTO_ENTREGA='" . $punto_entrega . "',MEDICO_TRATAMIENTO='" . $medico_t . "',MEDICO_PRESCRIPTOR='" . $medico_p . "',IPS_ATIENDE_TRATAMIENTO='" . $ips_atiende . "',DOSIS_TRATAMIENTO='" . $dosis . "',FECHA_INICIO_TERAPIA_TRATAMIENTO='" . $fecha_ini_terapia . "',PAAP = '" . $paap . "', SUB_PAAP = '" . $sub_paap . "',BARRERA = '" . $sub_barrera . "' ,NUM_LOTES_DISPOSITIVOS = '" . $num_lotes_dis . "', PROGRAMA_TRA = '" . $programa . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
                         echo mysqli_error($conex);
                     }
                     if ($reclamo == 'SI') {
-                        $sql = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,FECHA_AUTORIZACION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_APLICACION,LUGAR_APLICACION,FECHA_CITA_PROGRAMADA,FECHA_MEDICAMENTO_HASTA,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION,CODIGO_ARGUS,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES,FECHA_INI_PAAP,FECHA_FIN_PAAP, EVENTO_ADVERSO_FK, TIPO_DOC)VALUES('" . $motivo_comunicacion . "','" . $medio_contacto . "','" . $tipo_llamada . "','" . $logro_comunicacion . "','" . $motivo_no_comunicacion . "','" . $via_recepcion . "','" . $estado_ctc . "','" . $fecha_autorizacion . "','" . $estado_farmacia . "','" . $reclamo . "','" . $aplicacion . "','" . $consecutivo_betaferon . "','','" . $dificultad_acceso . "','" . $tipo_dificultad . "','" . $envios . "','" . $MEDICAMENTO . "','" . $tipo_envio . "','" . $evento_adverso . "','" . $tipo_evento_adverso . "','" . $genera_solicitud . "','" . $fecha_proxima_llamada . "','" . $motivo_proxima_llamada . "','" . $observacion_proxima_llamada . "','" . $fecha_reclamacion . "','" . $fecha_aplicacion . "','" . $lugar_aplicacion . "','" . $fecha_cita_programada . "','" . $fecha_medicamento_hasta . "','" . $numero_cajas . "','" . $consecutivo . "','" . $autor . "','" . $nota . "','" . $descripcion_comunicacion . "','" . $fecha_proxima_llamada . "','SIN ASIGNAR','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP,'" . $CONSECUTIVO_EA . "','" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "', '" . $fecha_inicio_paap . "', '" . $fecha_fin_paap . "', '" . $ID_EVENTO_ADVERSO . "', '" . $tipo_doc . "')");
+                        $sql = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,FECHA_AUTORIZACION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_APLICACION,LUGAR_APLICACION,FECHA_CITA_PROGRAMADA,FECHA_MEDICAMENTO_HASTA,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION,CODIGO_ARGUS,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES,FECHA_INI_PAAP,FECHA_FIN_PAAP, EVENTO_ADVERSO_FK, TIPO_DOC)VALUES('" . $motivo_comunicacion . "','" . $medio_contacto . "','" . $tipo_llamada . "','" . $logro_comunicacion . "','" . $motivo_no_comunicacion . "','" . $via_recepcion . "','" . $estado_ctc . "','" . $fecha_autorizacion . "','" . $estado_farmacia . "','" . $reclamo . "','" . $aplicacion . "','" . $consecutivo_betaferon . "','','" . $dificultad_acceso . "','" . $tipo_dificultad . "','" . $envios . "','" . $MEDICAMENTO . "','" . $tipo_envio . "','" . $evento_adverso . "','" . $tipo_evento_adverso . "','" . $genera_solicitud . "','" . $fecha_proxima_llamada . "','" . $motivo_proxima_llamada . "','" . $observacion_proxima_llamada . "','" . $fecha_reclamacion . "','" . $fecha_aplicacion . "','" . $lugar_aplicacion . "','" . $fecha_cita_programada . "','" . $fecha_medicamento_hasta . "','" . $numero_cajas . "','" . $consecutivo . "','" . $autor . "','" . $nota . "','" . $descripcion_comunicacion . "','" . $fecha_proxima_llamada . "','SIN ASIGNAR','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP,'" . $CONSECUTIVO_EA . "','" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "', '" . $fecha_inicio_paap . "', '" . $fecha_fin_paap . "', '" . $ID_EVENTO_ADVERSO . "', '" . $tipo_doc_str . "')");
                         echo mysqli_error($conex);
                     } else if ($reclamo == 'NO') {
-                        $sql = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,FECHA_AUTORIZACION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_APLICACION,LUGAR_APLICACION,FECHA_CITA_PROGRAMADA,FECHA_MEDICAMENTO_HASTA,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION,CODIGO_ARGUS,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES,FECHA_INI_PAAP,FECHA_FIN_PAAP, EVENTO_ADVERSO_FK, TIPO_DOC)VALUES('" . $motivo_comunicacion . "','" . $medio_contacto . "','" . $tipo_llamada . "','" . $logro_comunicacion . "','" . $motivo_no_comunicacion . "','" . $via_recepcion . "','" . $estado_ctc . "','" . $fecha_autorizacion . "','" . $estado_farmacia . "','" . $reclamo . "','','" . $consecutivo_betaferon . "','" . $causa_no_reclamacion . "','" . $dificultad_acceso . "','" . $tipo_dificultad . "','" . $envios . "','" . $MEDICAMENTO . "','" . $tipo_envio . "','" . $evento_adverso . "','" . $tipo_evento_adverso . "','" . $genera_solicitud . "','" . $fecha_proxima_llamada . "','" . $motivo_proxima_llamada . "','" . $observacion_proxima_llamada . "','','" . $fecha_aplicacion . "','" . $lugar_aplicacion . "','" . $fecha_cita_programada . "','" . $fecha_medicamento_hasta . "','" . $numero_cajas . "','" . $consecutivo . "','" . $autor . "','" . $nota . "','" . $descripcion_comunicacion . "','" . $fecha_proxima_llamada . "','SIN ASIGNAR','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP,'" . $CONSECUTIVO_EA . "','" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "', '" . $fecha_inicio_paap . "', '" . $fecha_fin_paap . "', '" . $ID_EVENTO_ADVERSO . "', '" . $tipo_doc . "')");
+                        $sql = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,FECHA_AUTORIZACION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_APLICACION,LUGAR_APLICACION,FECHA_CITA_PROGRAMADA,FECHA_MEDICAMENTO_HASTA,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION,CODIGO_ARGUS,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES,FECHA_INI_PAAP,FECHA_FIN_PAAP, EVENTO_ADVERSO_FK, TIPO_DOC)VALUES('" . $motivo_comunicacion . "','" . $medio_contacto . "','" . $tipo_llamada . "','" . $logro_comunicacion . "','" . $motivo_no_comunicacion . "','" . $via_recepcion . "','" . $estado_ctc . "','" . $fecha_autorizacion . "','" . $estado_farmacia . "','" . $reclamo . "','','" . $consecutivo_betaferon . "','" . $causa_no_reclamacion . "','" . $dificultad_acceso . "','" . $tipo_dificultad . "','" . $envios . "','" . $MEDICAMENTO . "','" . $tipo_envio . "','" . $evento_adverso . "','" . $tipo_evento_adverso . "','" . $genera_solicitud . "','" . $fecha_proxima_llamada . "','" . $motivo_proxima_llamada . "','" . $observacion_proxima_llamada . "','','" . $fecha_aplicacion . "','" . $lugar_aplicacion . "','" . $fecha_cita_programada . "','" . $fecha_medicamento_hasta . "','" . $numero_cajas . "','" . $consecutivo . "','" . $autor . "','" . $nota . "','" . $descripcion_comunicacion . "','" . $fecha_proxima_llamada . "','SIN ASIGNAR','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP,'" . $CONSECUTIVO_EA . "','" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "', '" . $fecha_inicio_paap . "', '" . $fecha_fin_paap . "', '" . $ID_EVENTO_ADVERSO . "', '" . $tipo_doc_str . "')");
                         echo mysqli_error($conex);
                     }
                     if ($sub_barrera == "Correo") {
@@ -666,74 +668,228 @@ include('../logica/session.php');
                     while ($datos_pap = (mysqli_fetch_array($select_id))) {
                         $id_paciente = $datos_pap['ID_PACIENTE_FK'];
                     }
-                    if ($tipo_doc == 'Grabacion Llamada') {
-                        if ($_FILES['archivo']['error'] > 0) {
-                            // Manejo de error
-                            switch ($_FILES['archivo']['error']) {
-                                case UPLOAD_ERR_INI_SIZE:
-                                    echo "El archivo excede el tamaño máximo permitido.";
-                                    break;
-                                case UPLOAD_ERR_FORM_SIZE:
-                                    echo "El archivo excede el tamaño máximo permitido por el formulario.";
-                                    break;
-                                case UPLOAD_ERR_PARTIAL:
-                                    echo "El archivo se subió parcialmente.";
-                                    break;
-                                case UPLOAD_ERR_NO_FILE:
-                                    echo "No se subió ningún archivo.";
-                                    break;
-                                case UPLOAD_ERR_NO_TMP_DIR:
-                                    echo "Falta una carpeta temporal.";
-                                    break;
-                                case UPLOAD_ERR_CANT_WRITE:
-                                    echo "No se pudo escribir el archivo en el disco.";
-                                    break;
-                                case UPLOAD_ERR_EXTENSION:
-                                    echo "Una extensión de PHP detuvo la subida del archivo.";
-                                    break;
-                                default:
-                                    echo "Error desconocido al subir el archivo.";
-                                    break;
+                    if ($tipo_doc_str == 'Grabacion Llamada,Documentacion Inicial') {
+                        if (isset($_FILES['archivo'])) {
+                            foreach ($_FILES['archivo']['error'] as $index => $error) {
+                                if ($error > 0) {
+                                    // Manejo de error para cada archivo individual
+                                    switch ($error) {
+                                        case UPLOAD_ERR_INI_SIZE:
+                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido.<br>";
+                                            break;
+                                        case UPLOAD_ERR_FORM_SIZE:
+                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido por el formulario.<br>";
+                                            break;
+                                        case UPLOAD_ERR_PARTIAL:
+                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " se subió parcialmente.<br>";
+                                            break;
+                                        case UPLOAD_ERR_NO_FILE:
+                                            echo "No se subió ningún archivo.<br>";
+                                            break;
+                                        case UPLOAD_ERR_NO_TMP_DIR:
+                                            echo "Falta una carpeta temporal.<br>";
+                                            break;
+                                        case UPLOAD_ERR_CANT_WRITE:
+                                            echo "No se pudo escribir el archivo en el disco.<br>";
+                                            break;
+                                        case UPLOAD_ERR_EXTENSION:
+                                            echo "Una extensión de PHP detuvo la subida del archivo.<br>";
+                                            break;
+                                        default:
+                                            echo "Error desconocido al subir el archivo " . $_FILES['archivo']['name'][$index] . ". Código de error: " . $error . "<br>";
+                                            break;
+                                    }
+                                    continue; // Saltar al siguiente archivo si hubo un error
+                                }
+
+                                // Configuración de carpeta
+                                if ($tipoArchivo !== 'audio/mpeg' || $extensionArchivo !== 'mp3') {
+                                    $CARPETA = "../Audios/$id_paciente";
+                                    $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name'][$index]);
+                                    $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'][$index], PATHINFO_EXTENSION));
+
+                                    // Crear la carpeta si no existe
+                                    if (!is_dir($CARPETA)) {
+                                        mkdir($CARPETA, 0777, true);
+                                    }
+
+                                    // Generar un nombre de archivo único
+                                    $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name'][$index]);
+                                    $rutaDestino = $CARPETA . "/" . $nombreArchivo;
+
+                                    // Mover el archivo subido al destino
+                                    if (move_uploaded_file($_FILES['archivo']['tmp_name'][$index], $rutaDestino)) {
+                                        echo "Archivo " . $_FILES['archivo']['name'][$index] . " subido exitosamente.<br>";
+                                    } else {
+                                        echo "Error al mover el archivo " . $_FILES['archivo']['name'][$index] . ".<br>";
+                                    }
+                                } else {
+
+                                    $CARPETA = "../DOC_INI/$id_paciente";
+                                    $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name'][$index]);
+                                    $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'][$index], PATHINFO_EXTENSION));
+
+                                    // Crear la carpeta si no existe
+                                    if (!is_dir($CARPETA)) {
+                                        mkdir($CARPETA, 0777, true);
+                                    }
+
+                                    // Generar un nombre de archivo único
+                                    $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name'][$index]);
+                                    $rutaDestino = $CARPETA . "/" . $nombreArchivo;
+
+                                    // Mover el archivo subido al destino
+                                    if (move_uploaded_file($_FILES['archivo']['tmp_name'][$index], $rutaDestino)) {
+                                        echo "Archivo " . $_FILES['archivo']['name'][$index] . " subido exitosamente.<br>";
+                                    } else {
+                                        echo "Error al mover el archivo " . $_FILES['archivo']['name'][$index] . ".<br>";
+                                    }
+                                }
                             }
                         } else {
-                            $CARPETA = "../Audios/$id_paciente";
-                            $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name']);
-                            $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION));
+                            echo "No se seleccionó ningún archivo.";
+                        }
+                    } else if ($tipo_doc_str == 'Grabacion Llamada' or $tipo_doc_str == 'Documentacion Inicial') {
+                        if (isset($_FILES['archivo'])) {
+                            foreach ($_FILES['archivo']['error'] as $index => $error) {
+                                if ($error > 0) {
+                                    // Manejo de error para cada archivo individual
+                                    switch ($error) {
+                                        case UPLOAD_ERR_INI_SIZE:
+                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido.<br>";
+                                            break;
+                                        case UPLOAD_ERR_FORM_SIZE:
+                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido por el formulario.<br>";
+                                            break;
+                                        case UPLOAD_ERR_PARTIAL:
+                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " se subió parcialmente.<br>";
+                                            break;
+                                        case UPLOAD_ERR_NO_FILE:
+                                            echo "No se subió ningún archivo.<br>";
+                                            break;
+                                        case UPLOAD_ERR_NO_TMP_DIR:
+                                            echo "Falta una carpeta temporal.<br>";
+                                            break;
+                                        case UPLOAD_ERR_CANT_WRITE:
+                                            echo "No se pudo escribir el archivo en el disco.<br>";
+                                            break;
+                                        case UPLOAD_ERR_EXTENSION:
+                                            echo "Una extensión de PHP detuvo la subida del archivo.<br>";
+                                            break;
+                                        default:
+                                            echo "Error desconocido al subir el archivo " . $_FILES['archivo']['name'][$index] . ". Código de error: " . $error . "<br>";
+                                            break;
+                                    }
+                                    continue; // Saltar al siguiente archivo si hubo un error
+                                }
 
-                            // Validar que el archivo sea de tipo MP3
-                            if ($tipoArchivo !== 'audio/mpeg' || $extensionArchivo !== 'mp3') {
-                                echo "Error: El archivo no es un audio .mp3.";
-                                exit;
+                                // Configuración de carpeta
+                                if ($tipo_doc_str == 'Grabacion Llamada') {
+                                    $CARPETA = "../Audios/$id_paciente";
+                                    $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name'][$index]);
+                                    $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'][$index], PATHINFO_EXTENSION));
+
+                                    // Crear la carpeta si no existe
+                                    if (!is_dir($CARPETA)) {
+                                        mkdir($CARPETA, 0777, true);
+                                    }
+
+                                    // Generar un nombre de archivo único
+                                    $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name'][$index]);
+                                    $rutaDestino = $CARPETA . "/" . $nombreArchivo;
+
+                                    // Mover el archivo subido al destino
+                                    if (move_uploaded_file($_FILES['archivo']['tmp_name'][$index], $rutaDestino)) {
+                                        echo "Archivo " . $_FILES['archivo']['name'][$index] . " subido exitosamente.<br>";
+                                    } else {
+                                        echo "Error al mover el archivo " . $_FILES['archivo']['name'][$index] . ".<br>";
+                                    }
+                                } else {
+
+                                    $CARPETA = "../DOC_INI/$id_paciente";
+                                    $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name'][$index]);
+                                    $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'][$index], PATHINFO_EXTENSION));
+
+                                    // Crear la carpeta si no existe
+                                    if (!is_dir($CARPETA)) {
+                                        mkdir($CARPETA, 0777, true);
+                                    }
+
+                                    // Generar un nombre de archivo único
+                                    $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name'][$index]);
+                                    $rutaDestino = $CARPETA . "/" . $nombreArchivo;
+
+                                    // Mover el archivo subido al destino
+                                    if (move_uploaded_file($_FILES['archivo']['tmp_name'][$index], $rutaDestino)) {
+                                        echo "Archivo " . $_FILES['archivo']['name'][$index] . " subido exitosamente.<br>";
+                                    } else {
+                                        echo "Error al mover el archivo " . $_FILES['archivo']['name'][$index] . ".<br>";
+                                    }
+                                }
                             }
-
-                            // Crear la carpeta si no existe
-                            if (!is_dir($CARPETA)) {
-                                mkdir($CARPETA, 0777, true);
-                            }
-
-                            // Generar un nombre de archivo único
-                            $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name']);
-                            $rutaDestino = $CARPETA . "/" . $nombreArchivo;
-
-                            // Mover el archivo subido al destino
-                            if (move_uploaded_file($_FILES['archivo']['tmp_name'], $rutaDestino)) {
-                                echo "Archivo subido exitosamente.";
-                            } else {
-                                echo "Error al mover el archivo.";
-                            }
+                        } else {
+                            echo "No se seleccionó ningún archivo.";
                         }
                     } else {
-                        if ($_FILES['archivo']["error"] > 0) {
+                        if (isset($_FILES['archivo'])) {
+                            foreach ($_FILES['archivo']['error'] as $index => $error) {
+                                if ($error > 0) {
+                                    // Manejo de error para cada archivo individual
+                                    switch ($error) {
+                                        case UPLOAD_ERR_INI_SIZE:
+                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido.<br>";
+                                            break;
+                                        case UPLOAD_ERR_FORM_SIZE:
+                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido por el formulario.<br>";
+                                            break;
+                                        case UPLOAD_ERR_PARTIAL:
+                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " se subió parcialmente.<br>";
+                                            break;
+                                        case UPLOAD_ERR_NO_FILE:
+                                            echo "No se subió ningún archivo.<br>";
+                                            break;
+                                        case UPLOAD_ERR_NO_TMP_DIR:
+                                            echo "Falta una carpeta temporal.<br>";
+                                            break;
+                                        case UPLOAD_ERR_CANT_WRITE:
+                                            echo "No se pudo escribir el archivo en el disco.<br>";
+                                            break;
+                                        case UPLOAD_ERR_EXTENSION:
+                                            echo "Una extensión de PHP detuvo la subida del archivo.<br>";
+                                            break;
+                                        default:
+                                            echo "Error desconocido al subir el archivo " . $_FILES['archivo']['name'][$index] . ". Código de error: " . $error . "<br>";
+                                            break;
+                                    }
+                                    continue; // Saltar al siguiente archivo si hubo un error
+                                }
+
+                                $SELECT_GES = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
+                                while ($fila2 = mysqli_fetch_array($SELECT_GES)) {
+                                    $ID_GES = $fila2['ID_GESTION'];
+                                }
+                                $CARPETA = "../ADJUNTOS_IPSEN/$ID_GES";
+                                $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name'][$index]);
+                                $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'][$index], PATHINFO_EXTENSION));
+
+                                // Crear la carpeta si no existe
+                                if (!is_dir($CARPETA)) {
+                                    mkdir($CARPETA, 0777, true);
+                                }
+
+                                // Generar un nombre de archivo único
+                                $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name'][$index]);
+                                $rutaDestino = $CARPETA . "/" . $nombreArchivo;
+
+                                // Mover el archivo subido al destino
+                                if (move_uploaded_file($_FILES['archivo']['tmp_name'][$index], $rutaDestino)) {
+                                    echo "Archivo " . $_FILES['archivo']['name'][$index] . " subido exitosamente.<br>";
+                                } else {
+                                    echo "Error al mover el archivo " . $_FILES['archivo']['name'][$index] . ".<br>";
+                                }
+                            }
                         } else {
-                            $SELECT_GES = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
-                            while ($fila2 = mysqli_fetch_array($SELECT_GES)) {
-                                $ID_GES = $fila2['ID_GESTION'];
-                            }
-                            $CARPETA = "../ADJUNTOS_IPSEN/$ID_GES";
-                            if (!is_dir($CARPETA)) {
-                                mkdir("../ADJUNTOS_IPSEN/$ID_GES", 0777);
-                            }
-                            move_uploaded_file($_FILES['archivo']['tmp_name'], "../ADJUNTOS_IPSEN/$ID_GES/" . $_FILES['archivo']['name']);
+                            echo "No se seleccionó ningún archivo.";
                         }
                     }
                     if ($sql) {

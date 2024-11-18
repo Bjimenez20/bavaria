@@ -127,6 +127,17 @@ include('../logica/session.php')
                 divC.style.display = "none";
             }
         }
+
+        function trat_previo7(sel) {
+            if (sel.value == "Otros") {
+                divC = document.getElementById("otra_clasificacion_patologica");
+                divC.style.display = "";
+            }
+            if (sel.value != "Otros") {
+                divC = document.getElementById("otra_clasificacion_patologica");
+                divC.style.display = "none";
+            }
+        }
     </script>
     <script type="text/javascript">
         function status() {
@@ -251,6 +262,73 @@ include('../logica/session.php')
                 }
             })
         }
+
+        function clasificacion() {
+            const REFERENCIA = $('#MEDICAMENTO').val();
+            const clasificacionSelect = $("#clasificacion_patologica");
+
+            // Verificar si ya hay una opción seleccionada
+            const selectedOption = clasificacionSelect.find("option:selected").val();
+
+            if (selectedOption && selectedOption !== "") {
+                // Si ya hay una opción seleccionada, solo habilitamos el select
+                clasificacionSelect.removeAttr('disabled');
+                return;
+            }
+
+            if (REFERENCIA === "") {
+                // Si no hay referencia, deshabilitamos el select y limpiamos las opciones
+                clasificacionSelect
+                    .attr('disabled', 'disabled')
+                    .html('<option value="">Seleccione...</option>');
+                return;
+            }
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                url: '../presentacion/listado_clasificacion_patologica.php',
+                data: {
+                    REFERENCIA: REFERENCIA
+                },
+                type: 'POST',
+                beforeSend: function() {
+                    clasificacionSelect.attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    // Habilitamos el select y cargamos las opciones
+                    clasificacionSelect
+                        .removeAttr('disabled')
+                        .html(data);
+
+                    // Si hay un valor preseleccionado en el HTML, mantenerlo
+                    if (selectedOption) {
+                        clasificacionSelect.val(selectedOption);
+                    }
+                },
+                error: function() {
+                    clasificacionSelect
+                        .html('<option value="">Error al cargar datos</option>')
+                        .attr('disabled', 'disabled');
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            // Ejecutar la función si el campo MEDICAMENTO tiene valor
+            if ($('#MEDICAMENTO').val() !== "") {
+                clasificacion();
+            }
+
+            // Detectar cambios en el campo MEDICAMENTO si fuera editable
+            $('#MEDICAMENTO').on('change', function() {
+                clasificacion();
+            });
+        });
+
+        $("#MEDICAMENTO").change(function() {
+            $('nombre_producto').val('');
+            clasificacion();
+        });
     </script>
     <script>
         $(document).ready(function() {
@@ -814,7 +892,7 @@ if ($privilegios != '' && $usua != '') {
                                     <input class="form-control" type="text" value="<?php echo $PROVEEDOR ?>" readonly>
                                 </div>
                             </div>
-                            <div class="row mb-4">
+                            <div class="row mb-5">
                                 <div class="col">
                                     <div class="row mb-3">
                                         <div class="col">
@@ -886,6 +964,44 @@ if ($privilegios != '' && $usua != '') {
                                         </script>
                                     </div>
                                 </div>
+                                <div class="col">
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <span class="fw-bold">Documentación Inicial</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <?php
+                                        // Directorio donde están los archivos MP3
+                                        $directorio_ini = '../DOC_INI/' . $ID_PA_TRA . '/';
+                                        if (file_exists($directorio_ini)) {
+                                            // Obtener lista de archivos MP3 en el directorio
+                                            $archivos_ini = glob($directorio_ini . "*.pdf");
+                                            foreach ($archivos_ini as $archivo) {
+                                                $nombreDocIni = basename($archivo);
+                                                // Comprobar si el archivo existe
+                                                if (file_exists($archivo)) {
+                                        ?>
+                                                    <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $archivo ?>')">
+                                                        <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="100" width="100" style="margin-left: 15%;">
+                                                    </a>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <p class="error-message">El archivo no se encuentra disponible.</p>
+                                            <?php
+                                                }
+                                            }
+                                        } else {
+                                            ?>
+                                            <p class="error-message">No cuenta con documentación inicial.</p>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col">
@@ -1413,7 +1529,10 @@ if ($privilegios != '' && $usua != '') {
                                     </div>
                                     <div class="col">
                                         <span style="width:30%;">
-                                            <input class="form-control" type="text" name="clasificacion_patologicas" id="clasificacion_patologicas" value="<?php echo $fila['CLASIFICACION_PATOLOGICA_TRATAMIENTO'] ?>" readonly>
+                                            <select name="clasificacion_patologica" id="clasificacion_patologica" onchange="trat_previo7(this)" class="form-control">
+                                                <option value="<?php echo $fila['CLASIFICACION_PATOLOGICA_TRATAMIENTO'] ?>" <?php echo $selected_value == $fila['CLASIFICACION_PATOLOGICA_TRATAMIENTO'] ? 'selected' : ''; ?>><?php echo $fila['CLASIFICACION_PATOLOGICA_TRATAMIENTO'] ?></option>
+                                                <option value="">Seleccione...</option>
+                                            </select>
                                         </span>
                                     </div>
                                     <div class="col">
@@ -2713,7 +2832,7 @@ if ($privilegios != '' && $usua != '') {
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
-                                        <input type="file" name="archivo" id="archivo" class="form-control" onchange="validateFileType()">
+                                        <input type="file" name="archivo[]" id="archivo" class="form-control" onchange="validateFileType()" multiple>
                                     </div>
                                 </div>
                             </div>
@@ -2722,20 +2841,34 @@ if ($privilegios != '' && $usua != '') {
                                 <div class="col">
                                     <span>Tipo de documento</span>
                                     <ul>
-                                        <li><input type="radio" name="tipo_doc" id="tipo_doc" style="width: 2%;" value="Consentimiento Informado">Consentimiento Informado</li>
-                                        <li><input type="radio" name="tipo_doc" id="tipo_doc" style="width: 2%;" value="Voucher">Voucher</li>
-                                        <li><input type="radio" name="tipo_doc" id="tipo_doc" style="width: 2%;" value="Acta de entrega Dispositivos">Acta de entrega Dispositivos</li>
-                                        <li><input type="radio" name="tipo_doc" id="tipo_doc" style="width: 2%;" value="Grabacion Llamada">Grabacion Llamada</li>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_1" style="width: 2%;" value="Consentimiento Informado">Consentimiento Informado</li>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_2" style="width: 2%;" value="Voucher">Voucher</li>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_3" style="width: 2%;" value="Acta de entrega Dispositivos">Acta de entrega Dispositivos</li>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_4" style="width: 2%;" value="Grabacion Llamada">Grabacion Llamada</li>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_5" style="width: 2%;" value="Documentacion Inicial">Documentación Inicial</li>
                                     </ul>
                                 </div>
                             </div>
                             <script>
                                 function validateFileType() {
                                     var fileInput = document.getElementById('archivo');
-                                    var filePath = fileInput.value;
+                                    var files = fileInput.files;
 
-                                    if (fileInput != '') {
-                                        alert('Por favor seleccione el tipo de documento adjunto');
+                                    if (files.length > 0) {
+                                        for (var i = 0; i < files.length; i++) {
+                                            var file = files[i];
+                                            var fileName = file.name;
+                                            var fileExtension = fileName.split('.').pop().toLowerCase();
+
+                                            // Agregar mp3 como extensión permitida
+                                            if (fileExtension !== 'pdf' && fileExtension !== 'jpg' && fileExtension !== 'png' && fileExtension !== 'mp3' && fileExtension !== 'docx') {
+                                                alert('El archivo "' + fileName + '" no tiene un formato permitido. Solo se permiten PDF, WORD, JPG, PNG y MP3.');
+                                                fileInput.value = ''; // Limpiar el campo si hay un archivo no permitido
+                                                break;
+                                            }
+                                        }
+                                    } else {
+                                        alert('Por favor selecciona al menos un archivo.');
                                     }
                                 }
                             </script>

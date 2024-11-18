@@ -36,16 +36,16 @@ include('../logica/session.php')
         }
     </script>
     <script type="text/javascript">
-        function trat_previo(sel) {
-            if (sel.value == "Otros") {
-                divC = document.getElementById("otra_clasificacion_patologica");
-                divC.style.display = "";
-            }
-            if (sel.value != "Otros") {
-                divC = document.getElementById("otra_clasificacion_patologica");
-                divC.style.display = "none";
-            }
-        }
+        // function trat_previo(sel) {
+        //     if (sel.value == "Otros") {
+        //         divC = document.getElementById("otra_clasificacion_patologica");
+        //         divC.style.display = "";
+        //     }
+        //     if (sel.value != "Otros") {
+        //         divC = document.getElementById("otra_clasificacion_patologica");
+        //         divC.style.display = "none";
+        //     }
+        // }
 
         function trat_previo1(sel) {
             if (sel.value == "NO ENCONTRADO") {
@@ -229,23 +229,23 @@ include('../logica/session.php')
             })
         }
 
-        function clasificacion() {
-            var REFERENCIA = $('#producto_tratamiento').val();
-            $.ajax({
-                url: '../presentacion/listado_clasificacion_patologica.php',
-                data: {
-                    REFERENCIA: REFERENCIA
-                },
-                type: 'post',
-                beforeSend: function() {
-                    $("#clasificacion_patologica").attr('disabled', 'disabled');
-                },
-                success: function(data) {
-                    $("#clasificacion_patologica").removeAttr('disabled');
-                    $('#clasificacion_patologica').html(data);
-                }
-            })
-        }
+        // function clasificacion() {
+        //     var REFERENCIA = $('#producto_tratamiento').val();
+        //     $.ajax({
+        //         url: '../presentacion/listado_clasificacion_patologica.php',
+        //         data: {
+        //             REFERENCIA: REFERENCIA
+        //         },
+        //         type: 'post',
+        //         beforeSend: function() {
+        //             $("#clasificacion_patologica").attr('disabled', 'disabled');
+        //         },
+        //         success: function(data) {
+        //             $("#clasificacion_patologica").removeAttr('disabled');
+        //             $('#clasificacion_patologica').html(data);
+        //         }
+        //     })
+        // }
 
         function mostrar_dosis() {
             var reclamo = $('#reclamo').val();
@@ -716,7 +716,7 @@ include('../logica/session.php')
                 $('nombre_producto').val('');
                 mostrar_dosis();
                 mostrar_tipo_dispositivo();
-                clasificacion();
+                //clasificacion();
             });
             $('#producto_tratamiento').change(function() {
                 $('#paap option:first-child').attr("selected", "selected");
@@ -1529,7 +1529,7 @@ if ($privilegios != '' && $usua != '') {
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <div class="col">
+                                        <!-- <div class="col">
                                             <div class="row">
                                                 <div class="col d-flex align-items-center">
                                                     <label for="" class="fw-bold">Clasificacion Patologica <span class="fw-bold text-danger">*</span></label>
@@ -1542,7 +1542,7 @@ if ($privilegios != '' && $usua != '') {
                                                     </span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col">
                                             <div class="row">
                                                 <div class="col d-flex align-items-center">
@@ -1608,7 +1608,7 @@ if ($privilegios != '' && $usua != '') {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-3">
+                                                <!-- <div class="row mb-3">
                                                     <div class="col">
                                                         <div class="row">
                                                             <div class="col-2 d-flex align-items-center">
@@ -1623,7 +1623,7 @@ if ($privilegios != '' && $usua != '') {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -1949,7 +1949,7 @@ include_once('./utils/modal_ingreso.php');
             $('#Dosis').val('')
             $('#Dosis2').val('')
             $('#Dosis3').val('')
-            $('#clasificacion_patologica').val('')
+            //$('#clasificacion_patologica').val('')
         }
     });
 
@@ -2066,11 +2066,11 @@ include_once('./utils/modal_ingreso.php');
                         producto_tratamiento: document.getElementById('producto_tratamiento').value,
                         producto_tratamiento_ant: document.getElementById('producto_tratamiento_ant').value,
                         Dosis_ant: document.getElementById('Dosis_ant').value,
-                        clasificacion_patologica_ant: document.getElementById('clasificacion_patologica_ant').value,
+                        //clasificacion_patologica_ant: document.getElementById('clasificacion_patologica_ant').value,
                         Dosis: document.getElementById('Dosis').value,
                         Dosis2: document.getElementById('Dosis2').value,
                         Dosis3: document.getElementById('Dosis3').value,
-                        clasificacion_patologica: document.getElementById('clasificacion_patologica').value,
+                        //clasificacion_patologica: document.getElementById('clasificacion_patologica').value,
                         consentimiento: document.getElementById('consentimiento').value,
                         regimen: document.getElementById('regimen').value,
                         canal_contacto: document.getElementById('canal_contacto').value,
@@ -2147,7 +2147,7 @@ include_once('./utils/modal_ingreso.php');
             Dosis: document.getElementById('Dosis').value,
             Dosis2: document.getElementById('Dosis2').value,
             Dosis3: document.getElementById('Dosis3').value,
-            clasificacion_patologica: document.getElementById('clasificacion_patologica').value,
+            //clasificacion_patologica: document.getElementById('clasificacion_patologica').value,
             asegurador: document.getElementById('asegurador').value,
             nota: document.getElementById('nota').value
         }

@@ -53,7 +53,7 @@ if ($producto_tratamiento == 'XOFIGO') {
 if ($producto_tratamiento != 'XOFIGO' && $producto_tratamiento != 'KOGENATE' && $producto_tratamiento != 'KOVALTRY' && $producto_tratamiento != 'JIVI') {
     $Dosis = $data['Dosis'];
 }
-$clasificacion_patologica = $data['clasificacion_patologica'];
+//$clasificacion_patologica = $data['clasificacion_patologica'];
 $consentimiento = $data['consentimiento'];
 $asegurador = $data['asegurador'];
 $medico_tratante = $data['medico_tratante'];
@@ -250,7 +250,7 @@ if (
         }
 
         $sql_tratamiento = "INSERT INTO ipsen_tratamiento_aspirante (PRODUCTO_TRATAMIENTO, DOSIS_TRATAMIENTO, CLASIFICACION_PATOLOGICA_TRATAMIENTO, CONSENTIMIENTO_TRATAMIENTO, REGIMEN_TRATAMIENTO, ASEGURADOR_TRATAMIENTO, MEDICO_TRATAMIENTO, ESPECIALIDAD_TRATAMIENTO, NOTAS_ADJUNTOS_TRATAMIENTO, ID_ASPIRANTE_FK)
-        VALUES ('$producto_tratamiento','$Dosis','$clasificacion_patologica','$consentimiento','$regimen','$asegurador','$medico_tratante','$especialidad','$nota','$ID_ASPIRANTE_FK')";
+        VALUES ('$producto_tratamiento','$Dosis','','$consentimiento','$regimen','$asegurador','$medico_tratante','$especialidad','$nota','$ID_ASPIRANTE_FK')";
         $execution_tratamiento = mysqli_query($conex, $sql_tratamiento);
 
         if ($execution_tratamiento) {
@@ -301,7 +301,7 @@ if (
                         while ($row_tratamiento_aspirantes = mysqli_fetch_array($sql_tratamiento_aspirante)) {
                             $PRODUCTO_TRATAMIENTO = $row_tratamiento_aspirantes['PRODUCTO_TRATAMIENTO'];
                             $DOSIS_TRATAMIENTO = $row_tratamiento_aspirantes['DOSIS_TRATAMIENTO'];
-                            $CLASIFICACION_PATOLOGICA_TRATAMIENTO = $row_tratamiento_aspirantes['CLASIFICACION_PATOLOGICA_TRATAMIENTO'];
+                            //$CLASIFICACION_PATOLOGICA_TRATAMIENTO = $row_tratamiento_aspirantes['CLASIFICACION_PATOLOGICA_TRATAMIENTO'];
                             $CONSENTIMIENTO_TRATAMIENTO = $row_tratamiento_aspirantes['CONSENTIMIENTO_TRATAMIENTO'];
                             $REGIMEN_TRATAMIENTO = $row_tratamiento_aspirantes['REGIMEN_TRATAMIENTO'];
                             $ASEGURADOR_TRATAMIENTO = $row_tratamiento_aspirantes['ASEGURADOR_TRATAMIENTO'];
@@ -310,7 +310,7 @@ if (
                             $NOTAS_ADJUNTOS_TRATAMIENTO = $row_tratamiento_aspirantes['NOTAS_ADJUNTOS_TRATAMIENTO'];
                         }
 
-                        $sql_insert_tratamiento_paciente = "INSERT INTO ipsen_tratamiento (PRODUCTO_TRATAMIENTO, NOMBRE_REFERENCIA, DOSIS_TRATAMIENTO, FRECUENCIA_MEDICAMENTO, CLASIFICACION_PATOLOGICA_TRATAMIENTO, TRATAMIENTO_PREVIO, CONSENTIMIENTO_TRATAMIENTO, FECHA_INICIO_TERAPIA_TRATAMIENTO, FECHA_PRESCRIPCION, REGIMEN_TRATAMIENTO, ASEGURADOR_TRATAMIENTO, OPERADOR_LOGISTICO_TRATAMIENTO, PUNTO_ENTREGA, FECHA_ULTIMA_RECLAMACION_TRATAMIENTO, OTROS_OPERADORES_TRATAMIENTO, MEDIOS_ADQUISICION_TRATAMIENTO, IPS_ATIENDE_TRATAMIENTO, MEDICO_TRATAMIENTO, MEDICO_PRESCRIPTOR, ESPECIALIDAD_TRATAMIENTO, PARAMEDICO_TRATAMIENTO, ZONA_ATENCION_PARAMEDICO_TRATAMIENTO, CIUDAD_BASE_PARAMEDICO_TRATAMIENTO, NOTAS_ADJUNTOS_TRATAMIENTO, ID_PACIENTE_FK, PAAP, SUB_PAAP, BARRERA, NUM_LOTES_DISPOSITIVOS, FECHA_FORMULACION, CIUDAD_RECLAMACION, VISI_INI_EFEC, PROGRA_VIS_EDU, RESPU_VISI_EFECTI) VALUES ('$PRODUCTO_TRATAMIENTO','$PRODUCTO_TRATAMIENTO','$DOSIS_TRATAMIENTO','','$CLASIFICACION_PATOLOGICA_TRATAMIENTO','','$CONSENTIMIENTO_TRATAMIENTO','0000-00-00','','$regimen','$ASEGURADOR_TRATAMIENTO','','','0000-00-00','','','','$MEDICO_TRATAMIENTO','','$especialidad','','','','$NOTAS_ADJUNTOS_TRATAMIENTO','$ID_PACIENTE','','','','','0000-00-00','','N/A','N/A','N/A')";
+                        $sql_insert_tratamiento_paciente = "INSERT INTO ipsen_tratamiento (PRODUCTO_TRATAMIENTO, NOMBRE_REFERENCIA, DOSIS_TRATAMIENTO, FRECUENCIA_MEDICAMENTO, CLASIFICACION_PATOLOGICA_TRATAMIENTO, TRATAMIENTO_PREVIO, CONSENTIMIENTO_TRATAMIENTO, FECHA_INICIO_TERAPIA_TRATAMIENTO, FECHA_PRESCRIPCION, REGIMEN_TRATAMIENTO, ASEGURADOR_TRATAMIENTO, OPERADOR_LOGISTICO_TRATAMIENTO, PUNTO_ENTREGA, FECHA_ULTIMA_RECLAMACION_TRATAMIENTO, OTROS_OPERADORES_TRATAMIENTO, MEDIOS_ADQUISICION_TRATAMIENTO, IPS_ATIENDE_TRATAMIENTO, MEDICO_TRATAMIENTO, MEDICO_PRESCRIPTOR, ESPECIALIDAD_TRATAMIENTO, PARAMEDICO_TRATAMIENTO, ZONA_ATENCION_PARAMEDICO_TRATAMIENTO, CIUDAD_BASE_PARAMEDICO_TRATAMIENTO, NOTAS_ADJUNTOS_TRATAMIENTO, ID_PACIENTE_FK, PAAP, SUB_PAAP, BARRERA, NUM_LOTES_DISPOSITIVOS, FECHA_FORMULACION, CIUDAD_RECLAMACION, VISI_INI_EFEC, PROGRA_VIS_EDU, RESPU_VISI_EFECTI) VALUES ('$PRODUCTO_TRATAMIENTO','$PRODUCTO_TRATAMIENTO','$DOSIS_TRATAMIENTO','','','','$CONSENTIMIENTO_TRATAMIENTO','0000-00-00','','$regimen','$ASEGURADOR_TRATAMIENTO','','','0000-00-00','','','','$MEDICO_TRATAMIENTO','','$especialidad','','','','$NOTAS_ADJUNTOS_TRATAMIENTO','$ID_PACIENTE','','','','','0000-00-00','','N/A','N/A','N/A')";
                         $execute_tratamiento_paciente = mysqli_query($conex, $sql_insert_tratamiento_paciente);
 
                         if ($execute_tratamiento_paciente) {
