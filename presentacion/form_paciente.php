@@ -348,6 +348,28 @@ include('../logica/session.php')
                     $("#ver_apoyo").css('visibility', 'hidden');
                 }
             });
+            $("input[name=cabo_primera_linea]").change(function() {
+                var cabo_primera_linea = $('#cabo_primera_linea:checked').val();
+                if (cabo_primera_linea == 'SI') {
+                    $('#cabo_descripcion_div').css('display', 'inline');
+                    $('#cabo_segunda_linea_span').css('display', 'none');
+                    $('#cabo_segunda_linea_div').css('display', 'none');
+                }
+                if (cabo_primera_linea != 'SI') {
+                    $('#cabo_descripcion_div').css('display', 'none');
+                    $('#cabo_segunda_linea_span').css('display', 'inline');
+                    $('#cabo_segunda_linea_div').css('display', 'inline');
+                }
+            })
+
+            $("input[name=cabo_segunda_linea]").change(function() {
+                var cabo_segunda_linea = $('#cabo_segunda_linea:checked').val();
+                if (cabo_segunda_linea == 'SI') {
+                    $('#cabo_descripcion_div').css('display', 'inline');
+                }
+            })
+
+
             $("input[name=evento_adverso]").change(function() {
                 $("input[name=tipo_evento_adverso]").prop("checked", false);
                 $('#tipo_evento_adverso').prop("checked", true);
@@ -907,7 +929,7 @@ if ($privilegios != '' && $usua != '') {
                                             if ($fila_ci["file_pdf"] != '') {
                                         ?>
                                                 <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
-                                                    <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="100" width="100" style="margin-left: 15%;">
+                                                    <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="50" width="50" style="margin-left: 15%;">
                                                 </a>
                                             <?php
                                             } else {
@@ -919,6 +941,45 @@ if ($privilegios != '' && $usua != '') {
                                             }
                                         }
                                         ?>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <span class="fw-bold">Consentimiento Informado de Migración</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <?php
+                                        // Directorio donde están los archivos PDF
+                                        $directorio = '../CI_MIGRACION/' . $ID_PA_TRA . '/';
+                                        if (file_exists($directorio)) {
+                                            // Obtener lista de archivos PDF en el directorio
+                                            $archivos = glob($directorio . "*.pdf");
+                                            foreach ($archivos as $archivo) {
+                                                $nombreArchivo = basename($archivo);
+                                                // Comprobar si el archivo existe
+                                                if (file_exists($archivo)) {
+                                        ?>
+                                                    <p>
+                                                        <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $archivo ?>')">
+                                                            <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="50" width="50" style="margin-left: 15%;">
+                                                        </a>
+                                                    </p>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <p class="error-message">El archivo no se encuentra disponible.</p>
+                                            <?php
+                                                }
+                                            }
+                                        } else {
+                                            ?>
+                                            <p class="error-message">No cuenta con CI de migración.</p>
+                                        <?php
+                                        }
+                                        ?>
+
                                     </div>
                                 </div>
                                 <div class="col">
@@ -983,7 +1044,7 @@ if ($privilegios != '' && $usua != '') {
                                                 if (file_exists($archivo)) {
                                         ?>
                                                     <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $archivo ?>')">
-                                                        <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="100" width="100" style="margin-left: 15%;">
+                                                        <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="50" width="50" style="margin-left: 15%;">
                                                     </a>
                                                 <?php
                                                 } else {
@@ -2519,6 +2580,46 @@ if ($privilegios != '' && $usua != '') {
 
                                 </div>
                             </div>
+                            <?php
+                                if ($PRODUCTO_TRATAMIENTO == 'CABOMETYX') {
+                            ?>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold">Cabo Primera Linea</span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input class="form-check-input me-1" type="radio" name="cabo_primera_linea" id="cabo_primera_linea" style="display:none" value="" checked="checked" />
+                                                <input class="form-check-input me-1" type="radio" name="cabo_primera_linea" id="cabo_primera_linea" value="SI" />SI
+                                            </div>
+                                            <div class="col">
+                                                <input class="form-check-input me-1" type="radio" name="cabo_primera_linea" id="cabo_primera_linea" value="NO" />NO
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <span id="cabo_segunda_linea_span" style="display: none;" class="fw-bold">Cabo Segunda Linea</span>
+                                    </div>
+                                    <div class="col" id="cabo_segunda_linea_div" style="display: none;">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input class="form-check-input me-1" type="radio" name="cabo_segunda_linea" id="cabo_segunda_linea" style="display:none" value="" checked="checked" />
+                                                <input class="form-check-input me-1" type="radio" name="cabo_segunda_linea" id="cabo_segunda_linea" value="SI" />SI
+                                            </div>
+                                            <div class="col">
+                                                <input class="form-check-input me-1" type="radio" name="cabo_segunda_linea" id="cabo_segunda_linea" value="NO" />NO
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col" id="cabo_descripcion_div" style="display: none;">
+                                        <span class="fw-bold">Informacion</span>
+                                        <textarea class="form-control" name="cabo_descripcion" id="cabo_descripcion"></textarea>
+                                    </div>
+                                </div>
+                            <?php } ?>
                             <div class="row mb-3">
                                 <div class="col">
                                     <span class="fw-bold">Medicamento</span>
@@ -2704,6 +2805,7 @@ if ($privilegios != '' && $usua != '') {
                                         <th class=AccordionPanelTab><strong>AUTOR</strong></th>
                                         <th class=AccordionPanelTab><strong>MOTIVO COMUNICACION GESTION</strong></th>
                                         <td class=AccordionPanelTab><strong>CODIGO EA</strong></td>
+                                        <td class=AccordionPanelTab><strong>EVENTO ADVERSO</strong></td>
                                         <td class=AccordionPanelTab><strong>ARCHIVO ADJUNTO</strong></td>
                                         <td class=AccordionPanelTab><strong>CONSENTIMIENTO INFORMADO</strong></td>
                                     </tr>
@@ -2751,6 +2853,40 @@ if ($privilegios != '' && $usua != '') {
                                                 <?php
                                             }
                                         }
+                                        $ID_EA = $fila2['EVENTO_ADVERSO_FK'];
+                                        $dir = "../EVENTO_ADVERSO/$ID_EA";
+
+                                        if (file_exists($dir)) {
+                                            $directorio = opendir($dir);
+                                            $archivos = []; // Lista de archivos encontrados
+
+                                            while ($archivo = readdir($directorio)) {
+                                                if ($archivo != '.' && $archivo != '..') {
+                                                    $archivos[] = $archivo;
+                                                }
+                                            }
+                                            closedir($directorio);
+
+                                            if (!empty($archivos)) {
+                                                echo "<td style='border:1px solid gray; text-align: center;'>";
+                                                foreach ($archivos as $archivo) {
+                                                    $enlace = $dir . "/" . $archivo;
+                                                    $extension = pathinfo($archivo, PATHINFO_EXTENSION);
+
+                                                    if ($extension === 'pdf') {
+                                                        // Parámetros para deshabilitar herramientas del visor
+                                                        $pdfViewer = $enlace . "#toolbar=0";
+                                                        echo "<a href='$pdfViewer' target='_blank'><img src='../presentacion/imagenes/pdf.png' alt='PDF' title='Abrir PDF' height='50' width='50'></a>";
+                                                    }
+                                                }
+                                                echo "</td>";
+                                            } else {
+                                                echo "<td style='border:1px solid gray;'>No se encontraron archivos.</td>";
+                                            }
+                                        } else {
+                                            echo "<td style='border:1px solid gray;'></td>";
+                                        }
+
                                         $ID_GES = $fila2['ID_GESTION'];
                                         $dir = "../ADJUNTOS_IPSEN/$ID_GES";
                                         if (file_exists($dir)) {
@@ -2762,7 +2898,7 @@ if ($privilegios != '' && $usua != '') {
                                                 ?>
                                                     <td style='border:1px solid gray'>
                                                         <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $enlace ?>')">
-                                                            <img src="../presentacion/imagenes/archivo.png" alt="" title="Click to enlarge" height="100" width="100">
+                                                            <img src="../presentacion/imagenes/archivo.png" alt="" title="Click to enlarge" height="50" width="50">
                                                         </a>
                                                     </td>
                                             <?php
@@ -2780,7 +2916,7 @@ if ($privilegios != '' && $usua != '') {
                                         ?>
                                             <td style='border:1px solid gray'>
                                                 <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
-                                                    <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="100" width="100">
+                                                    <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="50" width="50">
                                                 </a>
                                             </td>
                                         <?php
@@ -3034,6 +3170,29 @@ if ($privilegios != '' && $usua != '') {
             </div>
             </div>
         </form>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            function mostrarEnModal(enlace, tipo) {
+                let contenido = '';
+
+                if (tipo === 'pdf') {
+                    contenido = `<iframe src="${enlace}#toolbar=0" width="100%" height="500px" style="border:none;"></iframe>`;
+                } else if (tipo === 'word') {
+                    const googleDocsViewer = `https://docs.google.com/gview?url=${encodeURIComponent(enlace)}&embedded=true`;
+                    contenido = `<iframe src="${googleDocsViewer}" width="100%" height="500px" style="border:none;"></iframe>`;
+                }
+
+                // Modal con SweetAlert2
+                Swal.fire({
+                    title: 'Visor de archivo',
+                    html: contenido,
+                    width: '80%', // Ajusta el ancho del modal
+                    showCloseButton: true,
+                    showConfirmButton: false, // Oculta el botón de confirmación
+                });
+            }
+        </script>
+
         <script>
             var CONSENTIMIENTO_INFORMADO = $("#consentimiento_informado").val();
             if (CONSENTIMIENTO_INFORMADO == 'Seleccione...' || CONSENTIMIENTO_INFORMADO == '') {

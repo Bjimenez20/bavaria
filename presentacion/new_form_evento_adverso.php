@@ -528,7 +528,7 @@ if ($privilegios != '' && $usua != '') {
                                     <p style="text-align: left;">
                                         1.b Event <strong>Stop Date (if applicable) or <br> Mention Ongoing</strong>
                                     </p>
-                                    <input type="date" name="event_stop_date" id="event_stop_date" class="form-control w-100 h-100">
+                                    <input type="text" name="event_stop_date" id="event_stop_date" class="form-control w-100 h-100">
                                 </td>
                                 <td colspan="2" style="vertical-align: top;">
                                     <p style="text-align: left;">
@@ -791,20 +791,19 @@ if ($privilegios != '' && $usua != '') {
                             <tr>
                                 <td colspan="9">
                                     <div class="row">
-                                        <input type="text" name="special_situations" id="special_situations" class="form-control w-90 h-100">
-                                        <!-- <div class="col d-flex justify-content-left">
-                                            <input type="hidden" name="valor_special_situations" id="valor_special_situations">
+                                        <input type="hidden" name="valor_special_situations" id="valor_special_situations">
+                                        <div class="col-6 d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Pregnancy (maternal exposure or paternal exposure (including potential alteration of spermatozoids))" onchange="habilitar3(this)"> Pregnancy (maternal exposure or paternal exposure (including potential alteration of spermatozoids))
-                                        </div> -->
-                                        <!-- <div class="col d-flex justify-content-left">
+                                        </div>
+                                        <div class="col d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Breastfeeding" onchange="habilitar3(this)"> Breastfeeding
                                         </div>
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Overdose" onchange="habilitar3(this)"> Overdose
-                                        </div> -->
+                                        </div>
                                     </div>
                                     <br>
-                                    <!-- <div class="row">
+                                    <div class="row">
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Misuse" onchange="habilitar3(this)"> Misuse
                                         </div>
@@ -823,9 +822,9 @@ if ($privilegios != '' && $usua != '') {
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Drug interaction" onchange="habilitar3(this)"> Drug interaction
                                         </div>
-                                    </div> -->
+                                    </div>
                                     <br>
-                                    <!-- <div class="row">
+                                    <div class="row">
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="special_situations" id="special_situations" value="Off-label Use" onchange="habilitar3(this)"> Off-label Use
                                         </div>
@@ -839,11 +838,11 @@ if ($privilegios != '' && $usua != '') {
                                             <input type="radio" name="special_situations" id="special_situations" value="Other" onchange="habilitar3(this)"> Other
                                         </div>
                                     </div>
-                                    <br> -->
-                                    <!-- <p style="display: none; text-align: left;" id="special_situations_specify_id">
+                                    <br>
+                                    <p style="display: none; text-align: left;" id="special_situations_specify_id">
                                         <strong>Specify:</strong>
                                         <input type="text" name="special_situations_specify" id="special_situations_specify" class="form-control w-50 h-100">
-                                    </p> -->
+                                    </p>
                                 </td>
                             </tr>
                             <tr>

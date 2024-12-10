@@ -97,7 +97,7 @@ $formatted_death_date = formatDate($DATE_OF_DEATH);
 $formatted_of_notification_date = formatDate($DATE_OF_NOTIFICATION);
 $formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
 $formatted_treatment_end_date = formatDate($TREATMENT_END_DATE);
-$formatted_event_stop_date = formatDate($EVENT_STOP_DATE);
+//$formatted_event_stop_date = formatDate($EVENT_STOP_DATE);
 
 $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('../plantilla/Adverse Events.docx');
 
@@ -175,7 +175,7 @@ $templateProcessor->setValue('TREATMENT_START_DATE', $formatted_treatment_start_
 $templateProcessor->setValue('TREATMENT_END_DATE', $formatted_treatment_end_date);
 $templateProcessor->setValue('ANY_OTHER_INFORMATION', $ANY_OTHER_INFORMATION);
 $templateProcessor->setValue('ONSET_DATE', $formatted_onset_date);
-$templateProcessor->setValue('EVENT_STOP_DATE', $formatted_event_stop_date);
+$templateProcessor->setValue('EVENT_STOP_DATE', $EVENT_STOP_DATE);
 $templateProcessor->setValue('DURATION', $DURATION);
 $templateProcessor->setValue('ABATED1', '☐');
 $templateProcessor->setValue('ABATED2', '☐');

@@ -100,7 +100,7 @@ if ($DATE_OF_DEATH != '') {
 $formatted_of_notification_date = formatDate($DATE_OF_NOTIFICATION);
 $formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
 $formatted_treatment_end_date = formatDate($TREATMENT_END_DATE);
-$formatted_event_stop_date = formatDate($EVENT_STOP_DATE);
+//$formatted_event_stop_date = formatDate($EVENT_STOP_DATE);
 $formatted_start_date = formatDate($DATE_START);
 $formatted_stop_date = formatDate($DATE_STOP);
 ?>
@@ -364,7 +364,7 @@ $formatted_stop_date = formatDate($DATE_STOP);
                     <p style="text-align: left;">
                         1.b Event <strong>Stop Date (if applicable) or Mention Ongoing</strong>
                         <br> <br>
-                        <?php echo $formatted_event_stop_date ?>
+                        <?php echo $EVENT_STOP_DATE ?>
                     </p>
                 </td>
                 <td colspan="1" style="vertical-align: top; width:25%;">

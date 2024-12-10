@@ -1,9 +1,4 @@
 <?php
-// $servidor = "localhost";
-// $usuario = "ipsen";
-// $password = "ipsen";
-// $basepaciente = "ipsen_test";
-
 // $servidor = "host.docker.internal";
 // $usuario = "root";
 // $password = "root";

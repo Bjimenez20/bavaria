@@ -84,13 +84,13 @@ if (
 	empty($onset_date) ||
 	// empty($event_stop_date) ||
 	empty($tra_duration) ||
-	empty($seriousness) ||
+	//empty($seriousness) ||
 	empty($event_term) ||
 	// todo: revisar estod datos
 	//empty($death_date) ||
 	// empty($autopsy) ||
 	// empty($cause_death) ||
-	empty($outcome) ||
+	//empty($outcome) ||
 	empty($laboratory) ||
 	empty($medical_history) ||
 	empty($reporter_causality) ||
@@ -147,15 +147,15 @@ if (
 	if (empty($duration)) {
 		array_push($campos_vacios, 'Duration');
 	}
-	if (empty($seriousness)) {
-		array_push($campos_vacios, 'Seriousness of the event per Reporter');
-	}
+	// if (empty($seriousness)) {
+	// 	array_push($campos_vacios, 'Seriousness of the event per Reporter');
+	// }
 	if (empty($event_term)) {
 		array_push($campos_vacios, 'Event term');
 	}
-	if (empty($outcome)) {
-		array_push($campos_vacios, 'Outcome');
-	}
+	// if (empty($outcome)) {
+	// 	array_push($campos_vacios, 'Outcome');
+	// }
 	if (empty($laboratory)) {
 		array_push($campos_vacios, 'Relevant tests/Laboratory data including dates (please attach if possible)');
 	}
