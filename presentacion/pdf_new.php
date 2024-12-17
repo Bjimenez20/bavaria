@@ -99,10 +99,10 @@ if ($DATE_OF_DEATH != '') {
 }
 $formatted_of_notification_date = formatDate($DATE_OF_NOTIFICATION);
 $formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
-$formatted_treatment_end_date = formatDate($TREATMENT_END_DATE);
+//$formatted_treatment_end_date = formatDate($TREATMENT_END_DATE);
 //$formatted_event_stop_date = formatDate($EVENT_STOP_DATE);
-$formatted_start_date = formatDate($DATE_START);
-$formatted_stop_date = formatDate($DATE_STOP);
+//$formatted_start_date = formatDate($DATE_START);
+//$formatted_stop_date = formatDate($DATE_STOP);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -336,7 +336,7 @@ $formatted_stop_date = formatDate($DATE_STOP);
                     <p style="text-align: left;">
                         9. Treatment End date (or mention continuing)
                         <br> <br>
-                        <?php echo $formatted_treatment_end_date ?>
+                        <?php echo $TREATMENT_END_DATE ?>
                     </p>
                 </td>
             </tr>
@@ -801,10 +801,10 @@ $formatted_stop_date = formatDate($DATE_STOP);
                         <p style="text-align: left;"> <?php echo $DURATION ?> </p>
                     </td>
                     <td>
-                        <p style="text-align: left;"> <?php echo $formatted_start_date ?> </p>
+                        <p style="text-align: left;"> <?php echo $DATE_START ?> </p>
                     </td>
                     <td>
-                        <p style="text-align: left;"> <?php echo $formatted_stop_date ?> </p>
+                        <p style="text-align: left;"> <?php echo $DATE_STOP ?> </p>
                     </td>
                     <td>
                         <p style="text-align: left;"> <?php echo $INDICATION ?> </p>

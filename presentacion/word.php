@@ -96,7 +96,7 @@ $formatted_onset_date = formatDate($ONSET_DATE);
 $formatted_death_date = formatDate($DATE_OF_DEATH);
 $formatted_of_notification_date = formatDate($DATE_OF_NOTIFICATION);
 $formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
-$formatted_treatment_end_date = formatDate($TREATMENT_END_DATE);
+//$formatted_treatment_end_date = formatDate($TREATMENT_END_DATE);
 //$formatted_event_stop_date = formatDate($EVENT_STOP_DATE);
 
 $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('../plantilla/Adverse Events.docx');
@@ -124,15 +124,15 @@ while ($fila = mysqli_fetch_array($consulta_medicamento)) {
     $S_OR_C = $fila['S_OR_C'];
     $COMPANY_DRUG = $fila['COMPANY_DRUG'];
 
-    $formatted_start_date = formatDate($DATE_START);
-    $formatted_stop_date = formatDate($DATE_STOP);
+    //$formatted_start_date = formatDate($DATE_START);
+    //$formatted_stop_date = formatDate($DATE_STOP);
     // Asignar valores con los nombres de marcadores de posición clonados
     $templateProcessor->setValue('DRUG#' . $counter, $DRUG);
     $templateProcessor->setValue('ROUTE#' . $counter, $ROUTE);
     $templateProcessor->setValue('DAILY_DOSE#' . $counter, $DAILY_DOSE);
     $templateProcessor->setValue('DURATION#' . $counter, $DURATION);
-    $templateProcessor->setValue('DATE_START#' . $counter, $formatted_start_date);
-    $templateProcessor->setValue('DATE_STOP#' . $counter, $formatted_stop_date);
+    $templateProcessor->setValue('DATE_START#' . $counter, $DATE_START);
+    $templateProcessor->setValue('DATE_STOP#' . $counter, $DATE_STOP);
     $templateProcessor->setValue('INDICATION#' . $counter, $INDICATION);
     $templateProcessor->setValue('S_OR_C#' . $counter, $S_OR_C);
     $templateProcessor->setValue('COMPANY_DRUG#' . $counter, $COMPANY_DRUG);
@@ -172,7 +172,7 @@ $templateProcessor->setValue('FREQUENCY', $FREQUENCY);
 $templateProcessor->setValue('ROUTE_OF_ADMINISTRATION', $ROUTE_OF_ADMINISTRATION);
 $templateProcessor->setValue('DIAGNOSIS', $DIAGNOSIS);
 $templateProcessor->setValue('TREATMENT_START_DATE', $formatted_treatment_start_date);
-$templateProcessor->setValue('TREATMENT_END_DATE', $formatted_treatment_end_date);
+$templateProcessor->setValue('TREATMENT_END_DATE', $TREATMENT_END_DATE);
 $templateProcessor->setValue('ANY_OTHER_INFORMATION', $ANY_OTHER_INFORMATION);
 $templateProcessor->setValue('ONSET_DATE', $formatted_onset_date);
 $templateProcessor->setValue('EVENT_STOP_DATE', $EVENT_STOP_DATE);
@@ -276,6 +276,15 @@ switch ($SERIOUSNESS) {
         $templateProcessor->setValue('SERIOUSNESS7', '☐');
         $templateProcessor->setValue('SERIOUSNESS8', '☑');
         break;
+    default:
+        $templateProcessor->setValue('SERIOUSNESS1', '☐');
+        $templateProcessor->setValue('SERIOUSNESS2', '☐');
+        $templateProcessor->setValue('SERIOUSNESS3', '☐');
+        $templateProcessor->setValue('SERIOUSNESS4', '☐');
+        $templateProcessor->setValue('SERIOUSNESS5', '☐');
+        $templateProcessor->setValue('SERIOUSNESS6', '☐');
+        $templateProcessor->setValue('SERIOUSNESS7', '☐');
+        $templateProcessor->setValue('SERIOUSNESS8', '☐');
 }
 $templateProcessor->setValue('DATE_OF_DEATH', '');
 if ($AUTOPSY == 'YES') {
@@ -326,6 +335,12 @@ switch ($OUTCOME) {
         $templateProcessor->setValue('OUT4', '☐');
         $templateProcessor->setValue('OUT5', '☑');
         break;
+    default:
+        $templateProcessor->setValue('OUT1', '☐');
+        $templateProcessor->setValue('OUT2', '☐');
+        $templateProcessor->setValue('OUT3', '☐');
+        $templateProcessor->setValue('OUT4', '☐');
+        $templateProcessor->setValue('OUT5', '☐');
 }
 $templateProcessor->setValue('LABORATORY_DATA', $LABORATORY_DATA);
 $templateProcessor->setValue('MEDICAL_HISTORY', $MEDICAL_HISTORY);
@@ -611,9 +626,12 @@ switch ($SPECIAL_SITUATIONS) {
 if ($DEFECT_ISSUE == 'Event related to a quality defect issue') {
     $templateProcessor->setValue('DEFECT_ISSUE1', '☑');
     $templateProcessor->setValue('DEFECT_ISSUE2', '☐');
-} else {
+} else if ($DEFECT_ISSUE == 'Event related to a suspected falsified/counterfeit medicinal product') {
     $templateProcessor->setValue('DEFECT_ISSUE1', '☐');
     $templateProcessor->setValue('DEFECT_ISSUE2', '☑');
+} else {
+    $templateProcessor->setValue('DEFECT_ISSUE1', '☐');
+    $templateProcessor->setValue('DEFECT_ISSUE2', '☐');
 }
 $templateProcessor->setValue('REPORTER_NAME', $REPORTER_NAME);
 $templateProcessor->setValue('PHONE_NUMBER', $PHONE_NUMBER);

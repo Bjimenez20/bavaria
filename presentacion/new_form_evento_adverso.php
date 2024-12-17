@@ -505,7 +505,7 @@ if ($privilegios != '' && $usua != '') {
                                     <p style="text-align: left;">
                                         9. Treatment End date (or mention continuing)
                                     </p>
-                                    <input type="date" name="treatment_end_date" id="treatment_end_date" class="form-control w-100 h-100">
+                                    <input type="text" name="treatment_end_date" id="treatment_end_date" class="form-control w-100 h-100">
                                 </td>
                             </tr>
                             <tr>
@@ -952,10 +952,10 @@ if ($privilegios != '' && $usua != '') {
                                     <td colspan="2" style="border: none; padding: 0;">
                                         <div style="display: flex; gap: 5px; padding: 5px">
                                             <div style="flex: 1;">
-                                                <input type="date" class="form-control w-100 h-100" name="start[]" id="start">
+                                                <input type="text" class="form-control w-100 h-100" name="start[]" id="start">
                                             </div>
                                             <div style="flex: 1;">
-                                                <input type="date" class="form-control w-100 h-100" name="stop[]" id="stop">
+                                                <input type="text" class="form-control w-100 h-100" name="stop[]" id="stop">
                                             </div>
                                         </div>
                                     </td>
@@ -1196,10 +1196,10 @@ if ($privilegios != '' && $usua != '') {
                 <td colspan="2" style="border: none; padding: 0;">
                     <div style="display: flex; gap: 5px; padding: 5px">
                         <div style="flex: 1;">
-                            <input type="date" class="form-control w-100 h-100" name="start[]">
+                            <input type="text" class="form-control w-100 h-100" name="start[]">
                         </div>
                         <div style="flex: 1;">
-                            <input type="date" class="form-control w-100 h-100" name="stop[]">
+                            <input type="text" class="form-control w-100 h-100" name="stop[]">
                         </div>
                     </div>
                 </td>
