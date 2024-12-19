@@ -436,7 +436,7 @@ if ($privilegios != '' && $usua != '') {
                                         1.Trade Name (INN/Generic Name)
                                     </p>
                                     <?php
-                                    if ($PRODUCTO_TRATAMIENTO = 'Somatuline') {
+                                    if ($PRODUCTO_TRATAMIENTO == 'Somatuline') {
                                     ?>
                                         <input type="text" name="trade_name" id="trade_name" class="form-control w-100 h-100" value="<?php echo $PRODUCTO_TRATAMIENTO ?> (LANREOTIDE)" disabled>
                                     <?php
@@ -1117,7 +1117,7 @@ if ($privilegios != '' && $usua != '') {
                                         6. If the reporter is a patient, what is their <strong>doctor's name and address?</strong> (complete only if section 5. is ticked Yes)
                                     </p>
                                     <!-- <textarea name="if_patient" id="if_patient" class="form-control w-100 h-100" cols="90" rows="5"></textarea> -->
-                                    <input type="text" name="if_patient" id="if_patient" class="form-control w-100 h-100" value="<?php echo $MEDICO_TRATAMIENTO ?>" disabled>
+                                    <input type="text" name="if_patient" id="if_patient" class="form-control w-100 h-100" value="<?php echo $MEDICO_TRATAMIENTO ?>">
                                 </td>
                             </tr>
                             <tr>

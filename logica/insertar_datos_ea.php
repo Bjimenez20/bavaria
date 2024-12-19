@@ -69,6 +69,9 @@ $email = $date['email'];
 $health_care_professional = $date['health_care_professional'];
 $reporting_event = $date['reporting_event'];
 $occupation_health_authority = $date['occupation_health_authority'];
+if ($occupation_health_authority == 'Other') {
+	$occupation_health_authority = $date['occupation_health_authority_specify'];
+}
 $mah = $date['mah'];
 $if_patient = $date['if_patient'];
 

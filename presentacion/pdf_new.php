@@ -908,7 +908,13 @@ $formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
                                 <input type="checkbox" <?php if ($OCCUPATION == 'Health Authority') echo 'checked'; ?>> Health Authority
                             </td>
                             <td style="padding: 5px; border: none; text-align: left;">
-                                <input type="checkbox" <?php if ($OCCUPATION == 'Other') echo 'checked'; ?>> Other (Specify): _______________
+                                <?php if ($OCCUPATION != 'Other' and $OCCUPATION != 'Health Authority' and $OCCUPATION != 'Doctor' and $OCCUPATION != 'Nurse' and $OCCUPATION != 'Pharmacist' and $OCCUPATION != 'Dentist' and $OCCUPATION != 'Patient') { ?>
+                                    <input type="checkbox" checked> Other (Specify): <?php echo $OCCUPATION ?>
+                                <?php } else {
+                                ?>
+                                    <input type="checkbox" <?php if ($OCCUPATION != 'Other' and $OCCUPATION != 'Health Authority' and $OCCUPATION != 'Doctor' and $OCCUPATION != 'Nurse' and $OCCUPATION != 'Pharmacist' and $OCCUPATION != 'Dentist' and $OCCUPATION != 'Patient') echo 'checked'; ?>> Other (Specify): _______________
+                                <?php
+                                } ?>
                             </td>
                         </tr>
                     </table>

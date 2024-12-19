@@ -710,6 +710,15 @@ switch ($OCCUPATION) {
         $templateProcessor->setValue('OCU6', '☐');
         $templateProcessor->setValue('OCU7', '☑');
         break;
+    default:
+        $templateProcessor->setValue('OCU1', '☐');
+        $templateProcessor->setValue('OCU2', '☐');
+        $templateProcessor->setValue('OCU3', '☐');
+        $templateProcessor->setValue('OCU4', '☐');
+        $templateProcessor->setValue('OCU5', '☐');
+        $templateProcessor->setValue('OCU6', '☐');
+        $templateProcessor->setValue('OCU7', '☑');
+        $templateProcessor->setValue('OCU8', $OCCUPATION);
 }
 $templateProcessor->setValue('COUNTRY', $COUNTRY);
 if ($MAH == 'YES') {
