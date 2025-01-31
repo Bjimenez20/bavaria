@@ -246,6 +246,7 @@ if ($privilegios != '' && $usua != '') {
         $CORREO_PACIENTE = $fila['CORREO_PACIENTE'];
         $DEPARTAMENTO_PACIENTE = $fila['DEPARTAMENTO_PACIENTE'];
         $DIRECCION_PACIENTE = $fila['DIRECCION_PACIENTE'];
+        $DEPARTAMENTO_PACIENTE = $fila['DEPARTAMENTO_PACIENTE'];
         $CIUDAD_PACIENTE = $fila['CIUDAD_PACIENTE'];
         $DOSIS = $fila['DOSIS_TRATAMIENTO'];
         $FRECUENCIA_TRATAMIENTO = $fila['FRECUENCIA_MEDICAMENTO'];
@@ -1047,7 +1048,7 @@ if ($privilegios != '' && $usua != '') {
                                                         4. Country of Reporting event:
                                                     </strong>
                                                 </p>
-                                                <input type="text" name="reporting_event" id="reporting_event" class="form-control w-100 h-100" value="COLOMBIA" disabled>
+                                                <input type="text" name="reporting_event" id="reporting_event" class="form-control w-100 h-100" value="COLOMBIA, <?php echo $DEPARTAMENTO_PACIENTE .', '. $CIUDAD_PACIENTE ?>" disabled>
                                             </td>
                                         </tr>
                                     </table>

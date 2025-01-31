@@ -871,7 +871,7 @@ $formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
                         <tr>
                             <td style="border: none; vertical-align: top;">
                                 <p style="text-align: left;">
-                                    <strong> 4. Country of Reporting event: </strong> COLOMBIA
+                                    <strong> 4. Country of Reporting event: </strong> <?php echo $COUNTRY ?>
                                 </p>
                             </td>
                         </tr>
