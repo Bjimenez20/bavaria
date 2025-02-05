@@ -1807,7 +1807,7 @@ if ($privilegios != '' && $usua != '') {
                                         <input class="form-control" type="date" name="fecha_reclamacion" id="fecha_reclamacion" value="<?php echo $FECHA_RECLAMACION_GESTION ?>" style="display:none" />
                                     </div>
                                 </div>
-                                <div class="row bm-3">
+                                <div class="row mb-3">
                                     <div class="col">
                                         <span class="fw-bold" id="span_aplicacion_m" style="display: none;">Aplicación<span class="asterisco">*</span></span>
                                     </div>
@@ -1826,11 +1826,11 @@ if ($privilegios != '' && $usua != '') {
                                         <input class="form-control" type="date" name="fecha_aplicacion" id="fecha_aplicacion" value="<?php echo $FECHA_APLICACION ?>" style="display: none;">
                                     </div>
                                 </div>
-                                <div class="row bm-3">
+                                <div class="row mb-3">
                                     <div class="col">
                                         <span class="fw-bold" id="span_lugar_aplicacion" style="display: none;">Lugar de aplicación<span class="asterisco">*</span></span>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-9">
                                         <select name="lugar_aplicacion" id="lugar_aplicacion" style="display: none;" class="form-control">
                                             <option><?php echo $LUGAR_APLICACION ?></option>
                                             <option value="">Seleccione...</option>
