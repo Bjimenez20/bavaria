@@ -1412,21 +1412,19 @@ if ($privilegios != '' && $usua != '') {
                                                     <div class="col-8">
                                                         <select class="form-control" name="causa_no_ingreso" id="causa_no_ingreso">
                                                             <option value="" selected disabled>Selecciona una opción</option>
-                                                            <option>Asignado para gestion</option>
                                                             <option>Cierre de caso sin contacto efectivo</option>
-                                                            <option>Diagnostico sin programa</option>
-                                                            <option>Falta de contacto</option>
-                                                            <option>Finalizo tratamiento</option>
+                                                            <option>Se ingresa paciente</option>
+                                                            <option>Ya hace parte del programa</option>
                                                             <option>Formulado con otro tratamiento</option>
                                                             <option>No acepta ingreso</option>
-                                                            <option>No conoce diagnóstico</option>
-                                                            <option>Datos errados</option>
-                                                            <option>Numero fuera de servicio</option>
                                                             <option>Paciente fallecido</option>
-                                                            <option>Repetido</option>
-                                                            <option>Ya hace parte del programa</option>
-                                                            <option>Sin datos de contacto</option>
+                                                            <option>Indicacion offlabel</option>
+                                                            <option>Datos errados</option>
+                                                            <option>No aporta documentacion</option>
+                                                            <option>Falta de contacto</option>
                                                             <option>Volver a llamar</option>
+                                                            <option>Numero fuera de servicio</option>
+                                                            <option>Sin datos de contacto</option>
                                                         </select>
                                                     </div>
                                                 </div>
