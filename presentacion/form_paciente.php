@@ -2857,7 +2857,7 @@ if ($privilegios != '' && $usua != '') {
                                             ?>
                                                 <td style='border:1px solid gray'>
                                                 </td>
-                                                <?php
+                                            <?php
                                             }
                                         }
                                         $ID_EA = $fila2['EVENTO_ADVERSO_FK'];
@@ -2896,31 +2896,32 @@ if ($privilegios != '' && $usua != '') {
 
                                         $ID_GES = $fila2['ID_GESTION'];
                                         $dir = "../ADJUNTOS_IPSEN/$ID_GES";
+
+                                        $archivosAdjuntos = []; // Almacenar archivos encontrados
+
                                         if (file_exists($dir)) {
                                             $directorio = opendir($dir);
                                             while ($archivo = readdir($directorio)) {
-                                                if ($archivo == '.' or $archivo == '..') {
-                                                } else {
-                                                    $enlace = $dir . "/" . $archivo;
-                                                ?>
-                                                    <td style='border:1px solid gray'>
-                                                        <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $enlace ?>')">
-                                                            <img src="../presentacion/imagenes/archivo.png" alt="" title="Click to enlarge" height="50" width="50">
-                                                        </a>
-                                                    </td>
-                                            <?php
+                                                if ($archivo != '.' && $archivo != '..') {
+                                                    $archivosAdjuntos[] = $dir . "/" . $archivo;
                                                 }
                                             }
                                             closedir($directorio);
-                                        } else {
-                                            ?>
-                                            <td style='border:1px solid gray'>
-                                            </td>
-                                        <?php
                                         }
-                                        $url = "https://pspipsen.com/PDF_CI/{$fila2["file_pdf"]}.pdf";
+
+                                        // Renderizar ARCHIVO ADJUNTO
+                                        echo "<td style='border:1px solid gray'>";
+                                        if (!empty($archivosAdjuntos)) {
+                                            foreach ($archivosAdjuntos as $enlace) {
+                                                echo "<a class='highslide' onclick=\"javascript:ventanaSecundaria('$enlace')\">
+                                                <img src='../presentacion/imagenes/archivo.png' alt='' title='Click to enlarge' height='50' width='50'>
+                                            </a>";
+                                            }
+                                        }
+                                        echo "</td>";
+                                        $url = "http://pspipsen.com/PDF_CI/{$fila2["file_pdf"]}.pdf";
                                         if ($fila2["file_pdf"] != '') {
-                                        ?>
+                                            ?>
                                             <td style='border:1px solid gray'>
                                                 <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
                                                     <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="50" width="50">
@@ -2974,47 +2975,89 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
-                                        <input type="file" name="archivo[]" id="archivo" class="form-control" onchange="validateFileType()" multiple>
-                                    </div>
+                                    <span>Tipo de documento</span>
+                                    <ul>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_1" value="Consentimiento Informado" onchange="handleCheckboxChange(this)"> Consentimiento Informado</li>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_2" value="Voucher" onchange="handleCheckboxChange(this)"> Voucher</li>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_3" value="Acta de entrega Dispositivos" onchange="handleCheckboxChange(this)"> Acta de entrega Dispositivos</li>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_4" value="Grabacion Llamada" onchange="handleCheckboxChange(this)"> Grabación Llamada</li>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_5" value="Documentacion Inicial" onchange="handleCheckboxChange(this)"> Documentación Inicial</li>
+                                    </ul>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col">
-                                    <span>Tipo de documento</span>
-                                    <ul>
-                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_1" style="width: 2%;" value="Consentimiento Informado">Consentimiento Informado</li>
-                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_2" style="width: 2%;" value="Voucher">Voucher</li>
-                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_3" style="width: 2%;" value="Acta de entrega Dispositivos">Acta de entrega Dispositivos</li>
-                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_4" style="width: 2%;" value="Grabacion Llamada">Grabacion Llamada</li>
-                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_5" style="width: 2%;" value="Documentacion Inicial">Documentación Inicial</li>
-                                    </ul>
+                                    <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
+                                        <!-- Este será el contenedor donde se agregarán los inputs de archivos -->
+                                        <div id="file-container" class="row"></div> <!-- Usamos la clase row para crear una cuadrícula -->
+                                    </div>
                                 </div>
                             </div>
+
                             <script>
-                                function validateFileType() {
-                                    var fileInput = document.getElementById('archivo');
-                                    var files = fileInput.files;
+                                function handleCheckboxChange(checkbox) {
+                                    const fileContainer = document.getElementById('file-container');
 
-                                    if (files.length > 0) {
-                                        for (var i = 0; i < files.length; i++) {
-                                            var file = files[i];
-                                            var fileName = file.name;
-                                            var fileExtension = fileName.split('.').pop().toLowerCase();
+                                    if (checkbox.checked) {
+                                        const wrapper = document.createElement('div');
+                                        wrapper.classList.add('col-md-2', 'mb-3', 'file-wrapper');
+                                        wrapper.dataset.tipoDoc = checkbox.value;
 
-                                            // Agregar mp3 como extensión permitida
-                                            if (fileExtension !== 'pdf' && fileExtension !== 'jpg' && fileExtension !== 'png' && fileExtension !== 'mp3' && fileExtension !== 'docx') {
-                                                alert('El archivo "' + fileName + '" no tiene un formato permitido. Solo se permiten PDF, WORD, JPG, PNG y MP3.');
-                                                fileInput.value = ''; // Limpiar el campo si hay un archivo no permitido
-                                                break;
-                                            }
-                                        }
+                                        const label = document.createElement('label');
+                                        label.innerHTML = `Subir archivo para: <strong>${checkbox.value}</strong>`;
+
+                                        const inputFile = document.createElement('input');
+                                        inputFile.type = 'file';
+                                        inputFile.name = `archivo[${checkbox.value}][]`; // Ahora mantiene la estructura correcta
+                                        inputFile.classList.add('form-control');
+                                        inputFile.setAttribute('multiple', 'multiple');
+
+                                        const tipoDocInput = document.createElement('input');
+                                        tipoDocInput.type = 'hidden';
+                                        tipoDocInput.name = 'tipo_doc_archivo[]';
+                                        tipoDocInput.value = checkbox.value;
+
+                                        wrapper.appendChild(label);
+                                        wrapper.appendChild(inputFile);
+                                        wrapper.appendChild(tipoDocInput);
+                                        fileContainer.appendChild(wrapper);
+
+                                        console.log("Se agregó:", checkbox.value);
                                     } else {
-                                        alert('Por favor selecciona al menos un archivo.');
+                                        const wrappers = fileContainer.querySelectorAll('.file-wrapper');
+                                        wrappers.forEach(wrapper => {
+                                            if (wrapper.dataset.tipoDoc === checkbox.value) {
+                                                wrapper.remove();
+                                            }
+                                        });
                                     }
                                 }
                             </script>
+
+
+                            <style>
+                                /* Para asegurar que los inputs se distribuyan en dos columnas */
+                                #file-container {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                }
+
+                                .file-wrapper {
+                                    flex: 1 0 48%;
+                                    /* Hace que cada input ocupe 48% del contenedor */
+                                    margin-right: 2%;
+                                    /* Da un pequeño espacio entre columnas */
+                                    margin-bottom: 15px;
+                                    /* Espacio entre filas */
+                                }
+
+                                /* Elimina el margen extra en el último item */
+                                .file-wrapper:nth-child(2n) {
+                                    margin-right: 0;
+                                }
+                            </style>
+
                             <?php
                             if ($privilegios != 5) {
                             ?>

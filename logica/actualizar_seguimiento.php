@@ -671,230 +671,74 @@ include('../logica/session.php');
                     while ($datos_pap = (mysqli_fetch_array($select_id))) {
                         $id_paciente = $datos_pap['ID_PACIENTE_FK'];
                     }
-                    if ($tipo_doc_str == 'Grabacion Llamada,Documentacion Inicial') {
-                        if (isset($_FILES['archivo'])) {
-                            foreach ($_FILES['archivo']['error'] as $index => $error) {
-                                if ($error > 0) {
-                                    // Manejo de error para cada archivo individual
-                                    switch ($error) {
-                                        case UPLOAD_ERR_INI_SIZE:
-                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido.<br>";
-                                            break;
-                                        case UPLOAD_ERR_FORM_SIZE:
-                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido por el formulario.<br>";
-                                            break;
-                                        case UPLOAD_ERR_PARTIAL:
-                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " se subió parcialmente.<br>";
-                                            break;
-                                        case UPLOAD_ERR_NO_FILE:
-                                            echo "No se subió ningún archivo.<br>";
-                                            break;
-                                        case UPLOAD_ERR_NO_TMP_DIR:
-                                            echo "Falta una carpeta temporal.<br>";
-                                            break;
-                                        case UPLOAD_ERR_CANT_WRITE:
-                                            echo "No se pudo escribir el archivo en el disco.<br>";
-                                            break;
-                                        case UPLOAD_ERR_EXTENSION:
-                                            echo "Una extensión de PHP detuvo la subida del archivo.<br>";
-                                            break;
-                                        default:
-                                            echo "Error desconocido al subir el archivo " . $_FILES['archivo']['name'][$index] . ". Código de error: " . $error . "<br>";
-                                            break;
-                                    }
-                                    continue; // Saltar al siguiente archivo si hubo un error
-                                }
+                    $SELECT_GES = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
+                    while ($fila2 = mysqli_fetch_array($SELECT_GES)) {
+                        $ID_GES = $fila2['ID_GESTION'];
+                    }
 
-                                // Configuración de carpeta
-                                if ($tipoArchivo !== 'audio/mpeg' || $extensionArchivo !== 'mp3') {
-                                    $CARPETA = "../Audios/$id_paciente";
-                                    $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name'][$index]);
-                                    $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'][$index], PATHINFO_EXTENSION));
+                    ob_start();
+                    error_reporting(E_ALL);
+                    ini_set('display_errors', 1);
 
-                                    // Crear la carpeta si no existe
-                                    if (!is_dir($CARPETA)) {
-                                        mkdir($CARPETA, 0777, true);
-                                    }
+                    // Depuración inicial
+                    echo "Inicio del script<br>";
+                    flush();
 
-                                    // Generar un nombre de archivo único
-                                    $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name'][$index]);
-                                    $rutaDestino = $CARPETA . "/" . $nombreArchivo;
+                    // Verificar si hay archivos y tipos de documentos
+                    if (empty($_POST['tipo_doc'])) {
+                        die("Error: No se seleccionó ningún tipo de documento.");
+                    }
 
-                                    // Mover el archivo subido al destino
-                                    if (move_uploaded_file($_FILES['archivo']['tmp_name'][$index], $rutaDestino)) {
-                                        echo "Archivo " . $_FILES['archivo']['name'][$index] . " subido exitosamente.<br>";
-                                    } else {
-                                        echo "Error al mover el archivo " . $_FILES['archivo']['name'][$index] . ".<br>";
-                                    }
-                                } else {
+                    if (empty($_FILES['archivo'])) {
+                        die("Error: No se seleccionó ningún archivo.");
+                    }
 
-                                    $CARPETA = "../DOC_INI/$id_paciente";
-                                    $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name'][$index]);
-                                    $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'][$index], PATHINFO_EXTENSION));
+                    // Definir carpetas de destino
+                    $destinos = [
+                        "Consentimiento Informado" => "../CI/$id_paciente",
+                        "Voucher" => "../ADJUNTOS_IPSEN/$ID_GES",
+                        "Acta de entrega Dispositivos" => "../ADJUNTOS_IPSEN/$ID_GES",
+                        "Grabacion Llamada" => "../Audios/$id_paciente",
+                        "Documentacion Inicial" => "../DOC_INI/$id_paciente"
+                    ];
 
-                                    // Crear la carpeta si no existe
-                                    if (!is_dir($CARPETA)) {
-                                        mkdir($CARPETA, 0777, true);
-                                    }
+                    $success = [];
+                    $errors = [];
 
-                                    // Generar un nombre de archivo único
-                                    $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name'][$index]);
-                                    $rutaDestino = $CARPETA . "/" . $nombreArchivo;
-
-                                    // Mover el archivo subido al destino
-                                    if (move_uploaded_file($_FILES['archivo']['tmp_name'][$index], $rutaDestino)) {
-                                        echo "Archivo " . $_FILES['archivo']['name'][$index] . " subido exitosamente.<br>";
-                                    } else {
-                                        echo "Error al mover el archivo " . $_FILES['archivo']['name'][$index] . ".<br>";
-                                    }
-                                }
-                            }
-                        } else {
-                            echo "No se seleccionó ningún archivo.";
+                    foreach ($_FILES['archivo']['name'] as $tipoDoc => $archivos) {
+                        if (!isset($destinos[$tipoDoc])) {
+                            $errors[] = "Error: Tipo de documento no reconocido: $tipoDoc";
+                            continue;
                         }
-                    } else if ($tipo_doc_str == 'Grabacion Llamada' or $tipo_doc_str == 'Documentacion Inicial') {
-                        if (isset($_FILES['archivo'])) {
-                            foreach ($_FILES['archivo']['error'] as $index => $error) {
-                                if ($error > 0) {
-                                    // Manejo de error para cada archivo individual
-                                    switch ($error) {
-                                        case UPLOAD_ERR_INI_SIZE:
-                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido.<br>";
-                                            break;
-                                        case UPLOAD_ERR_FORM_SIZE:
-                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido por el formulario.<br>";
-                                            break;
-                                        case UPLOAD_ERR_PARTIAL:
-                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " se subió parcialmente.<br>";
-                                            break;
-                                        case UPLOAD_ERR_NO_FILE:
-                                            echo "No se subió ningún archivo.<br>";
-                                            break;
-                                        case UPLOAD_ERR_NO_TMP_DIR:
-                                            echo "Falta una carpeta temporal.<br>";
-                                            break;
-                                        case UPLOAD_ERR_CANT_WRITE:
-                                            echo "No se pudo escribir el archivo en el disco.<br>";
-                                            break;
-                                        case UPLOAD_ERR_EXTENSION:
-                                            echo "Una extensión de PHP detuvo la subida del archivo.<br>";
-                                            break;
-                                        default:
-                                            echo "Error desconocido al subir el archivo " . $_FILES['archivo']['name'][$index] . ". Código de error: " . $error . "<br>";
-                                            break;
-                                    }
-                                    continue; // Saltar al siguiente archivo si hubo un error
-                                }
 
-                                // Configuración de carpeta
-                                if ($tipo_doc_str == 'Grabacion Llamada') {
-                                    $CARPETA = "../Audios/$id_paciente";
-                                    $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name'][$index]);
-                                    $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'][$index], PATHINFO_EXTENSION));
-
-                                    // Crear la carpeta si no existe
-                                    if (!is_dir($CARPETA)) {
-                                        mkdir($CARPETA, 0777, true);
-                                    }
-
-                                    // Generar un nombre de archivo único
-                                    $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name'][$index]);
-                                    $rutaDestino = $CARPETA . "/" . $nombreArchivo;
-
-                                    // Mover el archivo subido al destino
-                                    if (move_uploaded_file($_FILES['archivo']['tmp_name'][$index], $rutaDestino)) {
-                                        echo "Archivo " . $_FILES['archivo']['name'][$index] . " subido exitosamente.<br>";
-                                    } else {
-                                        echo "Error al mover el archivo " . $_FILES['archivo']['name'][$index] . ".<br>";
-                                    }
-                                } else {
-
-                                    $CARPETA = "../DOC_INI/$id_paciente";
-                                    $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name'][$index]);
-                                    $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'][$index], PATHINFO_EXTENSION));
-
-                                    // Crear la carpeta si no existe
-                                    if (!is_dir($CARPETA)) {
-                                        mkdir($CARPETA, 0777, true);
-                                    }
-
-                                    // Generar un nombre de archivo único
-                                    $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name'][$index]);
-                                    $rutaDestino = $CARPETA . "/" . $nombreArchivo;
-
-                                    // Mover el archivo subido al destino
-                                    if (move_uploaded_file($_FILES['archivo']['tmp_name'][$index], $rutaDestino)) {
-                                        echo "Archivo " . $_FILES['archivo']['name'][$index] . " subido exitosamente.<br>";
-                                    } else {
-                                        echo "Error al mover el archivo " . $_FILES['archivo']['name'][$index] . ".<br>";
-                                    }
-                                }
-                            }
-                        } else {
-                            echo "No se seleccionó ningún archivo.";
+                        $directorioDestino = $destinos[$tipoDoc] . "/"; // Cambiar según lógica
+                        if (!is_dir($directorioDestino)) {
+                            mkdir($directorioDestino, 0777, true);
                         }
-                    } else {
-                        if (isset($_FILES['archivo'])) {
-                            foreach ($_FILES['archivo']['error'] as $index => $error) {
-                                if ($error > 0) {
-                                    // Manejo de error para cada archivo individual
-                                    switch ($error) {
-                                        case UPLOAD_ERR_INI_SIZE:
-                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido.<br>";
-                                            break;
-                                        case UPLOAD_ERR_FORM_SIZE:
-                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " excede el tamaño máximo permitido por el formulario.<br>";
-                                            break;
-                                        case UPLOAD_ERR_PARTIAL:
-                                            echo "El archivo " . $_FILES['archivo']['name'][$index] . " se subió parcialmente.<br>";
-                                            break;
-                                        case UPLOAD_ERR_NO_FILE:
-                                            echo "No se subió ningún archivo.<br>";
-                                            break;
-                                        case UPLOAD_ERR_NO_TMP_DIR:
-                                            echo "Falta una carpeta temporal.<br>";
-                                            break;
-                                        case UPLOAD_ERR_CANT_WRITE:
-                                            echo "No se pudo escribir el archivo en el disco.<br>";
-                                            break;
-                                        case UPLOAD_ERR_EXTENSION:
-                                            echo "Una extensión de PHP detuvo la subida del archivo.<br>";
-                                            break;
-                                        default:
-                                            echo "Error desconocido al subir el archivo " . $_FILES['archivo']['name'][$index] . ". Código de error: " . $error . "<br>";
-                                            break;
-                                    }
-                                    continue; // Saltar al siguiente archivo si hubo un error
-                                }
 
-                                $SELECT_GES = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
-                                while ($fila2 = mysqli_fetch_array($SELECT_GES)) {
-                                    $ID_GES = $fila2['ID_GESTION'];
-                                }
-                                $CARPETA = "../ADJUNTOS_IPSEN/$ID_GES";
-                                $tipoArchivo = mime_content_type($_FILES['archivo']['tmp_name'][$index]);
-                                $extensionArchivo = strtolower(pathinfo($_FILES['archivo']['name'][$index], PATHINFO_EXTENSION));
+                        foreach ($archivos as $key => $nombreArchivo) {
+                            $tempPath = $_FILES['archivo']['tmp_name'][$tipoDoc][$key];
+                            $rutaDestino = $directorioDestino . basename($nombreArchivo);
 
-                                // Crear la carpeta si no existe
-                                if (!is_dir($CARPETA)) {
-                                    mkdir($CARPETA, 0777, true);
-                                }
-
-                                // Generar un nombre de archivo único
-                                $nombreArchivo = uniqid() . "_" . basename($_FILES['archivo']['name'][$index]);
-                                $rutaDestino = $CARPETA . "/" . $nombreArchivo;
-
-                                // Mover el archivo subido al destino
-                                if (move_uploaded_file($_FILES['archivo']['tmp_name'][$index], $rutaDestino)) {
-                                    echo "Archivo " . $_FILES['archivo']['name'][$index] . " subido exitosamente.<br>";
-                                } else {
-                                    echo "Error al mover el archivo " . $_FILES['archivo']['name'][$index] . ".<br>";
-                                }
+                            if (move_uploaded_file($tempPath, $rutaDestino)) {
+                                $success[] = "Archivo '$tipoDoc' - $nombreArchivo guardado en: $rutaDestino";
+                            } else {
+                                $errors[] = "Error al mover el archivo: $nombreArchivo";
                             }
-                        } else {
-                            echo "No se seleccionó ningún archivo.";
                         }
                     }
+
+                    // Mostrar resultados
+                    foreach ($success as $msg) {
+                        echo "$msg<br>";
+                    }
+                    foreach ($errors as $msg) {
+                        echo "$msg<br>";
+                    }
+
+                    // Redirigir (asegurando que no haya salida previa)
+                    ob_end_flush();
+
                     if ($sql) {
                         if ($evento_adverso == 'SI') {
                             if ($tipo_evento_adverso == 'Farmacovigilancia' || $tipo_evento_adverso == 'Tecnovigilancia') {
