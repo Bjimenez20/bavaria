@@ -2860,8 +2860,8 @@ if ($privilegios != '' && $usua != '') {
                                             <?php
                                             }
                                         }
-                                        $ID_EA = $fila2['EVENTO_ADVERSO_FK'];
-                                        $dir = "../EVENTO_ADVERSO/$ID_EA";
+                                        $ID_GES_EA = $fila2['ID_GESTION'];
+                                        $dir = "../EA/$ID_GES_EA";
 
                                         if (file_exists($dir)) {
                                             $directorio = opendir($dir);
@@ -2979,7 +2979,7 @@ if ($privilegios != '' && $usua != '') {
                                     <ul>
                                         <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_1" value="Consentimiento Informado" onchange="handleCheckboxChange(this)"> Consentimiento Informado</li>
                                         <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_2" value="Voucher" onchange="handleCheckboxChange(this)"> Voucher</li>
-                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_3" value="Acta de entrega Dispositivos" onchange="handleCheckboxChange(this)"> Acta de entrega Dispositivos</li>
+                                        <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_3" value="Evento Adverso" onchange="handleCheckboxChange(this)"> Evento Adverso</li>
                                         <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_4" value="Grabacion Llamada" onchange="handleCheckboxChange(this)"> Grabación Llamada</li>
                                         <li><input type="checkbox" name="tipo_doc[]" id="tipo_doc_5" value="Documentacion Inicial" onchange="handleCheckboxChange(this)"> Documentación Inicial</li>
                                     </ul>

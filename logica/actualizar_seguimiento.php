@@ -697,7 +697,7 @@ include('../logica/session.php');
                     $destinos = [
                         "Consentimiento Informado" => "../CI/$id_paciente",
                         "Voucher" => "../ADJUNTOS_IPSEN/$ID_GES",
-                        "Acta de entrega Dispositivos" => "../ADJUNTOS_IPSEN/$ID_GES",
+                        "Evento Adverso" => "../EA/$ID_GES",
                         "Grabacion Llamada" => "../Audios/$id_paciente",
                         "Documentacion Inicial" => "../DOC_INI/$id_paciente"
                     ];
