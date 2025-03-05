@@ -685,9 +685,9 @@ include('../logica/session.php');
                     flush();
 
                     // Verificar si hay archivos y tipos de documentos
-                    if (empty($_POST['tipo_doc'])) {
-                        die("Error: No se seleccionó ningún tipo de documento.");
-                    }
+                    // if (empty($_POST['tipo_doc'])) {
+                    //     die("Error: No se seleccionó ningún tipo de documento.");
+                    // }
 
                     if (empty($_FILES['archivo'])) {
                         die("Error: No se seleccionó ningún archivo.");
