@@ -2878,12 +2878,15 @@ if ($privilegios != '' && $usua != '') {
                                                 echo "<td style='border:1px solid gray; text-align: center;'>";
                                                 foreach ($archivos as $archivo) {
                                                     $enlace = $dir . "/" . $archivo;
-                                                    $extension = pathinfo($archivo, PATHINFO_EXTENSION);
+                                                    $extension = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
 
                                                     if ($extension === 'pdf') {
                                                         // Parámetros para deshabilitar herramientas del visor
                                                         $pdfViewer = $enlace . "#toolbar=0";
                                                         echo "<a href='$pdfViewer' target='_blank'><img src='../presentacion/imagenes/pdf.png' alt='PDF' title='Abrir PDF' height='50' width='50'></a>";
+                                                    } elseif ($extension === 'doc' || $extension === 'docx') {
+                                                        // Enlace para abrir documentos de Word (dependerá del navegador)
+                                                        echo "<a href='$enlace' target='_blank'><img src='../presentacion/imagenes/word.webp' alt='Word' title='Abrir Word' height='50' width='50'></a>";
                                                     }
                                                 }
                                                 echo "</td>";
@@ -2893,6 +2896,7 @@ if ($privilegios != '' && $usua != '') {
                                         } else {
                                             echo "<td style='border:1px solid gray;'></td>";
                                         }
+
 
                                         $ID_GES = $fila2['ID_GESTION'];
                                         $dir = "../ADJUNTOS_IPSEN/$ID_GES";
