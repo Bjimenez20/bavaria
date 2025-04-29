@@ -348,28 +348,6 @@ include('../logica/session.php')
                     $("#ver_apoyo").css('visibility', 'hidden');
                 }
             });
-            $("input[name=cabo_primera_linea]").change(function() {
-                var cabo_primera_linea = $('#cabo_primera_linea:checked').val();
-                if (cabo_primera_linea == 'SI') {
-                    $('#cabo_descripcion_div').css('display', 'inline');
-                    $('#cabo_segunda_linea_span').css('display', 'none');
-                    $('#cabo_segunda_linea_div').css('display', 'none');
-                }
-                if (cabo_primera_linea != 'SI') {
-                    $('#cabo_descripcion_div').css('display', 'none');
-                    $('#cabo_segunda_linea_span').css('display', 'inline');
-                    $('#cabo_segunda_linea_div').css('display', 'inline');
-                }
-            })
-
-            $("input[name=cabo_segunda_linea]").change(function() {
-                var cabo_segunda_linea = $('#cabo_segunda_linea:checked').val();
-                if (cabo_segunda_linea == 'SI') {
-                    $('#cabo_descripcion_div').css('display', 'inline');
-                }
-            })
-
-
             $("input[name=evento_adverso]").change(function() {
                 $("input[name=tipo_evento_adverso]").prop("checked", false);
                 $('#tipo_evento_adverso').prop("checked", true);
@@ -508,6 +486,16 @@ include('../logica/session.php')
                 var edad = nacio(fecha);
                 $("#edad").val(edad);
             });
+
+            $('#linea_tratamiento option:eq(0)').attr('selected', 'selected');
+            $('#cambio_dosis option:eq(0)').attr('selected', 'selected');
+            $('#medio_contacto option:eq(0)').attr('selected', 'selected');
+            $('#tipo_llamada option:eq(0)').attr('selected', 'selected');
+            $('#brindo_educacion option:eq(0)').attr('selected', 'selected');
+            $('#brindo_apoyo option:eq(0)').attr('selected', 'selected');
+            $('#motivo_comunicacion option:eq(0)').attr('selected', 'selected');
+            $('#motivo_no_comunicacion option:eq(0)').attr('selected', 'selected');
+            $('#estado_farmacia option:eq(0)').attr('selected', 'selected');
 
             function reclamo() {
                 $("#causa_no_reclamacion").attr("selected", "selected");
@@ -2591,39 +2579,19 @@ if ($privilegios != '' && $usua != '') {
                                 if ($PRODUCTO_TRATAMIENTO == 'CABOMETYX') {
                             ?>
                                 <div class="row mb-3">
-                                    <div class="col">
-                                        <span class="fw-bold">Cabo Primera Linea</span>
-                                    </div>
-                                    <div class="col">
+                                    <div class="col-6">
                                         <div class="row">
                                             <div class="col">
-                                                <input class="form-check-input me-1" type="radio" name="cabo_primera_linea" id="cabo_primera_linea" style="display:none" value="" checked="checked" />
-                                                <input class="form-check-input me-1" type="radio" name="cabo_primera_linea" id="cabo_primera_linea" value="SI" />SI
+                                                <span class="fw-bold">Linea de tratamiento<span class="asterisco">*</span></span>
                                             </div>
                                             <div class="col">
-                                                <input class="form-check-input me-1" type="radio" name="cabo_primera_linea" id="cabo_primera_linea" value="NO" />NO
+                                                <select name="linea_tratamiento" id="linea_tratamiento" class="form-control">
+                                                    <option value="">Seleccione...</option>
+                                                    <option value="1 linea">1 linea</option>
+                                                    <option value="2 linea">2 linea</option>
+                                                </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col">
-                                        <span id="cabo_segunda_linea_span" style="display: none;" class="fw-bold">Cabo Segunda Linea</span>
-                                    </div>
-                                    <div class="col" id="cabo_segunda_linea_div" style="display: none;">
-                                        <div class="row">
-                                            <div class="col">
-                                                <input class="form-check-input me-1" type="radio" name="cabo_segunda_linea" id="cabo_segunda_linea" style="display:none" value="" checked="checked" />
-                                                <input class="form-check-input me-1" type="radio" name="cabo_segunda_linea" id="cabo_segunda_linea" value="SI" />SI
-                                            </div>
-                                            <div class="col">
-                                                <input class="form-check-input me-1" type="radio" name="cabo_segunda_linea" id="cabo_segunda_linea" value="NO" />NO
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col" id="cabo_descripcion_div" style="display: none;">
-                                        <span class="fw-bold">Informacion</span>
-                                        <textarea class="form-control" name="cabo_descripcion" id="cabo_descripcion"></textarea>
                                     </div>
                                 </div>
                             <?php } ?>

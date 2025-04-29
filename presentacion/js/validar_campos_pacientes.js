@@ -31,6 +31,13 @@ function validar(tuformulario, val) {
 		return false;
 	}
 
+	var LINEA_TRATAMIENTO = $("#linea_tratamiento").val();
+	if (LINEA_TRATAMIENTO == 'Seleccione...' || LINEA_TRATAMIENTO == '') {
+		alert('La linea de tratamiento esta vacia');
+		$('#linea_tratamiento').focus();
+		return false;
+	}
+
 	var RECLAMO = $("#reclamo").val();
 	if (RECLAMO == '' || RECLAMO == 'Seleccione...') {
 		alert('El reclamo esta vacio');
