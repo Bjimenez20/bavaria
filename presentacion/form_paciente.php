@@ -1173,6 +1173,7 @@ if ($privilegios != '' && $usua != '') {
                                 $FRECUENCIA_MEDICAMENTO = $fila['FRECUENCIA_MEDICAMENTO'];
                                 $VISI_INI_EFEC = $fila['VISI_INI_EFEC'];
                                 $PROGRA_VIS_EDU = $fila['PROGRA_VIS_EDU'];
+                                $LINEA_TRATAMIENTO = $fila['LINEA_TRATAMIENTO'];
                                 function Zeros($numero, $largo)
                                 {
                                     $resultado = $numero;
@@ -2586,6 +2587,7 @@ if ($privilegios != '' && $usua != '') {
                                             </div>
                                             <div class="col">
                                                 <select name="linea_tratamiento" id="linea_tratamiento" class="form-control">
+                                                    <option value="<?php echo $LINEA_TRATAMIENTO ?>"><?php echo $LINEA_TRATAMIENTO ?></option>
                                                     <option value="">Seleccione...</option>
                                                     <option value="1 linea">1 linea</option>
                                                     <option value="2 linea">2 linea</option>
