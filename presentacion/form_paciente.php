@@ -2304,6 +2304,13 @@ if ($privilegios != '' && $usua != '') {
                                         <option>4Ta Entrega De 6 Autorizadas</option>
                                         <option>5Ta Entrega De 6 Autorizadas</option>
                                         <option>6Ta Entrega De 6 Autorizadas</option>
+                                        <option>1Ra Entrega de 7 Autorizadas</option>
+                                        <option>2Da Entrega de 7 Autorizadas</option>
+                                        <option>3Ra Entrega de 7 Autorizadas</option>
+                                        <option>4Ta Entrega de 7 Autorizadas</option>
+                                        <option>5Ta Entrega de 7 Autorizadas</option>
+                                        <option>6Ta Entrega de 7 Autorizadas</option>
+                                        <option>7Ma Entrega de 7 Autorizadas</option>
                                         <option>1Ra Entrega De 12 Autorizadas</option>
                                         <option>2Da Entrega de 12 Autorizadas</option>
                                         <option>3Ra Entrega De 12 Autorizadas</option>
