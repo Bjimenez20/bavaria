@@ -64,7 +64,6 @@ $subject = "$PAP - $CAUSAL - $TRATAMIENTO - $fecha";
 
 $mail->Body = $body;
 $mail->Subject = $subject;
-// $mail->addAddress('bjimenez@overall.com.co');
 switch ($ASIGNADO_EDUGESTOR) {
     case 'Pasto':
         // $mail->addAddress('xerazo@overall.com.co');
