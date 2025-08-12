@@ -1856,7 +1856,7 @@ if ($privilegios != '' && $usua != '') {
                                         <input class="form-control" type="date" name="fecha_reclamacion" id="fecha_reclamacion" value="<?php echo $FECHA_RECLAMACION_GESTION ?>" style="display:none" />
                                     </div>
                                 </div>
-                                <div class="row bm-3">
+                                <div class="row mb-3">
                                     <div class="col">
                                         <span class="fw-bold" id="span_asignado_edugestor" style="display: none;">Asignar a Edugestor<span class="asterisco">*</span></span>
                                     </div>
