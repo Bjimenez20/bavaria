@@ -3,6 +3,7 @@ include('../logica/session.php')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
@@ -20,12 +21,15 @@ include('../logica/session.php')
 	</script>
 	<style>
 		@import url("../../bayer/webfonts/avenir/stylesheet.css");
+
 		.izq {
 			text-align: left;
 		}
+
 		.der {
 			text-align: right;
 		}
+
 		th {
 			font-family: Tahoma, Geneva, sans-serif;
 			padding: 2px;
@@ -59,51 +63,74 @@ include('../logica/session.php')
 		$usua = strtoupper($usua);
 	?>
 </head>
+
 <body>
 	<section>
 		<blockquote>
 			<form name="miformulario" method="post" action="listado_pacientes.php" onkeydown="return filtro(2)" target="consulta_inv" class="letra">
-				<table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" style="margin:auto auto;" class="letra">
-					<tr align="center">
-						<?php
-						if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5 || $privilegios == 4 || $privilegios == 6) {
-						?>
+
+				<?php
+				if ($privilegios == 4) {
+				?>
+					<table width="20%" border="0" align="left" cellpadding="2" cellspacing="1" style="margin:auto auto;" class="letra">
+						<tr align="left">
 							<th width="15%" align="left" class="titulosth" bgcolor="#0C68B0">
+								<div id="movimiento1">
+									PAP
+									<input name="PAP" type="text" id="PAP" placeholder="Buscar por PAP" class="tipo1" style="height:20px">
+								</div>
+							</th>
+							<th width="5%" bgcolor="#0C68B0">
+								<div id="consulta">
+									<input type="submit" name="buscar" id="buscar" value="Consultar" class="btn_buscar" title="BUSCAR" />
+								</div>
+							</th>
+						</tr>
+					</table>
+				<?php
+				}
+				?>
+				<?php
+				if ($privilegios == 1 || $privilegios == 2 || $privilegios == 3) {
+				?>
+					<table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" style="margin:auto auto;" class="letra">
+						<tr align="center">
+							<th width="10%" align="left" class="titulosth" bgcolor="#0C68B0">
 								<div id="movimiento1">
 									PAP
 									<input name="PAP" type="text" id="PAP" class="tipo1" style="height:20px">
 								</div>
 							</th>
-							<th width="25%" height="44" align="left" bgcolor="#0C68B0" class="titulosth">NOMBRE
+							<th width="20%" height="44" align="left" bgcolor="#0C68B0" class="titulosth">NOMBRE
 								<input name="nombre" type="text" id="nombre" class="tipo1" style="height:20px" />
 							</th>
-							<th width="25%" align="left" class="titulosth" bgcolor="#0C68B0">
+							<th width="15%" align="left" class="titulosth" bgcolor="#0C68B0">
 								<div id="movimiento2">
 									DOCUMENTO
 									<input name="documento" type="text" id="documento" class="tipo1" style="height:20px" />
 								</div>
 							</th>
-							<th width="26%" align="left" class="titulosth" bgcolor="#0C68B0">
+							<th width="15%" align="left" class="titulosth" bgcolor="#0C68B0">
 								<div id="movimiento1">
 									TELEFONO
 									<input name="telefono" type="text" id="telefono" class="tipo1" style="height:20px">
 								</div>
 							</th>
+							<th width="5%" bgcolor="#0C68B0">
+								<div id="consulta">
+									<input type="submit" name="buscar" id="buscar" value="Consultar" class="btn_buscar" title="BUSCAR" />
+								</div>
+							</th>
 						<?php
-						}
+					}
 						?>
-						<th width="18%" bgcolor="#0C68B0">
-							<div id="consulta">
-								<input type="submit" name="buscar" id="buscar" value="Consultar" class="btn_buscar" title="BUSCAR" />
-							</div>
-						</th>
-					</tr>
-					<tr>
-						<th colspan="5">
-							<iframe src="listado_pacientes.php" name="consulta_inv" id="consulta_inv" class="ifra2"></iframe>
-						</th>
-					</tr>
-				</table>
+						</tr>
+						<tr>
+							<th colspan="5">
+								<iframe src="listado_pacientes.php" name="consulta_inv" id="consulta_inv" class="ifra2"></iframe>
+							</th>
+						</tr>
+					</table>
 			</form>
 		</blockquote>
 	</section>
@@ -120,4 +147,5 @@ include('../logica/session.php')
 <?php
 	}
 ?>
+
 </html>

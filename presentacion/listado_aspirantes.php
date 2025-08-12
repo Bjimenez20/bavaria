@@ -17,12 +17,12 @@ $consulta_PACIENTES;
 $hoy = date('Y-m-d');
 if ($privilegios != '' && $usua != '') {
     if (!isset($_POST['buscar'])) {
-        if ($privilegios == 1 || $privilegios == 5) {
+        if ($privilegios == 1 || $privilegios == 3) {
             $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE INNER JOIN ipsen_gestiones_aspirante WHERE ID_GESTION = ID_ULTIMA_GESTION ORDER BY ID_ASPIRANTE");
             echo mysqli_error($conex);
             $consulta_PACIENTES = "SELECT * FROM ipsen_aspirantes AS P INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE INNER JOIN ipsen_gestiones_aspirante WHERE ID_GESTION = ID_ULTIMA_GESTION ORDER BY ID_ASPIRANTE LIMIT";
         }
-        if ($privilegios == 2 || $privilegios == 6) {
+        if ($privilegios == 2) {
             $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 			INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 			INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE
@@ -42,7 +42,7 @@ if ($privilegios != '' && $usua != '') {
     }
     if (isset($_POST['buscar'])) {
         $privilegios;
-        if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5 || $privilegios == 6) {
+        if ($privilegios == 1 || $privilegios == 2 || $privilegios == 3) {
             $NOMBRE = $_POST['nombre'];
             $DOCUMENTO = $_POST['documento'];
             $TELEFONO = $_POST['telefono'];
@@ -55,7 +55,7 @@ if ($privilegios != '' && $usua != '') {
             $PAP = $_POST['PAP'];
         }
         if ($NOMBRE == '' and $DOCUMENTO == '' and $TELEFONO == '' and $PAP == '') {
-            if ($privilegios == 1 || $privilegios == 5) {
+            if ($privilegios == 1 || $privilegios == 3) {
                 $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC");
@@ -64,7 +64,7 @@ if ($privilegios != '' && $usua != '') {
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC LIMIT";
             }
-            if ($privilegios == 2 || $privilegios == 6) {
+            if ($privilegios == 2) {
                 $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE
@@ -77,7 +77,7 @@ if ($privilegios != '' && $usua != '') {
             }
         }
         if ($NOMBRE != '' and $DOCUMENTO == '' and $TELEFONO == '' and $PAP == '') {
-            if ($privilegios == 1 || $privilegios == 5) {
+            if ($privilegios == 1 || $privilegios == 3) {
                 $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC");
@@ -85,7 +85,7 @@ if ($privilegios != '' && $usua != '') {
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%'GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC LIMIT";
             }
-            if ($privilegios == 2 || $privilegios == 6) {
+            if ($privilegios == 2) {
                 $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC");
@@ -95,7 +95,7 @@ if ($privilegios != '' && $usua != '') {
             }
         }
         if ($DOCUMENTO != '' and $NOMBRE == '' and $TELEFONO == '' and $PAP == '') {
-            if ($privilegios == 1 || $privilegios == 5) {
+            if ($privilegios == 1 || $privilegios == 3) {
                 $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC");
@@ -114,7 +114,7 @@ if ($privilegios != '' && $usua != '') {
 					WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC LIMIT";
                 }
             }
-            if ($privilegios == 2 || $privilegios == 6) {
+            if ($privilegios == 2) {
                 $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC");
@@ -135,7 +135,7 @@ if ($privilegios != '' && $usua != '') {
             }
         }
         if ($TELEFONO != '' and $NOMBRE == '' and $DOCUMENTO == '' and $PAP == '') {
-            if ($privilegios == 1 || $privilegios == 5) {
+            if ($privilegios == 1 || $privilegios == 3) {
                 $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC");
@@ -143,7 +143,7 @@ if ($privilegios != '' && $usua != '') {
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC LIMIT";
             }
-            if ($privilegios == 2 || $privilegios == 6) {
+            if ($privilegios == 2) {
                 $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC");
@@ -153,7 +153,7 @@ if ($privilegios != '' && $usua != '') {
             }
         }
         if ($TELEFONO == '' and $NOMBRE == '' and $DOCUMENTO == '' and $PAP != '') {
-            if ($privilegios == 1 || $privilegios == 5) {
+            if ($privilegios == 1 || $privilegios == 3) {
                 $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN(SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE WHERE ID_ASPIRANTE='" . $PAP . "' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC");
@@ -172,7 +172,7 @@ if ($privilegios != '' && $usua != '') {
 					WHERE ID_ASPIRANTE='" . $PAP . "' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC LIMIT";
                 }
             }
-            if ($privilegios == 2 || $privilegios == 6) {
+            if ($privilegios == 2) {
                 $consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_aspirantes AS P
 				INNER JOIN ipsen_tratamiento_aspirante AS T ON T.ID_ASPIRANTE_FK=P.ID_ASPIRANTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones_aspirante WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_ASPIRANTE_FK2=P.ID_ASPIRANTE WHERE ID_ASPIRANTE='" . $PAP . "' GROUP BY P.ID_ASPIRANTE  ORDER BY P.ID_ASPIRANTE ASC");
@@ -217,7 +217,7 @@ if ($privilegios != '' && $usua != '') {
     <body>
         <?php
         $url = "../presentacion/listado_aspirantes.php";
-        if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5 || $privilegios == 6) {
+        if ($privilegios == 1 || $privilegios == 2 || $privilegios == 3) {
             $num_total_registros = mysqli_num_rows($consulta_ref);
         }
         if (isset($_POST['buscar']) && $privilegios == 4) {
@@ -238,7 +238,7 @@ if ($privilegios != '' && $usua != '') {
                     <th width="12%" class="botones">CIUDAD</th>
                     <th width="12%" class="botones">PRODUCTO</th>
                     <?php
-                    if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5 || $privilegios == 6) {
+                    if ($privilegios == 1 || $privilegios == 2 || $privilegios == 3) {
                     ?>
                         <th width="11%" class="botones">PROXIMO CONTACTO</th>
                         <th width="11%" class="botones">ESTADO GESTION</th>
@@ -294,7 +294,7 @@ if ($privilegios != '' && $usua != '') {
                         <?php } ?>
                         <td><?php echo $fila1['PRODUCTO_TRATAMIENTO'] ?></td>
                         <?php
-                        if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5) {
+                        if ($privilegios == 1 || $privilegios == 2 || $privilegios == 3) {
                         ?>
                             <?php
                             $gestion = mysqli_query($conex, "SELECT * FROM `ipsen_gestiones_aspirante` WHERE `ID_ASPIRANTE_FK2` = '" . $fila1['ID_ASPIRANTE'] . "' ORDER BY `FECHA_COMUNICACION` DESC LIMIT 1");
@@ -321,18 +321,8 @@ if ($privilegios != '' && $usua != '') {
                             </td>
                         <?php
                         }
-                        if ($privilegios == 6) {
                         ?>
-                            <td><?php echo $fila1['FECHA_PROGRAMADA_GESTION'] ?></td>
-                            <td><?php echo $fila1['ESTADO_GESTION'] ?></td>
-                            <td><a href="../presentacion/form_paciente_recolecc.php?artid=<?php echo base64_encode($fila1['ID_ASPIRANTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="20" height="20" /></a></td>
                         <?php
-                        }
-                        if ($privilegios == 1 and $usua != 'AArango' and $usua != 'ORagua' and $usua != 'ABulla' and $usua != 'brayan') {
-                        ?>
-                            <!-- <td><a href="../presentacion/form_aspirante_modificacion.php?artid=<?php echo base64_encode($fila1['ID_ASPIRANTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="15" height="15" /></a></td> -->
-                        <?php
-                        }
                         if ($privilegios == 4) {
                         ?>
                             <td><a href="../presentacion/form_aspirante.php?artid=<?php echo base64_encode($fila1['ID_ASPIRANTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="20" height="20" /></a></td>

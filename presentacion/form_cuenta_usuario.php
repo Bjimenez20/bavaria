@@ -102,9 +102,6 @@ if ($privilegios != '' && $usua != '') {
 					if ($privilegios == 4) {
 						$PERFIL = 'CLIENTE';
 					}
-					if ($privilegios == 5) {
-						$PERFIL = 'OTRO';
-					}
 					?>
 					<td>
 						<input type="text" name="PERFIL" id="PERFIL" placeholder="PERFIL" readonly value="<?php echo $PERFIL ?>" />

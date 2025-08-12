@@ -71,7 +71,7 @@ include('../logica/session.php')
                 <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" style="margin:auto auto;" class="letra">
                     <tr align="center">
                         <?php
-                        if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5 || $privilegios == 4 || $privilegios == 6) {
+                        if ($privilegios == 1 || $privilegios == 2 || $privilegios == 3 || $privilegios == 4) {
                         ?>
                             <th width="15%" align="left" class="titulosth" bgcolor="#0C68B0">
                                 <div id="movimiento1">

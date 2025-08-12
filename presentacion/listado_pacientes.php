@@ -17,12 +17,12 @@ $consulta_PACIENTES;
 $hoy = date('Y-m-d');
 if ($privilegios != '' && $usua != '') {
 	if (!isset($_POST['buscar'])) {
-		if ($privilegios == 1 || $privilegios == 5) {
+		if ($privilegios == 1 || $privilegios == 3) {
 			$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE INNER JOIN ipsen_gestiones WHERE ID_GESTION = ID_ULTIMA_GESTION ORDER BY ID_PACIENTE");
 			echo mysqli_error($conex);
 			$consulta_PACIENTES = "SELECT * FROM ipsen_pacientes AS P INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE INNER JOIN ipsen_gestiones WHERE ID_GESTION = ID_ULTIMA_GESTION ORDER BY ID_PACIENTE LIMIT";
 		}
-		if ($privilegios == 2 || $privilegios == 6) {
+		if ($privilegios == 2) {
 			$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 			INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 			INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE
@@ -41,7 +41,7 @@ if ($privilegios != '' && $usua != '') {
 	}
 	if (isset($_POST['buscar'])) {
 		$privilegios;
-		if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5 || $privilegios == 6) {
+		if ($privilegios == 1 || $privilegios == 2 || $privilegios == 3) {
 			$NOMBRE = $_POST['nombre'];
 			$DOCUMENTO = $_POST['documento'];
 			$TELEFONO = $_POST['telefono'];
@@ -54,7 +54,7 @@ if ($privilegios != '' && $usua != '') {
 			$PAP = $_POST['PAP'];
 		}
 		if ($NOMBRE == '' and $DOCUMENTO == '' and $TELEFONO == '' and $PAP == '') {
-			if ($privilegios == 1 || $privilegios == 5) {
+			if ($privilegios == 1 || $privilegios == 3) {
 				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
@@ -63,7 +63,7 @@ if ($privilegios != '' && $usua != '') {
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 			}
-			if ($privilegios == 2 || $privilegios == 6) {
+			if ($privilegios == 2) {
 				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE
@@ -76,7 +76,7 @@ if ($privilegios != '' && $usua != '') {
 			}
 		}
 		if ($NOMBRE != '' and $DOCUMENTO == '' and $TELEFONO == '' and $PAP == '') {
-			if ($privilegios == 1 || $privilegios == 5) {
+			if ($privilegios == 1 || $privilegios == 3) {
 				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
@@ -84,7 +84,7 @@ if ($privilegios != '' && $usua != '') {
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%'GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 			}
-			if ($privilegios == 2 || $privilegios == 6) {
+			if ($privilegios == 2) {
 				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE CONCAT(P.NOMBRE_PACIENTE,' ',P.APELLIDO_PACIENTE) LIKE '%" . $NOMBRE . "%' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
@@ -94,7 +94,7 @@ if ($privilegios != '' && $usua != '') {
 			}
 		}
 		if ($DOCUMENTO != '' and $NOMBRE == '' and $TELEFONO == '' and $PAP == '') {
-			if ($privilegios == 1 || $privilegios == 5) {
+			if ($privilegios == 1 || $privilegios == 3) {
 				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
@@ -113,7 +113,7 @@ if ($privilegios != '' && $usua != '') {
 					WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				}
 			}
-			if ($privilegios == 2 || $privilegios == 6) {
+			if ($privilegios == 2) {
 				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE IDENTIFICACION_PACIENTE='" . $DOCUMENTO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
@@ -134,7 +134,7 @@ if ($privilegios != '' && $usua != '') {
 			}
 		}
 		if ($TELEFONO != '' and $NOMBRE == '' and $DOCUMENTO == '' and $PAP == '') {
-			if ($privilegios == 1 || $privilegios == 5) {
+			if ($privilegios == 1 || $privilegios == 3) {
 				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
@@ -142,7 +142,7 @@ if ($privilegios != '' && $usua != '') {
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 			}
-			if ($privilegios == 2 || $privilegios == 6) {
+			if ($privilegios == 2) {
 				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE TELEFONO_PACIENTE='" . $TELEFONO . "' OR TELEFONO2_PACIENTE='" . $TELEFONO . "'  OR TELEFONO3_PACIENTE='" . $TELEFONO . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
@@ -152,7 +152,7 @@ if ($privilegios != '' && $usua != '') {
 			}
 		}
 		if ($TELEFONO == '' and $NOMBRE == '' and $DOCUMENTO == '' and $PAP != '') {
-			if ($privilegios == 1 || $privilegios == 5) {
+			if ($privilegios == 1 || $privilegios == 3) {
 				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN(SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
@@ -171,7 +171,7 @@ if ($privilegios != '' && $usua != '') {
 					WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				}
 			}
-			if ($privilegios == 2 || $privilegios == 6) {
+			if ($privilegios == 2) {
 				$consulta_ref = mysqli_query($conex, "SELECT * FROM ipsen_pacientes AS P
 				INNER JOIN ipsen_tratamiento AS T ON T.ID_PACIENTE_FK=P.ID_PACIENTE
 				INNER JOIN (SELECT * FROM ipsen_gestiones WHERE MOTIVO_COMUNICACION_GESTION!='GESTION FUNDEM' AND AUTOR_GESTION!='FUNDEM' ORDER BY ID_GESTION DESC) AS G ON G.ID_PACIENTE_FK2=P.ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC");
@@ -190,6 +190,11 @@ if ($privilegios != '' && $usua != '') {
 					WHERE ID_PACIENTE='" . $PAP . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 				}
 			}
+			if ($privilegios == 4) {
+				$consulta_ref = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` INNER JOIN `ipsen_gestiones` ON ID_PACIENTE_FK2 = ID_PACIENTE INNER JOIN `ipsen_tratamiento` ON ID_PACIENTE_FK = ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' and AUTORIZACION_EDUGESTOR = 'SI'");
+				echo mysqli_error($conex);
+				$consulta_PACIENTES = "SELECT * FROM `ipsen_pacientes` INNER JOIN `ipsen_gestiones` ON ID_PACIENTE_FK2 = ID_PACIENTE INNER JOIN `ipsen_tratamiento` ON ID_PACIENTE_FK = ID_PACIENTE WHERE ID_PACIENTE='" . $PAP . "' and AUTORIZACION_EDUGESTOR = 'SI' LIMIT";
+			}
 		}
 	}
 ?>
@@ -197,7 +202,7 @@ if ($privilegios != '' && $usua != '') {
 	<body>
 		<?php
 		$url = "../presentacion/listado_pacientes.php";
-		if ($privilegios == 1 || $privilegios == 2 || $privilegios == 4 || $privilegios == 5 || $privilegios == 6) {
+		if ($privilegios == 1 || $privilegios == 2 || $privilegios == 4 || $privilegios == 3) {
 			$num_total_registros = mysqli_num_rows($consulta_ref);
 		}
 		// if (isset($_POST['buscar']) && $privilegios == 4) {
@@ -209,7 +214,7 @@ if ($privilegios != '' && $usua != '') {
 				<tr>
 					<th width="9%" class="botones">CODIGO</th>
 					<?php
-					if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5 || $privilegios == 6) {
+					if ($privilegios == 1 || $privilegios == 2 || $privilegios == 3) {
 					?>
 						<th width="31%" class="botones">NOMBRE</th>
 						<th width="12%" class="botones">DOCUMENTO</th>
@@ -227,7 +232,7 @@ if ($privilegios != '' && $usua != '') {
 					}
 					?>
 					<?php
-					if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5 || $privilegios == 6) {
+					if ($privilegios == 1 || $privilegios == 2 || $privilegios == 3) {
 					?>
 						<th width="11%" class="botones">PROXIMO CONTACTO</th>
 						<th width="11%" class="botones">ESTADO GESTION</th>
@@ -285,7 +290,7 @@ if ($privilegios != '' && $usua != '') {
 							<?php } ?>
 							<td><?php echo $fila1['PRODUCTO_TRATAMIENTO'] ?></td>
 							<?php
-							if ($privilegios == 1 || $privilegios == 2 || $privilegios == 5) {
+							if ($privilegios == 1 || $privilegios == 2 || $privilegios == 3) {
 							?>
 								<?php
 								$gestion = mysqli_query($conex, "SELECT * FROM `ipsen_gestiones` WHERE `ID_PACIENTE_FK2` = '" . $fila1['ID_PACIENTE'] . "' ORDER BY `FECHA_COMUNICACION` DESC LIMIT 1");
@@ -307,13 +312,6 @@ if ($privilegios != '' && $usua != '') {
 										<a href="../presentacion/form_paciente.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a>
 									<?php } ?>
 								</td>
-							<?php
-							}
-							if ($privilegios == 6) {
-							?>
-								<td><?php echo $fila1['FECHA_PROGRAMADA_GESTION'] ?></td>
-								<td><?php echo $fila1['ESTADO_GESTION'] ?></td>
-								<td><a href="../presentacion/form_paciente_recolecc.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a></td>
 							<?php
 							}
 							if ($privilegios == 1) {
