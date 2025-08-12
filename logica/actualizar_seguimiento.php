@@ -88,6 +88,10 @@ include('../logica/session.php');
     $respues_visi_no = $_POST['span_causa_visita1'];
     $tipo_doc = $_POST['tipo_doc'];
     $tipo_doc_str = implode(",", $tipo_doc);
+    $numero_pendiente = $_POST['num_pendiente'];
+    $fecha_pendiente = $_POST['fecha_pendiente'];
+    $asignado_edugestor = $_POST['ciudad_edugestor'];
+    $autorizacion_edugestor = $_POST['autorizacion_edugestor'];
     $linea_tratamiento = $_POST['linea_tratamiento'];
 
     $visitarrr1 = mysqli_query($conex, "UPDATE ipsen_tratamiento SET VISI_INI_EFEC = '" . $sel_visita_inicial . "', PROGRA_VIS_EDU ='" . $programada_visita . "' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
@@ -107,19 +111,7 @@ include('../logica/session.php');
     } else {
         $fecha_formulacion = $_POST['fecha_formulacion'];
     }
-    // if ($causa_no_reclamacion == 'En proceso de Examenes' || $causa_no_reclamacion == 'Falta cita para examenes' || $causa_no_reclamacion == 'Hospitalizado' || $causa_no_reclamacion == 'Suspendido por esquema de aplicacion' || $causa_no_reclamacion == 'Suspendido temporalmente') {
-    //     $cambio_estado_paciente = $_POST['estado_suspendido'];
-    // }
-    // if ($causa_no_reclamacion == 'Autorizacion radicada para Cita' || $causa_no_reclamacion == 'Autorizacion radicada para Medicamento' || $causa_no_reclamacion == 'Cita inoportuna' || $causa_no_reclamacion == 'Demora en la Autorizacion Cita Medica' || $causa_no_reclamacion == 'Demora en la autorizacion de medicamento' || $causa_no_reclamacion == 'Desafiliacion Asegurador' || $causa_no_reclamacion == 'En proceso de cita Aplicacion' || $causa_no_reclamacion == 'En proceso de cita medica' || $causa_no_reclamacion == 'En proceso de entrega' || $causa_no_reclamacion == 'Error en papeleria' || $causa_no_reclamacion == 'Falta de cita aplicacion' || $causa_no_reclamacion == 'Falta de cita medica' || $causa_no_reclamacion == 'Falta de cita valoracion (Xofigo)' || $causa_no_reclamacion == 'Falta de contacto' || $causa_no_reclamacion == 'Falta de medicamento en el punto' || $causa_no_reclamacion == 'No remision a entidad licenciada' || $causa_no_reclamacion == 'Pago anticipado' || $causa_no_reclamacion == 'Pendiente formulacion NO sistema' || $causa_no_reclamacion == 'Pendiente Radicar Formula en Farmacia' || $causa_no_reclamacion == 'PSVC en Titulacion' || $causa_no_reclamacion == 'Sin red Prestadora' || $causa_no_reclamacion == 'Voluntario') {
-    //     $cambio_estado_paciente = $_POST['estado_interrumpido'];
-    // }
-    // if ($causa_no_reclamacion == 'Abandono') {
-    //     $cambio_estado_paciente = $_POST['estado_abandono'];
-    // }
     $reclamo = $_POST['reclamo'];
-    // if ($reclamo == 'SI') {
-    //     $cambio_estado_paciente = $_POST['estado_activo'];
-    // }
     $ciudad_reclamacion = $_POST['ciudad_reclamacion'];
     $tratamiento_email = $_POST['MEDICAMENTO'];
     $fecha_formulacion_sql = mysqli_query($conex, "UPDATE ipsen_tratamiento SET FECHA_FORMULACION = '" . $fecha_formulacion . "', CIUDAD_RECLAMACION ='" . $ciudad_reclamacion . "'  WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
@@ -380,30 +372,6 @@ include('../logica/session.php');
             $programa = 'Cabocare';
         }
         if (isset($_POST['registrar'])) {
-            $select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
-            echo mysqli_error($conex);
-            $reg_hist = mysqli_num_rows($select_historial);
-            if ($reg_hist > 0) {
-                if ($reclamo == 'SI') {
-                    $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes . "'");
-                    echo mysqli_error($conex);
-                }
-                if ($reclamo == 'NO') {
-                    $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
-                    echo mysqli_error($conex);
-                }
-            } else {
-                $INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO ipsen_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $codigo_usuario2 . "')");
-                echo mysqli_error($conex);
-                if ($reclamo == 'SI') {
-                    $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
-                    echo mysqli_error($conex);
-                }
-                if ($reclamo == 'NO') {
-                    $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET  RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "' AND MES$dato='" . $mes_act . "'");
-                    echo mysqli_error($conex);
-                }
-            }
             $select_temporal = mysqli_query($conex, "SELECT * FROM ipsen_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
             $nreg = mysqli_num_rows($select_temporal);
             if ($nreg > 0) {
@@ -610,14 +578,42 @@ include('../logica/session.php');
                         echo mysqli_error($conex);
                     }
                     if ($reclamo == 'SI') {
-                        $sql = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,FECHA_AUTORIZACION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_APLICACION,LUGAR_APLICACION,FECHA_CITA_PROGRAMADA,FECHA_MEDICAMENTO_HASTA,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION,CODIGO_ARGUS,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES,FECHA_INI_PAAP,FECHA_FIN_PAAP, EVENTO_ADVERSO_FK, TIPO_DOC)VALUES('" . $motivo_comunicacion . "','" . $medio_contacto . "','" . $tipo_llamada . "','" . $logro_comunicacion . "','" . $motivo_no_comunicacion . "','" . $via_recepcion . "','" . $estado_ctc . "','" . $fecha_autorizacion . "','" . $estado_farmacia . "','" . $reclamo . "','" . $aplicacion . "','" . $consecutivo_betaferon . "','','" . $dificultad_acceso . "','" . $tipo_dificultad . "','" . $envios . "','" . $MEDICAMENTO . "','" . $tipo_envio . "','" . $evento_adverso . "','" . $tipo_evento_adverso . "','" . $genera_solicitud . "','" . $fecha_proxima_llamada . "','" . $motivo_proxima_llamada . "','" . $observacion_proxima_llamada . "','" . $fecha_reclamacion . "','" . $fecha_aplicacion . "','" . $lugar_aplicacion . "','" . $fecha_cita_programada . "','" . $fecha_medicamento_hasta . "','" . $numero_cajas . "','" . $consecutivo . "','" . $autor . "','" . $nota . "','" . $descripcion_comunicacion . "','" . $fecha_proxima_llamada . "','SIN ASIGNAR','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP,'" . $CONSECUTIVO_EA . "','" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "', '" . $fecha_inicio_paap . "', '" . $fecha_fin_paap . "', '" . $ID_EVENTO_ADVERSO . "', '" . $tipo_doc_str . "')");
+                        $sql = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,FECHA_AUTORIZACION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_APLICACION,LUGAR_APLICACION,FECHA_CITA_PROGRAMADA,FECHA_MEDICAMENTO_HASTA,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION,CODIGO_ARGUS,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES,FECHA_INI_PAAP,FECHA_FIN_PAAP, EVENTO_ADVERSO_FK, TIPO_DOC, NUMERO_PENDIENTE, FECHA_PENDIENTE, ASIGNADO_EDUGESTOR, AUTORIZACION_EDUGESTOR)VALUES('" . $motivo_comunicacion . "','" . $medio_contacto . "','" . $tipo_llamada . "','" . $logro_comunicacion . "','" . $motivo_no_comunicacion . "','" . $via_recepcion . "','" . $estado_ctc . "','" . $fecha_autorizacion . "','" . $estado_farmacia . "','" . $reclamo . "','" . $aplicacion . "','" . $consecutivo_betaferon . "','','" . $dificultad_acceso . "','" . $tipo_dificultad . "','" . $envios . "','" . $MEDICAMENTO . "','" . $tipo_envio . "','" . $evento_adverso . "','" . $tipo_evento_adverso . "','" . $genera_solicitud . "','" . $fecha_proxima_llamada . "','" . $motivo_proxima_llamada . "','" . $observacion_proxima_llamada . "','" . $fecha_reclamacion . "','" . $fecha_aplicacion . "','" . $lugar_aplicacion . "','" . $fecha_cita_programada . "','" . $fecha_medicamento_hasta . "','" . $numero_cajas . "','" . $consecutivo . "','" . $autor . "','" . $nota . "','" . $descripcion_comunicacion . "','" . $fecha_proxima_llamada . "','SIN ASIGNAR','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP,'" . $CONSECUTIVO_EA . "','" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "', '" . $fecha_inicio_paap . "', '" . $fecha_fin_paap . "', '" . $ID_EVENTO_ADVERSO . "', '" . $tipo_doc_str . "', '" . $numero_pendiente . "', '" . $fecha_pendiente . "', '" . $asignado_edugestor . "', '" . $autorizacion_edugestor . "')");
                         echo mysqli_error($conex);
                     } else if ($reclamo == 'NO') {
-                        $sql = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,FECHA_AUTORIZACION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_APLICACION,LUGAR_APLICACION,FECHA_CITA_PROGRAMADA,FECHA_MEDICAMENTO_HASTA,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION,CODIGO_ARGUS,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES,FECHA_INI_PAAP,FECHA_FIN_PAAP, EVENTO_ADVERSO_FK, TIPO_DOC)VALUES('" . $motivo_comunicacion . "','" . $medio_contacto . "','" . $tipo_llamada . "','" . $logro_comunicacion . "','" . $motivo_no_comunicacion . "','" . $via_recepcion . "','" . $estado_ctc . "','" . $fecha_autorizacion . "','" . $estado_farmacia . "','" . $reclamo . "','','" . $consecutivo_betaferon . "','" . $causa_no_reclamacion . "','" . $dificultad_acceso . "','" . $tipo_dificultad . "','" . $envios . "','" . $MEDICAMENTO . "','" . $tipo_envio . "','" . $evento_adverso . "','" . $tipo_evento_adverso . "','" . $genera_solicitud . "','" . $fecha_proxima_llamada . "','" . $motivo_proxima_llamada . "','" . $observacion_proxima_llamada . "','','" . $fecha_aplicacion . "','" . $lugar_aplicacion . "','" . $fecha_cita_programada . "','" . $fecha_medicamento_hasta . "','" . $numero_cajas . "','" . $consecutivo . "','" . $autor . "','" . $nota . "','" . $descripcion_comunicacion . "','" . $fecha_proxima_llamada . "','SIN ASIGNAR','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP,'" . $CONSECUTIVO_EA . "','" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "', '" . $fecha_inicio_paap . "', '" . $fecha_fin_paap . "', '" . $ID_EVENTO_ADVERSO . "', '" . $tipo_doc_str . "')");
+                        $sql = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,FECHA_AUTORIZACION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_APLICACION,LUGAR_APLICACION,FECHA_CITA_PROGRAMADA,FECHA_MEDICAMENTO_HASTA,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION,CODIGO_ARGUS,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES,FECHA_INI_PAAP,FECHA_FIN_PAAP, EVENTO_ADVERSO_FK, TIPO_DOC, NUMERO_PENDIENTE, FECHA_PENDIENTE, ASIGNADO_EDUGESTOR, AUTORIZACION_EDUGESTOR)VALUES('" . $motivo_comunicacion . "','" . $medio_contacto . "','" . $tipo_llamada . "','" . $logro_comunicacion . "','" . $motivo_no_comunicacion . "','" . $via_recepcion . "','" . $estado_ctc . "','" . $fecha_autorizacion . "','" . $estado_farmacia . "','" . $reclamo . "','','" . $consecutivo_betaferon . "','" . $causa_no_reclamacion . "','" . $dificultad_acceso . "','" . $tipo_dificultad . "','" . $envios . "','" . $MEDICAMENTO . "','" . $tipo_envio . "','" . $evento_adverso . "','" . $tipo_evento_adverso . "','" . $genera_solicitud . "','" . $fecha_proxima_llamada . "','" . $motivo_proxima_llamada . "','" . $observacion_proxima_llamada . "','','" . $fecha_aplicacion . "','" . $lugar_aplicacion . "','" . $fecha_cita_programada . "','" . $fecha_medicamento_hasta . "','" . $numero_cajas . "','" . $consecutivo . "','" . $autor . "','" . $nota . "','" . $descripcion_comunicacion . "','" . $fecha_proxima_llamada . "','SIN ASIGNAR','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP,'" . $CONSECUTIVO_EA . "','" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "', '" . $fecha_inicio_paap . "', '" . $fecha_fin_paap . "', '" . $ID_EVENTO_ADVERSO . "', '" . $tipo_doc_str . "', '" . $numero_pendiente . "', '" . $fecha_pendiente . "', '" . $asignado_edugestor . "', '" . $autorizacion_edugestor . "')");
                         echo mysqli_error($conex);
+                    }
+                    $select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK = '225'");
+                    echo mysqli_error($conex);
+                    $reg_hist = mysqli_num_rows($select_historial);
+                    if ($reg_hist > 0) {
+                        if ($reclamo == 'SI') {
+                            $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes . "', RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+                            echo mysqli_error($conex);
+                        }
+                        if ($reclamo == 'NO') {
+                            $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes_act . "', RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+                            echo mysqli_error($conex);
+                        }
+                    } else {
+                        $INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO ipsen_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $codigo_usuario2 . "')");
+                        echo mysqli_error($conex);
+                        if ($reclamo == 'SI') {
+                            $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes_act . "', RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+                            echo mysqli_error($conex);
+                        }
+                        if ($reclamo == 'NO') {
+                            $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes_act . "', RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+                            echo mysqli_error($conex);
+                        }
                     }
                     if ($sub_barrera == "Correo") {
                         include("../presentacion/email/mail_apoyo_paap.php");
+                    }
+
+                    if ($causa_no_reclamacion == 'Cita inoportuna' || $causa_no_reclamacion == 'Demora en la Autorizacion Cita Medica' || $causa_no_reclamacion == 'Demora en la autorizacion de medicamento' || $causa_no_reclamacion == 'Demora en la entrega del medicamento' || $causa_no_reclamacion == 'Error en papeleria' || $causa_no_reclamacion == 'Falta cita para examenes' || $causa_no_reclamacion == 'Falta de cita de aplicacion' || $causa_no_reclamacion == 'Falta de cita medica' || $causa_no_reclamacion == 'Falta de medicamento en el punto' || $causa_no_reclamacion == 'Sin red Prestadora') {
+                        include("../presentacion/email/mail_barreras.php");
                     }
                     $select_gestion = mysqli_query($conex, "SELECT * FROM ipsen_gestiones WHERE ID_PACIENTE_FK2='" . $codigo_usuario2 . "' ORDER BY ID_GESTION DESC LIMIT 1");
                     while ($datos_gestion = mysqli_fetch_array($select_gestion)) {
@@ -673,69 +669,6 @@ include('../logica/session.php');
                     while ($fila2 = mysqli_fetch_array($SELECT_GES)) {
                         $ID_GES = $fila2['ID_GESTION'];
                     }
-
-                    ob_start();
-                    error_reporting(E_ALL);
-                    ini_set('display_errors', 1);
-
-                    // Depuración inicial
-                    echo "Inicio del script<br>";
-                    flush();
-
-                    // Verificar si hay archivos y tipos de documentos
-                    // if (empty($_POST['tipo_doc'])) {
-                    //     die("Error: No se seleccionó ningún tipo de documento.");
-                    // }
-
-                    if (empty($_FILES['archivo'])) {
-                        die("Error: No se seleccionó ningún archivo.");
-                    }
-
-                    // Definir carpetas de destino
-                    $destinos = [
-                        "Consentimiento Informado" => "../CI/$id_paciente",
-                        "Voucher" => "../ADJUNTOS_IPSEN/$ID_GES",
-                        "Evento Adverso" => "../EA/$ID_GES",
-                        "Grabacion Llamada" => "../Audios/$id_paciente",
-                        "Documentacion Inicial" => "../DOC_INI/$id_paciente"
-                    ];
-
-                    $success = [];
-                    $errors = [];
-
-                    foreach ($_FILES['archivo']['name'] as $tipoDoc => $archivos) {
-                        if (!isset($destinos[$tipoDoc])) {
-                            $errors[] = "Error: Tipo de documento no reconocido: $tipoDoc";
-                            continue;
-                        }
-
-                        $directorioDestino = $destinos[$tipoDoc] . "/"; // Cambiar según lógica
-                        if (!is_dir($directorioDestino)) {
-                            mkdir($directorioDestino, 0777, true);
-                        }
-
-                        foreach ($archivos as $key => $nombreArchivo) {
-                            $tempPath = $_FILES['archivo']['tmp_name'][$tipoDoc][$key];
-                            $rutaDestino = $directorioDestino . basename($nombreArchivo);
-
-                            if (move_uploaded_file($tempPath, $rutaDestino)) {
-                                $success[] = "Archivo '$tipoDoc' - $nombreArchivo guardado en: $rutaDestino";
-                            } else {
-                                $errors[] = "Error al mover el archivo: $nombreArchivo";
-                            }
-                        }
-                    }
-
-                    // Mostrar resultados
-                    foreach ($success as $msg) {
-                        echo "$msg<br>";
-                    }
-                    foreach ($errors as $msg) {
-                        echo "$msg<br>";
-                    }
-
-                    // Redirigir (asegurando que no haya salida previa)
-                    ob_end_flush();
 
                     if ($sql) {
                         if ($evento_adverso == 'SI') {
@@ -803,5 +736,68 @@ include('../logica/session.php');
                         <br />
             <?php
                     }
+
+                    ob_start();
+                    error_reporting(E_ALL);
+                    ini_set('display_errors', 1);
+
+                    // Depuración inicial
+                    echo "Inicio del script<br>";
+                    flush();
+
+                    // Verificar si hay archivos y tipos de documentos
+                    // if (empty($_POST['tipo_doc'])) {
+                    //     die("Error: No se seleccionó ningún tipo de documento.");
+                    // }
+
+                    if (empty($_FILES['archivo'])) {
+                        die("Error: No se seleccionó ningún archivo.");
+                    }
+
+                    // Definir carpetas de destino
+                    $destinos = [
+                        "Consentimiento Informado" => "../CI/$id_paciente",
+                        "Voucher" => "../ADJUNTOS_IPSEN/$ID_GES",
+                        "Evento Adverso" => "../EA/$ID_GES",
+                        "Grabacion Llamada" => "../Audios/$id_paciente",
+                        "Documentacion Inicial" => "../DOC_INI/$id_paciente"
+                    ];
+
+                    $success = [];
+                    $errors = [];
+
+                    foreach ($_FILES['archivo']['name'] as $tipoDoc => $archivos) {
+                        if (!isset($destinos[$tipoDoc])) {
+                            $errors[] = "Error: Tipo de documento no reconocido: $tipoDoc";
+                            continue;
+                        }
+
+                        $directorioDestino = $destinos[$tipoDoc] . "/"; // Cambiar según lógica
+                        if (!is_dir($directorioDestino)) {
+                            mkdir($directorioDestino, 0777, true);
+                        }
+
+                        foreach ($archivos as $key => $nombreArchivo) {
+                            $tempPath = $_FILES['archivo']['tmp_name'][$tipoDoc][$key];
+                            $rutaDestino = $directorioDestino . basename($nombreArchivo);
+
+                            if (move_uploaded_file($tempPath, $rutaDestino)) {
+                                $success[] = "Archivo '$tipoDoc' - $nombreArchivo guardado en: $rutaDestino";
+                            } else {
+                                $errors[] = "Error al mover el archivo: $nombreArchivo";
+                            }
+                        }
+                    }
+
+                    // Mostrar resultados
+                    foreach ($success as $msg) {
+                        echo "$msg<br>";
+                    }
+                    foreach ($errors as $msg) {
+                        echo "$msg<br>";
+                    }
+
+                    // Redirigir (asegurando que no haya salida previa)
+                    ob_end_flush();
                 }
             }

@@ -13,7 +13,7 @@ Cualquier inquietud con gusto sera atendida.
 <br />
 Correo enviado de manera automatica.";
 
-$subject = "Prueba reporte Farmacovigilancia - PAP$ID_PACIENTE_FK - $fecha";
+$subject = "Reporte Farmacovigilancia - PAP$ID_PACIENTE_FK - $fecha";
 
 $mail->Body = $body;
 $mail->Subject = $subject;

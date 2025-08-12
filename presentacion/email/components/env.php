@@ -12,7 +12,7 @@
 // VARIABLES DE ENTORNO AWS
 $host = 'smtp.mi.com.co';
 $user = 'programadepacientescolombia@pspipsen.com';
-$pass = 'Ppc2022*';
+$pass = 'Ppc2025*';
 $encrypt = 'tls';
 $port = '587';
 $emailout = 'programadepacientescolombia@pspipsen.com';

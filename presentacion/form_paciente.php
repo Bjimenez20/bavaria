@@ -682,6 +682,7 @@ include('../logica/session.php')
                     $('#confirmar_P_select').css('display', 'block');
                 }
             });
+
             $('#reclamo').change(function() {
                 var RECLAMO = $('#reclamo').val();
                 $('#cambio_estado_activo_solicitar').val('');
@@ -743,6 +744,42 @@ include('../logica/session.php')
                 } else {
                     $('#cambio_estado_interrumpido_solicitar').css('display', 'none');
                     $('#estado_interrumpido').css('display', 'none');
+                }
+
+            });
+            $('#causa_no_reclamacion').change(function() {
+                var CAUSA_NO_RECLAMACION = $('#causa_no_reclamacion').val();
+                if (CAUSA_NO_RECLAMACION == 'Demora en la entrega del medicamento' || CAUSA_NO_RECLAMACION == 'Falta de medicamento en el punto') {
+                    $('#span_num_pendiente').css('display', 'block');
+                    $('#num_pendiente').css('display', 'block');
+                    $('#span_fecha_pendiente').css('display', 'block');
+                    $('#fecha_pendiente').css('display', 'block');
+                } else {
+                    $('#span_num_pendiente').css('display', 'none');
+                    $('#num_pendiente').css('display', 'none');
+                    $('#span_fecha_pendiente').css('display', 'none');
+                    $('#fecha_pendiente').css('display', 'none');
+                }
+            });
+            $('#causa_no_reclamacion').change(function() {
+                var CAUSA_NO_RECLAMACION = $('#causa_no_reclamacion').val();
+                if (CAUSA_NO_RECLAMACION == 'Cita inoportuna' || CAUSA_NO_RECLAMACION == 'Demora en la Autorizacion Cita Medica' || CAUSA_NO_RECLAMACION == 'Demora en la autorizacion de medicamento' || CAUSA_NO_RECLAMACION == 'Demora en la entrega del medicamento' || CAUSA_NO_RECLAMACION == 'Error en papeleria' || CAUSA_NO_RECLAMACION == 'Falta cita para examenes' || CAUSA_NO_RECLAMACION == 'Falta de cita de aplicacion' || CAUSA_NO_RECLAMACION == 'Falta de cita medica' || CAUSA_NO_RECLAMACION == 'Falta de medicamento en el punto' || CAUSA_NO_RECLAMACION == 'Sin red Prestadora') {
+                    $('#span_asignado_edugestor').css('display', 'block');
+                    $('#ciudad_edugestor').css('display', 'block');
+
+                } else {
+                    $('#span_asignado_edugestor').css('display', 'none');
+                    $('#ciudad_edugestor').css('display', 'none');
+                }
+            });
+            $('#ciudad_edugestor').change(function() {
+                var CIUDAD_EDUGESTOR = $('#ciudad_edugestor').val();
+                if (CIUDAD_EDUGESTOR == 'Pasto' || CIUDAD_EDUGESTOR == 'Ibague' || CIUDAD_EDUGESTOR == 'Barranquilla' || CIUDAD_EDUGESTOR == 'Santander') {
+                    $('#span_autorizacion_edugestor').css('display', 'block');
+                    $('#autorizacion_edugestor').css('display', 'block');
+                } else {
+                    $('#span_autorizacion_edugestor').css('display', 'none');
+                    $('#autorizacion_edugestor').css('display', 'none');
                 }
             });
             $('#cambio_dosis').change(function() {
@@ -846,6 +883,27 @@ if ($privilegios != '' && $usua != '') {
                                 $SE_BRINDO_EDU = $fila_edu['SE_BRINDO_EDU'];
                                 $MOTIVO_NO_EDU = $fila_edu['MOTIVO_NO_EDU'];
                             }
+                            if ($privilegios == 4) {
+                            ?>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="alert alert-danger" role="alert">
+                                            Paciente con barrera administrativa que le impide acceder oportunamente a su tratamiento.
+                                            <div class="row mb-12">
+                                                <div class="col">
+                                                    <input type="radio" name="SI" id="SI">
+                                                    Autorizo gestionar por edugestor
+                                                </div>
+                                                <div class="col">
+                                                    <input type="radio" name="NO" id="NO">
+                                                    No autorizo gestionar por edugestor
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                            }
                             if ($CONSENTIMIENTO == 'SI') {
                             ?>
                                 <div class="row mb-3">
@@ -881,10 +939,12 @@ if ($privilegios != '' && $usua != '') {
                                     <select type="text" name="estado_paciente" id="estado_paciente" class="form-control">
                                         <option><?php echo $ESTADO_PACIENTE ?></option>
                                         <option value="">Seleccione...</option>
+                                        <option>Nuevo Activo</option>
+                                        <option>Nuevo Interrumpido</option>
+                                        <option>Interumplido</option>
                                         <option>Activo</option>
-                                        <option>Inactivo</option>
-                                        <option>Nuevo</option>
                                         <option>Suspendido</option>
+                                        <option>Drop out</option>
                                     </select>
                                 </div>
                             </div>
@@ -1752,8 +1812,8 @@ if ($privilegios != '' && $usua != '') {
                                     <div class="col">
                                         <select type="text" name="reclamo" id="reclamo" class="form-control">
                                             <option><?php echo $RECLAMO_GESTION ?></option>
-                                            <option>SI</option>
-                                            <option>NO</option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -1794,6 +1854,47 @@ if ($privilegios != '' && $usua != '') {
                                             <option>Suspendido por Cambio de tratamiento</option>
                                         </select>
                                         <input class="form-control" type="date" name="fecha_reclamacion" id="fecha_reclamacion" value="<?php echo $FECHA_RECLAMACION_GESTION ?>" style="display:none" />
+                                    </div>
+                                </div>
+                                <div class="row bm-3">
+                                    <div class="col">
+                                        <span class="fw-bold" id="span_asignado_edugestor" style="display: none;">Asignar a Edugestor<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-control" name="ciudad_edugestor" id="ciudad_edugestor" style="display: none;">
+                                            <option value="">Seleccionar...</option>
+                                            <option value="Pasto">Pasto</option>
+                                            <option value="Ibague">Ibague</option>
+                                            <option value="Barranquilla">Barranquilla</option>
+                                            <option value="Santander">Santander</option>
+                                            <option value="Eje Cafetero">Eje Cafetero</option>
+                                            <option value="Antioquia">Antioquia</option>
+                                            <option value="Cali">Cali</option>
+                                            <option value="Bogota Norte">Bogota Norte</option>
+                                            <option value="Bogota Sur">Bogota Sur</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold" id="span_autorizacion_edugestor" style="display: none;">Requiere autorizacion<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-control" name="autorizacion_edugestor" id="autorizacion_edugestor" style="display: none;">
+                                            <option value="SI">SI</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold" id="span_num_pendiente" style="display: none;">Numero de Pendiente<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" style="display: none;" name="num_pendiente" id="num_pendiente">
+                                    </div>
+                                    <div class="col">
+                                        <span class="fw-bold" id="span_fecha_pendiente" style="display: none;">Fecha de Pendiente<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <input type="date" class="form-control" style="display: none;" name="fecha_pendiente" id="fecha_pendiente">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -1844,7 +1945,7 @@ if ($privilegios != '' && $usua != '') {
                             <div class="row mb-3">
                                 <div class="col">
                                     <div id="asignado" style="display:none">
-                                        <span>Asignado para</span>
+                                        <span class="fw-bold">Asignado para</span>
                                     </div>
                                 </div>
                                 <div class="col">

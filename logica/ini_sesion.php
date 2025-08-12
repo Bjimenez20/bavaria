@@ -7,13 +7,13 @@ mysqli_select_db($conex, $basepaciente) or die("No se Puede conectar a la base d
 $_SESSION['NAME'] = '';
 $USER = addslashes($_POST['email']);
 $CONTRASENA = addslashes($_POST['Contrasena']);
-$sql = mysqli_query($conex, "SELECT `USER`, `CONTRASENA`, `PRIVILEGIOS`, `CONTRASENA_FECHA`,`ID_USUARIO`, `EMAIL` FROM `ipsen_usuario` WHERE `EMAIL` = '" . $USER . "' and `CONTRASENA` = MD5('" . $CONTRASENA . "') and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
+$sql = mysqli_query($conex, "SELECT `USER`, `CONTRASENA`, `PRIVILEGIOS`, `CONTRASENA_FECHA`,`ID_USUARIO`, `EMAIL` , `NOMBRES`, `APELLIDOS` FROM `ipsen_usuario` WHERE `EMAIL` = '" . $USER . "' and `CONTRASENA` = MD5('" . $CONTRASENA . "') and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
 $conusuario = mysqli_query($conex, "SELECT `USER`,`INTENTOS`, `ESTADO`, `EMAIL` FROM `ipsen_usuario` WHERE `EMAIL` = '" . $USER . "' and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
 echo mysqli_error($conex);
 mysqli_num_rows($sql);
 if (mysqli_num_rows($sql) > 0) {
 	$linea = mysqli_fetch_array($sql);
-	$usua = $linea[0];
+	$usua = $linea[6] . ' ' . $linea[7];
 	$privilegios = $linea[2];
 	$contra_fecha = $linea[3];
 	$id_usuario = $linea[4];
