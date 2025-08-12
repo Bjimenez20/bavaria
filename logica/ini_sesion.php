@@ -19,6 +19,7 @@ if (mysqli_num_rows($sql) > 0) {
 	$contra_fecha = $linea[3];
 	$id_usuario = $linea[4];
 	$hoy = date("Y-m-d H:i:s");
+	$_SESSION["name_user"] = $usua;
 	$_SESSION["usuarios"] = $name_user;
 	$_SESSION["privilegios"] = $privilegios;
 	$_SESSION["id"] = $id_usuario;
