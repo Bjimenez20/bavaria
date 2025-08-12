@@ -1,7 +1,5 @@
 @charset "utf-8";
 
-/* CSS Document */
-/*@import url("GothamRnd_book/stylesheet.css");*/
 table tr:nth-child(odd) {
 	font-size: 90%;
 	text-transform: uppercase;

@@ -13,17 +13,18 @@ echo mysqli_error($conex);
 mysqli_num_rows($sql);
 if (mysqli_num_rows($sql) > 0) {
 	$linea = mysqli_fetch_array($sql);
+	$name_user = $linea[0];
 	$usua = $linea[6] . ' ' . $linea[7];
 	$privilegios = $linea[2];
 	$contra_fecha = $linea[3];
 	$id_usuario = $linea[4];
 	$hoy = date("Y-m-d H:i:s");
-	$_SESSION["usuarios"] = $usua;
+	$_SESSION["usuarios"] = $name_user;
 	$_SESSION["privilegios"] = $privilegios;
 	$_SESSION["id"] = $id_usuario;
 	$actu = mysqli_query($conex, "UPDATE ipsen_usuario SET 
 		INTENTOS = '0'
-		WHERE USER='" . $usua . "';");
+		WHERE USER='" . $name_user . "';");
 	if ($CONTRASENA == '1234' or $hoy >= $contra_fecha) {
 		require("../presentacion/form_restablecer_clave.php");
 	} else {

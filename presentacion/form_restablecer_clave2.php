@@ -17,7 +17,6 @@ include('../logica/session.php')
    </SCRIPT>
 </head>
 <style type="text/css">
-   @import url("GothamRnd_book/stylesheet.css");
 
    .centro {
       text-align: center;
