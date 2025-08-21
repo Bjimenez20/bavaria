@@ -114,32 +114,32 @@ switch ($ASIGNADO_EDUGESTOR) {
     case 'Barranquilla':
     case 'Santander':
         // $mail->addAddress('angelica.hernandez@ipsen.com');
-        // $mail->addAddress('ygonzalez@overall.com.co');
+        $mail->addAddress('ygonzalez@overall.com.co');
         $mail->addAddress('bjimenez@overall.com.co');
         break;
     case 'Eje Cafetero':
         // $mail->addAddress('cartunduaga@overall.com.co');
-        // $mail->addAddress('ygonzalez@overall.com.co');
+        $mail->addAddress('ygonzalez@overall.com.co');
         $mail->addAddress('bjimenez@overall.com.co');
         break;
     case 'Antioquia':
         // $mail->addAddress('kbedoya@overall.com.co');
-        // $mail->addAddress('ygonzalez@overall.com.co');
+        $mail->addAddress('ygonzalez@overall.com.co');
         $mail->addAddress('bjimenez@overall.com.co');
         break;
     case 'Cali':
         // $mail->addAddress('jriascos@overall.com.co');
-        // $mail->addAddress('ygonzalez@overall.com.co');
+        $mail->addAddress('ygonzalez@overall.com.co');
         $mail->addAddress('bjimenez@overall.com.co');
         break;
     case 'Bogota Norte':
         // $mail->addAddress('dsarmiento@overall.com.co');
-        // $mail->addAddress('ygonzalez@overall.com.co');
+        $mail->addAddress('ygonzalez@overall.com.co');
         $mail->addAddress('bjimenez@overall.com.co');
         break;
     case 'Bogota Sur':
         // $mail->addAddress('cmoreno@overall.com.co');
-        // $mail->addAddress('ygonzalez@overall.com.co');
+        $mail->addAddress('ygonzalez@overall.com.co');
         $mail->addAddress('bjimenez@overall.com.co');
         break;
 }

@@ -65,7 +65,7 @@ $subject = "Solicitud rechazada - $PAP - $CAUSAL - $TRATAMIENTO - $fecha";
 
 $mail->Body = $body;
 $mail->Subject = $subject;
-// $mail->addAddress('ygonzalez@overall.com.co');
+$mail->addAddress('ygonzalez@overall.com.co');
 $mail->addAddress('bjimenez@overall.com.co');
 $mail->Send() ? "Enviado" : "Problema al enviar";
 $mail->clearAddresses();
