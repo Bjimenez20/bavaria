@@ -34,9 +34,9 @@ if ($privilegios != '' && $usua != '') {
 			WHERE G.FECHA_PROGRAMADA_GESTION='" . $hoy . "' AND G.ESTADO_GESTION!='GESTIONADO' AND USUARIO_ASIGANDO='" . $usua . "' GROUP BY P.ID_PACIENTE  ORDER BY P.ID_PACIENTE ASC LIMIT";
 		}
 		if ($privilegios == 4) {
-			$consulta_ref = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` INNER JOIN `ipsen_gestiones` ON ID_PACIENTE_FK2 = ID_PACIENTE INNER JOIN `ipsen_tratamiento` ON ID_PACIENTE_FK = ID_PACIENTE WHERE AUTORIZACION_EDUGESTOR = 'SI'");
+			$consulta_ref = mysqli_query($conex, "SELECT * FROM `ipsen_pacientes` INNER JOIN `ipsen_gestiones` ON ID_PACIENTE_FK2 = ID_PACIENTE INNER JOIN `ipsen_tratamiento` ON ID_PACIENTE_FK = ID_PACIENTE WHERE AUTORIZACION_EDUGESTOR = 'Autorizar'");
 			echo mysqli_error($conex);
-			$consulta_PACIENTES = "SELECT * FROM `ipsen_pacientes` INNER JOIN `ipsen_gestiones` ON ID_PACIENTE_FK2 = ID_PACIENTE INNER JOIN `ipsen_tratamiento` ON ID_PACIENTE_FK = ID_PACIENTE WHERE AUTORIZACION_EDUGESTOR = 'SI' LIMIT";
+			$consulta_PACIENTES = "SELECT * FROM `ipsen_pacientes` INNER JOIN `ipsen_gestiones` ON ID_PACIENTE_FK2 = ID_PACIENTE INNER JOIN `ipsen_tratamiento` ON ID_PACIENTE_FK = ID_PACIENTE WHERE AUTORIZACION_EDUGESTOR = 'Autorizar' LIMIT";
 		}
 	}
 	if (isset($_POST['buscar'])) {
@@ -329,7 +329,7 @@ if ($privilegios != '' && $usua != '') {
 						if ($privilegios == 4) {
 						?>
 							<td style="display: flex; justify-content: space-evenly; align-items: center;">
-								<a href="../logica/aprobar_paciente.php?accion=aprobar&artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info">
+								<a href="../logica/aprobar_paciente.php?accion=Aprobado&artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info">
 									<img src="../presentacion/imagenes/CHULO.png" width="25" height="25" />
 								</a>
 
@@ -372,7 +372,7 @@ if ($privilegios != '' && $usua != '') {
 										}
 
 										// Redirigir con la razón como parámetro
-										window.location.href = `../logica/aprobar_paciente.php?accion=rechazar&artid=${pacienteId}&artge=${gestionId}&razon=${encodeURIComponent(razon)}`;
+										window.location.href = `../logica/aprobar_paciente.php?accion=Rechazado&artid=${pacienteId}&artge=${gestionId}&razon=${encodeURIComponent(razon)}`;
 									}
 								</script>
 

@@ -51,17 +51,17 @@ FECHA PENDIENTE:<b> $FECHA_PENDIENTE </b>
 MEDICO TRATANTE:<b> $MEDICO_TRATAMIENTO </b>
 <br>
 <br>
-<b>MOTIVO DEL RECHAZO:</b> $OBSERVACION_ESCALAMIENTO
+<b>RESPUESTA DEL RECHAZO:</b> $OBSERVACION_ESCALAMIENTO
 <br>
 <br>
 Cordial Saludo
 <br>
 <br>
-<b> Angelica Hernandez </b>
+<b> Paola Gonzalez </b>
 <br>
 <br>";
 
-$subject = "Solicitud rechazada - $PAP - $CAUSAL - $TRATAMIENTO - $fecha";
+$subject = "$PAP - $CAUSAL - $TRATAMIENTO - $fecha";
 
 $mail->Body = $body;
 $mail->Subject = $subject;

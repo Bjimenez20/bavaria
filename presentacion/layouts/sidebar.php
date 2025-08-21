@@ -99,6 +99,18 @@
                                 <p> Seguimiento paciente </p>
                             </a>
                         </li>
+                        <?php
+                        if ($privilegios == 1) {
+                        ?>
+                            <li class="nav-item select_menu">
+                                <a class="nav-link" href="../presentacion/listado_escalados.php" target="info">
+                                    <i class="material-icons">assignment_late</i>
+                                    <p> Casos escalados </p>
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
                     </ul>
                 </div>
             </li>

@@ -763,7 +763,7 @@ include('../logica/session.php')
             });
             $('#causa_no_reclamacion').change(function() {
                 var CAUSA_NO_RECLAMACION = $('#causa_no_reclamacion').val();
-                if (CAUSA_NO_RECLAMACION == 'Cita inoportuna' || CAUSA_NO_RECLAMACION == 'Demora en la Autorizacion Cita Medica' || CAUSA_NO_RECLAMACION == 'Demora en la autorizacion de medicamento' || CAUSA_NO_RECLAMACION == 'Demora en la entrega del medicamento' || CAUSA_NO_RECLAMACION == 'Error en papeleria' || CAUSA_NO_RECLAMACION == 'Falta cita para examenes' || CAUSA_NO_RECLAMACION == 'Falta de cita de aplicacion' || CAUSA_NO_RECLAMACION == 'Falta de cita medica' || CAUSA_NO_RECLAMACION == 'Falta de medicamento en el punto' || CAUSA_NO_RECLAMACION == 'Sin red Prestadora') {
+                if (CAUSA_NO_RECLAMACION == 'Cita inoportuna' || CAUSA_NO_RECLAMACION == 'Demora en la Autorizacion Cita Medica' || CAUSA_NO_RECLAMACION == 'Demora en la autorizacion de medicamento' || CAUSA_NO_RECLAMACION == 'Demora en la entrega del medicamento' || CAUSA_NO_RECLAMACION == 'Error en papeleria' || CAUSA_NO_RECLAMACION == 'Falta cita para examenes' || CAUSA_NO_RECLAMACION == 'Falta de cita de aplicacion' || CAUSA_NO_RECLAMACION == 'Falta de cita medica' || CAUSA_NO_RECLAMACION == 'Falta de medicamento en el punto' || CAUSA_NO_RECLAMACION == 'Sin red Prestadora' || CAUSA_NO_RECLAMACION == 'Cita inoportuna de Aplicacion' || CAUSA_NO_RECLAMACION == 'Pendiente formulacion NO sistema') {
                     $('#span_asignado_edugestor').css('display', 'block');
                     $('#ciudad_edugestor').css('display', 'block');
 
@@ -972,21 +972,21 @@ if ($privilegios != '' && $usua != '') {
                                     <div class="card-body">
                                         <?php
                                         $gestion_ci = mysqli_query($conex, "SELECT CONCAT(ID, '/', NOMBRE_PACIENTE, '_', ID_PACIENTE_FK) AS file_pdf FROM `ipsen_informacion_ci` WHERE ID_PACIENTE_FK = '$ID_PACIENTE2'");
-                                        while ($fila_ci = mysqli_fetch_array($gestion_ci)) {
-                                            $url = "https://pspipsen.com/PDF_CI/{$fila_ci["file_pdf"]}.pdf";
-                                            if ($fila_ci["file_pdf"] != '') {
+                                        if (mysqli_num_rows($gestion_ci) > 0) {
+                                            while ($fila_ci = mysqli_fetch_array($gestion_ci)) {
+                                                $url = "https://pspipsen.com/PDF_CI/{$fila_ci["file_pdf"]}.pdf";
+                                                if (!empty($fila_ci["file_pdf"])) {
                                         ?>
-                                                <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
-                                                    <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="50" width="50" style="margin-left: 15%;">
-                                                </a>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <!-- <div class="border border-danger" style="width: 60%; height: 50%;"> -->
-                                                <p style="text-align: center;">Sin Consentimiento Informado</p>
-                                                <!-- </div> -->
+                                                    <a class="highslide" onclick="javascript:ventanaSecundaria('<?php echo $url ?>')">
+                                                        <img src="../presentacion/imagenes/pdf.png" alt="" title="Click to enlarge" height="50" width="50" style="margin-left: 15%;">
+                                                    </a>
                                         <?php
+                                                } else {
+                                                    echo '<p class="error-message">No Se Encontro el Consentimiento Informado</p>';
+                                                }
                                             }
+                                        } else {
+                                            echo '<p class="error-message">Sin Consentimiento Informado</p>';
                                         }
                                         ?>
                                     </div>
@@ -1310,6 +1310,7 @@ if ($privilegios != '' && $usua != '') {
                                             <option>C.C</option>
                                             <option>C.E</option>
                                             <option>P.T</option>
+                                            <option>S.C</option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -1879,7 +1880,7 @@ if ($privilegios != '' && $usua != '') {
                                     </div>
                                     <div class="col">
                                         <select class="form-control" name="autorizacion_edugestor" id="autorizacion_edugestor" style="display: none;">
-                                            <option value="SI">SI</option>
+                                            <option value="Autorizar">SI</option>
                                         </select>
                                     </div>
                                 </div>

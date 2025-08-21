@@ -67,22 +67,22 @@ $mail->Subject = $subject;
 switch ($ASIGNADO_EDUGESTOR) {
     case 'Pasto':
         // $mail->addAddress('xerazo@overall.com.co');
-        $mail->addAddress('ygonzalez@overall.com.co');
+        //$mail->addAddress('ygonzalez@overall.com.co');
         $mail->addAddress('bjimenez@overall.com.co');
         break;
     case 'Ibague':
         // $mail->addAddress('gtriana@overall.com.co');
-        $mail->addAddress('ygonzalez@overall.com.co');
+        //$mail->addAddress('ygonzalez@overall.com.co');
         $mail->addAddress('bjimenez@overall.com.co');
         break;
     case 'Barranquilla':
         // $mail->addAddress('jescalante@overall.com.co');
-        $mail->addAddress('ygonzalez@overall.com.co');
+        //$mail->addAddress('ygonzalez@overall.com.co');
         $mail->addAddress('bjimenez@overall.com.co');
         break;
     case 'Santander':
         // $mail->addAddress('mmayorga@overall.com.co');
-        $mail->addAddress('ygonzalez@overall.com.co');
+        //$mail->addAddress('ygonzalez@overall.com.co');
         $mail->addAddress('bjimenez@overall.com.co');
         break;
 }
