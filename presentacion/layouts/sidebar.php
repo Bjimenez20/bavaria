@@ -269,73 +269,32 @@
             <?php } ?>
             <?php
             if ($privilegios == '1' || $privilegios == '5') {
-                if ($usua == 'bjimenez' || $usua == 'YRAMIREZ') {
             ?>
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples4">
-                            <i class="material-icons">settings</i>
-                            <p> Configuración
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="pagesExamples4">
-                            <ul class="nav">
-                                <!-- <li class="nav-item select_menu">
-                                    <a class="nav-link" href="../presentacion/form_cargar_observacion_fundem.php" target="info">
-                                        <span class="sidebar-mini"> RS </span>
-                                        <span class="sidebar-normal"> Gestiones Fundem </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item select_menu">
-                                    <a class="nav-link" href="../presentacion/form_cambio_contacto_fundem.php" target="info">
-                                        <span class="sidebar-mini"> RS </span>
-                                        <span class="sidebar-normal"> Cambio de fecha </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item select_menu">
-                                    <a class="nav-link" href="../presentacion/form_asignacion_gestiones.php" target="info">
-                                        <span class="sidebar-mini"> RS </span>
-                                        <span class="sidebar-normal"> Asignación </span>
-                                    </a>
-                                </li> -->
-                                <li class="nav-item select_menu">
-                                    <a class="nav-link" href="../presentacion/form_usuarios.php" target="info">
-                                        <i class="material-icons">person_add</i>
-                                        <span class="sidebar-normal"> Usuarios </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item select_menu">
-                                    <a class="nav-link" href="../presentacion/form_cuenta_usuario.php" target="info">
-                                        <i class="material-icons">person</i>
-                                        <span class="sidebar-normal"> Mi cuenta </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                <?php
-                } else {
-                ?>
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples8">
-                            <i class="material-icons">settings</i>
-                            <p> Configuración
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="pagesExamples8">
-                            <ul class="nav">
-                                <li class="nav-item select_menu">
-                                    <a class="nav-link" href="../presentacion/form_cuenta_usuario.php" target="info">
-                                        <span class="sidebar-mini"> P </span>
-                                        <span class="sidebar-normal"> Mi cuenta </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples4">
+                        <i class="material-icons">settings</i>
+                        <p> Configuración
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="pagesExamples4">
+                        <ul class="nav">
+                            <li class="nav-item select_menu">
+                                <a class="nav-link" href="../presentacion/form_usuarios.php" target="info">
+                                    <i class="material-icons">person_add</i>
+                                    <span class="sidebar-normal"> Usuarios </span>
+                                </a>
+                            </li>
+                            <li class="nav-item select_menu">
+                                <a class="nav-link" href="../presentacion/form_cuenta_usuario.php" target="info">
+                                    <i class="material-icons">person</i>
+                                    <span class="sidebar-normal"> Mi cuenta </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             <?php
-                }
             }
             ?>
 

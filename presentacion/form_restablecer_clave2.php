@@ -1,7 +1,7 @@
 <?php
 include('../logica/session.php')
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -10,157 +10,172 @@ include('../logica/session.php')
    <link type="text/css" rel="stylesheet" href="../presentacion/css/estilo_form_paciente.css" />
    <title>IPSEN</title>
    <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
-   <SCRIPT>
-      function cerrar() {
-         window.close();
+
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 0;
+         background: #f0f0f0;
       }
-   </SCRIPT>
+
+      .container {
+         max-width: 400px;
+         margin: 40px auto;
+         background: #fff;
+         border-radius: 10px;
+         overflow: hidden;
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+         background-color: #2797d3;
+         color: #fff;
+         text-align: center;
+         padding: 15px;
+         font-size: 20px;
+         font-weight: bold;
+         letter-spacing: 1px;
+      }
+
+      form {
+         padding: 20px;
+      }
+
+      .form-row {
+         margin-bottom: 20px;
+      }
+
+      .form-group span {
+         display: block;
+         font-size: 14px;
+         font-weight: bold;
+         color: #333;
+         margin-bottom: 5px;
+      }
+
+      .form-group input {
+         width: 90%;
+         padding: 8px 10px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+         font-size: 14px;
+      }
+
+      .footer {
+         text-align: center;
+         padding: 15px;
+      }
+
+      .footer button {
+         background: #2797d3;
+         color: #fff;
+         font-weight: bold;
+         font-size: 18px;
+         padding: 14px 40px;
+         border: none;
+         border-radius: 30px;
+         cursor: pointer;
+         transition: 0.3s;
+      }
+
+      .footer button:hover {
+         background: #fff;
+         color: #2797d3;
+         border: 1px solid #2797d3;
+      }
+   </style>
 </head>
-<style type="text/css">
-
-   .centro {
-      text-align: center;
-   }
-
-   form {
-      background: url('../presentacion/imagenes/fondo_nueva_cl.png') top left no-repeat;
-   }
-
-   .fuente {
-      font-family: Tahoma, Geneva, sans-serif;
-   }
-
-   .error {
-      font-family: GothamRnd-book;
-      color: #C30;
-   }
-
-   html {
-      background: url(../presentacion/imagenes/FONDO.png) no-repeat fixed center;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-   }
-
-   .aviso3 {
-      font-size: 130%;
-      font-weight: bold;
-      color: #11a9e3;
-      text-transform: uppercase;
-      font-family: Tahoma, Geneva, sans-serif;
-      background-color: transparent;
-      text-align: center;
-      padding: 10px;
-   }
-
-   .error {
-      font-size: 130%;
-      font-weight: bold;
-      color: #fb8305;
-      text-transform: uppercase;
-      background-color: transparent;
-      text-align: center;
-      padding: 10px;
-   }
-</style>
 
 <body>
    <?php
    $USUARIO = $_SESSION["usuarios"];
    require('../datos/conex.php');
+
    function validar_clave($clave, &$error_clave)
    {
       if (strlen($clave) < 8) {
-         $error_clave = "<span class=error>La clave debe tener al menos 8 caracteres</span>";
+         $error_clave = "La clave debe tener al menos 8 caracteres";
          return false;
       }
       if (strlen($clave) > 16) {
-         $error_clave = "<span class=error>La clave no puede tener más de 16 caracteres</span>";
+         $error_clave = "La clave no puede tener más de 16 caracteres";
          return false;
       }
       if (!preg_match('`[a-z]`', $clave)) {
-         $error_clave = "<span class=error>La clave debe tener al menos una letra minúscula</span>";
+         $error_clave = "La clave debe tener al menos una letra minúscula";
          return false;
       }
       if (!preg_match('`[A-Z]`', $clave)) {
-         $error_clave = "<span class=error>La clave debe tener al menos una letra mayúscula</span>";
+         $error_clave = "La clave debe tener al menos una letra mayúscula";
          return false;
       }
       if (!preg_match('`[0-9]`', $clave)) {
-         $error_clave = "<span class=error>La clave debe tener al menos un caracter numérico</span>";
+         $error_clave = "La clave debe tener al menos un caracter numérico";
          return false;
       }
       $error_clave = "";
       return true;
    }
-   ?>
-   <center>
-      <form id="inicio" action="../presentacion/form_restablecer_clave2.php" method="POST" style="width:65%;margin:50px auto">
-         <section style="width:100%; height:100%; padding:0;  text-align:center">
-            <br />
-            <br />
-            <br />
-            <br />
-            <span class="fuente">Contrase&ntilde;a actual &nbsp;&nbsp;</span>
-            <input id="Contrasena_ac" name="Contrasena_ac" type="password" required="required" title="ESCRIBA UNA CONTRASEÑA CORRECTA" />
-            <br />
-            <br />
-            <span class="fuente">Nueva Contrase&ntilde;a &nbsp;&nbsp;</span>
-            <input id="Contrasena_nu" name="Contrasena_nu" type="password" required="required" title="ESCRIBA UNA CONTRASEÑA CORRECTA" />
-            <br />
-            <br />
-            <span class="fuente">Reperir Contrase&ntilde;a </span>
-            <input id="Contrasena_va" name="Contrasena_va" type="password" required="required" title="ESCRIBA UNA CONTRASEÑA CORRECTA" />
-            <br />
-            <br />
-            <?php
-            if (isset($_POST['InicioR'])) {
-               $CONTRASENA_AC = $_POST['Contrasena_ac'];
-               $CONTRASENA_NU = $_POST['Contrasena_nu'];
-               $CONTRASENA_VA = $_POST['Contrasena_va'];
-               $CONTRASENA_VENCE = date('Y-m-d  H:i:s', strtotime('+1 month'));
-               $error_encontrado = "";
-               if (validar_clave($_POST["Contrasena_nu"], $error_encontrado)) {
-                  if ($CONTRASENA_NU == $CONTRASENA_VA) {
-                     echo "<span class=fuente>CONTRASE&Ntilde;A V&Aacute;LIDA</span>";
-                     $sql = mysqli_query($conex, "UPDATE ipsen_usuario SET 
-                     CONTRASENA = '" . MD5($CONTRASENA_NU) . "',
-                     CONTRASENA_FECHA = '" . $CONTRASENA_VENCE . "'
-                     WHERE USER='" . $USUARIO . "';");
-                     echo mysqli_error($conex);
-                     if ($sql) {
-            ?>
-                        <span style="margin-top:5%;">
-                           <center>
-                              <img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
-                           </center>
-                        </span>
-                        <p class="aviso3" style=" width:68.9%; margin:auto auto;">HA MODIFICADO SU CONTRASE&Ntilde;A.</p>
-                        <br />
-                        <br />
-                        <center>
-                           <a href="../presentacion/form_cuenta_usuario.php" target="info" onClick="cerrar()"><img src="../presentacion/imagenes/BTN_CONTINUAR.png" style="width:152px; height:37px" /></a>
-                        </center>
-            <?php
-                     }
-                  } else {
-                     echo "<span class=error>Las contrase&ntilde;as no coinciden</span>";
-                  }
-               } else {
-                  echo "<span class=error>CONTRASE&Ntilde;A NO V&Aacute;LIDA </span>" . $error_encontrado;
-               }
+
+   if (isset($_POST['InicioR'])) {
+      $CONTRASENA_NU = $_POST['Contrasena_nu'];
+      $CONTRASENA_VA = $_POST['Contrasena_va'];
+      date_default_timezone_set('America/Bogota');
+      $CONTRASENA_VENCE = date('Y-m-d  H:i:s', strtotime('+1 month'));
+      $error_encontrado = "";
+
+      if (validar_clave($CONTRASENA_NU, $error_encontrado)) {
+         if ($CONTRASENA_NU == $CONTRASENA_VA) {
+            $sql = mysqli_query($conex, "UPDATE ipsen_usuario SET CONTRASENA = '" . MD5($CONTRASENA_NU) . "',  CONTRASENA_FECHA = '" . $CONTRASENA_VENCE . "' WHERE USER='" . $USUARIO . "';");
+
+            if ($sql) {
+               // ✅ Cerrar sesión completa
+               session_unset();
+               session_destroy();
+
+               echo "
+                  <div class='container' style='text-align:center; padding:40px;'>
+                     <img src='./imagenes/CHULO.png' width='100' style='margin-bottom:20px;' />
+                     <p style='font-size:16px; font-weight:bold; color:#2797d3;'>Ha modificado su contraseña con éxito.</p>
+                     <p style='font-size:14px; color:#555;'>Por seguridad, debe volver a iniciar sesión.</p>
+                     <button onclick=\"window.top.location.href='../../'\">Iniciar Sesión</button>
+                  </div>
+               ";
+               exit;
+            } else {
+               echo "<p style='color:red; text-align:center;'>Error al actualizar: " . mysqli_error($conex) . "</p>";
             }
-            ?>
-            <br />
-            <center>
-               <input id="InicioR" name="InicioR" type="submit" value="INICIAR SESION" class="btn_continuar" />
-               <br />
-               <br />
-            </center>
-         </section>
+         } else {
+            echo "<p style='color:red; text-align:center;'>Las contraseñas no coinciden</p>";
+         }
+      } else {
+         echo "<p style='color:red; text-align:center;'>$error_encontrado</p>";
+      }
+   }
+   ?>
+
+   <div class="container">
+      <div class="header">Cambiar Clave</div>
+      <form id="inicio" method="POST">
+         <div class="form-row">
+            <div class="form-group">
+               <span>Nueva Contraseña</span>
+               <input id="Contrasena_nu" name="Contrasena_nu" type="password" required>
+            </div>
+         </div>
+
+         <div class="form-row">
+            <div class="form-group">
+               <span>Confirmar Contraseña</span>
+               <input id="Contrasena_va" name="Contrasena_va" type="password" required>
+            </div>
+         </div>
+         <div class="footer">
+            <button id="InicioR" name="InicioR" type="submit">MODIFICAR</button>
+         </div>
       </form>
-   </center>
+   </div>
 </body>
 
 </html>

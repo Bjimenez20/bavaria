@@ -13,7 +13,6 @@ include('../logica/session.php')
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <style type="text/css">
-
    .centro {
       text-align: center;
    }
@@ -118,6 +117,7 @@ include('../logica/session.php')
                $CONTRASENA_AC = $_POST['Contrasena_ac'];
                $CONTRASENA_NU = $_POST['Contrasena_nu'];
                $CONTRASENA_VA = $_POST['Contrasena_va'];
+               date_default_timezone_set('America/Bogota');
                $CONTRASENA_VENCE = date('Y-m-d  H:i:s', strtotime('+1 month'));
                $error_encontrado = "";
                if (validar_clave($_POST["Contrasena_nu"], $error_encontrado)) {

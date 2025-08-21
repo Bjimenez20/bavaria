@@ -1,135 +1,203 @@
 <?php
 include('../logica/session.php');
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
 	<title>IPSEN</title>
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
-	<link href="css/estilo_form_paciente.css" type="text/css" />
-</head>
-<script language=javascript>
-	function ventanaSecundaria(URL) {
-		window.open(URL, "ventana1", "width=500,height=500,Top=100,Left=200")
-	}
-</script>
-<?PHP
-require('../datos/parse_str.php');
-$NAME = $usua;
-require_once('../datos/conex.php');
-if ($privilegios != '' && $usua != '') {
-	$CONSULTA_USU = mysqli_query($conex, "SELECT * from ipsen_usuario where USER='" . $NAME . "'");
-	while ($DATOS = mysqli_fetch_array($CONSULTA_USU)) {
-		$ID_USUARIO = $DATOS['ID_USUARIO'];
-		$USER = $DATOS['USER'];
-		$CONTRASENA = $DATOS['CONTRASENA'];
-		$NOMBRES = $DATOS['NOMBRES'];
-		$APELLIDOS = $DATOS['APELLIDOS'];
-		$CELULAR = $DATOS['CELULAR'];
-		$PROGRAMA = $DATOS['PROGRAMA'];
-		$ESTADO = $DATOS['ESTADO'];
-	}
-?>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="js/jquery.js"></script>
+	<link rel="stylesheet" href="css/estilo_form_paciente.css" />
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: trans;
+			margin: 0;
+			padding: 0;
+		}
 
-	<body class="body" style="width:100%; margin:auto auto; ">
-		<form id="form1" name="tuformulario" method="post" action="../logica/actualizar_usuario.php" onkeydown="return filtro(2)" class="letra">
-			<br />
-			<br />
-			<table width="100%">
-				<tr>
-					<td style="background-color:#2797d3;text-align:center">
-						<span style="color:#FFF;">MI CUENTA</span>
-					</td>
-				</tr>
-			</table>
-			<br />
-			<br />
-			<table width="100%">
-				<tr>
-					<td>
-						<span>USUARIO</span>
-					</td>
-					<td>
-						<input type="text" name="OCUL" id="OCUL" placeholder="OCUL" maxlength="0" style=" display:none" value="<?php echo $ID_USUARIO ?>" />
-						<input type="text" name="USURARIO" id="USURARIO" placeholder="USUARIO" readonly value="<?php echo $USER ?>" />
-					</td>
-					<td>
-						<span>CONTRASE&Ntilde;A</span>
-					</td>
-					<td>
-						<input type="password" name="CONTRASENA" id="CONTRASENA" placeholder="CONTRASE&Ntilde;A" value="<?php echo $CONTRASENA ?>" style="width:58%;" maxlength="16" readonly="readonly" />
-						<a class="btn_gestiones" href="javascript:ventanaSecundaria('form_restablecer_clave2.php')"><img src="imagenes/BOTON_MODIFICAR.png" width="34%" height="25px" align="right" /> </a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>NOMBRE(S)</span>
-					</td>
-					<td>
-						<input type="text" name="NOMBRES" id="NOMBRES" placeholder="NOMBRES" value="<?php echo $NOMBRES ?>" maxlength="50" />
-					</td>
-					<td>
-						<span>APELLIDO(S)</span>
-					</td>
-					<td>
-						<input type="text" name="APELLIDO" id="APELLIDO" placeholder="APELLIDO" value="<?php echo $APELLIDOS ?>" maxlength="50" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>NUMERO DE CONTACTO</span>
-					</td>
-					<td>
-						<input type="text" name="NUM_TEL" id="NUM_TEL" placeholder="NUMERO DE CONTACTO" value="<?php echo $CELULAR ?>" maxlength="10" />
-					</td>
-					<td>
-						<span>PERFIL</span>
-					</td>
-					<?php
-					if ($privilegios == 1) {
-						$PERFIL = 'ADMINISTRADOR(A)';
-					}
-					if ($privilegios == 2) {
-						$PERFIL = 'ASESOR';
-					}
-					if ($privilegios == 3) {
-						$PERFIL = 'BODEGA';
-					}
-					if ($privilegios == 4) {
-						$PERFIL = 'CLIENTE';
-					}
-					?>
-					<td>
-						<input type="text" name="PERFIL" id="PERFIL" placeholder="PERFIL" readonly value="<?php echo $PERFIL ?>" />
-					</td>
-				</tr>
-			</table>
-			<br />
-			<br />
-			<br />
-			<table width="100%">
-				<tr>
-					<td style="background-color:#2797d3;text-align:center">
-						<center>
-							<input id="MODIFICAR_USU" name="MODIFICAR_USU" type="submit" value="MODIFICAR" class="btn_actualizar" onclick="return validar(tuformulario,1)" />
-						</center>
-					</td>
-				</tr>
-			</table>
-		</form>
-	</body>
-<?php
-} else {
-?>
-	<script type="text/javascript">
-		window.onload = window.top.location.href = "../logica/cerrar_sesion2.php";
+		.container {
+			max-width: 1000px;
+			margin: 40px auto;
+			background: #fff;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.header {
+			background-color: #2797d3;
+			color: #fff;
+			text-align: center;
+			padding: 15px;
+			font-size: 20px;
+			font-weight: bold;
+			letter-spacing: 1px;
+		}
+
+		form {
+			padding: 20px;
+		}
+
+		.form-row {
+			display: flex;
+			flex-wrap: wrap;
+			margin-bottom: 20px;
+			gap: 20px;
+		}
+
+		.form-group {
+			flex: 1;
+			min-width: 220px;
+		}
+
+		.form-group span {
+			display: block;
+			font-size: 14px;
+			font-weight: bold;
+			color: #333;
+			margin-bottom: 5px;
+		}
+
+		.form-group input {
+			/* width: 100%; */
+			padding: 8px 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 14px;
+		}
+
+		.password-group {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.password-group input {
+			flex: 1;
+		}
+
+		.password-group img {
+			cursor: pointer;
+			border-radius: 5px;
+		}
+
+		.footer {
+			background-color: #fff;
+			text-align: center;
+			padding: 15px;
+		}
+
+		.footer:hover {
+			background-color: #2797d3;
+			text-align: center;
+			padding: 15px;
+		}
+
+		.footer button {
+			background: #2797d3;
+			color: #fff;
+			font-weight: bold;
+			font-size: 18px;
+			padding: 14px 40px;
+			border: none;
+			border-radius: 30px;
+			cursor: pointer;
+			transition: 0.3s;
+		}
+
+		.footer button:hover {
+			background: #fff;
+			color: #2797d3;
+		}
+	</style>
+
+	<script language=javascript>
+		function ventanaSecundaria(URL) {
+			window.open(URL, "ventana1", "width=500,height=500,Top=100,Left=200")
+		}
 	</script>
-<?php
-}
-?>
+</head>
+
+<body>
+	<?php
+	require('../datos/parse_str.php');
+	$NAME = $name_user;
+	require_once('../datos/conex.php');
+	if ($privilegios != '' && $usua != '') {
+		$CONSULTA_USU = mysqli_query($conex, "SELECT * from ipsen_usuario where USER='" . $NAME . "'");
+		while ($DATOS = mysqli_fetch_array($CONSULTA_USU)) {
+			$ID_USUARIO = $DATOS['ID_USUARIO'];
+			$USER = $DATOS['USER'];
+			$CONTRASENA = $DATOS['CONTRASENA'];
+			$NOMBRES = $DATOS['NOMBRES'];
+			$APELLIDOS = $DATOS['APELLIDOS'];
+			$CELULAR = $DATOS['CELULAR'];
+		}
+		if ($privilegios == 1) $PERFIL = 'ADMINISTRADOR(A)';
+		if ($privilegios == 2) $PERFIL = 'ASESOR';
+		if ($privilegios == 3) $PERFIL = 'BODEGA';
+		if ($privilegios == 4) $PERFIL = 'CLIENTE';
+	?>
+
+		<div class="container">
+			<div class="header">MI CUENTA</div>
+			<form method="post" action="../logica/actualizar_usuario.php" onkeydown="return filtro(2)">
+
+				<div class="form-row">
+					<div class="form-group">
+						<span>USUARIO</span>
+						<input type="hidden" name="OCUL" value="<?php echo $ID_USUARIO ?>" />
+						<input type="text" name="USURARIO" value="<?php echo $USER ?>" readonly />
+					</div>
+					<div class="form-group">
+						<span>CONTRASEÑA</span>
+						<div class="password-group">
+							<input type="password" name="CONTRASENA" value="<?php echo $CONTRASENA ?>" maxlength="16" readonly />
+							<a href="./form_restablecer_clave2.php">
+								<img src="imagenes/BOTON_MODIFICAR.png" height="35px" />
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group">
+						<span>NOMBRE(S)</span>
+						<input type="text" name="NOMBRES" value="<?php echo $NOMBRES ?>" maxlength="50" />
+					</div>
+					<div class="form-group">
+						<span>APELLIDO(S)</span>
+						<input type="text" name="APELLIDO" value="<?php echo $APELLIDOS ?>" maxlength="50" />
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group">
+						<span>NÚMERO DE CONTACTO</span>
+						<input type="text" name="NUM_TEL" value="<?php echo $CELULAR ?>" maxlength="10" />
+					</div>
+					<div class="form-group">
+						<span>PERFIL</span>
+						<input type="text" name="PERFIL" value="<?php echo $PERFIL ?>" readonly />
+					</div>
+				</div>
+
+				<div class="footer">
+					<button id="MODIFICAR_USU" name="MODIFICAR_USU" type="submit" onclick="return validar(tuformulario,1)">
+						MODIFICAR
+					</button>
+				</div>
+			</form>
+		</div>
+
+	<?php
+	} else {
+		echo '<script>window.onload = window.top.location.href = "../logica/cerrar_sesion2.php";</script>';
+	}
+	?>
+</body>
 
 </html>
