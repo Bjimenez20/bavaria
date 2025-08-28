@@ -91,12 +91,14 @@ include('../logica/session.php');
     $numero_pendiente = $_POST['num_pendiente'];
     $fecha_pendiente = $_POST['fecha_pendiente'];
     $asignado_edugestor = $_POST['ciudad_edugestor'];
-    if ($asignado_edugestor ==  'Pasto' || $asignado_edugestor == 'Ibague' || $asignado_edugestor == 'Barranquilla' || $asignado_edugestor == 'Santander') {
-        $autorizacion_edugestor = $_POST['autorizacion_edugestor'];
-        $observacion_escalamiento  = 'Se envia la autorizacion al cliente';
-    } else {
-        $autorizacion_edugestor = 'Directo a edugestor';
-        $observacion_escalamiento  = 'Se asigno directamente al edugestor de la zona';
+    if ($causa_no_reclamacion == 'Cita inoportuna' || $causa_no_reclamacion == 'Demora en la Autorizacion Cita Medica' || $causa_no_reclamacion == 'Demora en la autorizacion de medicamento' || $causa_no_reclamacion == 'Demora en la entrega del medicamento' || $causa_no_reclamacion == 'Error en papeleria' || $causa_no_reclamacion == 'Falta cita para examenes' || $causa_no_reclamacion == 'Falta de cita de aplicacion' || $causa_no_reclamacion == 'Falta de cita medica' || $causa_no_reclamacion == 'Falta de medicamento en el punto' || $causa_no_reclamacion == 'Sin red Prestadora' || $causa_no_reclamacion == 'Cita inoportuna de Aplicacion' || $causa_no_reclamacion == 'Pendiente formulacion NO sistema') {
+        if ($asignado_edugestor ==  'Pasto' || $asignado_edugestor == 'Ibague' || $asignado_edugestor == 'Barranquilla' || $asignado_edugestor == 'Santander') {
+            $autorizacion_edugestor = $_POST['autorizacion_edugestor'];
+            $observacion_escalamiento  = 'Se envia la autorizacion al cliente';
+        } else {
+            $autorizacion_edugestor = 'Directo a edugestor';
+            $observacion_escalamiento  = 'Se asigno directamente al edugestor de la zona';
+        }
     }
     $linea_tratamiento = $_POST['linea_tratamiento'];
 
@@ -378,6 +380,30 @@ include('../logica/session.php');
             $programa = 'Cabocare';
         }
         if (isset($_POST['registrar'])) {
+            $select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK = '225'");
+            echo mysqli_error($conex);
+            $reg_hist = mysqli_num_rows($select_historial);
+            if ($reg_hist > 0) {
+                if ($reclamo == 'SI') {
+                    $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes . "', RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+                    echo mysqli_error($conex);
+                }
+                if ($reclamo == 'NO') {
+                    $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes_act . "', RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+                    echo mysqli_error($conex);
+                }
+            } else {
+                $INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO ipsen_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $codigo_usuario2 . "')");
+                echo mysqli_error($conex);
+                if ($reclamo == 'SI') {
+                    $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes_act . "', RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+                    echo mysqli_error($conex);
+                }
+                if ($reclamo == 'NO') {
+                    $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes_act . "', RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
+                    echo mysqli_error($conex);
+                }
+            }
             $select_temporal = mysqli_query($conex, "SELECT * FROM ipsen_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
             $nreg = mysqli_num_rows($select_temporal);
             if ($nreg > 0) {
@@ -590,30 +616,6 @@ include('../logica/session.php');
                         $sql = mysqli_query($conex, "INSERT INTO ipsen_gestiones (MOTIVO_COMUNICACION_GESTION,MEDIO_CONTACTO_GESTION,TIPO_LLAMADA_GESTION,LOGRO_COMUNICACION_GESTION,MOTIVO_NO_COMUNICACION_GESTION,NUMERO_INTENTOS_GESTION,ESTADO_CTC_GESTION,FECHA_AUTORIZACION,ESTADO_FARMACIA_GESTION,RECLAMO_GESTION,APLICACION,CONSECUTIVO_BETAFERON,CAUSA_NO_RECLAMACION_GESTION,DIFICULTAD_ACCESO_GESTION,TIPO_DIFICULTAD_GESTION,ENVIOS_GESTION,MEDICAMENTOS_GESTION,TIPO_ENVIO_GESTION,EVENTO_ADVERSO_GESTION,TIPO_EVENTO_ADVERSO,GENERA_SOLICITUD_GESTION,FECHA_PROXIMA_LLAMADA,MOTIVO_PROXIMA_LLAMADA,OBSERVACION_PROXIMA_LLAMADA,FECHA_RECLAMACION_GESTION,FECHA_APLICACION,LUGAR_APLICACION,FECHA_CITA_PROGRAMADA,FECHA_MEDICAMENTO_HASTA,NUMERO_CAJAS,CONSECUTIVO_GESTION,AUTOR_GESTION,NOTA,DESCRIPCION_COMUNICACION_GESTION,FECHA_PROGRAMADA_GESTION,USUARIO_ASIGANDO,ID_PACIENTE_FK2,FECHA_COMUNICACION,CODIGO_ARGUS,NUMERO_NEBULIZACIONES,NUMERO_TABLETAS_DIARIAS,BRINDO_APOYO,PAAP,SUB_PAAP,BARRERA,INFORMACION_APLICACIONES,FECHA_INI_PAAP,FECHA_FIN_PAAP, EVENTO_ADVERSO_FK, TIPO_DOC, NUMERO_PENDIENTE, FECHA_PENDIENTE, ASIGNADO_EDUGESTOR, AUTORIZACION_EDUGESTOR, OBSERVACION_ESCALAMIENTO)VALUES('" . $motivo_comunicacion . "','" . $medio_contacto . "','" . $tipo_llamada . "','" . $logro_comunicacion . "','" . $motivo_no_comunicacion . "','" . $via_recepcion . "','" . $estado_ctc . "','" . $fecha_autorizacion . "','" . $estado_farmacia . "','" . $reclamo . "','','" . $consecutivo_betaferon . "','" . $causa_no_reclamacion . "','" . $dificultad_acceso . "','" . $tipo_dificultad . "','" . $envios . "','" . $MEDICAMENTO . "','" . $tipo_envio . "','" . $evento_adverso . "','" . $tipo_evento_adverso . "','" . $genera_solicitud . "','" . $fecha_proxima_llamada . "','" . $motivo_proxima_llamada . "','" . $observacion_proxima_llamada . "','','" . $fecha_aplicacion . "','" . $lugar_aplicacion . "','" . $fecha_cita_programada . "','" . $fecha_medicamento_hasta . "','" . $numero_cajas . "','" . $consecutivo . "','" . $autor . "','" . $nota . "','" . $descripcion_comunicacion . "','" . $fecha_proxima_llamada . "','SIN ASIGNAR','" . $codigo_usuario2 . "',CURRENT_TIMESTAMP,'" . $CONSECUTIVO_EA . "','" . $numero_nebulizaciones . "','" . $numero_tabletas_diarias . "','" . $brindo_apoyo . "','" . $paap . "','" . $sub_paap . "','" . $sub_barrera . "','" . $INFORMACION_APLICACIONES . "', '" . $fecha_inicio_paap . "', '" . $fecha_fin_paap . "', '" . $ID_EVENTO_ADVERSO . "', '" . $tipo_doc_str . "', '" . $numero_pendiente . "', '" . $fecha_pendiente . "', '" . $asignado_edugestor . "', '" . $autorizacion_edugestor . "', '" . $observacion_escalamiento . "')");
                         echo mysqli_error($conex);
                     }
-                    $select_historial = mysqli_query($conex, "SELECT * FROM ipsen_historial_reclamacion WHERE ID_PACIENTE_FK = '225'");
-                    echo mysqli_error($conex);
-                    $reg_hist = mysqli_num_rows($select_historial);
-                    if ($reg_hist > 0) {
-                        if ($reclamo == 'SI') {
-                            $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes . "', RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
-                            echo mysqli_error($conex);
-                        }
-                        if ($reclamo == 'NO') {
-                            $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes_act . "', RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
-                            echo mysqli_error($conex);
-                        }
-                    } else {
-                        $INSERT_HISTORIAL = mysqli_query($conex, "INSERT INTO ipsen_historial_reclamacion(ID_PACIENTE_FK) VALUES('" . $codigo_usuario2 . "')");
-                        echo mysqli_error($conex);
-                        if ($reclamo == 'SI') {
-                            $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes_act . "', RECLAMO$dato='" . $reclamo . "',FECHA_RECLAMACION$dato='" . $fecha_reclamacion . "',MOTIVO_NO_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
-                            echo mysqli_error($conex);
-                        }
-                        if ($reclamo == 'NO') {
-                            $UPDATE_HISTORIAL = mysqli_query($conex, "UPDATE ipsen_historial_reclamacion SET MES$dato='" . $mes_act . "', RECLAMO$dato='" . $reclamo . "',MOTIVO_NO_RECLAMACION$dato='" . $causa_no_reclamacion . "',FECHA_RECLAMACION$dato='' WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
-                            echo mysqli_error($conex);
-                        }
-                    }
                     if ($sub_barrera == "Correo") {
                         include("../presentacion/email/mail_apoyo_paap.php");
                     }
@@ -625,7 +627,7 @@ include('../logica/session.php');
                     while ($datos_gestion = mysqli_fetch_array($select_gestion)) {
                         $ID_ULTIMA_GESTION = $datos_gestion['ID_GESTION'];
                     }
-                    if ($asignado_edugestor ==  'Pasto' || $asignado_edugestor == 'Ibague' || $asignado_edugestor == 'Barranquilla' || $asignado_edugestor == 'Santander') {
+                    if ($causa_no_reclamacion == 'Cita inoportuna' || $causa_no_reclamacion == 'Demora en la Autorizacion Cita Medica' || $causa_no_reclamacion == 'Demora en la autorizacion de medicamento' || $causa_no_reclamacion == 'Demora en la entrega del medicamento' || $causa_no_reclamacion == 'Error en papeleria' || $causa_no_reclamacion == 'Falta cita para examenes' || $causa_no_reclamacion == 'Falta de cita de aplicacion' || $causa_no_reclamacion == 'Falta de cita medica' || $causa_no_reclamacion == 'Falta de medicamento en el punto' || $causa_no_reclamacion == 'Sin red Prestadora' || $causa_no_reclamacion == 'Cita inoportuna de Aplicacion' || $causa_no_reclamacion == 'Pendiente formulacion NO sistema') {
                         $sql_historico_escalados = mysqli_query($conex, "INSERT INTO ipsen_observacio_escalados (ESTADO, OBSERVACION, GESTION_ID,  FECHA_REGISTRO) VALUES ('" . $autorizacion_edugestor . "', '" . $observacion_escalamiento . "', '" . $ID_ULTIMA_GESTION . "', NOW())");
                         echo mysqli_error($conex);
                     }
