@@ -800,6 +800,16 @@ include('../logica/session.php')
                     $('#fecha_cambio_dosis').css('display', 'none');
                 }
             });
+            $('#motivo_retiro').change(function() {
+                var MOTIVO_RETIRO = $('#motivo_retiro').val();
+                if (MOTIVO_RETIRO == 'Cambio de tratamiento') {
+                    $('#span_cambio_tratamiento').css('display', 'block');
+                    $('#cambio_tratamiento').css('display', 'block');
+                } else {
+                    $('#span_cambio_tratamiento').css('display', 'none');
+                    $('#cambio_tratamiento').css('display', 'none');
+                }
+            });
         });
     </script>
     <script>
@@ -1276,6 +1286,20 @@ if ($privilegios != '' && $usua != '') {
                                             <option value="">NO APLICA</option>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="fw-bold" id="span_cambio_tratamiento" style="display: none;">Tratamiento<span class="asterisco">*</span></span>
+                                    </div>
+                                    <div class="col">
+                                        <select type="text" name="cambio_tratamiento" id="cambio_tratamiento" class="form-control" style="display: none;">
+                                            <option value="">Seleccione...</option>
+                                            <option>CABOMETIX</option>
+                                            <option>LANREOTIDE</option>
+                                        </select>
+                                    </div>
+                                    <div class="col"></div>
+                                    <div class="col"></div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col">
@@ -1847,12 +1871,8 @@ if ($privilegios != '' && $usua != '') {
                                             <option>Pendiente formulacion NO sistema</option>
                                             <option>Suspendido temporalmente</option>
                                             <option>Voluntario</option>
-                                            <option>No Codificacion</option>
                                             <option>Cita inoportuna de Aplicacion</option>
                                             <option>Demora en la entrega del medicamento</option>
-                                            <option>No acepta Servicios PSP</option>
-                                            <option>Problemas de Translado del Paciente</option>
-                                            <option>Suspendido por Cambio de tratamiento</option>
                                         </select>
                                         <input class="form-control" type="date" name="fecha_reclamacion" id="fecha_reclamacion" value="<?php echo $FECHA_RECLAMACION_GESTION ?>" style="display:none" />
                                     </div>
@@ -2515,9 +2535,6 @@ if ($privilegios != '' && $usua != '') {
                                                 <input class="form-check-input me-1" type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" style="display:none" value="" checked="checked" />
                                                 <input class="form-check-input me-1" type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" value="Farmacovigilancia" />Farmacovigilancia
                                             </div>
-                                            <div class="col">
-                                                <input class="form-check-input me-1" type="radio" name="tipo_evento_adverso" id="tipo_evento_adverso" value="Tecnovigilancia" />Tecnovigilancia
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col" id="farmacovigilancia" style="display:none">
@@ -2939,8 +2956,8 @@ if ($privilegios != '' && $usua != '') {
                                             <?php
                                             }
                                         }
-                                        $ID_GES_EA = $fila2['ID_GESTION'];
-                                        $dir = "../EA/$ID_GES_EA";
+                                        $ID_EA = $fila2['EVENTO_ADVERSO_FK'];
+                                        $dir = "../EVENTO_ADVERSO/$ID_EA";
 
                                         if (file_exists($dir)) {
                                             $directorio = opendir($dir);
@@ -2963,9 +2980,6 @@ if ($privilegios != '' && $usua != '') {
                                                         // Parámetros para deshabilitar herramientas del visor
                                                         $pdfViewer = $enlace . "#toolbar=0";
                                                         echo "<a href='$pdfViewer' target='_blank'><img src='../presentacion/imagenes/pdf.png' alt='PDF' title='Abrir PDF' height='50' width='50'></a>";
-                                                    } elseif ($extension === 'doc' || $extension === 'docx') {
-                                                        // Enlace para abrir documentos de Word (dependerá del navegador)
-                                                        echo "<a href='$enlace' target='_blank'><img src='../presentacion/imagenes/word.webp' alt='Word' title='Abrir Word' height='50' width='50'></a>";
                                                     }
                                                 }
                                                 echo "</td>";

@@ -223,8 +223,8 @@ require('../datos/conex.php');
 include('../logica/consulta_ea.php');
 $ID_PACIENTE = base64_decode($xnfgti);
 $ID_GESTION = base64_decode($artget);
-if ($privilegios != '' && $usua != '') {
-    $SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE USER = '" . $usua . "'");
+if ($privilegios != '' && $name_user != '') {
+    $SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE USER = '" . $name_user . "'");
     while ($opcion = mysqli_fetch_array($SELECT_USUARIO_TOTAL)) {
         $NOMBRES = $opcion['NOMBRES'];
         $APELLIDOS = $opcion['APELLIDOS'];
@@ -253,6 +253,7 @@ if ($privilegios != '' && $usua != '') {
         $FECHA_INICO_TRATAMIENTO = $fila['FECHA_INICIO_TERAPIA_TRATAMIENTO'];
         $PRODUCTO_TRATAMIENTO = $fila['PRODUCTO_TRATAMIENTO'];
         $MEDICO_TRATAMIENTO = $fila['MEDICO_TRATAMIENTO'];
+        $LINEA_TRATAMIENTO = $fila['LINEA_TRATAMIENTO'];
     }
 
     $SELECT_GESTION = mysqli_query($conex, "SELECT ID_GESTION FROM ipsen_gestiones ORDER BY ID_GESTION DESC LIMIT 1");
@@ -330,6 +331,12 @@ if ($privilegios != '' && $usua != '') {
                                         </div>
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="source_type" id="source_type" value="Market Research" onchange="habilitar1(this)"> Market Research
+                                        </div>
+                                        <div class="col d-flex justify-content-left">
+                                            <input type="radio" name="source_type" id="source_type" value="Medical Survey" onchange="habilitar1(this)"> Medical Survey
+                                        </div>
+                                        <div class="col d-flex justify-content-left">
+                                            <input type="radio" name="source_type" id="source_type" value="Delphi Study" onchange="habilitar1(this)"> Delphi Study
                                         </div>
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="source_type" id="source_type" value="Other" onchange="habilitar1(this)"> Other
@@ -494,7 +501,17 @@ if ($privilegios != '' && $usua != '') {
                                     <p style="text-align: left;">
                                         7. Diagnosis/Indication
                                     </p>
-                                    <input type="text" name="diagnosis" id="diagnosis" class="form-control w-100 h-100" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>" disabled>
+                                    <?php
+                                    if ($PRODUCTO_TRATAMIENTO == 'Somatuline') {
+                                    ?>
+                                        <input type="text" name="diagnosis" id="diagnosis" class="form-control w-100 h-100" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO ?>" disabled>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <input type="text" name="diagnosis" id="diagnosis" class="form-control w-100 h-100" value="<?php echo $CLASIFICACION_PATOLOGICA_TRATAMIENTO . ' - ' . $LINEA_TRATAMIENTO ?>" disabled>
+                                    <?php
+                                    }
+                                    ?>
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
@@ -545,14 +562,14 @@ if ($privilegios != '' && $usua != '') {
                                     </p>
                                     <div class="row">
                                         <div class="col d-flex justify-content-center">
-                                            <!-- <input type="hidden" name="valor_event_abated" id="valor_event_abated"> -->
+                                            <input type="hidden" name="valor_event_abated" id="valor_event_abated">
                                             <input type="radio" name="event_abated" id="event_abated" value="NO"> No
                                         </div>
                                         <div class="col d-flex justify-content-center">
                                             <input type="radio" name="event_abated" id="event_abated" value="YES"> Yes
                                         </div>
                                         <div class="col d-flex justify-content-center">
-                                            <input type="radio" name="event_abated" id="event_abated" value="N/A" checked> N/A
+                                            <input type="radio" name="event_abated" id="event_abated" value="N/A"> N/A
                                         </div>
                                     </div>
                                 </td>
@@ -572,14 +589,14 @@ if ($privilegios != '' && $usua != '') {
                                                 <p style="text-align: left;">1.e Event <strong>reappeared</strong> after reintroduction</p>
                                                 <div class="row">
                                                     <div class="col d-flex justify-content-center">
-                                                        <!-- <input type="hidden" name="valor_event_reappeared" id="valor_event_reappeared"> -->
+                                                        <input type="hidden" name="valor_event_reappeared" id="valor_event_reappeared">
                                                         <input type="radio" name="event_reappeared" id="event_reappeared" value="NO"> No
                                                     </div>
                                                     <div class="col d-flex justify-content-center">
                                                         <input type="radio" name="event_reappeared" id="event_reappeared" value="YES"> Yes
                                                     </div>
                                                     <div class="col d-flex justify-content-center">
-                                                        <input type="radio" name="event_reappeared" id="event_reappeared" value="N/A" checked> N/A
+                                                        <input type="radio" name="event_reappeared" id="event_reappeared" value="N/A"> N/A
                                                     </div>
                                                 </div>
                                             </td>
@@ -590,11 +607,11 @@ if ($privilegios != '' && $usua != '') {
 
                                                 <div class="row">
                                                     <div class="col d-flex justify-content-center">
-                                                        <!-- <input type="hidden" name="valor_previously_been" id="valor_previously_been"> -->
+                                                        <input type="hidden" name="valor_previously_been" id="valor_previously_been">
                                                         <input type="radio" name="previously_been" id="previously_been" value="NO"> No
                                                     </div>
                                                     <div class="col d-flex justify-content-center">
-                                                        <input type="radio" name="previously_been" id="previously_been" value="YES" checked> Yes
+                                                        <input type="radio" name="previously_been" id="previously_been" value="YES"> Yes
                                                     </div>
                                                     <div class="col d-flex justify-content-center">
                                                         <input type="radio" name="previously_been" id="previously_been" value="N/A"> N/A
@@ -668,11 +685,11 @@ if ($privilegios != '' && $usua != '') {
                                             <span style="text-align: left;">1.i Treatment for AE</span>
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <!-- <input type="hidden" name="valor_treatment_for_ae" id="valor_treatment_for_ae"> -->
+                                            <input type="hidden" name="valor_treatment_for_ae" id="valor_treatment_for_ae">
                                             <input type="radio" name="treatment_for_ae" id="treatment_for_ae" value="YES"> Yes
                                         </div>
                                         <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="treatment_for_ae" id="treatment_for_ae" value="NO" checked> No
+                                            <input type="radio" name="treatment_for_ae" id="treatment_for_ae" value="NO"> No
                                         </div>
                                     </div>
                                     <br>
@@ -751,9 +768,6 @@ if ($privilegios != '' && $usua != '') {
                                         </div>
                                         <div class="col d-flex justify-content-left">
                                             <input type="radio" name="reporter_causality" id="reporter_causality" value="NO"> No
-                                        </div>
-                                        <div class="col d-flex justify-content-left">
-                                            <input type="radio" name="reporter_causality" id="reporter_causality" value="Unknown"> Unknown
                                         </div>
                                     </div>
                                 </td>
@@ -1006,7 +1020,7 @@ if ($privilegios != '' && $usua != '') {
                                             1.c Address
                                         </strong>
                                     </p>
-                                    <input type="text" name="address" id="address" class="form-control w-100 h-100">
+                                    <input type="text" value="PRIVACIDAD DE DATOS" name="address" id="address" class="form-control w-100 h-100" disabled>
                                 </td>
                                 <td colspan="3">
                                     <p style="text-align: left;">
@@ -1031,11 +1045,11 @@ if ($privilegios != '' && $usua != '') {
                                                         </span>
                                                     </div>
                                                     <div class="col d-flex justify-content-left">
-                                                        <!-- <input type="hidden" name="valor_health_care_professional" id="valor_health_care_professional"> -->
+                                                        <input type="hidden" name="valor_health_care_professional" id="valor_health_care_professional">
                                                         <input type="radio" name="health_care_professional" id="health_care_professional" value="YES"> Yes
                                                     </div>
                                                     <div class="col d-flex justify-content-left">
-                                                        <input type="radio" name="health_care_professional" id="health_care_professional" value="NO" checked> No
+                                                        <input type="radio" name="health_care_professional" id="health_care_professional" value="NO"> No
                                                     </div>
                                                 </div>
                                             </td>
@@ -1048,7 +1062,7 @@ if ($privilegios != '' && $usua != '') {
                                                         4. Country of Reporting event:
                                                     </strong>
                                                 </p>
-                                                <input type="text" name="reporting_event" id="reporting_event" class="form-control w-100 h-100" value="COLOMBIA, <?php echo $DEPARTAMENTO_PACIENTE .', '. $CIUDAD_PACIENTE ?>" disabled>
+                                                <input type="text" name="reporting_event" id="reporting_event" class="form-control w-100 h-100" value="COLOMBIA, <?php echo $DEPARTAMENTO_PACIENTE . ', ' . $CIUDAD_PACIENTE ?>" disabled>
                                             </td>
                                         </tr>
                                     </table>
@@ -1249,15 +1263,15 @@ if ($privilegios != '' && $usua != '') {
                     onset_date: document.getElementById('onset_date').value,
                     event_stop_date: document.getElementById('event_stop_date').value,
                     tra_duration: document.getElementById('tra_duration').value,
-                    // event_abated: document.getElementById('valor_event_abated').value,
+                    event_abated: document.getElementById('valor_event_abated').value,
                     event_term: document.getElementById('event_term').value,
-                    // event_reappeared: document.getElementById('valor_event_reappeared').value,
-                    // previously_been: document.getElementById('valor_previously_been').value,
+                    event_reappeared: document.getElementById('valor_event_reappeared').value,
+                    previously_been: document.getElementById('valor_previously_been').value,
                     seriousness: document.getElementById('valor_seriousness').value,
                     death_date: document.getElementById('death_date').value,
                     autopsy: document.getElementById('valor_autopsy').value,
                     cause_death: document.getElementById('cause_death').value,
-                    // treatment_for_ae: document.getElementById('valor_treatment_for_ae').value,
+                    treatment_for_ae: document.getElementById('valor_treatment_for_ae').value,
                     treatment_details: document.getElementById('treatment_details').value,
                     outcome: document.getElementById('valor_outcome').value,
                     laboratory: document.getElementById('laboratory').value,
@@ -1265,7 +1279,7 @@ if ($privilegios != '' && $usua != '') {
                     reporter_causality: document.getElementById('valor_reporter_causality').value,
                     patient_pregnant: document.getElementById('valor_patient_pregnant').value,
                     patient_pregnant_yes: document.getElementById('patient_pregnant_yes').value,
-                    // special_situations: document.getElementById('valor_special_situations').value,
+                    special_situations: document.getElementById('valor_special_situations').value,
                     quiality_defect: document.getElementById('valor_quiality_defect').value,
                     drug: document.getElementById('drug').value,
                     route: document.getElementById('route').value,
@@ -1280,7 +1294,7 @@ if ($privilegios != '' && $usua != '') {
                     phone_number: document.getElementById('phone_number').value,
                     address: document.getElementById('address').value,
                     email: document.getElementById('email').value,
-                    // health_care_professional: document.getElementById('valor_health_care_professional').value,
+                    health_care_professional: document.getElementById('valor_health_care_professional').value,
                     reporting_event: document.getElementById('reporting_event').value,
                     occupation_health_authority: document.getElementById('valor_occupation_health_authority').value,
                     mah: document.getElementById('valor_mah').value,

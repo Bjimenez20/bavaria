@@ -175,6 +175,12 @@ $formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
                                 <input type="checkbox"> Market Research
                             </td>
                             <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox"> Medical Survey
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
+                                <input type="checkbox"> Delphi Study
+                            </td>
+                            <td style="padding: 5px; border: none; text-align: left;">
                                 <input type="checkbox"> Other
                             </td>
                         </tr>
@@ -569,16 +575,14 @@ $formatted_treatment_start_date = formatDate($TREATMENT_START_DATE);
                         <br>
                     <table style="width: 100%; border-collapse: collapse; border: none;">
                         <tr>
-                            Does the Reporter consider that the event was possibly related to the drug?
-                            <td style="padding: 5px; border: none; text-align: left;">
-                                <input type="checkbox" <?php if ($REPORTE_CAUSALITY == 'YES') echo 'checked'; ?>> Yes
-                            </td>
-                            <td style="padding: 5px; border: none; text-align: left;">
-                                <input type="checkbox" <?php if ($REPORTE_CAUSALITY == 'NO') echo 'checked'; ?>> No
-                            </td>
-                            <td style="padding: 5px; border: none; text-align: left;">
-                                <input type="checkbox" <?php if ($REPORTE_CAUSALITY == 'Unknown') echo 'checked'; ?>> Unknown
-                            </td>
+                            <P>Does the Reporter consider that the event was possibly related to the drug?
+                                <td style="padding: 5px; border: none; text-align: left;">
+                                    <input type="checkbox" <?php if ($REPORTE_CAUSALITY == 'YES') echo 'checked'; ?>> Yes
+                                </td>
+                                <td style="padding: 5px; border: none; text-align: left;">
+                                    <input type="checkbox" <?php if ($REPORTE_CAUSALITY == 'NO') echo 'checked'; ?>> No
+                                </td>
+                            </P>
                         </tr>
                     </table>
                     </p>

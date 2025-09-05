@@ -17,8 +17,8 @@ $subject = "Reporte Farmacovigilancia - PAP$ID_PACIENTE_FK - $fecha";
 
 $mail->Body = $body;
 $mail->Subject = $subject;
-$mail->addAddress('ygonzalez@overall.com.co');
-$mail->addAddress('bjimenez@overall.com.co');
+// $mail->addAddress('ygonzalez@overall.com.co');
+$mail->addAddress($EMAIL_USER);
 $mail->addAttachment('../EVENTO_ADVERSO/' . $ID_EVENTO_ADVERSO . '/Evento_Adverso_' . $ID_PACIENTE_FK . '.docx');
 $mail->addAttachment('../EVENTO_ADVERSO/' . $ID_EVENTO_ADVERSO . '/Evento_Adverso_' . $ID_PACIENTE_FK . '.pdf');
 $mail->Send() ? "Enviado" : "Problema al enviar";
