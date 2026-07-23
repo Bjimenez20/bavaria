@@ -14,7 +14,7 @@ include('../logica/session.php');
     <link href="css/estilo_form_paciente.css" type="text/css" />
     <script src="js/jquery.js"></script>
     <script type="text/javascript" src="js/direccion.js"></script>
-    <script type="text/javascript" src="js/validar_campos_pacientes.js"></script>
+    <!-- <script type="text/javascript" src="js/validar_campos_pacientes.js"></script> -->
     <script type="text/javascript" src="js/validaciones.js"></script>
     <script type="text/javascript" src="js/calcular_edad.js"></script>
     <script type="text/javascript" src="js/validar_caracteres.js"></script>
