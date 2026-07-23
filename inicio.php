@@ -4,7 +4,7 @@
         <form id="inicio" action="logica/ini_sesion.php" method="POST">
             <div class="row-reverse my-5">
                 <div class="col d-flex justify-content-center align-items-center mb-3">
-                    <img src="layouts/img/3.png" alt="" class="w-50">
+                    <img src="layouts/img/people.png" alt="" class="w-50">
                 </div>
                 <div class="col-10 mx-auto mb-4">
                     <div class="input-group mb-4">
