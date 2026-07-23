@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>IPSEN</title>
+  <title>BAVARIA</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/menu_conteo.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap_menuc.css">

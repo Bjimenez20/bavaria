@@ -6,7 +6,7 @@ require_once('session.php');
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<style>
 		.aviso3 {
 			font-size: 130%;
@@ -36,14 +36,14 @@ require_once('session.php');
 	require_once("../datos/conex.php");
 	$OK;
 	$ID = base64_decode($ID); //ID_USUARIO
-	$select_usu = mysqli_query($conex, "SELECT CONCAT(NOMBRES,' ',APELLIDOS) AS 'NOMBRE_COMPLETO',ID_USUARIO from ipsen_usuario WHERE ID_USUARIO='" . $ID . "'");
+	$select_usu = mysqli_query($conex, "SELECT CONCAT(NOMBRES,' ',APELLIDOS) AS 'NOMBRE_COMPLETO',ID_USUARIO from usuario WHERE ID_USUARIO='" . $ID . "'");
 	echo mysqli_error($conex);
 	while ($datos_pa = mysqli_fetch_array($select_usu)) {
 		$NOM = $datos_pa['NOMBRE_COMPLETO'];
 		$ID = $datos_pa['ID_USUARIO'];
 	}
 	if ($OK == '1') {
-		$sql = mysqli_query($conex, "UPDATE ipsen_usuario SET ESTADO=0 WHERE ID_USUARIO='" . $ID . "' AND  (ESTADO='1' or ESTADO='');");
+		$sql = mysqli_query($conex, "UPDATE usuario SET ESTADO=0 WHERE ID_USUARIO='" . $ID . "' AND  (ESTADO='1' or ESTADO='');");
 		echo mysqli_error($conex);
 		if ($sql) {
 	?>
@@ -62,7 +62,7 @@ require_once('session.php');
 		}
 	}
 	if ($OK == '2') {
-		$sql = mysqli_query($conex, "UPDATE ipsen_usuario SET ESTADO=1 WHERE ID_USUARIO='" . $ID . "' AND  (ESTADO='0' or ESTADO='');");
+		$sql = mysqli_query($conex, "UPDATE usuario SET ESTADO=1 WHERE ID_USUARIO='" . $ID . "' AND  (ESTADO='0' or ESTADO='');");
 		echo mysqli_error($conex);
 		if ($sql) {
 		?>
@@ -80,7 +80,7 @@ require_once('session.php');
 	}
 	if ($OK == '3') {
 		$CONTRASENA = md5(1234);
-		$sql = mysqli_query($conex, "UPDATE ipsen_usuario SET CONTRASENA='" . $CONTRASENA . "' WHERE ID_USUARIO='" . $ID . "'");
+		$sql = mysqli_query($conex, "UPDATE usuario SET CONTRASENA='" . $CONTRASENA . "' WHERE ID_USUARIO='" . $ID . "'");
 		echo mysqli_error($conex);
 		if ($sql) {
 		?>

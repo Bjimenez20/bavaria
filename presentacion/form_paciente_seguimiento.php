@@ -8,7 +8,7 @@ include('../logica/session.php')
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
 	<link rel="stylesheet" href="css/estilos_menu.css" />
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<script src="js/jquery.js"></script>
 	<script src="../presentacion/js/jquery.js"></script>
@@ -74,13 +74,13 @@ include('../logica/session.php')
 				?>
 					<table width="20%" border="0" align="left" cellpadding="2" cellspacing="1" style="margin:auto auto;" class="letra">
 						<tr align="left">
-							<th width="15%" align="left" class="titulosth" bgcolor="#0C68B0">
+							<th width="15%" align="left" class="titulosth" bgcolor="#1D5C75">
 								<div id="movimiento1">
 									PAP
 									<input name="PAP" type="text" id="PAP" placeholder="Buscar por PAP" class="tipo1" style="height:20px">
 								</div>
 							</th>
-							<th width="5%" bgcolor="#0C68B0">
+							<th width="5%" bgcolor="#1D5C75">
 								<div id="consulta">
 									<input type="submit" name="buscar" id="buscar" value="Consultar" class="btn_buscar" title="BUSCAR" />
 								</div>
@@ -95,28 +95,28 @@ include('../logica/session.php')
 				?>
 					<table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" style="margin:auto auto;" class="letra">
 						<tr align="center">
-							<th width="10%" align="left" class="titulosth" bgcolor="#0C68B0">
+							<th width="10%" align="left" class="titulosth" bgcolor="#1D5C75">
 								<div id="movimiento1">
 									PAP
 									<input name="PAP" type="text" id="PAP" class="tipo1" style="height:20px">
 								</div>
 							</th>
-							<th width="20%" height="44" align="left" bgcolor="#0C68B0" class="titulosth">NOMBRE
+							<th width="20%" height="44" align="left" bgcolor="#1D5C75" class="titulosth">NOMBRE
 								<input name="nombre" type="text" id="nombre" class="tipo1" style="height:20px" />
 							</th>
-							<th width="15%" align="left" class="titulosth" bgcolor="#0C68B0">
+							<th width="15%" align="left" class="titulosth" bgcolor="#1D5C75">
 								<div id="movimiento2">
 									DOCUMENTO
 									<input name="documento" type="text" id="documento" class="tipo1" style="height:20px" />
 								</div>
 							</th>
-							<th width="15%" align="left" class="titulosth" bgcolor="#0C68B0">
+							<th width="15%" align="left" class="titulosth" bgcolor="#1D5C75">
 								<div id="movimiento1">
 									TELEFONO
 									<input name="telefono" type="text" id="telefono" class="tipo1" style="height:20px">
 								</div>
 							</th>
-							<th width="5%" bgcolor="#0C68B0">
+							<th width="5%" bgcolor="#1D5C75">
 								<div id="consulta">
 									<input type="submit" name="buscar" id="buscar" value="Consultar" class="btn_buscar" title="BUSCAR" />
 								</div>

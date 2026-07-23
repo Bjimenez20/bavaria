@@ -13,7 +13,7 @@ include('../logica/session.php');
 	<link rel="stylesheet" type="text/css" href="js/plug/jquery.dataTables.css" />
 	<link href="js/plug/tablas.css" rel="stylesheet" />
 	<link href="js/plug/bootstrap.css" rel="stylesheet" />
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<script>
 		$(document).ready(function() {
 			$('#pedidos').DataTable();

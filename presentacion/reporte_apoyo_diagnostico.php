@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>IPSEN</title>
+    <title>BAVARIA</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

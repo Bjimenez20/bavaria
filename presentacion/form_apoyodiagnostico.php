@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>IPSEN</title>
+    <title>BAVARIA</title>
     <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
     <script src="../presentacion/js/jquery.js"></script>
     <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />

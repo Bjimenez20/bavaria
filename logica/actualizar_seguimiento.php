@@ -7,7 +7,7 @@ include('../logica/session.php');
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>IPSEN</title>
+    <title>BAVARIA</title>
     <style>
         .aviso3 {
             font-size: 130%;
@@ -436,7 +436,7 @@ include('../logica/session.php');
                         $INSERT_MOVIMIENTO_PACIENTE = mysqli_query($conex, "INSERT INTO ipsen_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,
 						ESTADO_PACIENTE_MOVIMIENTO)VALUES('" . $codigo_usuario2 . "','" . $ID_ULT_MOVIMIENTO . "','EN PROCESO')");
                         echo mysqli_error($conex);
-                        $INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO ipsen_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
+                        $INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
                         echo mysqli_error($conex);
                         $verificar_cantidad = mysqli_query($conex, "SELECT * FROM ipsen_referencia WHERE ID_REFERENCIA='" . $tipo_envio . "' AND CANTIDAD<STOCK_MINIMO");
                         echo mysqli_error($conex);
@@ -538,7 +538,7 @@ include('../logica/session.php');
                                     $INSERT_MOVIMIENTO_PACIENTE = mysqli_query($conex, "INSERT INTO ipsen_paciente_movimientos(ID_PACIENTE_FK,ID_MOVIMIENTOS_FK,
 									ESTADO_PACIENTE_MOVIMIENTO)VALUES('" . $codigo_usuario2 . "','" . $ID_ULT_MOVIMIENTO . "','EN PROCESO')");
                                     echo mysqli_error($conex);
-                                    $INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO ipsen_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
+                                    $INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
                                     echo mysqli_error($conex);
                                     $BORRAR_PRODUCTOS_TEMPORAL = mysqli_query($conex, "DELETE  FROM ipsen_temporal_producto WHERE ID_PACIENTE_FK='" . $codigo_usuario2 . "'");
                                     echo mysqli_error($conex);

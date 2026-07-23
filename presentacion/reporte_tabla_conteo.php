@@ -6,7 +6,7 @@ mysqli_select_db($conexion, 'apppeopl_bayer') or die("no se puede conectar a la 
 <html lang="es">
 
 <head>
-    <title>IPSEN</title>
+    <title>BAVARIA</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">

@@ -7,8 +7,8 @@ mysqli_select_db($conex, $basepaciente) or die("No se Puede conectar a la base d
 $_SESSION['NAME'] = '';
 $USER = addslashes($_POST['email']);
 $CONTRASENA = addslashes($_POST['Contrasena']);
-$sql = mysqli_query($conex, "SELECT `USER`, `CONTRASENA`, `PRIVILEGIOS`, `CONTRASENA_FECHA`,`ID_USUARIO`, `EMAIL` , `NOMBRES`, `APELLIDOS` FROM `ipsen_usuario` WHERE `EMAIL` = '" . $USER . "' and `CONTRASENA` = MD5('" . $CONTRASENA . "') and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
-$conusuario = mysqli_query($conex, "SELECT `USER`,`INTENTOS`, `ESTADO`, `EMAIL` FROM `ipsen_usuario` WHERE `EMAIL` = '" . $USER . "' and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
+$sql = mysqli_query($conex, "SELECT `USER`, `CONTRASENA`, `PRIVILEGIOS`, `CONTRASENA_FECHA`,`ID_USUARIO`, `EMAIL` , `NOMBRES`, `APELLIDOS` FROM `usuario` WHERE `EMAIL` = '" . $USER . "' and `CONTRASENA` = MD5('" . $CONTRASENA . "') and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
+$conusuario = mysqli_query($conex, "SELECT `USER`,`INTENTOS`, `ESTADO`, `EMAIL` FROM `usuario` WHERE `EMAIL` = '" . $USER . "' and `ESTADO` != '0' ") or die("No se Puede hacer la cosulta");
 echo mysqli_error($conex);
 mysqli_num_rows($sql);
 if (mysqli_num_rows($sql) > 0) {
@@ -23,7 +23,7 @@ if (mysqli_num_rows($sql) > 0) {
 	$_SESSION["usuarios"] = $name_user;
 	$_SESSION["privilegios"] = $privilegios;
 	$_SESSION["id"] = $id_usuario;
-	$actu = mysqli_query($conex, "UPDATE ipsen_usuario SET 
+	$actu = mysqli_query($conex, "UPDATE usuario SET 
 		INTENTOS = '0'
 		WHERE USER='" . $name_user . "';");
 	if ($CONTRASENA == '1234' or $hoy >= $contra_fecha) {
@@ -66,12 +66,12 @@ if (mysqli_num_rows($sql) > 0) {
 				}
 			</script>
 		<?php
-			$actu = mysqli_query($conex, "UPDATE ipsen_usuario SET 
+			$actu = mysqli_query($conex, "UPDATE usuario SET 
 				ESTADO = '1'
 				WHERE USER='" . $usua2 . "';");
 		} else {
 			$NUM_INTENTOS = $intentos + 1;
-			$actu = mysqli_query($conex, "UPDATE ipsen_usuario SET 
+			$actu = mysqli_query($conex, "UPDATE usuario SET 
 				INTENTOS = '" . $NUM_INTENTOS . "'
 				WHERE USER='" . $usua2 . "';");
 		?>

@@ -6,7 +6,7 @@ error_reporting(0);
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<script src="../presentacion/js/jquery.js"></script>
 	<style>
 		.aviso3 {
@@ -130,8 +130,8 @@ error_reporting(0);
 				<option>ipsen_referencia</option>
 				<option>ipsen_relacion_producto</option>
 				<option>ipsen_tratamiento</option>
-				<option>ipsen_usuario</option>
-				<option>ipsen_usuario_movimientos</option>
+				<option>usuario</option>
+				<option>usuario_movimientos</option>
 				<option>ipsen_terapia</option>
 				<option>ipsen_historial_reclamacion</option>
 				<option>ipsen_reporte</option>

@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>IPSEN</title>
+    <title>BAVARIA</title>
     <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
 </head>
 

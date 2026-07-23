@@ -7,7 +7,7 @@ include('../logica/session.php')
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>IPSEN</title>
+    <title>BAVARIA</title>
     <!-- <link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" /> -->
     <script src="js/jquery.js"></script>
     <script type="text/javascript" src="js/calcular_edad.js"></script>

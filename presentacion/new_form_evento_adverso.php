@@ -224,7 +224,7 @@ include('../logica/consulta_ea.php');
 $ID_PACIENTE = base64_decode($xnfgti);
 $ID_GESTION = base64_decode($artget);
 if ($privilegios != '' && $name_user != '') {
-    $SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE USER = '" . $name_user . "'");
+    $SELECT_USUARIO_TOTAL = mysqli_query($conex, "SELECT * FROM usuario WHERE USER = '" . $name_user . "'");
     while ($opcion = mysqli_fetch_array($SELECT_USUARIO_TOTAL)) {
         $NOMBRES = $opcion['NOMBRES'];
         $APELLIDOS = $opcion['APELLIDOS'];

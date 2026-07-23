@@ -6,7 +6,7 @@ include('../logica/session.php');
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<style>
 		.aviso3 {
 			font-size: 130%;
@@ -191,7 +191,7 @@ include('../logica/session.php');
 ESTADO_PACIENTE_MOVIMIENTO)VALUES('" . $codigo_usuario2 . "','" . $ID_ULT_MOVIMIENTO . "','EN PROCESO')");
 			echo mysqli_error($conex);
 
-			$INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO ipsen_usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
+			$INSERT_MOVIMIENTO_USUARIO = mysqli_query($conex, "INSERT INTO usuario_movimientos(ID_USUARIO_FK,ID_MOVIMIENTOS_FK)VALUES('" . $id_usu . "','" . $ID_ULT_MOVIMIENTO . "')");
 			echo mysqli_error($conex);
 		}
 

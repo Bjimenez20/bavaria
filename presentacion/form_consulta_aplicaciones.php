@@ -7,7 +7,7 @@ include('../logica/session.php');
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<style>
 		.error {
 			font-size: 130%;

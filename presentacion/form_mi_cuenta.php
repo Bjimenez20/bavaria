@@ -6,7 +6,7 @@ include('../logica/session.php');
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
@@ -17,7 +17,7 @@ require('../datos/parse_str.php');
 $NAME = base64_decode($DATO);
 require_once('../datos/conex.php');
 if ($privilegios != '' && $usua != '') {
-	$CONSULTA_USU = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE USER='" . $NAME . "'");
+	$CONSULTA_USU = mysqli_query($conex, "SELECT * FROM usuario WHERE USER='" . $NAME . "'");
 	while ($DATOS = mysqli_fetch_array($CONSULTA_USU)) {
 		$ID_USUARIO = $DATOS['ID_USUARIO'];
 		$USER = $DATOS['USER'];

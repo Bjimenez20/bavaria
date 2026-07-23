@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>IPSEN</title>
+    <title>BAVARIA</title>
     <link rel="stylesheet" type="text/css" href="css/estilo_tablas.css" />
     <link rel="stylesheet" type="text/css" href="../presentacion/css/estilo_tablas.css" />
 </head>

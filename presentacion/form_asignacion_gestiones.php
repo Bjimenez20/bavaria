@@ -6,7 +6,7 @@ require_once('../logica/session.php');
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<link href="css/estilo_asignacion.css" type="text/javascript" rel="stylesheet" />
 	<script src="js/jquery.js" type="text/javascript"></script>
 	<script>
@@ -31,14 +31,14 @@ if ($privilegios != '' && $usua != '') {
 		$usuario = base64_decode($usu);
 		$ok = base64_decode($ok);
 		if ($ok == 'act') {
-			$actualizar = mysqli_query($conex, "UPDATE ipsen_usuario SET
+			$actualizar = mysqli_query($conex, "UPDATE usuario SET
 			ESTADO_LOGIN='IN'
 			WHERE USER='" . $usuario . "'
 			AND ESTADO_LOGIN='OUT'");
 			echo mysqli_error($conex);
 		}
 		if ($ok == 'des') {
-			$actualizar = mysqli_query($conex, "UPDATE ipsen_usuario SET
+			$actualizar = mysqli_query($conex, "UPDATE usuario SET
 			ESTADO_LOGIN='OUT'
 			WHERE USER='" . $usuario . "'
 			AND ESTADO_LOGIN='IN'");
@@ -55,7 +55,7 @@ if ($privilegios != '' && $usua != '') {
 			echo mysqli_error($conex);
 		}
 		if ($ok == 'asignar') {
-			$actualizar = mysqli_query($conex, "UPDATE ipsen_usuario SET
+			$actualizar = mysqli_query($conex, "UPDATE usuario SET
 			ESTADO_LOGIN='OUT'
 			WHERE USER='" . $usuario . "'
 			AND ESTADO_LOGIN='IN'");
@@ -126,7 +126,7 @@ if ($privilegios != '' && $usua != '') {
 	}
 	$nreg_terapias = $total_gestiones_trt;
 	$nreg_pac = $total_gestiones;
-	$select_usu = mysqli_query($conex, "SELECT ID_USUARIO,USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM ipsen_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2' AND ID_USUARIO<>'69' AND ID_USUARIO<>'83'");
+	$select_usu = mysqli_query($conex, "SELECT ID_USUARIO,USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM usuario WHERE ESTADO='1' AND PRIVILEGIOS='2' AND ID_USUARIO<>'69' AND ID_USUARIO<>'83'");
 	echo mysqli_error($conex);
 	$nreg_usu = mysqli_num_rows($select_usu);
 ?>

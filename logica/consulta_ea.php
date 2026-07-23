@@ -3,7 +3,7 @@ require('../datos/parse_str.php');
 require_once("../datos/conex.php");
 $ID_PACIENTE;
 $hoy = date('Y-m-d');
-$consulta = mysqli_query($conex, "SELECT * FROM ipsen_usuario WHERE USER = '" . $usua . "'");
+$consulta = mysqli_query($conex, "SELECT * FROM usuario WHERE USER = '" . $usua . "'");
 echo mysqli_error($conex);
 while ($dato = mysqli_fetch_array($consulta)) {
 	$PRIVILEGIOS = $dato['PRIVILEGIOS'];

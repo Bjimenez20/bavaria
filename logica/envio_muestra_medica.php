@@ -8,7 +8,7 @@ include('../logica/session.php')
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
   <link rel="stylesheet" href="css/estilos_menu.css" />
-  <title>IPSEN</title>
+  <title>BAVARIA</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <script src="js/jquery.js"></script>
   <script src="../presentacion/js/jquery.js"></script>

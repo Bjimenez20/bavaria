@@ -6,7 +6,7 @@ require_once('../logica/session.php');
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<script src="js/jquery.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -82,7 +82,7 @@ require_once('../logica/session.php');
 require('../datos/parse_str.php');
 require_once("../datos/conex.php");
 $hoy = date('Y-m-d');
-$select_usu = mysqli_query($conex, "select USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM ipsen_usuario WHERE ESTADO='1' AND PRIVILEGIOS='2'");
+$select_usu = mysqli_query($conex, "select USER,NOMBRES,APELLIDOS,ESTADO,PRIVILEGIOS,ESTADO_LOGIN FROM usuario WHERE ESTADO='1' AND PRIVILEGIOS='2'");
 echo mysqli_error($conex);
 $nreg_usu = mysqli_num_rows($select_usu);
 $select_gestiones = mysqli_query($conex, "SELECT ID_GESTION FROM GESTION WHERE FECHA_PROGRAMADA_GESTION='" . $hoy . "'");

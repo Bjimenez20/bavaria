@@ -88,19 +88,19 @@ if ($privilegios != '' && $usua != '') {
                     <div id="content_welcome">
                         <div class="row-reverse">
                             <div class="col d-flex justify-content-center">
-                                <img src="./../presentacion/imagenes/11.png" style="width: 13%;" alt="">
+                                <img src="./../presentacion/imagenes/14.png" style="width: 13%;" alt="">
                             </div>
                             <div class="col d-flex justify-content-center">
-                                <label for="" class="h2 font-weight-blue" style="color: #2797d3;">BIENVENIDO A IPSEN </label>
+                                <label for="" class="h2 font-weight-blue" style="color: #A5B9C8;">BIENVENIDO A BAVARIA </label>
                             </div>
                         </div>
                         <div class="row mt-5">
                             <div class="col-md-4 mx-auto">
                                 <div class="card text-center cardhome">
-                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-image: url('./../presentacion/imagenes/cardhome1.png')">
+                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-color:#A5B9C8;">
                                         <span class="mask bg-gradient-dark opacity-6"></span>
                                         <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
-                                            <p class="text-white font-weight-bold h3">CREAR PACIENTES</p>
+                                            <p class="text-white font-weight-bold h3">CREAR VISITA</p>
                                             <a class="select_menu text-white text-sm font-weight-bold mb-0 icon-move-right mt-4" href="../presentacion/form_paciente_nuevo.php" target="info">
                                                 Ver más
                                                 <i class="material-icons text-sm ms-1 position-relative" aria-hidden="true">arrow_forward</i>
@@ -111,7 +111,7 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="col-md-4 mx-auto">
                                 <div class="card text-center cardhome">
-                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-image: url('./../presentacion/imagenes/cardhome2.png')">
+                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-color:#A5B9C8;">
                                         <span class="mask bg-gradient-dark opacity-6"></span>
                                         <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
                                             <p class="text-white font-weight-bold h3">SEGUIMIENTO</p>
@@ -125,7 +125,7 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="col-md-4 mx-auto">
                                 <div class="card text-center cardhome">
-                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-image: url('./../presentacion/imagenes/cardhome3.png')">
+                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-color:#A5B9C8;">
                                         <span class="mask bg-gradient-dark opacity-6"></span>
                                         <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
                                             <p class="text-white font-weight-bold h3">REPORTES</p>

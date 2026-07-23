@@ -8,7 +8,7 @@ include('../logica/session.php')
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    <link rel="stylesheet" href="../presentacion/css/estilos_menu.css" />
    <link type="text/css" rel="stylesheet" href="../presentacion/css/estilo_form_paciente.css" />
-   <title>IPSEN</title>
+   <title>BAVARIA</title>
    <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
 
    <style>
@@ -127,7 +127,7 @@ include('../logica/session.php')
 
       if (validar_clave($CONTRASENA_NU, $error_encontrado)) {
          if ($CONTRASENA_NU == $CONTRASENA_VA) {
-            $sql = mysqli_query($conex, "UPDATE ipsen_usuario SET CONTRASENA = '" . MD5($CONTRASENA_NU) . "',  CONTRASENA_FECHA = '" . $CONTRASENA_VENCE . "' WHERE USER='" . $USUARIO . "';");
+            $sql = mysqli_query($conex, "UPDATE usuario SET CONTRASENA = '" . MD5($CONTRASENA_NU) . "',  CONTRASENA_FECHA = '" . $CONTRASENA_VENCE . "' WHERE USER='" . $USUARIO . "';");
 
             if ($sql) {
                // ✅ Cerrar sesión completa

@@ -305,7 +305,7 @@ if ($privilegios != '' && $usua != '') {
                             ?>
                             <td>
                                 <?php
-                                $sqlusu = mysqli_query($conex, "SELECT PROGRAMA FROM ipsen_usuario WHERE USER = '" . $usua . "' ");
+                                $sqlusu = mysqli_query($conex, "SELECT PROGRAMA FROM usuario WHERE USER = '" . $usua . "' ");
                                 echo mysqli_error($conex);
                                 while ($row1 = mysqli_fetch_array($sqlusu)) {
                                     $PROGRAMA = $row1['PROGRAMA'];

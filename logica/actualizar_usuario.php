@@ -6,7 +6,7 @@ include('../logica/session.php');
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<style>
 		.aviso3 {
 			font-size: 130%;
@@ -43,7 +43,7 @@ include('../logica/session.php');
 	$PERFIL = $_POST['PERFIL'];
 	if (isset($_POST['restablecer'])) {
 		$CONTRASENA = md5(1234);
-		$sql = mysqli_query($conex, "UPDATE ipsen_usuario SET CONTRASENA='" . $CONTRASENA . "' WHERE ID_USUARIO='" . $ID . "'");
+		$sql = mysqli_query($conex, "UPDATE usuario SET CONTRASENA='" . $CONTRASENA . "' WHERE ID_USUARIO='" . $ID . "'");
 		echo mysqli_error($conex);
 		if ($sql) {
 	?>
@@ -64,7 +64,7 @@ include('../logica/session.php');
 	}
 	if (isset($_POST['MODIFICAR_USU'])) {
 		$CONTRASENA = md5($CONTRASENA);
-		$sql = mysqli_query($conex, "UPDATE ipsen_usuario SET NOMBRES='" . $NOMBRES . "',APELLIDOS='" . $APELLIDO . "', CELULAR='" . $NUM_TEL . "' WHERE ID_USUARIO='" . $ID . "';");
+		$sql = mysqli_query($conex, "UPDATE usuario SET NOMBRES='" . $NOMBRES . "',APELLIDOS='" . $APELLIDO . "', CELULAR='" . $NUM_TEL . "' WHERE ID_USUARIO='" . $ID . "';");
 		echo mysqli_error($conex);
 		if ($sql) {
 		?>

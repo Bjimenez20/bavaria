@@ -5,7 +5,7 @@ include('../logica/session.php');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>IPSEN</title>
+    <title>BAVARIA</title>
     <link rel="shortcut icon" href="https://www.ipsen.com/wp-content/themes/ipsen-master/favicon.ico" />
     <link rel="stylesheet" href="css/estilos_form_usuario.css" />
     <script src="js/jquery.js"></script>

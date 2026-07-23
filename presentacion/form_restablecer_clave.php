@@ -123,7 +123,7 @@ include('../logica/session.php')
                if (validar_clave($_POST["Contrasena_nu"], $error_encontrado)) {
                   if ($CONTRASENA_NU == $CONTRASENA_VA) {
                      echo "<span class=fuente>CONTRASE&Ntilde;A V&Aacute;LIDA</span>";
-                     $sql = mysqli_query($conex, "UPDATE ipsen_usuario SET 
+                     $sql = mysqli_query($conex, "UPDATE usuario SET 
                               CONTRASENA = '" . MD5($CONTRASENA_NU) . "',
                               CONTRASENA_FECHA = '" . $CONTRASENA_VENCE . "'
                               WHERE USER='" . $USUARIO . "';");

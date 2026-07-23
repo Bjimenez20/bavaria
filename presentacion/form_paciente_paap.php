@@ -7,7 +7,7 @@ include('../logica/session.php')
 
 <head>
 	<meta charset="windows-1252">
-	<title>IPSEN</title>
+	<title>BAVARIA</title>
 	<link type="text/css" rel="stylesheet" href="css/estilo_form_paciente.css" />
 	<script src="css/SpryAssets/SpryAccordion.js" type="text/javascript"></script>
 	<link href="css/SpryAssets/SpryAccordion.css" rel="stylesheet" type="text/css" />

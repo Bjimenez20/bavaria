@@ -1,19 +1,16 @@
-<div class="sidebar" style="background: #224a81">
+<div class="sidebar" style="background: #1D5C75">
     <div class="logo">
         <div class="row">
             <div class="col " style="display: none" id="logo_mini">
                 <a href="https://www.peoplemarketing.com/" class="simple-text logo-mini">
-                    <img src="./../presentacion/imagenes/12.png" alt="" class="w-100">
+                    <img src="./../presentacion/imagenes/13.png" alt="" class="w-100">
                 </a>
             </div>
             <div class="col d-flex justify-content-center">
                 <a href="https://www.peoplemarketing.com/" class="simple-text logo-normal">
                     <div class="row-reverse">
                         <div class="col d-flex justify-content-center">
-                            <img class="img" src="./../presentacion/imagenes/12.png" alt="" id="logo_max" style="width:60%;">
-                        </div>
-                        <div class="col d-flex justify-content-center">
-                            <label for="" class="text-white ">IPSEN</label>
+                            <img class="img" src="./../presentacion/imagenes/13.png" alt="" id="logo_max" style="width:70%;">
                         </div>
                     </div>
                 </a>
@@ -44,44 +41,10 @@
                     $('#content_welcome').show('slow');
                 }
             </script>
-            <?php
-            if ($privilegios == '1') {
-            ?>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples1">
-                        <i class="material-icons">menu_book</i>
-                        <p> Novedades
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="pagesExamples1">
-                        <ul class="nav">
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/novedades_registro.php" target="info">
-                                    <span class="sidebar-mini"> P </span>
-                                    <span class="sidebar-normal"> Registro novedad </span>
-                                </a>
-                            </li>
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/novedades_correo.php" target="info">
-                                    <span class="sidebar-mini"> RS </span>
-                                    <span class="sidebar-normal"> Consulta novedad </span>
-                                </a>
-                            </li>
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../informes/grid_bayer_novedades" target="info">
-                                    <span class="sidebar-mini"> T </span>
-                                    <span class="sidebar-normal"> Reporte novedad </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            <?php } ?>
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#pagesExamples5">
                     <i class="material-icons">person_add</i>
-                    <p> Paciente
+                    <p> Visitas
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -90,183 +53,42 @@
                         <li class="nav-item select_menu">
                             <a class="nav-link" href="../presentacion/form_paciente_nuevo.php" target="info">
                                 <i class="material-icons">person_add</i>
-                                <p> Crear paciente </p>
+                                <p> Crear visita </p>
                             </a>
                         </li>
                         <li class="nav-item select_menu">
                             <a class="nav-link" href="../presentacion/form_paciente_seguimiento.php" target="info">
                                 <i class="material-icons">list</i>
-                                <p> Seguimiento paciente </p>
+                                <p> Seguimiento visita </p>
                             </a>
                         </li>
-                        <?php
-                        if ($privilegios == 1) {
-                        ?>
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/listado_escalados.php" target="info">
-                                    <i class="material-icons">assignment_late</i>
-                                    <p> Casos escalados </p>
-                                </a>
-                            </li>
-                        <?php
-                        }
-                        ?>
                     </ul>
                 </div>
             </li>
-            <li class="nav-item" style="background-color: #5DADE2;">
-                <a class="nav-link" data-toggle="collapse" href="#pagesExamples6">
-                    <i class="material-icons">person</i>
-                    <p> Aspirantes
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#pagesExamples3">
+                    <i class="material-icons">pie_chart</i>
+                    <p> Reportes
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="pagesExamples6">
+                <div class="collapse" id="pagesExamples3">
                     <ul class="nav">
                         <li class="nav-item select_menu">
-                            <a class="nav-link" href="../presentacion/form_paciente_aspirante.php" target="info">
-                                <i class="material-icons">person</i>
-                                <p> Crear aspirante </p>
+                            <a class="nav-link" href="../scriptcase" target="info">
+                                <span class="sidebar-mini"> RS </span>
+                                <span class="sidebar-normal"> Otros reportes </span>
                             </a>
                         </li>
                         <li class="nav-item select_menu">
-                            <a class="nav-link" href="../presentacion/form_aspirante_seguimiento.php" target="info">
-                                <i class="material-icons">list</i>
-                                <p> Seguimiento aspirante </p>
+                            <a class="nav-link" href="../presentacion/form_bi.php" target="info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="material-icons">leaderboard </i>
+                                <span class="sidebar-normal"> BI </span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
-            <?php
-            if ($privilegios == '1') {
-            ?>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples2">
-                        <i class="material-icons">image</i>
-                        <p> Productos
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="pagesExamples2">
-                        <ul class="nav">
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/form_registro_material.php" target="info">
-                                    <span class="sidebar-mini"> P </span>
-                                    <span class="sidebar-normal"> Registro material </span>
-                                </a>
-                            </li>
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/form_inventario.php" target="info">
-                                    <span class="sidebar-mini"> RS </span>
-                                    <span class="sidebar-normal"> Inventario </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            <?php
-            } elseif ($privilegios == '5') {
-            ?>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples2">
-                        <i class="material-icons">image</i>
-                        <p> Productos
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="pagesExamples2">
-                        <ul class="nav">
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/form_inventario.php" target="info">
-                                    <span class="sidebar-mini"> RS </span>
-                                    <span class="sidebar-normal"> Inventario </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            <?php } ?>
-            <?php
-            if ($privilegios == '1') {
-            ?>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples3">
-                        <i class="material-icons">pie_chart</i>
-                        <p> Reportes
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="pagesExamples3">
-                        <ul class="nav">
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/form_reporte.php" target="info">
-                                    <i class="material-icons">filter_list</i>
-                                    <span class="sidebar-normal"> Filtro por tabla </span>
-                                </a>
-                            </li>
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../scriptcase" target="info">
-                                    <span class="sidebar-mini"> RS </span>
-                                    <span class="sidebar-normal"> Otros reportes </span>
-                                </a>
-                            </li>
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/form_bi.php" target="info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="material-icons">leaderboard </i>
-                                    <span class="sidebar-normal"> BI </span>
-                                </a>
-                            </li>
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../scriptcase/aspirantes" target="info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="material-icons">alt_route </i>
-                                    <span class="sidebar-normal"> Aspirantes </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            <?php
-            } elseif ($privilegios == '2') {
-            ?>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples3">
-                        <i class="material-icons">pie_chart</i>
-                        <p> Reportes
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="pagesExamples3">
-                        <ul class="nav">
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../new_scriptcase/conteo/Bayer_20220706110144" target="info">
-                                    <span class="sidebar-mini"> RS </span>
-                                    <span class="sidebar-normal"> Reporte causal conteo </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            <?php } elseif ($privilegios == '5') { ?>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples3">
-                        <i class="material-icons">pie_chart</i>
-                        <p> Reportes
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="pagesExamples3">
-                        <ul class="nav">
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../scriptcase" target="info">
-                                    <span class="sidebar-mini"> RS </span>
-                                    <span class="sidebar-normal"> Otros reportes </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            <?php } ?>
             <?php
             if ($privilegios == '1' || $privilegios == '5') {
             ?>

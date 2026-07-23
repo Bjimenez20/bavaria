@@ -11941,7 +11941,7 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
 }
 
 .badge.badge-primary {
-  background-color: #2797d3;
+  background-color: #1D5C75;
 }
 
 .badge.badge-info {
@@ -15044,7 +15044,7 @@ legend {
 }
 
 a {
-  color: #2797d3;
+  color: #1D5C75;
 }
 
 a:hover,
@@ -17743,7 +17743,7 @@ form .checkbox-radios {
 }
 
 a {
-  color: #2797d3;
+  color: #1D5C75;
 }
 
 a:hover,
@@ -18754,7 +18754,7 @@ a .material-icons {
 .sidebar .nav li .dropdown-menu a:focus,
 .sidebar .nav li.active>[data-toggle="collapse"] {
   background-color: rgba(200, 200, 200, 0.2);
-  color: #2797d3;
+  color: #fff;
   box-shadow: none;
 }
 
@@ -18802,7 +18802,7 @@ a .material-icons {
   line-height: 30px;
   width: 30px;
   text-align: center;
-  color: #a9afbb;
+  color: white;
 }
 
 .sidebar .nav li a,
