@@ -1,29 +1,38 @@
 <?php include 'layouts/head.php'; ?>
-<div class="row m-0">
-    <div class="col-md-6 col-lg-5 col-sm-10 col-xs-10 mx-auto m-5">
+<div class="row m-0 align-items-center" style="min-height:100vh;">
+    <div class="col-md-6 col-lg-5 col-sm-10 col-xs-10 mx-auto">
         <form id="inicio" action="logica/ini_sesion.php" method="POST">
-            <div class="row-reverse my-5">
-                <div class="col d-flex justify-content-center align-items-center mb-3">
-                    <img src="layouts/img/people.png" alt="" class="w-50">
-                </div>
+            <div class="row-reverse">
                 <div class="col-10 mx-auto mb-4">
                     <div class="input-group mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><span class="iconify" data-icon="carbon:email"></span></span>
+                            <span class="input-group-text">
+                                <span class="iconify" data-icon="carbon:email"></span>
+                            </span>
                         </div>
-                        <input id="email" name="email" type="email" required="required" class="form-control" placeholder="Correo Electronico">
+                        <input id="email" name="email" type="email"
+                            required class="form-control"
+                            placeholder="Correo Electronico">
                     </div>
                 </div>
+
                 <div class="col-10 mx-auto mb-4">
                     <div class="input-group mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><span class="iconify" data-icon="carbon:password"></span></span>
+                            <span class="input-group-text">
+                                <span class="iconify" data-icon="carbon:password"></span>
+                            </span>
                         </div>
-                        <input id="Contrasena" name="Contrasena" type="password" required="required" class="form-control" placeholder="Contrase&ntilde;a">
+                        <input id="Contrasena" name="Contrasena" type="password"
+                            required class="form-control"
+                            placeholder="Contraseña">
                     </div>
                 </div>
-                <div class="col-10 mx-auto mb-3 d-flex justify-content-center align-items-center p-3">
-                    <input id="Inicio" name="Inicio" type="submit" value="Iniciar Sesi&oacute;n" class="btn_iniar btn btn-success" />
+
+                <div class="col-10 mx-auto text-center">
+                    <input id="Inicio" name="Inicio" type="submit"
+                        value="Iniciar Sesión"
+                        class="btn_iniar btn btn-success">
                 </div>
             </div>
         </form>
