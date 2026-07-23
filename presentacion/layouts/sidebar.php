@@ -89,37 +89,30 @@
                     </ul>
                 </div>
             </li>
-            <?php
-            if ($privilegios == '1' || $privilegios == '5') {
-            ?>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples4">
-                        <i class="material-icons">settings</i>
-                        <p> Configuración
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="pagesExamples4">
-                        <ul class="nav">
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/form_usuarios.php" target="info">
-                                    <i class="material-icons">person_add</i>
-                                    <span class="sidebar-normal"> Usuarios </span>
-                                </a>
-                            </li>
-                            <li class="nav-item select_menu">
-                                <a class="nav-link" href="../presentacion/form_cuenta_usuario.php" target="info">
-                                    <i class="material-icons">person</i>
-                                    <span class="sidebar-normal"> Mi cuenta </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            <?php
-            }
-            ?>
-
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#pagesExamples4">
+                    <i class="material-icons">settings</i>
+                    <p> Configuración
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="pagesExamples4">
+                    <ul class="nav">
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../presentacion/form_usuarios.php" target="info">
+                                <i class="material-icons">person_add</i>
+                                <span class="sidebar-normal"> Usuarios </span>
+                            </a>
+                        </li>
+                        <li class="nav-item select_menu">
+                            <a class="nav-link" href="../presentacion/form_cuenta_usuario.php" target="info">
+                                <i class="material-icons">person</i>
+                                <span class="sidebar-normal"> Mi cuenta </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li class="nav-item ">
                 <a class="nav-link logout" href="../logica/cerrar_sesion.php">
                     <i class="material-icons">logout</i>

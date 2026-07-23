@@ -7,7 +7,7 @@
                     <div class="input-group mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
-                                <span class="iconify" data-icon="carbon:email"></span>
+                                <span class="iconify" data-icon="carbon:email" style="color:#fff;"></span>
                             </span>
                         </div>
                         <input id="email" name="email" type="email"
@@ -20,7 +20,7 @@
                     <div class="input-group mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
-                                <span class="iconify" data-icon="carbon:password"></span>
+                                <span class="iconify" data-icon="carbon:password" style="color:#fff;"></span>
                             </span>
                         </div>
                         <input id="Contrasena" name="Contrasena" type="password"
@@ -38,4 +38,9 @@
         </form>
     </div>
 </div>
+<style>
+    #inicio {
+        margin-top: 90px;
+    }
+</style>
 <?php include 'layouts/end.php'; ?>
