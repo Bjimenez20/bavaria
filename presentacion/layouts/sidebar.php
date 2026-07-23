@@ -133,11 +133,11 @@
                     }
                 </style>
             </li>
-            <li class="nav-item ">
+            <!-- <li class="nav-item ">
                 <a class="nav-link" href="https://www.peoplemarketing.com/" target="_blank">
                     <img src="./../presentacion/layouts/img/people.png" alt="" class="w-100">
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>
