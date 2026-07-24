@@ -763,7 +763,7 @@ if ($privilegios != '' && $usua != '') {
                                     <input class="form-control" name="codigo_responsable" type="text" id="codigo_responsable" max="10" readonly value="<?php echo $id_responsable; ?>" />
                                 </div>
                                 <div class="col">
-                                    <span class="fw-bold">Estado del Paciente<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">Estado<span class="asterisco">*</span></span>
                                 </div>
                                 <div class="col">
                                     <select type="text" name="estado_paciente" id="estado_paciente" class="form-control">
@@ -783,13 +783,13 @@ if ($privilegios != '' && $usua != '') {
                                     <span class="fw-bold">Nombres del responsable<span class="asterisco">*</span></span>
                                 </div>
                                 <div class="col">
-                                    <input class="form-control" name="nombres" type="text" id="nombres" max="10" readonly value="<?php echo $nombres_res; ?>" />
+                                    <input class="form-control" name="nombres" type="text" id="nombres" max="10" value="<?php echo $nombres_res; ?>" />
                                 </div>
                                 <div class="col">
                                     <span class="fw-bold">Apellidos del responsable<span class="asterisco">*</span></span>
                                 </div>
                                 <div class="col">
-                                    <input class="form-control" name="apellidos" type="text" id="apellidos" max="10" readonly value="<?php echo $apellidos_res; ?>" />
+                                    <input class="form-control" name="apellidos" type="text" id="apellidos" max="10" value="<?php echo $apellidos_res; ?>" />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -797,13 +797,21 @@ if ($privilegios != '' && $usua != '') {
                                     <span class="fw-bold">Tipo de identificacion<span class="asterisco">*</span></span>
                                 </div>
                                 <div class="col">
-                                    <input class="form-control" name="tipo_identificacion" type="text" id="tipo_identificacion" max="10" readonly value="<?php echo $tipo_identificacion; ?>" />
+                                    <select type="text" name="tipo_identificacion" id="tipo_identificacion" class="form-control">
+                                        <option><?php echo $tipo_identificacion ?></option>
+                                        <option value="">Seleccione...</option>
+                                        <option>C.C</option>
+                                        <option>C.E</option>
+                                        <option>P.T</option>
+                                        <option>T.I</option>
+                                        <option>R.C</option>
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <span class="fw-bold">Identificacion<span class="asterisco">*</span></span>
                                 </div>
                                 <div class="col">
-                                    <input class="form-control" name="identificacion" type="text" id="identificacion" max="10" readonly value="<?php echo $identificacion; ?>" />
+                                    <input class="form-control" name="identificacion" type="text" id="identificacion" max="10" value="<?php echo $identificacion; ?>" />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -811,13 +819,100 @@ if ($privilegios != '' && $usua != '') {
                                     <span class="fw-bold">Telefono o Celular<span class="asterisco">*</span></span>
                                 </div>
                                 <div class="col">
-                                    <input class="form-control" name="telefono" type="text" id="telefono" max="10" readonly value="<?php echo $telefono; ?>" />
+                                    <input class="form-control" name="telefono" type="text" id="telefono" max="10" value="<?php echo $telefono; ?>" />
                                 </div>
                                 <div class="col">
                                     <span class="fw-bold">Direccion del negocio<span class="asterisco">*</span></span>
                                 </div>
                                 <div class="col">
-                                    <input class="form-control" name="direccion" type="text" id="direccion" max="10" readonly value="<?php echo $direccion; ?>" />
+                                    <input class="form-control" name="direccion" type="text" id="direccion" max="10" value="<?php echo $direccion; ?>" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Via<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <select type="text" name="VIA" id="VIA" class="form-control">
+                                        <option value="">Seleccione...</option>
+                                        <option>ANILLO VIAL</option>
+                                        <option>AUTOPISTA</option>
+                                        <option>AVENIDA</option>
+                                        <option>BOULEVAR</option>
+                                        <option>CALLE</option>
+                                        <option>CALLEJON</option>
+                                        <option>CARRERA</option>
+                                        <option>CIRCUNVALAR</option>
+                                        <option>CONDOMINIO</option>
+                                        <option>DIAGONAL</option>
+                                        <option>KILOMETRO</option>
+                                        <option>LOTE</option>
+                                        <option>SALIDA</option>
+                                        <option>SECTOR</option>
+                                        <option>TRANSVERSAL</option>
+                                        <option>VEREDA</option>
+                                        <option>VIA</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold">Detalles Via<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" name="detalle_via" type="text" id="detalle_via" max="10">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Numero<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input class="form-control" name="numero" type="text" id="numero">
+                                        -
+                                        <input class="form-control" name="numero2" type="text" id="numero2">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold">Interior<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <select type="text" name="interior" id="interior" class="form-control">
+                                        <option value="">Seleccione...</option>
+                                        <option>APARTAMENTO</option>
+                                        <option>BARRIO</option>
+                                        <option>BLOQUE</option>
+                                        <option>CASA</option>
+                                        <option>CIUDADELA</option>
+                                        <option>CONJUNTO</option>
+                                        <option>CONJUNTO RESIDENCIAL</option>
+                                        <option>EDIFICIO</option>
+                                        <option>ENTRADA</option>
+                                        <option>ETAPA</option>
+                                        <option>INTERIOR</option>
+                                        <option>MANZANA</option>
+                                        <option>NORTE</option>
+                                        <option>OFICINA</option>
+                                        <option>OCCIDENTE</option>
+                                        <option>ORIENTE</option>
+                                        <option>PENTHOUSE</option>
+                                        <option>PISO</option>
+                                        <option>PORTERIA</option>
+                                        <option>SOTANO</option>
+                                        <option>SUR</option>
+                                        <option>TORRE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col d-flex align-items-center">
+                                            <span class="fw-bold">Detalles Interior<span class="asterisco">*</span></span>
+                                        </div>
+                                        <div class="col-9">
+                                            <input class="form-control" name="detalle_int" type="text" id="detalle_int">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-3">

@@ -88,7 +88,13 @@ require_once('session.php');
 
         $fecha = date('Y-m-d');
 
-        $insert_visita = mysqli_query($conex, "INSERT INTO visitas (`WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `FECHA_REGISTRO`, `RESPONSABLE_ID`) VALUES ('" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $fecha . "', , '" . $responsable_id . "')");
+        $update_all_responsable = mysqli_query($conex, "UPDATE `responsable` SET `NOMBRES` = '$nombres', `APELLIDOS` = '$apellidos', `TIPO_IDENTIFICACION` = '$tipo_identificacion', `IDENTIFICACION` = '$identificacion', `TELEFONO` = '$telefono', `DIRECCION` = '$direccion' WHERE `ID_RESPONSABLE` = '$responsable_id'");
+
+        if (!$update_all_responsable) {
+            die("Error al actualizar los datos: " . mysqli_error($conex));
+        }
+
+        $insert_visita = mysqli_query($conex, "INSERT INTO visitas (`WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `FECHA_REGISTRO`, `RESPONSABLE_ID`) VALUES ('" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $fecha . "', '" . $responsable_id . "')");
 
         if (!$insert_visita) {
             die("Error al registrar visita: " . mysqli_error($conex));
