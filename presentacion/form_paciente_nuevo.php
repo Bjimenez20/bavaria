@@ -158,6 +158,64 @@ include('../logica/session.php');
             $('#detalle_int').change(function() {
                 dir();
             });
+
+            $("input[name='whatsApp']").change(function() {
+
+                var opcion = $("input[name='whatsApp']:checked").val();
+
+                if (opcion == "SI") {
+
+                    // Copia el teléfono y no permite editarlo
+                    $("#num_WhatsApp")
+                        .val($("#telefono").val())
+                        .prop("readonly", true)
+                        .prop("required", false);
+
+                } else if (opcion == "NO") {
+
+                    // Limpia el campo y obliga a ingresar otro número
+                    $("#num_WhatsApp")
+                        .val("")
+                        .prop("readonly", false)
+                        .prop("required", true)
+                        .focus();
+
+                }
+
+            });
+
+            // Si cambia el teléfono y la opción es SI, actualiza el WhatsApp
+            $("#telefono").on("keyup change", function() {
+
+                if ($("input[name='whatsApp']:checked").val() == "SI") {
+                    $("#num_WhatsApp").val($(this).val());
+                }
+
+            });
+
+            $("input[name='propietario']").change(function() {
+
+                var propietario = $("input[name='propietario']:checked").val();
+
+                if (propietario == "NO") {
+
+                    $("#fila_nuevo_responsable").show();
+
+                    $("#nombres_nuevo_pro, #apellidos_nuevo_pro")
+                        .prop("required", true);
+
+                } else {
+
+                    $("#fila_nuevo_responsable").hide();
+
+                    $("#nombres_nuevo_pro, #apellidos_nuevo_pro")
+                        .val("")
+                        .prop("required", false);
+
+                }
+
+            });
+
         });
     </script>
 
@@ -234,11 +292,11 @@ if ($privilegios != '' && $usua != '') {
                                 <td>
                                     <select name="tipo_identificacion" id="tipo_identificacion">
                                         <option value="">Seleccione...</option>
-                                        <option>R.C</option>
-                                        <option>T.I</option>
                                         <option>C.C</option>
                                         <option>C.E</option>
                                         <option>P.T</option>
+                                        <option>T.I</option>
+                                        <option>R.C</option>
                                     </select>
                                 </td>
                                 <td>
@@ -253,15 +311,19 @@ if ($privilegios != '' && $usua != '') {
                                     <span>Telefono<span class="asterisco">*</span></span>
                                 </td>
                                 <td>
-                                    <input type="number" name="telefono" id="telefono">
+                                    <input type="text" name="telefono" id="telefono">
                                 </td>
                                 <td>
                                     <span>¿Este número tiene WhatsApp?</span>
                                 </td>
                                 <td>
-                                    <input type="radio" name="whatsApp" id="whatsApp" style=" width:20%; display:none" value="" checked="checked" />
-                                    <input type="radio" name="whatsApp" id="whatsApp" style=" width:20%;" value="SI" />SI
-                                    <input type="radio" name="whatsApp" id="whatsApp" style=" width:20%;" value="NO" />NO
+                                    <input type="radio" name="whatsApp" value="" checked style="display:none">
+
+                                    <input type="radio" name="whatsApp" id="whatsapp_si" value="SI">
+                                    <label for="whatsapp_si">SI</label>
+
+                                    <input type="radio" name="whatsApp" id="whatsapp_no" value="NO">
+                                    <label for="whatsapp_no">NO</label>
                                 </td>
                             </tr>
                             <tr>
@@ -269,7 +331,7 @@ if ($privilegios != '' && $usua != '') {
                                     <span>Número con WhatsApp</span>
                                 </td>
                                 <td>
-                                    <input type="number" name="num_WhatsApp" id="num_WhatsApp" />
+                                    <input type="text" name="num_WhatsApp" id="num_WhatsApp">
                                 </td>
                                 <td style="width:10%;">
                                     <span>Direccion del negocio<span class="asterisco">*</span></span>
@@ -387,31 +449,32 @@ if ($privilegios != '' && $usua != '') {
                                     <span>¿El negocio continúa funcionando?<span class="asterisco">*</span></span>
                                 </td>
                                 <td width="30%">
-                                    <input type="radio" name="negocio_funciona" id="negocio_funciona" style=" width:20%; display:none" value="" checked="checked" />
-                                    <input type="radio" name="negocio_funciona" id="negocio_funciona" style=" width:20%;" value="SI" />SI
-                                    <input type="radio" name="negocio_funciona" id="negocio_funciona" style=" width:20%;" value="NO" />NO
+                                    <input type="radio" name="negocio_funciona" style=" width:20%; display:none" value="" checked="checked" />
+                                    <input type="radio" name="negocio_funciona" id="negocio_funciona_si" style=" width:20%;" value="SI" />SI
+                                    <input type="radio" name="negocio_funciona" id="negocio_funciona_no" style=" width:20%;" value="NO" />NO
                                 </td>
                                 <td width="20%">
                                     <span>¿Sigues siendo el propietario o administrador?<span class="asterisco">*</span></span>
                                 </td>
                                 <td width="30%">
-                                    <input type="radio" name="propietario" id="propietario" style=" width:20%; display:none" value="" checked="checked" />
-                                    <input type="radio" name="propietario" id="propietario" style=" width:20%;" value="SI" />SI
-                                    <input type="radio" name="propietario" id="propietario" style=" width:20%;" value="NO" />NO
+                                    <input type="radio" name="propietario" style=" width:20%; display:none" value="" checked="checked" />
+                                    <input type="radio" name="propietario" id="propietario_si" style=" width:20%;" value="SI" />SI
+                                    <input type="radio" name="propietario" id="propietario_no" style=" width:20%;" value="NO" />NO
                                 </td>
                             </tr>
-                            <tr>
+                            <tr id="fila_nuevo_responsable" style="display:none;">
                                 <td>
                                     <span>Nombre del nuevo responsable<span class="asterisco">*</span></span>
                                 </td>
                                 <td>
-                                    <input type="text" name="nombres_nuevo_pro" id="nombres_nuevo_pro" onkeypress="return check(event)" />
+                                    <input type="text" name="nombres_nuevo_pro" id="nombres_nuevo_pro">
                                 </td>
+
                                 <td>
                                     <span>Apellidos del nuevo responsable<span class="asterisco">*</span></span>
                                 </td>
                                 <td>
-                                    <input type="text" name="apellidos_nuevo_pro" id="apellidos_nuevo_pro" onkeypress="return check(event)" />
+                                    <input type="text" name="apellidos_nuevo_pro" id="apellidos_nuevo_pro">
                                 </td>
                             </tr>
                             <tr>

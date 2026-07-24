@@ -98,6 +98,14 @@ require_once('session.php');
 			die("Error al registrar visita: " . mysqli_error($conex));
 		}
 
+		if ($propietario == 'NO') {
+			$update_responsable = mysqli_query($conex, "UPDATE `responsable` SET `NOMBRES` = '$nombres_nuevo_pro', `APELLIDOS` = '$apellidos_nuevo_pro' WHERE `ID` = ' $responsable_id '");
+
+			if (!$update_responsable) {
+				die("Error al actualizar el responsable: " . mysqli_error($conex));
+			}
+		}
+
 
 		// Obtiene el ID recién creado
 		// $responsable_id = mysqli_insert_id($conex);

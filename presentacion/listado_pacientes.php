@@ -60,6 +60,7 @@ if ($privilegios != '' && $usua != '') {
 					<th width="9%" class="botones">Nombres</th>
 					<th width="9%" class="botones">Telefono</th>
 					<th width="9%" class="botones">WhatsApp</th>
+					<th width="9%" class="botones"># WhatsApp</th>
 					<th width="9%" class="botones">Direccion</th>
 					<!-- <th width="9%" class="botones">EDITAR</th> -->
 				</tr>
@@ -84,6 +85,7 @@ if ($privilegios != '' && $usua != '') {
 						<td><?php echo $fila1['NOMBRES'] . ' ' . $fila1['APELLIDOS'] ?></td>
 						<td><?php echo $fila1['TELEFONO'] ?></td>
 						<td><?php echo $fila1['WHATSAPP'] ?></td>
+						<td><?php echo $fila1['NUMERO_WHATSAPP'] ?></td>
 						<td><?php echo $fila1['DIRECCION'] ?></td>
 						<!-- <td>
 							<a href="../presentacion/form_paciente.php?artid=<?php echo base64_encode($fila1['ID_PACIENTE']); ?>&artge=<?php echo base64_encode($fila1['ID_GESTION']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a>
