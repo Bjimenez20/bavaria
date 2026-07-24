@@ -69,22 +69,16 @@ include('../logica/session.php')
 		<blockquote>
 			<form name="miformulario" method="post" action="listado_pacientes.php" onkeydown="return filtro(2)" target="consulta_inv" class="letra">
 				<table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" style="margin:auto auto;" class="letra">
-					<!-- <tr align="center">
-						<th width="10%" align="left" class="titulosth" bgcolor="#1D5C75">
-							<div id="movimiento1">
-								PAP
-								<input name="PAP" type="text" id="PAP" class="tipo1" style="height:20px">
-							</div>
-						</th>
-						<th width="20%" height="44" align="left" bgcolor="#1D5C75" class="titulosth">NOMBRE
+					<tr align="center">
+						<th width="15%" align="left" bgcolor="#1D5C75" class="titulosth">NOMBRE
 							<input name="nombre" type="text" id="nombre" class="tipo1" style="height:20px" />
 						</th>
-						<th width="15%" align="left" class="titulosth" bgcolor="#1D5C75">
+						<!-- <th width="15%" align="left" class="titulosth" bgcolor="#1D5C75">
 							<div id="movimiento2">
 								DOCUMENTO
 								<input name="documento" type="text" id="documento" class="tipo1" style="height:20px" />
 							</div>
-						</th>
+						</th> -->
 						<th width="15%" align="left" class="titulosth" bgcolor="#1D5C75">
 							<div id="movimiento1">
 								TELEFONO
@@ -96,7 +90,7 @@ include('../logica/session.php')
 								<input type="submit" name="buscar" id="buscar" value="Consultar" class="btn_buscar" title="BUSCAR" />
 							</div>
 						</th>
-					</tr> -->
+					</tr>
 					<tr>
 						<th colspan="5">
 							<iframe src="listado_pacientes.php" name="consulta_inv" id="consulta_inv" class="ifra2"></iframe>

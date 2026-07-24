@@ -106,19 +106,6 @@ require_once('session.php');
 			}
 		}
 
-
-		// Obtiene el ID recién creado
-		// $responsable_id = mysqli_insert_id($conex);
-		// if ($insertar_responsable) {
-		// 	$select_paciente = mysqli_query($conex, "SELECT ID FROM responsable ORDER BY ID DESC LIMIT 1");
-		// 	while ($dato = mysqli_fetch_array($select_paciente)) {
-		// 		$responsable_id = $dato['ID'];
-
-		// 		$insert_visita = mysqli_query($conex, "INSERT INTO visitas (`WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `RESPONSABLE_ID`) VALUES ('" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $responsable_id . "')");
-		// 		echo mysqli_error($conex);
-		// 	}
-		// }
-
 		if ($insertar_responsable || $insert_visita) {
 	?>
 			<span style="margin-top:5%;">
