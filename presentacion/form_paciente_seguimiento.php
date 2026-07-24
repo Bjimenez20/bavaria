@@ -67,18 +67,12 @@ include('../logica/session.php')
 <body>
 	<section>
 		<blockquote>
-			<form name="miformulario" method="post" action="listado_pacientes.php" onkeydown="return filtro(2)" target="consulta_inv" class="letra">
+			<form name="miformulario" method="GET" action="listado_pacientes.php" onkeydown="return filtro(2)" target="consulta_inv" class="letra">
 				<table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" style="margin:auto auto;" class="letra">
 					<tr align="center">
 						<th width="15%" align="left" bgcolor="#1D5C75" class="titulosth">NOMBRE
 							<input name="nombre" type="text" id="nombre" class="tipo1" style="height:20px" />
 						</th>
-						<!-- <th width="15%" align="left" class="titulosth" bgcolor="#1D5C75">
-							<div id="movimiento2">
-								DOCUMENTO
-								<input name="documento" type="text" id="documento" class="tipo1" style="height:20px" />
-							</div>
-						</th> -->
 						<th width="15%" align="left" class="titulosth" bgcolor="#1D5C75">
 							<div id="movimiento1">
 								TELEFONO

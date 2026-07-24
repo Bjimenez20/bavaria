@@ -62,22 +62,36 @@ require('../datos/conex.php');
 $consulta_responsable;
 $hoy = date('Y-m-d');
 if ($privilegios != '' && $usua != '') {
-	if (!isset($_POST['buscar'])) {
-		$consulta_ref = mysqli_query($conex, "SELECT R.*, V.WHATSAPP, V.NUMERO_WHATSAPP, V.ID_VISITA FROM responsable R LEFT JOIN visitas V ON V.ID_VISITA = (SELECT MAX(V2.ID_VISITA) FROM visitas V2 WHERE V2.RESPONSABLE_ID = R.ID_RESPONSABLE) ORDER BY R.ID_RESPONSABLE ASC");
-		echo mysqli_error($conex);
-		$consulta_responsable = "SELECT R.*, V.WHATSAPP, V.NUMERO_WHATSAPP, V.ID_VISITA FROM responsable R LEFT JOIN visitas V ON V.ID_VISITA = (SELECT MAX(V2.ID_VISITA) FROM visitas V2 WHERE V2.RESPONSABLE_ID = R.ID_RESPONSABLE) ORDER BY R.ID_RESPONSABLE ASC LIMIT";
+	$NOMBRE = isset($_GET['nombre']) ? trim($_GET['nombre']) : '';
+	$TELEFONO = isset($_GET['telefono']) ? trim($_GET['telefono']) : '';
+
+	$consulta_responsable = "
+SELECT
+    R.*,
+    V.WHATSAPP,
+    V.NUMERO_WHATSAPP,
+    V.ID_VISITA
+FROM responsable R
+LEFT JOIN visitas V
+    ON V.ID_VISITA = (
+        SELECT MAX(V2.ID_VISITA)
+        FROM visitas V2
+        WHERE V2.RESPONSABLE_ID = R.ID_RESPONSABLE
+    )
+WHERE 1=1
+";
+
+	if ($NOMBRE != '') {
+		$consulta_responsable .= " AND CONCAT(R.NOMBRES,' ',R.APELLIDOS) LIKE '%" . mysqli_real_escape_string($conex, $NOMBRE) . "%'";
 	}
 
-	if (isset($_POST['buscar'])) {
-		$NOMBRE = $_POST['nombre'];
-		$DOCUMENTO = $_POST['documento'];
-		$TELEFONO = $_POST['telefono'];
+	if ($TELEFONO != '') {
+		$consulta_responsable .= " AND R.TELEFONO LIKE '%" . mysqli_real_escape_string($conex, $TELEFONO) . "%'";
 	}
-	if ($NOMBRE != '' || $DOCUMENTO != '' || $TELEFONO != '') {
-		$consulta_ref = mysqli_query($conex, "SELECT * FROM responsable WHERE CONCAT(NOMBRES,' ',APELLIDOS) LIKE '%" . $NOMBRE . "%' AND IDENTIFICACION LIKE '%" . $DOCUMENTO . "%' AND TELEFONO LIKE '%" . $TELEFONO . "%'");
-		echo mysqli_error($conex);
-		$consulta_responsable = "SELECT * FROM responsable LIMIT";
-	}
+
+	$consulta_responsable .= " ORDER BY R.ID_RESPONSABLE ASC";
+
+	$consulta_ref = mysqli_query($conex, $consulta_responsable);
 ?>
 
 	<body>
@@ -108,7 +122,8 @@ if ($privilegios != '' && $usua != '') {
 					$inicio = ($pagina - 1) * $TAMANO_PAGINA;
 				}
 				$total_paginas = ceil($num_total_registros / $TAMANO_PAGINA);
-				$consulta = "$consulta_responsable " . $inicio . "," . $TAMANO_PAGINA;
+
+				$consulta = $consulta_responsable . " LIMIT $inicio,$TAMANO_PAGINA";
 				$consulta_ref = mysqli_query($conex, $consulta);
 				while ($fila1 = mysqli_fetch_array($consulta_ref)) {
 					$consulta_visita = mysqli_query($conex, "SELECT * FROM visitas WHERE RESPONSABLE_ID = '" . $fila1['ID_RESPONSABLE'] . "' ORDER BY ID_VISITA DESC LIMIT 1");
