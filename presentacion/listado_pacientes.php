@@ -9,6 +9,52 @@ include('../logica/session.php')
 	<title>IPSEN</title>
 	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" type="text/css" href="../presentacion/css/estilo_tablas.css" />
+
+	<style>
+		.paginacion {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 6px;
+			padding: 10px;
+		}
+
+		.paginacion a,
+		.paginacion span {
+			min-width: 35px;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+			border-radius: 5px;
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 14px;
+		}
+
+		.btn-pag {
+			background: #1D5C75;
+			color: #fff;
+			border: 1px solid #1D5C75;
+			transition: .2s;
+		}
+
+		.btn-pag:hover {
+			background: #fff;
+			color: #1D5C75;
+		}
+
+		.actual {
+			background: #fff;
+			color: #1D5C75;
+			border: 1px solid #fff;
+		}
+
+		.dots {
+			padding: 0 5px;
+			font-weight: bold;
+		}
+	</style>
 </head>
 <?PHP
 require('../datos/parse_str.php');
@@ -93,23 +139,59 @@ if ($privilegios != '' && $usua != '') {
 					}
 				</style>
 				<tr bgcolor="#FFFFFF" class="titulo" align="center">
-					<td colspan="3" class="botones">Se encontraron Registros <?php echo $num_total_registros; ?></td>
+					<td colspan="2" class="botones">Se encontraron Registros <?php echo $num_total_registros; ?></td>
 					<td colspan="8" class="botones">
 						<?php
 						if ($total_paginas > 1) {
-							if ($pagina != 1)
-								echo '<a href="' . $url . '?pagina=' . ($pagina - 1) . '"><img src="../presentacion/imagenes/izq.gif" border="0"></a>';
-							for ($i = 1; $i <= $total_paginas; $i++) {
-								if ($pagina == $i)
-									echo "<label style='font-size:120%; color:#000;'> $pagina </label>";
-								else
-									echo '  <a href="' . $url . '?pagina=' . $i . '" style="font-size:110%;">' . $i . '</a>  ';
+
+							echo '<div class="paginacion">';
+
+							// Anterior
+							if ($pagina > 1) {
+								echo '<a class="btn-pag" href="' . $url . '?pagina=' . ($pagina - 1) . '">&laquo;</a>';
 							}
-							if ($pagina != $total_paginas)
-								echo '<a href="' . $url . '?pagina=' . ($pagina + 1) . '"><img src="../presentacion/imagenes/der.gif" border="0"></a>';
+
+							$pagina_inicio = max(1, $pagina - 1);
+							$pagina_fin    = min($total_paginas, $pagina + 1);
+
+							// Primera página
+							if ($pagina_inicio > 1) {
+								echo '<a class="btn-pag" href="' . $url . '?pagina=1">1</a>';
+
+								if ($pagina_inicio > 2) {
+									echo '<span class="dots">...</span>';
+								}
+							}
+
+							// Página anterior, actual y siguiente
+							for ($i = $pagina_inicio; $i <= $pagina_fin; $i++) {
+
+								if ($i == $pagina) {
+									echo '<span class="actual">' . $i . '</span>';
+								} else {
+									echo '<a class="btn-pag" href="' . $url . '?pagina=' . $i . '">' . $i . '</a>';
+								}
+							}
+
+							// Última página
+							if ($pagina_fin < $total_paginas) {
+
+								if ($pagina_fin < ($total_paginas - 1)) {
+									echo '<span class="dots">...</span>';
+								}
+
+								echo '<a class="btn-pag" href="' . $url . '?pagina=' . $total_paginas . '">' . $total_paginas . '</a>';
+							}
+
+							// Siguiente
+							if ($pagina < $total_paginas) {
+								echo '<a class="btn-pag" href="' . $url . '?pagina=' . ($pagina + 1) . '">&raquo;</a>';
+							}
+
+							echo '</div>';
 						}
-						echo '</p>';
-						?></td>
+						?>
+					</td>
 				</tr>
 			</table>
 		<?php
