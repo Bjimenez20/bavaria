@@ -50,6 +50,31 @@ include('../logica/session.php')
                 }
 
             });
+
+            $("input[name='whatsApp']").change(function() {
+
+                var opcion = $("input[name='whatsApp']:checked").val();
+
+                if (opcion == "SI") {
+
+                    // Copia el teléfono y no permite editarlo
+                    $("#num_WhatsApp")
+                        .val($("#telefono").val())
+                        .prop("readonly", true)
+                        .prop("required", false);
+
+                } else if (opcion == "NO") {
+
+                    // Limpia el campo y obliga a ingresar otro número
+                    $("#num_WhatsApp")
+                        .val("")
+                        .prop("readonly", false)
+                        .prop("required", true)
+                        .focus();
+
+                }
+
+            });
         });
     </script>
     <script>
