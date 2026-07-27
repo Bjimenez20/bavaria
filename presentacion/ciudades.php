@@ -2,8 +2,8 @@
 include('../datos/conex.php');
 header('Content-Type: text/html; charset=UTF-8');
 $dep = $_POST['dep'];
-$select = mysqli_query($conex, "SELECT c.nombre FROM ipsen_ciudad AS c
-INNER JOIN ipsen_departamento AS d ON d.id=c.departamento_id
+$select = mysqli_query($conex, "SELECT c.nombre FROM ciudad AS c
+INNER JOIN departamento AS d ON d.id=c.departamento_id
 WHERE d.nombre='$dep' ORDER BY c.nombre ASC");
 echo mysqli_error($conex);
 echo "<option></option>";

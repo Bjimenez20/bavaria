@@ -25,7 +25,32 @@ include('../logica/session.php')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+    <script>
+        function mostrar_ciudades() {
+            var departamento = $('#departamento').val();
+            $("#ciudad").html('<img src="imgagenes/cargando.gif" />');
+            $("#ciudad_base").html('<img src="imgagenes/cargando.gif" />');
+            $.ajax({
+                url: '../presentacion/ciudades.php',
+                data: {
+                    dep: departamento,
+                },
+                type: 'post',
+                beforeSend: function() {
+                    $('#ciudad').attr('disabled');
+                    $("#ciudad").html("Procesando, espere por favor" + '<img src="img/cargando.gif" />');
+                    $('#ciudad_base').attr('disabled');
+                    $("#ciudad_base").html("Procesando, espere por favor" + '<img src="img/cargando.gif" />');
+                },
+                success: function(data) {
+                    $('#ciudad').removeAttr("disabled");
+                    $('#ciudad').html(data);
+                    $('#ciudad_base').removeAttr("disabled");
+                    $('#ciudad_base').html(data);
+                }
+            })
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $("input[name='propietario']").change(function() {
@@ -753,6 +778,8 @@ if ($privilegios != '' && $usua != '') {
                                 $identificacion = $fila['IDENTIFICACION'];
                                 $telefono = $fila['TELEFONO'];
                                 $direccion = $fila['DIRECCION'];
+                                $departamento = $fila['DEPARTAMENTO'];
+                                $ciudad = $fila['CIUDAD'];
                             }
                             ?>
                             <div class="row mb-3">
@@ -826,6 +853,33 @@ if ($privilegios != '' && $usua != '') {
                                 </div>
                                 <div class="col">
                                     <input class="form-control" name="direccion" type="text" id="direccion" max="10" value="<?php echo $direccion; ?>" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Departamento<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <select type="text" name="departamento" id="departamento" onchange="mostrar_ciudades()" style="text-transform:capitalize" class="form-control">
+                                        <option><?php echo $departamento ?></option>
+                                        <option value="">Seleccione...</option>
+                                        <?php
+                                        $Seleccion = mysqli_query($conex, "SELECT nombre FROM `departamento` WHERE nombre != '' ORDER BY nombre ASC");
+                                        while ($fila = mysqli_fetch_array($Seleccion)) {
+                                            $DEPARTAMENTO = $fila['nombre'];
+                                            echo "<option>" . $DEPARTAMENTO . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold">Ciudades<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <select type="text" name="ciudad" id="ciudad" class="form-control">
+                                        <option><?php echo $ciudad ?></option>
+                                        <option value="">Seleccione...</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row mb-3">

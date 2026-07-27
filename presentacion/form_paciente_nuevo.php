@@ -127,6 +127,33 @@ include('../logica/session.php');
     </style>
 
     <script>
+        function mostrar_ciudades() {
+            var departamento = $('#departamento').val();
+            $("#ciudad").html('<img src="imgagenes/cargando.gif" />');
+            $("#ciudad_base").html('<img src="imgagenes/cargando.gif" />');
+            $.ajax({
+                url: '../presentacion/ciudades.php',
+                data: {
+                    dep: departamento,
+                },
+                type: 'post',
+                beforeSend: function() {
+                    $('#ciudad').attr('disabled');
+                    $("#ciudad").html("Procesando, espere por favor" + '<img src="img/cargando.gif" />');
+                    $('#ciudad_base').attr('disabled');
+                    $("#ciudad_base").html("Procesando, espere por favor" + '<img src="img/cargando.gif" />');
+                },
+                success: function(data) {
+                    $('#ciudad').removeAttr("disabled");
+                    $('#ciudad').html(data);
+                    $('#ciudad_base').removeAttr("disabled");
+                    $('#ciudad_base').html(data);
+                }
+            })
+        }
+    </script>
+
+    <script>
         $(document).ready(function() {
             $('#cambio').click(function() {
                 $('#cambio_direccion').toggle();
@@ -338,6 +365,29 @@ if ($privilegios != '' && $usua != '') {
                                 </td>
                                 <td bgcolor="#FFFFFF" colspan="3">
                                     <input type="text" name="direccion" id="direccion" readonly style="width:98.5%;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span>Departamento<span class="asterisco">*</span></span></td>
+                                <td>
+                                    <select type="text" name="departamento" id="departamento" onchange="mostrar_ciudades()" style="text-transform:capitalize; width:98%;">
+                                        <option><?php echo $departamento ?></option>
+                                        <option value="">Seleccione...</option>
+                                        <?php
+                                        $Seleccion = mysqli_query($conex, "SELECT nombre FROM `departamento` WHERE nombre != '' ORDER BY nombre ASC");
+                                        while ($fila = mysqli_fetch_array($Seleccion)) {
+                                            $DEPARTAMENTO = $fila['nombre'];
+                                            echo "<option>" . $DEPARTAMENTO . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td><span>Ciudad<span class="asterisco">*</span></span></td>
+                                <td>
+                                    <select type="text" name="ciudad" id="ciudad" style="width:98.5%;">
+                                        <option><?php echo $ciudad ?></option>
+                                        <option value="">Seleccione...</option>
+                                    </select>
                                 </td>
                             </tr>
                             <tr>

@@ -65,6 +65,8 @@ require_once('session.php');
         $identificacion = $_POST['identificacion'];
         $telefono = $_POST['telefono'];
         $direccion = $_POST['direccion'];
+        $departamento = $_POST['departamento'];
+        $ciudad = $_POST['ciudad'];
         $whatsApp = $_POST['whatsApp'];
         $num_WhatsApp = $_POST['num_WhatsApp'];
         $negocio_funciona = $_POST['negocio_funciona'];
@@ -88,7 +90,7 @@ require_once('session.php');
 
         $fecha = date('Y-m-d');
 
-        $update_all_responsable = mysqli_query($conex, "UPDATE `responsable` SET `NOMBRES` = '$nombres', `APELLIDOS` = '$apellidos', `TIPO_IDENTIFICACION` = '$tipo_identificacion', `IDENTIFICACION` = '$identificacion', `TELEFONO` = '$telefono', `DIRECCION` = '$direccion' WHERE `ID_RESPONSABLE` = '$responsable_id'");
+        $update_all_responsable = mysqli_query($conex, "UPDATE `responsable` SET `NOMBRES` = '$nombres', `APELLIDOS` = '$apellidos', `TIPO_IDENTIFICACION` = '$tipo_identificacion', `IDENTIFICACION` = '$identificacion', `TELEFONO` = '$telefono', `DIRECCION` = '$direccion', DEPARTAMENTO = '$departamento', CIUDAD = '$ciudad' WHERE `ID_RESPONSABLE` = '$responsable_id'");
 
         if (!$update_all_responsable) {
             die("Error al actualizar los datos: " . mysqli_error($conex));
@@ -112,7 +114,7 @@ require_once('session.php');
     ?>
             <span style="margin-top:5%;">
                 <center>
-                    <img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+                    <img src="../presentacion/imagenes/CHULO.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
                 </center>
             </span>
             <p class="aviso3" style=" width:68.9%; margin:auto auto;">HA REGISTRADO LA VISITA CORRECTAMENTE.</p>

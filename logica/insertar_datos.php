@@ -64,6 +64,8 @@ require_once('session.php');
 		$identificacion = $_POST['identificacion'];
 		$telefono = $_POST['telefono'];
 		$direccion = $_POST['direccion'];
+		$departamento = $_POST['departamento'];
+		$ciudad = $_POST['ciudad'];
 		$whatsApp = $_POST['whatsApp'];
 		$num_WhatsApp = $_POST['num_WhatsApp'];
 		$negocio_funciona = $_POST['negocio_funciona'];
@@ -82,9 +84,9 @@ require_once('session.php');
 		$numero_registros = mysqli_query($conex, "SELECT * FROM responsable WHERE IDENTIFICACION ='" . $identificacion . "'");
 		echo mysqli_error($conex);
 		$coincidencias = mysqli_num_rows($numero_registros);
-
-		$insertar_responsable = mysqli_query($conex, "INSERT INTO responsable (`NOMBRES`, `APELLIDOS`, `TIPO_IDENTIFICACION`, `IDENTIFICACION`, `TELEFONO`, `DIRECCION`)
-		VALUES ('" . $nombres . "', '" . $apellidos . "', '" . $tipo_identificacion . "', '" . $identificacion . "', '" . $telefono . "', '" . $direccion . "')");
+		$fecha = date('Y-m-d');
+		$insertar_responsable = mysqli_query($conex, "INSERT INTO responsable (`NOMBRES`, `APELLIDOS`, `TIPO_IDENTIFICACION`, `IDENTIFICACION`, `TELEFONO`, `DIRECCION`, `DEPARTAMENTO`,`CIUDAD`)
+		VALUES ('" . $nombres . "', '" . $apellidos . "', '" . $tipo_identificacion . "', '" . $identificacion . "', '" . $telefono . "', '" . $direccion . "', '" . $departamento . "', '" . $ciudad . "')");
 
 		if (!$insertar_responsable) {
 			die("Error al registrar responsable: " . mysqli_error($conex));
@@ -92,7 +94,7 @@ require_once('session.php');
 
 		$responsable_id = mysqli_insert_id($conex);
 
-		$insert_visita = mysqli_query($conex, "INSERT INTO visitas (`WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `RESPONSABLE_ID`) VALUES ('" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $responsable_id . "')");
+		$insert_visita = mysqli_query($conex, "INSERT INTO visitas (`WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `FECHA_REGISTRO`, `RESPONSABLE_ID`) VALUES ('" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $fecha . "', '" . $responsable_id . "')");
 
 		if (!$insert_visita) {
 			die("Error al registrar visita: " . mysqli_error($conex));
@@ -110,7 +112,7 @@ require_once('session.php');
 	?>
 			<span style="margin-top:5%;">
 				<center>
-					<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+					<img src="../presentacion/imagenes/CHULO.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 				</center>
 			</span>
 			<p class="aviso3" style=" width:68.9%; margin:auto auto;">HA REGISTRADO LA VISITA CORRECTAMENTE.</p>
