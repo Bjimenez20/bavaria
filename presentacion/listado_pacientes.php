@@ -62,6 +62,7 @@ require('../datos/conex.php');
 $consulta_responsable;
 $hoy = date('Y-m-d');
 if ($privilegios != '' && $usua != '') {
+	$CODIGO = isset($_GET['codigo']) ? trim($_GET['codigo']) : '';
 	$NOMBRE = isset($_GET['nombre']) ? trim($_GET['nombre']) : '';
 	$TELEFONO = isset($_GET['telefono']) ? trim($_GET['telefono']) : '';
 
@@ -80,6 +81,10 @@ LEFT JOIN visitas V
     )
 WHERE 1=1
 ";
+
+	if ($CODIGO != '') {
+		$consulta_responsable .= " AND R.CODIGO_BAVARIA LIKE '%" . mysqli_real_escape_string($conex, $CODIGO) . "%'";
+	}
 
 	if ($NOMBRE != '') {
 		$consulta_responsable .= " AND CONCAT(R.NOMBRES,' ',R.APELLIDOS) LIKE '%" . mysqli_real_escape_string($conex, $NOMBRE) . "%'";
@@ -102,7 +107,8 @@ WHERE 1=1
 		?>
 			<table border="0" bordercolor="#A1A1A1" width="100%" rules="cols">
 				<tr>
-					<th width="9%" class="botones">Codigo responsable</th>
+					<th width="9%" class="botones">#</th>
+					<th width="9%" class="botones">Codigo bavaria</th>
 					<th width="9%" class="botones">Nombres</th>
 					<th width="9%" class="botones">Telefono</th>
 					<th width="9%" class="botones">WhatsApp</th>
@@ -134,6 +140,7 @@ WHERE 1=1
 				?>
 					<tr align="center">
 						<td><?php echo $fila1['ID_RESPONSABLE'] ?></td>
+						<td><?php echo $fila1['CODIGO_BAVARIA'] ?></td>
 						<td><?php echo $fila1['NOMBRES'] . ' ' . $fila1['APELLIDOS'] ?></td>
 						<td><?php echo $fila1['TELEFONO'] ?></td>
 						<td><?php echo $fila1['WHATSAPP'] ?></td>

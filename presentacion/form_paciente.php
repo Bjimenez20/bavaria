@@ -100,6 +100,29 @@ include('../logica/session.php')
                 }
 
             });
+
+            $("input[name='codi_ba']").change(function() {
+
+                var opcion = $("input[name='codi_ba']:checked").val();
+
+                if (opcion == "SI") {
+                    $("#codigo_bavaria_nuevo")
+                        .val($("#codigo_bavaria").val())
+                        .prop("readonly", true)
+                        .prop("required", false);
+
+                } else if (opcion == "NO") {
+
+                    $("#codigo_bavaria_nuevo")
+                        .val("")
+                        .prop("readonly", false)
+                        .prop("required", true)
+                        .focus();
+
+                }
+
+            });
+
         });
     </script>
     <script>
@@ -772,12 +795,15 @@ if ($privilegios != '' && $usua != '') {
                             $sele_responsable = mysqli_query($conex, "SELECT * FROM `responsable` WHERE ID_RESPONSABLE = '" . $responsable . "'");
                             while ($fila = mysqli_fetch_array($sele_responsable)) {
                                 $id_responsable = $fila['ID_RESPONSABLE'];
+                                $codigo_bavaria = $fila['CODIGO_BAVARIA'];
                                 $nombres_res = $fila['NOMBRES'];
                                 $apellidos_res = $fila['APELLIDOS'];
                                 $tipo_identificacion = $fila['TIPO_IDENTIFICACION'];
                                 $identificacion = $fila['IDENTIFICACION'];
                                 $telefono = $fila['TELEFONO'];
                                 $direccion = $fila['DIRECCION'];
+                                $establecimiento = $fila['ESTABLECIMIENTO'];
+                                $sub_canal = $fila['SUB_CANAL'];
                                 $departamento = $fila['DEPARTAMENTO'];
                                 $ciudad = $fila['CIUDAD'];
                             }
@@ -790,19 +816,32 @@ if ($privilegios != '' && $usua != '') {
                                     <input class="form-control" name="codigo_responsable" type="text" id="codigo_responsable" max="10" readonly value="<?php echo $id_responsable; ?>" />
                                 </div>
                                 <div class="col">
-                                    <span class="fw-bold">Estado<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">Codigo Bavaria<span class="asterisco">*</span></span>
                                 </div>
                                 <div class="col">
-                                    <select type="text" name="estado_paciente" id="estado_paciente" class="form-control">
-                                        <option><?php echo $ESTADO_PACIENTE ?></option>
-                                        <option value="">Seleccione...</option>
-                                        <option>Nuevo Activo</option>
-                                        <option>Nuevo Interrumpido</option>
-                                        <option>Interumplido</option>
-                                        <option>Activo</option>
-                                        <option>Suspendido</option>
-                                        <option>Drop out</option>
-                                    </select>
+                                    <input class="form-control" name="codigo_bavaria" type="text" id="codigo_bavaria" max="10" readonly value="<?php echo $codigo_bavaria; ?>" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">¿El codigo bavaria es correcto?<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input class="form-check-input me-1" type="radio" name="codi_ba" id="codi_ba" style="display:none" value="" checked="checked" />
+                                            <input class="form-check-input me-1" type="radio" name="codi_ba" id="codi_ba" value="SI" />SI
+                                        </div>
+                                        <div class="col">
+                                            <input class="form-check-input me-1" type="radio" name="codi_ba" id="codi_ba" value="NO" />NO
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold">Codigo bavaria correcto<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" name="codigo_bavaria_nuevo" type="text" id="codigo_bavaria_nuevo">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -853,6 +892,20 @@ if ($privilegios != '' && $usua != '') {
                                 </div>
                                 <div class="col">
                                     <input class="form-control" name="direccion" type="text" id="direccion" max="10" value="<?php echo $direccion; ?>" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Establecimiento<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" name="establecimiento" type="text" id="establecimiento" max="10" value="<?php echo $establecimiento; ?>" />
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold">Sub canal<span class="asterisco">*</span></span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" name="sub_canal" type="text" id="sub_canal" max="10" value="<?php echo $sub_canal; ?>" />
                                 </div>
                             </div>
                             <div class="row mb-3">

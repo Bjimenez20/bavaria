@@ -59,14 +59,19 @@ require_once('session.php');
     mysqli_query($conex, "SET NAMES utf8");
     if (isset($_POST['registrar'])) {
         $responsable_id = $_POST['codigo_responsable'];
+        $codigo_bavaria = $_POST['codigo_bavaria'];
         $nombres = $_POST['nombres'];
         $apellidos = $_POST['apellidos'];
         $tipo_identificacion = $_POST['tipo_identificacion'];
         $identificacion = $_POST['identificacion'];
         $telefono = $_POST['telefono'];
         $direccion = $_POST['direccion'];
+        $establecimiento = $_POST['establecimiento'];
+        $sub_canal = $_POST['sub_canal'];
         $departamento = $_POST['departamento'];
         $ciudad = $_POST['ciudad'];
+        $codi_ba = $_POST['codi_ba'];
+        $codigo_bavaria_nuevo = $_POST['codigo_bavaria_nuevo'];
         $whatsApp = $_POST['whatsApp'];
         $num_WhatsApp = $_POST['num_WhatsApp'];
         $negocio_funciona = $_POST['negocio_funciona'];
@@ -90,13 +95,13 @@ require_once('session.php');
 
         $fecha = date('Y-m-d');
 
-        $update_all_responsable = mysqli_query($conex, "UPDATE `responsable` SET `NOMBRES` = '$nombres', `APELLIDOS` = '$apellidos', `TIPO_IDENTIFICACION` = '$tipo_identificacion', `IDENTIFICACION` = '$identificacion', `TELEFONO` = '$telefono', `DIRECCION` = '$direccion', DEPARTAMENTO = '$departamento', CIUDAD = '$ciudad' WHERE `ID_RESPONSABLE` = '$responsable_id'");
+        $update_all_responsable = mysqli_query($conex, "UPDATE `responsable` SET `CODIGO_BAVARIA` = '$codigo_bavaria_nuevo', `NOMBRES` = '$nombres', `APELLIDOS` = '$apellidos', `TIPO_IDENTIFICACION` = '$tipo_identificacion', `IDENTIFICACION` = '$identificacion', `TELEFONO` = '$telefono', `DIRECCION` = '$direccion', `ESTABLECIMIENTO` = '$establecimiento', `SUB_CANAL` = '$sub_canal', DEPARTAMENTO = '$departamento', CIUDAD = '$ciudad' WHERE `ID_RESPONSABLE` = '$responsable_id'");
 
         if (!$update_all_responsable) {
             die("Error al actualizar los datos: " . mysqli_error($conex));
         }
 
-        $insert_visita = mysqli_query($conex, "INSERT INTO visitas (`WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `FECHA_REGISTRO`, `RESPONSABLE_ID`) VALUES ('" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $fecha . "', '" . $responsable_id . "')");
+        $insert_visita = mysqli_query($conex, "INSERT INTO visitas (`COD_BAVARIA_CORRECTO`,`BAVARIA_ID`,`WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `FECHA_REGISTRO`, `RESPONSABLE_ID`) VALUES ('" . $codi_ba . "','" . $codigo_bavaria_nuevo . "','" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $fecha . "', '" . $responsable_id . "')");
 
         if (!$insert_visita) {
             die("Error al registrar visita: " . mysqli_error($conex));
