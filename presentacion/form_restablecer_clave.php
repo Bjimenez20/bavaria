@@ -90,9 +90,6 @@ include('../logica/session.php')
       <div class="col-md-6 col-lg-5 col-sm-10 col-xs-10 mx-auto m-5">
          <form id="inicio" action="../presentacion/form_restablecer_clave.php" method="POST" style="width:100%;">
             <div class="row-reverse my-5">
-               <div class="col d-flex justify-content-center align-items-center mb-3">
-                  <img src="../presentacion/layouts/img/3.png" alt="" class="w-50">
-               </div>
                <div class="col-10 mx-auto mb-4">
                   <div class="input-group mb-4">
                      <input id="Contrasena_ac" name="Contrasena_ac" type="password" required="required" class="form-control" placeholder="Contraseña actual">
