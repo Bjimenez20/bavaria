@@ -17,9 +17,9 @@
  * Accordion container.
  */
 .Accordion {
-	border-left: solid 0px gray;
+	border-left: solid 0px blue;
 	border-right: solid 0px #EFC945;
-	border-bottom: solid 0px gray;
+	border-bottom: solid 0px blue;
 	overflow: hidden;
 }
 
@@ -54,8 +54,7 @@
  */
 .AccordionPanelTab {
 	background-color: #EFC945;
-	/* verde */
-	border-top: solid 1px #C7C8C9;
+	border-top: solid 1px blue;
 	margin: 0px;
 	padding: 2px;
 	cursor: pointer;

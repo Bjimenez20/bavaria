@@ -697,7 +697,7 @@ include('../logica/session.php')
         }
 
         .accordion-collapse {
-            border: solid #FF000F 1px;
+            border: solid #B58735 1px;
             border-end-start-radius: 10px;
             border-end-end-radius: 10px;
         }
