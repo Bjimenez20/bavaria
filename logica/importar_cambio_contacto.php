@@ -56,7 +56,7 @@ if ($contar == $total) {
 ?>
 	<span style="margin-top:5%;">
 		<center>
-			<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+			<img src="../presentacion/imagenes/CHULO.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 		</center>
 	</span>
 	<center>

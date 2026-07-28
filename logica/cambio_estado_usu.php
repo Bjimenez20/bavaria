@@ -49,7 +49,7 @@ require_once('session.php');
 	?>
 			<span style="margin-top:5%;">
 				<center>
-					<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+					<img src="../presentacion/imagenes/CHULO.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 				</center>
 			</span>
 			<p class="aviso3" style=" width:68.9%; margin:auto auto;">El usuario <?php echo $NOM ?> con el Id. <?php echo $ID ?> fue desactivado.</p>
@@ -68,7 +68,7 @@ require_once('session.php');
 		?>
 			<span style="margin-top:5%;">
 				<center>
-					<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+					<img src="../presentacion/imagenes/CHULO.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 				</center>
 			</span>
 			<p class="aviso3">El usuario <?php echo $NOM ?> con el Id. <?php echo $ID ?> fue activado.</p>
@@ -86,7 +86,7 @@ require_once('session.php');
 		?>
 			<span style="margin-top:5%;">
 				<center>
-					<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+					<img src="../presentacion/imagenes/CHULO.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 				</center>
 			</span>
 			<p class="aviso3">La contrseña del usuario <?php echo $NOM ?> con el Id. <?php echo $ID ?> fue restablecida.</p>

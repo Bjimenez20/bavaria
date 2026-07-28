@@ -76,7 +76,7 @@ if (isset($_GET['xnfgti'])) {
     $insert_apoyo_diagnostico = mysqli_query($conex, "INSERT INTO ipsen_apoyo_diagnostico (FK_PAP, TERAPIA, EXAMEN_1, EXAMEN_2, EXAMEN_3, EXAMEN_4, EXAMEN_5, EXAMEN_6, EXAMEN_7, CANTIDAD_EXAMENES, NUMERO_VOUCHER, CENTRO_MEDICO, ARCHIVO_IMG) VALUE ('" . $id_personaa . "','" . $terapia . "','" . $examne1 . "','" . $examne2 . "','" . $examne3 . "','" . $examne4 . "','" . $examne5 . "','" . $examne6 . "','" . $examne7 . "','" . $cant_examenes . "','" . $numero_voucher . "','" . $centro_medic . "','" . $enlace1 . "'); ");  ?>
     <span style="margin-top:5%;">
         <center>
-            <img src="../presentacion/imagenes/chulo.png" width="151" height="150" style="width:100px; margin-top:100px;margin-top:5%;" />
+            <img src="../presentacion/imagenes/CHULO.png" width="151" height="150" style="width:100px; margin-top:100px;margin-top:5%;" />
         </center>
     </span>
     <br><br><br>

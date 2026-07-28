@@ -249,7 +249,7 @@ include('../logica/session.php');
 								?>
 									<span style="margin-top:3%;">
 										<center>
-											<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+											<img src="../presentacion/imagenes/CHULO.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 										</center>
 									</span>
 									<p class="aviso3" style=" width:68.9%; margin:auto auto;">SE GENERO LA SOLICITUD DE ENVIO CORRECTAMENTE.</p>

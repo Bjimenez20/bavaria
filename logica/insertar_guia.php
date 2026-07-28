@@ -82,7 +82,7 @@
 	?>
 							<span style="margin-top:3%;">
 								<center>
-									<img src="../presentacion/imagenes/chulo.png" width="52" height="52" style=" margin-top:100px;margin-top:5%;" />
+									<img src="../presentacion/imagenes/CHULO.png" width="52" height="52" style=" margin-top:100px;margin-top:5%;" />
 								</center>
 							</span>
 							<p class="aviso3" style=" width:68.9%; margin:auto auto; font-size:95%;">EL NUMERO DE SERIAL <span style="color:#F00; font-weight:bold"><?php echo $SERIAL ?> </span> Y EL NUMERO DE GUIA <span style="color:#F00; font-weight:bold"><?php echo $NO_GUIA ?></span> SE INGRESARON CORRECTAMENTE .</p>

@@ -51,19 +51,19 @@ require_once("../datos/conex.php");
 	{
 		if ($val == 'ACTIVO') {
 	?>
-			<a href="../logica/cambio_estado_usu.php?ID=<?php echo base64_encode($ID); ?>&OK=<?PHP echo 1 ?>"><img src="../presentacion/imagenes/ON.png" alt="" width="45" title="DESACTIVAR USUARIOS" /></a>
+			<a href="../logica/cambio_estado_usu.php?ID=<?php echo base64_encode($ID); ?>&OK=<?PHP echo 1 ?>"><i class="fa-solid fa-toggle-on" style="color:green;"></i></a>
 		<?php
 		} else if ($val == 'INACTIVO') {
 		?>
-			<a href="../logica/cambio_estado_usu.php?ID=<?php echo base64_encode($ID) ?>&OK=<?PHP echo 2 ?>" style="width:112px;"><span><img src="../presentacion/imagenes/OFF.png" alt="" width="45" title="ACTIVAR USUARIOS" /></span></a>
+			<a href="../logica/cambio_estado_usu.php?ID=<?php echo base64_encode($ID) ?>&OK=<?PHP echo 2 ?>"><i class="fa-solid fa-toggle-off" style="color:red;"></i></a>
 		<?php
 		}
 	}
 	function accion($ID, $NOM)
 	{
 		?>
-		<a href="../presentacion/form_mi_cuenta.php?DATO=<?php echo base64_encode($NOM) ?>" target="usuarios"><img src="../presentacion/imagenes/lapiz 100.png" alt="" width="40" title="EDITAR INFORMACION USUARIO" /></a>
-		<a href="../logica/cambio_estado_usu.php?ID=<?php echo base64_encode($ID) ?>&OK=<?PHP echo 3 ?>"><img src="../presentacion/imagenes/restable.png" alt="" width="40" title="RESTABLECER CONTRASE&Ntilde;A" /></a>
+		<a href="../presentacion/form_mi_cuenta.php?DATO=<?php echo base64_encode($NOM) ?>" target="usuarios"><i class="fa-solid fa-pen-to-square" style="color:#B58735;"></i></a>
+		<a href="../logica/cambio_estado_usu.php?ID=<?php echo base64_encode($ID) ?>&OK=<?PHP echo 3 ?>"><i class="fa-solid fa-arrows-rotate" style="color:#B58735;"></i></a>
 	<?php
 	}
 	?>

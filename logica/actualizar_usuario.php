@@ -49,7 +49,7 @@ include('../logica/session.php');
 	?>
 			<span style="margin-top:5%;">
 				<center>
-					<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+					<img src="../presentacion/imagenes/CHULO.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 				</center>
 			</span>
 			<p class="aviso3" style=" width:68.9%; margin:auto auto;">LA CONTRASEÑA SE RESTABLECIO CON EXITO.</p>
@@ -70,7 +70,7 @@ include('../logica/session.php');
 		?>
 			<span style="margin-top:5%;">
 				<center>
-					<img src="../presentacion/imagenes/chulo.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
+					<img src="../presentacion/imagenes/CHULO.png" width="118" height="117" style="width:100px; margin-top:100px;margin-top:5%;" />
 				</center>
 			</span>
 			<p class="aviso3">LOS DATOS FUERON ACTUALIZADOS CON EXITO.</p>

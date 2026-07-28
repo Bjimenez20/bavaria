@@ -41,7 +41,7 @@ if (isset($_GET['xnfgti'])) {
 ?>
 	<span style="margin-top:5%;">
 		<center>
-			<img src="../presentacion/imagenes/chulo.png" width="151" height="150" style="width:100px; margin-top:100px;margin-top:5%;" />
+			<img src="../presentacion/imagenes/CHULO.png" width="151" height="150" style="width:100px; margin-top:100px;margin-top:5%;" />
 		</center>
 	</span>
 	<br><br><br>
