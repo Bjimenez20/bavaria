@@ -18,7 +18,7 @@ include('../logica/session.php')
    }
 
    body {
-      background: url('../layouts/img/background.png');
+      background: url('../layouts/img/background.png') no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -54,6 +54,11 @@ include('../logica/session.php')
       text-align: center;
       padding: 10px;
    }
+
+   #inicio {
+      margin-top: 90px;
+
+   }
 </style>
 
 <body>
@@ -86,10 +91,10 @@ include('../logica/session.php')
       return true;
    }
    ?>
-   <div class="row m-0">
-      <div class="col-md-6 col-lg-5 col-sm-10 col-xs-10 mx-auto m-5">
+   <div class="row m-0 align-items-center" style="min-height:100vh;">
+      <div class="col-md-6 col-lg-5 col-sm-10 col-xs-10 mx-auto">
          <form id="inicio" action="../presentacion/form_restablecer_clave.php" method="POST" style="width:100%;">
-            <div class="row-reverse my-5">
+            <div class="row-reverse">
                <div class="col-10 mx-auto mb-4">
                   <div class="input-group mb-4">
                      <input id="Contrasena_ac" name="Contrasena_ac" type="password" required="required" class="form-control" placeholder="Contraseña actual">
