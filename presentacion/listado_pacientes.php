@@ -9,6 +9,7 @@ include('../logica/session.php')
 	<title>IPSEN</title>
 	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" type="text/css" href="../presentacion/css/estilo_tablas.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 	<style>
 		.paginacion {
@@ -33,20 +34,20 @@ include('../logica/session.php')
 		}
 
 		.btn-pag {
-			background: #1D5C75;
+			background: #B58735;
 			color: #fff;
-			border: 1px solid #1D5C75;
+			border: 1px solid #B58735;
 			transition: .2s;
 		}
 
 		.btn-pag:hover {
 			background: #fff;
-			color: #1D5C75;
+			color: #B58735;
 		}
 
 		.actual {
 			background: #fff;
-			color: #1D5C75;
+			color: #B58735;
 			border: 1px solid #fff;
 		}
 
@@ -147,7 +148,9 @@ WHERE 1=1
 						<td><?php echo $fila1['NUMERO_WHATSAPP'] ?></td>
 						<td><?php echo $fila1['DIRECCION'] ?></td>
 						<td>
-							<a href="../presentacion/form_paciente.php?artid=<?php echo base64_encode($fila1['ID_RESPONSABLE']); ?>" target="info"><img src="../presentacion/imagenes/lapiz 100.png" width="25" height="25" /></a>
+							<a href="../presentacion/form_paciente.php?artid=<?php echo base64_encode($fila1['ID_RESPONSABLE']); ?>" target="info">
+								<i class="fas fa-pen fa-lg" style="color:#B58735;"></i>
+							</a>
 						</td>
 					</tr>
 				<?php

@@ -1,16 +1,16 @@
-<div class="sidebar" style="background: #1D5C75">
+<div class="sidebar" style="background: #FF000F">
     <div class="logo">
         <div class="row">
             <div class="col " style="display: none" id="logo_mini">
                 <a href="https://www.peoplemarketing.com/" class="simple-text logo-mini">
-                    <img src="./../presentacion/imagenes/13.png" alt="" class="w-100">
+                    <img src="./../presentacion/imagenes/13.png" alt="" style="width:300%;">
                 </a>
             </div>
             <div class="col d-flex justify-content-center">
                 <a href="https://www.peoplemarketing.com/" class="simple-text logo-normal">
                     <div class="row-reverse">
                         <div class="col d-flex justify-content-center">
-                            <img class="img" src="./../presentacion/imagenes/13.png" alt="" id="logo_max" style="width:70%;">
+                            <img class="img" src="./../presentacion/imagenes/13.png" alt="" id="logo_max" style="width:100%;">
                         </div>
                     </div>
                 </a>

@@ -2,7 +2,12 @@
 <div class="row m-0 align-items-center" style="min-height:100vh;">
     <div class="col-md-6 col-lg-5 col-sm-10 col-xs-10 mx-auto">
         <form id="inicio" action="logica/ini_sesion.php" method="POST">
+            <!-- <div class="card">
+                <div class="card-body"> -->
             <div class="row-reverse">
+                <!-- <div class="col d-flex justify-content-center align-items-center mb-3">
+                            <img src="layouts/img/Logo_Tipo_Horizontal.png" alt="" class="w-50">
+                        </div> -->
                 <div class="col-10 mx-auto mb-4">
                     <div class="input-group mb-4">
                         <div class="input-group-prepend">
@@ -35,12 +40,19 @@
                         class="btn_iniar btn btn-success">
                 </div>
             </div>
+            <!-- </div>
+            </div> -->
         </form>
     </div>
 </div>
 <style>
     #inicio {
         margin-top: 90px;
+
+    }
+
+    .login-form {
+        margin-left: 80%;
     }
 </style>
 <?php include 'layouts/end.php'; ?>

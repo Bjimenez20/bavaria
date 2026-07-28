@@ -70,16 +70,16 @@ include('../logica/session.php')
 			<form name="miformulario" method="GET" action="listado_pacientes.php" onkeydown="return filtro(2)" target="consulta_inv" class="letra">
 				<table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" style="margin:auto auto;" class="letra">
 					<tr align="center">
-						<th width="15%" align="left" bgcolor="#1D5C75" class="titulosth">CODIGO
+						<th width="15%" align="left" bgcolor="#B58735" class="titulosth">CODIGO
 							<input name="codigo" type="text" id="codigo" class="tipo1" style="height:20px" />
 						</th>
-						<th width="15%" align="left" bgcolor="#1D5C75" class="titulosth">NOMBRE
+						<th width="15%" align="left" bgcolor="#B58735" class="titulosth">NOMBRE
 							<input name="nombre" type="text" id="nombre" class="tipo1" style="height:20px" />
 						</th>
-						<th width="15%" align="left" class="titulosth" bgcolor="#1D5C75">TELEFONO
+						<th width="15%" align="left" class="titulosth" bgcolor="#B58735">TELEFONO
 							<input name="telefono" type="text" id="telefono" class="tipo1" style="height:20px">
 						</th>
-						<th width="5%" bgcolor="#1D5C75">
+						<th width="5%" bgcolor="#B58735">
 							<div id="consulta">
 								<input type="submit" name="buscar" id="buscar" value="Consultar" class="btn_buscar" title="BUSCAR" />
 							</div>

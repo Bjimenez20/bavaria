@@ -19,7 +19,7 @@
             <ul class="navbar-nav">
                 <li class=" dropdown">
                     <?php if ($privilegios == '1') { ?>
-                        <a class="nav-link" href="javascript:;" id="navbarDropdownBell" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- <a class="nav-link" href="javascript:;" id="navbarDropdownBell" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="row-reverse">
                                 <div class="col p-0">
                                     <button type="button" class="btn bg-dark">
@@ -28,7 +28,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </a>
+                        </a> -->
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBell">
                             <a class="dropdown-item select_menu" href="../presentacion/form_listado_operador.php" target="info">
                                 <div class="row-reverse">

@@ -12,13 +12,11 @@ include('../logica/session.php')
     <script src="js/jquery.js"></script>
     <script type="text/javascript" src="js/calcular_edad.js"></script>
     <script type="text/javascript" src="js/direccion.js"></script>
-    <script type="text/javascript" src="js/validar_campos_pacientes.js"></script>
     <script type="text/javascript" src="js/validaciones.js"></script>
     <script type="text/javascript" src="js/validar_caracteres.js"></script>
     <script src="../presentacion/js/jquery.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -62,7 +60,7 @@ include('../logica/session.php')
                     $("#fila_nuevo_responsable").show();
 
                     $("#nombres_nuevo_pro, #apellidos_nuevo_pro")
-                        .prop("required", true);
+                        .prop("required", false);
 
                 } else {
 
@@ -94,7 +92,7 @@ include('../logica/session.php')
                     $("#num_WhatsApp")
                         .val("")
                         .prop("readonly", false)
-                        .prop("required", true)
+                        .prop("required", false)
                         .focus();
 
                 }
@@ -116,7 +114,7 @@ include('../logica/session.php')
                     $("#codigo_bavaria_nuevo")
                         .val("")
                         .prop("readonly", false)
-                        .prop("required", true)
+                        .prop("required", false)
                         .focus();
 
                 }
@@ -682,9 +680,9 @@ include('../logica/session.php')
         }
 
         .accordion {
-            --bs-accordion-active-bg: #A5B9C8;
+            --bs-accordion-active-bg: #EFC945;
             --bs-accordion-active-color: white;
-            --bs-accordion-btn-bg: #A5B9C8;
+            --bs-accordion-btn-bg: #EFC945;
             --bs-accordion-btn-color: white;
         }
 
@@ -699,17 +697,17 @@ include('../logica/session.php')
         }
 
         .accordion-collapse {
-            border: solid #1D5C75 1px;
+            border: solid #FF000F 1px;
             border-end-start-radius: 10px;
             border-end-end-radius: 10px;
         }
 
         .btn-modify {
-            background: #1D5C75;
+            background: #FF000F;
         }
 
         .btn:hover {
-            background: #1D5C75;
+            background: #FF000F;
         }
 
         .readonly {
@@ -781,7 +779,7 @@ if ($privilegios != '' && $usua != '') {
 ?>
 
     <body class="body">
-        <form id="seguimiento" name="seguimiento" method="post" action="../logica/actualizar_seguimiento.php" enctype="multipart/form-data" class="letra">
+        <form id="seguimiento" name="seguimiento" method="post" enctype="multipart/form-data" class="letra">
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header " id="headingOne">
@@ -829,11 +827,11 @@ if ($privilegios != '' && $usua != '') {
                                 <div class="col">
                                     <div class="row">
                                         <div class="col">
-                                            <input class="form-check-input me-1" type="radio" name="codi_ba" id="codi_ba" style="display:none" value="" checked="checked" />
-                                            <input class="form-check-input me-1" type="radio" name="codi_ba" id="codi_ba" value="SI" />SI
+                                            <input class="form-check-input me-1" type="radio" name="codi_ba" id="codi_ba" style="display:none" value="" checked="checked">
+                                            <input class="form-check-input me-1" type="radio" name="codi_ba" id="codi_ba_si" value="SI" />SI
                                         </div>
                                         <div class="col">
-                                            <input class="form-check-input me-1" type="radio" name="codi_ba" id="codi_ba" value="NO" />NO
+                                            <input class="form-check-input me-1" type="radio" name="codi_ba" id="codi_ba_no" value="NO" />NO
                                         </div>
                                     </div>
                                 </div>
@@ -1030,10 +1028,10 @@ if ($privilegios != '' && $usua != '') {
                                     <div class="row">
                                         <div class="col">
                                             <input class="form-check-input me-1" type="radio" name="whatsApp" id="whatsApp" style="display:none" value="" checked="checked" />
-                                            <input class="form-check-input me-1" type="radio" name="whatsApp" id="whatsApp" value="SI" />SI
+                                            <input class="form-check-input me-1" type="radio" name="whatsApp" id="whatsApp_si" value="SI" />SI
                                         </div>
                                         <div class="col">
-                                            <input class="form-check-input me-1" type="radio" name="whatsApp" id="whatsApp" value="NO" />NO
+                                            <input class="form-check-input me-1" type="radio" name="whatsApp" id="whatsApp_no" value="NO" />NO
                                         </div>
                                     </div>
                                 </div>
@@ -1243,7 +1241,7 @@ if ($privilegios != '' && $usua != '') {
                             </div>
 
                             <div class="d-flex justify-content-center">
-                                <input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_registrar btn btn-modify bg-gradient text-white w-25" onClick="return validar(seguimiento,2)" />
+                                <input id="registrar" name="registrar" type="submit" value="REGISTRAR" class="btn_registrar btn btn-modify bg-gradient text-white w-25">
                             </div>
 
                         </div>
@@ -1252,6 +1250,8 @@ if ($privilegios != '' && $usua != '') {
             </div>
         </form>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="../presentacion/js/validar_campos_pacientes.js"></script>
         <script type="text/javascript">
             var Accordion1 = new Spry.Widget.Accordion("Accordion1");
         </script>

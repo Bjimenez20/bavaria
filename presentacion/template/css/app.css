@@ -11941,7 +11941,7 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
 }
 
 .badge.badge-primary {
-  background-color: #1D5C75;
+  background-color: #FF000F;
 }
 
 .badge.badge-info {
@@ -15044,7 +15044,7 @@ legend {
 }
 
 a {
-  color: #1D5C75;
+  color: #B58735;
 }
 
 a:hover,
@@ -17743,7 +17743,7 @@ form .checkbox-radios {
 }
 
 a {
-  color: #1D5C75;
+  color: #B58735;
 }
 
 a:hover,

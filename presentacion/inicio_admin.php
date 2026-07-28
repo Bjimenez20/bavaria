@@ -88,16 +88,16 @@ if ($privilegios != '' && $usua != '') {
                     <div id="content_welcome">
                         <div class="row-reverse">
                             <div class="col d-flex justify-content-center">
-                                <img src="./../presentacion/imagenes/14.png" style="width: 13%;" alt="">
+                                <img src="./../presentacion/imagenes/14.png" style="width: 30%;" alt="">
                             </div>
-                            <div class="col d-flex justify-content-center">
-                                <label for="" class="h2 font-weight-blue" style="color: #A5B9C8;">BIENVENIDO A BAVARIA </label>
-                            </div>
+                            <!-- <div class="col d-flex justify-content-center">
+                                <label for="" class="h2 font-weight-blue" style="color: #EFC945;">BIENVENIDO A BAVARIA </label>
+                            </div> -->
                         </div>
                         <div class="row mt-5">
                             <div class="col-md-4 mx-auto">
                                 <div class="card text-center cardhome">
-                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-color:#A5B9C8;">
+                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-color:#EFC945;">
                                         <span class="mask bg-gradient-dark opacity-6"></span>
                                         <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
                                             <p class="text-white font-weight-bold h3">CREAR VISITA</p>
@@ -111,7 +111,7 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="col-md-4 mx-auto">
                                 <div class="card text-center cardhome">
-                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-color:#A5B9C8;">
+                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-color:#EFC945;">
                                         <span class="mask bg-gradient-dark opacity-6"></span>
                                         <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
                                             <p class="text-white font-weight-bold h3">SEGUIMIENTO</p>
@@ -125,7 +125,7 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="col-md-4 mx-auto">
                                 <div class="card text-center cardhome">
-                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-color:#A5B9C8;">
+                                    <div class="overflow-hidden position-relative border-radius-lg bg-cover p-3" style="background-color:#EFC945;">
                                         <span class="mask bg-gradient-dark opacity-6"></span>
                                         <div class="card-body position-relative z-index-1 d-flex flex-column mt-5">
                                             <p class="text-white font-weight-bold h3">REPORTES</p>
