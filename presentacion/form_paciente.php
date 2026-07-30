@@ -820,26 +820,30 @@ if ($privilegios != '' && $usua != '') {
                                     <input class="form-control" name="codigo_bavaria" type="text" id="codigo_bavaria" max="10" readonly value="<?php echo $codigo_bavaria; ?>" />
                                 </div>
                             </div>
+
                             <div class="row mb-3">
+                                <div class="col d-flex align-items-center">
+                                    <span class="fw-bold">Logro comunicacion<span class="asterisco">*</span></span>
+                                </div>
                                 <div class="col">
                                     <div class="row">
-                                        <div class="col d-flex align-items-center">
-                                            <span class="fw-bold">Logro comunicacion<span class="asterisco">*</span></span>
+                                        <div class="col">
+                                            <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion" style="display:none" value="" checked="checked">
+                                            <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion_si" value="SI" />SI
                                         </div>
-                                        <div class="col-9">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion" style="display:none" value="" checked="checked">
-                                                    <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion_si" value="SI" />SI
-                                                </div>
-                                                <div class="col">
-                                                    <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion_no" value="NO" />NO
-                                                </div>
-                                            </div>
+                                        <div class="col">
+                                            <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion_no" value="NO" />NO
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col">
+                                    <span class="fw-bold">Autor</span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" name="autor" id="autor" readonly value="<?php echo $usua ?>">
+                                </div>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col">
                                     <span class="fw-bold">¿El codigo bavaria es correcto?<span class="asterisco">*</span></span>
