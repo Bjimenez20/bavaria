@@ -51,51 +51,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (!validarCampo('identificacion', 'Debe ingresar el numero de identificacion')) return;
 		if (!validarCampo('telefono', 'Debe ingresar el numero de telefono o celular')) return;
 		if (!validarCampo('direccion', 'Debe ingresar la direccion')) return;
-
 		if (!validarRadio('logro_comunicacion', 'Debe indicar si la comunicacion fue efectiva')) return;
+		if (!validarCampo('estado', 'Debe seleccionar un estado de la visita')) return;
+		if (!validarCampo('nota', 'Debe ingresar una nota de la llamada')) return;
 
-		if ($('input[name="logro_comunicacion"]:checked').val() === 'SI') {
-
-			if (!validarRadio('codi_ba', 'Debe indicar si el código Bavaria es correcto')) return;
-
-			if (!validarCampo('codigo_bavaria_nuevo', 'Debe ingresar el código Bavaria correcto')) return;
-
-			if (!validarRadio('whatsApp', 'Debe indicar si el número tiene WhatsApp')) return;
-
-			if (!validarCampo('num_WhatsApp', 'Debe ingresar el número de WhatsApp')) return;
-
-			if (!validarRadio('negocio_funciona', 'Debe indicar si el negocio continúa funcionando')) return;
-
-			if (!validarRadio('propietario', 'Debe indicar si sigue siendo el propietario o administrador')) return;
-
-			if ($('input[name="propietario"]:checked').val() === 'NO') {
-
-				if (!validarCampo('nombres_nuevo_pro', 'Debe ingresar los nombres del nuevo responsable')) return;
-
-				if (!validarCampo('apellidos_nuevo_pro', 'Debe ingresar los apellidos del nuevo responsable')) return;
-			}
-
-			if (!validarCampo('horario_visita', 'Debe seleccionar un horario para la visita')) return;
-
-			if (!validarCampo('dia_visita', 'Debe seleccionar una fecha para la visita')) return;
-
-			if (!validarCampo('interes_programa', 'Debe indicar el interés en el programa')) return;
-
-			if (!validarCampo('barrera', 'Debe seleccionar una barrera')) return;
-
-			if (!validarCampo('hora_inicio', 'Debe ingresar la hora de apertura')) return;
-
-			if (!validarCampo('hora_fin', 'Debe ingresar la hora de cierre')) return;
-
-			if (!validarCampo('descanso', 'Debe indicar los días de descanso')) return;
-
-			if (!validarCampo('nivel_interes', 'Debe seleccionar el nivel de interés')) return;
-
-			if (!validarCampo('nota', 'Debe ingresar una nota de la llamada')) return;
-		} else {
-
-			if (!validarCampo('nota', 'Debe ingresar una nota de la llamada')) return;
-		}
 
 
 		const formData = new FormData(formulario);

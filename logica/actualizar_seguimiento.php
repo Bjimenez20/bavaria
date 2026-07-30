@@ -35,6 +35,7 @@ $hora_inicio = $_POST['hora_inicio'];
 $hora_fin = $_POST['hora_fin'];
 $descanso = $_POST['descanso'];
 $nivel_interes = $_POST['nivel_interes'];
+$estado = $_POST['estado'];
 $nota = $_POST['nota'];
 $numero_registros = mysqli_query($conex, "SELECT * FROM responsable WHERE IDENTIFICACION ='" . $identificacion . "'");
 echo mysqli_error($conex);
@@ -51,7 +52,7 @@ if (!$update_all_responsable) {
     die("Error al actualizar los datos: " . mysqli_error($conex));
 }
 
-$insert_visita = mysqli_query($conex, "INSERT INTO visitas (`LOGRO_COMUNICACION`, `WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `FECHA_REGISTRO`, `RESPONSABLE_ID`) VALUES ('" . $logro_comunicacion . "', '" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $fecha . "', '" . $responsable_id . "')");
+$insert_visita = mysqli_query($conex, "INSERT INTO visitas (`LOGRO_COMUNICACION`, `ESTADO` ,`WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `FECHA_REGISTRO`, `RESPONSABLE_ID`) VALUES ('" . $logro_comunicacion . "', '" . $estado . "' ,'" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $fecha . "', '" . $responsable_id . "')");
 
 if (!$insert_visita) {
     die("Error al registrar visita: " . mysqli_error($conex));

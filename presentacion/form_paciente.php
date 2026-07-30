@@ -1042,7 +1042,7 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <span class="fw-bold">¿Este número tiene WhatsApp?<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">¿Este número tiene WhatsApp?</span>
                                 </div>
                                 <div class="col">
                                     <div class="row">
@@ -1056,7 +1056,7 @@ if ($privilegios != '' && $usua != '') {
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <span class="fw-bold">Número con WhatsApp<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">Número con WhatsApp</span>
                                 </div>
                                 <div class="col">
                                     <input class="form-control" name="num_WhatsApp" type="text" id="num_WhatsApp" max="10">
@@ -1075,7 +1075,7 @@ if ($privilegios != '' && $usua != '') {
                         <div class="accordion-body">
                             <div class="row mb-3">
                                 <div class="col">
-                                    <span class="fw-bold">¿El negocio continúa funcionando?<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">¿El negocio continúa funcionando?</span>
                                 </div>
                                 <div class="col">
                                     <div class="row">
@@ -1089,7 +1089,7 @@ if ($privilegios != '' && $usua != '') {
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <span class="fw-bold">¿Sigues siendo el propietario o administrador?<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">¿Sigues siendo el propietario o administrador?</span>
                                 </div>
                                 <div class="col">
                                     <div class="row">
@@ -1119,13 +1119,13 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <span class="fw-bold">¿En que horario podenos realizar la visita?<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">¿En que horario podenos realizar la visita?</span>
                                 </div>
                                 <div class="col">
                                     <input class="form-control" name="horario_visita" type="time" id="horario_visita" max="10">
                                 </div>
                                 <div class="col">
-                                    <span class="fw-bold">¿Qué día te queda más fácil recibir al asesor?<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">¿Qué día te queda más fácil recibir al asesor?</span>
                                 </div>
                                 <div class="col">
                                     <input class="form-control" name="dia_visita" type="date" id="dia_visita" max="10">
@@ -1133,7 +1133,7 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <span class="fw-bold">¿Te gustaría participar en este programa?<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">¿Te gustaría participar en este programa?</span>
                                 </div>
                                 <div class="col">
                                     <select type="text" name="interes_programa" id="interes_programa" class="form-control">
@@ -1145,7 +1145,7 @@ if ($privilegios != '' && $usua != '') {
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <span class="fw-bold">¿Qué podría impedir que realicemos la visita?<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">¿Qué podría impedir que realicemos la visita?</span>
                                 </div>
                                 <div class="col">
                                     <select type="text" name="barrera" id="barrera" class="form-control">
@@ -1163,13 +1163,13 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <span class="fw-bold">Horario de apertura<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">Horario de apertura</span>
                                 </div>
                                 <div class="col">
                                     <input class="form-control" name="hora_inicio" type="time" id="hora_inicio" max="10">
                                 </div>
                                 <div class="col">
-                                    <span class="fw-bold">Horario de cierre<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">Horario de cierre</span>
                                 </div>
                                 <div class="col">
                                     <input class="form-control" name="hora_fin" type="time" id="hora_fin" max="10">
@@ -1177,13 +1177,13 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <span class="fw-bold">Que dias toma de descanso<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">Que dias toma de descanso</span>
                                 </div>
                                 <div class="col">
                                     <textarea class="form-control" name="descanso" id="descanso" cols="30"></textarea>
                                 </div>
                                 <div class="col">
-                                    <span class="fw-bold">Nivel de interés en el programa<span class="asterisco">*</span></span>
+                                    <span class="fw-bold">Nivel de interés en el programa</span>
                                 </div>
                                 <div class="col">
                                     <select type="text" name="nivel_interes" id="nivel_interes" class="form-control">
@@ -1194,6 +1194,22 @@ if ($privilegios != '' && $usua != '') {
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col d-flex align-items-center">
+                                            <span class="fw-bold">Estado de agendamiento de la visita<span class="asterisco">*</span></span>
+                                        </div>
+                                        <div class="col-9">
+                                            <select class="form-control" name="estado" id="estado">
+                                                <option value="">Seleccione</option>
+                                                <option value="Efectiva">Efectiva</option>
+                                                <option value="No efectiva">No efectiva</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

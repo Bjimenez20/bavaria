@@ -55,6 +55,22 @@ include('../logica/session.php')
 			padding: 0 5px;
 			font-weight: bold;
 		}
+
+		.estado-efectiva {
+			background-color: #d4edda;
+			color: #155724;
+			font-weight: bold;
+			padding: 5px 10px;
+			border-radius: 5px;
+		}
+
+		.estado-no-efectiva {
+			background-color: #f8d7da;
+			color: #721c24;
+			font-weight: bold;
+			padding: 5px 10px;
+			border-radius: 5px;
+		}
 	</style>
 </head>
 <?PHP
@@ -70,6 +86,7 @@ if ($privilegios != '' && $usua != '') {
 	$consulta_responsable = "
 SELECT
     R.*,
+	V.ESTADO,
     V.WHATSAPP,
     V.NUMERO_WHATSAPP,
     V.ID_VISITA
@@ -115,6 +132,7 @@ WHERE 1=1
 					<th width="9%" class="botones">WhatsApp</th>
 					<th width="9%" class="botones"># WhatsApp</th>
 					<th width="9%" class="botones">Direccion</th>
+					<th width="9%" class="botones">Estado</th>
 					<th width="9%" class="botones">Accion</th>
 				</tr>
 				<?PHP
@@ -132,7 +150,16 @@ WHERE 1=1
 
 				$consulta = $consulta_responsable . " LIMIT $inicio,$TAMANO_PAGINA";
 				$consulta_ref = mysqli_query($conex, $consulta);
+
 				while ($fila1 = mysqli_fetch_array($consulta_ref)) {
+
+					// $claseEstado = '';
+
+					// if (strtoupper(trim($fila1['ESTADO'])) == 'Efectiva') {
+					// 	$claseEstado = 'estado-efectiva';
+					// } elseif (strtoupper(trim($fila1['ESTADO'])) == 'No efectiva') {
+					// 	$claseEstado = 'estado-no-efectiva';
+					// }
 					$consulta_visita = mysqli_query($conex, "SELECT * FROM visitas WHERE RESPONSABLE_ID = '" . $fila1['ID_RESPONSABLE'] . "' ORDER BY ID_VISITA DESC LIMIT 1");
 
 					while ($fila_vi = mysqli_fetch_array($consulta_visita)) {
@@ -147,6 +174,23 @@ WHERE 1=1
 						<td><?php echo $fila1['WHATSAPP'] ?></td>
 						<td><?php echo $fila1['NUMERO_WHATSAPP'] ?></td>
 						<td><?php echo $fila1['DIRECCION'] ?></td>
+						<?php
+						if ($fila1['ESTADO'] == 'Efectiva') {
+						?>
+							<td style="background-color: #d4edda;
+			color: #155724;
+			font-weight: bold;
+			padding: 5px 10px;
+			border-radius: 5px;"><?php echo $fila1['ESTADO']; ?></td>
+						<?php } else if ($fila1['ESTADO'] == 'No efectiva') { ?>
+							<td style="background-color: #f8d7da;
+			color: #721c24;
+			font-weight: bold;
+			padding: 5px 10px;
+			border-radius: 5px;"><?php echo $fila1['ESTADO']; ?></td>
+						<?php } else { ?>
+							<td><?php echo $fila1['ESTADO']; ?></td>
+						<?php } ?>
 						<td>
 							<a href="../presentacion/form_paciente.php?artid=<?php echo base64_encode($fila1['ID_RESPONSABLE']); ?>" target="info">
 								<i class="fas fa-pen fa-lg" style="color:#B58735;"></i>
