@@ -822,6 +822,26 @@ if ($privilegios != '' && $usua != '') {
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
+                                    <div class="row">
+                                        <div class="col d-flex align-items-center">
+                                            <span class="fw-bold">Logro comunicacion<span class="asterisco">*</span></span>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion" style="display:none" value="" checked="checked">
+                                                    <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion_si" value="SI" />SI
+                                                </div>
+                                                <div class="col">
+                                                    <input class="form-check-input me-1" type="radio" name="logro_comunicacion" id="logro_comunicacion_no" value="NO" />NO
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
                                     <span class="fw-bold">¿El codigo bavaria es correcto?<span class="asterisco">*</span></span>
                                 </div>
                                 <div class="col">
@@ -889,7 +909,94 @@ if ($privilegios != '' && $usua != '') {
                                     <span class="fw-bold">Direccion del negocio<span class="asterisco">*</span></span>
                                 </div>
                                 <div class="col">
-                                    <input class="form-control" name="direccion" type="text" id="direccion" max="10" value="<?php echo $direccion; ?>" />
+                                    <input class="form-control" name="direccion" type="text" id="direccion" max="10" readonly value="<?php echo $direccion; ?>">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Via</span>
+                                </div>
+                                <div class="col">
+                                    <select type="text" name="VIA" id="VIA" class="form-control">
+                                        <option value="">Seleccione...</option>
+                                        <option>ANILLO VIAL</option>
+                                        <option>AUTOPISTA</option>
+                                        <option>AVENIDA</option>
+                                        <option>BOULEVAR</option>
+                                        <option>CALLE</option>
+                                        <option>CALLEJON</option>
+                                        <option>CARRERA</option>
+                                        <option>CIRCUNVALAR</option>
+                                        <option>CONDOMINIO</option>
+                                        <option>DIAGONAL</option>
+                                        <option>KILOMETRO</option>
+                                        <option>LOTE</option>
+                                        <option>SALIDA</option>
+                                        <option>SECTOR</option>
+                                        <option>TRANSVERSAL</option>
+                                        <option>VEREDA</option>
+                                        <option>VIA</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold">Detalles Via</span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" name="detalle_via" type="text" id="detalle_via" max="10">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="fw-bold">Numero</span>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input class="form-control" name="numero" type="text" id="numero">
+                                        -
+                                        <input class="form-control" name="numero2" type="text" id="numero2">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold">Interior</span>
+                                </div>
+                                <div class="col">
+                                    <select type="text" name="interior" id="interior" class="form-control">
+                                        <option value="">Seleccione...</option>
+                                        <option>APARTAMENTO</option>
+                                        <option>BARRIO</option>
+                                        <option>BLOQUE</option>
+                                        <option>CASA</option>
+                                        <option>CIUDADELA</option>
+                                        <option>CONJUNTO</option>
+                                        <option>CONJUNTO RESIDENCIAL</option>
+                                        <option>EDIFICIO</option>
+                                        <option>ENTRADA</option>
+                                        <option>ETAPA</option>
+                                        <option>INTERIOR</option>
+                                        <option>MANZANA</option>
+                                        <option>NORTE</option>
+                                        <option>OFICINA</option>
+                                        <option>OCCIDENTE</option>
+                                        <option>ORIENTE</option>
+                                        <option>PENTHOUSE</option>
+                                        <option>PISO</option>
+                                        <option>PORTERIA</option>
+                                        <option>SOTANO</option>
+                                        <option>SUR</option>
+                                        <option>TORRE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col d-flex align-items-center">
+                                            <span class="fw-bold">Detalles Interior</span>
+                                        </div>
+                                        <div class="col-9">
+                                            <input class="form-control" name="detalle_int" type="text" id="detalle_int">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -931,93 +1038,6 @@ if ($privilegios != '' && $usua != '') {
                                         <option><?php echo $ciudad ?></option>
                                         <option value="">Seleccione...</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <span class="fw-bold">Via<span class="asterisco">*</span></span>
-                                </div>
-                                <div class="col">
-                                    <select type="text" name="VIA" id="VIA" class="form-control">
-                                        <option value="">Seleccione...</option>
-                                        <option>ANILLO VIAL</option>
-                                        <option>AUTOPISTA</option>
-                                        <option>AVENIDA</option>
-                                        <option>BOULEVAR</option>
-                                        <option>CALLE</option>
-                                        <option>CALLEJON</option>
-                                        <option>CARRERA</option>
-                                        <option>CIRCUNVALAR</option>
-                                        <option>CONDOMINIO</option>
-                                        <option>DIAGONAL</option>
-                                        <option>KILOMETRO</option>
-                                        <option>LOTE</option>
-                                        <option>SALIDA</option>
-                                        <option>SECTOR</option>
-                                        <option>TRANSVERSAL</option>
-                                        <option>VEREDA</option>
-                                        <option>VIA</option>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <span class="fw-bold">Detalles Via<span class="asterisco">*</span></span>
-                                </div>
-                                <div class="col">
-                                    <input class="form-control" name="detalle_via" type="text" id="detalle_via" max="10">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <span class="fw-bold">Numero<span class="asterisco">*</span></span>
-                                </div>
-                                <div class="col">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <input class="form-control" name="numero" type="text" id="numero">
-                                        -
-                                        <input class="form-control" name="numero2" type="text" id="numero2">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <span class="fw-bold">Interior<span class="asterisco">*</span></span>
-                                </div>
-                                <div class="col">
-                                    <select type="text" name="interior" id="interior" class="form-control">
-                                        <option value="">Seleccione...</option>
-                                        <option>APARTAMENTO</option>
-                                        <option>BARRIO</option>
-                                        <option>BLOQUE</option>
-                                        <option>CASA</option>
-                                        <option>CIUDADELA</option>
-                                        <option>CONJUNTO</option>
-                                        <option>CONJUNTO RESIDENCIAL</option>
-                                        <option>EDIFICIO</option>
-                                        <option>ENTRADA</option>
-                                        <option>ETAPA</option>
-                                        <option>INTERIOR</option>
-                                        <option>MANZANA</option>
-                                        <option>NORTE</option>
-                                        <option>OFICINA</option>
-                                        <option>OCCIDENTE</option>
-                                        <option>ORIENTE</option>
-                                        <option>PENTHOUSE</option>
-                                        <option>PISO</option>
-                                        <option>PORTERIA</option>
-                                        <option>SOTANO</option>
-                                        <option>SUR</option>
-                                        <option>TORRE</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col d-flex align-items-center">
-                                            <span class="fw-bold">Detalles Interior<span class="asterisco">*</span></span>
-                                        </div>
-                                        <div class="col-9">
-                                            <input class="form-control" name="detalle_int" type="text" id="detalle_int">
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -1195,6 +1215,7 @@ if ($privilegios != '' && $usua != '') {
                                 <table class="table">
                                     <tr style='border:1px solid gray'>
                                         <th class=AccordionPanelTab><strong>FECHA DE GESTION</strong></th>
+                                        <th class=AccordionPanelTab><strong>LOGRO COMUNICACION</strong></th>
                                         <td class=AccordionPanelTab><strong>DESCRIPCION</strong></td>
                                         <th class=AccordionPanelTab><strong>FECHA VISITA</strong></th>
                                         <th class=AccordionPanelTab><strong>BARRERA</strong></th>
@@ -1207,6 +1228,7 @@ if ($privilegios != '' && $usua != '') {
                                     ?>
                                         <tr>
                                             <td style='border:1px solid gray'><?php echo $fila2['FECHA_REGISTRO'] ?></td>
+                                            <td style='border:1px solid gray'><?php echo $fila2['LOGRO_COMUNICACION'] ?></td>
                                             <td style='border:1px solid gray'>
 
                                                 <textarea name="observaciones" cols="40" rows="2" readonly id="observaciones" class="letra" style="text-transform:uppercase"><?php echo $fila2['OBSERVACION']; ?></textarea>

@@ -7,6 +7,7 @@ require_once('session.php');
 require_once("../datos/conex.php");
 mysqli_query($conex, "SET NAMES utf8");
 $responsable_id = $_POST['codigo_responsable'];
+$logro_comunicacion = $_POST['logro_comunicacion'];
 $codigo_bavaria = $_POST['codigo_bavaria'];
 $nombres = $_POST['nombres'];
 $apellidos = $_POST['apellidos'];
@@ -50,7 +51,7 @@ if (!$update_all_responsable) {
     die("Error al actualizar los datos: " . mysqli_error($conex));
 }
 
-$insert_visita = mysqli_query($conex, "INSERT INTO visitas (`WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `FECHA_REGISTRO`, `RESPONSABLE_ID`) VALUES ('" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $fecha . "', '" . $responsable_id . "')");
+$insert_visita = mysqli_query($conex, "INSERT INTO visitas (`LOGRO_COMUNICACION`, `WHATSAPP`, `NUMERO_WHATSAPP`, `NEGOCIO_FUNCIONA`, `HORA_VISITA`, `FECHA_VISITA`, `INTERES_PROGRAMA`, `BARRERA`, `HORA_INICIO`, `HORA_FIN`, `DESCANSO`, `NIVEL_INTERES_PROGRAMA`, `OBSERVACION`, `FECHA_REGISTRO`, `RESPONSABLE_ID`) VALUES ('" . $logro_comunicacion . "', '" . $whatsApp . "', '" . $num_WhatsApp . "', '" . $negocio_funciona . "', '" . $horario_visita . "', '" . $dia_visita . "', '" . $interes_programa . "', '" . $barrera . "', '" . $hora_inicio . "', '" . $hora_fin . "', '" . $descanso . "', '" . $nivel_interes . "', '" . $nota . "', '" . $fecha . "', '" . $responsable_id . "')");
 
 if (!$insert_visita) {
     die("Error al registrar visita: " . mysqli_error($conex));
